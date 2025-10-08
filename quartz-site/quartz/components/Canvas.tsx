@@ -142,7 +142,13 @@ export default ((options?: CanvasOptions) => {
     return (
       <section class={classNames(displayClass, "canvas-container")} data-canvas={canvasReference.handle}>
         <div class="canvas-frame">
-          <iframe src={iframeSrc} title={`Canvas visualization: ${title}`} loading="lazy" allow="fullscreen" />
+          <iframe
+            src={iframeSrc}
+            title={`Canvas visualization: ${title}`}
+            loading="lazy"
+            allow="fullscreen"
+            scrolling="no"
+          />
           <div class="canvas-loading" role="status" aria-live="polite">
             <span class="canvas-spinner" aria-hidden="true" />
             <span class="canvas-loading__text">Loading canvas…</span>
@@ -161,7 +167,7 @@ export default ((options?: CanvasOptions) => {
 .canvas-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  min-height: clamp(26rem, 70vh, 60rem);
   background: var(--lightgray);
   border-radius: 0.75rem;
   overflow: hidden;
@@ -180,6 +186,7 @@ export default ((options?: CanvasOptions) => {
   width: 100%;
   height: 100%;
   border: 0;
+  overflow: hidden;
 }
 
 .canvas-loading {
@@ -231,7 +238,7 @@ export default ((options?: CanvasOptions) => {
 
 @media (max-width: 768px) {
   .canvas-frame {
-    aspect-ratio: 3 / 4;
+    min-height: clamp(24rem, 60vh, 48rem);
   }
 }
 `
