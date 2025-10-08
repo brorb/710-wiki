@@ -20,4 +20,4 @@ Railway reads `railway.toml` to build and serve the site:
 - Build command: `npm install && npm run build`
 - Start command: `npm run start`
 
-Connect this repository to a Railway service that honors `railway.toml`; the service will run the build script (which installs and builds Quartz) and serve the generated `quartz-site/public/` directory.
+Connect this repository to a Railway service that honors `railway.toml`; the service will run the build script (which installs and builds Quartz) and serve the generated `quartz-site/public/` directory with standard static hosting (no SPA fallback).

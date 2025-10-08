@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "npm install --prefix quartz-site && npm run build --prefix quartz-site",
-    "start": "npx serve -s quartz-site/public -l $PORT"
+    "start": "npx serve quartz-site/public -l $PORT"
   },
   "dependencies": {
     "serve": "^14.2.1"
