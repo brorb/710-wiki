@@ -203,7 +203,10 @@ def compute_bounds(nodes: Dict[str, CanvasNode]) -> Dict[str, float]:
     min_y = min(node.y for node in nodes.values())
     max_x = max(node.x + node.width for node in nodes.values())
     max_y = max(node.y + node.height for node in nodes.values())
-    margin = 240.0
+    span_width = max_x - min_x
+    span_height = max_y - min_y
+    dominant_span = max(span_width, span_height)
+    margin = max(72.0, dominant_span * 0.06)
     return {
         "min_x": min_x - margin,
         "min_y": min_y - margin,
@@ -552,8 +555,8 @@ def generate_html(
       const actions = document.querySelectorAll('header button[data-action]');
       const STAGE_WIDTH = {bounds['width']:.2f};
       const STAGE_HEIGHT = {bounds['height']:.2f};
-      const MIN_SCALE = 0.05;
-      const MAX_SCALE = 4.0;
+      const ABS_MIN_SCALE = 0.12;
+      const ABS_MAX_SCALE = 12.0;
       let scale = 1;
       let offsetX = 0;
       let offsetY = 0;
@@ -562,6 +565,8 @@ def generate_html(
       let initialScale = 1;
       let initialOffset = {{ x: 0, y: 0 }};
       let hasInteracted = false;
+      let minScale = ABS_MIN_SCALE;
+      let maxScale = ABS_MAX_SCALE;
 
       function updateTransform() {{
         stage.style.setProperty('--scale', scale.toFixed(4));
@@ -573,7 +578,11 @@ def generate_html(
         return Math.min(Math.max(value, min), max);
       }}
 
-      function fitToView(padding = 0.92, force = false) {{
+      function clampScale(value) {{
+        return clamp(value, minScale, maxScale);
+      }}
+
+      function fitToView(padding = 0.98, force = false) {{
         if (!wrapper) return;
         if (hasInteracted && !force) return;
         const containerWidth = wrapper.clientWidth || STAGE_WIDTH;
@@ -581,7 +590,8 @@ def generate_html(
         if (containerWidth === 0 || containerHeight === 0) {{
           return;
         }}
-        const fitScale = clamp(Math.min(containerWidth / STAGE_WIDTH, containerHeight / STAGE_HEIGHT) * padding, MIN_SCALE, MAX_SCALE);
+        const fitScaleRaw = Math.min(containerWidth / STAGE_WIDTH, containerHeight / STAGE_HEIGHT) * padding;
+        const fitScale = clamp(fitScaleRaw, ABS_MIN_SCALE, ABS_MAX_SCALE);
         scale = fitScale;
         initialScale = fitScale;
         const scaledWidth = STAGE_WIDTH * fitScale;
@@ -589,6 +599,8 @@ def generate_html(
         offsetX = (containerWidth - scaledWidth) / 2;
         offsetY = (containerHeight - scaledHeight) / 2;
         initialOffset = {{ x: offsetX, y: offsetY }};
+        minScale = Math.max(fitScale * 0.65, ABS_MIN_SCALE);
+        maxScale = Math.min(ABS_MAX_SCALE, Math.max(fitScale * 10, fitScale * 1.5));
         updateTransform();
       }}
 
@@ -599,7 +611,7 @@ def generate_html(
         const localX = focusX - rect.left;
         const localY = focusY - rect.top;
         const prevScale = scale;
-        const targetScale = clamp(scale * factor, MIN_SCALE, MAX_SCALE);
+        const targetScale = clampScale(scale * factor);
         const scaleDelta = targetScale / prevScale;
         offsetX = localX - (localX - offsetX) * scaleDelta;
         offsetY = localY - (localY - offsetY) * scaleDelta;
@@ -619,10 +631,7 @@ def generate_html(
             zoom(1 / 1.2, centerX, centerY);
           }} else if (action === 'reset') {{
             hasInteracted = false;
-            scale = initialScale;
-            offsetX = initialOffset.x;
-            offsetY = initialOffset.y;
-            updateTransform();
+            fitToView(0.98, true);
           }}
         }});
       }});
@@ -663,9 +672,9 @@ def generate_html(
         document.body.style.cursor = 'default';
       }});
 
-      window.addEventListener('resize', () => fitToView(0.92));
+      window.addEventListener('resize', () => fitToView());
 
-      fitToView(0.92, true);
+      fitToView(0.98, true);
     </script>
     <script id=\"canvas-json\" type=\"application/json\">{html.escape(serialized)}</script>
   </body>
