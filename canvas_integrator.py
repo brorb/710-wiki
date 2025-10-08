@@ -416,6 +416,8 @@ def generate_html(
       #canvas-wrapper {{
         position: relative;
         overflow: hidden;
+        width: 100%;
+        height: 100%;
       }}
       #canvas-stage {{
         --tx: 0px;
@@ -546,12 +548,20 @@ def generate_html(
     </footer>
     <script>
       const stage = document.getElementById('canvas-stage');
+      const wrapper = document.getElementById('canvas-wrapper');
       const actions = document.querySelectorAll('header button[data-action]');
+      const STAGE_WIDTH = {bounds['width']:.2f};
+      const STAGE_HEIGHT = {bounds['height']:.2f};
+      const MIN_SCALE = 0.05;
+      const MAX_SCALE = 4.0;
       let scale = 1;
       let offsetX = 0;
       let offsetY = 0;
       let isDragging = false;
       let dragStart = {{ x: 0, y: 0 }};
+      let initialScale = 1;
+      let initialOffset = {{ x: 0, y: 0 }};
+      let hasInteracted = false;
 
       function updateTransform() {{
         stage.style.setProperty('--scale', scale.toFixed(4));
@@ -563,43 +573,79 @@ def generate_html(
         return Math.min(Math.max(value, min), max);
       }}
 
+      function fitToView(padding = 0.92, force = false) {{
+        if (!wrapper) return;
+        if (hasInteracted && !force) return;
+        const containerWidth = wrapper.clientWidth || STAGE_WIDTH;
+        const containerHeight = wrapper.clientHeight || STAGE_HEIGHT;
+        if (containerWidth === 0 || containerHeight === 0) {{
+          return;
+        }}
+        const fitScale = clamp(Math.min(containerWidth / STAGE_WIDTH, containerHeight / STAGE_HEIGHT) * padding, MIN_SCALE, MAX_SCALE);
+        scale = fitScale;
+        initialScale = fitScale;
+        const scaledWidth = STAGE_WIDTH * fitScale;
+        const scaledHeight = STAGE_HEIGHT * fitScale;
+        offsetX = (containerWidth - scaledWidth) / 2;
+        offsetY = (containerHeight - scaledHeight) / 2;
+        initialOffset = {{ x: offsetX, y: offsetY }};
+        updateTransform();
+      }}
+
       function zoom(factor, focusX, focusY) {{
+        if (!wrapper) return;
+        hasInteracted = true;
+        const rect = wrapper.getBoundingClientRect();
+        const localX = focusX - rect.left;
+        const localY = focusY - rect.top;
         const prevScale = scale;
-        scale = clamp(scale * factor, 0.25, 3.5);
-        const scaleDelta = scale / prevScale;
-        offsetX = focusX - (focusX - offsetX) * scaleDelta;
-        offsetY = focusY - (focusY - offsetY) * scaleDelta;
+        const targetScale = clamp(scale * factor, MIN_SCALE, MAX_SCALE);
+        const scaleDelta = targetScale / prevScale;
+        offsetX = localX - (localX - offsetX) * scaleDelta;
+        offsetY = localY - (localY - offsetY) * scaleDelta;
+        scale = targetScale;
         updateTransform();
       }}
 
       actions.forEach((button) => {{
         button.addEventListener('click', () => {{
           const action = button.dataset.action;
+          const rect = wrapper.getBoundingClientRect();
+          const centerX = rect.left + wrapper.clientWidth / 2;
+          const centerY = rect.top + wrapper.clientHeight / 2;
           if (action === 'zoom-in') {{
-            zoom(1.2, window.innerWidth / 2, window.innerHeight / 2);
+            zoom(1.2, centerX, centerY);
           }} else if (action === 'zoom-out') {{
-            zoom(1 / 1.2, window.innerWidth / 2, window.innerHeight / 2);
+            zoom(1 / 1.2, centerX, centerY);
           }} else if (action === 'reset') {{
-            scale = 1;
-            offsetX = 0;
-            offsetY = 0;
+            hasInteracted = false;
+            scale = initialScale;
+            offsetX = initialOffset.x;
+            offsetY = initialOffset.y;
             updateTransform();
           }}
         }});
       }});
 
-      document.addEventListener('wheel', (event) => {{
-        if (!event.shiftKey) {{
-          event.preventDefault();
-          const factor = event.deltaY < 0 ? 1.1 : 1 / 1.1;
-          zoom(factor, event.clientX, event.clientY);
+      wrapper.addEventListener('wheel', (event) => {{
+        if (event.shiftKey) {{
+          return;
         }}
+        if (!wrapper.contains(event.target)) {{
+          return;
+        }}
+        event.preventDefault();
+        const factor = event.deltaY < 0 ? 1.1 : 1 / 1.1;
+        zoom(factor, event.clientX, event.clientY);
       }}, {{ passive: false }});
 
-      document.addEventListener('pointerdown', (event) => {{
+      wrapper.addEventListener('pointerdown', (event) => {{
         if (event.button !== 0) return;
+        hasInteracted = true;
         isDragging = true;
-  dragStart = {{ x: event.clientX - offsetX, y: event.clientY - offsetY }};
+        dragStart = {{ x: event.clientX - offsetX, y: event.clientY - offsetY }};
+        event.preventDefault();
+        wrapper.setPointerCapture?.(event.pointerId);
         document.body.style.cursor = 'grabbing';
       }});
 
@@ -610,12 +656,16 @@ def generate_html(
         updateTransform();
       }});
 
-      document.addEventListener('pointerup', () => {{
+      document.addEventListener('pointerup', (event) => {{
+        if (!isDragging) return;
         isDragging = false;
+        wrapper.releasePointerCapture?.(event.pointerId);
         document.body.style.cursor = 'default';
       }});
 
-      updateTransform();
+      window.addEventListener('resize', () => fitToView(0.92));
+
+      fitToView(0.92, true);
     </script>
     <script id=\"canvas-json\" type=\"application/json\">{html.escape(serialized)}</script>
   </body>
