@@ -1,7 +1,7 @@
 # 7/10 Tone Sleuth Wiki
 
 This is the information hub
-Hi.
+
 ## Quartz site
 
 The `quartz-site/` directory contains the Quartz static-site generator that renders this vault. To build locally:
