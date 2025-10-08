@@ -522,6 +522,23 @@ def generate_html(
         border-top: 1px solid rgba(148, 163, 184, 0.2);
         background: rgba(15, 23, 42, 0.85);
       }}
+      .debug-readout {{
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: #f8fafc;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 0.75rem;
+        line-height: 1.35;
+        pointer-events: none;
+        white-space: pre;
+        min-width: 220px;
+        z-index: 3;
+      }}
     </style>
   </head>
   <body>
@@ -545,14 +562,16 @@ def generate_html(
         </svg>
         {node_html}
       </div>
+      <div id="debug-readout" class="debug-readout" role="status" aria-live="polite"></div>
     </div>
     <footer>
       • Scroll to zoom, drag to pan. • Generated automatically by canvas_integrator.py.
     </footer>
     <script>
-      const stage = document.getElementById('canvas-stage');
-      const wrapper = document.getElementById('canvas-wrapper');
-      const actions = document.querySelectorAll('header button[data-action]');
+  const stage = document.getElementById('canvas-stage');
+  const wrapper = document.getElementById('canvas-wrapper');
+  const actions = document.querySelectorAll('header button[data-action]');
+  const debugReadout = document.getElementById('debug-readout');
       const STAGE_WIDTH = {bounds['width']:.2f};
       const STAGE_HEIGHT = {bounds['height']:.2f};
       const ABS_MIN_SCALE = 0.12;
@@ -568,10 +587,37 @@ def generate_html(
       let minScale = ABS_MIN_SCALE;
       let maxScale = ABS_MAX_SCALE;
 
-      function updateTransform() {{
+      function updateDebug(reason) {{
+        if (!debugReadout) return;
+        const lines = [
+          `reason: ${{reason}}`,
+          `scale: ${{scale.toFixed(3)}}`,
+          `minScale: ${{minScale.toFixed(3)}}`,
+          `maxScale: ${{maxScale.toFixed(3)}}`,
+          `offset: (${{offsetX.toFixed(1)}}, ${{offsetY.toFixed(1)}})`,
+          `container: ${{wrapper.clientWidth}}×${{wrapper.clientHeight}}`,
+          `stage: ${{STAGE_WIDTH}}×${{STAGE_HEIGHT}}`,
+        ];
+        debugReadout.textContent = lines.join('\n');
+        if (reason !== 'pan') {{
+          console.info('[Canvas Viewer]', {{
+            reason,
+            scale,
+            minScale,
+            maxScale,
+            offsetX,
+            offsetY,
+            container: {{ width: wrapper.clientWidth, height: wrapper.clientHeight }},
+            stage: {{ width: STAGE_WIDTH, height: STAGE_HEIGHT }},
+          }});
+        }}
+      }}
+
+      function updateTransform(reason = 'transform') {{
         stage.style.setProperty('--scale', scale.toFixed(4));
         stage.style.setProperty('--tx', `${{offsetX.toFixed(2)}}px`);
         stage.style.setProperty('--ty', `${{offsetY.toFixed(2)}}px`);
+        updateDebug(reason);
       }}
 
       function clamp(value, min, max) {{
@@ -600,8 +646,8 @@ def generate_html(
         offsetY = (containerHeight - scaledHeight) / 2;
         initialOffset = {{ x: offsetX, y: offsetY }};
         minScale = Math.max(fitScale * 0.65, ABS_MIN_SCALE);
-        maxScale = Math.min(ABS_MAX_SCALE, Math.max(fitScale * 10, fitScale * 1.5));
-        updateTransform();
+  maxScale = Math.min(ABS_MAX_SCALE, Math.max(fitScale * 10, fitScale * 1.5));
+  updateTransform('fitToView');
       }}
 
       function zoom(factor, focusX, focusY) {{
@@ -615,8 +661,8 @@ def generate_html(
         const scaleDelta = targetScale / prevScale;
         offsetX = localX - (localX - offsetX) * scaleDelta;
         offsetY = localY - (localY - offsetY) * scaleDelta;
-        scale = targetScale;
-        updateTransform();
+  scale = targetScale;
+  updateTransform('zoom');
       }}
 
       actions.forEach((button) => {{
@@ -661,8 +707,8 @@ def generate_html(
       document.addEventListener('pointermove', (event) => {{
         if (!isDragging) return;
         offsetX = event.clientX - dragStart.x;
-        offsetY = event.clientY - dragStart.y;
-        updateTransform();
+  offsetY = event.clientY - dragStart.y;
+  updateTransform('pan');
       }});
 
       document.addEventListener('pointerup', (event) => {{
