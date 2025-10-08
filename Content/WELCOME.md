@@ -6,12 +6,8 @@ tags:
 This is the 710 Tone information superhub!
 
 
-Read about the [[Characters]].
+Read about key figures like [[INDI]] and [[SYSTEM]].
 
-The [[Library]] also has stuff.
-
-I changed this! !!! Hi Brorb!!
-
-[[The Logs]] 
+Catch up with ongoing investigations in [[The Logs]] or dive into the [[Parting Gifts Puzzle]].
 
 

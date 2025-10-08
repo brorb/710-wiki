@@ -97,7 +97,7 @@ function _getFolders(slug: FullSlug): SimpleSlug[] {
     folderName = path.dirname(folderName ?? "") as SimpleSlug
     parentFolderNames.push(folderName)
   }
-  return parentFolderNames
+  return parentFolderNames.filter((folder) => folder !== "canvases")
 }
 
 export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (userOpts) => {

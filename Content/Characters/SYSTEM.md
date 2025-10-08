@@ -29,11 +29,11 @@ Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received 
 > HELLO, IF YOU GOT THIS, IT'S BECAUSE OF A FAIL SAFE I INSTALLED ONTO THE MOD BEFORE THE SYSTEM WAS TERMINATED. IT IS CAPABLE OF DOING ONLY ONE THING, AND THAT IS TO GIVE YOU THIS MESSAGE IF IT WAS PINGED BY SOMEONE. I DON'T KNOW HOW YOU CAN PING THE MOD, BUT IT HAS JUST ENOUGH DATA FROM ME TO KNOW THAT IT'S YOU. HOWEVER, I DON'T KNOW HOW TO MAKE IT SO THAT IT DELETES ITSELF AFTER. OH WELL, HERE'S A CLUE IF YOU'RE STUCK. IT'S NOT A NUMBER, BUT A SEQUENCE THAT'S USING SOMETHING BACKWARDS. I HOPE THIS HELPS.
 
 This message gave [[The Sleuths]] two key insights:
-1. A clue to the [[Parting Gifts Puzzle.canvas|Parting Gifts Puzzle]] was that it involved a "backwards sequence" of some kind
+1. A clue to the [[Parting Gifts Puzzle]] was that it involved a "backwards sequence" of some kind
 2. The SYSTEM Discord user was created by [[INDI]] to interact with [[The Sleuths]]
 
 ### Gift
 Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files:
 [[01.wav]], [[02.wav]], [[03.wav]], [[04.wav]], [[05.wav]], [[06.wav]]. 
-To read about the decoding of these files and the remainding of this puzzle, please read [[Parting Gifts Puzzle.canvas|Parting Gifts Puzzle]]
+To read about the decoding of these files and the remainding of this puzzle, please read [[Parting Gifts Puzzle]]
 

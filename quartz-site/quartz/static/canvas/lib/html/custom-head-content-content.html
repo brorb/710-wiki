@@ -1,0 +1,29 @@
+<script>
+(function () {
+  const attachWheelGuard = () => {
+    const wrapper = document.querySelector('.canvas-wrapper');
+    if (!wrapper) {
+      return;
+    }
+
+    const stopPageScroll = (event) => {
+      // Let the canvas zoom handler consume the wheel movement without scrolling the page.
+      // We only intercept standard scroll gestures (no modifier keys) to avoid blocking
+      // browser zoom shortcuts or special gestures.
+      if (event.defaultPrevented || event.ctrlKey || event.metaKey) {
+        return;
+      }
+
+      event.preventDefault();
+    };
+
+    wrapper.addEventListener('wheel', stopPageScroll, { passive: false, capture: true });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachWheelGuard);
+  } else {
+    attachWheelGuard();
+  }
+})();
+</script>
