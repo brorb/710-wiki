@@ -1,0 +1,15 @@
+views:
+  - type: table
+    name: Table
+    order:
+      - file.name
+      - tags
+      - file.ext
+      - file.path
+    sort:
+      - property: file.basename
+        direction: ASC
+      - property: tags
+        direction: DESC
+    columnSize:
+      file.backlinks: 475

@@ -1,0 +1,762 @@
+.:
+total 48K
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 .
+drwxr-xr-x 9 bror bror 4,0K okt.   2 14:37 ..
+-rw-rw-r-- 1 bror bror  256 okt.   2 14:08 Base Structure.base
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Characters
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Concepts
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:39 copilot
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:37 Livestreams
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:38 .obsidian
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Templates
+-rw-rw-r-- 1 bror bror    0 okt.   2 16:21 test.txt
+-rw-rw-r-- 1 bror bror   22 okt.   2 13:21 Untitled.md
+-rw-rw-r-- 1 bror bror  151 okt.   1 18:59 WELCOME.md
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 YouTube
+
+./Characters:
+total 24K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+-rw-rw-r-- 1 bror bror   81 okt.   1 18:30 Characters.md
+-rw-rw-r-- 1 bror bror 1,7K okt.   1 18:54 INDI.md
+-rw-rw-r-- 1 bror bror  474 okt.   2 13:36 Kepler.md
+-rw-rw-r-- 1 bror bror   28 okt.   2 13:17 Travis.md
+
+./Concepts:
+total 8,0K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+-rw-rw-r-- 1 bror bror    0 okt.   2 13:09 Black Mold.md
+-rw-rw-r-- 1 bror bror    0 okt.   2 13:09 Long String.md
+-rw-rw-r-- 1 bror bror    0 okt.   2 13:32 Private Room.md
+-rw-rw-r-- 1 bror bror    0 okt.   2 13:09 TTH.md
+
+./copilot:
+total 12K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:39 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:39 copilot-custom-prompts
+
+./copilot/copilot-custom-prompts:
+total 60K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:39 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:39 ..
+-rw-rw-r-- 1 bror bror  470 okt.   2 14:39 Emojify.md
+-rw-rw-r-- 1 bror bror  388 okt.   2 14:39 Explain like I am 5.md
+-rw-rw-r-- 1 bror bror  350 okt.   2 14:39 Fix grammar and spelling.md
+-rw-rw-r-- 1 bror bror  353 okt.   2 14:39 Generate glossary.md
+-rw-rw-r-- 1 bror bror  357 okt.   2 14:39 Generate table of contents.md
+-rw-rw-r-- 1 bror bror  379 okt.   2 14:39 Make longer.md
+-rw-rw-r-- 1 bror bror  373 okt.   2 14:39 Make shorter.md
+-rw-rw-r-- 1 bror bror  347 okt.   2 14:39 Remove URLs.md
+-rw-rw-r-- 1 bror bror  376 okt.   2 14:39 Rewrite as tweet.md
+-rw-rw-r-- 1 bror bror  500 okt.   2 14:39 Rewrite as tweet thread.md
+-rw-rw-r-- 1 bror bror  370 okt.   2 14:39 Simplify.md
+-rw-rw-r-- 1 bror bror  307 okt.   2 14:39 Summarize.md
+-rw-rw-r-- 1 bror bror  369 okt.   2 14:39 Translate to Chinese.md
+
+./Livestreams:
+total 20K
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 ES-ETA
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 example
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 STATION_8 TRIM 5
+
+./Livestreams/ES-ETA:
+total 20K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:37 ..
+-rw-rw-r-- 1 bror bror   78 okt.   2 16:13 About.md
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Screenshots
+-rw-rw-r-- 1 bror bror  120 okt.   2 16:11 Transcript.md
+
+./Livestreams/ES-ETA/Screenshots:
+total 8,0K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 ..
+
+./Livestreams/example:
+total 16K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:37 ..
+-rw-rw-r-- 1 bror bror    5 okt.   2 14:10 About.md
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Screenshots
+-rw-rw-r-- 1 bror bror    0 okt.   2 14:03 Transcript.md
+
+./Livestreams/example/Screenshots:
+total 8,0K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 ..
+
+./Livestreams/STATION_8 TRIM 5:
+total 16K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:37 ..
+-rw-rw-r-- 1 bror bror    0 okt.   2 13:43 About.md
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 Screenshots
+-rw-rw-r-- 1 bror bror 2,2K okt.   2 16:14 Transcript.md
+
+./Livestreams/STATION_8 TRIM 5/Screenshots:
+total 8,0K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:37 ..
+
+./.obsidian:
+total 48K
+drwxrwxr-x  4 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x  9 bror bror 4,0K okt.   2 16:21 ..
+-rw-rw-r--  1 bror bror    2 okt.   2 16:09 appearance.json
+-rw-rw-r--  1 bror bror   27 okt.   2 16:09 app.json
+-rw-rw-r--  1 bror bror  438 okt.   2 16:07 community-plugins.json
+-rw-rw-r--  1 bror bror  697 okt.   2 14:39 core-plugins.json
+-rw-rw-r--  1 bror bror  496 okt.   2 13:17 graph.json
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 icons
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 plugins
+-rw-rw-r--  1 bror bror   27 okt.   1 18:56 templates.json
+-rw-rw-r--  1 bror bror 6,5K okt.   2 16:14 workspace.json
+
+./.obsidian/icons:
+total 8,0K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:38 ..
+
+./.obsidian/plugins:
+total 80K
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 .
+drwxrwxr-x  4 bror bror 4,0K okt.   2 14:38 ..
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 advanced-canvas
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 dataview
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 editing-toolbar
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 media-extended
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 obsidian42-brat
+drwxrwxr-x  6 bror bror 4,0K okt.   2 14:41 obsidian-advanced-slides
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 obsidian-excalidraw-plugin
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 obsidian-hover-editor
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 obsidian-icon-folder
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 obsidian-importer
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 obsidian-latex-suite
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 obsidian-linter
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 obsidian-style-settings
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 obsidian-tracker
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 omnisearch
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 oz-image-plugin
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 tag-wrangler
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 url-into-selection
+
+./.obsidian/plugins/advanced-canvas:
+total 384K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 352K okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  363 okt.   2 14:40 manifest.json
+-rw-rw-r--  1 bror bror  19K okt.   2 14:40 styles.css
+
+./.obsidian/plugins/dataview:
+total 1,3M
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 1,3M okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  357 okt.   2 14:37 manifest.json
+-rw-rw-r--  1 bror bror 2,9K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/editing-toolbar:
+total 640K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  23K okt.   2 14:38 data.json
+-rw-rw-r--  1 bror bror 562K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  440 okt.   2 14:38 manifest.json
+-rw-rw-r--  1 bror bror  38K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/media-extended:
+total 1,8M
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  884 okt.   2 14:41 data.json
+-rw-rw-r--  1 bror bror 1,8M okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  276 okt.   2 14:40 manifest.json
+-rw-rw-r--  1 bror bror  13K okt.   2 14:40 styles.css
+
+./.obsidian/plugins/obsidian42-brat:
+total 96K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  79K okt.   2 14:39 main.js
+-rw-rw-r--  1 bror bror  385 okt.   2 14:39 manifest.json
+-rw-rw-r--  1 bror bror 2,0K okt.   2 14:39 styles.css
+
+./.obsidian/plugins/obsidian-advanced-slides:
+total 1,5M
+drwxrwxr-x  6 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 css
+-rw-rw-r--  1 bror bror  490 okt.   2 14:41 data.json
+drwxrwxr-x  4 bror bror 4,0K okt.   2 14:41 dist
+-rw-rw-r--  1 bror bror   25 okt.   2 14:41 distVersion.json
+-rw-rw-r--  1 bror bror 1,4M okt.   2 14:41 main.js
+-rw-rw-r--  1 bror bror  289 okt.   2 14:41 manifest.json
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 plugin
+-rw-rw-r--  1 bror bror  561 okt.   2 14:41 styles.css
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 template
+
+./.obsidian/plugins/obsidian-advanced-slides/css:
+total 192K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 6 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  13K okt.   2 14:41 layout.css
+-rw-rw-r-- 1 bror bror 161K okt.   2 14:41 mattropolis.css
+-rw-rw-r-- 1 bror bror 1,1K okt.   2 14:41 vs2015.css
+
+./.obsidian/plugins/obsidian-advanced-slides/dist:
+total 1,3M
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 6 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 fontawesome
+-rw-rw-r-- 1 bror bror  871 okt.   2 14:41 reset.css
+-rw-rw-r-- 1 bror bror  46K okt.   2 14:41 reveal.css
+-rw-rw-r-- 1 bror bror  88K okt.   2 14:41 reveal.esm.js
+-rw-rw-r-- 1 bror bror 345K okt.   2 14:41 reveal.esm.js.map
+-rw-rw-r-- 1 bror bror 143K okt.   2 14:41 reveal.js
+-rw-rw-r-- 1 bror bror 602K okt.   2 14:41 reveal.js.map
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 theme
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/fontawesome:
+total 1,2M
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 1,2M okt.   2 14:41 all.min.js
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/theme:
+total 272K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 7,8K okt.   2 14:41 beige.css
+-rw-rw-r-- 1 bror bror 6,7K okt.   2 14:41 black.css
+-rw-rw-r-- 1 bror bror 7,5K okt.   2 14:41 blood.css
+-rw-rw-r-- 1 bror bror 7,2K okt.   2 14:41 consult.css
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:41 fonts
+-rw-rw-r-- 1 bror bror 7,8K okt.   2 14:41 league.css
+-rw-rw-r-- 1 bror bror 161K okt.   2 14:41 mattropolis.css
+-rw-rw-r-- 1 bror bror 6,9K okt.   2 14:41 moon.css
+-rw-rw-r-- 1 bror bror 6,8K okt.   2 14:41 night.css
+-rw-rw-r-- 1 bror bror 6,8K okt.   2 14:41 serif.css
+-rw-rw-r-- 1 bror bror 6,8K okt.   2 14:41 simple.css
+-rw-rw-r-- 1 bror bror 7,4K okt.   2 14:41 sky.css
+-rw-rw-r-- 1 bror bror 6,6K okt.   2 14:41 solarized.css
+-rw-rw-r-- 1 bror bror 6,7K okt.   2 14:41 white.css
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/theme/fonts:
+total 20K
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 lato
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 league-gothic
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 source-sans-pro
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/theme/fonts/lato:
+total 136K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 126K okt.   2 14:41 lato.css
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/theme/fonts/league-gothic:
+total 36K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  28K okt.   2 14:41 league-gothic.css
+
+./.obsidian/plugins/obsidian-advanced-slides/dist/theme/fonts/source-sans-pro:
+total 1,8M
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 5 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 4,6K okt.   2 14:41 LICENSE
+-rw-rw-r-- 1 bror bror 1,5K okt.   2 14:41 source-sans-pro.css
+-rw-rw-r-- 1 bror bror  74K okt.   2 14:41 source-sans-pro-italic.eot
+-rw-rw-r-- 1 bror bror 233K okt.   2 14:41 source-sans-pro-italic.ttf
+-rw-rw-r-- 1 bror bror  97K okt.   2 14:41 source-sans-pro-italic.woff
+-rw-rw-r-- 1 bror bror  87K okt.   2 14:41 source-sans-pro-regular.eot
+-rw-rw-r-- 1 bror bror 282K okt.   2 14:41 source-sans-pro-regular.ttf
+-rw-rw-r-- 1 bror bror 112K okt.   2 14:41 source-sans-pro-regular.woff
+-rw-rw-r-- 1 bror bror  88K okt.   2 14:41 source-sans-pro-semibold.eot
+-rw-rw-r-- 1 bror bror  74K okt.   2 14:41 source-sans-pro-semibolditalic.eot
+-rw-rw-r-- 1 bror bror 236K okt.   2 14:41 source-sans-pro-semibolditalic.ttf
+-rw-rw-r-- 1 bror bror  97K okt.   2 14:41 source-sans-pro-semibolditalic.woff
+-rw-rw-r-- 1 bror bror 278K okt.   2 14:41 source-sans-pro-semibold.ttf
+-rw-rw-r-- 1 bror bror 113K okt.   2 14:41 source-sans-pro-semibold.woff
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin:
+total 60K
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x  6 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x  3 bror bror 4,0K okt.   2 14:41 chalkboard
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 chart
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 customcontrols
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 elapsed-time-bar
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 highlight
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 markdown
+drwxrwxr-x  3 bror bror 4,0K okt.   2 14:41 math
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 menu
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 mermaid
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 notes
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 reveal-pointer
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 search
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 zoom
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/chalkboard:
+total 156K
+drwxrwxr-x  3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 img
+-rw-rw-r--  1 bror bror  61K okt.   2 14:41 plugin (copy).js
+-rw-rw-r--  1 bror bror  58K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror 8,8K okt.   2 14:41 README.md
+-rw-rw-r--  1 bror bror  622 okt.   2 14:41 _style.css
+-rw-rw-r--  1 bror bror  724 okt.   2 14:41 style.css
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/chalkboard/img:
+total 164K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  32K okt.   2 14:41 blackboard.png
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 boardmarker-black.png
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 boardmarker-blue.png
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 boardmarker-green.png
+-rw-rw-r-- 1 bror bror 2,2K okt.   2 14:41 boardmarker-orange.png
+-rw-rw-r-- 1 bror bror 2,0K okt.   2 14:41 boardmarker-purple.png
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 boardmarker-red.png
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 boardmarker-yellow.png
+-rw-rw-r-- 1 bror bror 5,1K okt.   2 14:41 chalk-blue.png
+-rw-rw-r-- 1 bror bror 4,7K okt.   2 14:41 chalk-green.png
+-rw-rw-r-- 1 bror bror 4,9K okt.   2 14:41 chalk-orange.png
+-rw-rw-r-- 1 bror bror 5,2K okt.   2 14:41 chalk-purple.png
+-rw-rw-r-- 1 bror bror 4,7K okt.   2 14:41 chalk-red.png
+-rw-rw-r-- 1 bror bror 5,1K okt.   2 14:41 chalk-white.png
+-rw-rw-r-- 1 bror bror 5,0K okt.   2 14:41 chalk-yellow.png
+-rw-rw-r-- 1 bror bror 3,6K okt.   2 14:41 sponge.png
+-rw-rw-r-- 1 bror bror  34K okt.   2 14:41 whiteboard.png
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/chart:
+total 216K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 191K okt.   2 14:41 chart.min.js
+-rw-rw-r--  1 bror bror 5,8K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror 4,7K okt.   2 14:41 README.md
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/customcontrols:
+total 20K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 2,2K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror 2,0K okt.   2 14:41 README.md
+-rw-rw-r--  1 bror bror 1,1K okt.   2 14:41 style.css
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/elapsed-time-bar:
+total 12K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 3,9K okt.   2 14:41 elapsed-time-bar.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/highlight:
+total 1,9M
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 919K okt.   2 14:41 highlight.esm.js
+-rw-rw-r--  1 bror bror 919K okt.   2 14:41 highlight.js
+-rw-rw-r--  1 bror bror  940 okt.   2 14:41 monokai.css
+-rw-rw-r--  1 bror bror  16K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror  947 okt.   2 14:41 zenburn.css
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/markdown:
+total 208K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror  90K okt.   2 14:41 markdown.esm.js
+-rw-rw-r--  1 bror bror  90K okt.   2 14:41 markdown.js
+-rw-rw-r--  1 bror bror  14K okt.   2 14:41 plugin.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math:
+total 92K
+drwxrwxr-x  3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 2,6K okt.   2 14:41 katex.js
+-rw-rw-r--  1 bror bror  31K okt.   2 14:41 math.esm.js
+drwxrwxr-x  8 bror bror 4,0K okt.   2 14:41 mathjax
+-rw-rw-r--  1 bror bror 2,1K okt.   2 14:41 mathjax2.js
+-rw-rw-r--  1 bror bror 2,2K okt.   2 14:41 mathjax3.js
+-rw-rw-r--  1 bror bror  31K okt.   2 14:41 math.js
+-rw-rw-r--  1 bror bror  334 okt.   2 14:41 plugin.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax:
+total 11M
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 a11y
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 adaptors
+-rw-rw-r-- 1 bror bror 211K okt.   2 14:41 core.js
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 input
+-rw-rw-r-- 1 bror bror 5,0K okt.   2 14:41 latest.js
+-rw-rw-r-- 1 bror bror  17K okt.   2 14:41 loader.js
+-rw-rw-r-- 1 bror bror 629K okt.   2 14:41 mml-chtml.js
+-rw-rw-r-- 1 bror bror 1,6M okt.   2 14:41 mml-svg.js
+-rw-rw-r-- 1 bror bror 254K okt.   2 14:41 node-main.js
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 output
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 sre
+-rw-rw-r-- 1 bror bror  28K okt.   2 14:41 startup.js
+-rw-rw-r-- 1 bror bror 934K okt.   2 14:41 tex-chtml-full.js
+-rw-rw-r-- 1 bror bror 779K okt.   2 14:41 tex-chtml.js
+-rw-rw-r-- 1 bror bror 790K okt.   2 14:41 tex-mml-chtml.js
+-rw-rw-r-- 1 bror bror 1,7M okt.   2 14:41 tex-mml-svg.js
+-rw-rw-r-- 1 bror bror 1,9M okt.   2 14:41 tex-svg-full.js
+-rw-rw-r-- 1 bror bror 1,7M okt.   2 14:41 tex-svg.js
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 ui
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/a11y:
+total 84K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 6,1K okt.   2 14:41 assistive-mml.js
+-rw-rw-r-- 1 bror bror  18K okt.   2 14:41 complexity.js
+-rw-rw-r-- 1 bror bror  33K okt.   2 14:41 explorer.js
+-rw-rw-r-- 1 bror bror 8,1K okt.   2 14:41 semantic-enrich.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/adaptors:
+total 28K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  20K okt.   2 14:41 liteDOM.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/input:
+total 760K
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 106K okt.   2 14:41 asciimath.js
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 mml
+-rw-rw-r-- 1 bror bror  14K okt.   2 14:41 mml.js
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 tex
+-rw-rw-r-- 1 bror bror 128K okt.   2 14:41 tex-base.js
+-rw-rw-r-- 1 bror bror 321K okt.   2 14:41 tex-full.js
+-rw-rw-r-- 1 bror bror 166K okt.   2 14:41 tex.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/input/mml:
+total 44K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  32K okt.   2 14:41 entities.js
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 extensions
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/input/mml/extensions:
+total 228K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  28K okt.   2 14:41 mml3.js
+-rw-rw-r-- 1 bror bror 191K okt.   2 14:41 mml3.sef.json
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/input/tex:
+total 12K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 extensions
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/input/tex/extensions:
+total 516K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 2,3K okt.   2 14:41 action.js
+-rw-rw-r-- 1 bror bror 198K okt.   2 14:41 all-packages.js
+-rw-rw-r-- 1 bror bror 5,7K okt.   2 14:41 amscd.js
+-rw-rw-r-- 1 bror bror  26K okt.   2 14:41 ams.js
+-rw-rw-r-- 1 bror bror 6,1K okt.   2 14:41 autoload.js
+-rw-rw-r-- 1 bror bror 2,7K okt.   2 14:41 bbox.js
+-rw-rw-r-- 1 bror bror 3,7K okt.   2 14:41 boldsymbol.js
+-rw-rw-r-- 1 bror bror 6,2K okt.   2 14:41 braket.js
+-rw-rw-r-- 1 bror bror  16K okt.   2 14:41 bussproofs.js
+-rw-rw-r-- 1 bror bror 3,0K okt.   2 14:41 cancel.js
+-rw-rw-r-- 1 bror bror 3,2K okt.   2 14:41 centernot.js
+-rw-rw-r-- 1 bror bror 8,1K okt.   2 14:41 color.js
+-rw-rw-r-- 1 bror bror 5,0K okt.   2 14:41 colortbl.js
+-rw-rw-r-- 1 bror bror 1,8K okt.   2 14:41 colorv2.js
+-rw-rw-r-- 1 bror bror 4,3K okt.   2 14:41 configmacros.js
+-rw-rw-r-- 1 bror bror 2,1K okt.   2 14:41 enclose.js
+-rw-rw-r-- 1 bror bror 3,1K okt.   2 14:41 extpfeil.js
+-rw-rw-r-- 1 bror bror 1,9K okt.   2 14:41 gensymb.js
+-rw-rw-r-- 1 bror bror 2,6K okt.   2 14:41 html.js
+-rw-rw-r-- 1 bror bror  31K okt.   2 14:41 mathtools.js
+-rw-rw-r-- 1 bror bror  37K okt.   2 14:41 mhchem.js
+-rw-rw-r-- 1 bror bror 9,7K okt.   2 14:41 newcommand.js
+-rw-rw-r-- 1 bror bror 1,1K okt.   2 14:41 noerrors.js
+-rw-rw-r-- 1 bror bror 1,7K okt.   2 14:41 noundefined.js
+-rw-rw-r-- 1 bror bror  23K okt.   2 14:41 physics.js
+-rw-rw-r-- 1 bror bror 5,8K okt.   2 14:41 require.js
+-rw-rw-r-- 1 bror bror 5,2K okt.   2 14:41 setoptions.js
+-rw-rw-r-- 1 bror bror 2,7K okt.   2 14:41 tagformat.js
+-rw-rw-r-- 1 bror bror 6,4K okt.   2 14:41 textcomp.js
+-rw-rw-r-- 1 bror bror  16K okt.   2 14:41 textmacros.js
+-rw-rw-r-- 1 bror bror 3,1K okt.   2 14:41 unicode.js
+-rw-rw-r-- 1 bror bror 2,5K okt.   2 14:41 upgreek.js
+-rw-rw-r-- 1 bror bror 2,3K okt.   2 14:41 verb.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output:
+total 420K
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 chtml
+-rw-rw-r-- 1 bror bror 208K okt.   2 14:41 chtml.js
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 svg
+-rw-rw-r-- 1 bror bror 194K okt.   2 14:41 svg.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output/chtml:
+total 12K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 fonts
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output/chtml/fonts:
+total 116K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 103K okt.   2 14:41 tex.js
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 woff-v2
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output/chtml/fonts/woff-v2:
+total 396K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror  40K okt.   2 14:41 MathJax_AMS-Regular.woff
+-rw-rw-r-- 1 bror bror 9,7K okt.   2 14:41 MathJax_Calligraphic-Bold.woff
+-rw-rw-r-- 1 bror bror 9,4K okt.   2 14:41 MathJax_Calligraphic-Regular.woff
+-rw-rw-r-- 1 bror bror  22K okt.   2 14:41 MathJax_Fraktur-Bold.woff
+-rw-rw-r-- 1 bror bror  21K okt.   2 14:41 MathJax_Fraktur-Regular.woff
+-rw-rw-r-- 1 bror bror  34K okt.   2 14:41 MathJax_Main-Bold.woff
+-rw-rw-r-- 1 bror bror  21K okt.   2 14:41 MathJax_Main-Italic.woff
+-rw-rw-r-- 1 bror bror  34K okt.   2 14:41 MathJax_Main-Regular.woff
+-rw-rw-r-- 1 bror bror  20K okt.   2 14:41 MathJax_Math-BoldItalic.woff
+-rw-rw-r-- 1 bror bror  19K okt.   2 14:41 MathJax_Math-Italic.woff
+-rw-rw-r-- 1 bror bror  19K okt.   2 14:41 MathJax_Math-Regular.woff
+-rw-rw-r-- 1 bror bror  16K okt.   2 14:41 MathJax_SansSerif-Bold.woff
+-rw-rw-r-- 1 bror bror  15K okt.   2 14:41 MathJax_SansSerif-Italic.woff
+-rw-rw-r-- 1 bror bror  13K okt.   2 14:41 MathJax_SansSerif-Regular.woff
+-rw-rw-r-- 1 bror bror  12K okt.   2 14:41 MathJax_Script-Regular.woff
+-rw-rw-r-- 1 bror bror 5,7K okt.   2 14:41 MathJax_Size1-Regular.woff
+-rw-rw-r-- 1 bror bror 5,4K okt.   2 14:41 MathJax_Size2-Regular.woff
+-rw-rw-r-- 1 bror bror 3,2K okt.   2 14:41 MathJax_Size3-Regular.woff
+-rw-rw-r-- 1 bror bror 5,1K okt.   2 14:41 MathJax_Size4-Regular.woff
+-rw-rw-r-- 1 bror bror  18K okt.   2 14:41 MathJax_Typewriter-Regular.woff
+-rw-rw-r-- 1 bror bror 1,1K okt.   2 14:41 MathJax_Vector-Bold.woff
+-rw-rw-r-- 1 bror bror 1,2K okt.   2 14:41 MathJax_Vector-Regular.woff
+-rw-rw-r-- 1 bror bror 1,4K okt.   2 14:41 MathJax_Zero.woff
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output/svg:
+total 12K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 4 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 fonts
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/output/svg/fonts:
+total 1,1M
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 1,1M okt.   2 14:41 tex.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/sre:
+total 484K
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 mathmaps
+-rw-rw-r-- 1 bror bror 465K okt.   2 14:41 sre_browser.js
+-rw-rw-r-- 1 bror bror  297 okt.   2 14:41 sre-node.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/sre/mathmaps:
+total 2,7M
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 3 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 392K okt.   2 14:41 de.js
+-rw-rw-r-- 1 bror bror 472K okt.   2 14:41 en.js
+-rw-rw-r-- 1 bror bror 317K okt.   2 14:41 es.js
+-rw-rw-r-- 1 bror bror 387K okt.   2 14:41 fr.js
+-rw-rw-r-- 1 bror bror 500K okt.   2 14:41 hi.js
+-rw-rw-r-- 1 bror bror 396K okt.   2 14:41 it.js
+-rw-rw-r-- 1 bror bror 210K okt.   2 14:41 nemeth.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/math/mathjax/ui:
+total 116K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 8 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 6,6K okt.   2 14:41 lazy.js
+-rw-rw-r-- 1 bror bror  88K okt.   2 14:41 menu.js
+-rw-rw-r-- 1 bror bror  11K okt.   2 14:41 safe.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/menu:
+total 172K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror  378 okt.   2 14:41 bower.json
+-rw-rw-r--  1 bror bror  470 okt.   2 14:41 CONTRIBUTING.md
+-rw-rw-r--  1 bror bror 2,3K okt.   2 14:41 gulpfile.js
+-rw-rw-r--  1 bror bror 1,1K okt.   2 14:41 LICENSE
+-rw-rw-r--  1 bror bror 8,0K okt.   2 14:41 menu.css
+-rw-rw-r--  1 bror bror  37K okt.   2 14:41 menu.esm.js
+-rw-rw-r--  1 bror bror  37K okt.   2 14:41 menu.js
+-rw-rw-r--  1 bror bror  991 okt.   2 14:41 package.json
+-rw-rw-r--  1 bror bror  37K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror  13K okt.   2 14:41 README.md
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/mermaid:
+total 2,1M
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 1,1M okt.   2 14:41 mermaid.esm.js
+-rw-rw-r--  1 bror bror 1,1M okt.   2 14:41 mermaid.js
+-rw-rw-r--  1 bror bror 1,3K okt.   2 14:41 plugin.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/notes:
+total 248K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 102K okt.   2 14:41 notes.esm.js
+-rw-rw-r--  1 bror bror 102K okt.   2 14:41 notes.js
+-rw-rw-r--  1 bror bror 5,9K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror  23K okt.   2 14:41 speaker-view.html
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/reveal-pointer:
+total 16K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror  354 okt.   2 14:41 pointer.css
+-rw-rw-r--  1 bror bror 2,9K okt.   2 14:41 pointer.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/search:
+total 56K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 6,4K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror  17K okt.   2 14:41 search.esm.js
+-rw-rw-r--  1 bror bror  17K okt.   2 14:41 search.js
+
+./.obsidian/plugins/obsidian-advanced-slides/plugin/zoom:
+total 24K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 15 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r--  1 bror bror 6,7K okt.   2 14:41 plugin.js
+-rw-rw-r--  1 bror bror 2,7K okt.   2 14:41 zoom.esm.js
+-rw-rw-r--  1 bror bror 2,9K okt.   2 14:41 zoom.js
+
+./.obsidian/plugins/obsidian-advanced-slides/template:
+total 24K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:41 .
+drwxrwxr-x 6 bror bror 4,0K okt.   2 14:41 ..
+-rw-rw-r-- 1 bror bror 4,2K okt.   2 14:41 embed.html
+-rw-rw-r-- 1 bror bror 7,0K okt.   2 14:41 reveal.html
+
+./.obsidian/plugins/obsidian-excalidraw-plugin:
+total 8,2M
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  20K okt.   2 14:38 data.json
+-rw-rw-r--  1 bror bror 8,0M okt.   2 14:37 main.js
+-rw-rw-r--  1 bror bror  432 okt.   2 14:37 manifest.json
+-rw-rw-r--  1 bror bror 156K okt.   2 14:37 styles.css
+
+./.obsidian/plugins/obsidian-hover-editor:
+total 208K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 179K okt.   2 14:39 main.js
+-rw-rw-r--  1 bror bror  318 okt.   2 14:39 manifest.json
+-rw-rw-r--  1 bror bror  16K okt.   2 14:39 styles.css
+
+./.obsidian/plugins/obsidian-icon-folder:
+total 428K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  789 okt.   2 14:38 data.json
+-rw-rw-r--  1 bror bror 405K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  311 okt.   2 14:38 manifest.json
+-rw-rw-r--  1 bror bror 2,2K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/obsidian-importer:
+total 376K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 358K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  314 okt.   2 14:38 manifest.json
+-rw-rw-r--  1 bror bror 2,0K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/obsidian-latex-suite:
+total 620K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 600K okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  379 okt.   2 14:40 manifest.json
+-rw-rw-r--  1 bror bror 5,8K okt.   2 14:40 styles.css
+
+./.obsidian/plugins/obsidian-linter:
+total 772K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:39 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror  11K okt.   2 14:39 data.json
+-rw-rw-r--  1 bror bror 739K okt.   2 14:39 main.js
+-rw-rw-r--  1 bror bror  535 okt.   2 14:39 manifest.json
+-rw-rw-r--  1 bror bror 4,2K okt.   2 14:39 styles.css
+
+./.obsidian/plugins/obsidian-style-settings:
+total 180K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 151K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  321 okt.   2 14:38 manifest.json
+-rw-rw-r--  1 bror bror  14K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/obsidian-tracker:
+total 220K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 202K okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  249 okt.   2 14:40 manifest.json
+-rw-rw-r--  1 bror bror 3,3K okt.   2 14:40 styles.css
+
+./.obsidian/plugins/omnisearch:
+total 624K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 1,1K okt.   2 14:38 data.json
+-rw-rw-r--  1 bror bror 602K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  392 okt.   2 14:38 manifest.json
+-rw-rw-r--  1 bror bror 2,3K okt.   2 14:38 styles.css
+
+./.obsidian/plugins/oz-image-plugin:
+total 176K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 152K okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  412 okt.   2 14:40 manifest.json
+-rw-rw-r--  1 bror bror 8,4K okt.   2 14:40 styles.css
+
+./.obsidian/plugins/tag-wrangler:
+total 144K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:38 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 131K okt.   2 14:38 main.js
+-rw-rw-r--  1 bror bror  332 okt.   2 14:38 manifest.json
+
+./.obsidian/plugins/url-into-selection:
+total 20K
+drwxrwxr-x  2 bror bror 4,0K okt.   2 14:40 .
+drwxrwxr-x 20 bror bror 4,0K okt.   2 16:07 ..
+-rw-rw-r--  1 bror bror 8,0K okt.   2 14:40 main.js
+-rw-rw-r--  1 bror bror  218 okt.   2 14:40 manifest.json
+
+./Templates:
+total 12K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+-rw-rw-r-- 1 bror bror   46 okt.   1 18:57 Character Template.md
+
+./YouTube:
+total 16K
+drwxrwxr-x 2 bror bror 4,0K okt.   2 14:37 .
+drwxrwxr-x 9 bror bror 4,0K okt.   2 16:21 ..
+-rw-rw-r-- 1 bror bror   26 okt.   1 19:00 710 NPP.md
+-rw-rw-r-- 1 bror bror  430 okt.   1 19:00 710 Tone.md
