@@ -14,6 +14,19 @@ npm run build
 The build script installs dependencies within `quartz-site/`, rebuilds using four parsing threads, and the generated site appears in `quartz-site/public/`.
 For local incremental editing use `npm run preview`, which serves the site with hot reload and watches for Markdown changes.
 
+### Canvas integration
+
+Interactive canvases from Obsidian can be surfaced on the site:
+
+1. In Obsidian, enable the **Webpage HTML Export** plugin.
+2. Export the canvases you want to share using the plugin's **Online Web Server** mode.
+3. Drop the exported bundle into `quartz-site/content/Canvas/`, keeping the plugin's structure intact:
+	- HTML files in `quartz-site/content/Canvas/html/`
+	- Supporting assets (`lib/` folder) in `quartz-site/content/Canvas/lib/`
+4. Create a note under `quartz-site/content/canvases/` (one per canvas) and set the slug to match the exported HTML filename. Optionally add `canvas: exported-file-name` in frontmatter if they differ.
+
+The layout automatically embeds the matching HTML file when visiting pages inside the `canvases/` folder. The spinner overlay hides once the iframe loads, and descriptive copy can be supplied via a `canvasDescription` frontmatter value.
+
 ## Railway deployment
 
 Railway reads `railway.toml` to build and serve the site:

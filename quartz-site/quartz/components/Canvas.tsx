@@ -9,6 +9,19 @@ type CanvasOptions = {
 
 const DEFAULT_CANVAS_PATH = "Canvas/html"
 
+const normalizeCanvasPath = (path: string | undefined): string | null => {
+  if (!path) {
+    return null
+  }
+
+  const trimmed = path.trim()
+  if (trimmed.length === 0) {
+    return null
+  }
+
+  return trimmed.replace(/^\/+/, "").replace(/\/+$/, "")
+}
+
 const joinUrl = (...segments: string[]): string => {
   if (segments.length === 0) {
     return ""
@@ -31,7 +44,7 @@ const isCanvasPage = (slug: string | undefined): boolean => {
     return false
   }
 
-  return slug === "canvases" || slug.startsWith("canvases/")
+  return slug.startsWith("canvases/")
 }
 
 const normalizeHandle = (handle: string | undefined): string | null => {
@@ -48,7 +61,7 @@ const normalizeHandle = (handle: string | undefined): string | null => {
 }
 
 export default ((options?: CanvasOptions) => {
-  const normalizedCanvasPath = normalizeHandle(options?.canvasPath ?? "") ?? DEFAULT_CANVAS_PATH
+  const normalizedCanvasPath = normalizeCanvasPath(options?.canvasPath) ?? DEFAULT_CANVAS_PATH
 
   const Canvas: QuartzComponent = (props: QuartzComponentProps) => {
     const { fileData, displayClass } = props
@@ -76,7 +89,7 @@ export default ((options?: CanvasOptions) => {
 
     const rootPath = pathToRoot(fileData.slug!)
     const prefix = rootPath === "." ? "." : rootPath
-    const iframeSrc = joinUrl(prefix, normalizedCanvasPath, `${canvasHandle}.html`)
+    const iframeSrc = encodeURI(joinUrl(prefix, normalizedCanvasPath, `${canvasHandle}.html`))
     const description =
       typeof fileData.frontmatter?.canvasDescription === "string"
         ? fileData.frontmatter?.canvasDescription
