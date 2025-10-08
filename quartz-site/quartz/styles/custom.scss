@@ -123,6 +123,15 @@ a:focus-visible {
 	pointer-events: none;
 }
 
+.center .page-header > * {
+	position: relative;
+	z-index: 1;
+}
+
+.center .page-header .site-banner {
+	margin-bottom: clamp(1.2rem, 2vw, 1.6rem);
+}
+
 .article-title {
 	font-size: clamp(2.4rem, 4vw, 3.6rem);
 	letter-spacing: 0.08em;
