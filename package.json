@@ -6,8 +6,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "prebuild": "npm install --prefix quartz-site",
-    "build": "npm run build --prefix quartz-site",
+    "build": "npm install --prefix quartz-site && npm run build --prefix quartz-site",
     "start": "npx serve -s quartz-site/public -l $PORT"
   },
   "dependencies": {

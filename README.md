@@ -11,7 +11,7 @@ npm install
 npm run build
 ```
 
-The `prebuild` hook installs dependencies within `quartz-site/` and the generated site appears in `quartz-site/public/`.
+The build script installs dependencies within `quartz-site/` and the generated site appears in `quartz-site/public/`.
 
 ## Railway deployment
 
