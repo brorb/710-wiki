@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import argparse
+import html
 import re
 import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Dict, Iterable, Optional, Sequence, Tuple
 
 import yaml
@@ -19,6 +20,13 @@ DEFAULT_EXPORT_ROOT = REPO_ROOT / "Canvas"
 STATIC_CANVAS_ROOT = REPO_ROOT / "quartz-site" / "quartz" / "static" / "canvas"
 STATIC_HTML_DIR = STATIC_CANVAS_ROOT / "html"
 STATIC_LIB_DIR = STATIC_CANVAS_ROOT / "lib"
+SITE_PUBLIC_ROOT = REPO_ROOT / "quartz-site" / "public"
+
+CANVAS_HTML_REL_ROOT = "../../../"
+
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+AUDIO_EXTENSIONS = {".mp3", ".wav", ".ogg", ".flac", ".m4a"}
+VIDEO_EXTENSIONS = {".mp4", ".webm", ".mov"}
 
 
 # ----------------------------------------------------------------------------
@@ -135,6 +143,142 @@ def rewrite_asset_paths(html_body: str, asset_aliases: Sequence[str]) -> str:
     return html_body
 
 
+def sanitize_site_path(vault_path: str) -> str:
+    posix = PurePosixPath(vault_path.strip("/"))
+    sanitized_parts = [re.sub(r"\s+", "-", part) for part in posix.parts]
+    sanitized = "/".join(sanitized_parts)
+    if sanitized.lower().endswith(".md"):
+        sanitized = sanitized[:-3] + ".html"
+    return sanitized
+
+
+def site_relative_url(vault_path: str) -> Optional[str]:
+    sanitized = sanitize_site_path(vault_path)
+    candidate = SITE_PUBLIC_ROOT / sanitized
+    if not candidate.exists():
+        return None
+    return f"{CANVAS_HTML_REL_ROOT}{sanitized}"
+
+
+def resolve_repo_asset_path(vault_path: str) -> Optional[Path]:
+    posix = PurePosixPath(vault_path.strip("/"))
+    if not posix.parts:
+        return None
+    if posix.parts[0].lower() == "media":
+        candidate = REPO_ROOT / Path(*posix.parts)
+    else:
+        candidate = CONTENT_ROOT / Path(*posix.parts)
+    return candidate if candidate.exists() else None
+
+
+def extract_preview_text(markdown_body: str, limit: int = 200) -> str:
+    text = markdown_body.strip()
+    if not text:
+        return ""
+
+    substitutions = [
+        (r"\[\[([^\]]+)\]\]", r"\1"),
+        (r"\[([^\]]+)\]\([^\)]+\)", r"\1"),
+        (r"`([^`]+)`", r"\1"),
+        (r"\*\*([^*]+)\*\*", r"\1"),
+        (r"__([^_]+)__", r"\1"),
+        (r"\*([^*]+)\*", r"\1"),
+        (r"_([^_]+)_", r"\1"),
+    ]
+    for pattern, repl in substitutions:
+        text = re.sub(pattern, repl, text)
+
+    text = re.sub(r"^>\s?", "", text, flags=re.MULTILINE)
+    text = re.sub(r"^#+\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    if len(text) <= limit:
+        return text
+
+    truncated = text[:limit].rstrip()
+    if not truncated.endswith("…"):
+        truncated += "…"
+    return truncated
+
+
+def build_embed_markup(vault_path: str) -> Optional[str]:
+    rel_url = site_relative_url(vault_path)
+    extension = Path(vault_path).suffix.lower()
+
+    if extension == ".md":
+        note_path = resolve_repo_asset_path(vault_path)
+        if note_path is None:
+            return None
+        frontmatter, body = read_note_frontmatter(note_path)
+        title = frontmatter.get("title")
+        if not isinstance(title, str) or not title.strip():
+            title = note_path.stem.replace("-", " ")
+        excerpt = extract_preview_text(body)
+        link_target = rel_url or f"{CANVAS_HTML_REL_ROOT}{sanitize_site_path(vault_path)}"
+        inner_html = (
+            f'<a class="canvas-portal-card" href="{link_target}" target="_self" rel="noopener" '
+            'style="display:flex;flex-direction:column;gap:0.5rem;padding:1rem;border:1px solid var(--background-modifier-border, rgba(0,0,0,0.1));'
+            'background:var(--background-secondary, rgba(0,0,0,0.03));color:inherit;text-decoration:none;border-radius:10px;'
+            'height:100%;box-sizing:border-box;overflow:hidden;">'
+            f'<span style="font-weight:600;font-size:1.1em;line-height:1.2;">{html.escape(title.strip())}</span>'
+        )
+        if excerpt:
+            inner_html += f'<span style="font-size:0.9em;line-height:1.4;">{html.escape(excerpt)}</span>'
+        else:
+            inner_html += '<span style="font-size:0.9em;opacity:0.75;">Open note</span>'
+        inner_html += '</a>'
+    elif extension in IMAGE_EXTENSIONS and rel_url:
+        inner_html = (
+            f'<img src="{rel_url}" alt="{html.escape(Path(vault_path).stem)}" '
+            'style="width:100%;height:100%;object-fit:contain;"/>'
+        )
+    elif extension in AUDIO_EXTENSIONS and rel_url:
+        inner_html = (
+            f'<audio controls preload="metadata" style="width:100%;">'
+            f'<source src="{rel_url}"/>Your browser does not support the audio element.'
+            '</audio>'
+        )
+    elif extension in VIDEO_EXTENSIONS and rel_url:
+        inner_html = (
+            f'<video controls style="width:100%;height:100%;">'
+            f'<source src="{rel_url}"/>Your browser does not support the video element.'
+            '</video>'
+        )
+    elif rel_url:
+        inner_html = (
+            f'<a href="{rel_url}" target="_blank" rel="noopener" '
+            'style="display:inline-flex;align-items:center;gap:0.5rem;">'
+            f'<span style="font-weight:600;">{html.escape(Path(vault_path).name)}</span>'
+            '<span style="font-size:0.85em;opacity:0.7;">Open attachment</span>'
+            '</a>'
+        )
+    else:
+        return None
+
+    return (
+        '<div class="canvas-node-content markdown-embed">'
+        '<div class="markdown-embed-content node-insert-event">'
+        f"{inner_html}"
+        '</div></div></div>'
+    )
+
+
+def inject_missing_embeds(html_body: str) -> str:
+    pattern = re.compile(
+        r'<div class="canvas-node-content mod-canvas-empty">.*?<div class="canvas-empty-embed-label">“(?P<path>[^”]+)” could not be found\.</div>.*?</div></div></div>',
+        re.DOTALL,
+    )
+
+    def replacer(match: re.Match[str]) -> str:
+        vault_path = match.group("path")
+        replacement = build_embed_markup(vault_path)
+        if replacement is None:
+            return match.group(0)
+        return replacement
+
+    return pattern.sub(replacer, html_body)
+
+
 def prepare_exports(
     html_paths: Iterable[Path],
     canonical_map: Dict[str, Path],
@@ -151,6 +295,7 @@ def copy_html(record: ExportRecord, asset_aliases: Sequence[str]) -> None:
     STATIC_HTML_DIR.mkdir(parents=True, exist_ok=True)
     html_body = record.source_html.read_text(encoding="utf-8")
     patched = rewrite_asset_paths(html_body, asset_aliases)
+    patched = inject_missing_embeds(patched)
     record.dest_html.write_text(patched, encoding="utf-8")
 
 
