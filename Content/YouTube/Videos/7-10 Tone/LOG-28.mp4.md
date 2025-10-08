@@ -10,4 +10,4 @@ _Uploaded 28 Jan 2025._
 SYSTEM: 766107
 SYSTEM ID: 239866478**
 
-**Video Summary:** 
+**Video Summary:** Normal red and black static with quiet background noise, at around 0:46 the audio fades out and an image with a repeating tile of faces flashes on-screen before the audio comes back to normal (except a little louder this time). The video 
