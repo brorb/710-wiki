@@ -7,18 +7,17 @@ This is the information hub
 The `quartz-site/` directory contains the Quartz static-site generator that renders this vault. To build locally:
 
 ```bash
-cd quartz-site
 npm install
 npm run build
 ```
 
-The generated site appears in `quartz-site/public/`.
+The `prebuild` hook installs dependencies within `quartz-site/` and the generated site appears in `quartz-site/public/`.
 
 ## Railway deployment
 
 Railway reads `railway.toml` to build and serve the site:
 
-- Build command: `cd quartz-site && npm install && npm run build`
-- Start command: `npx serve -s quartz-site/public -l $PORT`
+- Build command: `npm install && npm run build`
+- Start command: `npm run start`
 
-Connect this repository to a Railway service that honors `railway.toml`; the service will run the build from the Quartz workspace and serve the generated `public/` directory.
+Connect this repository to a Railway service that honors `railway.toml`; the service will run the build script (which installs and builds Quartz) and serve the generated `quartz-site/public/` directory.

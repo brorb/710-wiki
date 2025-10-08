@@ -1,0 +1,16 @@
+{
+  "name": "710-wiki",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "prebuild": "npm install --prefix quartz-site",
+    "build": "npm run build --prefix quartz-site",
+    "start": "npx serve -s quartz-site/public -l $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}

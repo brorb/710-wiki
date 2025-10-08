@@ -1,5 +1,5 @@
 [build]
-command = "cd quartz-site && npm install && npm run build"
+command = "npm install && npm run build"
 
 [deploy]
-startCommand = "npx serve -s quartz-site/public -l $PORT"
+startCommand = "npm run start"
