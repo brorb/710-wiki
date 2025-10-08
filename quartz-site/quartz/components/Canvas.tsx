@@ -162,12 +162,21 @@ export default ((options?: CanvasOptions) => {
   Canvas.css = `
 .canvas-container {
   margin: 2rem 0 1.5rem;
+  width: 100%;
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.page-footer > .canvas-container {
+  width: 100%;
 }
 
 .canvas-frame {
   position: relative;
   width: 100%;
-  min-height: clamp(26rem, 70vh, 60rem);
+  height: clamp(30rem, 75vh, 62rem);
   background: var(--lightgray);
   border-radius: 0.75rem;
   overflow: hidden;
@@ -187,6 +196,7 @@ export default ((options?: CanvasOptions) => {
   height: 100%;
   border: 0;
   overflow: hidden;
+  display: block;
 }
 
 .canvas-loading {
@@ -238,7 +248,7 @@ export default ((options?: CanvasOptions) => {
 
 @media (max-width: 768px) {
   .canvas-frame {
-    min-height: clamp(24rem, 60vh, 48rem);
+    height: clamp(24rem, 60vh, 50rem);
   }
 }
 `
