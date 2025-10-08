@@ -12,12 +12,7 @@ export const sharedPageComponents: SharedLayout = {
       condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
     }),
   ],
-  footer: Component.Footer({
-    links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
-    },
-  }),
+  footer: Component.Footer(),
 }
 
 // components for pages that display a single page (e.g. a single note)
@@ -40,8 +35,6 @@ export const defaultContentPageLayout: PageLayout = {
           Component: Component.Search(),
           grow: true,
         },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
       ],
     }),
     Component.Explorer(),
@@ -65,7 +58,6 @@ export const defaultListPageLayout: PageLayout = {
           Component: Component.Search(),
           grow: true,
         },
-        { Component: Component.Darkmode() },
       ],
     }),
     Component.Explorer(),
