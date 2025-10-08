@@ -24,19 +24,26 @@ Interactive canvases from Obsidian live alongside the Markdown notes under `Cont
 	pip install -r requirements.txt
 	```
 
-2. Run the integrator on any `.canvas` file:
+2. Run the integrator—by default it scans the vault for canvases that still need HTML exports:
+
+	```bash
+	python canvas_integrator.py
+	```
+
+The script will:
+
+- Find every `.canvas` under `Content/` that lacks a matching export (or whose export is older) and regenerate it.
+- Generate a self-contained HTML viewer in `quartz-site/static/canvas/html/` (no Obsidian plugin export needed).
+- Update the matching Markdown note's frontmatter with the `canvas` slug and a default description (or use `--description` to override).
+- Run `npm run validate:canvases` so deployment catches mismatches early.
+
+Need to regenerate everything? Pass `--force`. Want to refresh a single canvas (or supply a custom slug/note/description)? Point the script at that file:
 
 	```bash
 	python canvas_integrator.py Content/Puzzles/Parting\ Gifts\ Puzzle.canvas
 	```
 
-The script will:
-
-- Generate a self-contained HTML viewer in `quartz-site/static/canvas/html/` (no Obsidian plugin export needed).
-- Update the matching Markdown note's frontmatter with the `canvas` slug and a default description (or use `--description` to override).
-- Run `npm run validate:canvases` so deployment catches mismatches early.
-
-Advanced options are available via `python canvas_integrator.py --help` (custom slug, explicit note path, skip validation, etc.).
+Advanced options are available via `python canvas_integrator.py --help` (custom slug, explicit note path, skip validation, force regeneration, etc.).
 
 > Prefer the script for new canvases. Manual exports produced by Obsidian's **Webpage HTML Export** plugin will still work—drop the HTML in `quartz-site/static/canvas/html/`, keep any `lib/` assets under `quartz-site/static/canvas/lib/`, and reference the export name via the `canvas` frontmatter key.
 
