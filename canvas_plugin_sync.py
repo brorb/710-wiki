@@ -154,15 +154,19 @@ def copy_html(record: ExportRecord, asset_aliases: Sequence[str]) -> None:
     record.dest_html.write_text(patched, encoding="utf-8")
 
 
-def copy_libs(source_lib_dir: Path, dest_lib_dir: Path) -> None:
-    if dest_lib_dir.exists():
-        shutil.rmtree(dest_lib_dir)
-    shutil.copytree(source_lib_dir, dest_lib_dir)
+def copy_libs(source_lib_dir: Path, alias_names: Sequence[str]) -> None:
+    aliases = list(dict.fromkeys([*alias_names, "lib"]))
 
-    html_local_lib = STATIC_HTML_DIR / "lib"
-    if html_local_lib.exists():
-        shutil.rmtree(html_local_lib)
-    shutil.copytree(source_lib_dir, html_local_lib)
+    for alias in aliases:
+        static_target = STATIC_CANVAS_ROOT / alias
+        if static_target.exists():
+            shutil.rmtree(static_target)
+        shutil.copytree(source_lib_dir, static_target)
+
+        html_target = STATIC_HTML_DIR / alias
+        if html_target.exists():
+            shutil.rmtree(html_target)
+        shutil.copytree(source_lib_dir, html_target)
 
 
 def update_note_frontmatter(note_path: Path, slug: str) -> bool:
@@ -267,7 +271,7 @@ def main() -> None:
         else:
             print(f"  ⚠ No matching note found for export '{record.original_name}'.")
 
-    copy_libs(lib_dir, STATIC_LIB_DIR)
+    copy_libs(lib_dir, asset_aliases)
 
     print(f"• Copied {copied_html} canvas HTML export(s) to {STATIC_HTML_DIR.relative_to(REPO_ROOT)}.")
     refreshed_assets_msg = (
