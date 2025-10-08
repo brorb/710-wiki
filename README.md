@@ -16,36 +16,47 @@ For local incremental editing use `npm run preview`, which serves the site with 
 
 ### Canvas integration
 
-Interactive canvases from Obsidian live alongside the Markdown notes under `Content/`. Use the helper script to keep everything in sync:
+We rely exclusively on Obsidian's **Webpage HTML Export** plugin so the live site matches what you design in Obsidian (iframes, scripts, embeds, etc.).
 
-1. Install the Python dependency once:
+1. **Export from Obsidian**
+   - Install/enable the Webpage HTML Export plugin.
+   - Choose the **Online Web Serve** export mode and target the repository's top-level `Canvas/` folder. The plugin should produce:
 
-	```bash
-	pip install -r requirements.txt
-	```
+	   ```text
+	   Canvas/
+	     html/
+	       your-canvas.html
+	       other-canvas.html
+	     lib/
+	       scripts/
+	       styles/
+	       …
+	   ```
 
-2. Run the integrator—by default it scans the vault for canvases that still need HTML exports:
-
-	```bash
-	python canvas_integrator.py
-	```
-
-The script will:
-
-- Find every `.canvas` under `Content/` that lacks a matching export (or whose export is older) and regenerate it.
-- Generate a self-contained HTML viewer in `quartz-site/quartz/static/canvas/html/` (no Obsidian plugin export needed).
-- Update the matching Markdown note's frontmatter with the `canvas` slug and a default description (or use `--description` to override).
-- Run `npm run validate:canvases` so deployment catches mismatches early.
-
-Need to regenerate everything? Pass `--force`. Want to refresh a single canvas (or supply a custom slug/note/description)? Point the script at that file:
+2. **Sync the exports into Quartz**
 
 	```bash
-	python canvas_integrator.py Content/Puzzles/Parting\ Gifts\ Puzzle.canvas
+	# from the repository root
+	python canvas_plugin_sync.py
 	```
 
-Advanced options are available via `python canvas_integrator.py --help` (custom slug, explicit note path, skip validation, force regeneration, etc.).
+   - First time using the repo? Install the tiny Python dependency once with `pip install -r requirements.txt`.
+   - Optionally pass `--source /path/to/export` if you staged the plugin export somewhere else.
+   - Use `--skip-validate` only if you intentionally want to skip the post-sync safety check.
 
-> Prefer the script for new canvases. Manual exports produced by Obsidian's **Webpage HTML Export** plugin will still work—drop the HTML in `quartz-site/quartz/static/canvas/html/`, keep any `lib/` assets under `quartz-site/quartz/static/canvas/lib/`, and reference the export name via the `canvas` frontmatter key.
+3. **What the sync script does**
+
+   - Copies each HTML file into `quartz-site/quartz/static/canvas/html/`, slugifying names so Quartz can refer to them cleanly.
+   - Mirrors the `lib/` assets to `quartz-site/quartz/static/canvas/lib/` (and drops a fallback copy in `.../html/lib/` so relative URLs continue to work).
+   - Updates matching Markdown notes in `Content/` so their frontmatter `canvas` field points at the slugged export (creating a default description when absent).
+   - Runs `npm run validate:canvases` to confirm every referenced canvas has a matching export.
+
+4. **Deploy**
+
+   - Rebuild Quartz (`npm run build -w quartz-site`) and push/deploy as usual.
+   - The `Canvas.tsx` component automatically renders any page whose frontmatter contains `canvas: <slug>`.
+
+Pro tip: append the sync command to your personal export workflow (e.g., a shell script or Obsidian hotkey) so every plugin export is one CLI away from the live site. The helper only touches exported assets and frontmatter; your Markdown content under `Content/` stays untouched otherwise.
 
 During `npm run build`, a validation step ensures every note declaring a canvas has a matching exported HTML file and flags unused `.canvas` files so you can re-export them (either through the Python script or manual method) before deploying.
 
