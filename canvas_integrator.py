@@ -18,7 +18,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent
 CONTENT_ROOT = REPO_ROOT / "Content"
-STATIC_CANVAS_ROOT = REPO_ROOT / "quartz-site" / "static" / "canvas"
+STATIC_CANVAS_ROOT = REPO_ROOT / "quartz-site" / "quartz" / "static" / "canvas"
 HTML_OUTPUT_DIR = STATIC_CANVAS_ROOT / "html"
 
 
@@ -44,6 +44,20 @@ class CanvasEdge:
     to_node: str
     label: Optional[str]
     style: Dict[str, Any]
+
+
+@dataclass
+class CanvasTask:
+  canvas_path: Path
+  slug: str
+  note_path: Optional[Path]
+  note_data: Optional[Dict[str, Any]]
+  note_body: Optional[str]
+  description_override: Optional[str]
+
+  @property
+  def html_path(self) -> Path:
+    return HTML_OUTPUT_DIR / f"{self.slug}.html"
 
 
 # Soft palette that roughly mirrors Obsidian's default canvas colors.
@@ -75,33 +89,40 @@ def slugify(text: str) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Convert an Obsidian .canvas file into an embeddable HTML viewer "
-        "and update the matching Quartz note frontmatter."
-    )
-    parser.add_argument(
-        "canvas_path",
-        help="Path to the .canvas file you want to integrate",
-    )
-    parser.add_argument(
-        "--note",
-        help="Path to the Markdown file that should reference this canvas."
-        " If omitted, the script will look for a .md file with the same stem",
-    )
-    parser.add_argument(
-        "--slug",
-        help="Optional override for the generated canvas slug. Defaults to the canvas file name.",
-    )
-    parser.add_argument(
-        "--description",
-        help="Optional description for the canvasDescription frontmatter (falls back to a sensible default).",
-    )
-    parser.add_argument(
-        "--skip-validate",
-        action="store_true",
-        help="Skip running the canvas validator after generating the HTML.",
-    )
-    return parser.parse_args()
+  parser = argparse.ArgumentParser(
+    description="Convert Obsidian .canvas files into embeddable HTML viewers "
+    "and update the matching Quartz note frontmatter."
+  )
+  parser.add_argument(
+    "canvas_path",
+    nargs="?",
+    help="Path to a specific .canvas file. If omitted, the script scans the vault "
+    "for canvases that need integration.",
+  )
+  parser.add_argument(
+    "--note",
+    help="Path to the Markdown file that should reference this canvas."
+    " If omitted, the script will look for a .md file with the same stem",
+  )
+  parser.add_argument(
+    "--slug",
+    help="Optional override for the generated canvas slug. Defaults to the canvas file name.",
+  )
+  parser.add_argument(
+    "--description",
+    help="Optional description for the canvasDescription frontmatter (falls back to a sensible default).",
+  )
+  parser.add_argument(
+    "--skip-validate",
+    action="store_true",
+    help="Skip running the canvas validator after generating the HTML.",
+  )
+  parser.add_argument(
+    "--force",
+    action="store_true",
+    help="Regenerate exports even if they appear up to date (useful when running across the whole vault).",
+  )
+  return parser.parse_args()
 
 
 def load_canvas(path: Path) -> Dict[str, Any]:
@@ -652,6 +673,98 @@ def update_note_frontmatter(
     note_path.write_text(updated, encoding="utf-8")
 
 
+def build_task(
+    canvas_path: Path,
+    note_override: Optional[str],
+    slug_override: Optional[str],
+    description_override: Optional[str],
+) -> CanvasTask:
+    note_path = find_note_path(canvas_path, note_override)
+    note_data: Optional[Dict[str, Any]] = None
+    note_body: Optional[str] = None
+    existing_slug: Optional[str] = None
+
+    if note_path:
+        note_data, note_body = read_note_frontmatter(note_path)
+        existing_value = note_data.get("canvas")
+        if isinstance(existing_value, str) and existing_value.strip():
+            existing_slug = existing_value.strip()
+
+    slug = slug_override or existing_slug or slugify(canvas_path.stem)
+
+    return CanvasTask(
+        canvas_path=canvas_path,
+        slug=slug,
+        note_path=note_path,
+        note_data=note_data,
+        note_body=note_body,
+        description_override=description_override,
+    )
+
+
+def should_process_task(task: CanvasTask, force: bool) -> bool:
+    if force:
+        return True
+
+    html_path = task.html_path
+    if not html_path.exists():
+        return True
+
+    if html_path.stat().st_mtime < task.canvas_path.stat().st_mtime:
+        return True
+
+    if task.note_path and task.note_data is not None:
+        canvas_value = task.note_data.get("canvas")
+        if not isinstance(canvas_value, str) or canvas_value.strip() != task.slug:
+            return True
+        if (
+            task.description_override is not None
+            and task.note_data.get("canvasDescription") != task.description_override
+        ):
+            return True
+
+    return False
+
+
+def integrate_task(task: CanvasTask) -> Path:
+    canvas_data = load_canvas(task.canvas_path)
+    nodes = map_nodes(canvas_data.get("nodes", []))
+    edges = map_edges(canvas_data.get("edges", []))
+    bounds = compute_bounds(nodes)
+
+    html_body = generate_html(task.slug, canvas_data, nodes, edges, bounds)
+    html_path = write_html(task.slug, html_body)
+
+    try:
+        canvas_rel = task.canvas_path.relative_to(REPO_ROOT)
+    except ValueError:
+        canvas_rel = task.canvas_path
+    print(f"► Processing {canvas_rel}")
+
+    if task.note_path:
+        update_note_frontmatter(
+            task.note_path,
+            task.slug,
+            task.description_override,
+            task.note_data,
+            task.note_body,
+        )
+        try:
+            note_rel = task.note_path.relative_to(REPO_ROOT)
+        except ValueError:
+            note_rel = task.note_path
+        print(f"  ├─ Updated note frontmatter: {note_rel}")
+    else:
+        print("  ├─ No matching Markdown note found. Skipping frontmatter update.")
+
+    try:
+        rel_html = html_path.relative_to(REPO_ROOT)
+    except ValueError:
+        rel_html = html_path
+    print(f"  └─ Exported canvas viewer → {rel_html}")
+    return html_path
+
+
 def run_validator() -> None:
     print("› Running npm run validate:canvases to confirm the build will pass…")
     result = subprocess.run(
@@ -665,49 +778,64 @@ def run_validator() -> None:
 
 
 def main() -> None:
-    args = parse_args()
+  args = parse_args()
 
+  if args.canvas_path is None:
+    if any([args.note, args.slug, args.description]):
+      raise SystemExit(
+        "✖ The --note, --slug, and --description options require specifying a canvas file path."
+      )
+    canvas_paths = sorted(path.resolve() for path in CONTENT_ROOT.rglob("*.canvas"))
+    if not canvas_paths:
+      print("• No .canvas files found under Content/.")
+      return
+    tasks = [build_task(path, None, None, None) for path in canvas_paths]
+    force_flag = args.force
+  else:
     canvas_path = Path(args.canvas_path).expanduser().resolve()
     if not canvas_path.exists():
-        raise SystemExit(f"✖ Canvas file {canvas_path} does not exist")
+      raise SystemExit(f"✖ Canvas file {canvas_path} does not exist")
     if canvas_path.suffix.lower() != ".canvas":
-        raise SystemExit("✖ Input file must have the .canvas extension")
+      raise SystemExit("✖ Input file must have the .canvas extension")
 
-    note_path = find_note_path(canvas_path, args.note)
-    note_data: Optional[Dict[str, Any]] = None
-    note_body: Optional[str] = None
-    existing_slug: Optional[str] = None
-    if note_path:
-        note_data, note_body = read_note_frontmatter(note_path)
-        existing_value = note_data.get("canvas")
-        if isinstance(existing_value, str) and existing_value.strip():
-            existing_slug = existing_value.strip()
+    tasks = [
+      build_task(
+        canvas_path,
+        args.note,
+        args.slug,
+        args.description,
+      )
+    ]
+    force_flag = True
 
-    slug = args.slug or existing_slug or slugify(canvas_path.stem)
-    canvas_data = load_canvas(canvas_path)
-    nodes = map_nodes(canvas_data.get("nodes", []))
-    edges = map_edges(canvas_data.get("edges", []))
-    bounds = compute_bounds(nodes)
+  tasks_to_process: List[CanvasTask] = []
+  skipped: List[CanvasTask] = []
 
-    html_body = generate_html(slug, canvas_data, nodes, edges, bounds)
-    html_path = write_html(slug, html_body)
-
-    if note_path:
-        update_note_frontmatter(note_path, slug, args.description, note_data, note_body)
-        note_rel = note_path.relative_to(REPO_ROOT)
-        print(f"✔ Updated note frontmatter: {note_rel}")
+  for task in tasks:
+    if should_process_task(task, force_flag):
+      tasks_to_process.append(task)
     else:
-        print("• No matching Markdown note found. Skipping frontmatter update.")
+      skipped.append(task)
 
-    rel_html = html_path.relative_to(REPO_ROOT)
-    print(f"✔ Exported canvas viewer → {rel_html}")
-
-    if not args.skip_validate:
-        run_validator()
+  if not tasks_to_process:
+    if skipped:
+      print("• All canvases are already integrated. Use --force to regenerate.")
     else:
-        print("• Skipped validator per --skip-validate")
+      print("• No canvases matched the selection.")
+    return
 
-    print("✨ Done. Commit the changes and push to deploy.")
+  for task in tasks_to_process:
+    integrate_task(task)
+
+  if not args.skip_validate:
+    run_validator()
+  else:
+    print("• Skipped validator per --skip-validate")
+
+  if skipped and not force_flag:
+    print(f"• Skipped {len(skipped)} canvas export(s) that were already up to date.")
+
+  print(f"✨ Done. Updated {len(tasks_to_process)} canvas export(s).")
 
 
 if __name__ == "__main__":
