@@ -2,12 +2,14 @@ import { pathToRoot } from "../util/path"
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
+type CanvasFrontmatter = QuartzComponentProps["fileData"]["frontmatter"]
+
 type CanvasOptions = {
   /** Relative path from the Quartz output root to the exported canvas HTML files */
   canvasPath?: string
 }
 
-const DEFAULT_CANVAS_PATH = "Canvas/html"
+const DEFAULT_CANVAS_PATH = "static/canvas/html"
 
 const normalizeCanvasPath = (path: string | undefined): string | null => {
   if (!path) {
@@ -39,14 +41,6 @@ const joinUrl = (...segments: string[]): string => {
     .join("/")
 }
 
-const isCanvasPage = (slug: string | undefined): boolean => {
-  if (!slug) {
-    return false
-  }
-
-  return slug.startsWith("canvases/")
-}
-
 const normalizeHandle = (handle: string | undefined): string | null => {
   if (!handle) {
     return null
@@ -60,36 +54,78 @@ const normalizeHandle = (handle: string | undefined): string | null => {
   return trimmed.replace(/\.html?$/i, "")
 }
 
+const normalizeFrontmatterString = (value: unknown): string | null => {
+  if (typeof value !== "string") {
+    return null
+  }
+
+  const trimmed = value.trim()
+  return trimmed.length > 0 ? trimmed : null
+}
+
+const splitCanvasReference = (raw: string): { handle: string | null; subPath: string | null } => {
+  const segments = raw.split("/").filter((segment) => segment.length > 0)
+  if (segments.length === 0) {
+    return { handle: null, subPath: null }
+  }
+
+  const fileName = segments.pop()!
+  const handle = normalizeHandle(fileName)
+  const subPath = segments.length > 0 ? segments.join("/") : null
+
+  return { handle, subPath }
+}
+
+const pickCanvasReference = (
+  frontmatter: CanvasFrontmatter | undefined,
+): { handle: string; subPath: string | null } | null => {
+  const candidates = [frontmatter?.canvas, frontmatter?.canvasSlug, frontmatter?.canvasFile]
+  for (const candidate of candidates) {
+    const normalized = normalizeFrontmatterString(candidate)
+    if (!normalized) {
+      continue
+    }
+
+    const { handle, subPath } = splitCanvasReference(normalized)
+    if (handle) {
+      return { handle, subPath }
+    }
+  }
+
+  return null
+}
+
+export const hasCanvasFrontmatter = (frontmatter: CanvasFrontmatter | undefined): boolean => {
+  return pickCanvasReference(frontmatter) !== null
+}
+
 export default ((options?: CanvasOptions) => {
   const normalizedCanvasPath = normalizeCanvasPath(options?.canvasPath) ?? DEFAULT_CANVAS_PATH
 
   const Canvas: QuartzComponent = (props: QuartzComponentProps) => {
     const { fileData, displayClass } = props
 
-    if (!isCanvasPage(fileData.slug) || fileData.frontmatter?.draft) {
+    if (fileData.frontmatter?.draft) {
       return null
     }
 
-    const override =
-      typeof fileData.frontmatter?.canvas === "string"
-        ? fileData.frontmatter?.canvas
-        : typeof fileData.frontmatter?.canvasSlug === "string"
-          ? fileData.frontmatter?.canvasSlug
-          : typeof fileData.frontmatter?.canvasFile === "string"
-            ? fileData.frontmatter?.canvasFile
-            : undefined
-
-    const slugSegments = fileData.slug?.split("/") ?? []
-    const fallbackHandle = slugSegments[slugSegments.length - 1]
-    const canvasHandle = normalizeHandle(override) ?? normalizeHandle(fallbackHandle)
-
-    if (!canvasHandle) {
+    const canvasReference = pickCanvasReference(fileData.frontmatter)
+    if (!canvasReference) {
       return null
     }
 
-    const rootPath = pathToRoot(fileData.slug!)
-    const prefix = rootPath === "." ? "." : rootPath
-    const iframeSrc = encodeURI(joinUrl(prefix, normalizedCanvasPath, `${canvasHandle}.html`))
+    const frontmatterCanvasPath = normalizeCanvasPath(
+      normalizeFrontmatterString(fileData.frontmatter?.canvasPath) ?? canvasReference.subPath ?? undefined,
+    )
+    const resolvedCanvasPath = frontmatterCanvasPath ?? normalizedCanvasPath
+
+    if (!resolvedCanvasPath) {
+      return null
+    }
+
+    const rootPath = fileData.slug ? pathToRoot(fileData.slug) : "."
+    const prefix = rootPath === "." ? "" : rootPath
+    const iframeSrc = encodeURI(joinUrl(prefix, resolvedCanvasPath, `${canvasReference.handle}.html`))
     const description =
       typeof fileData.frontmatter?.canvasDescription === "string"
         ? fileData.frontmatter?.canvasDescription
@@ -98,13 +134,13 @@ export default ((options?: CanvasOptions) => {
           : null
     const title =
       fileData.frontmatter?.title ??
-      canvasHandle
+      canvasReference.handle
         .split("-")
         .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
         .join(" ")
 
     return (
-      <section class={classNames(displayClass, "canvas-container")} data-canvas={canvasHandle}>
+      <section class={classNames(displayClass, "canvas-container")} data-canvas={canvasReference.handle}>
         <div class="canvas-frame">
           <iframe src={iframeSrc} title={`Canvas visualization: ${title}`} loading="lazy" allow="fullscreen" />
           <div class="canvas-loading" role="status" aria-live="polite">

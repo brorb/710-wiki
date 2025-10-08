@@ -2,14 +2,16 @@
 .git-credentials
 
 # Obsidian system files
-.obsidian/workspace
-.obsidian/workspace.json
-.obsidian/cache/
-.obsidian/themes/
-.obsidian/plugins/
+/.obsidian/workspace
+/.obsidian/workspace.json
+/.obsidian/cache/
+/.obsidian/themes/
+/.obsidian/plugins/
+Content/.obsidian/
 
 # Node.js dependencies
 node_modules/
+.venv/
 
 # Build / deploy folders
 dist/

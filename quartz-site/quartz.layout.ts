@@ -1,5 +1,6 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { hasCanvasFrontmatter } from "./quartz/components/Canvas"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -8,7 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [
     Component.ConditionalRender({
       component: Component.Canvas(),
-      condition: (props) => props.fileData.slug?.startsWith("canvases/") ?? false,
+      condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
     }),
   ],
   footer: Component.Footer({

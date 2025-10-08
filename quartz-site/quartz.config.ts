@@ -19,6 +19,8 @@ const config: QuartzConfig = {
       "private",
       "templates",
       ".obsidian",
+      "Content/.obsidian",
+      "Content/.obsidian/**",
       "quartz-site",
       "quartz-site/**",
       "node_modules",

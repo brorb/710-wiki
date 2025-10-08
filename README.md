@@ -16,16 +16,31 @@ For local incremental editing use `npm run preview`, which serves the site with 
 
 ### Canvas integration
 
-Interactive canvases from Obsidian can be surfaced on the site:
+Interactive canvases from Obsidian live alongside the Markdown notes under `Content/`. Use the helper script to keep everything in sync:
 
-1. In Obsidian, enable the **Webpage HTML Export** plugin.
-2. Export the canvases you want to share using the plugin's **Online Web Server** mode.
-3. Drop the exported bundle into `Content/Canvas/`, keeping the plugin's structure intact:
-	- HTML files in `Content/Canvas/html/`
-	- Supporting assets (`lib/` folder) in `Content/Canvas/lib/`
-4. Create a note under `Content/canvases/` (one per canvas) and set the slug to match the exported HTML filename. Optionally add `canvas: exported-file-name` in frontmatter if they differ.
+1. Install the Python dependency once:
 
-The layout automatically embeds the matching HTML file when visiting pages inside the `canvases/` folder. The spinner overlay hides once the iframe loads, and descriptive copy can be supplied via a `canvasDescription` frontmatter value.
+	```bash
+	pip install -r requirements.txt
+	```
+
+2. Run the integrator on any `.canvas` file:
+
+	```bash
+	python canvas_integrator.py Content/Puzzles/Parting\ Gifts\ Puzzle.canvas
+	```
+
+The script will:
+
+- Generate a self-contained HTML viewer in `quartz-site/static/canvas/html/` (no Obsidian plugin export needed).
+- Update the matching Markdown note's frontmatter with the `canvas` slug and a default description (or use `--description` to override).
+- Run `npm run validate:canvases` so deployment catches mismatches early.
+
+Advanced options are available via `python canvas_integrator.py --help` (custom slug, explicit note path, skip validation, etc.).
+
+> Prefer the script for new canvases. Manual exports produced by Obsidian's **Webpage HTML Export** plugin will still work—drop the HTML in `quartz-site/static/canvas/html/`, keep any `lib/` assets under `quartz-site/static/canvas/lib/`, and reference the export name via the `canvas` frontmatter key.
+
+During `npm run build`, a validation step ensures every note declaring a canvas has a matching exported HTML file and flags unused `.canvas` files so you can re-export them (either through the Python script or manual method) before deploying.
 
 ## Railway deployment
 
