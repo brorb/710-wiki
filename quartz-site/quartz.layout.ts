@@ -5,7 +5,7 @@ import { hasCanvasFrontmatter } from "./quartz/components/Canvas"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [],
+  header: [Component.Banner()],
   afterBody: [
     Component.ConditionalRender({
       component: Component.Canvas(),
