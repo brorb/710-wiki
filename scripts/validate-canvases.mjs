@@ -76,7 +76,7 @@ const mapToRepoPath = (relativeDir) => {
   }
 
   if (relativeDir.startsWith("static/")) {
-    return path.join("quartz-site", relativeDir)
+    return path.join("quartz-site", "quartz", relativeDir)
   }
 
   return relativeDir

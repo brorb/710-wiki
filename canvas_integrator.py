@@ -18,7 +18,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent
 CONTENT_ROOT = REPO_ROOT / "Content"
-STATIC_CANVAS_ROOT = REPO_ROOT / "quartz-site" / "static" / "canvas"
+STATIC_CANVAS_ROOT = REPO_ROOT / "quartz-site" / "quartz" / "static" / "canvas"
 HTML_OUTPUT_DIR = STATIC_CANVAS_ROOT / "html"
 
 

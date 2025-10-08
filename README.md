@@ -33,7 +33,7 @@ Interactive canvases from Obsidian live alongside the Markdown notes under `Cont
 The script will:
 
 - Find every `.canvas` under `Content/` that lacks a matching export (or whose export is older) and regenerate it.
-- Generate a self-contained HTML viewer in `quartz-site/static/canvas/html/` (no Obsidian plugin export needed).
+- Generate a self-contained HTML viewer in `quartz-site/quartz/static/canvas/html/` (no Obsidian plugin export needed).
 - Update the matching Markdown note's frontmatter with the `canvas` slug and a default description (or use `--description` to override).
 - Run `npm run validate:canvases` so deployment catches mismatches early.
 
@@ -45,7 +45,7 @@ Need to regenerate everything? Pass `--force`. Want to refresh a single canvas (
 
 Advanced options are available via `python canvas_integrator.py --help` (custom slug, explicit note path, skip validation, force regeneration, etc.).
 
-> Prefer the script for new canvases. Manual exports produced by Obsidian's **Webpage HTML Export** plugin will still work—drop the HTML in `quartz-site/static/canvas/html/`, keep any `lib/` assets under `quartz-site/static/canvas/lib/`, and reference the export name via the `canvas` frontmatter key.
+> Prefer the script for new canvases. Manual exports produced by Obsidian's **Webpage HTML Export** plugin will still work—drop the HTML in `quartz-site/quartz/static/canvas/html/`, keep any `lib/` assets under `quartz-site/quartz/static/canvas/lib/`, and reference the export name via the `canvas` frontmatter key.
 
 During `npm run build`, a validation step ensures every note declaring a canvas has a matching exported HTML file and flags unused `.canvas` files so you can re-export them (either through the Python script or manual method) before deploying.
 
