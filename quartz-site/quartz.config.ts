@@ -1,5 +1,8 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import themeColors from "./theme.colors.json"
+
+const palette = themeColors
 
 /**
  * Quartz 4 Configuration
@@ -37,32 +40,32 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Bebas Neue",
-        body: "Inter",
-        code: "JetBrains Mono",
+        header: "Schibsted Grotesk",
+        body: "Source Sans Pro",
+        code: "IBM Plex Mono",
       },
       colors: {
         lightMode: {
-          light: "#0c0103",
-          lightgray: "#1d050a",
-          gray: "#a93945",
-          darkgray: "#fbe2e6",
-          dark: "#fff7f8",
-          secondary: "#ff1744",
-          tertiary: "#c21807",
-          highlight: "rgba(255, 23, 68, 0.18)",
-          textHighlight: "#ff174466",
+          light: palette.backgroundPrimary,
+          lightgray: palette.backgroundSecondary,
+          gray: palette.muted,
+          darkgray: palette.textSecondary,
+          dark: palette.textPrimary,
+          secondary: palette.accentPrimary,
+          tertiary: palette.accentSecondary,
+          highlight: palette.highlight,
+          textHighlight: palette.textHighlight,
         },
         darkMode: {
-          light: "#040001",
-          lightgray: "#1a0509",
-          gray: "#ff5c7a",
-          darkgray: "#ffe8ee",
-          dark: "#ffffff",
-          secondary: "#ff284f",
-          tertiary: "#a80f2b",
-          highlight: "rgba(255, 72, 72, 0.2)",
-          textHighlight: "#ff284f66",
+          light: palette.backgroundPrimary,
+          lightgray: palette.backgroundSecondary,
+          gray: palette.muted,
+          darkgray: palette.textSecondary,
+          dark: palette.textPrimary,
+          secondary: palette.accentPrimary,
+          tertiary: palette.accentSecondary,
+          highlight: palette.highlight,
+          textHighlight: palette.textHighlight,
         },
       },
     },
@@ -86,6 +89,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.HardLineBreaks(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

@@ -1,0 +1,17 @@
+{
+  "backgroundPrimary": "#080001",
+  "backgroundSecondary": "#1a0507",
+  "panel": "#240709",
+  "textPrimary": "#fbe2e6",
+  "textSecondary": "#c48a91",
+  "muted": "#8c4c52",
+  "accentPrimary": "#eb1c24",
+  "accentSecondary": "#b71002",
+  "accentTertiary": "#61070a",
+  "highlight": "rgba(235, 28, 36, 0.18)",
+  "link": "#ff5860",
+  "buttonText": "#fff7f8",
+  "buttonBackground": "#b71002",
+  "buttonHover": "#eb1c24",
+  "textHighlight": "#ff3a4066"
+}

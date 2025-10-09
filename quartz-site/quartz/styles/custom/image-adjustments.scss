@@ -1,0 +1,32 @@
+@use "../variables.scss" as *;
+
+/* Image helpers inspired by the Morrowind Modding Wiki */
+
+img[alt*="banner"],
+.image-embed[alt*="banner"] img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+img[alt*="portrait"],
+.image-embed[alt*="portrait"] img {
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+img[alt*="invert-light"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+img[alt*="invert-dark"] {
+  filter: invert(1) hue-rotate(180deg) contrast(1.3);
+}
+
+@media screen and ($mobile) {
+  img[alt*="banner"],
+  .image-embed[alt*="banner"] img {
+    border-radius: 0;
+  }
+}

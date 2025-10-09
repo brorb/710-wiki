@@ -1,17 +1,74 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import { hasCanvasFrontmatter } from "./quartz/components/Canvas"
+import { commentsConfig } from "./quartz/comments.config"
+
+const graphHiddenTags = ["graph-exclude"]
+
+const sharedAfterBody = [
+  Component.ConditionalRender({
+    component: Component.Canvas(),
+    condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
+  }),
+]
+
+if (commentsConfig.enabled) {
+  if (commentsConfig.provider === "giscus") {
+    const {
+      repo,
+      repoId,
+      category,
+      categoryId,
+      mapping,
+      strict,
+      reactionsEnabled,
+      inputPosition,
+      lang,
+      lightTheme,
+      darkTheme,
+      themeUrl,
+    } = commentsConfig
+
+    sharedAfterBody.push(
+      Component.Comments({
+        provider: "giscus",
+        options: {
+          repo,
+          repoId,
+          category,
+          categoryId,
+          mapping,
+          strict,
+          reactionsEnabled,
+          inputPosition,
+          lang,
+          lightTheme,
+          darkTheme,
+          themeUrl,
+        },
+      })
+    )
+  } else if (commentsConfig.provider === "utterances") {
+    const { repo, issueTerm, label, theme } = commentsConfig
+    sharedAfterBody.push(
+      Component.Comments({
+        provider: "utterances",
+        options: {
+          repo,
+          issueTerm,
+          label,
+          theme,
+        },
+      })
+    )
+  }
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [],
-  afterBody: [
-    Component.ConditionalRender({
-      component: Component.Canvas(),
-      condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
-    }),
-  ],
+  header: [Component.LinksHeader()],
+  afterBody: sharedAfterBody,
   footer: Component.Footer(),
 }
 
@@ -25,28 +82,32 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
+    Component.MobileOnly(Component.TableOfContents()),
   ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        {
-          Component: Component.Darkmode(),
-        },
-        {
-          Component: Component.DesktopOnly(Component.ReaderMode()),
-        },
-      ],
-    }),
-    Component.Explorer(),
+    Component.Search(),
+    Component.DesktopOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      })
+    ),
   ],
   right: [
-    Component.Graph(),
+    Component.MobileOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      })
+    ),
+    Component.DesktopOnly(
+      Component.Graph({
+        localGraph: { removeTags: graphHiddenTags },
+        globalGraph: { removeTags: graphHiddenTags },
+      })
+    ),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
@@ -54,25 +115,29 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
+  beforeBody: [
+    Component.Breadcrumbs(),
+    Component.ArticleTitle(),
+    Component.ContentMeta(),
+    Component.MobileOnly(Component.TableOfContents()),
+  ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        {
-          Component: Component.Darkmode(),
-        },
-        {
-          Component: Component.DesktopOnly(Component.ReaderMode()),
-        },
-      ],
-    }),
-    Component.Explorer(),
+    Component.Search(),
+    Component.DesktopOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      })
+    ),
   ],
-  right: [],
+  right: [
+    Component.MobileOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      })
+    ),
+  ],
 }
