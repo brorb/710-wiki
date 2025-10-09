@@ -10,7 +10,9 @@ _Uploaded 4 Mar 2025._
 SYSTEM: 399948
 SYSTEM ID: 192583504**
 
-**Video Summary:** Starts off like a regular LOG for a couple of seconds before it cuts to black and a dial tone rings for about 2 minutes until it connects to the SPR chatroom. 
+**Video Summary:** Starts off like a regular LOG for a couple of seconds before it cuts to black and a dial tone rings for about 2 minutes until it connects to the [[SPR Chat]]. Two characters ([[A992144]] and [[TTHA0002]]) converse with each other: "A" had to purge their terminal due to [[Long String]] sent by [[REN]], "TTHA" reprimands them for their incompetence and threatens to demote them back to a serviceman position. "A" pleads with "TTHA" and attempts to explain the reason why they had to purge their terminal, but their message gets cut off and the SPR chatroom disconnects. The rest of the video plays out as a normal LOG with red and black static, timer counts down from 129 to 128.
+
+**Clues:** The audio during the chatroom is a mix of the [[Station Timer]] audio from [[30]] as well as some similar speech from [[{_ _ _-_ _._ _ _}re]].
 
 ###### Transcript of SPR Chatlog:
 

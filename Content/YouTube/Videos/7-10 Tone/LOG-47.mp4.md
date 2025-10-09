@@ -9,3 +9,5 @@ _Uploaded 18 Feb 2025._
 **LOG: 222222222
 SYSTEM: 222222
 SYSTEM ID: 222222222**
+
+**Video Summary:** LOG data is comprised of twos, normal red and black static, timer counts down from 144 to 143.
