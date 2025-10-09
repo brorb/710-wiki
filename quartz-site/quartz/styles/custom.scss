@@ -106,8 +106,16 @@ a.wiki-download-link svg {
   width: 1.1rem;
 }
 
-.comments-wrapper {
+
+.comments-section {
   margin: 3rem auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.comments-wrapper {
   width: 100%;
 }
 
@@ -133,6 +141,13 @@ a.wiki-download-link svg {
   justify-content: center;
 }
 
-.page-footer > .comments-wrapper {
+.page-footer > .comments-section {
   width: 100%;
+}
+
+.comments-separator {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--tertiary);
+  opacity: 0.4;
 }
