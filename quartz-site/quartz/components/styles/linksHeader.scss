@@ -52,9 +52,11 @@ header {
     width: 1.1rem;
     height: 1.1rem;
 
-    svg {
+    svg,
+    img {
       width: 100%;
       height: 100%;
+      display: block;
     }
   }
 }
