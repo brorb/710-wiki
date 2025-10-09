@@ -11,4 +11,6 @@ SYSTEM: 4382901
 SYSTEM ID: 3014482
 SYSTEM STATUS: (ok)**
 
-**Video Summary:** 
+**Video Summary:** Red checkerboard instead of the regular red and black static, there is some faint ticking sound in the background under all of the static, timer counts down from 073 to 072.
+
+**Clues:** The sound during the timer is slowed down and reversed speech, which sounds like it says "one" or "un".
