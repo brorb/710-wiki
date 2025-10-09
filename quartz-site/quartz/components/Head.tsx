@@ -26,9 +26,10 @@ export default (() => {
   const rawBaseUrl = cfg.baseUrl ?? "example.com"
   const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`
   const url = new URL(normalizedBaseUrl)
-    const path = url.pathname as FullSlug
-    const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
-    const iconPath = joinSegments(baseDir, "static/icon.png")
+  const path = url.pathname as FullSlug
+  const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
+  const assetVersion = "20251009"
+  const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`
 
     // Url of current page
     const socialUrl =

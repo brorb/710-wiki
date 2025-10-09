@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     locale: "en-US",
-    baseUrl: "https://710-wiki-production.up.railway.app",
+  baseUrl: "https://www.710tone.wiki",
     ignorePatterns: [
       "private",
       "templates",
