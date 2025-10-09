@@ -3,23 +3,39 @@ import { classNames } from "../util/lang"
 // @ts-ignore
 import script from "./scripts/comments.inline"
 
-type Options = {
-  provider: "giscus"
-  options: {
-    repo: `${string}/${string}`
-    repoId: string
-    category: string
-    categoryId: string
-    themeUrl?: string
-    lightTheme?: string
-    darkTheme?: string
-    mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    strict?: boolean
-    reactionsEnabled?: boolean
-    inputPosition?: "top" | "bottom"
-    lang?: string
-  }
+type RepoSlug = `${string}/${string}`
+
+type GiscusOptions = {
+  repo: RepoSlug
+  repoId: string
+  category: string
+  categoryId: string
+  themeUrl?: string
+  lightTheme?: string
+  darkTheme?: string
+  mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+  strict?: boolean
+  reactionsEnabled?: boolean
+  inputPosition?: "top" | "bottom"
+  lang?: string
 }
+
+type UtterancesOptions = {
+  repo: RepoSlug
+  issueTerm?: "pathname" | "url" | "title" | "og:title" | "issue-number" | "specific"
+  label?: string
+  theme?: string
+}
+
+type Options =
+  | {
+      provider: "giscus"
+      options: GiscusOptions
+    }
+  | {
+      provider: "utterances"
+      options: UtterancesOptions
+    }
 
 function boolToStringBool(b: boolean): string {
   return b ? "1" : "0"
@@ -35,23 +51,38 @@ export default ((opts: Options) => {
       return <></>
     }
 
+    if (opts.provider === "giscus") {
+      const options = opts.options
+      return (
+        <div
+          class={classNames(displayClass, "comments", "giscus")}
+          data-provider="giscus"
+          data-repo={options.repo}
+          data-repo-id={options.repoId}
+          data-category={options.category}
+          data-category-id={options.categoryId}
+          data-mapping={options.mapping ?? "url"}
+          data-strict={boolToStringBool(options.strict ?? true)}
+          data-reactions-enabled={boolToStringBool(options.reactionsEnabled ?? true)}
+          data-input-position={options.inputPosition ?? "bottom"}
+          data-light-theme={options.lightTheme ?? "light"}
+          data-dark-theme={options.darkTheme ?? "dark"}
+          data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
+          data-lang={options.lang ?? "en"}
+        ></div>
+      )
+    }
+
+    const options = opts.options
+    const resolvedTheme = options.theme ?? "/static/utterances-theme.css"
     return (
       <div
-        class={classNames(displayClass, "giscus")}
-        data-repo={opts.options.repo}
-        data-repo-id={opts.options.repoId}
-        data-category={opts.options.category}
-        data-category-id={opts.options.categoryId}
-        data-mapping={opts.options.mapping ?? "url"}
-        data-strict={boolToStringBool(opts.options.strict ?? true)}
-        data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
-        data-input-position={opts.options.inputPosition ?? "bottom"}
-        data-light-theme={opts.options.lightTheme ?? "light"}
-        data-dark-theme={opts.options.darkTheme ?? "dark"}
-        data-theme-url={
-          opts.options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`
-        }
-        data-lang={opts.options.lang ?? "en"}
+        class={classNames(displayClass, "comments", "utterances")}
+        data-provider="utterances"
+        data-repo={options.repo}
+        data-issue-term={options.issueTerm ?? "pathname"}
+        data-label={options.label ?? ""}
+        data-theme={resolvedTheme}
       ></div>
     )
   }

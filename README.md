@@ -60,6 +60,12 @@ Pro tip: append the sync command to your personal export workflow (e.g., a shell
 
 During `npm run build`, a validation step ensures every note declaring a canvas has a matching exported HTML file and flags unused `.canvas` files so you can re-export them (either through the Python script or manual method) before deploying.
 
+### Discussion widget
+
+- The header now exposes quick links for the major sections of the vault; update `quartz-site/quartz/components/LinksHeader.tsx` if you want to tweak the destinations.
+- Visitor comments are powered by [Utterances](https://utteranc.es/) (GitHub Issues). The defaults point at this repository already, but you can tweak labels or the mapping term in `quartz-site/quartz/comments.config.ts`. If you prefer Giscus in the future, flip the provider and supply the repo/category IDs there.
+- The color palette comes from `quartz-site/theme.colors.json`. Adjust any of the hex values there (backgrounds, text, buttons, highlights) and rebuild; both the Quartz theme and our custom SCSS pull from that single source.
+
 ## Railway deployment
 
 Railway reads `railway.toml` to build and serve the site:
