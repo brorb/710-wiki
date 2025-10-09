@@ -9,3 +9,5 @@ _Uploaded 26 Mar 2025._
 **LOG: 001532147
 SYSTEM: 231721
 SYSTEM ID: 321964783**
+
+**Video Summary:** Beginning noise is in left ear, normal red and black static, 
