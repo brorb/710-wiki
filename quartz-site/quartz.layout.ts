@@ -5,7 +5,7 @@ import { hasCanvasFrontmatter } from "./quartz/components/Canvas"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [Component.Banner()],
+  header: [],
   afterBody: [
     Component.ConditionalRender({
       component: Component.Canvas(),
@@ -35,6 +35,12 @@ export const defaultContentPageLayout: PageLayout = {
           Component: Component.Search(),
           grow: true,
         },
+        {
+          Component: Component.Darkmode(),
+        },
+        {
+          Component: Component.DesktopOnly(Component.ReaderMode()),
+        },
       ],
     }),
     Component.Explorer(),
@@ -57,6 +63,12 @@ export const defaultListPageLayout: PageLayout = {
         {
           Component: Component.Search(),
           grow: true,
+        },
+        {
+          Component: Component.Darkmode(),
+        },
+        {
+          Component: Component.DesktopOnly(Component.ReaderMode()),
         },
       ],
     }),
