@@ -118,25 +118,27 @@ const mountUtterances = (element: UtterancesElement) => {
   element.appendChild(utterancesScript)
 }
 
-document.addEventListener("nav", () => {
-  const container = document.querySelector(".comments") as BaseCommentsElement | null
-  if (!container) {
+const mountComments = () => {
+  const containers = [...document.querySelectorAll(".comments")] as BaseCommentsElement[]
+  if (containers.length === 0) {
     return
   }
 
-  container.innerHTML = ""
-  if (container.dataset.provider === "giscus") {
-    mountGiscus(container as GiscusElement)
-  } else if (container.dataset.provider === "utterances") {
-    const utterancesEl = container as UtterancesElement
-    const theme = utterancesEl.dataset.theme
-    if (theme && !/^https?:\/\//i.test(theme)) {
-      try {
-        utterancesEl.dataset.theme = new URL(theme, window.location.origin).toString()
-      } catch {
-        // leave theme untouched if URL construction fails
-      }
+  containers.forEach((container) => {
+    container.innerHTML = ""
+
+    if (container.dataset.provider === "giscus") {
+      mountGiscus(container as GiscusElement)
+    } else if (container.dataset.provider === "utterances") {
+      mountUtterances(container as UtterancesElement)
     }
-    mountUtterances(utterancesEl)
-  }
-})
+  })
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", mountComments, { once: true })
+} else {
+  mountComments()
+}
+
+document.addEventListener("nav", mountComments)

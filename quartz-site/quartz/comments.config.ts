@@ -38,4 +38,5 @@ export const commentsConfig: CommentsConfig = {
   repo: "brorb/710-wiki",
   issueTerm: "pathname",
   label: "💬 comment",
+  theme: "github-dark",
 }

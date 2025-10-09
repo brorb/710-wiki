@@ -74,23 +74,6 @@ export default ((opts: Options) => {
     }
 
     const options = opts.options
-    const ensureAbsoluteUrl = (value: string) => {
-      if (/^https?:\/\//i.test(value)) {
-        return value
-      }
-      const base = cfg.baseUrl ?? ""
-      if (base) {
-        const normalizedBase = base.startsWith("http") ? base : `https://${base}`
-        try {
-          return new URL(value, normalizedBase).toString()
-        } catch {
-          // fall through to relative value
-        }
-      }
-      return value
-    }
-
-    const resolvedTheme = ensureAbsoluteUrl(options.theme ?? "/static/utterances-theme.css")
     return (
       <div
         class={classNames(displayClass, "comments", "utterances")}
@@ -98,7 +81,7 @@ export default ((opts: Options) => {
         data-repo={options.repo}
         data-issue-term={options.issueTerm ?? "pathname"}
         data-label={options.label ?? ""}
-        data-theme={resolvedTheme}
+        data-theme={options.theme ?? "github-dark"}
       ></div>
     )
   }
