@@ -10,4 +10,6 @@ _Uploaded 7 Apr 2025._
 SYSTEM: 328959
 SYSTEM ID: 60546684**
 
-**Video Summary:** 
+**Video Summary:** Red and black static starts with the number 95 repeating over the screen and a repeating glitched sound, then at around 2:36 the numbers form a rapidly rotating sphere over the static while some bit-tune music plays in the background. Timer counts down from 096 to 095 with the music still playing.
+
+**Clues:** The music in the video is possibly counting in binary, with the octaves representing the bits of code.
