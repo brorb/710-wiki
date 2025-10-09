@@ -54,35 +54,68 @@ export default ((opts: Options) => {
     if (opts.provider === "giscus") {
       const options = opts.options
       return (
-        <div
-          class={classNames(displayClass, "comments", "giscus")}
-          data-provider="giscus"
-          data-repo={options.repo}
-          data-repo-id={options.repoId}
-          data-category={options.category}
-          data-category-id={options.categoryId}
-          data-mapping={options.mapping ?? "url"}
-          data-strict={boolToStringBool(options.strict ?? true)}
-          data-reactions-enabled={boolToStringBool(options.reactionsEnabled ?? true)}
-          data-input-position={options.inputPosition ?? "bottom"}
-          data-light-theme={options.lightTheme ?? "light"}
-          data-dark-theme={options.darkTheme ?? "dark"}
-          data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
-          data-lang={options.lang ?? "en"}
-        ></div>
+        <div class={classNames(displayClass, "comments-wrapper")}>
+          <div
+            class="comments giscus"
+            data-provider="giscus"
+            data-repo={options.repo}
+            data-repo-id={options.repoId}
+            data-category={options.category}
+            data-category-id={options.categoryId}
+            data-mapping={options.mapping ?? "url"}
+            data-strict={boolToStringBool(options.strict ?? true)}
+            data-reactions-enabled={boolToStringBool(options.reactionsEnabled ?? true)}
+            data-input-position={options.inputPosition ?? "bottom"}
+            data-light-theme={options.lightTheme ?? "light"}
+            data-dark-theme={options.darkTheme ?? "dark"}
+            data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
+            data-lang={options.lang ?? "en"}
+          ></div>
+          <div class="comments-moderation">
+            <a
+              class="comments-moderation__link"
+              data-comments-moderation
+              data-provider="giscus"
+              data-repo={options.repo}
+              data-mapping={options.mapping ?? "url"}
+              href={`https://github.com/${options.repo}/discussions`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Manage comments on GitHub
+            </a>
+          </div>
+        </div>
       )
     }
 
     const options = opts.options
     return (
-      <div
-        class={classNames(displayClass, "comments", "utterances")}
-        data-provider="utterances"
-        data-repo={options.repo}
-        data-issue-term={options.issueTerm ?? "pathname"}
-        data-label={options.label ?? ""}
-        data-theme={options.theme ?? "github-dark"}
-      ></div>
+      <div class={classNames(displayClass, "comments-wrapper")}>
+        <div
+          class="comments utterances"
+          data-provider="utterances"
+          data-repo={options.repo}
+          data-issue-term={options.issueTerm ?? "pathname"}
+          data-label={options.label ?? ""}
+          data-theme={options.theme ?? "github-dark"}
+        ></div>
+        <div class="comments-moderation">
+          <a
+            class="comments-moderation__link"
+            data-comments-moderation
+            data-provider="utterances"
+            data-repo={options.repo}
+            data-issue-term={options.issueTerm ?? "pathname"}
+            data-label={options.label ?? ""}
+            href={`https://github.com/${options.repo}/issues`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Manage comments on GitHub
+          </a>
+        </div>
+      </div>
     )
   }
 
