@@ -12,7 +12,7 @@ const palette = themeColors
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "710 Tone Sleuth Wiki",
-    pageTitleSuffix: "",
+  pageTitleSuffix: " - 7/10 Wiki",
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
