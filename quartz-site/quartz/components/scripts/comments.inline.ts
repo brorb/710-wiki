@@ -34,16 +34,6 @@ type UtterancesElement = BaseCommentsElement & {
   }
 }
 
-type ModerationAnchor = HTMLAnchorElement & {
-  dataset: DOMStringMap & {
-    provider: Provider
-    repo: `${string}/${string}`
-    label?: string
-    issueTerm?: string
-    mapping?: string
-  }
-}
-
 const changeTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
   const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
@@ -127,69 +117,6 @@ const mountUtterances = (element: UtterancesElement) => {
 
   element.appendChild(utterancesScript)
 }
-
-const buildUtterancesModerationLink = (anchor: ModerationAnchor) => {
-  const repo = anchor.dataset.repo
-  if (!repo) {
-    return "#"
-  }
-
-  const label = anchor.dataset.label ?? ""
-  const issueTerm = anchor.dataset.issueTerm ?? "pathname"
-  const queryParts: string[] = ["is:issue"]
-
-  if (label) {
-    queryParts.push(`label:"${label.replace(/"/g, '\\"')}"`)
-  }
-
-  const location = window.location
-  let matchTerm = ""
-  switch (issueTerm) {
-    case "pathname":
-      matchTerm = location.pathname
-      break
-    case "url":
-      matchTerm = location.href
-      break
-    case "title":
-      matchTerm = document.title
-      break
-    case "og:title":
-      matchTerm =
-        document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content ?? document.title
-      break
-    default:
-      matchTerm = ""
-  }
-
-  if (matchTerm) {
-    queryParts.push(`"${matchTerm}"`)
-  }
-
-  const query = encodeURIComponent(queryParts.join(" "))
-  return `https://github.com/${repo}/issues?q=${query}`
-}
-
-const buildGiscusModerationLink = (anchor: ModerationAnchor) => {
-  const repo = anchor.dataset.repo
-  if (!repo) {
-    return "#"
-  }
-
-  return `https://github.com/${repo}/discussions`
-}
-
-const updateModerationLinks = () => {
-  const anchors = [...document.querySelectorAll("[data-comments-moderation]")] as ModerationAnchor[]
-  anchors.forEach((anchor) => {
-    if (anchor.dataset.provider === "utterances") {
-      anchor.href = buildUtterancesModerationLink(anchor)
-    } else if (anchor.dataset.provider === "giscus") {
-      anchor.href = buildGiscusModerationLink(anchor)
-    }
-  })
-}
-
 const mountComments = () => {
   const containers = [...document.querySelectorAll(".comments")] as BaseCommentsElement[]
   if (containers.length === 0) {
@@ -206,7 +133,6 @@ const mountComments = () => {
     }
   })
 
-  updateModerationLinks()
 }
 
 if (document.readyState === "loading") {

@@ -54,7 +54,9 @@ export default ((opts: Options) => {
     if (opts.provider === "giscus") {
       const options = opts.options
       return (
-        <div class={classNames(displayClass, "comments-wrapper")}>
+        <div class={classNames(displayClass, "comments-wrapper")}
+          data-provider="giscus"
+        >
           <div
             class="comments giscus"
             data-provider="giscus"
@@ -71,27 +73,16 @@ export default ((opts: Options) => {
             data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
             data-lang={options.lang ?? "en"}
           ></div>
-          <div class="comments-moderation">
-            <a
-              class="comments-moderation__link"
-              data-comments-moderation
-              data-provider="giscus"
-              data-repo={options.repo}
-              data-mapping={options.mapping ?? "url"}
-              href={`https://github.com/${options.repo}/discussions`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Manage comments on GitHub
-            </a>
-          </div>
         </div>
       )
     }
 
     const options = opts.options
     return (
-      <div class={classNames(displayClass, "comments-wrapper")}>
+      <div
+        class={classNames(displayClass, "comments-wrapper")}
+        data-provider="utterances"
+      >
         <div
           class="comments utterances"
           data-provider="utterances"
@@ -100,21 +91,6 @@ export default ((opts: Options) => {
           data-label={options.label ?? ""}
           data-theme={options.theme ?? "github-dark"}
         ></div>
-        <div class="comments-moderation">
-          <a
-            class="comments-moderation__link"
-            data-comments-moderation
-            data-provider="utterances"
-            data-repo={options.repo}
-            data-issue-term={options.issueTerm ?? "pathname"}
-            data-label={options.label ?? ""}
-            href={`https://github.com/${options.repo}/issues`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Manage comments on GitHub
-          </a>
-        </div>
       </div>
     )
   }

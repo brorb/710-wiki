@@ -152,8 +152,10 @@ a {
 }
 
 .page {
-  max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
+  width: min(100%, 1700px);
   margin: 0 auto;
+  padding: 0 clamp(0.75rem, 3vw, 2.5rem);
+  box-sizing: border-box;
   & article {
     & > h1 {
       font-size: 2rem;
@@ -214,7 +216,7 @@ a {
       gap: 1.2rem;
       top: 0;
       box-sizing: border-box;
-      padding: $topSpacing 2rem 2rem 2rem;
+      padding: $topSpacing clamp(1.25rem, 3vw, 2rem) 2rem clamp(1.25rem, 3vw, 2rem);
       display: flex;
       height: 100vh;
       position: sticky;
