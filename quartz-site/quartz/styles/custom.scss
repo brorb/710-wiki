@@ -39,9 +39,10 @@
   #quartz-body .sidebar.left > .mobile-only.explorer {
     grid-column: 1;
     grid-row: 2;
-    align-self: start;
-    justify-self: start;
-    width: min(calc(100vw - 3rem), 20rem);
+    align-self: stretch;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
   }
 
   #quartz-body .sidebar.left > .search {
@@ -60,6 +61,18 @@
     grid-column: 1 / -1;
     grid-row: 3;
   }
+}
+
+#quartz-body .mobile-only.backlinks {
+  margin-bottom: 2.5rem;
+}
+
+#quartz-body .mobile-only.backlinks + .comments-section {
+  margin-top: 0;
+}
+
+#quartz-body .mobile-only.backlinks + .comments-section .comments-separator {
+  margin-top: 2.25rem;
 }
 
 #explorer-ul {
@@ -188,7 +201,7 @@ a.wiki-download-link svg {
 }
 
 .comments-separator {
-  margin: 0;
+  margin: 1.75rem 0 0;
   border: none;
   border-bottom: 1px solid var(--tertiary);
   opacity: 0.4;
@@ -202,6 +215,10 @@ a.wiki-download-link svg {
   .comments-section {
     margin-top: 2rem;
     gap: 1.75rem;
+  }
+
+  .comments-separator {
+    margin-top: 1.25rem;
   }
 
   .comments-wrapper .comments {

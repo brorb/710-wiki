@@ -269,14 +269,35 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   await setupExplorer(currentSlug)
 
   // if mobile hamburger is visible, collapse by default
-  for (const explorer of document.getElementsByClassName("explorer")) {
-    const mobileExplorer = explorer.querySelector(".mobile-explorer")
-    if (!mobileExplorer) return
+  for (const explorerEl of document.getElementsByClassName("explorer")) {
+    const explorer = explorerEl as HTMLElement
+    const mobileExplorer = explorer.querySelector(".mobile-explorer") as HTMLElement | null
+    if (!mobileExplorer) continue
 
     if (mobileExplorer.checkVisibility()) {
       explorer.classList.add("collapsed")
       explorer.setAttribute("aria-expanded", "false")
       mobileExplorer.setAttribute("aria-expanded", "false")
+      const desktopToggle = explorer.querySelector(
+        ".desktop-explorer",
+      ) as HTMLElement | null
+      desktopToggle?.setAttribute("aria-expanded", "false")
+
+      const content = explorer.querySelector(".explorer-content") as HTMLElement | null
+      content?.setAttribute("aria-expanded", "false")
+
+      explorer.querySelectorAll(".folder-outer.open").forEach((folder) => {
+        folder.classList.remove("open")
+      })
+
+      currentExplorerState = currentExplorerState.map((state) => ({
+        ...state,
+        collapsed: true,
+      }))
+
+      if (explorer.dataset.savestate === "true") {
+        localStorage.setItem("fileTree", JSON.stringify(currentExplorerState))
+      }
     }
 
     mobileExplorer.classList.remove("hide-until-loaded")

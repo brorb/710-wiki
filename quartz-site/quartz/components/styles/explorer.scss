@@ -34,6 +34,35 @@
     display: none;
   }
 
+  & .explorer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  & .explorer-header-slot {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .search-inline {
+      display: flex;
+      width: auto;
+      max-width: none;
+    }
+
+    .search-button {
+      color: var(--gray);
+
+      &:hover .search-path {
+        stroke: var(--tertiary);
+      }
+    }
+  }
+
   button.mobile-explorer {
     display: none;
   }
@@ -49,9 +78,24 @@
   @media all and ($mobile) {
     padding: 0.55rem 0.65rem;
     border-radius: 12px;
-    width: min(calc(100vw - 3rem), 20rem);
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
     overflow: visible;
+
+    .explorer-header {
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .explorer-header-slot {
+      margin-left: auto;
+      width: 100%;
+      justify-content: flex-end;
+
+      .search-inline {
+        width: 100%;
+      }
+    }
 
     button.mobile-explorer {
       display: inline-flex;

@@ -35,7 +35,7 @@ ul.overflow,
 .search .results-container,
 .search .preview-container {
   scrollbar-width: thin;
-  scrollbar-color: var(--tertiary) color-mix(in srgb, var(--secondary) 25%, var(--dark) 75%);
+  scrollbar-color: var(--tertiary) color-mix(in srgb, var(--highlight) 55%, rgba(0, 0, 0, 0.6));
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -43,14 +43,14 @@ ul.overflow,
   }
 
   &::-webkit-scrollbar-track {
-    background: color-mix(in srgb, var(--secondary) 25%, var(--dark) 75%);
+    background: color-mix(in srgb, var(--highlight) 55%, rgba(0, 0, 0, 0.6));
     border-radius: 999px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: color-mix(in srgb, var(--tertiary) 85%, rgba(0, 0, 0, 0.2));
     border-radius: 999px;
-    border: 2px solid color-mix(in srgb, var(--secondary) 25%, var(--dark) 75%);
+    border: 2px solid color-mix(in srgb, var(--highlight) 55%, rgba(0, 0, 0, 0.6));
   }
 
   &::-webkit-scrollbar-thumb:hover {
