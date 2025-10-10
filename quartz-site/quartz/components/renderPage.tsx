@@ -1,3 +1,4 @@
+import { JSX } from "preact"
 import { render } from "preact-render-to-string"
 import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
@@ -217,6 +218,57 @@ export function renderPage(
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
+  const renderQuartzComponent = (
+    component: QuartzComponent,
+    props: QuartzComponentProps,
+  ): JSX.Element | JSX.Element[] | null => {
+    if (typeof component === "function") {
+      if (component.prototype && typeof component.prototype.render === "function") {
+        const instance = new (component as any)(props)
+        return instance?.render?.() ?? null
+      }
+      return (component as any)(props)
+    }
+    return null
+  }
+
+  const resolveToArray = (node: JSX.Element | JSX.Element[] | null | undefined): JSX.Element[] => {
+    if (node === null || node === undefined) {
+      return []
+    }
+
+    if (Array.isArray(node)) {
+      return node.flatMap((child) => resolveToArray(child))
+    }
+
+    if (typeof node.type === "function") {
+      const renderedChild = renderQuartzComponent(node.type as QuartzComponent, {
+        ...node.props,
+      })
+      return resolveToArray(renderedChild)
+    }
+
+    return [node]
+  }
+
+  const renderedAfterBody = afterBody
+    .flatMap((BodyComponent) =>
+      resolveToArray(renderQuartzComponent(BodyComponent, { ...componentData })),
+    )
+
+  const mobileBacklinksNodes: JSX.Element[] = []
+  const footerNodes: JSX.Element[] = []
+
+  for (const node of renderedAfterBody) {
+    const nodeClass = typeof node?.props?.class === "string" ? node.props.class : ""
+    const classList = new Set(nodeClass.split(/\s+/).filter(Boolean))
+    if (classList.has("backlinks") && classList.has("mobile-only")) {
+      mobileBacklinksNodes.push(node)
+    } else {
+      footerNodes.push(node)
+    }
+  }
+
   const LeftComponent = (
     <div class="left sidebar">
       {left.map((BodyComponent) => (
@@ -256,10 +308,9 @@ export function renderPage(
                 </div>
               </div>
               <Content {...componentData} />
+              {mobileBacklinksNodes}
               <div class="page-footer">
-                {afterBody.map((BodyComponent) => (
-                  <BodyComponent {...componentData} />
-                ))}
+                {footerNodes}
               </div>
             </div>
             {RightComponent}
