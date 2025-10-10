@@ -262,22 +262,6 @@ a {
           align-self: start;
         }
 
-        & > .mobile-only.explorer {
-          grid-column: 1;
-          justify-self: start;
-
-          & > .mobile-explorer {
-            grid-column: 1;
-            grid-row: 2;
-            justify-self: start;
-          }
-
-          & > .explorer-content {
-            grid-column: 1 / -1;
-            grid-row: 3;
-            margin-top: 0.75rem;
-          }
-        }
       }
     }
 
