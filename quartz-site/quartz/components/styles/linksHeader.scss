@@ -63,8 +63,31 @@ header {
 
 @media screen and ($mobile) {
   #links-header {
+    flex-wrap: nowrap;
     overflow-x: auto;
-    scrollbar-width: thin;
-    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem 0.75rem;
+    margin: 0 -0.5rem;
+    scroll-snap-type: x proximity;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a.links-header-item {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.75rem;
+      gap: 0.35rem;
+      min-width: max-content;
+    }
+
+    .links-header-icon {
+      width: 0.95rem;
+      height: 0.95rem;
+    }
   }
 }

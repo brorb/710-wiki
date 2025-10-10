@@ -2,14 +2,16 @@
 @use "./variables.scss" as *;
 @use "./custom/image-adjustments.scss";
 
+
 .page-title {
-  min-height: 160px;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  margin: 0;
 }
 
 .sidebar.left {
   margin-top: 0.5rem;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 #quartz-body .sidebar.left {
@@ -17,17 +19,42 @@
 }
 
 @media screen and ($mobile) {
-  .page-title {
-    min-height: 120px;
+  .logo-desktop {
+    display: none;
   }
 
-  .Logo {
-    max-height: 160px;
-    max-width: 180px;
+  .banner-mobile {
+    display: block;
+    width: 100vw;
+    max-width: none;
+    margin: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   #quartz-body .sidebar.left {
-    margin-top: 0.25rem;
+    margin-top: 0;
+    align-items: stretch;
+    padding-top: 0;
+    gap: 0.75rem;
+  }
+
+  #quartz-body .sidebar.left > .page-title {
+    order: 0;
+  }
+
+  #quartz-body .sidebar.left > .explorer {
+    order: 1;
+    margin-top: 0;
+  }
+
+  #quartz-body .sidebar.left > .search {
+    order: 2;
+  }
+
+  #quartz-body .sidebar.left > #links-header-container {
+    order: 3;
   }
 }
 
@@ -150,4 +177,29 @@ a.wiki-download-link svg {
   border: none;
   border-bottom: 1px solid var(--tertiary);
   opacity: 0.4;
+}
+
+@media screen and ($mobile) {
+  .page-title {
+    min-height: 110px;
+  }
+
+  .comments-section {
+    margin-top: 2rem;
+    gap: 1.75rem;
+  }
+
+  .comments-wrapper .comments {
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 22px -18px rgba(0, 0, 0, 0.65);
+  }
+
+  #links-header-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-footer {
+    margin-top: 2.5rem;
+  }
 }

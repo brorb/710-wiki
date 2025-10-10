@@ -220,6 +220,13 @@ a {
       display: flex;
       height: 100vh;
       position: sticky;
+
+      @media all and ($mobile) {
+        position: static;
+        height: auto;
+        padding: 1.25rem 0 2rem;
+        width: 100%;
+      }
     }
 
     & .sidebar.left {
@@ -227,14 +234,14 @@ a {
       grid-area: grid-sidebar-left;
       flex-direction: column;
       @media all and ($mobile) {
-        gap: 0;
-        align-items: center;
+        gap: 1rem;
+        align-items: stretch;
         position: initial;
         display: flex;
         height: unset;
-        flex-direction: row;
-        padding: 0;
-        padding-top: 2rem;
+        flex-direction: column;
+        width: 100%;
+        padding: 1.5rem 0 0;
       }
     }
 
