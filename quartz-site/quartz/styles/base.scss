@@ -258,23 +258,10 @@ a {
 
         & > .search {
           grid-column: 2;
+          grid-row: 2;
+          align-self: start;
         }
 
-        & > .mobile-only.explorer {
-          grid-column: 1;
-          width: auto;
-          justify-self: start;
-
-          &.collapsed {
-            grid-column: 1;
-          }
-
-          &:not(.collapsed) {
-            grid-column: 1 / -1;
-            width: 100%;
-            justify-self: stretch;
-          }
-        }
       }
     }
 

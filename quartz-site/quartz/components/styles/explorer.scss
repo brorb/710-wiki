@@ -4,18 +4,37 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-
+.explorer {
   min-height: 1.2rem;
   flex: 0 1 auto;
+
   &.collapsed {
     flex: 0 1 1.2rem;
-    & .fold {
+
+    .fold {
       transform: rotateZ(-90deg);
     }
-  }
 
-  &.collapsed > .explorer-content {
-    display: none;
+    .explorer-content {
+      display: none;
+    }
+  }
+}
+
+.explorer-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--light) 85%, rgba(0, 0, 0, 0.03));
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
   }
 
   .mobile-explorer.hide-until-loaded + .desktop-explorer + .explorer-content,
@@ -23,7 +42,7 @@
     display: none;
   }
 
-  & .fold {
+  .fold {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
     opacity: 0.8;
@@ -38,8 +57,8 @@
   }
 
   @media all and ($mobile) {
-    width: auto;
-    margin: 0;
+    padding: 0.5rem 0.65rem;
+    border-radius: 12px;
 
     button.mobile-explorer {
       display: inline-flex;
@@ -48,8 +67,8 @@
       width: auto;
       padding: 0.4rem 0.65rem;
       border-radius: 999px;
-      border: 1px solid var(--lightgray);
-      background: rgba(0, 0, 0, 0.25);
+      border: none;
+      background: transparent;
 
       .lucide-menu {
         stroke: var(--tertiary);
@@ -60,13 +79,15 @@
       display: none;
     }
   }
+}
 
-  &.desktop-only {
-    @media all and not ($mobile) {
-      display: flex;
-    }
+.explorer.desktop-only {
+  @media all and not ($mobile) {
+    display: flex;
   }
+}
 
+.explorer {
   svg {
     pointer-events: all;
     transition: transform 0.35s ease;
@@ -76,9 +97,6 @@
     }
   }
 }
-
-button.mobile-explorer,
-button.desktop-explorer {
   background-color: transparent;
   border: none;
   text-align: left;
@@ -200,11 +218,6 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 
 .explorer {
   @media all and ($mobile) {
-    max-height: unset;
-    overflow: visible;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
+    display: contents;
   }
 }

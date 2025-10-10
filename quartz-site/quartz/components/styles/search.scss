@@ -1,8 +1,23 @@
 @use "../../styles/variables.scss" as *;
 
+
 .search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   min-width: fit-content;
   max-width: 14rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--light) 85%, rgba(0, 0, 0, 0.03));
+  transition: border-color 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    border-color: var(--secondary);
+  }
+
   @media all and ($mobile) {
     flex-grow: 1;
     width: 100%;
@@ -10,9 +25,9 @@
   }
 
   & > .search-button {
-    background-color: transparent;
-    border: 1px var(--lightgray) solid;
-    border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  border-radius: 6px;
     font-family: inherit;
     font-size: inherit;
     height: 2rem;
