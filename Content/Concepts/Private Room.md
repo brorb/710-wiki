@@ -8,4 +8,4 @@ There are X known private room chats, of which X have been from community posts,
 
 
 ## Content
-There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without alias.
+There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without alias. The topics are of

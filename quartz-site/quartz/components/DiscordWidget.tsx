@@ -49,7 +49,7 @@ export default ((options?: DiscordWidgetOptions) => {
 
 .discord-widget--sidebar {
   max-width: 350px;
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .discord-widget--banner {

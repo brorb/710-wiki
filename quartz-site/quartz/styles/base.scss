@@ -217,13 +217,16 @@ a {
       top: 0;
       box-sizing: border-box;
       padding: $topSpacing clamp(1.25rem, 3vw, 2rem) 2rem clamp(1.25rem, 3vw, 2rem);
-      display: flex;
-      height: 100vh;
-      position: sticky;
+  display: flex;
+  min-height: 100vh;
+  position: sticky;
+  align-self: flex-start;
 
       @media all and ($mobile) {
         position: static;
         height: auto;
+        min-height: auto;
+        align-self: stretch;
         padding: 0;
         width: 100%;
         gap: 0.75rem;
@@ -278,8 +281,7 @@ a {
     & .sidebar.right {
       grid-area: grid-sidebar-right;
       margin-right: 0;
-      flex-direction: column;
-      height: auto;
+  flex-direction: column;
 
       @media all and ($mobile) {
         margin-left: inherit;

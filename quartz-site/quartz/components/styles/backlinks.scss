@@ -1,11 +1,56 @@
 @use "../../styles/variables.scss" as *;
 
+
 .backlinks {
   flex-direction: column;
 
   & > h3 {
     font-size: 1rem;
     margin: 0;
+  }
+
+  & .backlinks-collapsible {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    padding: 0.75rem 0.85rem;
+    background: color-mix(in srgb, var(--light) 85%, rgba(0, 0, 0, 0.03));
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--secondary);
+    }
+  }
+
+  & .backlinks-summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    & h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    & .backlinks-toggle {
+      transition: transform 0.25s ease;
+      opacity: 0.65;
+    }
+  }
+
+  & .backlinks-collapsible[open] .backlinks-toggle {
+    transform: rotate(180deg);
   }
 
   & > ul.overflow {
@@ -20,5 +65,10 @@
         background-color: transparent;
       }
     }
+  }
+
+  & .backlinks-collapsible[open] > ul.overflow {
+    max-height: none;
+    overflow: visible;
   }
 }
