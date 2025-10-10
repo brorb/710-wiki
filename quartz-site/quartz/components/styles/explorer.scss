@@ -76,7 +76,7 @@
   }
 
   @media all and ($mobile) {
-    padding: 0.55rem 0.65rem;
+    padding: 0.55rem;
     border-radius: 12px;
     width: 100%;
     max-width: none;
@@ -94,6 +94,7 @@
 
       .search-inline {
         width: 100%;
+        flex: 1 1 auto;
       }
     }
 

@@ -24,6 +24,10 @@
     max-width: none;
   }
 
+  &.search-inline {
+    padding: 0.65rem 0.75rem;
+  }
+
   & > .search-button {
   background-color: transparent;
   border: none;
@@ -255,6 +259,32 @@
       }
     }
   }
+}
+
+.search.search-inline {
+  width: 100%;
+  max-width: none;
+  padding: 0.7rem 0.8rem;
+}
+
+.search-inline .search-button {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.search-inline > .search-button {
+  padding: 0 0.65rem 0 0;
+}
+
+.search-inline .search-button > svg {
+  margin: 0;
+  margin-left: 0.45rem;
+}
+
+.search-inline .search-button > p {
+  flex: 1 1 auto;
+  text-align: left;
 }
 
 .search-inline {
