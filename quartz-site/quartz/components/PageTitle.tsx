@@ -12,8 +12,10 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   return (
     <h2 class={classNames(displayClass, "page-title")}>
       <a href={baseDir} class="page-title-link">
-        <img class="Logo logo-desktop" src={logoPath} alt={title} />
-        <img class="Logo banner-mobile" src={bannerPath} alt={title} />
+        <img class="logo-desktop" src={logoPath} alt={title} />
+        <span class="banner-wrapper">
+          <img class="banner-mobile" src={bannerPath} alt={title} />
+        </span>
       </a>
     </h2>
   )
@@ -27,22 +29,48 @@ PageTitle.css = `
   width: 100%;
 }
 .page-title-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
   width: 100%;
-}
-.Logo {
-  display: block;
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  box-shadow: none;
 }
 .logo-desktop {
+  display: block;
   max-width: 175px;
+  width: 100%;
+  height: auto;
 }
-.banner-mobile {
+.banner-wrapper {
   display: none;
   width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+}
+.banner-mobile {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media screen and (max-width: 800px) {
+  .logo-desktop {
+    display: none;
+  }
+
+  .banner-wrapper {
+    display: block;
+    width: 100%;
+    max-height: 7.5rem;
+    aspect-ratio: 3 / 1;
+    margin-inline: calc(-1 * clamp(0.75rem, 3vw, 2.5rem));
+    width: calc(100% + 2 * clamp(0.75rem, 3vw, 2.5rem));
+  }
+
+  .banner-mobile {
+    height: 100%;
+  }
 }
 `
 

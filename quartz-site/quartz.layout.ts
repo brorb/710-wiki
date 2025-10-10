@@ -86,7 +86,12 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      }),
+    ),
     Component.Search(),
     Component.DesktopOnly(
       Component.Explorer({
@@ -96,12 +101,6 @@ export const defaultContentPageLayout: PageLayout = {
     ),
   ],
   right: [
-    Component.MobileOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        filterFn: (node) => node.slugSegment !== "templates",
-      })
-    ),
     Component.DesktopOnly(
       Component.Graph({
         localGraph: { removeTags: graphHiddenTags },
@@ -123,7 +122,12 @@ export const defaultListPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(
+      Component.Explorer({
+        folderClickBehavior: "link",
+        filterFn: (node) => node.slugSegment !== "templates",
+      }),
+    ),
     Component.Search(),
     Component.DesktopOnly(
       Component.Explorer({
@@ -133,11 +137,5 @@ export const defaultListPageLayout: PageLayout = {
     ),
   ],
   right: [
-    Component.MobileOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        filterFn: (node) => node.slugSegment !== "templates",
-      })
-    ),
   ],
 }

@@ -18,21 +18,8 @@
   margin-top: 0.5rem;
 }
 
+
 @media screen and ($mobile) {
-  .logo-desktop {
-    display: none;
-  }
-
-  .banner-mobile {
-    display: block;
-    width: 100vw;
-    max-width: none;
-    margin: 0;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   #quartz-body .sidebar.left {
     margin-top: 0;
     align-items: stretch;
