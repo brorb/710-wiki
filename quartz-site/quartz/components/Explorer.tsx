@@ -126,7 +126,12 @@ export default ((userOpts?: Partial<Options>) => {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <div id={id} class="explorer-content" aria-expanded={false} role="group">
+        <div
+          id={id}
+          class="explorer-content"
+          aria-expanded={opts.folderDefaultState !== "collapsed"}
+          role="group"
+        >
           <OverflowList class="explorer-ul" />
         </div>
         <template id="template-file">

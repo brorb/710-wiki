@@ -98,12 +98,14 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       })
     ),
@@ -141,12 +143,14 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       })
     ),

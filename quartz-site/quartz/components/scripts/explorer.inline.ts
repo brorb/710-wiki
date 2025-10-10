@@ -29,6 +29,11 @@ function toggleExplorer(this: HTMLElement) {
 
   const toggles = nearestExplorer.querySelectorAll(".explorer-toggle") as NodeListOf<HTMLElement>
   toggles.forEach((toggle) => toggle.setAttribute("aria-expanded", expanded))
+
+  const content = nearestExplorer.querySelector(".explorer-content") as HTMLElement | null
+  if (content) {
+    content.setAttribute("aria-expanded", expanded)
+  }
 }
 
 function toggleFolder(evt: MouseEvent) {
