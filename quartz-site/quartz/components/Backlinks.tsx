@@ -30,20 +30,39 @@ export default ((opts?: Partial<BacklinksOptions>) => {
     }
     return (
       <div class={classNames(displayClass, "backlinks")}>
-        <h3>{i18n(cfg.locale).components.backlinks.title}</h3>
-        <OverflowList>
-          {backlinkFiles.length > 0 ? (
-            backlinkFiles.map((f) => (
-              <li>
-                <a href={resolveRelative(fileData.slug!, f.slug!)} class="internal">
-                  {f.frontmatter?.title}
-                </a>
-              </li>
-            ))
-          ) : (
-            <li>{i18n(cfg.locale).components.backlinks.noBacklinksFound}</li>
-          )}
-        </OverflowList>
+        <details class="backlinks-collapsible">
+          <summary class="backlinks-summary">
+            <h3>{i18n(cfg.locale).components.backlinks.title}</h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="backlinks-toggle"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <OverflowList>
+            {backlinkFiles.length > 0 ? (
+              backlinkFiles.map((f) => (
+                <li>
+                  <a href={resolveRelative(fileData.slug!, f.slug!)} class="internal">
+                    {f.frontmatter?.title}
+                  </a>
+                </li>
+              ))
+            ) : (
+              <li>{i18n(cfg.locale).components.backlinks.noBacklinksFound}</li>
+            )}
+          </OverflowList>
+        </details>
       </div>
     )
   }

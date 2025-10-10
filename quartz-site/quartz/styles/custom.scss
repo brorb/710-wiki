@@ -2,32 +2,54 @@
 @use "./variables.scss" as *;
 @use "./custom/image-adjustments.scss";
 
+
 .page-title {
-  min-height: 160px;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  margin: 0;
 }
 
 .sidebar.left {
   margin-top: 0.5rem;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 #quartz-body .sidebar.left {
   margin-top: 0.5rem;
 }
 
+
 @media screen and ($mobile) {
-  .page-title {
-    min-height: 120px;
-  }
-
-  .Logo {
-    max-height: 160px;
-    max-width: 180px;
-  }
-
   #quartz-body .sidebar.left {
-    margin-top: 0.25rem;
+    margin-top: 0;
+    align-items: stretch;
+    padding-top: 0;
+    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-auto-rows: auto;
+    width: 100%;
+  }
+
+  #quartz-body .sidebar.left > .page-title {
+    grid-column: 1 / -1;
+  }
+
+  #quartz-body .sidebar.left > .explorer {
+    grid-column: 2 / 3;
+    grid-row: 2;
+    margin-top: 0;
+    align-self: stretch;
+  }
+
+  #quartz-body .sidebar.left > .search {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  #quartz-body .sidebar.left > #links-header-container {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
 }
 
@@ -131,6 +153,17 @@ a.wiki-download-link svg {
   display: block;
 }
 
+.comments-mobile-append {
+  display: none;
+  width: 100%;
+  margin-top: 2.25rem;
+}
+
+.comments-mobile-append .discord-widget {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
 .comments-wrapper .comments iframe {
   filter: saturate(1.05);
   width: 100% !important;
@@ -150,4 +183,33 @@ a.wiki-download-link svg {
   border: none;
   border-bottom: 1px solid var(--tertiary);
   opacity: 0.4;
+}
+
+@media screen and ($mobile) {
+  .page-title {
+    min-height: 110px;
+  }
+
+  .comments-section {
+    margin-top: 2rem;
+    gap: 1.75rem;
+  }
+
+  .comments-wrapper .comments {
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 22px -18px rgba(0, 0, 0, 0.65);
+  }
+
+  .comments-mobile-append {
+    display: block;
+  }
+
+  #links-header-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-footer {
+    margin-top: 2.5rem;
+  }
 }

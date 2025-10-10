@@ -5,6 +5,7 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
+import { getAssetVersion } from "../util/assetVersion"
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
@@ -28,7 +29,7 @@ export default (() => {
   const url = new URL(normalizedBaseUrl)
   const path = url.pathname as FullSlug
   const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
-  const assetVersion = "20251009"
+  const assetVersion = getAssetVersion()
   const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`
 
     // Url of current page
