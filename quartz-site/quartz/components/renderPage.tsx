@@ -9,6 +9,7 @@ import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
+import { getAssetVersion } from "../util/assetVersion"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -26,7 +27,7 @@ export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
 ): StaticResources {
-  const assetVersion = "20251009"
+  const assetVersion = getAssetVersion()
   const versioned = (path: string) => `${path}?v=${assetVersion}`
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"))
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`

@@ -38,18 +38,18 @@
   }
 
   @media all and ($mobile) {
-    width: 100%;
+    width: auto;
     margin: 0;
 
     button.mobile-explorer {
       display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0.35rem 0.5rem;
-      border-radius: 10px;
+      justify-content: center;
+      width: auto;
+      padding: 0.4rem 0.65rem;
+      border-radius: 999px;
       border: 1px solid var(--lightgray);
-      background: rgba(0, 0, 0, 0.18);
+      background: rgba(0, 0, 0, 0.25);
 
       .lucide-menu {
         stroke: var(--tertiary);
@@ -202,9 +202,9 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   @media all and ($mobile) {
     max-height: unset;
     overflow: visible;
-    background: rgba(0, 0, 0, 0.18);
-    border: 1px solid var(--lightgray);
-    border-radius: 12px;
-    padding: 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
   }
 }

@@ -86,13 +86,13 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
+    Component.Search(),
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
-    Component.Search(),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
@@ -122,13 +122,13 @@ export const defaultListPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
+    Component.Search(),
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
-    Component.Search(),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",

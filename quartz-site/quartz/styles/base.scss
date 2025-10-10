@@ -235,14 +235,43 @@ a {
       grid-area: grid-sidebar-left;
       flex-direction: column;
       @media all and ($mobile) {
-        gap: 1rem;
-        align-items: stretch;
         position: initial;
-        display: flex;
-        height: unset;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-auto-rows: auto;
+        align-items: center;
+        column-gap: 0.75rem;
+        row-gap: 0.75rem;
         width: 100%;
         padding: 0;
+
+        & > * {
+          width: 100%;
+        }
+
+        & > :first-child {
+          grid-column: 1 / -1;
+        }
+
+        & > .search {
+          grid-column: 1;
+        }
+
+        & > .mobile-only.explorer {
+          grid-column: 2;
+          width: auto;
+          justify-self: end;
+
+          &.collapsed {
+            grid-column: 2;
+          }
+
+          &:not(.collapsed) {
+            grid-column: 1 / -1;
+            width: 100%;
+            justify-self: stretch;
+          }
+        }
       }
     }
 
