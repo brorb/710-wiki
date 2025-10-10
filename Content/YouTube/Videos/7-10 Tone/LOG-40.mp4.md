@@ -10,6 +10,10 @@ _Uploaded 10 Feb 2025._
 SYSTEM: 482903
 SYSTEM ID: 573910578**
 
+**Description:** 
+NPP-2/10_continuing...  
+50
+
 **Video Summary:** Starts with high contrast LOG data screen, then it cuts to a loading bar with the text "CONNECTING TO CHANNLE (????) LOCA8_OS_TELEVISION.(???)" which morphs with a television broadcast test screen until the [[Channel 14]] intro pops up, then shows the Morning-Noon schedule before it cuts to the normal red and black static. Timer counts down from 151 to 150 while an alarm sounds off in the background (and a loud metal clang can be heard).
 
 ###### Channel 14 Schedule Transcript:

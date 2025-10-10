@@ -10,4 +10,8 @@ _Uploaded 17 Jan 2025._
 SYSTEM: 898872
 SYSTEM ID: 034234767**
 
+**Description:** 
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIk N\[o  
+6 <(used for the code at the end of [[STATION_8 TERMINAL 8]])
+
 **Video Summary:** LOG data screen lasts for about 3 seconds, normal red and black static plays, timer counts down from 141 to 140 with some ventilation knocking in the background (which gets cut off by a strange beeping noise).
