@@ -153,6 +153,16 @@ a.wiki-download-link svg {
   display: block;
 }
 
+.comments-mobile-append {
+  display: none;
+  width: 100%;
+}
+
+.comments-mobile-append .discord-widget {
+  width: 100%;
+  margin-top: 1.25rem;
+}
+
 .comments-wrapper .comments iframe {
   filter: saturate(1.05);
   width: 100% !important;
@@ -188,6 +198,10 @@ a.wiki-download-link svg {
     padding: 1.25rem 1rem;
     border-radius: 14px;
     box-shadow: 0 10px 22px -18px rgba(0, 0, 0, 0.65);
+  }
+
+  .comments-mobile-append {
+    display: block;
   }
 
   #links-header-container {

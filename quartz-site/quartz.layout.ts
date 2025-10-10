@@ -12,6 +12,12 @@ const sharedAfterBody = [
   }),
 ]
 
+const mobileDiscordWidget = Component.MobileOnly(
+  Component.DiscordWidget({
+    variant: "banner",
+  }),
+)
+
 if (commentsConfig.enabled) {
   if (commentsConfig.provider === "giscus") {
     const {
@@ -46,6 +52,7 @@ if (commentsConfig.enabled) {
           darkTheme,
           themeUrl,
         },
+        mobileAppend: mobileDiscordWidget,
       })
     )
   } else if (commentsConfig.provider === "utterances") {
@@ -59,6 +66,7 @@ if (commentsConfig.enabled) {
           label,
           theme,
         },
+        mobileAppend: mobileDiscordWidget,
       })
     )
   }
@@ -109,8 +117,15 @@ export const defaultContentPageLayout: PageLayout = {
     ),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
+    Component.DesktopOnly(
+      Component.DiscordWidget({
+        variant: "sidebar",
+      }),
+    ),
   ],
 }
+
+
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {

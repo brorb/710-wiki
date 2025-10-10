@@ -27,22 +27,27 @@ type UtterancesOptions = {
   theme?: string
 }
 
+interface BaseExtras {
+  mobileAppend?: QuartzComponent
+}
+
 type Options =
-  | {
+  | ({
       provider: "giscus"
       options: GiscusOptions
-    }
-  | {
+    } & BaseExtras)
+  | ({
       provider: "utterances"
       options: UtterancesOptions
-    }
+    } & BaseExtras)
 
 function boolToStringBool(b: boolean): string {
   return b ? "1" : "0"
 }
 
 export default ((opts: Options) => {
-  const Comments: QuartzComponent = ({ displayClass, fileData, cfg }: QuartzComponentProps) => {
+  const Comments: QuartzComponent = (props: QuartzComponentProps) => {
+    const { displayClass, fileData, cfg } = props
     // check if comments should be displayed according to frontmatter
     const disableComment: boolean =
       typeof fileData.frontmatter?.comments !== "undefined" &&
@@ -53,6 +58,7 @@ export default ((opts: Options) => {
 
     if (opts.provider === "giscus") {
       const options = opts.options
+      const MobileAppend = opts.mobileAppend
       return (
         <div class={classNames(displayClass, "comments-section")}>
           <hr class="comments-separator" aria-hidden="true" />
@@ -73,12 +79,18 @@ export default ((opts: Options) => {
               data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
               data-lang={options.lang ?? "en"}
             ></div>
+            {MobileAppend ? (
+              <div class="comments-mobile-append">
+                <MobileAppend {...props} displayClass="mobile-only" />
+              </div>
+            ) : null}
           </div>
         </div>
       )
     }
 
     const options = opts.options
+    const MobileAppend = opts.mobileAppend
     return (
       <div class={classNames(displayClass, "comments-section")}>
         <hr class="comments-separator" aria-hidden="true" />
@@ -91,6 +103,11 @@ export default ((opts: Options) => {
             data-label={options.label ?? ""}
             data-theme={options.theme ?? "github-dark"}
           ></div>
+          {MobileAppend ? (
+            <div class="comments-mobile-append">
+              <MobileAppend {...props} displayClass="mobile-only" />
+            </div>
+          ) : null}
         </div>
       </div>
     )
