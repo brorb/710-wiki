@@ -3,7 +3,8 @@
 .toc {
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  overflow: visible;
+  margin-bottom: 0.65rem;
   min-height: 1.4rem;
   flex: 0 0.5 auto;
 

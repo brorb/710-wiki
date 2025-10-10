@@ -21,10 +21,6 @@
   &.collapsed {
     flex: 0 0 auto;
 
-    & .fold {
-      transform: rotateZ(-90deg);
-    }
-
     & > .explorer-content {
       max-height: 0;
       opacity: 0;
@@ -38,18 +34,16 @@
     display: none;
   }
 
-  & .fold {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-    opacity: 0.8;
-  }
-
   button.mobile-explorer {
     display: none;
   }
 
   button.desktop-explorer {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
   }
 
   @media all and ($mobile) {
@@ -93,6 +87,16 @@
   & > polyline {
     pointer-events: none;
   }
+}
+
+.explorer .fold {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  opacity: 0.8;
+}
+
+.explorer.collapsed .fold {
+  transform: rotateZ(-90deg);
 }
 
 button.mobile-explorer,
