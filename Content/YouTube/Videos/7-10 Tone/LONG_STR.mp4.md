@@ -5,18 +5,8 @@
 </iframe>
 _Uploaded 23 Feb 2025._
 
-**Video Summary:** 
-###### Transcript:
-
-"ATTEMPTING PROGRAM EXECUTION",
-CONNECTING_PGT: x%
-CONNECTING_IMPORTS: x%
-CONNECTING_3di-0032: x%
-
-*where x increases over time.* 
-
-*The "please hold" screen follows with music. Connection attempts are made for ca 2 minutes. Then it seems a connection is made with the appearance of:* 
-
+**Video Summary:** The first appearance of [[Long String]]. Starts off the screen saying "ATTEMPTING PROGRAM EXECUTION", then the screen goes red with loud data noises. Then the program loads with loud data noises in the background until it finishes and cuts to black, an image of two broadcast test screens (one big and one small) flashes on-screen before cutting to the [[Station Interruption]] scene (color code red, blue), which plays out for a bit until Long String is launched and repeatedly prints its string, print{V83mak8.exe}, all over the screen while red and blue colors flash in the background.
+###### Long String Transcript:
 PRINTING:
 LONG_STR-564729576731277902351569165057160763716092018576721687678169
 86297737719064176992641781532749921698757534761296436281764589661984391
@@ -38,4 +28,4 @@ LONG_STR-564729576731277902351569165057160763716092018576721687678169
 '-83489-1794930210957403712904217854835187'070723985749832759079435643
 7965784265786432596259678383838363643765
 
-*then the phrase*  "print(V83mak8.exe)" *is repeatedly printed on the screen with flashing red and blue background.*
+*Then the phrase*  "print(V83mak8.exe)" *is repeatedly printed on the screen.*
