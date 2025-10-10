@@ -10,6 +10,7 @@ const sharedAfterBody = [
     component: Component.Canvas(),
     condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
   }),
+  Component.MobileOnly(Component.Backlinks()),
 ]
 
 const mobileDiscordWidget = Component.MobileOnly(
@@ -90,20 +91,28 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
-    Component.MobileOnly(Component.TableOfContents()),
+    Component.MobileOnly(
+      Component.TableOfContents({
+        defaultCollapsed: true,
+      }),
+    ),
   ],
   left: [
     Component.PageTitle(),
-    Component.Search(),
+    Component.DesktopOnly(Component.Search()),
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "collapsed",
+        useSavedState: false,
+        headerSlot: Component.Search({ variant: "inline" }),
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       })
     ),
@@ -115,8 +124,12 @@ export const defaultContentPageLayout: PageLayout = {
         globalGraph: { removeTags: graphHiddenTags },
       })
     ),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    Component.DesktopOnly(
+      Component.TableOfContents({
+        defaultCollapsed: true,
+      }),
+    ),
+    Component.DesktopOnly(Component.Backlinks()),
     Component.DesktopOnly(
       Component.DiscordWidget({
         variant: "sidebar",
@@ -133,24 +146,31 @@ export const defaultListPageLayout: PageLayout = {
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-    Component.MobileOnly(Component.TableOfContents()),
+    Component.MobileOnly(
+      Component.TableOfContents({
+        defaultCollapsed: true,
+      })
+    ),
   ],
   left: [
     Component.PageTitle(),
-    Component.Search(),
+    Component.DesktopOnly(Component.Search()),
     Component.MobileOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "collapsed",
+        useSavedState: false,
+        headerSlot: Component.Search({ variant: "inline" }),
         filterFn: (node) => node.slugSegment !== "templates",
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
+        folderDefaultState: "open",
         filterFn: (node) => node.slugSegment !== "templates",
       })
     ),
   ],
-  right: [
-  ],
+  right: [],
 }

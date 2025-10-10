@@ -1,15 +1,11 @@
 @use "../../styles/variables.scss" as *;
 
-
 .backlinks {
+  display: flex;
   flex-direction: column;
+  margin-bottom: 1.25rem;
 
-  & > h3 {
-    font-size: 1rem;
-    margin: 0;
-  }
-
-  & .backlinks-collapsible {
+  & .backlinks-container {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -24,51 +20,58 @@
     }
   }
 
-  & .backlinks-summary {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6rem;
+  & .backlinks-header {
+    background-color: transparent;
+    border: none;
+    text-align: left;
     cursor: pointer;
     padding: 0;
-    margin: 0;
-
-    &::-webkit-details-marker {
-      display: none;
-    }
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.65rem;
 
     & h3 {
       font-size: 1rem;
       margin: 0;
     }
 
-    & .backlinks-toggle {
-      transition: transform 0.25s ease;
-      opacity: 0.65;
+    & .fold {
+      transition: transform 0.28s ease;
+      opacity: 0.7;
+    }
+
+    &.collapsed .fold {
+      transform: rotateZ(-90deg);
     }
   }
 
-  & .backlinks-collapsible[open] .backlinks-toggle {
-    transform: rotate(180deg);
-  }
-
-  & > ul.overflow {
+  & .backlinks-content {
     list-style: none;
+    margin: 0.5rem 0 0;
     padding: 0;
-    margin: 0.5rem 0;
-  max-height: calc(100% - 2rem);
-  overscroll-behavior: contain;
+    overflow: hidden;
+    overflow-y: auto;
+    transition:
+      max-height 0.28s ease,
+      opacity 0.28s ease,
+      margin 0.28s ease;
+    opacity: 1;
+    pointer-events: auto;
+    overscroll-behavior: contain;
+    max-height: 40vh;
 
-    & > li {
-      & > a {
-        background-color: transparent;
-      }
+    &.collapsed {
+      max-height: 0;
+      margin: 0;
+      opacity: 0;
+      pointer-events: none;
     }
-  }
 
-  & .backlinks-collapsible[open] > ul.overflow {
-    max-height: none;
-    overflow: visible;
+    & > li > a {
+      background-color: transparent;
+    }
   }
 }

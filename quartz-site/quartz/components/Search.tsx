@@ -7,10 +7,12 @@ import { i18n } from "../i18n"
 
 export interface SearchOptions {
   enablePreview: boolean
+  variant: "card" | "inline"
 }
 
 const defaultOptions: SearchOptions = {
   enablePreview: true,
+  variant: "card",
 }
 
 export default ((userOpts?: Partial<SearchOptions>) => {
@@ -18,7 +20,7 @@ export default ((userOpts?: Partial<SearchOptions>) => {
     const opts = { ...defaultOptions, ...userOpts }
     const searchPlaceholder = i18n(cfg.locale).components.search.searchBarPlaceholder
     return (
-      <div class={classNames(displayClass, "search")}>
+      <div class={classNames(displayClass, "search", opts.variant === "inline" ? "search-inline" : "")}>
         <button class="search-button">
           <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
             <title>Search</title>

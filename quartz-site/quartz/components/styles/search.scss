@@ -24,6 +24,10 @@
     max-width: none;
   }
 
+  &.search-inline {
+    padding: 0.65rem 0.75rem;
+  }
+
   & > .search-button {
   background-color: transparent;
   border: none;
@@ -255,4 +259,40 @@
       }
     }
   }
+}
+
+.search.search-inline {
+  width: 100%;
+  max-width: none;
+  padding: 0.7rem 0.8rem;
+}
+
+.search-inline {
+  padding: 0.55rem 0.65rem;
+  gap: 0.45rem;
+
+  & > .search-button {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+}
+
+.search-inline .search-button {
+  flex-direction: row;
+}
+
+.search-inline .search-button > p {
+  flex: 1 1 auto;
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.search-inline .search-button > svg {
+  margin: 0;
+  margin-left: auto;
 }
