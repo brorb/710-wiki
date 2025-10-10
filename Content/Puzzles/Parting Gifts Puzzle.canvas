@@ -91,7 +91,7 @@
 			"height":60
 		},
 		{"id":"a509197f7cab8b52","type":"link","url":"https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0","x":2510,"y":131,"width":400,"height":428},
-		{"id":"f0fea005e72e6fac","type":"file","file":"YouTube/Videos/7-10 Tone/BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}.md","x":2360,"y":1160,"width":550,"height":400},
+		{"id":"f0fea005e72e6fac","type":"file","file":"Content/YouTube/Videos/7-10 Tone/BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}.md","x":2360,"y":1160,"width":550,"height":400},
 		{
 			"id":"a2f4a0fc5fda05f8",
 			"type":"text",
@@ -116,7 +116,7 @@
 		{
 			"id":"390d423d61d5dfa2",
 			"type":"file",
-			"file":"YouTube/Videos/7-10 Tone/KEY.md",
+			"file":"Content/YouTube/Videos/7-10 Tone/KEY.md",
 			"styleAttributes":{
 				"border":null
 			},
@@ -125,7 +125,7 @@
 			"width":420,
 			"height":280
 		},
-		{"id":"02f282af569dc11e","type":"file","file":"YouTube/Videos/7-10 Tone/lm-1.md","x":40,"y":190,"width":420,"height":289},
+		{"id":"02f282af569dc11e","type":"file","file":"Content/YouTube/Videos/7-10 Tone/lm-1.md","x":40,"y":190,"width":420,"height":289},
 		{
 			"id":"4d243120bf9ad03d",
 			"type":"text",
@@ -166,8 +166,8 @@
 			"width":507,
 			"height":301
 		},
-		{"id":"46168d098e0e41ae","type":"file","file":"Media/Sleuth Media/Audio/lm-1 (reversed song).mp3","x":655,"y":560,"width":400,"height":120},
-		{"id":"4aec0a9b46f167fe","type":"file","file":"Media/710 Media/Images/mega link to lm-2.png","x":1279,"y":1153,"width":400,"height":314},
+		{"id":"46168d098e0e41ae","type":"file","file":"Content/Media/Sleuth Media/Audio/lm-1 (reversed song).mp3","x":655,"y":560,"width":400,"height":120},
+		{"id":"4aec0a9b46f167fe","type":"file","file":"Content/Media/710 Media/Images/mega link to lm-2.png","x":1279,"y":1153,"width":400,"height":314},
 		{
 			"id":"5195227f61478618",
 			"type":"text",
@@ -189,7 +189,7 @@
 			"height":115,
 			"color":"1"
 		},
-		{"id":"5f1dfd13606994fd","type":"file","file":"Media/710 Media/Images/lm-2.png","x":246,"y":812,"width":548,"height":438}
+		{"id":"5f1dfd13606994fd","type":"file","file":"Content/Media/710 Media/Images/lm-2.png","x":246,"y":812,"width":548,"height":438}
 	],
 	"edges":[
 		{
