@@ -64,7 +64,7 @@
 }
 
 #quartz-body .mobile-only.backlinks {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
 }
 
 #quartz-body .mobile-only.backlinks + .comments-section {
@@ -72,7 +72,7 @@
 }
 
 #quartz-body .mobile-only.backlinks + .comments-section .comments-separator {
-  margin-top: 2.25rem;
+  margin-top: 1.5rem;
 }
 
 #explorer-ul {
@@ -220,40 +220,6 @@ a.wiki-download-link svg {
 }
 
 @media screen and ($mobile) {
-  #quartz-body .center {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  #quartz-body .center > .page-header {
-    order: 0;
-  }
-
-  #quartz-body .center > article {
-    order: 1;
-  }
-
-  #quartz-body .center > .page-footer {
-    order: 2;
-  }
-
-  #quartz-body .center > hr {
-    order: 3;
-  }
-
-  #quartz-body .center > hr {
-    margin: 1rem 0 0;
-  }
-
-  #quartz-body .mobile-only.backlinks {
-    margin-bottom: 0;
-  }
-
-  #quartz-body .mobile-only.backlinks + .comments-section .comments-separator {
-    margin-top: 1.5rem;
-  }
-
   .page-title {
     min-height: 110px;
   }
