@@ -1,40 +1,33 @@
 @use "../../styles/variables.scss" as *;
 
 .explorer {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
-.explorer {
+  width: 100%;
   min-height: 1.2rem;
   flex: 0 1 auto;
-
-  &.collapsed {
-    flex: 0 1 1.2rem;
-
-    .fold {
-      transform: rotateZ(-90deg);
-    }
-
-    .explorer-content {
-      display: none;
-    }
-  }
-}
-
-.explorer-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  gap: 0.5rem;
-  width: 100%;
   padding: 0.75rem 0.85rem;
   border: 1px solid var(--lightgray);
   border-radius: 10px;
   background: color-mix(in srgb, var(--light) 85%, rgba(0, 0, 0, 0.03));
   transition: border-color 0.2s ease;
+  overflow: hidden;
 
   &:hover {
     border-color: var(--secondary);
+  }
+
+  &.collapsed {
+    flex: 0 1 1.2rem;
+
+    & .fold {
+      transform: rotateZ(-90deg);
+    }
+
+    & > .explorer-content {
+      display: none;
+    }
   }
 
   .mobile-explorer.hide-until-loaded + .desktop-explorer + .explorer-content,
@@ -42,7 +35,7 @@
     display: none;
   }
 
-  .fold {
+  & .fold {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
     opacity: 0.8;
@@ -57,15 +50,18 @@
   }
 
   @media all and ($mobile) {
-    padding: 0.5rem 0.65rem;
+    padding: 0.55rem 0.65rem;
     border-radius: 12px;
+    width: min(calc(100vw - 3rem), 20rem);
+    max-width: 100%;
+    overflow: visible;
 
     button.mobile-explorer {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: auto;
-      padding: 0.4rem 0.65rem;
+      padding: 0.35rem 0.6rem;
       border-radius: 999px;
       border: none;
       background: transparent;
@@ -87,16 +83,17 @@
   }
 }
 
-.explorer {
-  svg {
-    pointer-events: all;
-    transition: transform 0.35s ease;
+.explorer svg {
+  pointer-events: all;
+  transition: transform 0.35s ease;
 
-    & > polyline {
-      pointer-events: none;
-    }
+  & > polyline {
+    pointer-events: none;
   }
 }
+
+button.mobile-explorer,
+button.desktop-explorer {
   background-color: transparent;
   border: none;
   text-align: left;
@@ -117,6 +114,7 @@
   list-style: none;
   overflow: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 0.5rem;
   max-height: 60vh;
 
@@ -157,8 +155,8 @@
 }
 
 .folder-container {
-  flex-direction: row;
   display: flex;
+  flex-direction: row;
   align-items: center;
   user-select: none;
 
@@ -214,10 +212,4 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 
 .folder-icon:hover {
   color: var(--tertiary);
-}
-
-.explorer {
-  @media all and ($mobile) {
-    display: contents;
-  }
 }
