@@ -3954,12 +3954,12 @@ var DISCORD_CSS = `
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .discord-avatar img {
@@ -4032,7 +4032,95 @@ var DISCORD_CSS = `
   outline: 2px solid var(--discord-accent);
   outline-offset: 2px;
 }
+
+.discord-cite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+}
+
+.discord-cite__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.discord-cite__trigger img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.discord-cite__trigger:hover {
+  background: rgba(88, 101, 242, 0.2);
+}
+
+.discord-cite__trigger:focus-visible {
+  outline: 2px solid var(--discord-accent);
+  outline-offset: 2px;
+}
+
+.discord-cite__preview {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  max-width: min(480px, 85vw);
+}
+
+.discord-cite__preview::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-bottom-color: var(--discord-border);
+}
+
+.discord-cite:hover .discord-cite__preview,
+.discord-cite:focus-within .discord-cite__preview {
+  display: block;
+}
+
+.discord-cite__preview-content {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 24px 48px rgba(15, 15, 20, 0.45);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.discord-cite__preview .discord-thread {
+  max-width: min(480px, 85vw);
+}
+
+.discord-cite__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 `;
+var CITATION_MARKER_PATTERN = /\{\{discord-cite:([a-z0-9-]+)\}\}/gi;
+var CITATION_COMMENT_PATTERN = /^%%\s*discord-cite:([a-z0-9-]+)\|([A-Za-z0-9+/=]+)\s*%%$/i;
 var escapeHtml = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
 var escapeAttribute = /* @__PURE__ */ __name((value) => escapeHtml(value), "escapeAttribute");
 var formatTimestamp = /* @__PURE__ */ __name((source) => {
@@ -4177,6 +4265,23 @@ var renderMessages = /* @__PURE__ */ __name((messages) => {
 ${htmlMessages}
 </section>`;
 }, "renderMessages");
+var renderCitation = /* @__PURE__ */ __name((id, messages) => {
+  const threadHtml = renderMessages(messages);
+  if (!threadHtml) {
+    return void 0;
+  }
+  const count = messages.length;
+  const labelText = count === 1 ? "View Discord citation (1 message)" : `View Discord citation (${count} messages)`;
+  return `<span class="discord-cite" data-discord-id="${escapeAttribute(id)}">
+    <button type="button" class="discord-cite__trigger" aria-label="${escapeAttribute(labelText)}" title="${escapeAttribute(labelText)}">
+      <img src="/static/discord.svg" alt="" aria-hidden="true" loading="lazy" width="16" height="16" />
+      <span class="discord-cite__sr">${escapeHtml(labelText)}</span>
+    </button>
+    <span class="discord-cite__preview" role="dialog" aria-modal="false">
+      <span class="discord-cite__preview-content">${threadHtml}</span>
+    </span>
+  </span>`;
+}, "renderCitation");
 var parseDiscordBlock = /* @__PURE__ */ __name((value) => {
   try {
     const data = JSON.parse(value.trim());
@@ -4202,13 +4307,149 @@ var visitCodeBlocks = /* @__PURE__ */ __name((node, callback) => {
     visitCodeBlocks(child, callback);
   }
 }, "visitCodeBlocks");
+var decodeCitationPayload = /* @__PURE__ */ __name((encoded) => {
+  try {
+    const json = Buffer.from(encoded, "base64").toString("utf8");
+    const data = JSON.parse(json);
+    return normaliseMessages(data);
+  } catch (error) {
+    console.warn("Failed to decode Discord citation payload", error);
+    return [];
+  }
+}, "decodeCitationPayload");
+var collectCitationPayloads = /* @__PURE__ */ __name((root) => {
+  const citations = /* @__PURE__ */ new Map();
+  const removals = [];
+  const traverse = /* @__PURE__ */ __name((node) => {
+    if (!node || typeof node !== "object") {
+      return;
+    }
+    const parent = node;
+    if (!Array.isArray(parent.children)) {
+      return;
+    }
+    for (let idx = 0; idx < parent.children.length; idx++) {
+      const child = parent.children[idx];
+      if (!child || typeof child !== "object") {
+        continue;
+      }
+      const value = typeof child.value === "string" ? child.value ?? "" : void 0;
+      if (typeof value === "string") {
+        const trimmed = value.trim();
+        const match = CITATION_COMMENT_PATTERN.exec(trimmed);
+        if (match) {
+          const [, id, encoded] = match;
+          let messages = citations.get(id);
+          if (!messages) {
+            messages = decodeCitationPayload(encoded);
+            if (messages.length === 0) {
+              console.warn(`Discord citation '${id}' payload contained no messages.`);
+              CITATION_COMMENT_PATTERN.lastIndex = 0;
+              continue;
+            }
+            citations.set(id, messages);
+          }
+          removals.push({ parent, index: idx });
+          CITATION_COMMENT_PATTERN.lastIndex = 0;
+          continue;
+        }
+        CITATION_COMMENT_PATTERN.lastIndex = 0;
+      }
+      traverse(child);
+    }
+  }, "traverse");
+  traverse(root);
+  for (let i = removals.length - 1; i >= 0; i--) {
+    const { parent, index } = removals[i];
+    if (!Array.isArray(parent.children)) {
+      continue;
+    }
+    parent.children.splice(index, 1);
+  }
+  return citations;
+}, "collectCitationPayloads");
+var replaceCitationMarkers = /* @__PURE__ */ __name((value, citations) => {
+  CITATION_MARKER_PATTERN.lastIndex = 0;
+  let match;
+  let lastIndex = 0;
+  const nodes = [];
+  let replaced = false;
+  while ((match = CITATION_MARKER_PATTERN.exec(value)) !== null) {
+    const start = match.index;
+    const end = start + match[0].length;
+    const id = match[1];
+    if (start > lastIndex) {
+      nodes.push({ type: "text", value: value.slice(lastIndex, start) });
+    }
+    const messages = citations.get(id);
+    if (messages && messages.length > 0) {
+      const citationHtml = renderCitation(id, messages);
+      if (citationHtml) {
+        nodes.push({ type: "html", value: citationHtml });
+        replaced = true;
+      } else {
+        nodes.push({ type: "text", value: match[0] });
+      }
+    } else {
+      nodes.push({ type: "text", value: match[0] });
+    }
+    lastIndex = end;
+  }
+  if (!replaced) {
+    return null;
+  }
+  if (lastIndex < value.length) {
+    nodes.push({ type: "text", value: value.slice(lastIndex) });
+  }
+  return nodes.filter((node) => {
+    if (node.type !== "text") {
+      return true;
+    }
+    const textValue = node.value;
+    return typeof textValue !== "string" || textValue.length > 0;
+  });
+}, "replaceCitationMarkers");
+var transformCitationMarkers = /* @__PURE__ */ __name((root, citations) => {
+  if (citations.size === 0) {
+    return;
+  }
+  const traverse = /* @__PURE__ */ __name((node) => {
+    if (!node || typeof node !== "object") {
+      return;
+    }
+    const parent = node;
+    if (!Array.isArray(parent.children)) {
+      return;
+    }
+    for (let idx = 0; idx < parent.children.length; idx++) {
+      const child = parent.children[idx];
+      if (!child || typeof child !== "object") {
+        continue;
+      }
+      const value = typeof child.value === "string" ? child.value ?? "" : void 0;
+      if (typeof value === "string") {
+        const replacements = replaceCitationMarkers(value, citations);
+        if (replacements) {
+          parent.children.splice(idx, 1, ...replacements);
+          idx += replacements.length - 1;
+          continue;
+        }
+      }
+      traverse(child);
+    }
+  }, "traverse");
+  traverse(root);
+}, "transformCitationMarkers");
 var DiscordMessages = /* @__PURE__ */ __name(() => {
   return {
     name: "DiscordMessages",
     markdownPlugins() {
       return [
         () => (tree) => {
-          visitCodeBlocks(tree, (codeBlock, index, parent) => {
+          const root = tree;
+          const citations = collectCitationPayloads(root);
+          transformCitationMarkers(root, citations);
+          visitCodeBlocks(root, (codeBlock, index, parent) => {
             const lang = typeof codeBlock.lang === "string" ? codeBlock.lang.toLowerCase() : "";
             if (lang !== "discord") {
               return;

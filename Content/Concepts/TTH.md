@@ -4,8 +4,11 @@ They are an organization who perform some sort of transmission, and [[INDI]] and
 
 It is known that TTH is a subbranch of some other organization[^2]
 
-In the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The [\_\_\_]", which likel
+It is likely that TTH are the ones responsible for [[The Logs]] being made. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The [\_\_\_]", which likely refers to TTH. {{discord-cite:cite-mgqph9b7-i941wd}}
+%%discord-cite:cite-mgqph9b7-i941wd|W3siaWQiOiIxMzk2ODczNzkzMzAxMTE4OTk2IiwiYXV0aG9yIjp7ImRpc3BsYXlfbmFtZSI6IlRoZVBvcnRhbE5pbmphIiwidXNlcm5hbWUiOiJ0aGVwb3J0YWxuaW5qYSIsImNvbG9yIjoiI0ZGMDBBQSIsImNvbG91ciI6IiNGRjAwQUEiLCJjb2xvdXJfdmFsdWUiOjE2NzExODUwfSwiY29udGVudCI6IkBTWVNURU0gV2hhdCBkb2VzIFRUSCBtZWFuIG9yIHN0YW5kIGZvcj8iLCJ0aW1lc3RhbXAiOiIyMDI1LTA3LTIxVDE1OjE3OjQ0Ljk4MzAwMCswMDowMCIsImF2YXRhcl91cmwiOiJodHRwczovL2Nkbi5kaXNjb3JkYXBwLmNvbS9hdmF0YXJzLzIzMzcxMTY5MzI0MTI1Mzg5MS8yNjdlZDk2ZjYyNzNkMDg0MjY4ODJiZDJjMWYwYWEzMy5wbmc/c2l6ZT0xMDI0IiwidXJsIjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9jaGFubmVscy8xMzg5OTAyMDAyNzM3MjUwMzE0LzEzODk5MDIwMDMyMjgxMTQ5NTcvMTM5Njg3Mzc5MzMwMTExODk5NiJ9XQ==%%
 
+rt
+rt
 Their logo feature two hands on a red background. The hands are a symbolization of human work.[^1]
 
 

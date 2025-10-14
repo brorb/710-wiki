@@ -191,12 +191,12 @@ pre:hover > .expand-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .discord-avatar img {
@@ -269,7 +269,93 @@ pre:hover > .expand-button {
   outline: 2px solid var(--discord-accent);
   outline-offset: 2px;
 }
-`,escapeHtml=__name(value=>value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;"),"escapeHtml"),escapeAttribute=__name(value=>escapeHtml(value),"escapeAttribute"),formatTimestamp=__name(source=>{if(!source)return;let date=new Date(source);if(Number.isNaN(date.getTime()))return{readable:source,iso:source};let day=date.getDate().toString().padStart(2,"0"),month=(date.getMonth()+1).toString().padStart(2,"0"),year=date.getFullYear().toString(),hours=date.getHours().toString().padStart(2,"0"),minutes=date.getMinutes().toString().padStart(2,"0");return{readable:`${day}/${month}/${year} ${hours}:${minutes}`,iso:date.toISOString()}},"formatTimestamp"),normaliseMessages=__name(raw=>{if(!raw)return[];if(Array.isArray(raw))return raw.flatMap(entry=>normaliseMessages(entry));if(typeof raw=="object"){let maybeMessages=raw.messages;return Array.isArray(maybeMessages)?normaliseMessages(maybeMessages):[raw]}return[]},"normaliseMessages"),renderContent=__name(content=>content?escapeHtml(content).replace(/\r?\n/g,"<br />"):"","renderContent"),normalizeColor=__name(input=>{if(input==null)return;if(typeof input=="number"&&Number.isFinite(input))return`#${input.toString(16).padStart(6,"0").slice(-6)}`;let value=input.toString().trim();if(/^\d+$/.test(value)){let numeric=Number.parseInt(value,10);if(Number.isFinite(numeric))return`#${numeric.toString(16).padStart(6,"0").slice(-6)}`}let prefixed=value.startsWith("#")?value:`#${value}`;if(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(prefixed))return prefixed;if(/^rgb(a)?\(/i.test(value))return value},"normalizeColor"),getAuthorKey=__name(message=>{let author=message?.author;if(author){if(author.id)return author.id;if(author.display_name||author.username){let composite=`${author.username??""}|${author.display_name??""}`.trim();if(composite.length>0)return composite}}},"getAuthorKey"),renderMessage=__name((message,previous)=>{let author=message.author??{},displayName=author.display_name?.trim()||author.username?.trim()||"Unknown User",avatar=message.avatar_url?.trim()||DEFAULT_AVATAR,timestamp=formatTimestamp(message.timestamp),jumpUrl=message.jump_url||message.url||"#",content=renderContent(message.content),authorColor=normalizeColor(author.color??author.colour??author.colour_value),previousKey=getAuthorKey(previous),currentKey=getAuthorKey(message),sameAuthor=previousKey!==void 0&&previousKey===currentKey,showHeader=!sameAuthor,showAvatar=!sameAuthor,articleClasses=["discord-message"];showAvatar||articleClasses.push("discord-message--compact");let articleAttributes=[`class="${articleClasses.join(" ")}"`];message.id&&articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`),authorColor&&articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);let avatarMarkup=showAvatar?`<div class="discord-avatar">
+
+.discord-cite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+}
+
+.discord-cite__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.discord-cite__trigger img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.discord-cite__trigger:hover {
+  background: rgba(88, 101, 242, 0.2);
+}
+
+.discord-cite__trigger:focus-visible {
+  outline: 2px solid var(--discord-accent);
+  outline-offset: 2px;
+}
+
+.discord-cite__preview {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  max-width: min(480px, 85vw);
+}
+
+.discord-cite__preview::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-bottom-color: var(--discord-border);
+}
+
+.discord-cite:hover .discord-cite__preview,
+.discord-cite:focus-within .discord-cite__preview {
+  display: block;
+}
+
+.discord-cite__preview-content {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 24px 48px rgba(15, 15, 20, 0.45);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.discord-cite__preview .discord-thread {
+  max-width: min(480px, 85vw);
+}
+
+.discord-cite__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+`,CITATION_MARKER_PATTERN=/\{\{discord-cite:([a-z0-9-]+)\}\}/gi,CITATION_COMMENT_PATTERN=/^%%\s*discord-cite:([a-z0-9-]+)\|([A-Za-z0-9+/=]+)\s*%%$/i,escapeHtml=__name(value=>value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;"),"escapeHtml"),escapeAttribute=__name(value=>escapeHtml(value),"escapeAttribute"),formatTimestamp=__name(source=>{if(!source)return;let date=new Date(source);if(Number.isNaN(date.getTime()))return{readable:source,iso:source};let day=date.getDate().toString().padStart(2,"0"),month=(date.getMonth()+1).toString().padStart(2,"0"),year=date.getFullYear().toString(),hours=date.getHours().toString().padStart(2,"0"),minutes=date.getMinutes().toString().padStart(2,"0");return{readable:`${day}/${month}/${year} ${hours}:${minutes}`,iso:date.toISOString()}},"formatTimestamp"),normaliseMessages=__name(raw=>{if(!raw)return[];if(Array.isArray(raw))return raw.flatMap(entry=>normaliseMessages(entry));if(typeof raw=="object"){let maybeMessages=raw.messages;return Array.isArray(maybeMessages)?normaliseMessages(maybeMessages):[raw]}return[]},"normaliseMessages"),renderContent=__name(content=>content?escapeHtml(content).replace(/\r?\n/g,"<br />"):"","renderContent"),normalizeColor=__name(input=>{if(input==null)return;if(typeof input=="number"&&Number.isFinite(input))return`#${input.toString(16).padStart(6,"0").slice(-6)}`;let value=input.toString().trim();if(/^\d+$/.test(value)){let numeric=Number.parseInt(value,10);if(Number.isFinite(numeric))return`#${numeric.toString(16).padStart(6,"0").slice(-6)}`}let prefixed=value.startsWith("#")?value:`#${value}`;if(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(prefixed))return prefixed;if(/^rgb(a)?\(/i.test(value))return value},"normalizeColor"),getAuthorKey=__name(message=>{let author=message?.author;if(author){if(author.id)return author.id;if(author.display_name||author.username){let composite=`${author.username??""}|${author.display_name??""}`.trim();if(composite.length>0)return composite}}},"getAuthorKey"),renderMessage=__name((message,previous)=>{let author=message.author??{},displayName=author.display_name?.trim()||author.username?.trim()||"Unknown User",avatar=message.avatar_url?.trim()||DEFAULT_AVATAR,timestamp=formatTimestamp(message.timestamp),jumpUrl=message.jump_url||message.url||"#",content=renderContent(message.content),authorColor=normalizeColor(author.color??author.colour??author.colour_value),previousKey=getAuthorKey(previous),currentKey=getAuthorKey(message),sameAuthor=previousKey!==void 0&&previousKey===currentKey,showHeader=!sameAuthor,showAvatar=!sameAuthor,articleClasses=["discord-message"];showAvatar||articleClasses.push("discord-message--compact");let articleAttributes=[`class="${articleClasses.join(" ")}"`];message.id&&articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`),authorColor&&articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);let avatarMarkup=showAvatar?`<div class="discord-avatar">
         <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
       </div>`:'<div class="discord-avatar discord-avatar--hidden" aria-hidden="true"></div>',headerMarkup=showHeader?`<header class="discord-header">
         <span class="discord-author"${authorColor?` style="color: ${escapeAttribute(authorColor)}"`:""}>${escapeHtml(displayName)}</span>
@@ -284,7 +370,15 @@ pre:hover > .expand-button {
   </article>`},"renderMessage"),renderMessages=__name(messages=>{if(messages.length===0)return"";let htmlMessages=messages.map((message,index)=>renderMessage(message,index>0?messages[index-1]:void 0)).join(`
 `);return`<section class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
-</section>`},"renderMessages"),parseDiscordBlock=__name(value=>{try{let data=JSON.parse(value.trim());return normaliseMessages(data)}catch(error){return console.warn("Failed to parse discord block",error),[]}},"parseDiscordBlock"),visitCodeBlocks=__name((node,callback)=>{if(!node||typeof node!="object"||!Array.isArray(node.children))return;let parent=node;for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];!child||typeof child!="object"||(child.type==="code"&&callback(child,idx,parent),visitCodeBlocks(child,callback))}},"visitCodeBlocks"),DiscordMessages=__name(()=>({name:"DiscordMessages",markdownPlugins(){return[()=>tree=>{visitCodeBlocks(tree,(codeBlock,index,parent)=>{if((typeof codeBlock.lang=="string"?codeBlock.lang.toLowerCase():"")!=="discord")return;let raw=typeof codeBlock.value=="string"?codeBlock.value:"",messages=parseDiscordBlock(raw);if(messages.length===0)return;let html=renderMessages(messages);if(parent.type==="paragraph"&&parent.children?.length===1){delete parent.children,parent.type="html",parent.value=html;return}parent.children.splice(index,1,{type:"html",value:html})})}]},externalResources(){return{css:[{content:DISCORD_CSS,inline:!0}]}}}),"DiscordMessages");var RemoveDrafts=__name(()=>({name:"RemoveDrafts",shouldPublish(_ctx,[_tree,vfile]){return!(vfile.data?.frontmatter?.draft===!0||vfile.data?.frontmatter?.draft==="true")}}),"RemoveDrafts");import path6 from"path";import{jsx}from"preact/jsx-runtime";var Header=__name(({children})=>children.length>0?jsx("header",{children}):null,"Header");Header.css=`
+</section>`},"renderMessages"),renderCitation=__name((id,messages)=>{let threadHtml=renderMessages(messages);if(!threadHtml)return;let count=messages.length,labelText=count===1?"View Discord citation (1 message)":`View Discord citation (${count} messages)`;return`<span class="discord-cite" data-discord-id="${escapeAttribute(id)}">
+    <button type="button" class="discord-cite__trigger" aria-label="${escapeAttribute(labelText)}" title="${escapeAttribute(labelText)}">
+      <img src="/static/discord.svg" alt="" aria-hidden="true" loading="lazy" width="16" height="16" />
+      <span class="discord-cite__sr">${escapeHtml(labelText)}</span>
+    </button>
+    <span class="discord-cite__preview" role="dialog" aria-modal="false">
+      <span class="discord-cite__preview-content">${threadHtml}</span>
+    </span>
+  </span>`},"renderCitation"),parseDiscordBlock=__name(value=>{try{let data=JSON.parse(value.trim());return normaliseMessages(data)}catch(error){return console.warn("Failed to parse discord block",error),[]}},"parseDiscordBlock"),visitCodeBlocks=__name((node,callback)=>{if(!node||typeof node!="object"||!Array.isArray(node.children))return;let parent=node;for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];!child||typeof child!="object"||(child.type==="code"&&callback(child,idx,parent),visitCodeBlocks(child,callback))}},"visitCodeBlocks"),decodeCitationPayload=__name(encoded=>{try{let json=Buffer.from(encoded,"base64").toString("utf8"),data=JSON.parse(json);return normaliseMessages(data)}catch(error){return console.warn("Failed to decode Discord citation payload",error),[]}},"decodeCitationPayload"),collectCitationPayloads=__name(root=>{let citations=new Map,removals=[],traverse=__name(node=>{if(!node||typeof node!="object")return;let parent=node;if(Array.isArray(parent.children))for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];if(!child||typeof child!="object")continue;let value=typeof child.value=="string"?child.value??"":void 0;if(typeof value=="string"){let trimmed=value.trim(),match=CITATION_COMMENT_PATTERN.exec(trimmed);if(match){let[,id,encoded]=match,messages=citations.get(id);if(!messages){if(messages=decodeCitationPayload(encoded),messages.length===0){console.warn(`Discord citation '${id}' payload contained no messages.`),CITATION_COMMENT_PATTERN.lastIndex=0;continue}citations.set(id,messages)}removals.push({parent,index:idx}),CITATION_COMMENT_PATTERN.lastIndex=0;continue}CITATION_COMMENT_PATTERN.lastIndex=0}traverse(child)}},"traverse");traverse(root);for(let i=removals.length-1;i>=0;i--){let{parent,index}=removals[i];Array.isArray(parent.children)&&parent.children.splice(index,1)}return citations},"collectCitationPayloads"),replaceCitationMarkers=__name((value,citations)=>{CITATION_MARKER_PATTERN.lastIndex=0;let match,lastIndex=0,nodes=[],replaced=!1;for(;(match=CITATION_MARKER_PATTERN.exec(value))!==null;){let start=match.index,end=start+match[0].length,id=match[1];start>lastIndex&&nodes.push({type:"text",value:value.slice(lastIndex,start)});let messages=citations.get(id);if(messages&&messages.length>0){let citationHtml=renderCitation(id,messages);citationHtml?(nodes.push({type:"html",value:citationHtml}),replaced=!0):nodes.push({type:"text",value:match[0]})}else nodes.push({type:"text",value:match[0]});lastIndex=end}return replaced?(lastIndex<value.length&&nodes.push({type:"text",value:value.slice(lastIndex)}),nodes.filter(node=>{if(node.type!=="text")return!0;let textValue=node.value;return typeof textValue!="string"||textValue.length>0})):null},"replaceCitationMarkers"),transformCitationMarkers=__name((root,citations)=>{if(citations.size===0)return;let traverse=__name(node=>{if(!node||typeof node!="object")return;let parent=node;if(Array.isArray(parent.children))for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];if(!child||typeof child!="object")continue;let value=typeof child.value=="string"?child.value??"":void 0;if(typeof value=="string"){let replacements=replaceCitationMarkers(value,citations);if(replacements){parent.children.splice(idx,1,...replacements),idx+=replacements.length-1;continue}}traverse(child)}},"traverse");traverse(root)},"transformCitationMarkers"),DiscordMessages=__name(()=>({name:"DiscordMessages",markdownPlugins(){return[()=>tree=>{let root=tree,citations=collectCitationPayloads(root);transformCitationMarkers(root,citations),visitCodeBlocks(root,(codeBlock,index,parent)=>{if((typeof codeBlock.lang=="string"?codeBlock.lang.toLowerCase():"")!=="discord")return;let raw=typeof codeBlock.value=="string"?codeBlock.value:"",messages=parseDiscordBlock(raw);if(messages.length===0)return;let html=renderMessages(messages);if(parent.type==="paragraph"&&parent.children?.length===1){delete parent.children,parent.type="html",parent.value=html;return}parent.children.splice(index,1,{type:"html",value:html})})}]},externalResources(){return{css:[{content:DISCORD_CSS,inline:!0}]}}}),"DiscordMessages");var RemoveDrafts=__name(()=>({name:"RemoveDrafts",shouldPublish(_ctx,[_tree,vfile]){return!(vfile.data?.frontmatter?.draft===!0||vfile.data?.frontmatter?.draft==="true")}}),"RemoveDrafts");import path6 from"path";import{jsx}from"preact/jsx-runtime";var Header=__name(({children})=>children.length>0?jsx("header",{children}):null,"Header");Header.css=`
 header {
   display: flex;
   flex-direction: row;

@@ -10,6 +10,7 @@ interface DiscordApiAuthor {
   avatar_url?: string
   colour?: string
   color?: string
+  colour_value?: number
 }
 
 interface DiscordApiResponse {
@@ -26,6 +27,8 @@ interface DiscordMessageBlock {
     display_name?: string
     username: string
     color?: string
+    colour?: string
+    colour_value?: number
   }
   content: string
   timestamp?: string
@@ -33,24 +36,35 @@ interface DiscordMessageBlock {
   url: string
 }
 
+const normaliseColour = (input?: string | null, numeric?: number | null): string | undefined => {
+  const trimmed = input?.trim()
+  if (trimmed) {
+    return trimmed.startsWith("#") ? trimmed : `#${trimmed}`
+  }
+
+  if (typeof numeric === "number" && Number.isFinite(numeric)) {
+    return `#${numeric.toString(16).padStart(6, "0")}`
+  }
+
+  return undefined
+}
+
+type CommandMode = "embed" | "citation"
+
 export default class DiscordMessageEmbedPlugin extends Plugin {
   async onload() {
     this.addCommand({
       id: "insert-discord-message-embed",
       name: "Insert Discord message embed",
-      editorCheckCallback: (checking, editor, view) => {
-        if (!(view instanceof MarkdownView)) {
-          return false
-        }
+      editorCheckCallback: (checking, editor, view) =>
+        this.handleCommand(checking, editor, view, "embed"),
+    })
 
-        const urls = this.extractDiscordUrls(editor.getSelection())
-        if (checking) {
-          return urls.length > 0
-        }
-
-        void this.convertSelection(editor)
-        return true
-      },
+    this.addCommand({
+      id: "insert-discord-message-citation",
+      name: "Insert Discord message citation",
+      editorCheckCallback: (checking, editor, view) =>
+        this.handleCommand(checking, editor, view, "citation"),
     })
 
     this.registerEvent(
@@ -59,7 +73,8 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
           return
         }
 
-        const urls = this.extractDiscordUrls(editor.getSelection())
+        const selection = editor.getSelection()
+        const urls = this.extractDiscordUrls(this.stripCitationMarker(selection))
         if (urls.length === 0) {
           return
         }
@@ -69,11 +84,54 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
             .setTitle("Insert Discord message embed")
             .setIcon("message-square")
             .onClick(() => {
-              void this.convertSelection(editor)
+              void this.insertEmbed(editor)
             })
         })
+
+        if (this.selectionHasCitationMarker(selection)) {
+          menu.addItem((item) => {
+            item
+              .setTitle("Insert Discord message citation")
+              .setIcon("superscript")
+              .onClick(() => {
+                void this.insertCitation(editor)
+              })
+          })
+        }
       }),
     )
+  }
+
+  private handleCommand(
+    checking: boolean,
+    editor: Editor,
+    view: MarkdownView,
+    mode: CommandMode,
+  ): boolean {
+    if (!(view instanceof MarkdownView)) {
+      return false
+    }
+
+    const selection = editor.getSelection()
+    const urls = this.extractDiscordUrls(
+      mode === "citation" ? this.stripCitationMarker(selection) : selection,
+    )
+
+    if (mode === "citation" && !this.selectionHasCitationMarker(selection)) {
+      return false
+    }
+
+    if (checking) {
+      return urls.length > 0
+    }
+
+    if (mode === "embed") {
+      void this.insertEmbed(editor)
+    } else {
+      void this.insertCitation(editor)
+    }
+
+    return true
   }
 
   private extractDiscordUrls(source: string): string[] {
@@ -97,7 +155,20 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     return ordered
   }
 
-  private async convertSelection(editor: Editor): Promise<void> {
+  private selectionHasCitationMarker(selection: string): boolean {
+    return selection?.trim().startsWith("^") ?? false
+  }
+
+  private stripCitationMarker(selection: string): string {
+    const caretIndex = selection.indexOf("^")
+    if (caretIndex === -1) {
+      return selection
+    }
+
+    return selection.slice(0, caretIndex) + selection.slice(caretIndex + 1)
+  }
+
+  private async insertEmbed(editor: Editor): Promise<void> {
     const selection = editor.getSelection()
     const urls = this.extractDiscordUrls(selection)
 
@@ -106,17 +177,15 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       return
     }
 
-    const loading = new Notice(`Fetching ${urls.length} Discord message${urls.length > 1 ? "s" : ""}...`, 0)
+    const loading = new Notice(
+      `Fetching ${urls.length} Discord message${urls.length > 1 ? "s" : ""}...`,
+      0,
+    )
 
     try {
-      const messages: DiscordMessageBlock[] = []
-      for (const url of urls) {
-        const apiPayload = await this.fetchDiscordMessage(url)
-        messages.push(this.mapToMessageBlock(url, apiPayload))
-      }
-
+      const messages = await this.fetchMessages(urls)
       const json = JSON.stringify(messages, null, 2)
-  const block = `\`\`\`discord\n${json}\n\`\`\``
+      const block = "```discord\n" + json + "\n```"
       editor.replaceSelection(block)
     } catch (error) {
       console.error(error)
@@ -124,6 +193,56 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     } finally {
       loading.hide()
     }
+  }
+
+  private async insertCitation(editor: Editor): Promise<void> {
+    const selection = editor.getSelection()
+
+    if (!this.selectionHasCitationMarker(selection)) {
+      new Notice("Add a '^' before the Discord link to create a citation.")
+      return
+    }
+
+    const urls = this.extractDiscordUrls(this.stripCitationMarker(selection))
+    if (urls.length === 0) {
+      new Notice("Highlight at least one Discord message URL first.")
+      return
+    }
+
+    const loading = new Notice(`Fetching ${urls.length} Discord citation...`, 0)
+
+    try {
+      const messages = await this.fetchMessages(urls)
+      const citationId = this.generateCitationId()
+      const encoded = Buffer.from(JSON.stringify(messages)).toString("base64")
+      const marker = `{{discord-cite:${citationId}}}`
+      const comment = `%%discord-cite:${citationId}|${encoded}%%`
+
+      editor.replaceSelection(marker)
+
+      const cursor = editor.getCursor()
+      editor.replaceRange(`\n${comment}`, cursor)
+    } catch (error) {
+      console.error(error)
+      new Notice("Unable to fetch the Discord citation.")
+    } finally {
+      loading.hide()
+    }
+  }
+
+  private async fetchMessages(urls: string[]): Promise<DiscordMessageBlock[]> {
+    const messages: DiscordMessageBlock[] = []
+    for (const url of urls) {
+      const apiPayload = await this.fetchDiscordMessage(url)
+      messages.push(this.mapToMessageBlock(url, apiPayload))
+    }
+    return messages
+  }
+
+  private generateCitationId(): string {
+    const random = Math.random().toString(36).slice(2, 8)
+    const timestamp = Date.now().toString(36)
+    return `cite-${timestamp}-${random}`
   }
 
   private async fetchDiscordMessage(url: string): Promise<DiscordApiResponse> {
@@ -141,14 +260,19 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
   private mapToMessageBlock(url: string, payload: DiscordApiResponse): DiscordMessageBlock {
     const authorUsername = payload.author?.username?.trim()
     const authorDisplay = payload.author?.display_name?.trim()
-    const authorColor = payload.author?.color?.trim() || payload.author?.colour?.trim()
+    const authorColourHex = normaliseColour(
+      payload.author?.color ?? payload.author?.colour,
+      payload.author?.colour_value,
+    )
 
     return {
       id: payload.id,
       author: {
         display_name: authorDisplay || undefined,
         username: authorUsername || authorDisplay || "Unknown User",
-        color: authorColor || undefined,
+        color: authorColourHex,
+        colour: payload.author?.colour?.trim() || undefined,
+        colour_value: payload.author?.colour_value,
       },
       content: payload.content ?? "",
       timestamp: payload.timestamp,
@@ -157,3 +281,6 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     }
   }
 }
+
+module.exports = DiscordMessageEmbedPlugin
+module.exports.default = DiscordMessageEmbedPlugin
