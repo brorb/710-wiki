@@ -3910,40 +3910,51 @@ var DISCORD_CSS = `
   background: var(--discord-bg);
   border: 1px solid var(--discord-border);
   border-radius: 12px;
-  padding: 16px 18px;
+  padding: 14px 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   max-width: min(720px, 100%);
   font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.discord-thread[data-message-count="1"] {
-  padding-bottom: 12px;
 }
 
 .discord-message {
   position: relative;
   display: grid;
-  grid-template-columns: 48px 1fr;
+  grid-template-columns: 40px 1fr;
   gap: 12px;
   border-radius: 8px;
-  padding: 6px 8px;
+  padding: 8px 8px 6px;
   color: var(--discord-text-primary);
   align-items: flex-start;
+  --discord-author-color: var(--discord-author);
+}
+
+.discord-message + .discord-message {
+  margin-top: 4px;
 }
 
 .discord-message:hover {
   background: var(--discord-hover);
 }
 
+.discord-message--compact {
+  padding-top: 2px;
+}
+
 .discord-avatar {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
   background: #1f2125;
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.discord-avatar--hidden {
+  visibility: hidden;
 }
 
 .discord-avatar img {
@@ -3983,6 +3994,22 @@ var DISCORD_CSS = `
   line-height: 1.4;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.discord-content--compact {
+  margin-top: 2px;
+}
+
+.discord-timestamp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .discord-jump {
@@ -4057,7 +4084,23 @@ var normalizeColor = /* @__PURE__ */ __name((input) => {
   }
   return void 0;
 }, "normalizeColor");
-var renderMessage = /* @__PURE__ */ __name((message) => {
+var getAuthorKey = /* @__PURE__ */ __name((message) => {
+  const author = message?.author;
+  if (!author) {
+    return void 0;
+  }
+  if (author.id) {
+    return author.id;
+  }
+  if (author.display_name || author.username) {
+    const composite = `${author.username ?? ""}|${author.display_name ?? ""}`.trim();
+    if (composite.length > 0) {
+      return composite;
+    }
+  }
+  return void 0;
+}, "getAuthorKey");
+var renderMessage = /* @__PURE__ */ __name((message, previous) => {
   const author = message.author ?? {};
   const displayName = author.display_name?.trim() || author.username?.trim() || "Unknown User";
   const avatar = message.avatar_url?.trim() || DEFAULT_AVATAR;
@@ -4065,21 +4108,40 @@ var renderMessage = /* @__PURE__ */ __name((message) => {
   const jumpUrl = message.jump_url || message.url || "#";
   const content = renderContent(message.content);
   const authorColor = normalizeColor(author.color ?? author?.colour);
-  const colorAttr = authorColor ? ` style="--discord-author-color: ${escapeAttribute(authorColor)}"` : "";
-  const metadata = [];
-  if (message.id) {
-    metadata.push(`data-discord-id="${escapeAttribute(message.id)}"`);
+  const previousKey = getAuthorKey(previous);
+  const currentKey = getAuthorKey(message);
+  const sameAuthor = previousKey !== void 0 && previousKey === currentKey;
+  const showHeader = !sameAuthor;
+  const showAvatar = !sameAuthor;
+  const articleClasses = ["discord-message"];
+  if (!showAvatar) {
+    articleClasses.push("discord-message--compact");
   }
-  return `<article class="discord-message" ${metadata.join(" ")}>
-    <div class="discord-avatar">
-      <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="48" height="48" />
-    </div>
-    <div class="discord-body">
-      <header class="discord-header"${colorAttr}>
+  const articleAttributes = [`class="${articleClasses.join(" ")}"`];
+  if (message.id) {
+    articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`);
+  }
+  if (authorColor) {
+    articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);
+  }
+  const avatarMarkup = showAvatar ? `<div class="discord-avatar">
+        <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
+      </div>` : `<div class="discord-avatar discord-avatar--hidden" aria-hidden="true"></div>`;
+  const headerMarkup = showHeader ? `<header class="discord-header">
         <span class="discord-author">${escapeHtml(displayName)}</span>
         ${timestamp ? `<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : ""}
-      </header>
-      <div class="discord-content">${content}</div>
+      </header>` : "";
+  const accessibleTimestamp = !showHeader && timestamp ? `<time class="discord-timestamp-sr" datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : "";
+  const contentClasses = ["discord-content"];
+  if (!showHeader) {
+    contentClasses.push("discord-content--compact");
+  }
+  const attributes = articleAttributes.join(" ");
+  return `<article ${attributes}>
+    ${avatarMarkup}
+    <div class="discord-body">
+      ${headerMarkup}
+      <div class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</div>
     </div>
     <a class="discord-jump" href="${escapeAttribute(jumpUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Discord message in a new tab"></a>
   </article>`;
@@ -4088,7 +4150,7 @@ var renderMessages = /* @__PURE__ */ __name((messages) => {
   if (messages.length === 0) {
     return "";
   }
-  const htmlMessages = messages.map((message) => renderMessage(message)).join("\n");
+  const htmlMessages = messages.map((message, index) => renderMessage(message, index > 0 ? messages[index - 1] : void 0)).join("\n");
   return `<section class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
 </section>`;

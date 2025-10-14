@@ -1,5 +1,12 @@
 TTH stands for "The Transmitting Hands", sometimes abbreviated to "Transmitting Hands"[^1]
-. The hands are a symbolization of human work.
+. 
+They are an organization who perform some sort of transmission, and [[INDI]] and [[Kepler]] fork for them. It is not known whether they are a government institution or a private one. They have numerous people working for them, as indicated by the [[Private Room]] chats.
+
+Their logo feature two hands on a read background. The hands are a symbolization of human work.[^1]
+
+
+
+
 [^1]: 
 ```discord
 [
