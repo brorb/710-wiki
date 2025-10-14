@@ -3,6 +3,8 @@ import { QuartzTransformerPlugin } from "../types"
 interface DiscordAuthor {
   display_name?: string
   username?: string
+  color?: string
+  colour?: string
 }
 
 interface DiscordMessage {
@@ -49,6 +51,7 @@ const DISCORD_CSS = `
   border-radius: 8px;
   padding: 6px 8px;
   color: var(--discord-text-primary);
+  align-items: flex-start;
 }
 
 .discord-message:hover {
@@ -88,7 +91,7 @@ const DISCORD_CSS = `
 
 .discord-author {
   font-weight: 600;
-  color: var(--discord-author);
+  color: var(--discord-author-color, var(--discord-author));
 }
 
 .discord-header time {
@@ -191,6 +194,25 @@ const renderContent = (content?: string): string => {
   return safe.replace(/\r?\n/g, "<br />")
 }
 
+const normalizeColor = (input?: string): string | undefined => {
+  if (!input) {
+    return undefined
+  }
+
+  const value = input.trim()
+
+  const prefixed = value.startsWith("#") ? value : `#${value}`
+  if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(prefixed)) {
+    return prefixed
+  }
+
+  if (/^rgb(a)?\(/i.test(value)) {
+    return value
+  }
+
+  return undefined
+}
+
 const renderMessage = (message: DiscordMessage): string => {
   const author = message.author ?? {}
   const displayName = author.display_name?.trim() || author.username?.trim() || "Unknown User"
@@ -198,6 +220,8 @@ const renderMessage = (message: DiscordMessage): string => {
   const timestamp = formatTimestamp(message.timestamp)
   const jumpUrl = message.jump_url || message.url || "#"
   const content = renderContent(message.content)
+  const authorColor = normalizeColor(author.color ?? (author as unknown as { colour?: string })?.colour)
+  const colorAttr = authorColor ? ` style="--discord-author-color: ${escapeAttribute(authorColor)}"` : ""
 
   const metadata: string[] = []
   if (message.id) {
@@ -209,7 +233,7 @@ const renderMessage = (message: DiscordMessage): string => {
       <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="48" height="48" />
     </div>
     <div class="discord-body">
-      <header class="discord-header">
+      <header class="discord-header"${colorAttr}>
         <span class="discord-author">${escapeHtml(displayName)}</span>
         ${timestamp ? `<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : ""}
       </header>

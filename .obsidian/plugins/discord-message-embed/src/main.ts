@@ -8,6 +8,8 @@ interface DiscordApiAuthor {
   display_name?: string
   username?: string
   avatar_url?: string
+  colour?: string
+  color?: string
 }
 
 interface DiscordApiResponse {
@@ -23,6 +25,7 @@ interface DiscordMessageBlock {
   author: {
     display_name?: string
     username: string
+    color?: string
   }
   content: string
   timestamp?: string
@@ -138,12 +141,14 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
   private mapToMessageBlock(url: string, payload: DiscordApiResponse): DiscordMessageBlock {
     const authorUsername = payload.author?.username?.trim()
     const authorDisplay = payload.author?.display_name?.trim()
+    const authorColor = payload.author?.color?.trim() || payload.author?.colour?.trim()
 
     return {
       id: payload.id,
       author: {
         display_name: authorDisplay || undefined,
         username: authorUsername || authorDisplay || "Unknown User",
+        color: authorColor || undefined,
       },
       content: payload.content ?? "",
       timestamp: payload.timestamp,

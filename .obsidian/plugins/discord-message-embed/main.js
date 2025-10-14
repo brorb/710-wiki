@@ -113,12 +113,14 @@ class DiscordMessageEmbedPlugin extends Plugin {
   mapToMessageBlock(url, payload) {
     const authorUsername = payload?.author?.username?.trim()
     const authorDisplay = payload?.author?.display_name?.trim()
+    const authorColor = payload?.author?.color?.trim() || payload?.author?.colour?.trim()
 
     return {
       id: payload?.id,
       author: {
         display_name: authorDisplay || undefined,
         username: authorUsername || authorDisplay || 'Unknown User',
+        color: authorColor || undefined,
       },
       content: payload?.content ?? '',
       timestamp: payload?.timestamp,

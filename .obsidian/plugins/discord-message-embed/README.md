@@ -16,7 +16,8 @@ Convert highlighted Discord message links into a Quartz-compatible ```discord co
         "id": "...",
         "author": {
           "display_name": "...",
-          "username": "..."
+          "username": "...",
+          "color": "#FF0000"
         },
         "content": "...",
         "timestamp": "...",
