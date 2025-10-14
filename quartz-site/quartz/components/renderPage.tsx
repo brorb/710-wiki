@@ -285,14 +285,6 @@ export function renderPage(
     </div>
   )
 
-  const footerRegion: JSX.Element = footerNodes.length ? (
-    <div class="page-footer">
-      {footerNodes}
-    </div>
-  ) : (
-    <></>
-  )
-
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const direction = i18n(cfg.locale).direction ?? "ltr"
   const doc = (
@@ -317,9 +309,13 @@ export function renderPage(
               </div>
               <Content {...componentData} />
               {mobileBacklinksNodes}
+              {footerNodes.length > 0 ? (
+                <div class="page-footer">
+                  {footerNodes}
+                </div>
+              ) : null}
             </div>
             {RightComponent}
-            {footerRegion}
             <Footer {...componentData} />
           </Body>
         </div>
