@@ -16,6 +16,7 @@ interface DiscordMessage {
   avatar_url?: string
   author?: DiscordAuthor
 }
+  id?: string
 
 const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
 
@@ -31,21 +32,22 @@ const DISCORD_CSS = `
   background: var(--discord-bg);
   border: 1px solid var(--discord-border);
   border-radius: 12px;
-  padding: 16px 18px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   max-width: min(720px, 100%);
   font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .discord-thread[data-message-count="1"] {
-  padding-bottom: 12px;
-}
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
 
-.discord-message {
+  padding: 6px 8px;
   position: relative;
-  display: grid;
+  align-items: flex-start;
+  --discord-author-color: var(--discord-author);
   grid-template-columns: 48px 1fr;
   gap: 12px;
   border-radius: 8px;
@@ -53,8 +55,11 @@ const DISCORD_CSS = `
   color: var(--discord-text-primary);
   align-items: flex-start;
 }
-
-.discord-message:hover {
+  grid-row: span 2;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
   background: var(--discord-hover);
 }
 
@@ -62,6 +67,8 @@ const DISCORD_CSS = `
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  visibility: hidden;
+}
   overflow: hidden;
   background: #1f2125;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -87,7 +94,7 @@ const DISCORD_CSS = `
   gap: 8px;
   line-height: 1.25;
   margin-bottom: 2px;
-}
+  color: var(--discord-author-color, var(--discord-author));
 
 .discord-author {
   font-weight: 600;
@@ -103,12 +110,27 @@ const DISCORD_CSS = `
   font-size: 0.95rem;
   line-height: 1.4;
   white-space: pre-wrap;
+  margin-top: 2px;
+}
   word-break: break-word;
+}
+  padding-top: 2px;
 }
 
 .discord-jump {
+  margin-top: 4px;
+}
   position: absolute;
   inset: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
   border-radius: inherit;
   text-decoration: none;
 }
@@ -130,35 +152,69 @@ type MdParent = MdNode & {
 }
 
 const escapeHtml = (value: string): string =>
+const getAuthorKey = (message?: DiscordMessage): string | undefined => {
+  if (!message?.author) {
+    return undefined
+  }
+
+  const { id, username, display_name } = message.author
+  return id ?? `${username ?? ""}|${display_name ?? ""}`.trim() || undefined
+}
   value
-    .replace(/&/g, "&amp;")
+const renderMessage = (message: DiscordMessage, previous?: DiscordMessage): string => {
+  const sameAuthor = getAuthorKey(previous) && getAuthorKey(previous) === getAuthorKey(message)
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;")
 
 const escapeAttribute = (value: string): string => escapeHtml(value)
+  const authorColor = normalizeColor(author.color ?? (author as unknown as { colour?: string })?.colour)
+  const showHeader = !sameAuthor
+  const showAvatar = !sameAuthor
+  const messageClasses = ["discord-message"]
+  if (!showAvatar) {
+    messageClasses.push("discord-message--compact")
+  }
 
-const formatTimestamp = (source?: string): { readable: string; iso: string } | undefined => {
+  const metadata: string[] = [`class="${messageClasses.join(" " )}"`]
+  if (message.id) {
+    metadata.push(`data-discord-id="${escapeAttribute(message.id)}"`)
+  }
+  if (authorColor) {
+    metadata.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`)
+  }
   if (!source) {
-    return undefined
-  }
+  const avatarMarkup = showAvatar
+    ? `<div class="discord-avatar">
+      <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
+    </div>`
+    : `<div class="discord-avatar discord-avatar--hidden" aria-hidden="true"></div>`
 
-  const date = new Date(source)
+  const headerMarkup = showHeader
+    ? `<header class="discord-header">
+        <span class="discord-author">${escapeHtml(displayName)}</span>
+        ${timestamp ? `<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : ""}
+      </header>`
+    : ""
+
+  const accessibleTimestamp = !showHeader && timestamp
+    ? `<time class="discord-timestamp-sr" datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>`
+    : ""
+
+  const contentClasses = ["discord-content"]
+  if (!showHeader) {
+    contentClasses.push("discord-content--compact")
+  }
   if (Number.isNaN(date.getTime())) {
-    return {
-      readable: source,
-      iso: source,
-    }
-  }
-
-  const day = date.getDate().toString().padStart(2, "0")
-  const month = (date.getMonth() + 1).toString().padStart(2, "0")
-  const year = date.getFullYear().toString()
-  const hours = date.getHours().toString().padStart(2, "0")
-  const minutes = date.getMinutes().toString().padStart(2, "0")
-
-  return {
+  return `<article ${metadata.join(" ")}>
+    ${avatarMarkup}
+    <div class="discord-body">
+      ${headerMarkup}
+      <div class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</div>
+    </div>
+    <a class="discord-jump" href="${escapeAttribute(jumpUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Discord message in a new tab"></a>
+  </article>`
     readable: `${day}/${month}/${year} ${hours}:${minutes}`,
     iso: date.toISOString(),
   }
@@ -166,7 +222,9 @@ const formatTimestamp = (source?: string): { readable: string; iso: string } | u
 
 const normaliseMessages = (raw: unknown): DiscordMessage[] => {
   if (!raw) {
-    return []
+  const htmlMessages = messages
+    .map((message, index) => renderMessage(message, index > 0 ? messages[index - 1] : undefined))
+    .join("\n")
   }
 
   if (Array.isArray(raw)) {
