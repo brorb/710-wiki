@@ -11,7 +11,8 @@ interface DiscordWidgetOptions {
 
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const DISCORD_INVITE = "https://discord.com/invite/sleuth707"
-const MASK_HEIGHT_PX = 78
+const MASK_HEIGHT_PX = 52
+const EMBED_OFFSET_PX = 88
 
 export default ((options?: DiscordWidgetOptions) => {
   const variant: DiscordWidgetVariant = options?.variant ?? "sidebar"
@@ -85,6 +86,7 @@ export default ((options?: DiscordWidgetOptions) => {
   flex-direction: column;
   --discord-embed-height: 500px;
   --discord-mask-height: ${MASK_HEIGHT_PX}px;
+  --discord-embed-offset: ${EMBED_OFFSET_PX}px;
 }
 
 .discord-widget__header {
@@ -92,7 +94,7 @@ export default ((options?: DiscordWidgetOptions) => {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.9rem 1rem;
+  padding: 0.75rem 1rem 0.85rem;
   background: #b71002;
   color: #ffffff;
 }
@@ -175,10 +177,11 @@ export default ((options?: DiscordWidgetOptions) => {
 
 .discord-widget__embed iframe {
   width: 100%;
-  height: 100%;
+  height: calc(var(--discord-embed-height) + var(--discord-embed-offset));
   border: none;
   display: block;
   background-color: #040405;
+  transform: translateY(calc(-1 * var(--discord-embed-offset)));
 }
 
 .discord-widget__mask {

@@ -171,11 +171,13 @@ a.wiki-download-link svg {
   width: 100%;
   max-width: none !important;
   border-radius: 18px;
-  border: 1px solid var(--tertiary);
-  background: color-mix(in srgb, var(--lightgray) 82%, rgba(255, 255, 255, 0));
+  border: 2px solid var(--tertiary);
+  --comment-padding-inline: clamp(1.4rem, 3vw, 2rem);
+  --comment-padding-block: clamp(1.1rem, 2.5vw, 1.6rem);
+  padding: var(--comment-padding-block) var(--comment-padding-inline);
+  background: linear-gradient(180deg, rgba(183, 16, 2, 0.12) 0%, rgba(183, 16, 2, 0.05) 100%);
   box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
-  display: flex;
-  flex-direction: column;
+  display: block;
   overflow: hidden;
 }
 
@@ -191,13 +193,12 @@ a.wiki-download-link svg {
 }
 
 .comments-wrapper .comments iframe {
-  width: 100% !important;
-  flex: 1 1 auto;
+  width: calc(100% + (var(--comment-padding-inline) * 2)) !important;
+  margin: 0 calc(-1 * var(--comment-padding-inline));
   border: 0;
   display: block;
   min-height: 360px;
   background-color: transparent;
-  filter: saturate(1.03);
 }
 
 
@@ -245,6 +246,8 @@ a.wiki-download-link svg {
   .comments-wrapper .comments {
     border-radius: 16px;
     box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.65);
+    --comment-padding-inline: clamp(1.1rem, 6vw, 1.5rem);
+    --comment-padding-block: clamp(1rem, 4vw, 1.4rem);
   }
 
   .comments-mobile-append {
