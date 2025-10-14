@@ -1,0 +1,22 @@
+{
+  "name": "discord-message-embed",
+  "version": "0.1.0",
+  "description": "Obsidian helper to turn Discord message URLs into Quartz embeds.",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "dev": "tsc -p . --watch"
+  },
+  "keywords": [
+    "obsidian-plugin",
+    "discord",
+    "quartz"
+  ],
+  "author": "brorb",
+  "license": "MIT",
+  "devDependencies": {
+    "obsidian": "^1.5.0",
+    "tslib": "^2.7.0",
+    "typescript": "^5.4.0"
+  }
+}

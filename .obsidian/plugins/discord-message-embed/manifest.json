@@ -1,0 +1,10 @@
+{
+  "id": "discord-message-embed",
+  "name": "Discord Message Embed",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Convert Discord message links into Quartz-ready code fences.",
+  "author": "brorb",
+  "authorUrl": "https://www.710tone.wiki",
+  "isDesktopOnly": false
+}
