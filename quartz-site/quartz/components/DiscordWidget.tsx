@@ -178,6 +178,7 @@ export default ((options?: DiscordWidgetOptions) => {
   border: none;
   display: block;
   transform: translateY(calc(-1 * var(--discord-header-offset)));
+  filter: invert(9.07%) sepia(53.33%) saturate(561.23%) hue-rotate(-13.92deg) brightness(77.58%) contrast(259.48%);
 }
 
 .discord-widget--sidebar {
