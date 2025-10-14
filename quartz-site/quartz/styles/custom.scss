@@ -161,18 +161,22 @@ a.wiki-download-link svg {
 
 .comments-wrapper {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 .comments-wrapper .comments {
+  position: relative;
   width: 100%;
   max-width: none !important;
-  box-sizing: border-box;
-  padding: 1.75rem 1.5rem;
-  border-radius: 16px;
-  background: var(--lightgray);
+  border-radius: 18px;
   border: 1px solid var(--tertiary);
-  box-shadow: 0 16px 36px -24px rgba(0, 0, 0, 0.55);
-  display: block;
+  background: color-mix(in srgb, var(--lightgray) 82%, rgba(255, 255, 255, 0));
+  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .comments-mobile-append {
@@ -187,8 +191,13 @@ a.wiki-download-link svg {
 }
 
 .comments-wrapper .comments iframe {
-  filter: saturate(1.05);
   width: 100% !important;
+  flex: 1 1 auto;
+  border: 0;
+  display: block;
+  min-height: 360px;
+  background-color: transparent;
+  filter: saturate(1.03);
 }
 
 
@@ -234,9 +243,8 @@ a.wiki-download-link svg {
   }
 
   .comments-wrapper .comments {
-    padding: 1.25rem 1rem;
-    border-radius: 14px;
-    box-shadow: 0 10px 22px -18px rgba(0, 0, 0, 0.65);
+    border-radius: 16px;
+    box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.65);
   }
 
   .comments-mobile-append {
