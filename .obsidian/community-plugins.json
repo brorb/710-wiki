@@ -1,4 +1,6 @@
 [
   "webpage-html-export",
-  "obsidian-git"
+  "obsidian-git",
+  "convert-url-to-iframe",
+  "discord-message-embed"
 ]
