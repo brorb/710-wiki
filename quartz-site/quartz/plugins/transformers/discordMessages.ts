@@ -176,16 +176,20 @@ const DISCORD_CSS = `
   background: transparent;
   cursor: pointer;
   transition: background 120ms ease;
+  color: var(--discord-cite-icon, #b71002);
 }
 
-.discord-cite__trigger img {
+.discord-cite__trigger svg {
   width: 16px;
   height: 16px;
   display: block;
+  fill: currentColor;
+  pointer-events: none;
 }
 
 .discord-cite__trigger:hover {
   background: rgba(88, 101, 242, 0.2);
+  color: var(--discord-cite-icon-hover, #eb1c24);
 }
 
 .discord-cite__trigger:focus-visible {
@@ -227,7 +231,8 @@ const DISCORD_CSS = `
 }
 
 .discord-cite__preview .discord-thread {
-  max-width: min(480px, 85vw);
+  max-width: min(520px, 85vw);
+  min-width: min(420px, 75vw);
 }
 
 .discord-cite__sr {
@@ -241,10 +246,13 @@ const DISCORD_CSS = `
   white-space: nowrap;
   border: 0;
 }
+
+.callout.discord-cite {
+  display: none !important;
+}
 `
 
-const CITATION_MARKER_PATTERN = /\{\{discord-cite:([a-z0-9-]+)\}\}/gi
-const CITATION_COMMENT_PATTERN = /^%%\s*discord-cite:([a-z0-9-]+)\|([A-Za-z0-9+/=]+)\s*%%$/i
+const CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi
 
 type MdNode = {
   type?: string
@@ -373,7 +381,32 @@ const getAuthorKey = (message?: DiscordMessage): string | undefined => {
   return undefined
 }
 
-const renderMessage = (message: DiscordMessage, previous?: DiscordMessage): string => {
+interface RenderMessageOptions {
+  wrapperTag?: string
+  avatarTag?: string
+  bodyTag?: string
+  headerTag?: string
+  contentTag?: string
+}
+
+interface RenderMessagesOptions {
+  containerTag?: string
+  messageOptions?: RenderMessageOptions
+}
+
+const renderMessage = (
+  message: DiscordMessage,
+  previous?: DiscordMessage,
+  options: RenderMessageOptions = {},
+): string => {
+  const {
+    wrapperTag = "article",
+    avatarTag = "div",
+    bodyTag = "div",
+    headerTag = "header",
+    contentTag = "div",
+  } = options
+
   const author = message.author ?? {}
   const displayName = author.display_name?.trim() || author.username?.trim() || "Unknown User"
   const avatar = message.avatar_url?.trim() || DEFAULT_AVATAR
@@ -405,16 +438,16 @@ const renderMessage = (message: DiscordMessage, previous?: DiscordMessage): stri
   }
 
   const avatarMarkup = showAvatar
-    ? `<div class="discord-avatar">
+    ? `<${avatarTag} class="discord-avatar">
         <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
-      </div>`
-    : `<div class="discord-avatar discord-avatar--hidden" aria-hidden="true"></div>`
+      </${avatarTag}>`
+    : `<${avatarTag} class="discord-avatar discord-avatar--hidden" aria-hidden="true"></${avatarTag}>`
 
   const headerMarkup = showHeader
-    ? `<header class="discord-header">
+    ? `<${headerTag} class="discord-header">
         <span class="discord-author"${authorColor ? ` style="color: ${escapeAttribute(authorColor)}"` : ""}>${escapeHtml(displayName)}</span>
         ${timestamp ? `<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : ""}
-      </header>`
+      </${headerTag}>`
     : ""
 
   const accessibleTimestamp = !showHeader && timestamp
@@ -428,31 +461,44 @@ const renderMessage = (message: DiscordMessage, previous?: DiscordMessage): stri
 
   const attributes = articleAttributes.join(" ")
 
-  return `<article ${attributes}>
+  return `<${wrapperTag} ${attributes}>
     ${avatarMarkup}
-    <div class="discord-body">
+    <${bodyTag} class="discord-body">
       ${headerMarkup}
-      <div class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</div>
-    </div>
+      <${contentTag} class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</${contentTag}>
+    </${bodyTag}>
     <a class="discord-jump" href="${escapeAttribute(jumpUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Discord message in a new tab"></a>
-  </article>`
+  </${wrapperTag}>`
 }
 
-const renderMessages = (messages: DiscordMessage[]): string => {
+const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptions = {}): string => {
   if (messages.length === 0) {
     return ""
   }
 
+  const { containerTag = "section", messageOptions } = options
+
   const htmlMessages = messages
-    .map((message, index) => renderMessage(message, index > 0 ? messages[index - 1] : undefined))
+    .map((message, index) =>
+      renderMessage(message, index > 0 ? messages[index - 1] : undefined, messageOptions),
+    )
     .join("\n")
-  return `<section class="discord-thread" data-message-count="${messages.length}">
+  return `<${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
-</section>`
+</${containerTag}>`
 }
 
 const renderCitation = (id: string, messages: DiscordMessage[]): string | undefined => {
-  const threadHtml = renderMessages(messages)
+  const threadHtml = renderMessages(messages, {
+    containerTag: "span",
+    messageOptions: {
+      wrapperTag: "span",
+      avatarTag: "span",
+      bodyTag: "span",
+      headerTag: "span",
+      contentTag: "span",
+    },
+  })
   if (!threadHtml) {
     return undefined
   }
@@ -462,7 +508,9 @@ const renderCitation = (id: string, messages: DiscordMessage[]): string | undefi
 
   return `<span class="discord-cite" data-discord-id="${escapeAttribute(id)}">
     <button type="button" class="discord-cite__trigger" aria-label="${escapeAttribute(labelText)}" title="${escapeAttribute(labelText)}">
-      <img src="/static/discord.svg" alt="" aria-hidden="true" loading="lazy" width="16" height="16" />
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+        <path d="M18.59 5.88997C17.36 5.31997 16.05 4.89997 14.67 4.65997C14.5 4.95997 14.3 5.36997 14.17 5.69997C12.71 5.47997 11.26 5.47997 9.83001 5.69997C9.69001 5.36997 9.49001 4.95997 9.32001 4.65997C7.94001 4.89997 6.63001 5.31997 5.40001 5.88997C2.92001 9.62997 2.25001 13.28 2.58001 16.87C4.23001 18.1 5.82001 18.84 7.39001 19.33C7.78001 18.8 8.12001 18.23 8.42001 17.64C7.85001 17.43 7.31001 17.16 6.80001 16.85C6.94001 16.75 7.07001 16.64 7.20001 16.54C10.33 18 13.72 18 16.81 16.54C16.94 16.65 17.07 16.75 17.21 16.85C16.7 17.16 16.15 17.42 15.59 17.64C15.89 18.23 16.23 18.8 16.62 19.33C18.19 18.84 19.79 18.1 21.43 16.87C21.82 12.7 20.76 9.08997 18.61 5.88997H18.59ZM8.84001 14.67C7.90001 14.67 7.13001 13.8 7.13001 12.73C7.13001 11.66 7.88001 10.79 8.84001 10.79C9.80001 10.79 10.56 11.66 10.55 12.73C10.55 13.79 9.80001 14.67 8.84001 14.67ZM15.15 14.67C14.21 14.67 13.44 13.8 13.44 12.73C13.44 11.66 14.19 10.79 15.15 10.79C16.11 10.79 16.87 11.66 16.86 12.73C16.86 13.79 16.11 14.67 15.15 14.67Z" />
+      </svg>
       <span class="discord-cite__sr">${escapeHtml(labelText)}</span>
     </button>
     <span class="discord-cite__preview" role="dialog" aria-modal="false">
@@ -505,85 +553,6 @@ const visitCodeBlocks = (
   }
 }
 
-const decodeCitationPayload = (encoded: string): DiscordMessage[] => {
-  try {
-    const json = Buffer.from(encoded, "base64").toString("utf8")
-    const data = JSON.parse(json) as unknown
-    return normaliseMessages(data)
-  } catch (error) {
-    console.warn("Failed to decode Discord citation payload", error)
-    return []
-  }
-}
-
-const collectCitationPayloads = (root: MdNode): Map<string, DiscordMessage[]> => {
-  const citations = new Map<string, DiscordMessage[]>()
-  const removals: Array<{ parent: MdParent; index: number }> = []
-
-  const traverse = (node: MdNode | undefined) => {
-    if (!node || typeof node !== "object") {
-      return
-    }
-
-    const parent = node as MdParent
-    if (!Array.isArray(parent.children)) {
-      return
-    }
-
-    for (let idx = 0; idx < parent.children.length; idx++) {
-      const child = parent.children[idx]
-      if (!child || typeof child !== "object") {
-        continue
-      }
-
-      const value = typeof (child as { value?: unknown }).value === "string"
-        ? ((child as { value: string }).value ?? "")
-        : undefined
-
-      if (typeof value === "string") {
-        const trimmed = value.trim()
-        const match = CITATION_COMMENT_PATTERN.exec(trimmed)
-        if (match) {
-          const [, id, encoded] = match
-          let messages = citations.get(id)
-
-          if (!messages) {
-            messages = decodeCitationPayload(encoded)
-            if (messages.length === 0) {
-              console.warn(`Discord citation '${id}' payload contained no messages.`)
-              CITATION_COMMENT_PATTERN.lastIndex = 0
-              continue
-            }
-
-            citations.set(id, messages)
-          }
-
-          removals.push({ parent, index: idx })
-          CITATION_COMMENT_PATTERN.lastIndex = 0
-          continue
-        }
-
-        CITATION_COMMENT_PATTERN.lastIndex = 0
-      }
-
-      traverse(child as MdNode)
-    }
-  }
-
-  traverse(root)
-
-  for (let i = removals.length - 1; i >= 0; i--) {
-    const { parent, index } = removals[i]
-    if (!Array.isArray(parent.children)) {
-      continue
-    }
-
-    parent.children.splice(index, 1)
-  }
-
-  return citations
-}
-
 const replaceCitationMarkers = (
   value: string,
   citations: Map<string, DiscordMessage[]>,
@@ -598,14 +567,17 @@ const replaceCitationMarkers = (
   while ((match = CITATION_MARKER_PATTERN.exec(value)) !== null) {
     const start = match.index
     const end = start + match[0].length
-    const id = match[1]
+    const id = match[1] ?? match[2]
+    if (!id) {
+      continue
+    }
 
     if (start > lastIndex) {
       nodes.push({ type: "text", value: value.slice(lastIndex, start) })
     }
 
-    const messages = citations.get(id)
-    if (messages && messages.length > 0) {
+    const messages = citations.get(id) ?? []
+    if (messages.length > 0) {
       const citationHtml = renderCitation(id, messages)
       if (citationHtml) {
         nodes.push({ type: "html", value: citationHtml })
@@ -638,11 +610,180 @@ const replaceCitationMarkers = (
   })
 }
 
-const transformCitationMarkers = (root: MdNode, citations: Map<string, DiscordMessage[]>): void => {
-  if (citations.size === 0) {
-    return
+const collectTextContent = (node: MdNode | undefined): string => {
+  if (!node || typeof node !== "object") {
+    return ""
   }
 
+  const value = (node as { value?: unknown }).value
+  if (typeof value === "string") {
+    return value
+  }
+
+  if (Array.isArray(node.children)) {
+    return node.children.map((child) => collectTextContent(child)).join("")
+  }
+
+  return ""
+}
+
+const findCodeBlockNode = (
+  node: MdNode | undefined,
+): (MdNode & { lang?: string; value?: string }) | undefined => {
+  if (!node || typeof node !== "object") {
+    return undefined
+  }
+
+  if (node.type === "code" && typeof (node as { value?: unknown }).value === "string") {
+    return node as MdNode & { lang?: string; value?: string }
+  }
+
+  if (!Array.isArray(node.children)) {
+    return undefined
+  }
+
+  for (const child of node.children) {
+    const found = findCodeBlockNode(child as MdNode)
+    if (found) {
+      return found
+    }
+  }
+
+  return undefined
+}
+
+const isDiscordCitationCallout = (node: MdNode | undefined): boolean => {
+  if (!node || typeof node !== "object") {
+    return false
+  }
+
+  const type = (node as { type?: string }).type
+
+  if (type === "containerDirective" || type === "leafDirective" || type === "textDirective") {
+    const directiveName = ((node as { name?: string }).name ?? "").toLowerCase()
+    return directiveName === "discord-cite"
+  }
+
+  if (type !== "blockquote") {
+    return false
+  }
+
+  const hProperties = (node as { data?: { hProperties?: Record<string, unknown> } }).data?.hProperties
+  const calloutValue = typeof hProperties?.["data-callout"] === "string"
+    ? (hProperties["data-callout"] as string).toLowerCase()
+    : undefined
+
+  if (calloutValue === "discord-cite") {
+    return true
+  }
+
+  if (!Array.isArray(node.children) || node.children.length === 0) {
+    return false
+  }
+
+  const firstChild = node.children[0]
+  if (!firstChild || typeof firstChild !== "object") {
+    return false
+  }
+
+  if (firstChild.type === "paragraph") {
+    const text = collectTextContent(firstChild).trim().toLowerCase()
+    return text.startsWith("[!discord-cite")
+  }
+
+  return false
+}
+
+const extractCitationDataFromCallout = (node: MdParent):
+  | { id: string; messages: DiscordMessage[] }
+  | undefined => {
+  if (!Array.isArray(node.children)) {
+    return undefined
+  }
+
+  const codeBlock = findCodeBlockNode(node)
+
+  if (!codeBlock || typeof codeBlock.value !== "string") {
+    return undefined
+  }
+
+  const raw = codeBlock.value.trim()
+  if (raw.length === 0) {
+    return undefined
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as { id?: unknown; messages?: unknown }
+    const id = typeof parsed.id === "string" ? parsed.id.trim() : undefined
+    const messages = normaliseMessages(
+      parsed.messages !== undefined ? parsed.messages : parsed,
+    )
+
+    if (!id || messages.length === 0) {
+      return undefined
+    }
+
+    return { id, messages }
+  } catch (error) {
+    console.warn("Failed to parse Discord citation callout payload", error)
+    return undefined
+  }
+}
+
+const collectCitationCallouts = (root: MdNode): Map<string, DiscordMessage[]> => {
+  const citations = new Map<string, DiscordMessage[]>()
+  const removals: Array<{ parent: MdParent; index: number }> = []
+
+  const traverse = (current: MdNode | undefined) => {
+    if (!current || typeof current !== "object") {
+      return
+    }
+
+    const parent = current as MdParent
+    if (!Array.isArray(parent.children)) {
+      return
+    }
+
+    for (let idx = 0; idx < parent.children.length; idx++) {
+      const child = parent.children[idx]
+      if (!child || typeof child !== "object") {
+        continue
+      }
+
+      if (isDiscordCitationCallout(child)) {
+        const data = extractCitationDataFromCallout(child as MdParent)
+        if (data) {
+          citations.set(data.id, data.messages)
+        } else {
+          console.warn("Unable to extract Discord citation data from callout")
+        }
+
+        removals.push({ parent, index: idx })
+        continue
+      }
+
+      traverse(child as MdNode)
+    }
+  }
+
+  traverse(root)
+
+  for (let idx = removals.length - 1; idx >= 0; idx--) {
+    const { parent, index } = removals[idx]
+    if (!Array.isArray(parent.children)) {
+      continue
+    }
+
+    parent.children.splice(index, 1)
+  }
+
+  return citations
+}
+
+const transformCitationMarkers = (
+  root: MdNode,
+  citations: Map<string, DiscordMessage[]>,
+): void => {
   const traverse = (node: MdNode | undefined) => {
     if (!node || typeof node !== "object") {
       return
@@ -686,7 +827,7 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
       return [
         () => (tree: unknown) => {
           const root = tree as MdNode
-          const citations = collectCitationPayloads(root)
+          const citations = collectCitationCallouts(root)
           transformCitationMarkers(root, citations)
 
           visitCodeBlocks(root, (codeBlock, index, parent) => {

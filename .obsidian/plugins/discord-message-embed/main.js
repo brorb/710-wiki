@@ -43,16 +43,14 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
                     void this.insertEmbed(editor);
                 });
             });
-            if (this.selectionHasCitationMarker(selection)) {
-                menu.addItem((item) => {
-                    item
-                        .setTitle("Insert Discord message citation")
-                        .setIcon("superscript")
-                        .onClick(() => {
-                        void this.insertCitation(editor);
-                    });
+            menu.addItem((item) => {
+                item
+                    .setTitle("Insert Discord message citation")
+                    .setIcon("superscript")
+                    .onClick(() => {
+                    void this.insertCitation(editor);
                 });
-            }
+            });
         }));
     }
     handleCommand(checking, editor, view, mode) {
@@ -61,9 +59,6 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
         }
         const selection = editor.getSelection();
         const urls = this.extractDiscordUrls(mode === "citation" ? this.stripCitationMarker(selection) : selection);
-        if (mode === "citation" && !this.selectionHasCitationMarker(selection)) {
-            return false;
-        }
         if (checking) {
             return urls.length > 0;
         }
@@ -91,9 +86,6 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
             }
         }
         return ordered;
-    }
-    selectionHasCitationMarker(selection) {
-        return selection?.trim().startsWith("^") ?? false;
     }
     stripCitationMarker(selection) {
         const caretIndex = selection.indexOf("^");
@@ -126,10 +118,6 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
     }
     async insertCitation(editor) {
         const selection = editor.getSelection();
-        if (!this.selectionHasCitationMarker(selection)) {
-            new obsidian_1.Notice("Add a '^' before the Discord link to create a citation.");
-            return;
-        }
         const urls = this.extractDiscordUrls(this.stripCitationMarker(selection));
         if (urls.length === 0) {
             new obsidian_1.Notice("Highlight at least one Discord message URL first.");
@@ -139,12 +127,14 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
         try {
             const messages = await this.fetchMessages(urls);
             const citationId = this.generateCitationId();
-            const encoded = Buffer.from(JSON.stringify(messages)).toString("base64");
-            const marker = `{{discord-cite:${citationId}}}`;
-            const comment = `%%discord-cite:${citationId}|${encoded}%%`;
+            const marker = `<!-- discord-cite:${citationId} -->`;
+            const callout = this.buildCitationCallout(citationId, messages);
             editor.replaceSelection(marker);
-            const cursor = editor.getCursor();
-            editor.replaceRange(`\n${comment}`, cursor);
+            if (callout.trim().length > 0) {
+                const cursor = editor.getCursor();
+                const block = `\n\n${callout}\n`;
+                editor.replaceRange(block, cursor);
+            }
         }
         catch (error) {
             console.error(error);
@@ -153,6 +143,59 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
         finally {
             loading.hide();
         }
+    }
+    formatCitationTimestamp(source) {
+        if (!source) {
+            return undefined;
+        }
+        const date = new Date(source);
+        if (Number.isNaN(date.getTime())) {
+            return source;
+        }
+        const year = date.getFullYear().toString().padStart(4, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        return `${year}-${month}-${day} ${hours}:${minutes}`;
+    }
+    buildCitationCallout(citationId, messages) {
+        if (messages.length === 0) {
+            return "";
+        }
+        const countLabel = messages.length === 1 ? "1 message" : `${messages.length} messages`;
+        const payload = {
+            id: citationId,
+            messages,
+        };
+        const jsonLines = JSON.stringify(payload, null, 2).split("\n");
+        const lines = [`> [!discord-cite]- Discord citation (${countLabel})`];
+        messages.forEach((message, index) => {
+            const authorName = message.author.display_name?.trim() || message.author.username?.trim() || "Unknown User";
+            const timestamp = this.formatCitationTimestamp(message.timestamp);
+            const summaryParts = [`${index + 1}. ${authorName}`];
+            if (timestamp) {
+                summaryParts.push(timestamp);
+            }
+            lines.push(`> ${summaryParts.join(" - ")}`);
+            const content = message.content?.trim();
+            if (content) {
+                content.split(/\r?\n/).forEach((line) => {
+                    const text = line.trimEnd();
+                    lines.push(`>     ${text}`);
+                });
+            }
+            if (message.url) {
+                lines.push(`>     Link: ${message.url}`);
+            }
+        });
+        lines.push(">");
+        lines.push(`> \`\`\`json`);
+        jsonLines.forEach((line) => {
+            lines.push(`> ${line}`);
+        });
+        lines.push(`> \`\`\``);
+        return lines.join("\n");
     }
     async fetchMessages(urls) {
         const messages = [];
