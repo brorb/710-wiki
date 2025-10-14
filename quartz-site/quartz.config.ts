@@ -83,9 +83,9 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
-      Plugin.DiscordMessages(),
-      Plugin.GitHubFlavoredMarkdown(),
+  Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
+  Plugin.GitHubFlavoredMarkdown(),
+  Plugin.DiscordMessages(),
       Plugin.TableOfContents({
         collapseByDefault: true,
       }),

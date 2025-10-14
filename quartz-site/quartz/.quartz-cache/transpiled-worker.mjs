@@ -3954,12 +3954,12 @@ var DISCORD_CSS = `
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .discord-avatar img {
@@ -4080,10 +4080,21 @@ var renderContent = /* @__PURE__ */ __name((content) => {
   return safe.replace(/\r?\n/g, "<br />");
 }, "renderContent");
 var normalizeColor = /* @__PURE__ */ __name((input) => {
-  if (!input) {
+  if (input === null || input === void 0) {
     return void 0;
   }
-  const value = input.trim();
+  if (typeof input === "number" && Number.isFinite(input)) {
+    const hex = input.toString(16).padStart(6, "0").slice(-6);
+    return `#${hex}`;
+  }
+  const value = input.toString().trim();
+  if (/^\d+$/.test(value)) {
+    const numeric = Number.parseInt(value, 10);
+    if (Number.isFinite(numeric)) {
+      const hex = numeric.toString(16).padStart(6, "0").slice(-6);
+      return `#${hex}`;
+    }
+  }
   const prefixed = value.startsWith("#") ? value : `#${value}`;
   if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(prefixed)) {
     return prefixed;
@@ -4116,7 +4127,9 @@ var renderMessage = /* @__PURE__ */ __name((message, previous) => {
   const timestamp = formatTimestamp(message.timestamp);
   const jumpUrl = message.jump_url || message.url || "#";
   const content = renderContent(message.content);
-  const authorColor = normalizeColor(author.color ?? author?.colour);
+  const authorColor = normalizeColor(
+    author.color ?? author.colour ?? author.colour_value
+  );
   const previousKey = getAuthorKey(previous);
   const currentKey = getAuthorKey(message);
   const sameAuthor = previousKey !== void 0 && previousKey === currentKey;
@@ -7801,8 +7814,8 @@ var config = {
         keepBackground: false
       }),
       ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
-      DiscordMessages(),
       GitHubFlavoredMarkdown(),
+      DiscordMessages(),
       TableOfContents({
         collapseByDefault: true
       }),
