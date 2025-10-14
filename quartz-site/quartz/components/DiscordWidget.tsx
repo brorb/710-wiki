@@ -54,9 +54,9 @@ export default ((options?: DiscordWidgetOptions) => {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--secondary, #eb1c24);
-  mix-blend-mode: color;
-  opacity: 0.7;
+  background: #b71002;
+  mix-blend-mode: hue;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -65,7 +65,6 @@ export default ((options?: DiscordWidgetOptions) => {
   height: 100%;
   border: none;
   display: block;
-  filter: saturate(1.1);
 }
 
 .discord-widget--sidebar {
