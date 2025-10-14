@@ -53,7 +53,7 @@ const DISCORD_CSS = `
 }
 
 .discord-message + .discord-message {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .discord-message:hover {
@@ -73,10 +73,15 @@ const DISCORD_CSS = `
   overflow: hidden;
   background: #1f2125;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
+  margin-top: 4px;
 }
 
 .discord-avatar img {
@@ -120,6 +125,10 @@ const DISCORD_CSS = `
 
 .discord-content--compact {
   margin-top: 2px;
+}
+
+.discord-message .external-icon {
+  display: none !important;
 }
 
 .discord-timestamp-sr {
@@ -296,7 +305,7 @@ const renderMessage = (message: DiscordMessage, previous?: DiscordMessage): stri
 
   const headerMarkup = showHeader
     ? `<header class="discord-header">
-        <span class="discord-author">${escapeHtml(displayName)}</span>
+        <span class="discord-author"${authorColor ? ` style="color: ${escapeAttribute(authorColor)}"` : ""}>${escapeHtml(displayName)}</span>
         ${timestamp ? `<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>` : ""}
       </header>`
     : ""
@@ -388,6 +397,14 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
             }
 
             const html = renderMessages(messages)
+
+            if (parent.type === "paragraph" && parent.children?.length === 1) {
+              delete (parent as MdNode).children
+              ;(parent as MdNode).type = "html"
+              ;(parent as MdNode & { value: string }).value = html
+              return
+            }
+
             parent.children.splice(index, 1, {
               type: "html",
               value: html,

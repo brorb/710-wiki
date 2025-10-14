@@ -2,5 +2,7 @@
   "webpage-html-export",
   "obsidian-git",
   "convert-url-to-iframe",
-  "discord-message-embed"
+  "discord-message-embed",
+  "obsidian-footnotes",
+  "obsidian-linter"
 ]

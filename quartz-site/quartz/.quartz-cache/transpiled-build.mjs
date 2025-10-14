@@ -168,7 +168,7 @@ pre:hover > .expand-button {
 }
 
 .discord-message + .discord-message {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .discord-message:hover {
@@ -188,10 +188,15 @@ pre:hover > .expand-button {
   overflow: hidden;
   background: #1f2125;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
+  margin-top: 4px;
 }
 
 .discord-avatar img {
@@ -237,6 +242,10 @@ pre:hover > .expand-button {
   margin-top: 2px;
 }
 
+.discord-message .external-icon {
+  display: none !important;
+}
+
 .discord-timestamp-sr {
   position: absolute;
   width: 1px;
@@ -263,7 +272,7 @@ pre:hover > .expand-button {
 `,escapeHtml=__name(value=>value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;"),"escapeHtml"),escapeAttribute=__name(value=>escapeHtml(value),"escapeAttribute"),formatTimestamp=__name(source=>{if(!source)return;let date=new Date(source);if(Number.isNaN(date.getTime()))return{readable:source,iso:source};let day=date.getDate().toString().padStart(2,"0"),month=(date.getMonth()+1).toString().padStart(2,"0"),year=date.getFullYear().toString(),hours=date.getHours().toString().padStart(2,"0"),minutes=date.getMinutes().toString().padStart(2,"0");return{readable:`${day}/${month}/${year} ${hours}:${minutes}`,iso:date.toISOString()}},"formatTimestamp"),normaliseMessages=__name(raw=>{if(!raw)return[];if(Array.isArray(raw))return raw.flatMap(entry=>normaliseMessages(entry));if(typeof raw=="object"){let maybeMessages=raw.messages;return Array.isArray(maybeMessages)?normaliseMessages(maybeMessages):[raw]}return[]},"normaliseMessages"),renderContent=__name(content=>content?escapeHtml(content).replace(/\r?\n/g,"<br />"):"","renderContent"),normalizeColor=__name(input=>{if(!input)return;let value=input.trim(),prefixed=value.startsWith("#")?value:`#${value}`;if(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(prefixed))return prefixed;if(/^rgb(a)?\(/i.test(value))return value},"normalizeColor"),getAuthorKey=__name(message=>{let author=message?.author;if(author){if(author.id)return author.id;if(author.display_name||author.username){let composite=`${author.username??""}|${author.display_name??""}`.trim();if(composite.length>0)return composite}}},"getAuthorKey"),renderMessage=__name((message,previous)=>{let author=message.author??{},displayName=author.display_name?.trim()||author.username?.trim()||"Unknown User",avatar=message.avatar_url?.trim()||DEFAULT_AVATAR,timestamp=formatTimestamp(message.timestamp),jumpUrl=message.jump_url||message.url||"#",content=renderContent(message.content),authorColor=normalizeColor(author.color??author?.colour),previousKey=getAuthorKey(previous),currentKey=getAuthorKey(message),sameAuthor=previousKey!==void 0&&previousKey===currentKey,showHeader=!sameAuthor,showAvatar=!sameAuthor,articleClasses=["discord-message"];showAvatar||articleClasses.push("discord-message--compact");let articleAttributes=[`class="${articleClasses.join(" ")}"`];message.id&&articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`),authorColor&&articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);let avatarMarkup=showAvatar?`<div class="discord-avatar">
         <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
       </div>`:'<div class="discord-avatar discord-avatar--hidden" aria-hidden="true"></div>',headerMarkup=showHeader?`<header class="discord-header">
-        <span class="discord-author">${escapeHtml(displayName)}</span>
+        <span class="discord-author"${authorColor?` style="color: ${escapeAttribute(authorColor)}"`:""}>${escapeHtml(displayName)}</span>
         ${timestamp?`<time datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>`:""}
       </header>`:"",accessibleTimestamp=!showHeader&&timestamp?`<time class="discord-timestamp-sr" datetime="${escapeAttribute(timestamp.iso)}">${escapeHtml(timestamp.readable)}</time>`:"",contentClasses=["discord-content"];return showHeader||contentClasses.push("discord-content--compact"),`<article ${articleAttributes.join(" ")}>
     ${avatarMarkup}
@@ -275,7 +284,7 @@ pre:hover > .expand-button {
   </article>`},"renderMessage"),renderMessages=__name(messages=>{if(messages.length===0)return"";let htmlMessages=messages.map((message,index)=>renderMessage(message,index>0?messages[index-1]:void 0)).join(`
 `);return`<section class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
-</section>`},"renderMessages"),parseDiscordBlock=__name(value=>{try{let data=JSON.parse(value.trim());return normaliseMessages(data)}catch(error){return console.warn("Failed to parse discord block",error),[]}},"parseDiscordBlock"),visitCodeBlocks=__name((node,callback)=>{if(!node||typeof node!="object"||!Array.isArray(node.children))return;let parent=node;for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];!child||typeof child!="object"||(child.type==="code"&&callback(child,idx,parent),visitCodeBlocks(child,callback))}},"visitCodeBlocks"),DiscordMessages=__name(()=>({name:"DiscordMessages",markdownPlugins(){return[()=>tree=>{visitCodeBlocks(tree,(codeBlock,index,parent)=>{if((typeof codeBlock.lang=="string"?codeBlock.lang.toLowerCase():"")!=="discord")return;let raw=typeof codeBlock.value=="string"?codeBlock.value:"",messages=parseDiscordBlock(raw);if(messages.length===0)return;let html=renderMessages(messages);parent.children.splice(index,1,{type:"html",value:html})})}]},externalResources(){return{css:[{content:DISCORD_CSS,inline:!0}]}}}),"DiscordMessages");var RemoveDrafts=__name(()=>({name:"RemoveDrafts",shouldPublish(_ctx,[_tree,vfile]){return!(vfile.data?.frontmatter?.draft===!0||vfile.data?.frontmatter?.draft==="true")}}),"RemoveDrafts");import path6 from"path";import{jsx}from"preact/jsx-runtime";var Header=__name(({children})=>children.length>0?jsx("header",{children}):null,"Header");Header.css=`
+</section>`},"renderMessages"),parseDiscordBlock=__name(value=>{try{let data=JSON.parse(value.trim());return normaliseMessages(data)}catch(error){return console.warn("Failed to parse discord block",error),[]}},"parseDiscordBlock"),visitCodeBlocks=__name((node,callback)=>{if(!node||typeof node!="object"||!Array.isArray(node.children))return;let parent=node;for(let idx=0;idx<parent.children.length;idx++){let child=parent.children[idx];!child||typeof child!="object"||(child.type==="code"&&callback(child,idx,parent),visitCodeBlocks(child,callback))}},"visitCodeBlocks"),DiscordMessages=__name(()=>({name:"DiscordMessages",markdownPlugins(){return[()=>tree=>{visitCodeBlocks(tree,(codeBlock,index,parent)=>{if((typeof codeBlock.lang=="string"?codeBlock.lang.toLowerCase():"")!=="discord")return;let raw=typeof codeBlock.value=="string"?codeBlock.value:"",messages=parseDiscordBlock(raw);if(messages.length===0)return;let html=renderMessages(messages);if(parent.type==="paragraph"&&parent.children?.length===1){delete parent.children,parent.type="html",parent.value=html;return}parent.children.splice(index,1,{type:"html",value:html})})}]},externalResources(){return{css:[{content:DISCORD_CSS,inline:!0}]}}}),"DiscordMessages");var RemoveDrafts=__name(()=>({name:"RemoveDrafts",shouldPublish(_ctx,[_tree,vfile]){return!(vfile.data?.frontmatter?.draft===!0||vfile.data?.frontmatter?.draft==="true")}}),"RemoveDrafts");import path6 from"path";import{jsx}from"preact/jsx-runtime";var Header=__name(({children})=>children.length>0?jsx("header",{children}):null,"Header");Header.css=`
 header {
   display: flex;
   flex-direction: row;
