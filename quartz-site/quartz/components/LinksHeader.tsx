@@ -13,11 +13,6 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "home",
   },
   {
-    href: "/News/",
-    label: "News",
-    iconSlug: "news",
-  },
-  {
     href: "/Characters/",
     label: "Characters",
     iconSlug: "characters",

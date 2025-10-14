@@ -181,9 +181,10 @@ a {
 }
 
 .page {
-  width: min(100%, 1700px);
-  margin: 0 auto;
-  padding: 0 clamp(0.75rem, 3vw, 2.5rem);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 clamp(0.75rem, 2vw, 2.5rem);
   box-sizing: border-box;
   & article {
     & > h1 {
