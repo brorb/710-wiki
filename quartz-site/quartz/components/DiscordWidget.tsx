@@ -11,7 +11,8 @@ interface DiscordWidgetOptions {
 
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const DISCORD_INVITE = "https://discord.com/invite/sleuth707"
-const HEADER_OFFSET_PX = 64
+const MASK_HEIGHT_PX = 80
+const EMBED_OFFSET_PX = 104
 
 export default ((options?: DiscordWidgetOptions) => {
   const variant: DiscordWidgetVariant = options?.variant ?? "sidebar"
@@ -60,6 +61,7 @@ export default ((options?: DiscordWidgetOptions) => {
               width="100%"
               height="100%"
             ></iframe>
+            <div class="discord-widget__mask" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -83,7 +85,8 @@ export default ((options?: DiscordWidgetOptions) => {
   display: flex;
   flex-direction: column;
   --discord-embed-height: 500px;
-  --discord-header-offset: ${HEADER_OFFSET_PX}px;
+  --discord-mask-height: ${MASK_HEIGHT_PX}px;
+  --discord-embed-offset: ${EMBED_OFFSET_PX}px;
 }
 
 .discord-widget__header {
@@ -91,7 +94,7 @@ export default ((options?: DiscordWidgetOptions) => {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 1rem 0.7rem;
   background: #b71002;
   color: #ffffff;
 }
@@ -174,10 +177,23 @@ export default ((options?: DiscordWidgetOptions) => {
 
 .discord-widget__embed iframe {
   width: 100%;
-  height: calc(var(--discord-embed-height) + var(--discord-header-offset));
+  height: calc(var(--discord-embed-height) + var(--discord-embed-offset));
   border: none;
   display: block;
-  transform: translateY(calc(-1 * var(--discord-header-offset)));
+  background-color: #040405;
+  transform: translateY(calc(-1 * var(--discord-embed-offset)));
+}
+
+.discord-widget__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--discord-mask-height);
+  background: #b71002;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.65);
 }
 
 .discord-widget--sidebar {
