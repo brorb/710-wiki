@@ -258,13 +258,13 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       if (timestamp) {
         summaryParts.push(timestamp)
       }
-      lines.push(`> ${summaryParts.join(" - ")}`)
+      lines.push(`> ${this.escapeMarkdownForCallout(summaryParts.join(" - "))}`)
 
       const content = message.content?.trim()
       if (content) {
         content.split(/\r?\n/).forEach((line) => {
           const text = line.trimEnd()
-          lines.push(`>     ${text}`)
+          lines.push(`>     ${this.escapeMarkdownForCallout(text)}`)
         })
       }
 
@@ -281,6 +281,13 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     lines.push(`> \`\`\``)
 
     return lines.join("\n")
+  }
+
+  private escapeMarkdownForCallout(value: string): string {
+    return value
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
   }
 
   private async fetchMessages(urls: string[]): Promise<DiscordMessageBlock[]> {

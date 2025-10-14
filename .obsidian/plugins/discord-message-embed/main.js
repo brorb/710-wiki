@@ -177,12 +177,12 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
             if (timestamp) {
                 summaryParts.push(timestamp);
             }
-            lines.push(`> ${summaryParts.join(" - ")}`);
+            lines.push(`> ${this.escapeMarkdownForCallout(summaryParts.join(" - "))}`);
             const content = message.content?.trim();
             if (content) {
                 content.split(/\r?\n/).forEach((line) => {
                     const text = line.trimEnd();
-                    lines.push(`>     ${text}`);
+                    lines.push(`>     ${this.escapeMarkdownForCallout(text)}`);
                 });
             }
             if (message.url) {
@@ -237,6 +237,12 @@ class DiscordMessageEmbedPlugin extends obsidian_1.Plugin {
             avatar_url: payload.author?.avatar_url || DEFAULT_AVATAR,
             url,
         };
+    }
+    escapeMarkdownForCallout(value) {
+        return value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
     }
 }
 exports.default = DiscordMessageEmbedPlugin;
