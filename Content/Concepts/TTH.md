@@ -37,3 +37,18 @@ Their logo feature two hands on a read background. The hands are a symbolization
 ]
 ```
 
+[^2]: ```discord
+[
+  {
+    "id": "1396758985977233548",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008"
+    },
+    "content": "<OUTPRINT>!:(TTH is a sub branch of NaN, actually I can't tell you a lot about them because of limits IN_DI put.)",
+    "timestamp": "2025-07-21T07:41:32.784000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758985977233548"
+  }
+]
+```
