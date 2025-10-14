@@ -166,16 +166,18 @@ a.wiki-download-link svg {
   gap: clamp(1.25rem, 2vw, 1.75rem);
 }
 
+
 .comments-wrapper .comments {
   position: relative;
   width: 100%;
   max-width: none !important;
   border-radius: 18px;
   border: 2px solid var(--tertiary);
-  background: linear-gradient(180deg, rgba(183, 16, 2, 0.1) 0%, rgba(183, 16, 2, 0.04) 100%);
+  background: linear-gradient(180deg, rgba(183, 16, 2, 0.12) 0%, rgba(183, 16, 2, 0.04) 100%);
   box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
   display: block;
   overflow: hidden;
+  padding: 0;
 }
 
 .comments-mobile-append {
@@ -189,25 +191,18 @@ a.wiki-download-link svg {
   margin-top: 0.75rem;
 }
 
+
 .comments-wrapper .comments > *,
 .comments-wrapper .comments iframe,
 .comments-wrapper .comments .utterances-frame,
 .comments-wrapper .comments .utterances iframe,
 .comments-wrapper .comments .utterances .utterances-frame {
   width: 100% !important;
+  margin: 0 !important;
   min-height: 360px;
   display: block;
   border: 0;
   background-color: transparent;
-}
-
-
-.page-footer {
-  display: block;
-}
-
-.page-footer > .comments-section {
-  width: 100%;
 }
 
 .comments-separator {

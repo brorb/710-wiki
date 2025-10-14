@@ -11,8 +11,35 @@ interface DiscordWidgetOptions {
 
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const DISCORD_INVITE = "https://discord.com/invite/sleuth707"
-const MASK_HEIGHT_PX = 80
-const EMBED_OFFSET_PX = 104
+const FILTER_ID = "discord-embed-redify"
+
+const FilterDefinition = () => (
+  <svg class="discord-widget__filters" aria-hidden="true" focusable="false" width="0" height="0">
+    {/* Filter stack nudges the Discord blurple accent toward the #B71002 brand tone without masking */}
+    <filter id={FILTER_ID} color-interpolation-filters="sRGB">
+      <feColorMatrix
+        in="SourceGraphic"
+        type="matrix"
+        values="-0.55 -0.55 1.8 0 0  -0.55 -0.55 1.8 0 0  -0.55 -0.55 1.8 0 0  0 0 0 1 0"
+        result="blueEmphasis"
+      />
+      <feComponentTransfer in="blueEmphasis" result="blueMask">
+        <feFuncR type="table" tableValues="0 0 0.18 0.45 1" />
+        <feFuncG type="table" tableValues="0 0 0.18 0.45 1" />
+        <feFuncB type="table" tableValues="0 0 0.18 0.45 1" />
+      </feComponentTransfer>
+      <feColorMatrix
+        in="blueMask"
+        type="matrix"
+        values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"
+        result="maskAlpha"
+      />
+      <feFlood flood-color="#b71002" result="brandFlood" />
+      <feComposite in="brandFlood" in2="maskAlpha" operator="in" result="brandOverlay" />
+      <feBlend in="SourceGraphic" in2="brandOverlay" mode="screen" />
+    </filter>
+  </svg>
+)
 
 export default ((options?: DiscordWidgetOptions) => {
   const variant: DiscordWidgetVariant = options?.variant ?? "sidebar"
@@ -20,6 +47,7 @@ export default ((options?: DiscordWidgetOptions) => {
   const DiscordWidget: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
     return (
       <div class={classNames(displayClass, "discord-widget", `discord-widget--${variant}`)}>
+        <FilterDefinition />
         <div class="discord-widget__frame">
           <div class="discord-widget__header">
             <div class="discord-widget__brand">
@@ -58,10 +86,7 @@ export default ((options?: DiscordWidgetOptions) => {
               allowTransparency={true}
               frameBorder="0"
               sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-              width="100%"
-              height="100%"
             ></iframe>
-            <div class="discord-widget__mask" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -73,7 +98,6 @@ export default ((options?: DiscordWidgetOptions) => {
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .discord-widget__frame {
@@ -85,8 +109,6 @@ export default ((options?: DiscordWidgetOptions) => {
   display: flex;
   flex-direction: column;
   --discord-embed-height: 500px;
-  --discord-mask-height: ${MASK_HEIGHT_PX}px;
-  --discord-embed-offset: ${EMBED_OFFSET_PX}px;
 }
 
 .discord-widget__header {
@@ -94,7 +116,7 @@ export default ((options?: DiscordWidgetOptions) => {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.85rem 1rem 0.7rem;
+  padding: 0.85rem 1rem 0.9rem;
   background: #b71002;
   color: #ffffff;
 }
@@ -175,25 +197,20 @@ export default ((options?: DiscordWidgetOptions) => {
   overflow: hidden;
 }
 
+.discord-widget__filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
 .discord-widget__embed iframe {
   width: 100%;
-  height: calc(var(--discord-embed-height) + var(--discord-embed-offset));
+  height: 100%;
   border: none;
   display: block;
   background-color: #040405;
-  transform: translateY(calc(-1 * var(--discord-embed-offset)));
-}
-
-.discord-widget__mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--discord-mask-height);
-  background: #b71002;
-  pointer-events: none;
-  z-index: 2;
-  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.65);
+  filter: url(#${FILTER_ID});
 }
 
 .discord-widget--sidebar {
@@ -213,7 +230,7 @@ export default ((options?: DiscordWidgetOptions) => {
 
 @media (max-width: 480px) {
   .discord-widget__frame {
-    --discord-embed-height: 460px;
+    --discord-embed-height: 420px;
   }
 
   .discord-widget--banner .discord-widget__frame {
