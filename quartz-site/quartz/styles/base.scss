@@ -337,10 +337,6 @@ a {
       grid-area: grid-center;
     }
 
-    & footer {
-      grid-area: grid-footer;
-    }
-
     & .center,
     & footer {
       max-width: 100%;
@@ -355,7 +351,19 @@ a {
         margin-left: 0;
       }
     }
-    & footer {
+    & > .page-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1rem, 2vw, 2rem);
+      margin-top: clamp(1.25rem, 3vw, 2rem);
+      padding: 0 clamp(0.75rem, 2vw, 2.5rem);
+      box-sizing: border-box;
+    }
+
+    & > footer {
+      grid-column: 1 / -1;
+      grid-area: auto;
       margin-left: 0;
     }
   }
