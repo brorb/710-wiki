@@ -16,16 +16,16 @@ export default ((options?: DiscordWidgetOptions) => {
   const DiscordWidget: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
     return (
       <div class={classNames(displayClass, "discord-widget", `discord-widget--${variant}`)}>
-        <iframe
-          src={WIDGET_SRC}
-          width="350"
-          height="500"
-          loading="lazy"
-          title="710 Discord"
-          allowTransparency={true}
-          frameBorder="0"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        ></iframe>
+        <div class="discord-widget__frame">
+          <iframe
+            src={WIDGET_SRC}
+            loading="lazy"
+            title="710 Discord"
+            allowTransparency={true}
+            frameBorder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          ></iframe>
+        </div>
       </div>
     )
   }
@@ -35,16 +35,37 @@ export default ((options?: DiscordWidgetOptions) => {
   width: 100%;
   display: flex;
   justify-content: center;
-    flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.discord-widget__frame {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(24, 25, 30, 0.95);
+  isolation: isolate;
+}
+
+.discord-widget__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--secondary, #eb1c24);
+  mix-blend-mode: color;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .discord-widget iframe {
   width: 100%;
-  max-width: 350px;
-  height: 500px;
+  height: 100%;
   border: none;
-  border-radius: 12px;
-  background: rgba(24, 25, 30, 0.95);
+  display: block;
+  filter: saturate(1.1);
 }
 
 .discord-widget--sidebar {
@@ -57,17 +78,17 @@ export default ((options?: DiscordWidgetOptions) => {
   margin-top: 2rem;
 }
 
-.discord-widget--banner iframe {
+.discord-widget--banner .discord-widget__frame {
   max-width: none;
   height: 420px;
 }
 
 @media (max-width: 480px) {
-  .discord-widget iframe {
+  .discord-widget__frame {
     height: 420px;
   }
 
-  .discord-widget--banner iframe {
+  .discord-widget--banner .discord-widget__frame {
     height: 360px;
   }
 }
