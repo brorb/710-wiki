@@ -11,8 +11,8 @@ interface DiscordWidgetOptions {
 
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const DISCORD_INVITE = "https://discord.com/invite/sleuth707"
-const MASK_HEIGHT_PX = 64
-const EMBED_OFFSET_PX = 64
+const MASK_HEIGHT_PX = 80
+const EMBED_OFFSET_PX = 104
 
 export default ((options?: DiscordWidgetOptions) => {
   const variant: DiscordWidgetVariant = options?.variant ?? "sidebar"
@@ -94,7 +94,7 @@ export default ((options?: DiscordWidgetOptions) => {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.7rem 1rem 0.6rem;
+  padding: 0.85rem 1rem 0.7rem;
   background: #b71002;
   color: #ffffff;
 }
