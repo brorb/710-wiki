@@ -10,7 +10,7 @@ interface DiscordWidgetOptions {
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const FILTER_ID = "discord-widget-redify"
 const TOP_BAND_GRADIENT_DATA =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.114' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.154' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E"
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.098' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.166' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E"
 
 const FilterDefinition = () => (
   <svg class="discord-widget__filters" aria-hidden="true" focusable="false" width="0" height="0">

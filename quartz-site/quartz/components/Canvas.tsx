@@ -145,7 +145,6 @@ export default ((options?: CanvasOptions) => {
           <iframe
             src={iframeSrc}
             title={`Canvas visualization: ${title}`}
-            loading="lazy"
             allow="fullscreen"
             scrolling="no"
           />
@@ -272,8 +271,11 @@ export default ((options?: CanvasOptions) => {
     }
 
     const hideLoader = () => {
-      loader.classList.add('is-hidden')
-      loader.classList.remove('is-error')
+      if (!loader.classList.contains('is-hidden')) {
+        loader.classList.add('is-hidden')
+        loader.classList.remove('is-error')
+      }
+      iframe.dataset.canvasLoaded = 'true'
       markInitialized()
     }
 
@@ -286,10 +288,45 @@ export default ((options?: CanvasOptions) => {
       markInitialized()
     }
 
-    iframe.addEventListener('load', hideLoader, { once: true })
-    iframe.addEventListener('error', showError, { once: true })
+    function handleLoad() {
+      hideLoader()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
 
-    if (iframe.complete) {
+    function handleError() {
+      showError()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
+
+    iframe.addEventListener('load', handleLoad)
+    iframe.addEventListener('error', handleError)
+
+    const iframeAlreadyLoaded = () => {
+      if (iframe.dataset.canvasLoaded === 'true') {
+        return true
+      }
+
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document
+        if (doc && doc.readyState === 'complete') {
+          return true
+        }
+      } catch (error) {
+        // accessing contentDocument can throw for cross-origin iframes; ignore
+      }
+
+      // fallback for browsers that expose readyState/complete differently
+      // @ts-ignore non-standard property
+      if (typeof iframe.readyState === 'string' && iframe.readyState === 'complete') {
+        return true
+      }
+
+      return false
+    }
+
+    if (iframeAlreadyLoaded()) {
       hideLoader()
     }
   })

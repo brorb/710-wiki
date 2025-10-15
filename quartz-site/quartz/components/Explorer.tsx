@@ -21,12 +21,14 @@ export interface Options {
   filterFn: (node: FileTrieNode) => boolean
   mapFn: (node: FileTrieNode) => void
   order: OrderEntries[]
+  startCollapsed?: boolean
 }
 
 const defaultOptions: Options = {
   folderDefaultState: "collapsed",
   folderClickBehavior: "link",
   useSavedState: true,
+  startCollapsed: true,
   mapFn: (node) => {
     return node
   },
@@ -47,7 +49,10 @@ const defaultOptions: Options = {
       return -1
     }
   },
-  filterFn: (node) => node.slugSegment !== "tags" && node.slugSegment !== "canvases",
+  filterFn: (node) => {
+    const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+    return segment !== "tags" && segment !== "canvases"
+  },
   order: ["filter", "map", "sort"],
 }
 
@@ -68,7 +73,7 @@ export default ((userOpts?: Partial<Options>) => {
     const rootClasses = classNames(
       displayClass,
       "explorer",
-      opts.folderDefaultState === "collapsed" ? "collapsed" : "",
+      opts.startCollapsed ? "collapsed" : "",
     )
 
     const HeaderSlot = opts.headerSlot
@@ -77,7 +82,7 @@ export default ((userOpts?: Partial<Options>) => {
       <div
         class={rootClasses}
         data-behavior={opts.folderClickBehavior}
-        data-collapsed={opts.folderDefaultState}
+  data-collapsed={opts.folderDefaultState}
         data-savestate={opts.useSavedState}
         data-data-fns={JSON.stringify({
           order: opts.order,

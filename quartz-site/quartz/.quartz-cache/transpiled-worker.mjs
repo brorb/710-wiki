@@ -5506,7 +5506,6 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
           {
             src: iframeSrc,
             title: `Canvas visualization: ${title}`,
-            loading: "lazy",
             allow: "fullscreen",
             scrolling: "no"
           }
@@ -5631,8 +5630,11 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
     }
 
     const hideLoader = () => {
-      loader.classList.add('is-hidden')
-      loader.classList.remove('is-error')
+      if (!loader.classList.contains('is-hidden')) {
+        loader.classList.add('is-hidden')
+        loader.classList.remove('is-error')
+      }
+      iframe.dataset.canvasLoaded = 'true'
       markInitialized()
     }
 
@@ -5645,10 +5647,45 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
       markInitialized()
     }
 
-    iframe.addEventListener('load', hideLoader, { once: true })
-    iframe.addEventListener('error', showError, { once: true })
+    function handleLoad() {
+      hideLoader()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
 
-    if (iframe.complete) {
+    function handleError() {
+      showError()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
+
+    iframe.addEventListener('load', handleLoad)
+    iframe.addEventListener('error', handleError)
+
+    const iframeAlreadyLoaded = () => {
+      if (iframe.dataset.canvasLoaded === 'true') {
+        return true
+      }
+
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document
+        if (doc && doc.readyState === 'complete') {
+          return true
+        }
+      } catch (error) {
+        // accessing contentDocument can throw for cross-origin iframes; ignore
+      }
+
+      // fallback for browsers that expose readyState/complete differently
+      // @ts-ignore non-standard property
+      if (typeof iframe.readyState === 'string' && iframe.readyState === 'complete') {
+        return true
+      }
+
+      return false
+    }
+
+    if (iframeAlreadyLoaded()) {
       hideLoader()
     }
   })
@@ -6027,40 +6064,25 @@ PageTitle.css = `
 `;
 var PageTitle_default = /* @__PURE__ */ __name((() => PageTitle), "default");
 
-// quartz/components/ContentMeta.tsx
-import readingTime2 from "reading-time";
-
 // quartz/components/styles/contentMeta.scss
 var contentMeta_default = "";
 
 // quartz/components/ContentMeta.tsx
-import { jsx as jsx21 } from "preact/jsx-runtime";
-var defaultOptions11 = {
-  showReadingTime: true,
-  showComma: true
-};
-var ContentMeta_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions11, ...opts };
-  function ContentMetadata({ cfg, fileData, displayClass }) {
-    const text = fileData.text;
-    if (text) {
-      const segments = [];
-      if (fileData.dates) {
-        segments.push(/* @__PURE__ */ jsx21(Date2, { date: getDate(cfg, fileData), locale: cfg.locale }));
-      }
-      if (options2.showReadingTime) {
-        const { minutes, words: _words } = readingTime2(text);
-        const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
-          minutes: Math.ceil(minutes)
-        });
-        segments.push(/* @__PURE__ */ jsx21("span", { children: displayedTime }));
-      }
-      return /* @__PURE__ */ jsx21("p", { "show-comma": options2.showComma, class: classNames(displayClass, "content-meta"), children: segments });
-    } else {
+import { jsx as jsx21, jsxs as jsxs14 } from "preact/jsx-runtime";
+var ContentMeta_default = /* @__PURE__ */ __name((() => {
+  const ContentMetadata = /* @__PURE__ */ __name(({ cfg, fileData, displayClass }) => {
+    if (!fileData.dates) {
       return null;
     }
-  }
-  __name(ContentMetadata, "ContentMetadata");
+    const updatedDate = getDate(cfg, fileData);
+    if (!updatedDate) {
+      return null;
+    }
+    return /* @__PURE__ */ jsxs14("div", { class: classNames(displayClass, "content-meta"), children: [
+      /* @__PURE__ */ jsx21("span", { class: "content-meta__label", children: "Updated" }),
+      /* @__PURE__ */ jsx21(Date2, { date: updatedDate, locale: cfg.locale })
+    ] });
+  }, "ContentMetadata");
   ContentMetadata.css = contentMeta_default;
   return ContentMetadata;
 }), "default");
@@ -6078,12 +6100,12 @@ var toc_default = "";
 var toc_inline_default = "";
 
 // quartz/components/OverflowList.tsx
-import { jsx as jsx23, jsxs as jsxs14 } from "preact/jsx-runtime";
+import { jsx as jsx23, jsxs as jsxs15 } from "preact/jsx-runtime";
 var OverflowList = /* @__PURE__ */ __name(({
   children,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs14("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
+  return /* @__PURE__ */ jsxs15("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
     children,
     /* @__PURE__ */ jsx23("li", { class: "overflow-end" })
   ] });
@@ -6121,14 +6143,14 @@ document.addEventListener("nav", (e) => {
 }, "default");
 
 // quartz/components/TableOfContents.tsx
-import { jsx as jsx24, jsxs as jsxs15 } from "preact/jsx-runtime";
-var defaultOptions12 = {
+import { jsx as jsx24, jsxs as jsxs16 } from "preact/jsx-runtime";
+var defaultOptions11 = {
   layout: "modern",
   defaultCollapsed: false
 };
 var numTocs = 0;
 var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
-  const layout = opts?.layout ?? defaultOptions12.layout;
+  const layout = opts?.layout ?? defaultOptions11.layout;
   const layoutCollapsedOverride = opts?.defaultCollapsed;
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   const TableOfContents2 = /* @__PURE__ */ __name(({
@@ -6140,9 +6162,9 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
       return null;
     }
     const id = `toc-${numTocs++}`;
-    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions12.defaultCollapsed;
-    return /* @__PURE__ */ jsx24("div", { class: classNames(displayClass, "toc"), children: /* @__PURE__ */ jsxs15("div", { class: "toc-container", children: [
-      /* @__PURE__ */ jsxs15(
+    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions11.defaultCollapsed;
+    return /* @__PURE__ */ jsx24("div", { class: classNames(displayClass, "toc"), children: /* @__PURE__ */ jsxs16("div", { class: "toc-container", children: [
+      /* @__PURE__ */ jsxs16(
         "button",
         {
           type: "button",
@@ -6186,8 +6208,8 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
     if (!fileData.toc) {
       return null;
     }
-    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions12.defaultCollapsed;
-    return /* @__PURE__ */ jsxs15("details", { class: "toc", open: !initiallyCollapsed, children: [
+    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions11.defaultCollapsed;
+    return /* @__PURE__ */ jsxs16("details", { class: "toc", open: !initiallyCollapsed, children: [
       /* @__PURE__ */ jsx24("summary", { children: /* @__PURE__ */ jsx24("h3", { children: i18n(cfg.locale).components.tableOfContents.title }) }),
       /* @__PURE__ */ jsx24("ul", { children: fileData.toc.map((tocEntry) => /* @__PURE__ */ jsx24("li", { class: `depth-${tocEntry.depth}`, children: /* @__PURE__ */ jsx24("a", { href: `#${tocEntry.slug}`, "data-for": tocEntry.slug, children: tocEntry.text }) }, tocEntry.slug)) })
     ] });
@@ -6203,11 +6225,12 @@ var explorer_default = "";
 var explorer_inline_default = "";
 
 // quartz/components/Explorer.tsx
-import { jsx as jsx25, jsxs as jsxs16 } from "preact/jsx-runtime";
-var defaultOptions13 = {
+import { jsx as jsx25, jsxs as jsxs17 } from "preact/jsx-runtime";
+var defaultOptions12 = {
   folderDefaultState: "collapsed",
   folderClickBehavior: "link",
   useSavedState: true,
+  startCollapsed: true,
   mapFn: /* @__PURE__ */ __name((node) => {
     return node;
   }, "mapFn"),
@@ -6224,12 +6247,15 @@ var defaultOptions13 = {
       return -1;
     }
   }, "sortFn"),
-  filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "tags" && node.slugSegment !== "canvases", "filterFn"),
+  filterFn: /* @__PURE__ */ __name((node) => {
+    const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+    return segment !== "tags" && segment !== "canvases";
+  }, "filterFn"),
   order: ["filter", "map", "sort"]
 };
 var numExplorers = 0;
 var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
-  const opts = { ...defaultOptions13, ...userOpts };
+  const opts = { ...defaultOptions12, ...userOpts };
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   const Explorer = /* @__PURE__ */ __name((componentProps) => {
     const { cfg, displayClass } = componentProps;
@@ -6237,10 +6263,10 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
     const rootClasses = classNames(
       displayClass,
       "explorer",
-      opts.folderDefaultState === "collapsed" ? "collapsed" : ""
+      opts.startCollapsed ? "collapsed" : ""
     );
     const HeaderSlot = opts.headerSlot;
-    return /* @__PURE__ */ jsxs16(
+    return /* @__PURE__ */ jsxs17(
       "div",
       {
         class: rootClasses,
@@ -6254,7 +6280,7 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
           mapFn: opts.mapFn.toString()
         }),
         children: [
-          /* @__PURE__ */ jsxs16("div", { class: "explorer-header", children: [
+          /* @__PURE__ */ jsxs17("div", { class: "explorer-header", children: [
             /* @__PURE__ */ jsx25(
               "button",
               {
@@ -6263,7 +6289,7 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                 "data-mobile": true,
                 "aria-controls": id,
                 "aria-expanded": opts.folderDefaultState !== "collapsed",
-                children: /* @__PURE__ */ jsxs16(
+                children: /* @__PURE__ */ jsxs17(
                   "svg",
                   {
                     xmlns: "http://www.w3.org/2000/svg",
@@ -6283,7 +6309,7 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                 )
               }
             ),
-            /* @__PURE__ */ jsxs16(
+            /* @__PURE__ */ jsxs17(
               "button",
               {
                 type: "button",
@@ -6324,8 +6350,8 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
             }
           ),
           /* @__PURE__ */ jsx25("template", { id: "template-file", children: /* @__PURE__ */ jsx25("li", { children: /* @__PURE__ */ jsx25("a", { href: "#" }) }) }),
-          /* @__PURE__ */ jsx25("template", { id: "template-folder", children: /* @__PURE__ */ jsxs16("li", { children: [
-            /* @__PURE__ */ jsxs16("div", { class: "folder-container", children: [
+          /* @__PURE__ */ jsx25("template", { id: "template-folder", children: /* @__PURE__ */ jsxs17("li", { children: [
+            /* @__PURE__ */ jsxs17("div", { class: "folder-container", children: [
               /* @__PURE__ */ jsx25(
                 "svg",
                 {
@@ -6405,8 +6431,8 @@ var graph_inline_default = "";
 var graph_default = "";
 
 // quartz/components/Graph.tsx
-import { jsx as jsx27, jsxs as jsxs17 } from "preact/jsx-runtime";
-var defaultOptions14 = {
+import { jsx as jsx27, jsxs as jsxs18 } from "preact/jsx-runtime";
+var defaultOptions13 = {
   localGraph: {
     drag: true,
     zoom: true,
@@ -6440,11 +6466,11 @@ var defaultOptions14 = {
 };
 var Graph_default = /* @__PURE__ */ __name(((opts) => {
   const Graph = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-    const localGraph = { ...defaultOptions14.localGraph, ...opts?.localGraph };
-    const globalGraph = { ...defaultOptions14.globalGraph, ...opts?.globalGraph };
-    return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
+    const localGraph = { ...defaultOptions13.localGraph, ...opts?.localGraph };
+    const globalGraph = { ...defaultOptions13.globalGraph, ...opts?.globalGraph };
+    return /* @__PURE__ */ jsxs18("div", { class: classNames(displayClass, "graph"), children: [
       /* @__PURE__ */ jsx27("h3", { children: i18n(cfg.locale).components.graph.title }),
-      /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
+      /* @__PURE__ */ jsxs18("div", { class: "graph-outer", children: [
         /* @__PURE__ */ jsx27("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
         /* @__PURE__ */ jsx27("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx27(
           "svg",
@@ -6481,12 +6507,12 @@ var backlinks_default = "";
 var backlinks_inline_default = "";
 
 // quartz/components/Backlinks.tsx
-import { jsx as jsx28, jsxs as jsxs18 } from "preact/jsx-runtime";
-var defaultOptions15 = {
+import { jsx as jsx28, jsxs as jsxs19 } from "preact/jsx-runtime";
+var defaultOptions14 = {
   hideWhenEmpty: true
 };
 var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions15, ...opts };
+  const options2 = { ...defaultOptions14, ...opts };
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   let backlinksInstance = 0;
   const Backlinks = /* @__PURE__ */ __name(({
@@ -6501,8 +6527,8 @@ var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
       return null;
     }
     const containerId = `backlinks-${backlinksInstance++}`;
-    return /* @__PURE__ */ jsx28("div", { class: classNames(displayClass, "backlinks"), children: /* @__PURE__ */ jsxs18("div", { class: "backlinks-container collapsed", children: [
-      /* @__PURE__ */ jsxs18(
+    return /* @__PURE__ */ jsx28("div", { class: classNames(displayClass, "backlinks"), children: /* @__PURE__ */ jsxs19("div", { class: "backlinks-container collapsed", children: [
+      /* @__PURE__ */ jsxs19(
         "button",
         {
           type: "button",
@@ -6546,27 +6572,27 @@ var search_default = "";
 var search_inline_default = "";
 
 // quartz/components/Search.tsx
-import { jsx as jsx29, jsxs as jsxs19 } from "preact/jsx-runtime";
-var defaultOptions16 = {
+import { jsx as jsx29, jsxs as jsxs20 } from "preact/jsx-runtime";
+var defaultOptions15 = {
   enablePreview: true,
   variant: "card"
 };
 var Search_default = /* @__PURE__ */ __name(((userOpts) => {
   const Search = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-    const opts = { ...defaultOptions16, ...userOpts };
+    const opts = { ...defaultOptions15, ...userOpts };
     const searchPlaceholder = i18n(cfg.locale).components.search.searchBarPlaceholder;
-    return /* @__PURE__ */ jsxs19("div", { class: classNames(displayClass, "search", opts.variant === "inline" ? "search-inline" : ""), children: [
-      /* @__PURE__ */ jsxs19("button", { class: "search-button", children: [
-        /* @__PURE__ */ jsxs19("svg", { role: "img", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 19.9 19.7", children: [
+    return /* @__PURE__ */ jsxs20("div", { class: classNames(displayClass, "search", opts.variant === "inline" ? "search-inline" : ""), children: [
+      /* @__PURE__ */ jsxs20("button", { class: "search-button", children: [
+        /* @__PURE__ */ jsxs20("svg", { role: "img", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 19.9 19.7", children: [
           /* @__PURE__ */ jsx29("title", { children: "Search" }),
-          /* @__PURE__ */ jsxs19("g", { class: "search-path", fill: "none", children: [
+          /* @__PURE__ */ jsxs20("g", { class: "search-path", fill: "none", children: [
             /* @__PURE__ */ jsx29("path", { "stroke-linecap": "square", d: "M18.5 18.3l-5.4-5.4" }),
             /* @__PURE__ */ jsx29("circle", { cx: "8", cy: "8", r: "7" })
           ] })
         ] }),
         /* @__PURE__ */ jsx29("p", { children: i18n(cfg.locale).components.search.title })
       ] }),
-      /* @__PURE__ */ jsx29("div", { class: "search-container", children: /* @__PURE__ */ jsxs19("div", { class: "search-space", children: [
+      /* @__PURE__ */ jsx29("div", { class: "search-container", children: /* @__PURE__ */ jsxs20("div", { class: "search-space", children: [
         /* @__PURE__ */ jsx29(
           "input",
           {
@@ -6622,14 +6648,14 @@ var MobileOnly_default = /* @__PURE__ */ __name(((component) => {
 }), "default");
 
 // quartz/components/RecentNotes.tsx
-import { jsx as jsx32, jsxs as jsxs20 } from "preact/jsx-runtime";
+import { jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
 
 // quartz/components/styles/breadcrumbs.scss
 var breadcrumbs_default = "";
 
 // quartz/components/Breadcrumbs.tsx
-import { jsx as jsx33, jsxs as jsxs21 } from "preact/jsx-runtime";
-var defaultOptions17 = {
+import { jsx as jsx33, jsxs as jsxs22 } from "preact/jsx-runtime";
+var defaultOptions16 = {
   spacerSymbol: "\u276F",
   rootName: "Home",
   resolveFrontmatterTitle: true,
@@ -6643,7 +6669,7 @@ function formatCrumb(displayName, baseSlug, currentSlug) {
 }
 __name(formatCrumb, "formatCrumb");
 var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions17, ...opts };
+  const options2 = { ...defaultOptions16, ...opts };
   const Breadcrumbs = /* @__PURE__ */ __name(({
     fileData,
     allFiles,
@@ -6669,7 +6695,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
     if (!options2.showCurrentPage) {
       crumbs.pop();
     }
-    return /* @__PURE__ */ jsx33("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs21("div", { class: "breadcrumb-element", children: [
+    return /* @__PURE__ */ jsx33("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs22("div", { class: "breadcrumb-element", children: [
       /* @__PURE__ */ jsx33("a", { href: crumb.path, children: crumb.displayName }),
       index !== crumbs.length - 1 && /* @__PURE__ */ jsx33("p", { children: ` ${options2.spacerSymbol} ` })
     ] })) });
@@ -6682,7 +6708,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment5, jsx as jsx34, jsxs as jsxs22 } from "preact/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx34, jsxs as jsxs23 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -6697,9 +6723,9 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     if (opts.provider === "giscus") {
       const options3 = opts.options;
       const MobileAppend2 = opts.mobileAppend;
-      return /* @__PURE__ */ jsxs22("div", { class: classNames(displayClass, "comments-section"), children: [
+      return /* @__PURE__ */ jsxs23("div", { class: classNames(displayClass, "comments-section"), children: [
         /* @__PURE__ */ jsx34("hr", { class: "comments-separator", "aria-hidden": "true" }),
-        /* @__PURE__ */ jsxs22("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
+        /* @__PURE__ */ jsxs23("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
           /* @__PURE__ */ jsx34(
             "div",
             {
@@ -6725,9 +6751,9 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     }
     const options2 = opts.options;
     const MobileAppend = opts.mobileAppend;
-    return /* @__PURE__ */ jsxs22("div", { class: classNames(displayClass, "comments-section"), children: [
+    return /* @__PURE__ */ jsxs23("div", { class: classNames(displayClass, "comments-section"), children: [
       /* @__PURE__ */ jsx34("hr", { class: "comments-separator", "aria-hidden": "true" }),
-      /* @__PURE__ */ jsxs22("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
+      /* @__PURE__ */ jsxs23("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
         /* @__PURE__ */ jsx34(
           "div",
           {
@@ -6788,7 +6814,7 @@ var theme_colors_default = {
 };
 
 // quartz/components/LinksHeader.tsx
-import { jsx as jsx37, jsxs as jsxs23 } from "preact/jsx-runtime";
+import { jsx as jsx37, jsxs as jsxs24 } from "preact/jsx-runtime";
 var palette = theme_colors_default;
 var iconPath = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
 var navLinks = [
@@ -6830,7 +6856,7 @@ var navLinks = [
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsxs23("div", { id: "links-header-container", children: [
+    return /* @__PURE__ */ jsxs24("div", { id: "links-header-container", children: [
       /* @__PURE__ */ jsx37(
         "nav",
         {
@@ -6841,7 +6867,7 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
             "--link-button-hover": palette.buttonHover,
             "--link-button-text": palette.buttonText
           },
-          children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs23("a", { class: "links-header-item", href, children: [
+          children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs24("a", { class: "links-header-item", href, children: [
             /* @__PURE__ */ jsx37("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx37("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
             /* @__PURE__ */ jsx37("span", { children: label })
           ] }, href))
@@ -6855,11 +6881,11 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
 }), "default");
 
 // quartz/components/DiscordWidget.tsx
-import { jsx as jsx38, jsxs as jsxs24 } from "preact/jsx-runtime";
+import { jsx as jsx38, jsxs as jsxs25 } from "preact/jsx-runtime";
 var WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark";
 var FILTER_ID = "discord-widget-redify";
-var TOP_BAND_GRADIENT_DATA = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.114' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.154' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E";
-var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs24(
+var TOP_BAND_GRADIENT_DATA = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.098' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.166' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E";
+var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs25(
   "filter",
   {
     id: FILTER_ID,
@@ -6904,7 +6930,7 @@ var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38("svg",
       ),
       /* @__PURE__ */ jsx38("feComposite", { in: "tinted", in2: "topMask", operator: "in", result: "tintedTop" }),
       /* @__PURE__ */ jsx38("feComposite", { in: "SourceGraphic", in2: "topMask", operator: "out", result: "originalBottom" }),
-      /* @__PURE__ */ jsxs24("feMerge", { children: [
+      /* @__PURE__ */ jsxs25("feMerge", { children: [
         /* @__PURE__ */ jsx38("feMergeNode", { in: "tintedTop" }),
         /* @__PURE__ */ jsx38("feMergeNode", { in: "originalBottom" })
       ] })
@@ -6914,7 +6940,7 @@ var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38("svg",
 var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   const variant = options2?.variant ?? "sidebar";
   const DiscordWidget = /* @__PURE__ */ __name(({ displayClass }) => {
-    return /* @__PURE__ */ jsxs24("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: [
+    return /* @__PURE__ */ jsxs25("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: [
       /* @__PURE__ */ jsx38(FilterDefinition, {}),
       /* @__PURE__ */ jsx38(
         "iframe",
@@ -7079,16 +7105,25 @@ var defaultContentPageLayout = {
       Explorer_default({
         folderClickBehavior: "link",
         folderDefaultState: "collapsed",
-        useSavedState: false,
         headerSlot: Search_default({ variant: "inline" }),
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        useSavedState: false,
+        startCollapsed: true,
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "canvases";
+        }, "filterFn")
       })
     ),
     DesktopOnly_default(
       Explorer_default({
         folderClickBehavior: "link",
-        folderDefaultState: "open",
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        folderDefaultState: "collapsed",
+        useSavedState: false,
+        startCollapsed: false,
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "canvases";
+        }, "filterFn")
       })
     )
   ],
@@ -7484,7 +7519,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
 import { jsx as jsx39 } from "preact/jsx-runtime";
-var defaultOptions18 = {
+var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
   rssLimit: 10,
@@ -7536,7 +7571,7 @@ function generateRSSFeed(cfg, idx, limit) {
 }
 __name(generateRSSFeed, "generateRSSFeed");
 var ContentIndex = /* @__PURE__ */ __name((opts) => {
-  opts = { ...defaultOptions18, ...opts };
+  opts = { ...defaultOptions17, ...opts };
   return {
     name: "ContentIndex",
     async *emit(ctx, content) {
