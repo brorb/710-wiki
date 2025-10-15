@@ -206,6 +206,15 @@ a.wiki-download-link svg {
   flex: 1 1 auto;
 }
 
+.comments-wrapper .comments .utterances,
+.comments-wrapper .comments .utterances > div {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  display: flex;
+  flex: 1 1 auto;
+}
+
 .comments-separator {
   margin: 1.75rem 0 0;
   border: none;
