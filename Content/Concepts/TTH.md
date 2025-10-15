@@ -1,3 +1,20 @@
+---
+title: TTH
+infobox:
+  title: TTH title
+  image:
+    src: ![[Content/Media/710 Media/Images/TTH_logo_enhanced.png]]
+    alt: TTH alt
+    caption: TTH Logo
+  items:
+    - label: Region
+      value: Ferkland County
+    - label: Workers
+      value:
+        - [[INDI]]
+        - [[Kepler]]
+---
+
 TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
 > [!discord-cite]- Discord citation (2 messages)
 > 1. ThePortalNinja - 2025-07-21 17:17
