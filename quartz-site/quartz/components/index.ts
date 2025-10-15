@@ -22,6 +22,7 @@ import Comments from "./Comments"
 import ConditionalRender from "./ConditionalRender"
 import LinksHeader from "./LinksHeader"
 import DiscordWidget from "./DiscordWidget"
+import InfoBox from "./InfoBox"
 
 export {
   ArticleTitle,
@@ -48,4 +49,5 @@ export {
   ConditionalRender,
   LinksHeader,
   DiscordWidget,
+  InfoBox,
 }
