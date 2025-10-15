@@ -2647,6 +2647,19 @@ var defaultTranslation = "en-US";
 var i18n = /* @__PURE__ */ __name((locale) => TRANSLATIONS[locale ?? defaultTranslation], "i18n");
 
 // quartz/plugins/transformers/frontmatter.ts
+var OBSIDIAN_EMBED_PATTERN = /!\[\[[^\]\r\n]+\]\]/;
+var sanitizeObsidianEmbeds = /* @__PURE__ */ __name((frontmatter) => {
+  const wrap = /* @__PURE__ */ __name((prefix, embed) => `${prefix}"${embed}"`, "wrap");
+  const valuePattern = /(^\s*[^\n:]+:\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm;
+  const listPattern = /(^\s*-\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm;
+  if (!OBSIDIAN_EMBED_PATTERN.test(frontmatter)) {
+    return frontmatter;
+  }
+  return frontmatter.replace(listPattern, (_, prefix, embed) => wrap(prefix, embed)).replace(
+    valuePattern,
+    (_, prefix, embed) => wrap(prefix, embed)
+  );
+}, "sanitizeObsidianEmbeds");
 var defaultOptions = {
   delimiters: "---",
   language: "yaml"
@@ -2690,7 +2703,7 @@ var FrontMatter = /* @__PURE__ */ __name((userOpts) => {
             const { data } = matter(fileData, {
               ...opts,
               engines: {
-                yaml: /* @__PURE__ */ __name((s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }), "yaml"),
+                yaml: /* @__PURE__ */ __name((s) => yaml.load(sanitizeObsidianEmbeds(s), { schema: yaml.JSON_SCHEMA }), "yaml"),
                 toml: /* @__PURE__ */ __name((s) => toml.parse(s), "toml")
               }
             });
@@ -6907,6 +6920,213 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   return DiscordWidget;
 }), "default");
 
+// quartz/components/InfoBox.tsx
+import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
+var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var normalizeString = /* @__PURE__ */ __name((value) => {
+  if (value === null || value === void 0) {
+    return void 0;
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : void 0;
+  }
+  if (typeof value === "number" || typeof value === "boolean") {
+    return String(value);
+  }
+  return void 0;
+}, "normalizeString");
+var normalizeValueList = /* @__PURE__ */ __name((value) => {
+  if (Array.isArray(value)) {
+    const flattened = value.map((entry) => normalizeString(entry)).filter((entry) => Boolean(entry));
+    if (flattened.length === 0) {
+      return void 0;
+    }
+    return flattened.join(", ");
+  }
+  return normalizeString(value);
+}, "normalizeValueList");
+var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
+  if (!version) {
+    return url;
+  }
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+}, "appendAssetVersion");
+var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
+  const version = getAssetVersion();
+  if (isExternalUrl(rawTarget)) {
+    return rawTarget;
+  }
+  const targetWithoutExt = rawTarget.replace(/^[./]+/, "");
+  const targetSlug = slugifyFilePath(targetWithoutExt);
+  const baseDir = pathToRoot(slug);
+  return appendAssetVersion(joinSegments(baseDir, targetSlug), version);
+}, "resolveObsidianTarget");
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  if (obsidianMatch?.groups?.target) {
+    return resolveObsidianTarget(obsidianMatch.groups.target, slug);
+  }
+  if (isExternalUrl(cleaned)) {
+    return cleaned;
+  }
+  const version = getAssetVersion();
+  const target = cleaned.replace(/^[./]+/, "");
+  return appendAssetVersion(joinSegments(pathToRoot(slug), target), version);
+}, "resolveImageSource");
+var parseItems = /* @__PURE__ */ __name((rawItems) => {
+  if (!Array.isArray(rawItems)) {
+    return [];
+  }
+  const parsed = [];
+  for (const item of rawItems) {
+    if (!item || typeof item !== "object") {
+      continue;
+    }
+    const label = normalizeString(item.label);
+    const value = normalizeValueList(item.value);
+    if (!label || !value) {
+      continue;
+    }
+    parsed.push({ label, value });
+  }
+  return parsed;
+}, "parseItems");
+var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug) => {
+  const raw = frontmatter?.infobox;
+  if (!raw || typeof raw !== "object") {
+    return null;
+  }
+  const title = normalizeString(raw.title);
+  const items = parseItems(raw.items);
+  const imageSrcRaw = normalizeString(raw.image?.src);
+  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
+  const imageAlt = normalizeString(raw.image?.alt);
+  const imageCaption = normalizeString(raw.image?.caption);
+  if (!title && !imageSrc && items.length === 0) {
+    return null;
+  }
+  const image = imageSrc ? {
+    src: imageSrc,
+    alt: imageAlt,
+    caption: imageCaption
+  } : void 0;
+  return {
+    title,
+    image,
+    items
+  };
+}, "parseInfoBox");
+var InfoBox_default = /* @__PURE__ */ __name((() => {
+  const InfoBox = /* @__PURE__ */ __name(({ fileData, displayClass }) => {
+    if (!fileData?.frontmatter || !fileData.slug) {
+      return null;
+    }
+    const infobox = parseInfoBox(fileData.frontmatter, fileData.slug);
+    if (!infobox) {
+      return null;
+    }
+    return /* @__PURE__ */ jsxs23("aside", { class: classNames(displayClass, "infobox"), role: "complementary", "aria-label": "Infobox", children: [
+      infobox.title ? /* @__PURE__ */ jsx35("h3", { class: "infobox__title", children: infobox.title }) : null,
+      infobox.image ? /* @__PURE__ */ jsxs23("figure", { class: "infobox__media", children: [
+        /* @__PURE__ */ jsx35("img", { src: infobox.image.src, alt: infobox.image.alt ?? infobox.title ?? "Infobox image", loading: "lazy", decoding: "async" }),
+        infobox.image.caption ? /* @__PURE__ */ jsx35("figcaption", { children: infobox.image.caption }) : null
+      ] }) : null,
+      infobox.items.length > 0 ? /* @__PURE__ */ jsx35("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value }) => /* @__PURE__ */ jsxs23("div", { class: "infobox__fact", children: [
+        /* @__PURE__ */ jsx35("dt", { children: label }),
+        /* @__PURE__ */ jsx35("dd", { children: value })
+      ] }, `${label}-${value}`)) }) : null
+    ] });
+  }, "InfoBox");
+  InfoBox.css = `
+.infobox {
+  float: right;
+  margin: 0 0 1.5rem 1.5rem;
+  width: clamp(220px, 28vw, 320px);
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: clamp(1.5rem, 6vh, 4rem);
+  z-index: 2;
+}
+
+.infobox__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.infobox__media {
+  margin: 0 0 1rem 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.infobox__media img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.18);
+  background: var(--lightgray);
+}
+
+
+.infobox__media figcaption {
+  font-size: 0.85rem;
+  color: var(--darkgray);
+  text-align: center;
+}
+
+.infobox__facts {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.infobox__fact {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.infobox__fact dt {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--darkgray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infobox__fact dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--gray);
+}
+
+@media (max-width: 1024px) {
+  .infobox {
+    position: relative;
+    top: auto;
+    float: none;
+    margin: 1.5rem auto;
+    width: min(100%, 420px);
+  }
+}
+  `;
+  return InfoBox;
+}), "default");
+
 // quartz/comments.config.ts
 var commentsConfig = {
   enabled: true,
@@ -6997,6 +7217,7 @@ var defaultContentPageLayout = {
     }),
     ArticleTitle_default(),
     ContentMeta_default(),
+    InfoBox_default(),
     TagList_default(),
     MobileOnly_default(
       TableOfContents_default({
@@ -7424,7 +7645,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx35 } from "preact/jsx-runtime";
+import { jsx as jsx36 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
@@ -7535,7 +7756,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx35(
+            /* @__PURE__ */ jsx36(
               "link",
               {
                 rel: "alternate",
