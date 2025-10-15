@@ -1,11 +1,15 @@
 ---
 title: TTH
 infobox:
-  title: TTH title
+  title: TTH
   image:
     src: ![[Content/Media/710 Media/Images/TTH_logo_enhanced.png]]
     caption: TTH Logo
   items:
+    - label: Also known as
+      value:
+        - The Transmitting Hands
+        - Transmitting Hands
     - label: Region
       value: [[Ferkland County]]
     - label: Workers
