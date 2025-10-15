@@ -6224,7 +6224,7 @@ var defaultOptions13 = {
       return -1;
     }
   }, "sortFn"),
-  filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "tags", "filterFn"),
+  filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "tags" && node.slugSegment !== "canvases", "filterFn"),
   order: ["filter", "map", "sort"]
 };
 var numExplorers = 0;
@@ -6854,193 +6854,102 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
   return LinksHeader;
 }), "default");
 
-// quartz/components/scripts/discordWidget.inline.ts
-var discordWidget_inline_default = "";
-
 // quartz/components/DiscordWidget.tsx
 import { jsx as jsx38, jsxs as jsxs24 } from "preact/jsx-runtime";
 var WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark";
-var DISCORD_INVITE = "https://discord.com/invite/sleuth707";
-var MASK_HEIGHT_PX = 78;
+var FILTER_ID = "discord-widget-redify";
+var TOP_BAND_GRADIENT_DATA = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.114' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.154' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E";
+var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs24(
+  "filter",
+  {
+    id: FILTER_ID,
+    "color-interpolation-filters": "sRGB",
+    filterUnits: "objectBoundingBox",
+    primitiveUnits: "objectBoundingBox",
+    x: "0",
+    y: "0",
+    width: "1",
+    height: "1",
+    children: [
+      /* @__PURE__ */ jsx38(
+        "feColorMatrix",
+        {
+          in: "SourceGraphic",
+          type: "matrix",
+          values: "0.6813 -0.3187 0.6373 0 0  0.2743 1.2743 -0.5486 0 0  0.8047 0.8047 -0.6094 0 0  0 0 0 1 0",
+          result: "tinted"
+        }
+      ),
+      /* @__PURE__ */ jsx38(
+        "feImage",
+        {
+          x: "0",
+          y: "0",
+          width: "1",
+          height: "1",
+          preserveAspectRatio: "none",
+          href: TOP_BAND_GRADIENT_DATA,
+          xlinkHref: TOP_BAND_GRADIENT_DATA,
+          result: "topGradient"
+        }
+      ),
+      /* @__PURE__ */ jsx38(
+        "feColorMatrix",
+        {
+          in: "topGradient",
+          type: "matrix",
+          values: "0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 1 1 0 0",
+          result: "topMask"
+        }
+      ),
+      /* @__PURE__ */ jsx38("feComposite", { in: "tinted", in2: "topMask", operator: "in", result: "tintedTop" }),
+      /* @__PURE__ */ jsx38("feComposite", { in: "SourceGraphic", in2: "topMask", operator: "out", result: "originalBottom" }),
+      /* @__PURE__ */ jsxs24("feMerge", { children: [
+        /* @__PURE__ */ jsx38("feMergeNode", { in: "tintedTop" }),
+        /* @__PURE__ */ jsx38("feMergeNode", { in: "originalBottom" })
+      ] })
+    ]
+  }
+) }), "FilterDefinition");
 var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   const variant = options2?.variant ?? "sidebar";
   const DiscordWidget = /* @__PURE__ */ __name(({ displayClass }) => {
-    return /* @__PURE__ */ jsx38("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: /* @__PURE__ */ jsxs24("div", { class: "discord-widget__frame", children: [
-      /* @__PURE__ */ jsxs24("div", { class: "discord-widget__header", children: [
-        /* @__PURE__ */ jsxs24("div", { class: "discord-widget__brand", children: [
-          /* @__PURE__ */ jsx38("span", { class: "discord-widget__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx38("svg", { viewBox: "0 0 24 24", focusable: "false", "aria-hidden": "true", children: /* @__PURE__ */ jsx38(
-            "path",
-            {
-              d: "M20.317 4.369A18.171 18.171 0 0 0 16.268 3a12.673 12.673 0 0 0-.614 1.265 16.532 16.532 0 0 0-4.308 0A11.723 11.723 0 0 0 10.731 3a18.274 18.274 0 0 0-4.052 1.38c-2.569 3.773-3.652 7.456-3.266 11.092a18.411 18.411 0 0 0 4.979 2.546 13.42 13.42 0 0 0 1.07-1.71 11.832 11.832 0 0 1-1.688-.812c.142-.102.281-.205.417-.312a13.116 13.116 0 0 0 11.034 0c.136.107.275.21.417.312a11.77 11.77 0 0 1-1.7.82c.314.6.672 1.168 1.07 1.71a18.316 18.316 0 0 0 4.99-2.558c.409-3.983-.67-7.64-3.317-11.09ZM8.68 14.153c-.965 0-1.753-.915-1.753-2.038s.767-2.038 1.753-2.038 1.765.926 1.753 2.038c0 1.123-.767 2.038-1.753 2.038Zm6.64 0c-.965 0-1.753-.915-1.753-2.038s.767-2.038 1.753-2.038 1.765.926 1.753 2.038c0 1.123-.788 2.038-1.753 2.038Z",
-              fill: "currentColor"
-            }
-          ) }) }),
-          /* @__PURE__ */ jsxs24("div", { class: "discord-widget__text", children: [
-            /* @__PURE__ */ jsx38("span", { class: "discord-widget__title", children: "Discord" }),
-            /* @__PURE__ */ jsxs24("span", { class: "discord-widget__online", children: [
-              /* @__PURE__ */ jsx38(
-                "span",
-                {
-                  class: "discord-widget__online-count",
-                  "data-discord-member-count": true,
-                  "aria-live": "polite",
-                  "aria-label": "Loading Discord member count",
-                  children: "\u2014"
-                }
-              ),
-              /* @__PURE__ */ jsx38("span", { class: "discord-widget__online-label", children: "Members Online" })
-            ] })
-          ] })
-        ] }),
-        /* @__PURE__ */ jsx38("a", { class: "discord-widget__cta", href: DISCORD_INVITE, target: "_blank", rel: "noopener", children: "Join" })
-      ] }),
-      /* @__PURE__ */ jsxs24("div", { class: "discord-widget__embed", children: [
-        /* @__PURE__ */ jsx38(
-          "iframe",
-          {
-            src: WIDGET_SRC,
-            title: "710 Discord",
-            loading: "lazy",
-            allowTransparency: true,
-            frameBorder: "0",
-            sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts",
-            width: "100%",
-            height: "100%"
-          }
-        ),
-        /* @__PURE__ */ jsx38("div", { class: "discord-widget__mask", "aria-hidden": "true" })
-      ] })
-    ] }) });
+    return /* @__PURE__ */ jsxs24("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: [
+      /* @__PURE__ */ jsx38(FilterDefinition, {}),
+      /* @__PURE__ */ jsx38(
+        "iframe",
+        {
+          class: "discord-widget__iframe",
+          src: WIDGET_SRC,
+          title: "710 Discord",
+          loading: "lazy",
+          allowTransparency: true,
+          frameBorder: "0",
+          sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        }
+      )
+    ] });
   }, "DiscordWidget");
   DiscordWidget.css = `
 .discord-widget {
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
 }
-
-.discord-widget__frame {
-  position: relative;
-  width: min(100%, var(--discord-frame-max-width, 350px));
-  border-radius: 12px;
-  overflow: hidden;
-  background: rgba(24, 25, 30, 0.95);
-  display: flex;
-  flex-direction: column;
-  --discord-embed-height: 500px;
-  --discord-mask-height: ${MASK_HEIGHT_PX}px;
-}
-
-.discord-widget__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.85rem 1rem 0.9rem;
-  background: #b71002;
-  color: #ffffff;
-}
-
-.discord-widget__brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.discord-widget__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.discord-widget__icon svg {
-  width: 26px;
-  height: 26px;
-}
-
-.discord-widget__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.discord-widget__title {
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.discord-widget__online {
-  display: inline-flex;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  align-items: baseline;
-}
-
-.discord-widget__online-count {
-  font-variant-numeric: tabular-nums;
-}
-
-.discord-widget__online-label {
-  opacity: 0.85;
-}
-
-.discord-widget__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.45rem 0.85rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-}
-
-.discord-widget__cta:hover,
-.discord-widget__cta:focus-visible {
-  background: rgba(0, 0, 0, 0.35);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-1px);
-}
-
-.discord-widget__embed {
-  position: relative;
-  width: 100%;
-  height: var(--discord-embed-height);
-  overflow: hidden;
-}
-
-.discord-widget__embed iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  background-color: #040405;
-}
-
-.discord-widget__mask {
+.discord-widget__filters {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--discord-mask-height);
-  background: linear-gradient(180deg, #b71002 0%, #b71002 72%, rgba(183, 16, 2, 0));
+  width: 0;
+  height: 0;
   pointer-events: none;
-  z-index: 2;
-  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.65);
 }
 
-.discord-widget--sidebar {
-  max-width: 350px;
-  margin-top: 0;
+.discord-widget__iframe {
+  width: min(100%, var(--discord-widget-max-width, 350px));
+  height: var(--discord-widget-height, 500px);
+  border: none;
+  border-radius: 12px;
+  background-color: #040405;
+  filter: url(#${FILTER_ID});
 }
 
 .discord-widget--banner {
@@ -7048,22 +6957,21 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   margin-top: 2rem;
 }
 
-.discord-widget--banner .discord-widget__frame {
-  --discord-frame-max-width: 100%;
-  --discord-embed-height: 420px;
+.discord-widget--banner .discord-widget__iframe {
+  --discord-widget-max-width: 100%;
+  --discord-widget-height: 420px;
 }
 
 @media (max-width: 480px) {
-  .discord-widget__frame {
-    --discord-embed-height: 460px;
+  .discord-widget__iframe {
+    --discord-widget-height: 420px;
   }
 
-  .discord-widget--banner .discord-widget__frame {
-    --discord-embed-height: 360px;
+  .discord-widget--banner .discord-widget__iframe {
+    --discord-widget-height: 360px;
   }
 }
 `;
-  DiscordWidget.afterDOMLoaded = discordWidget_inline_default;
   return DiscordWidget;
 }), "default");
 
