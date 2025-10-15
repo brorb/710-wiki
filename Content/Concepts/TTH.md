@@ -1,4 +1,4 @@
-TTH stands for "The Transmitting Hands", sometimes abbreviated to "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
+TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
 > [!discord-cite]- Discord citation (2 messages)
 > 1. ThePortalNinja - 2025-07-21 17:17
 >     @SYSTEM What does TTH mean or stand for?
@@ -43,13 +43,7 @@ TTH stands for "The Transmitting Hands", sometimes abbreviated to "Transmitting 
 > }
 > ```
 
-Their logo feature two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
-![[TTH_logo_enhanced.png]]
-This logo would appear in videos such as [[LOG-116.mp4]] and[[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
-
-In general, they are an organization responsible for some type of transmission, and [[INDI]] and [[Kepler]] work for them^[[STATION_8 TERMINAL 8]]. It is not known whether they are a government institution or a private one. They have numerous people working for them, as indicated by the different chatters in the [[Private Room]] chats.
-
-It is known that TTH is a subbranch of some other organization.<!-- discord-cite:cite-mgqtc9qs-494koo -->
+They are an organization responsible for some type of transmission, with [[INDI]] and [[Kepler]] working for them^[[STATION_8 TERMINAL 8]]. Most likely other people are also involved, as indicated by the different chatters in the [[Private Room]] chats. It is not known whether they are a government institution or a private one, but TTH is a subbranch of some other organization.<!-- discord-cite:cite-mgqtc9qs-494koo -->
 
 > [!discord-cite]- Discord citation (1 message)
 > 1. SYSTEM - 2025-07-21 09:41
@@ -77,6 +71,12 @@ It is known that TTH is a subbranch of some other organization.<!-- discord-cite
 >   ]
 > }
 > ```
+
+
+
+Their logo feature a two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
+![[TTH_logo_enhanced.png]]
+This logo would appear in videos such as [[LOG-116.mp4]] and[[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
 
 
 It is likely that TTH are the ones responsible for [[The Logs]] being made. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The [\_\_\_]", which likely refers to TTH. [[SYSTEM]] and other characters are often seen communicating with TTH servers <!-- discord-cite:cite-mgryowvm-smp3th --> <!-- discord-cite:cite-mgryo3jq-n0thtk --> <!-- discord-cite:cite-mgrypbv5-iz07jk -->
