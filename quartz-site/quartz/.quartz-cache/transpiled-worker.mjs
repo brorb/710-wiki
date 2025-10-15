@@ -6773,25 +6773,22 @@ var navLinks = [
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsxs21("div", { id: "links-header-container", children: [
-      /* @__PURE__ */ jsx33(
-        "nav",
-        {
-          id: "links-header",
-          style: {
-            "--link-button-bg": palette.buttonBackground,
-            "--link-button-border": palette.accentSecondary,
-            "--link-button-hover": palette.buttonHover,
-            "--link-button-text": palette.buttonText
-          },
-          children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs21("a", { class: "links-header-item", href, children: [
-            /* @__PURE__ */ jsx33("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx33("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
-            /* @__PURE__ */ jsx33("span", { children: label })
-          ] }, href))
-        }
-      ),
-      /* @__PURE__ */ jsx33("hr", {})
-    ] });
+    return /* @__PURE__ */ jsx33("div", { id: "links-header-container", children: /* @__PURE__ */ jsx33(
+      "nav",
+      {
+        id: "links-header",
+        style: {
+          "--link-button-bg": palette.buttonBackground,
+          "--link-button-border": palette.accentSecondary,
+          "--link-button-hover": palette.buttonHover,
+          "--link-button-text": palette.buttonText
+        },
+        children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs21("a", { class: "links-header-item", href, children: [
+          /* @__PURE__ */ jsx33("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx33("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+          /* @__PURE__ */ jsx33("span", { children: label })
+        ] }, href))
+      }
+    ) });
   }, "LinksHeader");
   LinksHeader.css = linksHeader_default;
   return LinksHeader;
@@ -6919,9 +6916,12 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 }), "default");
 
 // quartz/components/InfoBox.tsx
+import { Fragment as Fragment6 } from "preact";
 import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
 var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
+var stripContentPrefix = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -6935,16 +6935,80 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
   }
   return void 0;
 }, "normalizeString");
-var normalizeValueList = /* @__PURE__ */ __name((value) => {
+var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
+var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
+  const sanitized = stripContentPrefix(target);
+  const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
+  try {
+    const candidate = slugifyFilePath(withExt, true);
+    if (ctx.allSlugs.includes(candidate)) {
+      return candidate;
+    }
+    return ctx.allSlugs.find((slug) => slug.endsWith(`/${candidate}`));
+  } catch {
+    return void 0;
+  }
+}, "findSlugMatch");
+var getTitleForSlug = /* @__PURE__ */ __name((slug, ctx) => {
+  const pathSegments = slug.split("/");
+  const node = ctx.trie?.findNode(pathSegments);
+  return node?.data?.title ?? node?.displayName ?? pathSegments.at(-1);
+}, "getTitleForSlug");
+var renderTextWithWikilinks = /* @__PURE__ */ __name((raw, slug, ctx) => {
+  const nodes = [];
+  let lastIndex = 0;
+  raw.replace(OBSIDIAN_WIKILINK_PATTERN, (match, target = "", anchor = "", alias) => {
+    const index = raw.indexOf(match, lastIndex);
+    if (index > lastIndex) {
+      nodes.push(raw.slice(lastIndex, index));
+    }
+    const trimmedTarget = target.trim();
+    const trimmedAlias = alias?.trim();
+    const slugMatch = trimmedTarget ? findSlugMatch(trimmedTarget, ctx) : void 0;
+    const anchorValue = anchor?.trim() ?? "";
+    if (slugMatch) {
+      const href = transformLink(slug, `${slugMatch}${anchorValue}`, {
+        strategy: "shortest",
+        allSlugs: ctx.allSlugs
+      });
+      const label = trimmedAlias ?? getTitleForSlug(slugMatch, ctx) ?? trimmedTarget;
+      nodes.push(
+        /* @__PURE__ */ jsx35("a", { href, class: "internal", children: label })
+      );
+    } else {
+      const fallback = trimmedAlias ?? (trimmedTarget.length > 0 ? trimmedTarget : match);
+      nodes.push(fallback);
+    }
+    lastIndex = index + match.length;
+    return match;
+  });
+  if (lastIndex < raw.length) {
+    nodes.push(raw.slice(lastIndex));
+  }
+  if (nodes.length === 0) {
+    return "";
+  }
+  if (nodes.length === 1) {
+    return nodes[0];
+  }
+  return nodes;
+}, "renderTextWithWikilinks");
+var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   if (Array.isArray(value)) {
-    const flattened = value.map((entry) => normalizeString(entry)).filter((entry) => Boolean(entry));
-    if (flattened.length === 0) {
+    const normalized = value.map((entry) => normalizeValue(entry, slug, ctx)).filter((entry) => Boolean(entry));
+    if (normalized.length === 0) {
       return void 0;
     }
-    return flattened.join(", ");
+    const combinedKey = normalized.map((entry) => entry.key).join("|");
+    const children = intersperse(normalized.map((entry) => entry.node), ", ");
+    return { node: /* @__PURE__ */ jsx35(Fragment6, { children }), key: combinedKey };
   }
-  return normalizeString(value);
-}, "normalizeValueList");
+  const text = normalizeString(value);
+  if (!text) {
+    return void 0;
+  }
+  return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
+}, "normalizeValue");
 var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
@@ -6956,7 +7020,7 @@ var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
   if (isExternalUrl(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = rawTarget.replace(/^[./]+/, "");
+  const targetWithoutExt = stripContentPrefix(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
   return appendAssetVersion(joinSegments(baseDir, targetSlug), version);
@@ -6974,34 +7038,37 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = cleaned.replace(/^[./]+/, "");
+  const target = stripContentPrefix(cleaned);
   return appendAssetVersion(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
-var parseItems = /* @__PURE__ */ __name((rawItems) => {
+var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {
     return [];
   }
   const parsed = [];
-  for (const item of rawItems) {
+  rawItems.forEach((item, index) => {
     if (!item || typeof item !== "object") {
-      continue;
+      return;
     }
     const label = normalizeString(item.label);
-    const value = normalizeValueList(item.value);
-    if (!label || !value) {
-      continue;
+    if (!label) {
+      return;
     }
-    parsed.push({ label, value });
-  }
+    const normalized = normalizeValue(item.value, slug, ctx);
+    if (!normalized) {
+      return;
+    }
+    parsed.push({ label, value: normalized.node, key: `${label}-${index}-${normalized.key}` });
+  });
   return parsed;
 }, "parseItems");
-var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug) => {
+var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug, ctx) => {
   const raw = frontmatter?.infobox;
   if (!raw || typeof raw !== "object") {
     return null;
   }
   const title = normalizeString(raw.title);
-  const items = parseItems(raw.items);
+  const items = parseItems(raw.items, slug, ctx);
   const imageSrcRaw = normalizeString(raw.image?.src);
   const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
@@ -7021,11 +7088,11 @@ var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug) => {
   };
 }, "parseInfoBox");
 var InfoBox_default = /* @__PURE__ */ __name((() => {
-  const InfoBox = /* @__PURE__ */ __name(({ fileData, displayClass }) => {
+  const InfoBox = /* @__PURE__ */ __name(({ fileData, displayClass, ctx }) => {
     if (!fileData?.frontmatter || !fileData.slug) {
       return null;
     }
-    const infobox = parseInfoBox(fileData.frontmatter, fileData.slug);
+    const infobox = parseInfoBox(fileData.frontmatter, fileData.slug, ctx);
     if (!infobox) {
       return null;
     }

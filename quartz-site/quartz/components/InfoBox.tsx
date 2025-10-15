@@ -1,6 +1,14 @@
+import { ComponentChildren, Fragment } from "preact"
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../util/path"
+import {
+  FilePath,
+  FullSlug,
+  joinSegments,
+  pathToRoot,
+  slugifyFilePath,
+  transformLink,
+} from "../util/path"
 import { getAssetVersion } from "../util/assetVersion"
 
 interface FrontmatterInfoBoxItem {
@@ -22,7 +30,8 @@ interface FrontmatterInfoBox {
 
 type NormalizedInfoBoxItem = {
   label: string
-  value: string
+  value: preact.ComponentChildren
+  key: string
 }
 
 type NormalizedInfoBox = {
@@ -38,6 +47,10 @@ type NormalizedInfoBox = {
 const isExternalUrl = (url: string) => /^(https?:)?\/\//i.test(url)
 
 const OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/
+const OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g
+
+const stripContentPrefix = (target: string): string =>
+  target.replace(/^[./]+/, "").replace(/^content\//i, "")
 
 const normalizeString = (value: unknown): string | undefined => {
   if (value === null || value === undefined) {
@@ -56,20 +69,110 @@ const normalizeString = (value: unknown): string | undefined => {
   return undefined
 }
 
-const normalizeValueList = (value: unknown): string | undefined => {
-  if (Array.isArray(value)) {
-    const flattened = value
-      .map((entry) => normalizeString(entry))
-      .filter((entry): entry is string => Boolean(entry))
+const intersperse = (values: ComponentChildren[], separator: string): ComponentChildren[] =>
+  values.flatMap((node, index) => (index === 0 ? [node] : [separator, node]))
 
-    if (flattened.length === 0) {
+const findSlugMatch = (target: string, ctx: QuartzComponentProps["ctx"]): FullSlug | undefined => {
+  const sanitized = stripContentPrefix(target)
+  const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`
+
+  try {
+    const candidate = slugifyFilePath(withExt as FilePath, true)
+    if (ctx.allSlugs.includes(candidate)) {
+      return candidate
+    }
+
+    return ctx.allSlugs.find((slug) => slug.endsWith(`/${candidate}`))
+  } catch {
+    return undefined
+  }
+}
+
+const getTitleForSlug = (slug: FullSlug, ctx: QuartzComponentProps["ctx"]): string | undefined => {
+  const pathSegments = slug.split("/")
+  const node = ctx.trie?.findNode(pathSegments)
+  return node?.data?.title ?? node?.displayName ?? pathSegments.at(-1)
+}
+
+const renderTextWithWikilinks = (
+  raw: string,
+  slug: FullSlug,
+  ctx: QuartzComponentProps["ctx"],
+): ComponentChildren => {
+  const nodes: ComponentChildren[] = []
+  let lastIndex = 0
+
+  raw.replace(OBSIDIAN_WIKILINK_PATTERN, (match, target = "", anchor = "", alias) => {
+    const index = raw.indexOf(match, lastIndex)
+    if (index > lastIndex) {
+      nodes.push(raw.slice(lastIndex, index))
+    }
+
+    const trimmedTarget = target.trim()
+    const trimmedAlias = alias?.trim()
+    const slugMatch = trimmedTarget ? findSlugMatch(trimmedTarget, ctx) : undefined
+    const anchorValue = anchor?.trim() ?? ""
+
+    if (slugMatch) {
+      const href = transformLink(slug, `${slugMatch}${anchorValue}`, {
+        strategy: "shortest",
+        allSlugs: ctx.allSlugs,
+      })
+      const label = trimmedAlias ?? getTitleForSlug(slugMatch, ctx) ?? trimmedTarget
+      nodes.push(
+        <a href={href} class="internal">
+          {label}
+        </a>,
+      )
+    } else {
+      const fallback = trimmedAlias ?? (trimmedTarget.length > 0 ? trimmedTarget : match)
+      nodes.push(fallback)
+    }
+
+    lastIndex = index + match.length
+    return match
+  })
+
+  if (lastIndex < raw.length) {
+    nodes.push(raw.slice(lastIndex))
+  }
+
+  if (nodes.length === 0) {
+    return ""
+  }
+
+  if (nodes.length === 1) {
+    return nodes[0]
+  }
+
+  return nodes
+}
+
+const normalizeValue = (
+  value: unknown,
+  slug: FullSlug,
+  ctx: QuartzComponentProps["ctx"],
+): { node: ComponentChildren; key: string } | undefined => {
+  if (Array.isArray(value)) {
+    const normalized = value
+      .map((entry) => normalizeValue(entry, slug, ctx))
+      .filter((entry): entry is { node: ComponentChildren; key: string } => Boolean(entry))
+
+    if (normalized.length === 0) {
       return undefined
     }
 
-    return flattened.join(", ")
+    const combinedKey = normalized.map((entry) => entry.key).join("|")
+    const children = intersperse(normalized.map((entry) => entry.node), ", ")
+    return { node: <Fragment>{children}</Fragment>, key: combinedKey }
   }
 
-  return normalizeString(value)
+  const text = normalizeString(value)
+  if (!text) {
+    return undefined
+  }
+
+  return { node: renderTextWithWikilinks(text, slug, ctx), key: text }
 }
 
 const appendAssetVersion = (url: string, version: string): string => {
@@ -87,7 +190,7 @@ const resolveObsidianTarget = (rawTarget: string, slug: FullSlug): string => {
     return rawTarget
   }
 
-  const targetWithoutExt = rawTarget.replace(/^[./]+/, "") as FilePath
+  const targetWithoutExt = stripContentPrefix(rawTarget) as FilePath
   const targetSlug = slugifyFilePath(targetWithoutExt)
   const baseDir = pathToRoot(slug)
   return appendAssetVersion(joinSegments(baseDir, targetSlug), version)
@@ -109,42 +212,53 @@ const resolveImageSource = (raw: string, slug: FullSlug): string | undefined => 
   }
 
   const version = getAssetVersion()
-  const target = cleaned.replace(/^[./]+/, "")
+  const target = stripContentPrefix(cleaned)
   return appendAssetVersion(joinSegments(pathToRoot(slug), target), version)
 }
 
-const parseItems = (rawItems: unknown): NormalizedInfoBoxItem[] => {
+const parseItems = (
+  rawItems: unknown,
+  slug: FullSlug,
+  ctx: QuartzComponentProps["ctx"],
+): NormalizedInfoBoxItem[] => {
   if (!Array.isArray(rawItems)) {
     return []
   }
 
   const parsed: NormalizedInfoBoxItem[] = []
-  for (const item of rawItems as FrontmatterInfoBoxItem[]) {
+  ;(rawItems as FrontmatterInfoBoxItem[]).forEach((item, index) => {
     if (!item || typeof item !== "object") {
-      continue
+      return
     }
 
     const label = normalizeString(item.label)
-    const value = normalizeValueList(item.value)
-
-    if (!label || !value) {
-      continue
+    if (!label) {
+      return
     }
 
-    parsed.push({ label, value })
-  }
+    const normalized = normalizeValue(item.value, slug, ctx)
+    if (!normalized) {
+      return
+    }
+
+    parsed.push({ label, value: normalized.node, key: `${label}-${index}-${normalized.key}` })
+  })
 
   return parsed
 }
 
-const parseInfoBox = (frontmatter: Record<string, unknown>, slug: FullSlug): NormalizedInfoBox | null => {
+const parseInfoBox = (
+  frontmatter: Record<string, unknown>,
+  slug: FullSlug,
+  ctx: QuartzComponentProps["ctx"],
+): NormalizedInfoBox | null => {
   const raw = frontmatter?.infobox as FrontmatterInfoBox | undefined
   if (!raw || typeof raw !== "object") {
     return null
   }
 
   const title = normalizeString(raw.title)
-  const items = parseItems(raw.items)
+  const items = parseItems(raw.items, slug, ctx)
 
   const imageSrcRaw = normalizeString(raw.image?.src)
   const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : undefined
@@ -171,12 +285,12 @@ const parseInfoBox = (frontmatter: Record<string, unknown>, slug: FullSlug): Nor
 }
 
 export default (() => {
-  const InfoBox: QuartzComponent = ({ fileData, displayClass }: QuartzComponentProps) => {
+  const InfoBox: QuartzComponent = ({ fileData, displayClass, ctx }: QuartzComponentProps) => {
     if (!fileData?.frontmatter || !fileData.slug) {
       return null
     }
 
-    const infobox = parseInfoBox(fileData.frontmatter as Record<string, unknown>, fileData.slug)
+  const infobox = parseInfoBox(fileData.frontmatter as Record<string, unknown>, fileData.slug, ctx)
     if (!infobox) {
       return null
     }

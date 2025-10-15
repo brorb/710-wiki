@@ -4,11 +4,10 @@ infobox:
   title: TTH title
   image:
     src: ![[Content/Media/710 Media/Images/TTH_logo_enhanced.png]]
-    alt: TTH alt
     caption: TTH Logo
   items:
     - label: Region
-      value: Ferkland County
+      value: [[Ferkland County]]
     - label: Workers
       value:
         - [[INDI]]
