@@ -18,6 +18,7 @@ dist/
 build/
 out/
 quartz-site/public/
+quartz-site/quartz/.quartz-cache/
 
 # Logs
 *.log
