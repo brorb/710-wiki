@@ -24,18 +24,20 @@ async function mouseEnterHandler(
     })
   }
 
-  function showPopover(popoverElement: HTMLElement) {
+  function showPopover(popoverElement: HTMLElement, popoverInnerElement: HTMLElement | null) {
     clearActivePopover()
     popoverElement.classList.add("active-popover")
-    setPosition(popoverElement as HTMLElement)
+    setPosition(popoverElement)
 
-    if (hash !== "") {
-      const targetAnchor = `#popover-internal-${hash.slice(1)}`
-      const heading = popoverInner.querySelector(targetAnchor) as HTMLElement | null
-      if (heading) {
-        // leave ~12px of buffer when scrolling to a heading
-        popoverInner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
-      }
+    if (!popoverInnerElement || hash === "") {
+      return
+    }
+
+    const targetAnchor = `#popover-internal-${hash.slice(1)}`
+    const heading = popoverInnerElement.querySelector(targetAnchor) as HTMLElement | null
+    if (heading) {
+      // leave ~12px of buffer when scrolling to a heading
+      popoverInnerElement.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
     }
   }
 
@@ -48,7 +50,8 @@ async function mouseEnterHandler(
 
   // dont refetch if there's already a popover
   if (!!document.getElementById(popoverId)) {
-    showPopover(prevPopoverElement as HTMLElement)
+    const existingInner = prevPopoverElement?.querySelector(".popover-inner") as HTMLElement | null
+    showPopover(prevPopoverElement as HTMLElement, existingInner)
     return
   }
 
@@ -111,7 +114,7 @@ async function mouseEnterHandler(
     return
   }
 
-  showPopover(popoverElement)
+  showPopover(popoverElement, popoverInner)
 }
 
 function clearActivePopover() {
