@@ -6756,6 +6756,11 @@ var navLinks = [
     iconSlug: "media"
   },
   {
+    href: "/Timelines/",
+    label: "Timelines",
+    iconSlug: "timeline"
+  },
+  {
     href: "/Puzzles/",
     label: "Puzzles",
     iconSlug: "puzzles"

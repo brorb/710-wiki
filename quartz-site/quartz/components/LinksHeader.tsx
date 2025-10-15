@@ -28,6 +28,11 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "media",
   },
   {
+    href: "/Timelines/",
+    label: "Timelines",
+    iconSlug: "timeline",
+  },
+  {
     href: "/Puzzles/",
     label: "Puzzles",
     iconSlug: "puzzles",
