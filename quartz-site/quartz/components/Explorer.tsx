@@ -47,7 +47,7 @@ const defaultOptions: Options = {
       return -1
     }
   },
-  filterFn: (node) => node.slugSegment !== "tags",
+  filterFn: (node) => node.slugSegment !== "tags" && node.slugSegment !== "canvases",
   order: ["filter", "map", "sort"],
 }
 
