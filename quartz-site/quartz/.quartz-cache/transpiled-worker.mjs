@@ -2647,18 +2647,16 @@ var defaultTranslation = "en-US";
 var i18n = /* @__PURE__ */ __name((locale) => TRANSLATIONS[locale ?? defaultTranslation], "i18n");
 
 // quartz/plugins/transformers/frontmatter.ts
-var OBSIDIAN_EMBED_PATTERN = /!\[\[[^\]\r\n]+\]\]/;
+var OBSIDIAN_LINK_PATTERN = /!?\[\[[^\]\r\n]+\]\]/;
 var sanitizeObsidianEmbeds = /* @__PURE__ */ __name((frontmatter) => {
-  const wrap = /* @__PURE__ */ __name((prefix, embed) => `${prefix}"${embed}"`, "wrap");
-  const valuePattern = /(^\s*[^\n:]+:\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm;
-  const listPattern = /(^\s*-\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm;
-  if (!OBSIDIAN_EMBED_PATTERN.test(frontmatter)) {
+  const wrap = /* @__PURE__ */ __name((prefix, target) => `${prefix}"${target}"`, "wrap");
+  const patternSource = OBSIDIAN_LINK_PATTERN.source;
+  const valuePattern = new RegExp(`(^\\s*[^\\n:]+:\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm");
+  const listPattern = new RegExp(`(^\\s*-\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm");
+  if (!OBSIDIAN_LINK_PATTERN.test(frontmatter)) {
     return frontmatter;
   }
-  return frontmatter.replace(listPattern, (_, prefix, embed) => wrap(prefix, embed)).replace(
-    valuePattern,
-    (_, prefix, embed) => wrap(prefix, embed)
-  );
+  return frontmatter.replace(listPattern, (_, prefix, target) => wrap(prefix, target)).replace(valuePattern, (_, prefix, target) => wrap(prefix, target));
 }, "sanitizeObsidianEmbeds");
 var defaultOptions = {
   delimiters: "---",
@@ -6923,7 +6921,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
 var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -6968,7 +6966,7 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN);
   if (obsidianMatch?.groups?.target) {
     return resolveObsidianTarget(obsidianMatch.groups.target, slug);
   }

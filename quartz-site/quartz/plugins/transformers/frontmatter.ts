@@ -7,21 +7,21 @@ import { FilePath, FullSlug, getFileExtension, slugifyFilePath, slugTag } from "
 import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 
-const OBSIDIAN_EMBED_PATTERN = /!\[\[[^\]\r\n]+\]\]/
+const OBSIDIAN_LINK_PATTERN = /!?\[\[[^\]\r\n]+\]\]/
 
 const sanitizeObsidianEmbeds = (frontmatter: string): string => {
-  const wrap = (prefix: string, embed: string) => `${prefix}"${embed}"`
-  const valuePattern = /(^\s*[^\n:]+:\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm
-  const listPattern = /(^\s*-\s*)(?<!["'])(!\[\[[^\]\r\n]+\]\])(?=\s*$)/gm
+  const wrap = (prefix: string, target: string) => `${prefix}"${target}"`
+  const patternSource = OBSIDIAN_LINK_PATTERN.source
+  const valuePattern = new RegExp(`(^\\s*[^\\n:]+:\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm")
+  const listPattern = new RegExp(`(^\\s*-\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm")
 
-  if (!OBSIDIAN_EMBED_PATTERN.test(frontmatter)) {
+  if (!OBSIDIAN_LINK_PATTERN.test(frontmatter)) {
     return frontmatter
   }
 
-  return frontmatter.replace(listPattern, (_, prefix: string, embed: string) => wrap(prefix, embed)).replace(
-    valuePattern,
-    (_, prefix: string, embed: string) => wrap(prefix, embed),
-  )
+  return frontmatter
+    .replace(listPattern, (_, prefix: string, target: string) => wrap(prefix, target))
+    .replace(valuePattern, (_, prefix: string, target: string) => wrap(prefix, target))
 }
 
 export interface Options {

@@ -93,7 +93,7 @@ They are an organization responsible for some type of transmission, with [[INDI]
 
 
 Their logo feature a two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
-![[TTH_logo_enhanced.png]]
+
 This logo would appear in videos such as [[LOG-116.mp4]] and[[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
 
 
