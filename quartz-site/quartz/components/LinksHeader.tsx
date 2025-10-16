@@ -43,6 +43,11 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "discord",
   },
   {
+    href: "/Forum/",
+    label: "Forum",
+    iconSlug: "forum",
+  },
+  {
     href: "/YouTube/",
     label: "YouTube",
     iconSlug: "youtube",
