@@ -6,13 +6,13 @@ infobox:
     src: ![[Content/Media/Sleuth Media/Images/Station Timer.png]]
     caption: Example of the Station Timer screen from the livestreams
   items:
-    - label: 
-      value: Appearances
-        - [[ES-ETA (June 7th, 2025)]]
-		- [[ES-ETA 5-5]]
-		- [[STATION_8 TRIM 5]]
-		- [[STATION_8 TRIM 90]]
-		- [[STATION_8 TERMINAL 8]]
+    - label: Appearances
+      value:
+        - "[[ES-ETA (June 7th, 2025)]]"
+        - "[[ES-ETA 5-5]]"
+        - "[[STATION_8 TRIM 5]]"
+        - "[[STATION_8 TRIM 90]]"
+        - "[[STATION_8 TERMINAL 8]]"
 
 ---
 
