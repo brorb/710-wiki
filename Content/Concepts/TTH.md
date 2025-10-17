@@ -14,7 +14,11 @@ infobox:
       value: [[Ferkland County]]
     - label: Workers
       value:
+        - [[INDI]]
         - [[Kepler]]
+        - [[TTHA0002]]
+        - [[A992144]]
+        - [[X331239]]
 
 ---
 
