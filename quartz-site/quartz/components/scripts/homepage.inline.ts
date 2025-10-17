@@ -9,7 +9,7 @@ type Entry = [FullSlug, SerializedContentDetails]
 const HOME_SLUG = "index" as FullSlug
 const RECENT_LIMIT = 6
 
-const relativeTimeFormat = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" })
+const relativeTimeFormat = new Intl.RelativeTimeFormat("en", { numeric: "auto" })
 
 const MILLISECONDS_IN_DAY = 86_400_000
 const MILLISECONDS_IN_MONTH = MILLISECONDS_IN_DAY * 30
@@ -94,19 +94,20 @@ const renderRecent = (root: HTMLElement, slug: FullSlug, entries: Entry[]) => {
       const time = document.createElement("time")
       time.className = "home-recent__time"
       time.dateTime = updatedDate.toISOString()
-      time.textContent = updatedDate.toLocaleDateString(undefined, {
+      const formattedDate = updatedDate.toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
       })
 
-      const relative = document.createElement("span")
-      relative.textContent = formatRelative(updatedDate, now)
+      time.textContent = formattedDate
 
-      const separator = document.createElement("span")
-      separator.textContent = " · "
+      const relativeText = formatRelative(updatedDate, now)
 
-      meta.append(time, separator, relative)
+      meta.append("Updated ", time)
+      if (relativeText) {
+        meta.append(document.createTextNode(` · ${relativeText}`))
+      }
     }
 
     li.append(link)

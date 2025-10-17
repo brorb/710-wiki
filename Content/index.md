@@ -1,14 +1,4 @@
-title: Home
-homepageLinks:
-	archive:
-		href: https://www.youtube.com/@SleuthMedia
-		label: Visit the Archive Channel
-		description: Watch preserved livestreams, puzzles, and community captures.
-	discord:
-		href: https://discord.gg/cRFFHYye7t
-		label: Join the Sleuths Discord
-		description: Coordinate puzzle solving and keep up with live drops.
----
+
 # Welcome to the 7/10 Tone Sleuth Wiki!
 
 This is a community-driven wiki project driven by the [[The Sleuths]] and is not officially affiliated with the ARG known as [[7/10 Tone]]. 

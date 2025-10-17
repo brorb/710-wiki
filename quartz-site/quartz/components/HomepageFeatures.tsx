@@ -77,10 +77,7 @@ export default (() => {
     return (
       <section class={classNames(displayClass, "home-features")} data-home-root>
         <section class="home-recent">
-          <div class="home-recent__header">
-            <h2 class="home-recent__title">Recently updated</h2>
-            <p class="home-recent__subtitle">Fresh edits and new clues from across the archive.</p>
-          </div>
+          <h2 class="home-recent__title">Recently updated</h2>
           <ol class="home-recent__list" data-home-recent-list>
             <li class="home-recent__empty">Loading recent updates…</li>
           </ol>
@@ -145,47 +142,30 @@ export default (() => {
 }
 
 .home-recent {
-  padding: 1.25rem 1.5rem;
-  border-radius: 16px;
-  background: var(--lightgray);
-  border: 1px solid var(--gray);
-}
-
-.home-recent__header {
-  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .home-recent__title {
   margin: 0;
-  font-size: clamp(1.15rem, 1.4vw + 0.6rem, 1.45rem);
-}
-
-.home-recent__subtitle {
-  margin: 0.25rem 0 0;
-  color: var(--darkgray);
-  font-size: 0.9rem;
+  font-size: clamp(1.1rem, 1.2vw + 0.6rem, 1.35rem);
 }
 
 .home-recent__list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .home-recent__item {
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
-  background: var(--light);
-  border: 1px solid var(--lightgray);
-  transition: border-color 120ms ease, box-shadow 120ms ease;
-}
-
-.home-recent__item:hover,
-.home-recent__item:focus-within {
-  border-color: var(--secondary);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
 }
 
 .home-recent__link {
@@ -197,15 +177,8 @@ export default (() => {
   text-decoration: none;
 }
 
-.home-recent__link::after {
-  content: "→";
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
 .home-recent__meta {
-  margin-top: 0.25rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--darkgray);
 }
 
@@ -214,12 +187,7 @@ export default (() => {
 }
 
 .home-recent__empty {
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
-  background: var(--light);
-  border: 1px dashed var(--gray);
   color: var(--darkgray);
-  text-align: center;
   font-size: 0.9rem;
 }
 
