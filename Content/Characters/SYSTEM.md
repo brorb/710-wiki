@@ -1,5 +1,5 @@
 
-SYSTEM (also known as *SYSTEMterminal8*, *system000008*) is a program created by [[INDI]].
+_SYSTEM_ (also known as *SYSTEMterminal8*, *system000008*) is a program created by [[INDI]].
 
 Originally, SYSTEM was created as a moderator of the [[Livestreams]], but quickly grew to be a central lore character, when they joined the [[The Sleuths]] Discord channel. Here, they were able to talk with [[The Sleuths]] directly. These interactions have served as some of the most important sources of lore information.
 
