@@ -1,12 +1,22 @@
-![[Screenshot 2025-10-04 105123-min.png|400]]
+![[Station Timer.png|400]]
 _Example of the Station Timer._
 
-A timer that always counts down to July 10th of every year, which is apparently an important event for the 7/10 Tone channel.
+A timer that always counts down to July 10th of every year, which is apparently an important event for the [[710 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right.
 
+---
+### Purpose:
+
+The timer's sole purpose is to count down to July 10th annually, 
 ### When the timer started:
 
-In 2025, the Station Timer screen (as seen above) started broadcasting on the "ES-ETA" livestream from June 7th, 2025. But it appeared even *earlier* than that, as far back as the [[30]] video on the [[710 Tone]] YouTube channel.
+In 2025, the Station Timer screen (as seen above) started broadcasting on the "ES-ETA" livestream from June 7th, 2025. However, it has been featured as far back as the "[[30]]" video.
 
-### When the timer ended:
+### When the timer ended and what happened afterwards:
 
-In [[STATION_8 TERMINAL 8]], the timer ended on 
+In [[STATION_8 TERMINAL 8]], the timer ended on July 10th at 3:00AM. When it ended, [[INDI]] asked the viewers to enter in a 5-digit code (referred to as "the op code" by [[SYSTEM]]) with the digits being contained in the descriptions of prime numbered logs ([[LOG-002.mp4]], [[LOG-007.mp4]], [[LOG-17.mp4]], [[LOG-31.mp4]], and finally [[LOG-71.mp4]]). The code (28634 when combined) was entered successfully and INDI began a transmission signal, but was overloaded and got found by someone (possibly the mysterious "[[He]]" figure).
+
+### Interferences:
+
+During the STATION_8 livestreams, the timer would be occasionally interrupted by the [[Station Interruption]] screen or [[Channel 14]], which got worse as it was getting closer to the end. These interferences were caused by [[REN]] according to [[INDI]].
+
+### 

@@ -1,4 +1,4 @@
-![[Screenshot_20250807_163613_YouTube.jpg|350]]
+![[Technical difficulties screen.jpg|350]]
 
 Technical difficulties screen that appeared occasionally during the livestreams (also featured in some of [[The Logs]] as well), usually caused by REN or some other type of interference in signal connection.
 

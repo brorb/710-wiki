@@ -11,7 +11,7 @@ infobox:
 ---
 
 
-The Ferkland Institute is a mysterious organization possibly tied to [[TTH]] (as hinted at in [[LOG-15.mmp44]]). Their purpose is unknown as if now (the time of writing this is October 17th, 2025).
+The Ferkland Institute is a mysterious organization possibly tied to [[TTH]] (as hinted at in [[LOG-15.mmp44]]), most likely from [[Ferkland County]]. Their purpose is unknown as if now (the time of writing this is October 17th, 2025).
 
 ![[FUNDEDDEATH_guess-min.png|400]]
 _Logo deduction by The Sleuths._
