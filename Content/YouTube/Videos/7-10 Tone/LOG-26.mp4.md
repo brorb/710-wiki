@@ -11,5 +11,3 @@ SYSTEM: 023236
 SYSTEM ID: 67294398**
 
 **Video Summary:** Normal red and black static with quiet noise, timer counts down from 165 to 164.
-
-**Clues:** 

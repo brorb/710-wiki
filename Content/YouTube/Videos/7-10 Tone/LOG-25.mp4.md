@@ -11,5 +11,3 @@ SYSTEM: 402937
 SYSTEM ID: 691837950**
 
 **Video Summary:** Normal red and black static with quiet noise playing in the background, timer counts down from 166 to 165 while some strange beeping noises in the background.
-
-**Clues:** 

@@ -11,5 +11,3 @@ SYSTEM: 392047
 SYSTEM ID: 0392873370**
 
 **Video Summary:** LOG data screen sound is super low-pitched, red and black static plays out like normal with quiet background noise, timer counts down from 170 to 169 with a horizontal line of zeros parallel to the numbers and a noise that's similar to the one at the beginning of [[LOG-116.mp4]].
-
-**Clues:** 
