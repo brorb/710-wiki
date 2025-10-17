@@ -5854,7 +5854,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const path11 = url.pathname;
     const baseDir = fileData.slug === "404" ? path11 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
-    const iconPath2 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
+    const iconPath3 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName
@@ -5896,7 +5896,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
         /* @__PURE__ */ jsx17("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx17("meta", { property: "twitter:url", content: socialUrl })
       ] }),
-      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath2 }),
+      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath3 }),
       /* @__PURE__ */ jsx17("meta", { name: "description", content: description }),
       /* @__PURE__ */ jsx17("meta", { name: "generator", content: "Quartz" }),
       css.map((resource) => CSSResourceToStyleElement(resource, true)),
@@ -7202,16 +7202,19 @@ var homepage_inline_default = "";
 
 // quartz/components/HomepageFeatures.tsx
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
+var iconPath2 = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
 var DEFAULT_LINKS = {
   archive: {
     label: "Visit the Archive Channel",
     href: "https://www.youtube.com/@SleuthMedia",
-    description: "Catch up on reuploads, VODs, and finds from across the community."
+    description: "Catch up on reuploads, VODs, and finds from across the community.",
+    iconSlug: "youtube"
   },
   discord: {
     label: "Join the Sleuths Discord",
     href: "https://discord.gg/cRFFHYye7t",
-    description: "Coordinate puzzle solving, share theories, and keep watch on live drops."
+    description: "Coordinate puzzle solving, share theories, and keep watch on live drops.",
+    iconSlug: "discord"
   }
 };
 var toLink = /* @__PURE__ */ __name((candidate, fallback) => {
@@ -7221,7 +7224,8 @@ var toLink = /* @__PURE__ */ __name((candidate, fallback) => {
   const label = typeof candidate.label === "string" && candidate.label.trim().length > 0 ? candidate.label.trim() : fallback.label;
   const href = typeof candidate.href === "string" && candidate.href.trim().length > 0 ? candidate.href.trim() : fallback.href;
   const description = typeof candidate.description === "string" && candidate.description.trim().length > 0 ? candidate.description.trim() : fallback.description;
-  return { label, href, description };
+  const iconSlug = typeof candidate.iconSlug === "string" && candidate.iconSlug.trim().length > 0 ? candidate.iconSlug.trim() : fallback.iconSlug;
+  return { label, href, description, iconSlug };
 }, "toLink");
 var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   const HomepageFeatures = /* @__PURE__ */ __name(({ displayClass, fileData }) => {
@@ -7231,20 +7235,23 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
     const archiveLink = toLink(homepageLinks.archive, DEFAULT_LINKS.archive);
     const discordLink = toLink(homepageLinks.discord, DEFAULT_LINKS.discord);
     return /* @__PURE__ */ jsxs24("section", { class: classNames(displayClass, "home-features"), "data-home-root": true, children: [
-      /* @__PURE__ */ jsxs24("div", { class: "home-features__intro", children: [
-        /* @__PURE__ */ jsxs24("div", { class: "home-random", children: [
-          /* @__PURE__ */ jsx36("h2", { class: "home-random__title", children: "Start with a random article" }),
-          /* @__PURE__ */ jsx36("p", { class: "home-random__body", children: "Not sure where to dive in? Let the wiki pick a page at random." }),
-          /* @__PURE__ */ jsx36("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Surprise me" }),
-          /* @__PURE__ */ jsxs24("p", { class: "home-random__result", "data-home-random-result": true, "aria-live": "polite", hidden: true, children: [
-            /* @__PURE__ */ jsx36("span", { class: "home-random__result-label", children: "You landed on:" }),
-            " ",
-            /* @__PURE__ */ jsx36("a", { class: "home-random__link", "data-home-random-link": true, href: "#", children: "Generating\u2026" })
-          ] })
+      /* @__PURE__ */ jsxs24("section", { class: "home-recent", children: [
+        /* @__PURE__ */ jsxs24("div", { class: "home-recent__header", children: [
+          /* @__PURE__ */ jsx36("h2", { class: "home-recent__title", children: "Recently updated" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-recent__subtitle", children: "Fresh edits and new clues from across the archive." })
         ] }),
-        /* @__PURE__ */ jsxs24("div", { class: "home-links", children: [
-          /* @__PURE__ */ jsx36("h2", { class: "home-links__title", children: "Stay connected" }),
-          /* @__PURE__ */ jsxs24("div", { class: "home-links__grid", children: [
+        /* @__PURE__ */ jsx36("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx36("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
+      ] }),
+      /* @__PURE__ */ jsxs24("div", { class: "home-actions", children: [
+        /* @__PURE__ */ jsxs24("div", { class: "home-card home-random", children: [
+          /* @__PURE__ */ jsx36("h3", { class: "home-card__title", children: "Jump to a random article" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-card__body", children: "Feeling adventurous? Head straight to a random page pulled from the archive." }),
+          /* @__PURE__ */ jsx36("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Take me there" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-random__empty", "data-home-random-empty": true, hidden: true, children: "No eligible pages yet." })
+        ] }),
+        /* @__PURE__ */ jsxs24("div", { class: "home-card home-links", children: [
+          /* @__PURE__ */ jsx36("h3", { class: "home-card__title", children: "Stay connected" }),
+          /* @__PURE__ */ jsxs24("div", { class: "home-links__stack", children: [
             /* @__PURE__ */ jsxs24(
               "a",
               {
@@ -7253,8 +7260,11 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: archiveLink.label }),
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: archiveLink.description })
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(archiveLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: archiveLink.label }),
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: archiveLink.description })
+                  ] })
                 ]
               }
             ),
@@ -7266,20 +7276,16 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: discordLink.label }),
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: discordLink.description })
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(discordLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: discordLink.label }),
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: discordLink.description })
+                  ] })
                 ]
               }
             )
           ] })
         ] })
-      ] }),
-      /* @__PURE__ */ jsxs24("section", { class: "home-recent", children: [
-        /* @__PURE__ */ jsxs24("div", { class: "home-recent__header", children: [
-          /* @__PURE__ */ jsx36("h2", { class: "home-recent__title", children: "Recently updated" }),
-          /* @__PURE__ */ jsx36("p", { class: "home-recent__subtitle", children: "Fresh edits and new clues from across the archive." })
-        ] }),
-        /* @__PURE__ */ jsx36("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx36("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
       ] })
     ] });
   }, "HomepageFeatures");
@@ -7287,141 +7293,30 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 .home-features {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  margin-bottom: 3rem;
-}
-
-.home-features__intro {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  align-items: stretch;
-}
-
-.home-random {
-  padding: 1.75rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--secondary) 0%, rgba(255, 255, 255, 0) 65%), var(--lightgray);
-  border: 1px solid var(--secondary);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
-  color: var(--dark);
-}
-
-.home-random__title {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.6rem);
-}
-
-.home-random__body {
-  margin: 0 0 1.25rem;
-  max-width: 36ch;
-  color: var(--darkgray);
-}
-
-.home-random__button {
-  appearance: none;
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--dark);
-  color: var(--light);
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 120ms ease, box-shadow 120ms ease;
-}
-
-.home-random__button:hover,
-.home-random__button:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
-}
-
-.home-random__button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.home-random__result {
-  margin: 1rem 0 0;
-  font-size: 0.95rem;
-  color: var(--dark);
-}
-
-.home-random__result a {
-  font-weight: 600;
-}
-
-.home-links {
-  padding: 1.75rem;
-  border-radius: 18px;
-  background: var(--lightgray);
-  border: 1px solid var(--gray);
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.home-links__title {
-  margin: 0;
-  font-size: clamp(1.2rem, 1.8vw + 0.4rem, 1.5rem);
-}
-
-.home-links__grid {
-  display: grid;
-  gap: 1.1rem;
-}
-
-.home-link-card {
-  display: block;
-  padding: 1rem 1.1rem;
-  border-radius: 14px;
-  background: var(--light);
-  border: 1px solid var(--lightgray);
-  text-decoration: none;
-  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-}
-
-.home-link-card:hover,
-.home-link-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--secondary);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.14);
-}
-
-.home-link-card__label {
-  display: block;
-  font-weight: 600;
-  color: var(--dark);
-}
-
-.home-link-card__description {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--darkgray);
-  font-size: 0.95rem;
+  gap: 1.75rem;
+  margin: 2.5rem 0 1.5rem;
 }
 
 .home-recent {
-  padding: 2rem;
-  border-radius: 22px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
   background: var(--lightgray);
   border: 1px solid var(--gray);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.1);
 }
 
 .home-recent__header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.8rem;
 }
 
 .home-recent__title {
   margin: 0;
-  font-size: clamp(1.3rem, 2vw + 0.5rem, 1.6rem);
+  font-size: clamp(1.15rem, 1.4vw + 0.6rem, 1.45rem);
 }
 
 .home-recent__subtitle {
-  margin: 0.35rem 0 0;
+  margin: 0.25rem 0 0;
   color: var(--darkgray);
+  font-size: 0.9rem;
 }
 
 .home-recent__list {
@@ -7429,27 +7324,27 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.9rem;
+  gap: 0.55rem;
 }
 
 .home-recent__item {
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
   background: var(--light);
   border: 1px solid var(--lightgray);
-  transition: border-color 140ms ease, box-shadow 140ms ease;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
 }
 
 .home-recent__item:hover,
 .home-recent__item:focus-within {
   border-color: var(--secondary);
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
 }
 
 .home-recent__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-weight: 600;
   color: var(--dark);
   text-decoration: none;
@@ -7457,14 +7352,13 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 
 .home-recent__link::after {
   content: "\u2192";
-  font-size: 0.9rem;
-  opacity: 0.8;
-  transform: translateY(-1px);
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
 .home-recent__meta {
-  margin-top: 0.45rem;
-  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
   color: var(--darkgray);
 }
 
@@ -7473,23 +7367,140 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 }
 
 .home-recent__empty {
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
   background: var(--light);
   border: 1px dashed var(--gray);
   color: var(--darkgray);
   text-align: center;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 600px) {
-  .home-random,
-  .home-links,
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.home-card {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+}
+
+.home-card__title {
+  margin: 0;
+  font-size: clamp(1.05rem, 1vw + 0.6rem, 1.3rem);
+}
+
+.home-card__body {
+  margin: 0;
+  color: var(--darkgray);
+  font-size: 0.92rem;
+}
+
+.home-random__button {
+  align-self: flex-start;
+  appearance: none;
+  padding: 0.55rem 1.05rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--dark);
+  color: var(--light);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.home-random__button:hover,
+.home-random__button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.16);
+}
+
+.home-random__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.home-random__empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--darkgray);
+}
+
+.home-links__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.home-link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  text-decoration: none;
+  transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+
+.home-link-card:hover,
+.home-link-card:focus-visible {
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+.home-link-card__icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+}
+
+.home-link-card__icon img {
+  width: 22px;
+  height: 22px;
+}
+
+.home-link-card__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.home-link-card__label {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.home-link-card__description {
+  color: var(--darkgray);
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
   .home-recent {
-    padding: 1.5rem;
+    padding: 1.1rem 1.2rem;
   }
 
-  .home-recent__list {
-    gap: 0.75rem;
+  .home-card {
+    padding: 1rem 1.1rem;
   }
 }
 `;
@@ -7514,7 +7525,11 @@ var sharedAfterBody = [
     component: Canvas_default(),
     condition: /* @__PURE__ */ __name((props) => hasCanvasFrontmatter(props.fileData.frontmatter), "condition")
   }),
-  MobileOnly_default(Backlinks_default())
+  MobileOnly_default(Backlinks_default()),
+  ConditionalRender_default({
+    component: HomepageFeatures_default(),
+    condition: /* @__PURE__ */ __name((page) => page.fileData.slug === "index", "condition")
+  })
 ];
 var mobileDiscordWidget = MobileOnly_default(
   DiscordWidget_default({
@@ -7587,10 +7602,6 @@ var defaultContentPageLayout = {
     }),
     ArticleTitle_default(),
     ContentMeta_default(),
-    ConditionalRender_default({
-      component: HomepageFeatures_default(),
-      condition: /* @__PURE__ */ __name((page) => page.fileData.slug === "index", "condition")
-    }),
     InfoBox_default(),
     TagList_default(),
     MobileOnly_default(
@@ -8282,8 +8293,8 @@ import sharp2 from "sharp";
 var Favicon = /* @__PURE__ */ __name(() => ({
   name: "Favicon",
   async *emit({ argv }) {
-    const iconPath2 = joinSegments(QUARTZ, "static", "icon.png");
-    const faviconContent = sharp2(iconPath2).resize(48, 48).toFormat("png");
+    const iconPath3 = joinSegments(QUARTZ, "static", "icon.png");
+    const faviconContent = sharp2(iconPath3).resize(48, 48).toFormat("png");
     yield write({
       ctx: { argv },
       slug: "favicon",

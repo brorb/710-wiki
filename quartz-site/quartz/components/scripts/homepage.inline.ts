@@ -101,47 +101,48 @@ const renderRecent = (root: HTMLElement, slug: FullSlug, entries: Entry[]) => {
       })
 
       const relative = document.createElement("span")
-      relative.className = "home-recent__relative"
       relative.textContent = formatRelative(updatedDate, now)
 
-      meta.append(time, document.createTextNode(" • "), relative)
+      const separator = document.createElement("span")
+      separator.textContent = " · "
+
+      meta.append(time, separator, relative)
     }
 
-    li.append(link, meta)
+    li.append(link)
+    if (meta.childNodes.length > 0) {
+      li.append(meta)
+    }
     list.appendChild(li)
   })
 }
 
 const setupRandom = (root: HTMLElement, slug: FullSlug, entries: Entry[]) => {
   const button = root.querySelector("[data-home-random-button]") as HTMLButtonElement | null
-  const result = root.querySelector("[data-home-random-result]") as HTMLElement | null
-  const link = root.querySelector("[data-home-random-link]") as HTMLAnchorElement | null
+  const emptyMessage = root.querySelector("[data-home-random-empty]") as HTMLElement | null
 
-  if (!button || !result || !link) {
+  if (!button || !emptyMessage) {
     return
   }
+
+  emptyMessage.hidden = true
 
   const pool = entries
   if (pool.length === 0) {
     button.disabled = true
-    result.hidden = false
-    link.removeAttribute("href")
-    link.textContent = "No eligible pages yet"
+    emptyMessage.hidden = false
     return
   }
 
   const pick = () => {
     const index = Math.floor(Math.random() * pool.length)
-    const [targetSlug, details] = pool[index]
-    link.href = resolveRelative(slug, targetSlug)
-    link.textContent = details.title ?? targetSlug
-    result.hidden = false
+    const [targetSlug] = pool[index]
+    const target = resolveRelative(slug, targetSlug)
+    window.location.assign(target)
   }
 
   button.addEventListener("click", pick)
   window.addCleanup(() => button.removeEventListener("click", pick))
-
-  pick()
 }
 
 const initHomepage = async (slug: FullSlug) => {
