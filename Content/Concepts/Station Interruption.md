@@ -6,16 +6,16 @@ infobox:
     src: ![[Content/Media/Sleuth Media/Images/Technical difficulties screen.jpg]]
     caption: Technical difficulties screen
   items:
-    - label: 
-      value: Appearances
-	- [[ECAA(TEST) CL5672]]
-	- ECAA(TEST) CL5909
-	- ECAA(TEST) CL5909
-    - [[ES-ETA (June 7th, 2025)]]
-	- [[ES-ETA 5-5]]
-	- [[STATION_8 TRIM 5]]
-	- [[STATION_8 TRIM 90]]
-	- [[STATION_8 TERMINAL 8]]
+    - label: Appearances
+      value:
+        - "[[ECAA(TEST) CL5672]]"
+        - ECAA(TEST) CL5909
+        - ECAA(TEST) CL5909
+        - "[[ES-ETA (June 7th, 2025)]]"
+        - "[[ES-ETA 5-5]]"
+        - "[[STATION_8 TRIM 5]]"
+        - "[[STATION_8 TRIM 90]]"
+        - "[[STATION_8 TERMINAL 8]]"
 
 ---
 

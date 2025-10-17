@@ -1,5 +1,5 @@
 import FlexSearch, { DefaultDocumentSearchResults } from "flexsearch"
-import { ContentDetails } from "../../plugins/emitters/contentIndex"
+import type { SerializedContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
@@ -476,7 +476,7 @@ async function fillDocument(data: ContentIndex) {
   if (indexPopulated) return
   let id = 0
   const promises: Array<Promise<unknown>> = []
-  for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+  for (const [slug, fileData] of Object.entries<SerializedContentDetails>(data)) {
     promises.push(
       index.addAsync(id++, {
         id,

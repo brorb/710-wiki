@@ -5854,7 +5854,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const path11 = url.pathname;
     const baseDir = fileData.slug === "404" ? path11 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
-    const iconPath2 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
+    const iconPath3 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName
@@ -5896,7 +5896,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
         /* @__PURE__ */ jsx17("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx17("meta", { property: "twitter:url", content: socialUrl })
       ] }),
-      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath2 }),
+      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath3 }),
       /* @__PURE__ */ jsx17("meta", { name: "description", content: description }),
       /* @__PURE__ */ jsx17("meta", { name: "generator", content: "Quartz" }),
       css.map((resource) => CSSResourceToStyleElement(resource, true)),
@@ -7197,6 +7197,285 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
   return InfoBox;
 }), "default");
 
+// quartz/components/scripts/homepage.inline.ts
+var homepage_inline_default = "";
+
+// quartz/components/HomepageFeatures.tsx
+import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
+var iconPath2 = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
+var DEFAULT_LINKS = {
+  archive: {
+    label: "Visit the Archive Channel",
+    href: "https://www.youtube.com/@SleuthMedia",
+    description: "Catch up on reuploads, VODs, and finds from across the community.",
+    iconSlug: "youtube"
+  },
+  discord: {
+    label: "Join the Sleuths Discord",
+    href: "https://discord.gg/cRFFHYye7t",
+    description: "Coordinate puzzle solving, share theories, and keep watch on live drops.",
+    iconSlug: "discord"
+  }
+};
+var toLink = /* @__PURE__ */ __name((candidate, fallback) => {
+  if (!candidate || typeof candidate !== "object") {
+    return fallback;
+  }
+  const label = typeof candidate.label === "string" && candidate.label.trim().length > 0 ? candidate.label.trim() : fallback.label;
+  const href = typeof candidate.href === "string" && candidate.href.trim().length > 0 ? candidate.href.trim() : fallback.href;
+  const description = typeof candidate.description === "string" && candidate.description.trim().length > 0 ? candidate.description.trim() : fallback.description;
+  const iconSlug = typeof candidate.iconSlug === "string" && candidate.iconSlug.trim().length > 0 ? candidate.iconSlug.trim() : fallback.iconSlug;
+  return { label, href, description, iconSlug };
+}, "toLink");
+var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
+  const HomepageFeatures = /* @__PURE__ */ __name(({ displayClass, fileData }) => {
+    const frontmatter = fileData.frontmatter ?? {};
+    const linksRaw = frontmatter.homepageLinks;
+    const homepageLinks = linksRaw && typeof linksRaw === "object" ? linksRaw : {};
+    const archiveLink = toLink(homepageLinks.archive, DEFAULT_LINKS.archive);
+    const discordLink = toLink(homepageLinks.discord, DEFAULT_LINKS.discord);
+    return /* @__PURE__ */ jsxs24("section", { class: classNames(displayClass, "home-features"), "data-home-root": true, children: [
+      /* @__PURE__ */ jsxs24("section", { class: "home-recent", children: [
+        /* @__PURE__ */ jsx36("h2", { class: "home-recent__title", children: "Recently updated" }),
+        /* @__PURE__ */ jsx36("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx36("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
+      ] }),
+      /* @__PURE__ */ jsxs24("div", { class: "home-actions", children: [
+        /* @__PURE__ */ jsxs24("div", { class: "home-card home-random", children: [
+          /* @__PURE__ */ jsx36("h3", { class: "home-card__title", children: "Jump to a random article" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-card__body", children: "Feeling adventurous? Head straight to a random page pulled from the archive." }),
+          /* @__PURE__ */ jsx36("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Take me there" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-random__empty", "data-home-random-empty": true, hidden: true, children: "No eligible pages yet." })
+        ] }),
+        /* @__PURE__ */ jsxs24("div", { class: "home-card home-links", children: [
+          /* @__PURE__ */ jsx36("h3", { class: "home-card__title", children: "Stay connected" }),
+          /* @__PURE__ */ jsxs24("div", { class: "home-links__stack", children: [
+            /* @__PURE__ */ jsxs24(
+              "a",
+              {
+                class: "home-link-card",
+                href: archiveLink.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: [
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(archiveLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: archiveLink.label }),
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: archiveLink.description })
+                  ] })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxs24(
+              "a",
+              {
+                class: "home-link-card",
+                href: discordLink.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: [
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(discordLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: discordLink.label }),
+                    /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: discordLink.description })
+                  ] })
+                ]
+              }
+            )
+          ] })
+        ] })
+      ] })
+    ] });
+  }, "HomepageFeatures");
+  HomepageFeatures.css = `
+.home-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin: 2.5rem 0 1.5rem;
+}
+
+.home-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home-recent__title {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.2vw + 0.6rem, 1.35rem);
+}
+
+.home-recent__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.home-recent__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.home-recent__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.home-recent__meta {
+  font-size: 0.82rem;
+  color: var(--darkgray);
+}
+
+.home-recent__time {
+  font-variant-numeric: tabular-nums;
+}
+
+.home-recent__empty {
+  color: var(--darkgray);
+  font-size: 0.9rem;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.home-card {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+}
+
+.home-card__title {
+  margin: 0;
+  font-size: clamp(1.05rem, 1vw + 0.6rem, 1.3rem);
+}
+
+.home-card__body {
+  margin: 0;
+  color: var(--darkgray);
+  font-size: 0.92rem;
+}
+
+.home-random__button {
+  align-self: flex-start;
+  appearance: none;
+  padding: 0.55rem 1.05rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--dark);
+  color: var(--light);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.home-random__button:hover,
+.home-random__button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.16);
+}
+
+.home-random__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.home-random__empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--darkgray);
+}
+
+.home-links__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.home-link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  text-decoration: none;
+  transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+
+.home-link-card:hover,
+.home-link-card:focus-visible {
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+.home-link-card__icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+}
+
+.home-link-card__icon img {
+  width: 22px;
+  height: 22px;
+}
+
+.home-link-card__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.home-link-card__label {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.home-link-card__description {
+  color: var(--darkgray);
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .home-recent {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .home-card {
+    padding: 1rem 1.1rem;
+  }
+}
+`;
+  HomepageFeatures.afterDOMLoaded = homepage_inline_default;
+  return HomepageFeatures;
+}), "default");
+
 // quartz/comments.config.ts
 var commentsConfig = {
   enabled: true,
@@ -7214,7 +7493,11 @@ var sharedAfterBody = [
     component: Canvas_default(),
     condition: /* @__PURE__ */ __name((props) => hasCanvasFrontmatter(props.fileData.frontmatter), "condition")
   }),
-  MobileOnly_default(Backlinks_default())
+  MobileOnly_default(Backlinks_default()),
+  ConditionalRender_default({
+    component: HomepageFeatures_default(),
+    condition: /* @__PURE__ */ __name((page) => page.fileData.slug === "index", "condition")
+  })
 ];
 var mobileDiscordWidget = MobileOnly_default(
   DiscordWidget_default({
@@ -7715,7 +7998,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx36 } from "preact/jsx-runtime";
+import { jsx as jsx37 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
@@ -7808,13 +8091,19 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
         });
       }
       const fp = joinSegments("static", "contentIndex");
-      const simplifiedIndex = Object.fromEntries(
-        Array.from(linkIndex).map(([slug, content2]) => {
-          delete content2.description;
-          delete content2.date;
-          return [slug, content2];
-        })
+      const simplifiedEntries = Array.from(linkIndex).map(
+        ([slug, content2]) => {
+          const { date, description: _description, ...rest } = content2;
+          return [
+            slug,
+            {
+              ...rest,
+              updated: date?.toISOString()
+            }
+          ];
+        }
       );
+      const simplifiedIndex = Object.fromEntries(simplifiedEntries);
       yield write({
         ctx,
         content: JSON.stringify(simplifiedIndex),
@@ -7826,7 +8115,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx36(
+            /* @__PURE__ */ jsx37(
               "link",
               {
                 rel: "alternate",
@@ -7972,8 +8261,8 @@ import sharp2 from "sharp";
 var Favicon = /* @__PURE__ */ __name(() => ({
   name: "Favicon",
   async *emit({ argv }) {
-    const iconPath2 = joinSegments(QUARTZ, "static", "icon.png");
-    const faviconContent = sharp2(iconPath2).resize(48, 48).toFormat("png");
+    const iconPath3 = joinSegments(QUARTZ, "static", "icon.png");
+    const faviconContent = sharp2(iconPath3).resize(48, 48).toFormat("png");
     yield write({
       ctx: { argv },
       slug: "favicon",

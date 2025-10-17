@@ -11,6 +11,10 @@ const sharedAfterBody = [
     condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
   }),
   Component.MobileOnly(Component.Backlinks()),
+  Component.ConditionalRender({
+    component: Component.HomepageFeatures(),
+    condition: (page) => page.fileData.slug === "index",
+  }),
 ]
 
 const mobileDiscordWidget = Component.MobileOnly(
@@ -90,7 +94,7 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-  Component.InfoBox(),
+    Component.InfoBox(),
     Component.TagList(),
     Component.MobileOnly(
       Component.TableOfContents({

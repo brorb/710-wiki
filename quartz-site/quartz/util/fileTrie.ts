@@ -1,4 +1,4 @@
-import { ContentDetails } from "../plugins/emitters/contentIndex"
+import type { SerializedContentDetails } from "../plugins/emitters/contentIndex"
 import { FullSlug, joinSegments } from "./path"
 
 interface FileTrieData {
@@ -7,7 +7,7 @@ interface FileTrieData {
   filePath: string
 }
 
-export class FileTrieNode<T extends FileTrieData = ContentDetails> {
+export class FileTrieNode<T extends FileTrieData = SerializedContentDetails> {
   isFolder: boolean
   children: Array<FileTrieNode<T>>
 
