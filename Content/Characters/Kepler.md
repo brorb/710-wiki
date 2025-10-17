@@ -1,7 +1,4 @@
----
-tags:
-  - Character
----
+
 *Kepler* (also known as K3P13R) is the alias of the entity running the YouTube channel [[710 NPP]][^1]. It is likely that they are human.
 
 

@@ -1,9 +1,4 @@
 ---
-tags:
-  - Character
-  - Essential
----
----
 title: INDI
 infobox:
   title: INDI
@@ -19,7 +14,6 @@ infobox:
       value: Associates
         - [[SYSTEM]]
         - [[Kepler]]
-
 ---
 
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  
