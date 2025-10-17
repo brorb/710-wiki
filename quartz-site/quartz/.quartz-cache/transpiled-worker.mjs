@@ -7197,6 +7197,306 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
   return InfoBox;
 }), "default");
 
+// quartz/components/scripts/homepage.inline.ts
+var homepage_inline_default = "";
+
+// quartz/components/HomepageFeatures.tsx
+import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
+var DEFAULT_LINKS = {
+  archive: {
+    label: "Visit the Archive Channel",
+    href: "https://www.youtube.com/@SleuthMedia",
+    description: "Catch up on reuploads, VODs, and finds from across the community."
+  },
+  discord: {
+    label: "Join the Sleuths Discord",
+    href: "https://discord.gg/cRFFHYye7t",
+    description: "Coordinate puzzle solving, share theories, and keep watch on live drops."
+  }
+};
+var toLink = /* @__PURE__ */ __name((candidate, fallback) => {
+  if (!candidate || typeof candidate !== "object") {
+    return fallback;
+  }
+  const label = typeof candidate.label === "string" && candidate.label.trim().length > 0 ? candidate.label.trim() : fallback.label;
+  const href = typeof candidate.href === "string" && candidate.href.trim().length > 0 ? candidate.href.trim() : fallback.href;
+  const description = typeof candidate.description === "string" && candidate.description.trim().length > 0 ? candidate.description.trim() : fallback.description;
+  return { label, href, description };
+}, "toLink");
+var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
+  const HomepageFeatures = /* @__PURE__ */ __name(({ displayClass, fileData }) => {
+    const frontmatter = fileData.frontmatter ?? {};
+    const linksRaw = frontmatter.homepageLinks;
+    const homepageLinks = linksRaw && typeof linksRaw === "object" ? linksRaw : {};
+    const archiveLink = toLink(homepageLinks.archive, DEFAULT_LINKS.archive);
+    const discordLink = toLink(homepageLinks.discord, DEFAULT_LINKS.discord);
+    return /* @__PURE__ */ jsxs24("section", { class: classNames(displayClass, "home-features"), "data-home-root": true, children: [
+      /* @__PURE__ */ jsxs24("div", { class: "home-features__intro", children: [
+        /* @__PURE__ */ jsxs24("div", { class: "home-random", children: [
+          /* @__PURE__ */ jsx36("h2", { class: "home-random__title", children: "Start with a random article" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-random__body", children: "Not sure where to dive in? Let the wiki pick a page at random." }),
+          /* @__PURE__ */ jsx36("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Surprise me" }),
+          /* @__PURE__ */ jsxs24("p", { class: "home-random__result", "data-home-random-result": true, "aria-live": "polite", hidden: true, children: [
+            /* @__PURE__ */ jsx36("span", { class: "home-random__result-label", children: "You landed on:" }),
+            " ",
+            /* @__PURE__ */ jsx36("a", { class: "home-random__link", "data-home-random-link": true, href: "#", children: "Generating\u2026" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs24("div", { class: "home-links", children: [
+          /* @__PURE__ */ jsx36("h2", { class: "home-links__title", children: "Stay connected" }),
+          /* @__PURE__ */ jsxs24("div", { class: "home-links__grid", children: [
+            /* @__PURE__ */ jsxs24(
+              "a",
+              {
+                class: "home-link-card",
+                href: archiveLink.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: [
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: archiveLink.label }),
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: archiveLink.description })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxs24(
+              "a",
+              {
+                class: "home-link-card",
+                href: discordLink.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: [
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: discordLink.label }),
+                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: discordLink.description })
+                ]
+              }
+            )
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxs24("section", { class: "home-recent", children: [
+        /* @__PURE__ */ jsxs24("div", { class: "home-recent__header", children: [
+          /* @__PURE__ */ jsx36("h2", { class: "home-recent__title", children: "Recently updated" }),
+          /* @__PURE__ */ jsx36("p", { class: "home-recent__subtitle", children: "Fresh edits and new clues from across the archive." })
+        ] }),
+        /* @__PURE__ */ jsx36("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx36("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
+      ] })
+    ] });
+  }, "HomepageFeatures");
+  HomepageFeatures.css = `
+.home-features {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.home-features__intro {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+
+.home-random {
+  padding: 1.75rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--secondary) 0%, rgba(255, 255, 255, 0) 65%), var(--lightgray);
+  border: 1px solid var(--secondary);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+  color: var(--dark);
+}
+
+.home-random__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.6rem);
+}
+
+.home-random__body {
+  margin: 0 0 1.25rem;
+  max-width: 36ch;
+  color: var(--darkgray);
+}
+
+.home-random__button {
+  appearance: none;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--dark);
+  color: var(--light);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.home-random__button:hover,
+.home-random__button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
+}
+
+.home-random__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.home-random__result {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.home-random__result a {
+  font-weight: 600;
+}
+
+.home-links {
+  padding: 1.75rem;
+  border-radius: 18px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home-links__title {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.8vw + 0.4rem, 1.5rem);
+}
+
+.home-links__grid {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.home-link-card {
+  display: block;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  text-decoration: none;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.home-link-card:hover,
+.home-link-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--secondary);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.14);
+}
+
+.home-link-card__label {
+  display: block;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.home-link-card__description {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--darkgray);
+  font-size: 0.95rem;
+}
+
+.home-recent {
+  padding: 2rem;
+  border-radius: 22px;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.1);
+}
+
+.home-recent__header {
+  margin-bottom: 1.25rem;
+}
+
+.home-recent__title {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw + 0.5rem, 1.6rem);
+}
+
+.home-recent__subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--darkgray);
+}
+
+.home-recent__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.home-recent__item {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.home-recent__item:hover,
+.home-recent__item:focus-within {
+  border-color: var(--secondary);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.12);
+}
+
+.home-recent__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.home-recent__link::after {
+  content: "\u2192";
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.home-recent__meta {
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--darkgray);
+}
+
+.home-recent__time {
+  font-variant-numeric: tabular-nums;
+}
+
+.home-recent__empty {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: var(--light);
+  border: 1px dashed var(--gray);
+  color: var(--darkgray);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .home-random,
+  .home-links,
+  .home-recent {
+    padding: 1.5rem;
+  }
+
+  .home-recent__list {
+    gap: 0.75rem;
+  }
+}
+`;
+  HomepageFeatures.afterDOMLoaded = homepage_inline_default;
+  return HomepageFeatures;
+}), "default");
+
 // quartz/comments.config.ts
 var commentsConfig = {
   enabled: true,
@@ -7287,6 +7587,10 @@ var defaultContentPageLayout = {
     }),
     ArticleTitle_default(),
     ContentMeta_default(),
+    ConditionalRender_default({
+      component: HomepageFeatures_default(),
+      condition: /* @__PURE__ */ __name((page) => page.fileData.slug === "index", "condition")
+    }),
     InfoBox_default(),
     TagList_default(),
     MobileOnly_default(
@@ -7715,7 +8019,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx36 } from "preact/jsx-runtime";
+import { jsx as jsx37 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
@@ -7808,13 +8112,19 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
         });
       }
       const fp = joinSegments("static", "contentIndex");
-      const simplifiedIndex = Object.fromEntries(
-        Array.from(linkIndex).map(([slug, content2]) => {
-          delete content2.description;
-          delete content2.date;
-          return [slug, content2];
-        })
+      const simplifiedEntries = Array.from(linkIndex).map(
+        ([slug, content2]) => {
+          const { date, description: _description, ...rest } = content2;
+          return [
+            slug,
+            {
+              ...rest,
+              updated: date?.toISOString()
+            }
+          ];
+        }
       );
+      const simplifiedIndex = Object.fromEntries(simplifiedEntries);
       yield write({
         ctx,
         content: JSON.stringify(simplifiedIndex),
@@ -7826,7 +8136,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx36(
+            /* @__PURE__ */ jsx37(
               "link",
               {
                 rel: "alternate",

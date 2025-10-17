@@ -90,7 +90,11 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-  Component.InfoBox(),
+    Component.ConditionalRender({
+      component: Component.HomepageFeatures(),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+    Component.InfoBox(),
     Component.TagList(),
     Component.MobileOnly(
       Component.TableOfContents({

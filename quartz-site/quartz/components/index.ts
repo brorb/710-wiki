@@ -23,6 +23,7 @@ import ConditionalRender from "./ConditionalRender"
 import LinksHeader from "./LinksHeader"
 import DiscordWidget from "./DiscordWidget"
 import InfoBox from "./InfoBox"
+import HomepageFeatures from "./HomepageFeatures"
 
 export {
   ArticleTitle,
@@ -50,4 +51,5 @@ export {
   LinksHeader,
   DiscordWidget,
   InfoBox,
+  HomepageFeatures,
 }
