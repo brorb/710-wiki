@@ -1,3 +1,6 @@
+
+
+
 Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been refereed to as both a "virus" and a "tool"^[[[STATION_8 TERMINAL 8]]].  The first (known) mention of Long String is in [[LONG_STR.mp4]] from 23 Feb 2025. The video shows a system getting infected by a virus. 
 
 

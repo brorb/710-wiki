@@ -10,6 +10,4 @@ _Uploaded 14 Jan 2025._
 SYSTEM: 401837
 SYSTEM ID: 370184928**
 
-**Video Summary:** Normal red and black static with a weird "tone" sound in the left audio channel playing near the beginning, which gets gradually louder until it stops at 0:21. Timer counts down from 145 to 144 with audio that sounds like some kind of ventilation knocking that gets cut off by a beeping noise.
-
-**Clues:** 
+**Video Summary:** Normal red and black static with a weird "tone" sound in the left audio channel playing near the beginning, which gets gradually louder until it stops at 0:21. Timer counts down from 145 to 144 with audio that sounds like some kind of low-pitced ventilation knocking that gets cut off by a beeping noise.

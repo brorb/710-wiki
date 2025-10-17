@@ -11,5 +11,3 @@ SYSTEM: 572910
 SYSTEM ID: 372904628**
 
 **Video Summary:** Normal red and black static, timer counts down from 157 to 156 with beeping noises.
-
-**Clues:** 
