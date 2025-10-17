@@ -8,7 +8,7 @@ title: INDI
 infobox:
   title: INDI
   image:
-    src: 
+    src: ![[Content/Media/710 Media/Images/INDI image.png]]
     caption: INDI as shown in LOG-109.MP$
   items:
     - label: Also known as
@@ -16,14 +16,11 @@ infobox:
         - IN_DI
         - IN_DI.servertype
     - label: 
-      value: 
-    - label: 
       value: Associates
         - [[SYSTEM]]
         - [[Kepler]]
 
 ---
-
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  
   
 The moniker “7/10” is carried by at least two characters: 7/10 Tone and 7/10 NPP. The “7/10” is a date (10th July) written in an american date format. This corresponds to the date which the countdowns were counting down to, and also to the profile picture of the 7/10 Tone YouTube channel (see image to the left). We do not know why this date is of significance. There are reasons to believe that this is a yearly event that has been going on for at least two years
