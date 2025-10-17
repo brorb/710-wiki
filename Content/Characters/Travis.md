@@ -14,4 +14,4 @@ infobox:
 
 ---
 
-Travis was a scientist who previously had control over the [[710 Tone]] YouTube channel before he was poisoned by an agency (see image in infobox). He created [[prj_home.exe]] to hide a message for anyone archiving the surroundings of 7/10 Tone.
+Travis was a scientist who previously had control over the [[710 Tone]] YouTube channel before he was poisoned by an agency (see image in infobox). He created [[prj_home.exe]] to hide a message for anyone archiving the surroundings of 7/10 Tone in the form of lm-2.
