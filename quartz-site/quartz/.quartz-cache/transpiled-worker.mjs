@@ -6771,11 +6771,6 @@ var navLinks = [
     iconSlug: "discord"
   },
   {
-    href: "/Forum/",
-    label: "Forum",
-    iconSlug: "forum"
-  },
-  {
     href: "/YouTube/",
     label: "YouTube",
     iconSlug: "youtube"
