@@ -16,7 +16,7 @@ infobox:
 
 ---
 
-A timer that always counts down to July 10th of every year, which is apparently an important event for the [[710 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right.
+A timer that always counts down to July 10th of every year, which is apparently an important event for the [[710 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right. During the livestreams, a continuous frequency would play in the background while it counts down.
 
 ---
 ### Purpose:
@@ -35,6 +35,9 @@ In [[STATION_8 TERMINAL 8]], the timer ended on July 10th at 3:00AM. When it end
 
 ### Interferences:
 
-During the STATION_8 livestreams, the timer would be occasionally interrupted by the [[Station Interruption]] screen or [[Channel 14]], which got worse as it was getting closer to the end. These interferences were caused by [[REN]] according to [[INDI]] (see [[STATION_8 TRIM 90]]).
+During the STATION_8 livestreams, the timer would be occasionally interrupted by the [[Station Interruption]] screen and [[Channel 14]], which got worse as it was getting closer to the end. These interferences were caused by [[REN]] according to [[INDI]] (see [[STATION_8 TRIM 90]]). Other times there would be interferences preceding some kind of strange noise (glitched tone or anomalous frequencies).
 
-### 
+However, not all interferences disrupt the timer completely, there are some instances where other anomalies, such as strange noises or visual glitches, occur while it is still counting down.
+
+![[blue timer.png|300]]
+_Example of a visual anomaly from the timer, the numbers are blue instead of white._

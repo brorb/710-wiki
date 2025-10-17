@@ -1,3 +1,22 @@
+---
+title: Private Room
+infobox:
+  title: Private Room
+  image:
+    src: ![[Content/Media/Sleuth Media/Images/Technical difficulties screen.jpg]]
+    caption:
+  items:
+    - label: 
+      value: Appearances
+	- [[LOG-40.mp4]]
+	- [[garbage_sgl.mp4]]
+	- [[LOG-154.mp4]]
+	- [[LOG-155.mp4]]
+	- [[STATION_8 TRIM 90]]
+	- [[STATION_8 TERMINAL 8]]
+
+---
+
 The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public.
 
 There are two ways in which the chats have become available to the public:

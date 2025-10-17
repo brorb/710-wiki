@@ -1,5 +1,20 @@
+---
+title: Long String
+infobox:
+  title: Long String
+  image:
+    src: ![[Content/Media/Sleuth Media/Images/Long String.png]]
+    caption: Sample of Long String's code
+  items:
+    - label: 
+      value: Appearances
+	- [[LONG_STR.mp4]]
+	- [[LOG-62.mp4]]
+	- [[LOG-116.mp4]]
+	- [[LOG-123.mp4]]
+	- [[{_ _ _-_ _._ _ _}re]]
 
-
+---
 
 Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been refereed to as both a "virus" and a "tool"^[[[STATION_8 TERMINAL 8]]].  The first (known) mention of Long String is in [[LONG_STR.mp4]] from 23 Feb 2025. The video shows a system getting infected by a virus. 
 

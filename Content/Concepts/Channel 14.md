@@ -1,16 +1,28 @@
-Channel 14 is a broadcasting channel hosted out of [[Ferkland County]]. 
+---
+title: Channel 14
+infobox:
+  title: Channel 14
+  image:
+    src: ![[Content/Media/Sleuth Media/Images/Channel 14 Demo Channel-min.png]]
+    caption: Channel 14 Demo screen from the STATION_8 livestreams
+  items:
+    - label: 
+      value: Appearances
+	- [[LOG-40.mp4]]
+	- [[garbage_sgl.mp4]]
+	- [[LOG-154.mp4]]
+	- [[LOG-155.mp4]]
+	- [[Parting Gifts]]
+	- [[STATION_8 TRIM 90]]
+	- [[STATION_8 TERMINAL 8]]
 
-Channel 14 first appeared in [[LOG-40.mp4]]
+---
 
+Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]
 
-Appearances: [[Parting Gifts]], [[LOG-155.mp4]], [[LOG-154.mp4]], [[garbage_sgl.mp4]]
+Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix it", then the [[Station Interruption]] proceeded after it.
 
-First appearance in livestream: [[STATION_8 TRIM 90]]. This is the first legible instance of Channel 14 being located in [[Ferkland County]]. Whenever this appeared in livestream, [[INDI]] would have to "fix it", then the "Please wait while "
-
-
-DEMO: PLEASE CALL \<&&&-&&&-&&&&\> TO ENTER YOUR SUB PIN OR PAY FOR ONE. GET GREAT SHOWS, MOVIES, AND MORE FOR ONLY $8.50 MONTHLY.
-
-[[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up with when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->.
+[[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->.
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. L4N4U1997 - 2025-07-21 20:46
