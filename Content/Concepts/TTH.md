@@ -14,7 +14,6 @@ infobox:
       value: [[Ferkland County]]
     - label: Workers
       value:
-        - [[INDI]]
         - [[Kepler]]
 
 ---
