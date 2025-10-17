@@ -7,6 +7,23 @@ import { FilePath, FullSlug, getFileExtension, slugifyFilePath, slugTag } from "
 import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 
+const OBSIDIAN_LINK_PATTERN = /!?\[\[[^\]\r\n]+\]\]/
+
+const sanitizeObsidianEmbeds = (frontmatter: string): string => {
+  const wrap = (prefix: string, target: string) => `${prefix}"${target}"`
+  const patternSource = OBSIDIAN_LINK_PATTERN.source
+  const valuePattern = new RegExp(`(^\\s*[^\\n:]+:\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm")
+  const listPattern = new RegExp(`(^\\s*-\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm")
+
+  if (!OBSIDIAN_LINK_PATTERN.test(frontmatter)) {
+    return frontmatter
+  }
+
+  return frontmatter
+    .replace(listPattern, (_, prefix: string, target: string) => wrap(prefix, target))
+    .replace(valuePattern, (_, prefix: string, target: string) => wrap(prefix, target))
+}
+
 export interface Options {
   delimiters: string | [string, string]
   language: "yaml" | "toml"
@@ -66,7 +83,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             const { data } = matter(fileData, {
               ...opts,
               engines: {
-                yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
+                yaml: (s) => yaml.load(sanitizeObsidianEmbeds(s), { schema: yaml.JSON_SCHEMA }) as object,
                 toml: (s) => toml.parse(s) as object,
               },
             })

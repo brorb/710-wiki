@@ -18,6 +18,8 @@ dist/
 build/
 out/
 quartz-site/public/
+quartz-site/quartz/.quartz-cache/
+quartz-site\quartz\.quartz-cache\transpiled-build.mjs
 
 # Logs
 *.log

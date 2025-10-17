@@ -1,3 +1,24 @@
+---
+title: TTH
+infobox:
+  title: TTH
+  image:
+    src: ![[Content/Media/710 Media/Images/TTH_logo_enhanced.png]]
+    caption: TTH Logo
+  items:
+    - label: Also known as
+      value:
+        - The Transmitting Hands
+        - Transmitting Hands
+    - label: Region
+      value: [[Ferkland County]]
+    - label: Workers
+      value:
+        - [[INDI]]
+        - [[Kepler]]
+
+---
+
 TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
 > [!discord-cite]- Discord citation (2 messages)
 > 1. ThePortalNinja - 2025-07-21 17:17
@@ -75,7 +96,7 @@ They are an organization responsible for some type of transmission, with [[INDI]
 
 
 Their logo feature a two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
-![[TTH_logo_enhanced.png]]
+
 This logo would appear in videos such as [[LOG-116.mp4]] and[[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
 
 

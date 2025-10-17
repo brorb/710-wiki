@@ -61,7 +61,8 @@ def read_note_frontmatter(note_path: Path) -> Tuple[Dict[str, object], str]:
 
 def write_note(note_path: Path, data: Dict[str, object], body: str) -> None:
     new_frontmatter = yaml.safe_dump(data, sort_keys=False).strip()
-    note_path.write_text(f"---\n{new_frontmatter}\n---\n{body.lstrip()}", encoding="utf-8")
+    trimmed_body = body.lstrip("\n")
+    note_path.write_text(f"---\n{new_frontmatter}\n---\n{trimmed_body}", encoding="utf-8")
 
 
 # ----------------------------------------------------------------------------

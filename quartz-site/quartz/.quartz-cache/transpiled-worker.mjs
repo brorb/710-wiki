@@ -2647,6 +2647,17 @@ var defaultTranslation = "en-US";
 var i18n = /* @__PURE__ */ __name((locale) => TRANSLATIONS[locale ?? defaultTranslation], "i18n");
 
 // quartz/plugins/transformers/frontmatter.ts
+var OBSIDIAN_LINK_PATTERN = /!?\[\[[^\]\r\n]+\]\]/;
+var sanitizeObsidianEmbeds = /* @__PURE__ */ __name((frontmatter) => {
+  const wrap = /* @__PURE__ */ __name((prefix, target) => `${prefix}"${target}"`, "wrap");
+  const patternSource = OBSIDIAN_LINK_PATTERN.source;
+  const valuePattern = new RegExp(`(^\\s*[^\\n:]+:\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm");
+  const listPattern = new RegExp(`(^\\s*-\\s*)(?<!["'])(${patternSource})(?=\\s*$)`, "gm");
+  if (!OBSIDIAN_LINK_PATTERN.test(frontmatter)) {
+    return frontmatter;
+  }
+  return frontmatter.replace(listPattern, (_, prefix, target) => wrap(prefix, target)).replace(valuePattern, (_, prefix, target) => wrap(prefix, target));
+}, "sanitizeObsidianEmbeds");
 var defaultOptions = {
   delimiters: "---",
   language: "yaml"
@@ -2690,7 +2701,7 @@ var FrontMatter = /* @__PURE__ */ __name((userOpts) => {
             const { data } = matter(fileData, {
               ...opts,
               engines: {
-                yaml: /* @__PURE__ */ __name((s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }), "yaml"),
+                yaml: /* @__PURE__ */ __name((s) => yaml.load(sanitizeObsidianEmbeds(s), { schema: yaml.JSON_SCHEMA }), "yaml"),
                 toml: /* @__PURE__ */ __name((s) => toml.parse(s), "toml")
               }
             });
@@ -4899,7 +4910,7 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
   const RightComponent = /* @__PURE__ */ jsx4("div", { class: "right sidebar", children: right.map((BodyComponent) => /* @__PURE__ */ jsx4(BodyComponent, { ...componentData })) });
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en";
   const direction = i18n(cfg.locale).direction ?? "ltr";
-  const doc = /* @__PURE__ */ jsxs("html", { lang, dir: direction, children: [
+  const doc = /* @__PURE__ */ jsxs("html", { lang, dir: direction, "saved-theme": "dark", children: [
     /* @__PURE__ */ jsx4(Head, { ...componentData }),
     /* @__PURE__ */ jsx4("body", { "data-slug": slug, children: /* @__PURE__ */ jsx4("div", { id: "quartz-root", class: "page", children: /* @__PURE__ */ jsxs(Body2, { ...componentData, children: [
       LeftComponent,
@@ -5506,7 +5517,6 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
           {
             src: iframeSrc,
             title: `Canvas visualization: ${title}`,
-            loading: "lazy",
             allow: "fullscreen",
             scrolling: "no"
           }
@@ -5631,8 +5641,11 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
     }
 
     const hideLoader = () => {
-      loader.classList.add('is-hidden')
-      loader.classList.remove('is-error')
+      if (!loader.classList.contains('is-hidden')) {
+        loader.classList.add('is-hidden')
+        loader.classList.remove('is-error')
+      }
+      iframe.dataset.canvasLoaded = 'true'
       markInitialized()
     }
 
@@ -5645,104 +5658,51 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
       markInitialized()
     }
 
-    iframe.addEventListener('load', hideLoader, { once: true })
-    iframe.addEventListener('error', showError, { once: true })
+    function handleLoad() {
+      hideLoader()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
 
-    if (iframe.complete) {
+    function handleError() {
+      showError()
+      iframe.removeEventListener('load', handleLoad)
+      iframe.removeEventListener('error', handleError)
+    }
+
+    iframe.addEventListener('load', handleLoad)
+    iframe.addEventListener('error', handleError)
+
+    const iframeAlreadyLoaded = () => {
+      if (iframe.dataset.canvasLoaded === 'true') {
+        return true
+      }
+
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document
+        if (doc && doc.readyState === 'complete') {
+          return true
+        }
+      } catch (error) {
+        // accessing contentDocument can throw for cross-origin iframes; ignore
+      }
+
+      // fallback for browsers that expose readyState/complete differently
+      // @ts-ignore non-standard property
+      if (typeof iframe.readyState === 'string' && iframe.readyState === 'complete') {
+        return true
+      }
+
+      return false
+    }
+
+    if (iframeAlreadyLoaded()) {
       hideLoader()
     }
   })
 `;
   return Canvas;
 }), "default");
-
-// quartz/components/scripts/darkmode.inline.ts
-var darkmode_inline_default = "";
-
-// quartz/components/styles/darkmode.scss
-var darkmode_default = "";
-
-// quartz/components/Darkmode.tsx
-import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
-var Darkmode = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-  return /* @__PURE__ */ jsxs8("button", { class: classNames(displayClass, "darkmode"), children: [
-    /* @__PURE__ */ jsxs8(
-      "svg",
-      {
-        xmlns: "http://www.w3.org/2000/svg",
-        xmlnsXlink: "http://www.w3.org/1999/xlink",
-        version: "1.1",
-        class: "dayIcon",
-        x: "0px",
-        y: "0px",
-        viewBox: "0 0 35 35",
-        style: "enable-background:new 0 0 35 35",
-        xmlSpace: "preserve",
-        "aria-label": i18n(cfg.locale).components.themeToggle.darkMode,
-        children: [
-          /* @__PURE__ */ jsx15("title", { children: i18n(cfg.locale).components.themeToggle.darkMode }),
-          /* @__PURE__ */ jsx15("path", { d: "M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z" })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxs8(
-      "svg",
-      {
-        xmlns: "http://www.w3.org/2000/svg",
-        xmlnsXlink: "http://www.w3.org/1999/xlink",
-        version: "1.1",
-        class: "nightIcon",
-        x: "0px",
-        y: "0px",
-        viewBox: "0 0 100 100",
-        style: "enable-background:new 0 0 100 100",
-        xmlSpace: "preserve",
-        "aria-label": i18n(cfg.locale).components.themeToggle.lightMode,
-        children: [
-          /* @__PURE__ */ jsx15("title", { children: i18n(cfg.locale).components.themeToggle.lightMode }),
-          /* @__PURE__ */ jsx15("path", { d: "M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z" })
-        ]
-      }
-    )
-  ] });
-}, "Darkmode");
-Darkmode.beforeDOMLoaded = darkmode_inline_default;
-Darkmode.css = darkmode_default;
-
-// quartz/components/scripts/readermode.inline.ts
-var readermode_inline_default = "";
-
-// quartz/components/styles/readermode.scss
-var readermode_default = "";
-
-// quartz/components/ReaderMode.tsx
-import { jsx as jsx16, jsxs as jsxs9 } from "preact/jsx-runtime";
-var ReaderMode = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-  return /* @__PURE__ */ jsx16("button", { class: classNames(displayClass, "readermode"), children: /* @__PURE__ */ jsxs9(
-    "svg",
-    {
-      xmlns: "http://www.w3.org/2000/svg",
-      xmlnsXlink: "http://www.w3.org/1999/xlink",
-      version: "1.1",
-      class: "readerIcon",
-      fill: "currentColor",
-      stroke: "currentColor",
-      "stroke-width": "0.2",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      width: "64px",
-      height: "64px",
-      viewBox: "0 0 24 24",
-      "aria-label": i18n(cfg.locale).components.readerMode.title,
-      children: [
-        /* @__PURE__ */ jsx16("title", { children: i18n(cfg.locale).components.readerMode.title }),
-        /* @__PURE__ */ jsx16("g", { transform: "translate(-1.8, -1.8) scale(1.15, 1.2)", children: /* @__PURE__ */ jsx16("path", { d: "M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z" }) })
-      ]
-    }
-  ) });
-}, "ReaderMode");
-ReaderMode.beforeDOMLoaded = readermode_inline_default;
-ReaderMode.css = readermode_default;
 
 // quartz/util/theme.ts
 var DEFAULT_SANS_SERIF = 'system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
@@ -5850,7 +5810,7 @@ __name(joinStyles, "joinStyles");
 
 // quartz/util/og.tsx
 import readingTime from "reading-time";
-import { jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
+import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 
 // quartz/plugins/emitters/ogImage.tsx
 import sharp from "sharp";
@@ -5871,11 +5831,11 @@ var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
 }, "write");
 
 // quartz/plugins/emitters/ogImage.tsx
-import { Fragment as Fragment3, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx16, jsxs as jsxs9 } from "preact/jsx-runtime";
 var CustomOgImagesEmitterName = "CustomOgImages";
 
 // quartz/components/Head.tsx
-import { Fragment as Fragment4, jsx as jsx19, jsxs as jsxs12 } from "preact/jsx-runtime";
+import { Fragment as Fragment4, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
 var Head_default = /* @__PURE__ */ __name((() => {
   const Head = /* @__PURE__ */ __name(({
     cfg,
@@ -5900,30 +5860,30 @@ var Head_default = /* @__PURE__ */ __name((() => {
       (e) => e.name === CustomOgImagesEmitterName
     );
     const ogImageDefaultPath = cfg.baseUrl ? new URL("/static/og-image.png", normalizedBaseUrl).toString() : void 0;
-    return /* @__PURE__ */ jsxs12("head", { children: [
-      /* @__PURE__ */ jsx19("title", { children: title }),
-      /* @__PURE__ */ jsx19("meta", { charSet: "utf-8" }),
-      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs12(Fragment4, { children: [
-        /* @__PURE__ */ jsx19("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
-        /* @__PURE__ */ jsx19("link", { rel: "preconnect", href: "https://fonts.gstatic.com" }),
-        /* @__PURE__ */ jsx19("link", { rel: "stylesheet", href: googleFontHref(cfg.theme) }),
-        cfg.theme.typography.title && /* @__PURE__ */ jsx19("link", { rel: "stylesheet", href: googleFontSubsetHref(cfg.theme, cfg.pageTitle) })
+    return /* @__PURE__ */ jsxs10("head", { children: [
+      /* @__PURE__ */ jsx17("title", { children: title }),
+      /* @__PURE__ */ jsx17("meta", { charSet: "utf-8" }),
+      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs10(Fragment4, { children: [
+        /* @__PURE__ */ jsx17("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
+        /* @__PURE__ */ jsx17("link", { rel: "preconnect", href: "https://fonts.gstatic.com" }),
+        /* @__PURE__ */ jsx17("link", { rel: "stylesheet", href: googleFontHref(cfg.theme) }),
+        cfg.theme.typography.title && /* @__PURE__ */ jsx17("link", { rel: "stylesheet", href: googleFontSubsetHref(cfg.theme, cfg.pageTitle) })
       ] }),
-      /* @__PURE__ */ jsx19("link", { rel: "preconnect", href: "https://cdnjs.cloudflare.com", crossOrigin: "anonymous" }),
-      /* @__PURE__ */ jsx19("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" }),
-      /* @__PURE__ */ jsx19("meta", { name: "og:site_name", content: cfg.pageTitle }),
-      /* @__PURE__ */ jsx19("meta", { property: "og:title", content: title }),
-      /* @__PURE__ */ jsx19("meta", { property: "og:type", content: "website" }),
-      /* @__PURE__ */ jsx19("meta", { name: "twitter:card", content: "summary_large_image" }),
-      /* @__PURE__ */ jsx19("meta", { name: "twitter:title", content: title }),
-      /* @__PURE__ */ jsx19("meta", { name: "twitter:description", content: description }),
-      /* @__PURE__ */ jsx19("meta", { property: "og:description", content: description }),
-      /* @__PURE__ */ jsx19("meta", { property: "og:image:alt", content: description }),
-      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs12(Fragment4, { children: [
-        /* @__PURE__ */ jsx19("meta", { property: "og:image", content: ogImageDefaultPath }),
-        /* @__PURE__ */ jsx19("meta", { property: "og:image:url", content: ogImageDefaultPath }),
-        /* @__PURE__ */ jsx19("meta", { name: "twitter:image", content: ogImageDefaultPath }),
-        /* @__PURE__ */ jsx19(
+      /* @__PURE__ */ jsx17("link", { rel: "preconnect", href: "https://cdnjs.cloudflare.com", crossOrigin: "anonymous" }),
+      /* @__PURE__ */ jsx17("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" }),
+      /* @__PURE__ */ jsx17("meta", { name: "og:site_name", content: cfg.pageTitle }),
+      /* @__PURE__ */ jsx17("meta", { property: "og:title", content: title }),
+      /* @__PURE__ */ jsx17("meta", { property: "og:type", content: "website" }),
+      /* @__PURE__ */ jsx17("meta", { name: "twitter:card", content: "summary_large_image" }),
+      /* @__PURE__ */ jsx17("meta", { name: "twitter:title", content: title }),
+      /* @__PURE__ */ jsx17("meta", { name: "twitter:description", content: description }),
+      /* @__PURE__ */ jsx17("meta", { property: "og:description", content: description }),
+      /* @__PURE__ */ jsx17("meta", { property: "og:image:alt", content: description }),
+      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs10(Fragment4, { children: [
+        /* @__PURE__ */ jsx17("meta", { property: "og:image", content: ogImageDefaultPath }),
+        /* @__PURE__ */ jsx17("meta", { property: "og:image:url", content: ogImageDefaultPath }),
+        /* @__PURE__ */ jsx17("meta", { name: "twitter:image", content: ogImageDefaultPath }),
+        /* @__PURE__ */ jsx17(
           "meta",
           {
             property: "og:image:type",
@@ -5931,14 +5891,14 @@ var Head_default = /* @__PURE__ */ __name((() => {
           }
         )
       ] }),
-      cfg.baseUrl && /* @__PURE__ */ jsxs12(Fragment4, { children: [
-        /* @__PURE__ */ jsx19("meta", { property: "twitter:domain", content: url.host }),
-        /* @__PURE__ */ jsx19("meta", { property: "og:url", content: socialUrl }),
-        /* @__PURE__ */ jsx19("meta", { property: "twitter:url", content: socialUrl })
+      cfg.baseUrl && /* @__PURE__ */ jsxs10(Fragment4, { children: [
+        /* @__PURE__ */ jsx17("meta", { property: "twitter:domain", content: url.host }),
+        /* @__PURE__ */ jsx17("meta", { property: "og:url", content: socialUrl }),
+        /* @__PURE__ */ jsx17("meta", { property: "twitter:url", content: socialUrl })
       ] }),
-      /* @__PURE__ */ jsx19("link", { rel: "icon", href: iconPath2 }),
-      /* @__PURE__ */ jsx19("meta", { name: "description", content: description }),
-      /* @__PURE__ */ jsx19("meta", { name: "generator", content: "Quartz" }),
+      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath2 }),
+      /* @__PURE__ */ jsx17("meta", { name: "description", content: description }),
+      /* @__PURE__ */ jsx17("meta", { name: "generator", content: "Quartz" }),
       css.map((resource) => CSSResourceToStyleElement(resource, true)),
       js.filter((resource) => resource.loadTime === "beforeDOMReady").map((res) => JSResourceToScriptElement(res, true)),
       additionalHead.map((resource) => {
@@ -5954,16 +5914,16 @@ var Head_default = /* @__PURE__ */ __name((() => {
 }), "default");
 
 // quartz/components/PageTitle.tsx
-import { jsx as jsx20, jsxs as jsxs13 } from "preact/jsx-runtime";
+import { jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
 var PageTitle = /* @__PURE__ */ __name(({ fileData, cfg, displayClass }) => {
   const title = cfg?.pageTitle ?? i18n(cfg.locale).propertyDefaults.title;
   const baseDir = pathToRoot(fileData.slug);
   const assetVersion = `?v=${getAssetVersion()}`;
   const logoPath = `${joinSegments(baseDir, "static/wiki_logo.png")}${assetVersion}`;
   const bannerPath = `${joinSegments(baseDir, "static/branding/banner.png")}${assetVersion}`;
-  return /* @__PURE__ */ jsx20("div", { class: classNames(displayClass, "page-title-container"), children: /* @__PURE__ */ jsxs13("a", { class: "page-title-link", href: baseDir, "aria-label": title, children: [
-    /* @__PURE__ */ jsx20("img", { class: "logo-desktop", src: logoPath, alt: title, loading: "lazy", decoding: "async" }),
-    /* @__PURE__ */ jsx20("span", { class: "banner-wrapper", children: /* @__PURE__ */ jsx20("img", { class: "banner-mobile", src: bannerPath, alt: title, loading: "lazy", decoding: "async" }) })
+  return /* @__PURE__ */ jsx18("div", { class: classNames(displayClass, "page-title-container"), children: /* @__PURE__ */ jsxs11("a", { class: "page-title-link", href: baseDir, "aria-label": title, children: [
+    /* @__PURE__ */ jsx18("img", { class: "logo-desktop", src: logoPath, alt: title, loading: "lazy", decoding: "async" }),
+    /* @__PURE__ */ jsx18("span", { class: "banner-wrapper", children: /* @__PURE__ */ jsx18("img", { class: "banner-mobile", src: bannerPath, alt: title, loading: "lazy", decoding: "async" }) })
   ] }) });
 }, "PageTitle");
 PageTitle.css = `
@@ -6027,46 +5987,31 @@ PageTitle.css = `
 `;
 var PageTitle_default = /* @__PURE__ */ __name((() => PageTitle), "default");
 
-// quartz/components/ContentMeta.tsx
-import readingTime2 from "reading-time";
-
 // quartz/components/styles/contentMeta.scss
 var contentMeta_default = "";
 
 // quartz/components/ContentMeta.tsx
-import { jsx as jsx21 } from "preact/jsx-runtime";
-var defaultOptions11 = {
-  showReadingTime: true,
-  showComma: true
-};
-var ContentMeta_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions11, ...opts };
-  function ContentMetadata({ cfg, fileData, displayClass }) {
-    const text = fileData.text;
-    if (text) {
-      const segments = [];
-      if (fileData.dates) {
-        segments.push(/* @__PURE__ */ jsx21(Date2, { date: getDate(cfg, fileData), locale: cfg.locale }));
-      }
-      if (options2.showReadingTime) {
-        const { minutes, words: _words } = readingTime2(text);
-        const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
-          minutes: Math.ceil(minutes)
-        });
-        segments.push(/* @__PURE__ */ jsx21("span", { children: displayedTime }));
-      }
-      return /* @__PURE__ */ jsx21("p", { "show-comma": options2.showComma, class: classNames(displayClass, "content-meta"), children: segments });
-    } else {
+import { jsx as jsx19, jsxs as jsxs12 } from "preact/jsx-runtime";
+var ContentMeta_default = /* @__PURE__ */ __name((() => {
+  const ContentMetadata = /* @__PURE__ */ __name(({ cfg, fileData, displayClass }) => {
+    if (!fileData.dates) {
       return null;
     }
-  }
-  __name(ContentMetadata, "ContentMetadata");
+    const updatedDate = getDate(cfg, fileData);
+    if (!updatedDate) {
+      return null;
+    }
+    return /* @__PURE__ */ jsxs12("div", { class: classNames(displayClass, "content-meta"), children: [
+      /* @__PURE__ */ jsx19("span", { class: "content-meta__label", children: "Updated" }),
+      /* @__PURE__ */ jsx19(Date2, { date: updatedDate, locale: cfg.locale })
+    ] });
+  }, "ContentMetadata");
   ContentMetadata.css = contentMeta_default;
   return ContentMetadata;
 }), "default");
 
 // quartz/components/Spacer.tsx
-import { jsx as jsx22 } from "preact/jsx-runtime";
+import { jsx as jsx20 } from "preact/jsx-runtime";
 
 // quartz/components/styles/legacyToc.scss
 var legacyToc_default = "";
@@ -6078,21 +6023,21 @@ var toc_default = "";
 var toc_inline_default = "";
 
 // quartz/components/OverflowList.tsx
-import { jsx as jsx23, jsxs as jsxs14 } from "preact/jsx-runtime";
+import { jsx as jsx21, jsxs as jsxs13 } from "preact/jsx-runtime";
 var OverflowList = /* @__PURE__ */ __name(({
   children,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs14("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
+  return /* @__PURE__ */ jsxs13("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
     children,
-    /* @__PURE__ */ jsx23("li", { class: "overflow-end" })
+    /* @__PURE__ */ jsx21("li", { class: "overflow-end" })
   ] });
 }, "OverflowList");
 var numLists = 0;
 var OverflowList_default = /* @__PURE__ */ __name(() => {
   const id = `list-${numLists++}`;
   return {
-    OverflowList: /* @__PURE__ */ __name((props) => /* @__PURE__ */ jsx23(OverflowList, { ...props, id }), "OverflowList"),
+    OverflowList: /* @__PURE__ */ __name((props) => /* @__PURE__ */ jsx21(OverflowList, { ...props, id }), "OverflowList"),
     overflowListAfterDOMLoaded: `
 document.addEventListener("nav", (e) => {
   const observer = new IntersectionObserver((entries) => {
@@ -6121,14 +6066,14 @@ document.addEventListener("nav", (e) => {
 }, "default");
 
 // quartz/components/TableOfContents.tsx
-import { jsx as jsx24, jsxs as jsxs15 } from "preact/jsx-runtime";
-var defaultOptions12 = {
+import { jsx as jsx22, jsxs as jsxs14 } from "preact/jsx-runtime";
+var defaultOptions11 = {
   layout: "modern",
   defaultCollapsed: false
 };
 var numTocs = 0;
 var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
-  const layout = opts?.layout ?? defaultOptions12.layout;
+  const layout = opts?.layout ?? defaultOptions11.layout;
   const layoutCollapsedOverride = opts?.defaultCollapsed;
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   const TableOfContents2 = /* @__PURE__ */ __name(({
@@ -6140,9 +6085,9 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
       return null;
     }
     const id = `toc-${numTocs++}`;
-    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions12.defaultCollapsed;
-    return /* @__PURE__ */ jsx24("div", { class: classNames(displayClass, "toc"), children: /* @__PURE__ */ jsxs15("div", { class: "toc-container", children: [
-      /* @__PURE__ */ jsxs15(
+    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions11.defaultCollapsed;
+    return /* @__PURE__ */ jsx22("div", { class: classNames(displayClass, "toc"), children: /* @__PURE__ */ jsxs14("div", { class: "toc-container", children: [
+      /* @__PURE__ */ jsxs14(
         "button",
         {
           type: "button",
@@ -6150,8 +6095,8 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
           "aria-controls": id,
           "aria-expanded": !initiallyCollapsed,
           children: [
-            /* @__PURE__ */ jsx24("h3", { children: i18n(cfg.locale).components.tableOfContents.title }),
-            /* @__PURE__ */ jsx24(
+            /* @__PURE__ */ jsx22("h3", { children: i18n(cfg.locale).components.tableOfContents.title }),
+            /* @__PURE__ */ jsx22(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
@@ -6164,18 +6109,18 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 class: "fold",
-                children: /* @__PURE__ */ jsx24("polyline", { points: "6 9 12 15 18 9" })
+                children: /* @__PURE__ */ jsx22("polyline", { points: "6 9 12 15 18 9" })
               }
             )
           ]
         }
       ),
-      /* @__PURE__ */ jsx24(
+      /* @__PURE__ */ jsx22(
         OverflowList2,
         {
           id,
           class: initiallyCollapsed ? "collapsed toc-content" : "toc-content",
-          children: fileData.toc.map((tocEntry) => /* @__PURE__ */ jsx24("li", { class: `depth-${tocEntry.depth}`, children: /* @__PURE__ */ jsx24("a", { href: `#${tocEntry.slug}`, "data-for": tocEntry.slug, children: tocEntry.text }) }, tocEntry.slug))
+          children: fileData.toc.map((tocEntry) => /* @__PURE__ */ jsx22("li", { class: `depth-${tocEntry.depth}`, children: /* @__PURE__ */ jsx22("a", { href: `#${tocEntry.slug}`, "data-for": tocEntry.slug, children: tocEntry.text }) }, tocEntry.slug))
         }
       )
     ] }) });
@@ -6186,10 +6131,10 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
     if (!fileData.toc) {
       return null;
     }
-    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions12.defaultCollapsed;
-    return /* @__PURE__ */ jsxs15("details", { class: "toc", open: !initiallyCollapsed, children: [
-      /* @__PURE__ */ jsx24("summary", { children: /* @__PURE__ */ jsx24("h3", { children: i18n(cfg.locale).components.tableOfContents.title }) }),
-      /* @__PURE__ */ jsx24("ul", { children: fileData.toc.map((tocEntry) => /* @__PURE__ */ jsx24("li", { class: `depth-${tocEntry.depth}`, children: /* @__PURE__ */ jsx24("a", { href: `#${tocEntry.slug}`, "data-for": tocEntry.slug, children: tocEntry.text }) }, tocEntry.slug)) })
+    const initiallyCollapsed = layoutCollapsedOverride !== void 0 ? layoutCollapsedOverride : fileData.collapseToc ?? defaultOptions11.defaultCollapsed;
+    return /* @__PURE__ */ jsxs14("details", { class: "toc", open: !initiallyCollapsed, children: [
+      /* @__PURE__ */ jsx22("summary", { children: /* @__PURE__ */ jsx22("h3", { children: i18n(cfg.locale).components.tableOfContents.title }) }),
+      /* @__PURE__ */ jsx22("ul", { children: fileData.toc.map((tocEntry) => /* @__PURE__ */ jsx22("li", { class: `depth-${tocEntry.depth}`, children: /* @__PURE__ */ jsx22("a", { href: `#${tocEntry.slug}`, "data-for": tocEntry.slug, children: tocEntry.text }) }, tocEntry.slug)) })
     ] });
   }, "LegacyTableOfContents");
   LegacyTableOfContents.css = legacyToc_default;
@@ -6203,11 +6148,12 @@ var explorer_default = "";
 var explorer_inline_default = "";
 
 // quartz/components/Explorer.tsx
-import { jsx as jsx25, jsxs as jsxs16 } from "preact/jsx-runtime";
-var defaultOptions13 = {
+import { jsx as jsx23, jsxs as jsxs15 } from "preact/jsx-runtime";
+var defaultOptions12 = {
   folderDefaultState: "collapsed",
   folderClickBehavior: "link",
   useSavedState: true,
+  startCollapsed: true,
   mapFn: /* @__PURE__ */ __name((node) => {
     return node;
   }, "mapFn"),
@@ -6224,12 +6170,15 @@ var defaultOptions13 = {
       return -1;
     }
   }, "sortFn"),
-  filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "tags", "filterFn"),
+  filterFn: /* @__PURE__ */ __name((node) => {
+    const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+    return segment !== "tags" && segment !== "canvases";
+  }, "filterFn"),
   order: ["filter", "map", "sort"]
 };
 var numExplorers = 0;
 var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
-  const opts = { ...defaultOptions13, ...userOpts };
+  const opts = { ...defaultOptions12, ...userOpts };
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   const Explorer = /* @__PURE__ */ __name((componentProps) => {
     const { cfg, displayClass } = componentProps;
@@ -6237,10 +6186,10 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
     const rootClasses = classNames(
       displayClass,
       "explorer",
-      opts.folderDefaultState === "collapsed" ? "collapsed" : ""
+      opts.startCollapsed ? "collapsed" : ""
     );
     const HeaderSlot = opts.headerSlot;
-    return /* @__PURE__ */ jsxs16(
+    return /* @__PURE__ */ jsxs15(
       "div",
       {
         class: rootClasses,
@@ -6254,8 +6203,8 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
           mapFn: opts.mapFn.toString()
         }),
         children: [
-          /* @__PURE__ */ jsxs16("div", { class: "explorer-header", children: [
-            /* @__PURE__ */ jsx25(
+          /* @__PURE__ */ jsxs15("div", { class: "explorer-header", children: [
+            /* @__PURE__ */ jsx23(
               "button",
               {
                 type: "button",
@@ -6263,7 +6212,7 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                 "data-mobile": true,
                 "aria-controls": id,
                 "aria-expanded": opts.folderDefaultState !== "collapsed",
-                children: /* @__PURE__ */ jsxs16(
+                children: /* @__PURE__ */ jsxs15(
                   "svg",
                   {
                     xmlns: "http://www.w3.org/2000/svg",
@@ -6275,15 +6224,15 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                     "stroke-linejoin": "round",
                     class: "lucide-menu",
                     children: [
-                      /* @__PURE__ */ jsx25("line", { x1: "4", x2: "20", y1: "12", y2: "12" }),
-                      /* @__PURE__ */ jsx25("line", { x1: "4", x2: "20", y1: "6", y2: "6" }),
-                      /* @__PURE__ */ jsx25("line", { x1: "4", x2: "20", y1: "18", y2: "18" })
+                      /* @__PURE__ */ jsx23("line", { x1: "4", x2: "20", y1: "12", y2: "12" }),
+                      /* @__PURE__ */ jsx23("line", { x1: "4", x2: "20", y1: "6", y2: "6" }),
+                      /* @__PURE__ */ jsx23("line", { x1: "4", x2: "20", y1: "18", y2: "18" })
                     ]
                   }
                 )
               }
             ),
-            /* @__PURE__ */ jsxs16(
+            /* @__PURE__ */ jsxs15(
               "button",
               {
                 type: "button",
@@ -6291,8 +6240,8 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                 "data-mobile": false,
                 "aria-expanded": opts.folderDefaultState !== "collapsed",
                 children: [
-                  /* @__PURE__ */ jsx25("h2", { children: opts.title ?? i18n(cfg.locale).components.explorer.title }),
-                  /* @__PURE__ */ jsx25(
+                  /* @__PURE__ */ jsx23("h2", { children: opts.title ?? i18n(cfg.locale).components.explorer.title }),
+                  /* @__PURE__ */ jsx23(
                     "svg",
                     {
                       xmlns: "http://www.w3.org/2000/svg",
@@ -6305,28 +6254,28 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                       "stroke-linecap": "round",
                       "stroke-linejoin": "round",
                       class: "fold",
-                      children: /* @__PURE__ */ jsx25("polyline", { points: "6 9 12 15 18 9" })
+                      children: /* @__PURE__ */ jsx23("polyline", { points: "6 9 12 15 18 9" })
                     }
                   )
                 ]
               }
             ),
-            HeaderSlot ? /* @__PURE__ */ jsx25("div", { class: "explorer-header-slot", children: /* @__PURE__ */ jsx25(HeaderSlot, { ...componentProps }) }) : null
+            HeaderSlot ? /* @__PURE__ */ jsx23("div", { class: "explorer-header-slot", children: /* @__PURE__ */ jsx23(HeaderSlot, { ...componentProps }) }) : null
           ] }),
-          /* @__PURE__ */ jsx25(
+          /* @__PURE__ */ jsx23(
             "div",
             {
               id,
               class: "explorer-content",
               "aria-expanded": opts.folderDefaultState !== "collapsed",
               role: "group",
-              children: /* @__PURE__ */ jsx25(OverflowList2, { class: "explorer-ul" })
+              children: /* @__PURE__ */ jsx23(OverflowList2, { class: "explorer-ul" })
             }
           ),
-          /* @__PURE__ */ jsx25("template", { id: "template-file", children: /* @__PURE__ */ jsx25("li", { children: /* @__PURE__ */ jsx25("a", { href: "#" }) }) }),
-          /* @__PURE__ */ jsx25("template", { id: "template-folder", children: /* @__PURE__ */ jsxs16("li", { children: [
-            /* @__PURE__ */ jsxs16("div", { class: "folder-container", children: [
-              /* @__PURE__ */ jsx25(
+          /* @__PURE__ */ jsx23("template", { id: "template-file", children: /* @__PURE__ */ jsx23("li", { children: /* @__PURE__ */ jsx23("a", { href: "#" }) }) }),
+          /* @__PURE__ */ jsx23("template", { id: "template-folder", children: /* @__PURE__ */ jsxs15("li", { children: [
+            /* @__PURE__ */ jsxs15("div", { class: "folder-container", children: [
+              /* @__PURE__ */ jsx23(
                 "svg",
                 {
                   xmlns: "http://www.w3.org/2000/svg",
@@ -6339,12 +6288,12 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
                   "stroke-linecap": "round",
                   "stroke-linejoin": "round",
                   class: "folder-icon",
-                  children: /* @__PURE__ */ jsx25("polyline", { points: "6 9 12 15 18 9" })
+                  children: /* @__PURE__ */ jsx23("polyline", { points: "6 9 12 15 18 9" })
                 }
               ),
-              /* @__PURE__ */ jsx25("div", { children: /* @__PURE__ */ jsx25("button", { class: "folder-button", children: /* @__PURE__ */ jsx25("span", { class: "folder-title" }) }) })
+              /* @__PURE__ */ jsx23("div", { children: /* @__PURE__ */ jsx23("button", { class: "folder-button", children: /* @__PURE__ */ jsx23("span", { class: "folder-title" }) }) })
             ] }),
-            /* @__PURE__ */ jsx25("div", { class: "folder-outer", children: /* @__PURE__ */ jsx25("ul", { class: "content" }) })
+            /* @__PURE__ */ jsx23("div", { class: "folder-outer", children: /* @__PURE__ */ jsx23("ul", { class: "content" }) })
           ] }) })
         ]
       }
@@ -6356,13 +6305,13 @@ var Explorer_default = /* @__PURE__ */ __name(((userOpts) => {
 }), "default");
 
 // quartz/components/TagList.tsx
-import { jsx as jsx26 } from "preact/jsx-runtime";
+import { jsx as jsx24 } from "preact/jsx-runtime";
 var TagList = /* @__PURE__ */ __name(({ fileData, displayClass }) => {
   const tags = fileData.frontmatter?.tags;
   if (tags && tags.length > 0) {
-    return /* @__PURE__ */ jsx26("ul", { class: classNames(displayClass, "tags"), children: tags.map((tag) => {
+    return /* @__PURE__ */ jsx24("ul", { class: classNames(displayClass, "tags"), children: tags.map((tag) => {
       const linkDest = resolveRelative(fileData.slug, `tags/${tag}`);
-      return /* @__PURE__ */ jsx26("li", { children: /* @__PURE__ */ jsx26("a", { href: linkDest, class: "internal tag-link", children: tag }) });
+      return /* @__PURE__ */ jsx24("li", { children: /* @__PURE__ */ jsx24("a", { href: linkDest, class: "internal tag-link", children: tag }) });
     }) });
   } else {
     return null;
@@ -6405,8 +6354,8 @@ var graph_inline_default = "";
 var graph_default = "";
 
 // quartz/components/Graph.tsx
-import { jsx as jsx27, jsxs as jsxs17 } from "preact/jsx-runtime";
-var defaultOptions14 = {
+import { jsx as jsx25, jsxs as jsxs16 } from "preact/jsx-runtime";
+var defaultOptions13 = {
   localGraph: {
     drag: true,
     zoom: true,
@@ -6440,13 +6389,13 @@ var defaultOptions14 = {
 };
 var Graph_default = /* @__PURE__ */ __name(((opts) => {
   const Graph = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-    const localGraph = { ...defaultOptions14.localGraph, ...opts?.localGraph };
-    const globalGraph = { ...defaultOptions14.globalGraph, ...opts?.globalGraph };
-    return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
-      /* @__PURE__ */ jsx27("h3", { children: i18n(cfg.locale).components.graph.title }),
-      /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
-        /* @__PURE__ */ jsx27("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
-        /* @__PURE__ */ jsx27("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx27(
+    const localGraph = { ...defaultOptions13.localGraph, ...opts?.localGraph };
+    const globalGraph = { ...defaultOptions13.globalGraph, ...opts?.globalGraph };
+    return /* @__PURE__ */ jsxs16("div", { class: classNames(displayClass, "graph"), children: [
+      /* @__PURE__ */ jsx25("h3", { children: i18n(cfg.locale).components.graph.title }),
+      /* @__PURE__ */ jsxs16("div", { class: "graph-outer", children: [
+        /* @__PURE__ */ jsx25("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
+        /* @__PURE__ */ jsx25("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx25(
           "svg",
           {
             version: "1.1",
@@ -6457,7 +6406,7 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
             viewBox: "0 0 55 55",
             fill: "currentColor",
             xmlSpace: "preserve",
-            children: /* @__PURE__ */ jsx27(
+            children: /* @__PURE__ */ jsx25(
               "path",
               {
                 d: "M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17\n                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4\n                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562\n                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829\n                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91\n                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4\n                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665\n                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2\n                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4\n                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2\n                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"
@@ -6466,7 +6415,7 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
           }
         ) })
       ] }),
-      /* @__PURE__ */ jsx27("div", { class: "global-graph-outer", children: /* @__PURE__ */ jsx27("div", { class: "global-graph-container", "data-cfg": JSON.stringify(globalGraph) }) })
+      /* @__PURE__ */ jsx25("div", { class: "global-graph-outer", children: /* @__PURE__ */ jsx25("div", { class: "global-graph-container", "data-cfg": JSON.stringify(globalGraph) }) })
     ] });
   }, "Graph");
   Graph.css = graph_default;
@@ -6481,12 +6430,12 @@ var backlinks_default = "";
 var backlinks_inline_default = "";
 
 // quartz/components/Backlinks.tsx
-import { jsx as jsx28, jsxs as jsxs18 } from "preact/jsx-runtime";
-var defaultOptions15 = {
+import { jsx as jsx26, jsxs as jsxs17 } from "preact/jsx-runtime";
+var defaultOptions14 = {
   hideWhenEmpty: true
 };
 var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions15, ...opts };
+  const options2 = { ...defaultOptions14, ...opts };
   const { OverflowList: OverflowList2, overflowListAfterDOMLoaded } = OverflowList_default();
   let backlinksInstance = 0;
   const Backlinks = /* @__PURE__ */ __name(({
@@ -6501,8 +6450,8 @@ var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
       return null;
     }
     const containerId = `backlinks-${backlinksInstance++}`;
-    return /* @__PURE__ */ jsx28("div", { class: classNames(displayClass, "backlinks"), children: /* @__PURE__ */ jsxs18("div", { class: "backlinks-container collapsed", children: [
-      /* @__PURE__ */ jsxs18(
+    return /* @__PURE__ */ jsx26("div", { class: classNames(displayClass, "backlinks"), children: /* @__PURE__ */ jsxs17("div", { class: "backlinks-container collapsed", children: [
+      /* @__PURE__ */ jsxs17(
         "button",
         {
           type: "button",
@@ -6510,8 +6459,8 @@ var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
           "aria-expanded": "false",
           "aria-controls": containerId,
           children: [
-            /* @__PURE__ */ jsx28("h3", { children: i18n(cfg.locale).components.backlinks.title }),
-            /* @__PURE__ */ jsx28(
+            /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.backlinks.title }),
+            /* @__PURE__ */ jsx26(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
@@ -6525,13 +6474,13 @@ var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
                 "stroke-linejoin": "round",
                 "aria-hidden": "true",
                 class: "fold",
-                children: /* @__PURE__ */ jsx28("polyline", { points: "6 9 12 15 18 9" })
+                children: /* @__PURE__ */ jsx26("polyline", { points: "6 9 12 15 18 9" })
               }
             )
           ]
         }
       ),
-      /* @__PURE__ */ jsx28(OverflowList2, { id: containerId, class: "backlinks-content collapsed", children: backlinkFiles.length > 0 ? backlinkFiles.map((f) => /* @__PURE__ */ jsx28("li", { children: /* @__PURE__ */ jsx28("a", { href: resolveRelative(fileData.slug, f.slug), class: "internal", children: f.frontmatter?.title }) })) : /* @__PURE__ */ jsx28("li", { children: i18n(cfg.locale).components.backlinks.noBacklinksFound }) })
+      /* @__PURE__ */ jsx26(OverflowList2, { id: containerId, class: "backlinks-content collapsed", children: backlinkFiles.length > 0 ? backlinkFiles.map((f) => /* @__PURE__ */ jsx26("li", { children: /* @__PURE__ */ jsx26("a", { href: resolveRelative(fileData.slug, f.slug), class: "internal", children: f.frontmatter?.title }) })) : /* @__PURE__ */ jsx26("li", { children: i18n(cfg.locale).components.backlinks.noBacklinksFound }) })
     ] }) });
   }, "Backlinks");
   Backlinks.css = backlinks_default;
@@ -6546,28 +6495,28 @@ var search_default = "";
 var search_inline_default = "";
 
 // quartz/components/Search.tsx
-import { jsx as jsx29, jsxs as jsxs19 } from "preact/jsx-runtime";
-var defaultOptions16 = {
+import { jsx as jsx27, jsxs as jsxs18 } from "preact/jsx-runtime";
+var defaultOptions15 = {
   enablePreview: true,
   variant: "card"
 };
 var Search_default = /* @__PURE__ */ __name(((userOpts) => {
   const Search = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
-    const opts = { ...defaultOptions16, ...userOpts };
+    const opts = { ...defaultOptions15, ...userOpts };
     const searchPlaceholder = i18n(cfg.locale).components.search.searchBarPlaceholder;
-    return /* @__PURE__ */ jsxs19("div", { class: classNames(displayClass, "search", opts.variant === "inline" ? "search-inline" : ""), children: [
-      /* @__PURE__ */ jsxs19("button", { class: "search-button", children: [
-        /* @__PURE__ */ jsxs19("svg", { role: "img", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 19.9 19.7", children: [
-          /* @__PURE__ */ jsx29("title", { children: "Search" }),
-          /* @__PURE__ */ jsxs19("g", { class: "search-path", fill: "none", children: [
-            /* @__PURE__ */ jsx29("path", { "stroke-linecap": "square", d: "M18.5 18.3l-5.4-5.4" }),
-            /* @__PURE__ */ jsx29("circle", { cx: "8", cy: "8", r: "7" })
+    return /* @__PURE__ */ jsxs18("div", { class: classNames(displayClass, "search", opts.variant === "inline" ? "search-inline" : ""), children: [
+      /* @__PURE__ */ jsxs18("button", { class: "search-button", children: [
+        /* @__PURE__ */ jsxs18("svg", { role: "img", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 19.9 19.7", children: [
+          /* @__PURE__ */ jsx27("title", { children: "Search" }),
+          /* @__PURE__ */ jsxs18("g", { class: "search-path", fill: "none", children: [
+            /* @__PURE__ */ jsx27("path", { "stroke-linecap": "square", d: "M18.5 18.3l-5.4-5.4" }),
+            /* @__PURE__ */ jsx27("circle", { cx: "8", cy: "8", r: "7" })
           ] })
         ] }),
-        /* @__PURE__ */ jsx29("p", { children: i18n(cfg.locale).components.search.title })
+        /* @__PURE__ */ jsx27("p", { children: i18n(cfg.locale).components.search.title })
       ] }),
-      /* @__PURE__ */ jsx29("div", { class: "search-container", children: /* @__PURE__ */ jsxs19("div", { class: "search-space", children: [
-        /* @__PURE__ */ jsx29(
+      /* @__PURE__ */ jsx27("div", { class: "search-container", children: /* @__PURE__ */ jsxs18("div", { class: "search-space", children: [
+        /* @__PURE__ */ jsx27(
           "input",
           {
             autocomplete: "off",
@@ -6578,7 +6527,7 @@ var Search_default = /* @__PURE__ */ __name(((userOpts) => {
             placeholder: searchPlaceholder
           }
         ),
-        /* @__PURE__ */ jsx29("div", { class: "search-layout", "data-preview": opts.enablePreview })
+        /* @__PURE__ */ jsx27("div", { class: "search-layout", "data-preview": opts.enablePreview })
       ] }) })
     ] });
   }, "Search");
@@ -6594,11 +6543,11 @@ var Footer_default = /* @__PURE__ */ __name((() => {
 }), "default");
 
 // quartz/components/DesktopOnly.tsx
-import { jsx as jsx30 } from "preact/jsx-runtime";
+import { jsx as jsx28 } from "preact/jsx-runtime";
 var DesktopOnly_default = /* @__PURE__ */ __name(((component) => {
   const Component = component;
   const DesktopOnly = /* @__PURE__ */ __name((props) => {
-    return /* @__PURE__ */ jsx30(Component, { displayClass: "desktop-only", ...props });
+    return /* @__PURE__ */ jsx28(Component, { displayClass: "desktop-only", ...props });
   }, "DesktopOnly");
   DesktopOnly.displayName = component.displayName;
   DesktopOnly.afterDOMLoaded = component?.afterDOMLoaded;
@@ -6608,11 +6557,11 @@ var DesktopOnly_default = /* @__PURE__ */ __name(((component) => {
 }), "default");
 
 // quartz/components/MobileOnly.tsx
-import { jsx as jsx31 } from "preact/jsx-runtime";
+import { jsx as jsx29 } from "preact/jsx-runtime";
 var MobileOnly_default = /* @__PURE__ */ __name(((component) => {
   const Component = component;
   const MobileOnly = /* @__PURE__ */ __name((props) => {
-    return /* @__PURE__ */ jsx31(Component, { displayClass: "mobile-only", ...props });
+    return /* @__PURE__ */ jsx29(Component, { displayClass: "mobile-only", ...props });
   }, "MobileOnly");
   MobileOnly.displayName = component.displayName;
   MobileOnly.afterDOMLoaded = component?.afterDOMLoaded;
@@ -6621,15 +6570,12 @@ var MobileOnly_default = /* @__PURE__ */ __name(((component) => {
   return MobileOnly;
 }), "default");
 
-// quartz/components/RecentNotes.tsx
-import { jsx as jsx32, jsxs as jsxs20 } from "preact/jsx-runtime";
-
 // quartz/components/styles/breadcrumbs.scss
 var breadcrumbs_default = "";
 
 // quartz/components/Breadcrumbs.tsx
-import { jsx as jsx33, jsxs as jsxs21 } from "preact/jsx-runtime";
-var defaultOptions17 = {
+import { jsx as jsx30, jsxs as jsxs19 } from "preact/jsx-runtime";
+var defaultOptions16 = {
   spacerSymbol: "\u276F",
   rootName: "Home",
   resolveFrontmatterTitle: true,
@@ -6643,7 +6589,7 @@ function formatCrumb(displayName, baseSlug, currentSlug) {
 }
 __name(formatCrumb, "formatCrumb");
 var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
-  const options2 = { ...defaultOptions17, ...opts };
+  const options2 = { ...defaultOptions16, ...opts };
   const Breadcrumbs = /* @__PURE__ */ __name(({
     fileData,
     allFiles,
@@ -6669,9 +6615,9 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
     if (!options2.showCurrentPage) {
       crumbs.pop();
     }
-    return /* @__PURE__ */ jsx33("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs21("div", { class: "breadcrumb-element", children: [
-      /* @__PURE__ */ jsx33("a", { href: crumb.path, children: crumb.displayName }),
-      index !== crumbs.length - 1 && /* @__PURE__ */ jsx33("p", { children: ` ${options2.spacerSymbol} ` })
+    return /* @__PURE__ */ jsx30("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs19("div", { class: "breadcrumb-element", children: [
+      /* @__PURE__ */ jsx30("a", { href: crumb.path, children: crumb.displayName }),
+      index !== crumbs.length - 1 && /* @__PURE__ */ jsx30("p", { children: ` ${options2.spacerSymbol} ` })
     ] })) });
   }, "Breadcrumbs");
   Breadcrumbs.css = breadcrumbs_default;
@@ -6682,7 +6628,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment5, jsx as jsx34, jsxs as jsxs22 } from "preact/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx31, jsxs as jsxs20 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -6692,15 +6638,15 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     const { displayClass, fileData, cfg } = props;
     const disableComment = typeof fileData.frontmatter?.comments !== "undefined" && (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false");
     if (disableComment) {
-      return /* @__PURE__ */ jsx34(Fragment5, {});
+      return /* @__PURE__ */ jsx31(Fragment5, {});
     }
     if (opts.provider === "giscus") {
       const options3 = opts.options;
       const MobileAppend2 = opts.mobileAppend;
-      return /* @__PURE__ */ jsxs22("div", { class: classNames(displayClass, "comments-section"), children: [
-        /* @__PURE__ */ jsx34("hr", { class: "comments-separator", "aria-hidden": "true" }),
-        /* @__PURE__ */ jsxs22("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
-          /* @__PURE__ */ jsx34(
+      return /* @__PURE__ */ jsxs20("div", { class: classNames(displayClass, "comments-section"), children: [
+        /* @__PURE__ */ jsx31("hr", { class: "comments-separator", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsxs20("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
+          /* @__PURE__ */ jsx31(
             "div",
             {
               class: "comments giscus",
@@ -6719,16 +6665,16 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
               "data-lang": options3.lang ?? "en"
             }
           ),
-          MobileAppend2 ? /* @__PURE__ */ jsx34("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx34(MobileAppend2, { ...props, displayClass: "mobile-only" }) }) : null
+          MobileAppend2 ? /* @__PURE__ */ jsx31("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx31(MobileAppend2, { ...props, displayClass: "mobile-only" }) }) : null
         ] })
       ] });
     }
     const options2 = opts.options;
     const MobileAppend = opts.mobileAppend;
-    return /* @__PURE__ */ jsxs22("div", { class: classNames(displayClass, "comments-section"), children: [
-      /* @__PURE__ */ jsx34("hr", { class: "comments-separator", "aria-hidden": "true" }),
-      /* @__PURE__ */ jsxs22("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
-        /* @__PURE__ */ jsx34(
+    return /* @__PURE__ */ jsxs20("div", { class: classNames(displayClass, "comments-section"), children: [
+      /* @__PURE__ */ jsx31("hr", { class: "comments-separator", "aria-hidden": "true" }),
+      /* @__PURE__ */ jsxs20("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
+        /* @__PURE__ */ jsx31(
           "div",
           {
             class: "comments utterances",
@@ -6739,7 +6685,7 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
             "data-theme": options2.theme ?? "github-dark"
           }
         ),
-        MobileAppend ? /* @__PURE__ */ jsx34("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx34(MobileAppend, { ...props, displayClass: "mobile-only" }) }) : null
+        MobileAppend ? /* @__PURE__ */ jsx31("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx31(MobileAppend, { ...props, displayClass: "mobile-only" }) }) : null
       ] })
     ] });
   }, "Comments");
@@ -6747,15 +6693,12 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
   return Comments;
 }), "default");
 
-// quartz/components/Flex.tsx
-import { jsx as jsx35 } from "preact/jsx-runtime";
-
 // quartz/components/ConditionalRender.tsx
-import { jsx as jsx36 } from "preact/jsx-runtime";
+import { jsx as jsx32 } from "preact/jsx-runtime";
 var ConditionalRender_default = /* @__PURE__ */ __name(((config2) => {
   const ConditionalRender = /* @__PURE__ */ __name((props) => {
     if (config2.condition(props)) {
-      return /* @__PURE__ */ jsx36(config2.component, { ...props });
+      return /* @__PURE__ */ jsx32(config2.component, { ...props });
     }
     return null;
   }, "ConditionalRender");
@@ -6788,7 +6731,7 @@ var theme_colors_default = {
 };
 
 // quartz/components/LinksHeader.tsx
-import { jsx as jsx37, jsxs as jsxs23 } from "preact/jsx-runtime";
+import { jsx as jsx33, jsxs as jsxs21 } from "preact/jsx-runtime";
 var palette = theme_colors_default;
 var iconPath = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
 var navLinks = [
@@ -6813,6 +6756,11 @@ var navLinks = [
     iconSlug: "media"
   },
   {
+    href: "/Timelines/",
+    label: "Timelines",
+    iconSlug: "timeline"
+  },
+  {
     href: "/Puzzles/",
     label: "Puzzles",
     iconSlug: "puzzles"
@@ -6823,6 +6771,11 @@ var navLinks = [
     iconSlug: "discord"
   },
   {
+    href: "/Forum/",
+    label: "Forum",
+    iconSlug: "forum"
+  },
+  {
     href: "/YouTube/",
     label: "YouTube",
     iconSlug: "youtube"
@@ -6830,217 +6783,123 @@ var navLinks = [
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsxs23("div", { id: "links-header-container", children: [
-      /* @__PURE__ */ jsx37(
-        "nav",
-        {
-          id: "links-header",
-          style: {
-            "--link-button-bg": palette.buttonBackground,
-            "--link-button-border": palette.accentSecondary,
-            "--link-button-hover": palette.buttonHover,
-            "--link-button-text": palette.buttonText
-          },
-          children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs23("a", { class: "links-header-item", href, children: [
-            /* @__PURE__ */ jsx37("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx37("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
-            /* @__PURE__ */ jsx37("span", { children: label })
-          ] }, href))
-        }
-      ),
-      /* @__PURE__ */ jsx37("hr", {})
-    ] });
+    return /* @__PURE__ */ jsx33("div", { id: "links-header-container", children: /* @__PURE__ */ jsx33(
+      "nav",
+      {
+        id: "links-header",
+        style: {
+          "--link-button-bg": palette.buttonBackground,
+          "--link-button-border": palette.accentSecondary,
+          "--link-button-hover": palette.buttonHover,
+          "--link-button-text": palette.buttonText
+        },
+        children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs21("a", { class: "links-header-item", href, children: [
+          /* @__PURE__ */ jsx33("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx33("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+          /* @__PURE__ */ jsx33("span", { children: label })
+        ] }, href))
+      }
+    ) });
   }, "LinksHeader");
   LinksHeader.css = linksHeader_default;
   return LinksHeader;
 }), "default");
 
-// quartz/components/scripts/discordWidget.inline.ts
-var discordWidget_inline_default = "";
-
 // quartz/components/DiscordWidget.tsx
-import { jsx as jsx38, jsxs as jsxs24 } from "preact/jsx-runtime";
+import { jsx as jsx34, jsxs as jsxs22 } from "preact/jsx-runtime";
 var WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark";
-var DISCORD_INVITE = "https://discord.com/invite/sleuth707";
-var MASK_HEIGHT_PX = 78;
+var FILTER_ID = "discord-widget-redify";
+var TOP_BAND_GRADIENT_DATA = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.098' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.166' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E";
+var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx34("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs22(
+  "filter",
+  {
+    id: FILTER_ID,
+    "color-interpolation-filters": "sRGB",
+    filterUnits: "objectBoundingBox",
+    primitiveUnits: "objectBoundingBox",
+    x: "0",
+    y: "0",
+    width: "1",
+    height: "1",
+    children: [
+      /* @__PURE__ */ jsx34(
+        "feColorMatrix",
+        {
+          in: "SourceGraphic",
+          type: "matrix",
+          values: "0.6813 -0.3187 0.6373 0 0  0.2743 1.2743 -0.5486 0 0  0.8047 0.8047 -0.6094 0 0  0 0 0 1 0",
+          result: "tinted"
+        }
+      ),
+      /* @__PURE__ */ jsx34(
+        "feImage",
+        {
+          x: "0",
+          y: "0",
+          width: "1",
+          height: "1",
+          preserveAspectRatio: "none",
+          href: TOP_BAND_GRADIENT_DATA,
+          xlinkHref: TOP_BAND_GRADIENT_DATA,
+          result: "topGradient"
+        }
+      ),
+      /* @__PURE__ */ jsx34(
+        "feColorMatrix",
+        {
+          in: "topGradient",
+          type: "matrix",
+          values: "0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 1 1 0 0",
+          result: "topMask"
+        }
+      ),
+      /* @__PURE__ */ jsx34("feComposite", { in: "tinted", in2: "topMask", operator: "in", result: "tintedTop" }),
+      /* @__PURE__ */ jsx34("feComposite", { in: "SourceGraphic", in2: "topMask", operator: "out", result: "originalBottom" }),
+      /* @__PURE__ */ jsxs22("feMerge", { children: [
+        /* @__PURE__ */ jsx34("feMergeNode", { in: "tintedTop" }),
+        /* @__PURE__ */ jsx34("feMergeNode", { in: "originalBottom" })
+      ] })
+    ]
+  }
+) }), "FilterDefinition");
 var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   const variant = options2?.variant ?? "sidebar";
   const DiscordWidget = /* @__PURE__ */ __name(({ displayClass }) => {
-    return /* @__PURE__ */ jsx38("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: /* @__PURE__ */ jsxs24("div", { class: "discord-widget__frame", children: [
-      /* @__PURE__ */ jsxs24("div", { class: "discord-widget__header", children: [
-        /* @__PURE__ */ jsxs24("div", { class: "discord-widget__brand", children: [
-          /* @__PURE__ */ jsx38("span", { class: "discord-widget__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx38("svg", { viewBox: "0 0 24 24", focusable: "false", "aria-hidden": "true", children: /* @__PURE__ */ jsx38(
-            "path",
-            {
-              d: "M20.317 4.369A18.171 18.171 0 0 0 16.268 3a12.673 12.673 0 0 0-.614 1.265 16.532 16.532 0 0 0-4.308 0A11.723 11.723 0 0 0 10.731 3a18.274 18.274 0 0 0-4.052 1.38c-2.569 3.773-3.652 7.456-3.266 11.092a18.411 18.411 0 0 0 4.979 2.546 13.42 13.42 0 0 0 1.07-1.71 11.832 11.832 0 0 1-1.688-.812c.142-.102.281-.205.417-.312a13.116 13.116 0 0 0 11.034 0c.136.107.275.21.417.312a11.77 11.77 0 0 1-1.7.82c.314.6.672 1.168 1.07 1.71a18.316 18.316 0 0 0 4.99-2.558c.409-3.983-.67-7.64-3.317-11.09ZM8.68 14.153c-.965 0-1.753-.915-1.753-2.038s.767-2.038 1.753-2.038 1.765.926 1.753 2.038c0 1.123-.767 2.038-1.753 2.038Zm6.64 0c-.965 0-1.753-.915-1.753-2.038s.767-2.038 1.753-2.038 1.765.926 1.753 2.038c0 1.123-.788 2.038-1.753 2.038Z",
-              fill: "currentColor"
-            }
-          ) }) }),
-          /* @__PURE__ */ jsxs24("div", { class: "discord-widget__text", children: [
-            /* @__PURE__ */ jsx38("span", { class: "discord-widget__title", children: "Discord" }),
-            /* @__PURE__ */ jsxs24("span", { class: "discord-widget__online", children: [
-              /* @__PURE__ */ jsx38(
-                "span",
-                {
-                  class: "discord-widget__online-count",
-                  "data-discord-member-count": true,
-                  "aria-live": "polite",
-                  "aria-label": "Loading Discord member count",
-                  children: "\u2014"
-                }
-              ),
-              /* @__PURE__ */ jsx38("span", { class: "discord-widget__online-label", children: "Members Online" })
-            ] })
-          ] })
-        ] }),
-        /* @__PURE__ */ jsx38("a", { class: "discord-widget__cta", href: DISCORD_INVITE, target: "_blank", rel: "noopener", children: "Join" })
-      ] }),
-      /* @__PURE__ */ jsxs24("div", { class: "discord-widget__embed", children: [
-        /* @__PURE__ */ jsx38(
-          "iframe",
-          {
-            src: WIDGET_SRC,
-            title: "710 Discord",
-            loading: "lazy",
-            allowTransparency: true,
-            frameBorder: "0",
-            sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts",
-            width: "100%",
-            height: "100%"
-          }
-        ),
-        /* @__PURE__ */ jsx38("div", { class: "discord-widget__mask", "aria-hidden": "true" })
-      ] })
-    ] }) });
+    return /* @__PURE__ */ jsxs22("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: [
+      /* @__PURE__ */ jsx34(FilterDefinition, {}),
+      /* @__PURE__ */ jsx34(
+        "iframe",
+        {
+          class: "discord-widget__iframe",
+          src: WIDGET_SRC,
+          title: "710 Discord",
+          loading: "lazy",
+          allowTransparency: true,
+          frameBorder: "0",
+          sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        }
+      )
+    ] });
   }, "DiscordWidget");
   DiscordWidget.css = `
 .discord-widget {
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
 }
-
-.discord-widget__frame {
-  position: relative;
-  width: min(100%, var(--discord-frame-max-width, 350px));
-  border-radius: 12px;
-  overflow: hidden;
-  background: rgba(24, 25, 30, 0.95);
-  display: flex;
-  flex-direction: column;
-  --discord-embed-height: 500px;
-  --discord-mask-height: ${MASK_HEIGHT_PX}px;
-}
-
-.discord-widget__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.85rem 1rem 0.9rem;
-  background: #b71002;
-  color: #ffffff;
-}
-
-.discord-widget__brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.discord-widget__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.discord-widget__icon svg {
-  width: 26px;
-  height: 26px;
-}
-
-.discord-widget__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.discord-widget__title {
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.discord-widget__online {
-  display: inline-flex;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  align-items: baseline;
-}
-
-.discord-widget__online-count {
-  font-variant-numeric: tabular-nums;
-}
-
-.discord-widget__online-label {
-  opacity: 0.85;
-}
-
-.discord-widget__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.45rem 0.85rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-}
-
-.discord-widget__cta:hover,
-.discord-widget__cta:focus-visible {
-  background: rgba(0, 0, 0, 0.35);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-1px);
-}
-
-.discord-widget__embed {
-  position: relative;
-  width: 100%;
-  height: var(--discord-embed-height);
-  overflow: hidden;
-}
-
-.discord-widget__embed iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  background-color: #040405;
-}
-
-.discord-widget__mask {
+.discord-widget__filters {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--discord-mask-height);
-  background: linear-gradient(180deg, #b71002 0%, #b71002 72%, rgba(183, 16, 2, 0));
+  width: 0;
+  height: 0;
   pointer-events: none;
-  z-index: 2;
-  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.65);
 }
 
-.discord-widget--sidebar {
-  max-width: 350px;
-  margin-top: 0;
+.discord-widget__iframe {
+  width: min(100%, var(--discord-widget-max-width, 350px));
+  height: var(--discord-widget-height, 500px);
+  border: none;
+  border-radius: 12px;
+  background-color: #040405;
+  filter: url(#${FILTER_ID});
 }
 
 .discord-widget--banner {
@@ -7048,23 +6907,299 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   margin-top: 2rem;
 }
 
-.discord-widget--banner .discord-widget__frame {
-  --discord-frame-max-width: 100%;
-  --discord-embed-height: 420px;
+.discord-widget--banner .discord-widget__iframe {
+  --discord-widget-max-width: 100%;
+  --discord-widget-height: 420px;
 }
 
 @media (max-width: 480px) {
-  .discord-widget__frame {
-    --discord-embed-height: 460px;
+  .discord-widget__iframe {
+    --discord-widget-height: 420px;
   }
 
-  .discord-widget--banner .discord-widget__frame {
-    --discord-embed-height: 360px;
+  .discord-widget--banner .discord-widget__iframe {
+    --discord-widget-height: 360px;
   }
 }
 `;
-  DiscordWidget.afterDOMLoaded = discordWidget_inline_default;
   return DiscordWidget;
+}), "default");
+
+// quartz/components/InfoBox.tsx
+import { Fragment as Fragment6 } from "preact";
+import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
+var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
+var stripContentPrefix = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var normalizeString = /* @__PURE__ */ __name((value) => {
+  if (value === null || value === void 0) {
+    return void 0;
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : void 0;
+  }
+  if (typeof value === "number" || typeof value === "boolean") {
+    return String(value);
+  }
+  return void 0;
+}, "normalizeString");
+var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
+var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
+  const sanitized = stripContentPrefix(target);
+  const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
+  try {
+    const candidate = slugifyFilePath(withExt, true);
+    if (ctx.allSlugs.includes(candidate)) {
+      return candidate;
+    }
+    return ctx.allSlugs.find((slug) => slug.endsWith(`/${candidate}`));
+  } catch {
+    return void 0;
+  }
+}, "findSlugMatch");
+var getTitleForSlug = /* @__PURE__ */ __name((slug, ctx) => {
+  const pathSegments = slug.split("/");
+  const node = ctx.trie?.findNode(pathSegments);
+  return node?.data?.title ?? node?.displayName ?? pathSegments.at(-1);
+}, "getTitleForSlug");
+var renderTextWithWikilinks = /* @__PURE__ */ __name((raw, slug, ctx) => {
+  const nodes = [];
+  let lastIndex = 0;
+  raw.replace(OBSIDIAN_WIKILINK_PATTERN, (match, target = "", anchor = "", alias) => {
+    const index = raw.indexOf(match, lastIndex);
+    if (index > lastIndex) {
+      nodes.push(raw.slice(lastIndex, index));
+    }
+    const trimmedTarget = target.trim();
+    const trimmedAlias = alias?.trim();
+    const slugMatch = trimmedTarget ? findSlugMatch(trimmedTarget, ctx) : void 0;
+    const anchorValue = anchor?.trim() ?? "";
+    if (slugMatch) {
+      const href = transformLink(slug, `${slugMatch}${anchorValue}`, {
+        strategy: "shortest",
+        allSlugs: ctx.allSlugs
+      });
+      const label = trimmedAlias ?? getTitleForSlug(slugMatch, ctx) ?? trimmedTarget;
+      nodes.push(
+        /* @__PURE__ */ jsx35("a", { href, class: "internal", children: label })
+      );
+    } else {
+      const fallback = trimmedAlias ?? (trimmedTarget.length > 0 ? trimmedTarget : match);
+      nodes.push(fallback);
+    }
+    lastIndex = index + match.length;
+    return match;
+  });
+  if (lastIndex < raw.length) {
+    nodes.push(raw.slice(lastIndex));
+  }
+  if (nodes.length === 0) {
+    return "";
+  }
+  if (nodes.length === 1) {
+    return nodes[0];
+  }
+  return nodes;
+}, "renderTextWithWikilinks");
+var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
+  if (Array.isArray(value)) {
+    const normalized = value.map((entry) => normalizeValue(entry, slug, ctx)).filter((entry) => Boolean(entry));
+    if (normalized.length === 0) {
+      return void 0;
+    }
+    const combinedKey = normalized.map((entry) => entry.key).join("|");
+    const children = intersperse(normalized.map((entry) => entry.node), ", ");
+    return { node: /* @__PURE__ */ jsx35(Fragment6, { children }), key: combinedKey };
+  }
+  const text = normalizeString(value);
+  if (!text) {
+    return void 0;
+  }
+  return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
+}, "normalizeValue");
+var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
+  if (!version) {
+    return url;
+  }
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+}, "appendAssetVersion");
+var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
+  const version = getAssetVersion();
+  if (isExternalUrl(rawTarget)) {
+    return rawTarget;
+  }
+  const targetWithoutExt = stripContentPrefix(rawTarget);
+  const targetSlug = slugifyFilePath(targetWithoutExt);
+  const baseDir = pathToRoot(slug);
+  return appendAssetVersion(joinSegments(baseDir, targetSlug), version);
+}, "resolveObsidianTarget");
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN);
+  if (obsidianMatch?.groups?.target) {
+    return resolveObsidianTarget(obsidianMatch.groups.target, slug);
+  }
+  if (isExternalUrl(cleaned)) {
+    return cleaned;
+  }
+  const version = getAssetVersion();
+  const target = stripContentPrefix(cleaned);
+  return appendAssetVersion(joinSegments(pathToRoot(slug), target), version);
+}, "resolveImageSource");
+var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
+  if (!Array.isArray(rawItems)) {
+    return [];
+  }
+  const parsed = [];
+  rawItems.forEach((item, index) => {
+    if (!item || typeof item !== "object") {
+      return;
+    }
+    const label = normalizeString(item.label);
+    if (!label) {
+      return;
+    }
+    const normalized = normalizeValue(item.value, slug, ctx);
+    if (!normalized) {
+      return;
+    }
+    parsed.push({ label, value: normalized.node, key: `${label}-${index}-${normalized.key}` });
+  });
+  return parsed;
+}, "parseItems");
+var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug, ctx) => {
+  const raw = frontmatter?.infobox;
+  if (!raw || typeof raw !== "object") {
+    return null;
+  }
+  const title = normalizeString(raw.title);
+  const items = parseItems(raw.items, slug, ctx);
+  const imageSrcRaw = normalizeString(raw.image?.src);
+  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
+  const imageAlt = normalizeString(raw.image?.alt);
+  const imageCaption = normalizeString(raw.image?.caption);
+  if (!title && !imageSrc && items.length === 0) {
+    return null;
+  }
+  const image = imageSrc ? {
+    src: imageSrc,
+    alt: imageAlt,
+    caption: imageCaption
+  } : void 0;
+  return {
+    title,
+    image,
+    items
+  };
+}, "parseInfoBox");
+var InfoBox_default = /* @__PURE__ */ __name((() => {
+  const InfoBox = /* @__PURE__ */ __name(({ fileData, displayClass, ctx }) => {
+    if (!fileData?.frontmatter || !fileData.slug) {
+      return null;
+    }
+    const infobox = parseInfoBox(fileData.frontmatter, fileData.slug, ctx);
+    if (!infobox) {
+      return null;
+    }
+    return /* @__PURE__ */ jsxs23("aside", { class: classNames(displayClass, "infobox"), role: "complementary", "aria-label": "Infobox", children: [
+      infobox.title ? /* @__PURE__ */ jsx35("h3", { class: "infobox__title", children: infobox.title }) : null,
+      infobox.image ? /* @__PURE__ */ jsxs23("figure", { class: "infobox__media", children: [
+        /* @__PURE__ */ jsx35("img", { src: infobox.image.src, alt: infobox.image.alt ?? infobox.title ?? "Infobox image", loading: "lazy", decoding: "async" }),
+        infobox.image.caption ? /* @__PURE__ */ jsx35("figcaption", { children: infobox.image.caption }) : null
+      ] }) : null,
+      infobox.items.length > 0 ? /* @__PURE__ */ jsx35("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value }) => /* @__PURE__ */ jsxs23("div", { class: "infobox__fact", children: [
+        /* @__PURE__ */ jsx35("dt", { children: label }),
+        /* @__PURE__ */ jsx35("dd", { children: value })
+      ] }, `${label}-${value}`)) }) : null
+    ] });
+  }, "InfoBox");
+  InfoBox.css = `
+.infobox {
+  float: right;
+  margin: 0 0 1.5rem 1.5rem;
+  width: clamp(220px, 28vw, 320px);
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: clamp(1.5rem, 6vh, 4rem);
+  z-index: 2;
+}
+
+.infobox__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.infobox__media {
+  margin: 0 0 1rem 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.infobox__media img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.18);
+  background: var(--lightgray);
+}
+
+
+.infobox__media figcaption {
+  font-size: 0.85rem;
+  color: var(--darkgray);
+  text-align: center;
+}
+
+.infobox__facts {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.infobox__fact {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.infobox__fact dt {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--darkgray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infobox__fact dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--gray);
+}
+
+@media (max-width: 1024px) {
+  .infobox {
+    position: relative;
+    top: auto;
+    float: none;
+    margin: 1.5rem auto;
+    width: min(100%, 420px);
+  }
+}
+  `;
+  return InfoBox;
 }), "default");
 
 // quartz/comments.config.ts
@@ -7157,6 +7292,7 @@ var defaultContentPageLayout = {
     }),
     ArticleTitle_default(),
     ContentMeta_default(),
+    InfoBox_default(),
     TagList_default(),
     MobileOnly_default(
       TableOfContents_default({
@@ -7171,16 +7307,25 @@ var defaultContentPageLayout = {
       Explorer_default({
         folderClickBehavior: "link",
         folderDefaultState: "collapsed",
-        useSavedState: false,
         headerSlot: Search_default({ variant: "inline" }),
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        useSavedState: false,
+        startCollapsed: true,
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "canvases";
+        }, "filterFn")
       })
     ),
     DesktopOnly_default(
       Explorer_default({
         folderClickBehavior: "link",
-        folderDefaultState: "open",
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        folderDefaultState: "collapsed",
+        useSavedState: false,
+        startCollapsed: false,
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "canvases";
+        }, "filterFn")
       })
     )
   ],
@@ -7575,8 +7720,8 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx39 } from "preact/jsx-runtime";
-var defaultOptions18 = {
+import { jsx as jsx36 } from "preact/jsx-runtime";
+var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
   rssLimit: 10,
@@ -7628,7 +7773,7 @@ function generateRSSFeed(cfg, idx, limit) {
 }
 __name(generateRSSFeed, "generateRSSFeed");
 var ContentIndex = /* @__PURE__ */ __name((opts) => {
-  opts = { ...defaultOptions18, ...opts };
+  opts = { ...defaultOptions17, ...opts };
   return {
     name: "ContentIndex",
     async *emit(ctx, content) {
@@ -7686,7 +7831,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx39(
+            /* @__PURE__ */ jsx36(
               "link",
               {
                 rel: "alternate",

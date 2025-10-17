@@ -11,7 +11,7 @@
   "scripts": {
     "validate:canvases": "node scripts/validate-canvases.mjs",
     "build": "npm run validate:canvases && npm run build -w quartz-site",
-    "start": "npx serve quartz-site/public -l $PORT"
+    "start": "node scripts/start-server.mjs"
   },
   "dependencies": {
     "serve": "^14.2.1",

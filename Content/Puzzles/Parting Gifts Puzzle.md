@@ -5,6 +5,5 @@ aliases:
 cssclasses:
 - puzzle
 canvas: parting-gifts-puzzle
-canvasDescription: Interactive layout for the Parting Gifts puzzle.
 ---
 This puzzle

@@ -28,6 +28,11 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "media",
   },
   {
+    href: "/Timelines/",
+    label: "Timelines",
+    iconSlug: "timeline",
+  },
+  {
     href: "/Puzzles/",
     label: "Puzzles",
     iconSlug: "puzzles",
@@ -36,6 +41,11 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     href: "/Discord/",
     label: "Discord",
     iconSlug: "discord",
+  },
+  {
+    href: "/Forum/",
+    label: "Forum",
+    iconSlug: "forum",
   },
   {
     href: "/YouTube/",
@@ -66,7 +76,6 @@ export default (() => {
             </a>
           ))}
         </nav>
-        <hr />
       </div>
     )
   }

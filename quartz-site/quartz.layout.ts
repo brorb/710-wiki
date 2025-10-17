@@ -90,6 +90,7 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
+  Component.InfoBox(),
     Component.TagList(),
     Component.MobileOnly(
       Component.TableOfContents({
@@ -104,16 +105,25 @@ export const defaultContentPageLayout: PageLayout = {
       Component.Explorer({
         folderClickBehavior: "link",
         folderDefaultState: "collapsed",
-        useSavedState: false,
         headerSlot: Component.Search({ variant: "inline" }),
-        filterFn: (node) => node.slugSegment !== "templates",
+        useSavedState: false,
+        startCollapsed: true,
+        filterFn: (node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+          return segment !== "templates" && segment !== "canvases"
+        },
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
-        folderDefaultState: "open",
-        filterFn: (node) => node.slugSegment !== "templates",
+        folderDefaultState: "collapsed",
+        useSavedState: false,
+        startCollapsed: false,
+        filterFn: (node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+          return segment !== "templates" && segment !== "canvases"
+        },
       })
     ),
   ],

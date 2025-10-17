@@ -4,5 +4,7 @@
   "convert-url-to-iframe",
   "obsidian-footnotes",
   "obsidian-linter",
-  "discord-message-embed"
+  "discord-message-embed",
+  "editing-toolbar",
+  "obsidian42-brat"
 ]
