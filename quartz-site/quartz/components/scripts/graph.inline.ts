@@ -1,4 +1,4 @@
-import type { ContentDetails } from "../../plugins/emitters/contentIndex"
+import type { SerializedContentDetails } from "../../plugins/emitters/contentIndex"
 import {
   SimulationNodeDatum,
   SimulationLinkDatum,
@@ -89,8 +89,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     enableRadial,
   } = JSON.parse(graph.dataset["cfg"]!) as D3Config
 
-  const data: Map<SimpleSlug, ContentDetails> = new Map(
-    Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
+  const data: Map<SimpleSlug, SerializedContentDetails> = new Map(
+    Object.entries<SerializedContentDetails>(await fetchData).map(([k, v]) => [
       simplifySlug(k as FullSlug),
       v,
     ]),

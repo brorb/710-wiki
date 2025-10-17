@@ -21,6 +21,10 @@ export type ContentDetails = {
   description?: string
 }
 
+export type SerializedContentDetails = Omit<ContentDetails, "date" | "description"> & {
+  updated?: string
+}
+
 interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
@@ -138,16 +142,20 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       const fp = joinSegments("static", "contentIndex") as FullSlug
-      const simplifiedIndex = Object.fromEntries(
-        Array.from(linkIndex).map(([slug, content]) => {
-          // remove description and from content index as nothing downstream
-          // actually uses it. we only keep it in the index as we need it
-          // for the RSS feed
-          delete content.description
-          delete content.date
-          return [slug, content]
-        }),
+      const simplifiedEntries: [FullSlug, SerializedContentDetails][] = Array.from(linkIndex).map(
+        ([slug, content]) => {
+          const { date, description: _description, ...rest } = content
+          return [
+            slug,
+            {
+              ...rest,
+              updated: date?.toISOString(),
+            },
+          ]
+        },
       )
+
+      const simplifiedIndex = Object.fromEntries(simplifiedEntries)
 
       yield write({
         ctx,

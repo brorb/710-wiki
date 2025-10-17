@@ -11,5 +11,8 @@ interface CustomEventMap {
   readermodechange: CustomEvent<{ mode: "on" | "off" }>
 }
 
-type ContentIndex = Record<FullSlug, ContentDetails>
+type ContentIndex = Record<
+  import("./quartz/util/path").FullSlug,
+  import("./quartz/plugins/emitters/contentIndex").SerializedContentDetails
+>
 declare const fetchData: Promise<ContentIndex>
