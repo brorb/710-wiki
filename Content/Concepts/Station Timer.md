@@ -38,7 +38,7 @@ infobox:
   title: 
   image:
     src: ![[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]
-    caption: INDI was found, top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"
+    caption: INDI was found. Top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"
 
 ---
 
