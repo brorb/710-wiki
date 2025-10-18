@@ -1,3 +1,6 @@
+---
+tags: characters
+---
 
 _SYSTEM_ (also known as *SYSTEMterminal8*, *system000008*) is a program created by [[INDI]].
 
