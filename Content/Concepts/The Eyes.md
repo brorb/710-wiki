@@ -171,5 +171,6 @@ Appearances:
 [[30]]
 [[LOG-27.mp4]]
 [[{_ _ _-_ _._ _ _}re]]
+Community post
 
-Possibly a program that manages data and creates [[The Logs]].
+Possibly a program that manages data and creates [[The Logs]], can be seen in the [[Private Room]] scanning through data before the chatroom fully connects.
