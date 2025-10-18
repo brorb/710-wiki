@@ -29,7 +29,7 @@ Sparsely, INDI has been named "IN_DI.SERVERTYPE" (or something adjacent), as see
 
 
 ## Personality
-INDI always types in [upper case letters](Livestreams/Transcripts).  They seem kind-hearted an willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor. 
+INDI always types in [upper case letters](Livestreams/Transcripts).  They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor. 
 
 On several occasions, INDI has stated that they are “not in control here” and that they are just a cog in the grand machine.
 
