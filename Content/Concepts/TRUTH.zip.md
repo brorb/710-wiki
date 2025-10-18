@@ -1,0 +1,1 @@
+A .zip file that was featured in [[LEAKED_1.mp4]] created by [[INDI]], which is supposedly a "weapon against older technology", or in other words, most likely a dangerous computer virus or some kind of secretive data.
