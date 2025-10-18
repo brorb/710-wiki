@@ -3,13 +3,13 @@ title: K3P13R
 infobox:
   title: K3P13R
   image:
-    src: ![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]
-    caption: 
+    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    caption: ""
   items:
-    - label: 
-      value: Appearances
-	- [[STATION_8 TRIM 90]]
-	- [[STATION_8 TERMINAL 8]]
+    - label: Appearances
+      value:
+        - "[[STATION_8 TRIM 90]]"
+        - "[[STATION_8 TERMINAL 8]]"
 
 ---
 

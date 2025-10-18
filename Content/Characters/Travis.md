@@ -3,13 +3,13 @@ title: Travis
 infobox:
   title: Travis
   image:
-    src: ![[Content/Media/710 Media/Images/lm-2.png]]
+    src: "![[Content/Media/710 Media/Images/lm-2.png]]"
     caption: Travis' parting gift according to [[SYSTEM]], found through [[prj_home.exe]].
   items:
-    - label: 
-      value: Appearances
-	- [[STATION_8 TRIM 5]]
-	- Community posts
+    - label: Appearances
+      value:
+        - "[[STATION_8 TRIM 5]]"
+        - Community posts
 
 ---
 

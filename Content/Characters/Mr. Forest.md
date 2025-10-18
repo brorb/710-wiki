@@ -3,12 +3,12 @@ title: Mr. Forest
 infobox:
   title: Mr. Forest
   image:
-    src: ![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]
+    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
     caption: No more existing media is available regarding Mr. Forest
   items:
-    - label: 
-      value: Appearances
-	- Community posts in 2024 (expunged then deleted)
+    - label: Appearances
+      value:
+        - Community posts in 2024 (expunged then deleted)
 
 ---
 

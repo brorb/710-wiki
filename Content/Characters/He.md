@@ -3,14 +3,14 @@ title: He
 infobox:
   title: He
   image:
-    src: ![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]
-    caption:
+    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    caption: ""
   items:
-    - label: 
-      value: Appearances
-	- [[HIS PERCEPTION]]
-	- [[STATION_8 TRIM 90]] (mentioned)
-	- [[STATION_8 TERMINAL 8]]
+    - label: Appearances
+      value:
+        - "[[HIS PERCEPTION]]"
+        - "[[STATION_8 TRIM 90]] (mentioned)"
+        - "[[STATION_8 TERMINAL 8]]"
 
 ---
 

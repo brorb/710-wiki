@@ -3,14 +3,14 @@ title: REN
 infobox:
   title: REN
   image:
-    src: ![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]
-    caption:
+    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    caption: ""
   items:
-    - label: 
-      value: Appearances
-	- [[STATION_8 TRIM 90]]
-	- [[STATION_8 TERMINAL 8]]
-	- Community posts
+    - label: Appearances
+      value:
+        - "[[STATION_8 TRIM 90]]"
+        - "[[STATION_8 TERMINAL 8]]"
+        - Community posts
 
 ---
 
