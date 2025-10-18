@@ -10,4 +10,8 @@ _Uploaded 16 Sept 2025._
 
 **Clues:** This could be a first glance at what [[He]] could possibly relate to, and judging by speeding up the audio of the video, He could relate to [[D4V1NC1]] in some way ("I am DaVinci").
 
-![[HIS PERCEPTION (without EQ).mp3]]![[HIS PERCEPTION (reversed).mp3]]_Audio files provided by The Camera Eye._
+![[HIS PERCEPTION (without EQ).mp3]] **(Full audio sped up by 160%)**
+
+![[HIS PERCEPTION (reversed).mp3]] **(Full audio sped up by 160% and reversed)**
+
+_Audio files provided by The Camera Eye._
