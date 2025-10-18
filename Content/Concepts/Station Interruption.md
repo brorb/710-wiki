@@ -9,8 +9,8 @@ infobox:
     - label: Appearances
       value:
         - "[[ECAA(TEST) CL5672]]"
-        - ECAA(TEST) CL5909
-        - ECAA(TEST) CL5909
+        - [[ECAA(TEST) CL5909]]
+        - "ECAA(TEST) CL5909 (1 sec restart)"
         - "[[ES-ETA (June 7th, 2025)]]"
         - "[[ES-ETA 5-5]]"
         - "[[STATION_8 TRIM 5]]"

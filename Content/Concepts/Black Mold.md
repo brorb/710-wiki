@@ -8,7 +8,7 @@ infobox:
   items:
     - label: Appearances
       value:
-        - 710 Tone (YouTube channel description)
+        - [[710 Tone]] YouTube channel description
 
 ---
 
