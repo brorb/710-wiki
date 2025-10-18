@@ -12,4 +12,4 @@ infobox:
 
 ---
 
-Possibly a type of signal that [[The Logs]] capture data form, as mentioned in the [[Hello]] video.
+Possibly a type of signal that [[The Logs]] capture data from, as mentioned in the [[Hello]] video.
