@@ -3,7 +3,7 @@ title: K3P13R
 infobox:
   title: K3P13R
   image:
-    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    src: "![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]"
     caption: ""
   items:
     - label: Appearances

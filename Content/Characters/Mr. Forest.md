@@ -3,7 +3,7 @@ title: Mr. Forest
 infobox:
   title: Mr. Forest
   image:
-    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    src: "![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]"
     caption: No more existing media is available regarding Mr. Forest
   items:
     - label: Appearances

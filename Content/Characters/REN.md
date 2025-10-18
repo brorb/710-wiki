@@ -3,7 +3,7 @@ title: REN
 infobox:
   title: REN
   image:
-    src: "![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]"
+    src: "![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]"
     caption: ""
   items:
     - label: Appearances

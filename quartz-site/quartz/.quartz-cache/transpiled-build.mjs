@@ -3208,19 +3208,16 @@ header {
 }
 
 .home-link-card__icon {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: var(--lightgray);
-  border: 1px solid var(--gray);
 }
 
 .home-link-card__icon img {
-  width: 22px;
-  height: 22px;
+  width: 100%;
+  height: 100%;
 }
 
 .home-link-card__copy {
