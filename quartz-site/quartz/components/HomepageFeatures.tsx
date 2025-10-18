@@ -17,8 +17,6 @@ type FrontmatterLinks = {
   discord?: MaybeLink
 }
 
-const iconPath = (slug: string) => `/static/icons/${slug}_icon.svg`
-
 const DEFAULT_LINKS: Record<"archive" | "discord", LinkConfig> = {
   archive: {
     label: "Visit the Archive Channel",
@@ -104,9 +102,10 @@ export default (() => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span class="home-link-card__icon" aria-hidden="true">
-                  <img src={iconPath(archiveLink.iconSlug)} alt="" loading="lazy" decoding="async" />
-                </span>
+                <span
+                  class={`home-link-card__icon home-link-card__icon--${archiveLink.iconSlug}`}
+                  aria-hidden="true"
+                />
                 <span class="home-link-card__copy">
                   <span class="home-link-card__label">{archiveLink.label}</span>
                   <span class="home-link-card__description">{archiveLink.description}</span>
@@ -118,9 +117,10 @@ export default (() => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span class="home-link-card__icon" aria-hidden="true">
-                  <img src={iconPath(discordLink.iconSlug)} alt="" loading="lazy" decoding="async" />
-                </span>
+                <span
+                  class={`home-link-card__icon home-link-card__icon--${discordLink.iconSlug}`}
+                  aria-hidden="true"
+                />
                 <span class="home-link-card__copy">
                   <span class="home-link-card__label">{discordLink.label}</span>
                   <span class="home-link-card__description">{discordLink.description}</span>
@@ -279,14 +279,25 @@ export default (() => {
 .home-link-card__icon {
   width: 30px;
   height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--accentPrimary);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
 }
 
-.home-link-card__icon img {
-  width: 100%;
-  height: 100%;
+.home-link-card__icon--youtube {
+  mask-image: url("/static/icons/youtube_icon.svg");
+  -webkit-mask-image: url("/static/icons/youtube_icon.svg");
+}
+
+.home-link-card__icon--discord {
+  mask-image: url("/static/icons/discord_icon.svg");
+  -webkit-mask-image: url("/static/icons/discord_icon.svg");
 }
 
 .home-link-card__copy {
