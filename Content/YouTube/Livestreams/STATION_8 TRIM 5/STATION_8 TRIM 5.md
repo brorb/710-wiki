@@ -8,7 +8,7 @@ After [[INDI]] takes over [[710 Tone]], they report fixing something for [[Travi
 
 **Key Details:**
 
-- [[Travis]] confirms his identity as a scientist
+- [[INDI]] confirms Travis' identity as a scientist.
 - [[Black Mold]] exposure is in advanced stages (lungs)
 - [[Travis]] takes responsibility for the exposure incident
 - Mysterious "them" referenced as the only ones who should be blamed
