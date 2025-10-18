@@ -18,7 +18,7 @@ infobox:
 
 ---
 
-Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]
+Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]].
 
 Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix it", then the [[Station Interruption]] proceeded after it.
 
