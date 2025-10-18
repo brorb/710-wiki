@@ -12,7 +12,7 @@ infobox:
 
 ---
 
-A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->
+A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. L4N4U1997 - 2025-07-21 14:56
@@ -57,4 +57,3 @@ A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d
 >   ]
 > }
 > ```
-, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
