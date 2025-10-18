@@ -3,17 +3,17 @@ title: INDI
 infobox:
   title: INDI
   image:
-    src: ![[Content/Media/710 Media/Images/INDI image.png]]
+    src: "![[Content/Media/710 Media/Images/INDI image.png]]"
     caption: INDI as shown in LOG-109.MP$
   items:
     - label: Also known as
       value:
         - IN_DI
         - IN_DI.servertype
-    - label: 
-      value: Associates
-        - [[SYSTEM]]
-        - [[Kepler]]
+    - label: Associates
+      value:
+        - "[[SYSTEM]]"
+        - "[[Kepler]]"
 ---
 
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  

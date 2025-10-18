@@ -3,16 +3,16 @@ title: Long String
 infobox:
   title: Long String
   image:
-    src: ![[Content/Media/Sleuth Media/Images/Long String.png]]
+    src: "![[Content/Media/Sleuth Media/Images/Long String.png]]"
     caption: Sample of Long String's code
   items:
-    - label: 
-      value: Appearances
-	- [[LONG_STR.mp4]]
-	- [[LOG-62.mp4]]
-	- [[LOG-116.mp4]]
-	- [[LOG-123.mp4]]
-	- [[{_ _ _-_ _._ _ _}re]]
+    - label: Appearances
+      value:
+        - "[[LONG_STR.mp4]]"
+        - "[[LOG-62.mp4]]"
+        - "[[LOG-116.mp4]]"
+        - "[[LOG-123.mp4]]"
+        - "[[{_ _ _-_ _._ _ _}re]]"
 
 ---
 

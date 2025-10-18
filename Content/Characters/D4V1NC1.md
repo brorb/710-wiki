@@ -3,13 +3,13 @@ title: D4V1NC1
 infobox:
   title: D4V1NC1
   image:
-    src: ![[Content/Media/Other/[placeholder_image_betterfix]-min.jpg]]
-    caption: 
+    src: "![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]"
+    caption: ""
   items:
-    - label: 
-      value: Appearances
-	- [[RIGfunctionobservationTEST028.mp4]] (description)
-	- [[HIS PERCEPTION]] (hidden audio clues)
+    - label: Appearances
+      value:
+        - "[[RIGfunctionobservationTEST028.mp4]] (description)"
+        - "[[HIS PERCEPTION]] (hidden audio clues)"
 
 ---
 
