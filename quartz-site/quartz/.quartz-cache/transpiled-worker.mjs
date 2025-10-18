@@ -5854,7 +5854,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const path11 = url.pathname;
     const baseDir = fileData.slug === "404" ? path11 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
-    const iconPath3 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
+    const iconPath2 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName
@@ -5896,7 +5896,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
         /* @__PURE__ */ jsx17("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx17("meta", { property: "twitter:url", content: socialUrl })
       ] }),
-      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath3 }),
+      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath2 }),
       /* @__PURE__ */ jsx17("meta", { name: "description", content: description }),
       /* @__PURE__ */ jsx17("meta", { name: "generator", content: "Quartz" }),
       css.map((resource) => CSSResourceToStyleElement(resource, true)),
@@ -7202,7 +7202,6 @@ var homepage_inline_default = "";
 
 // quartz/components/HomepageFeatures.tsx
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
-var iconPath2 = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
 var DEFAULT_LINKS = {
   archive: {
     label: "Visit the Archive Channel",
@@ -7257,7 +7256,13 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(archiveLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsx36(
+                    "span",
+                    {
+                      class: `home-link-card__icon home-link-card__icon--${archiveLink.iconSlug}`,
+                      "aria-hidden": "true"
+                    }
+                  ),
                   /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
                     /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: archiveLink.label }),
                     /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: archiveLink.description })
@@ -7273,7 +7278,13 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx36("span", { class: "home-link-card__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx36("img", { src: iconPath2(discordLink.iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+                  /* @__PURE__ */ jsx36(
+                    "span",
+                    {
+                      class: `home-link-card__icon home-link-card__icon--${discordLink.iconSlug}`,
+                      "aria-hidden": "true"
+                    }
+                  ),
                   /* @__PURE__ */ jsxs24("span", { class: "home-link-card__copy", children: [
                     /* @__PURE__ */ jsx36("span", { class: "home-link-card__label", children: discordLink.label }),
                     /* @__PURE__ */ jsx36("span", { class: "home-link-card__description", children: discordLink.description })
@@ -7432,14 +7443,25 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 .home-link-card__icon {
   width: 30px;
   height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--accentPrimary);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
 }
 
-.home-link-card__icon img {
-  width: 100%;
-  height: 100%;
+.home-link-card__icon--youtube {
+  mask-image: url("/static/icons/youtube_icon.svg");
+  -webkit-mask-image: url("/static/icons/youtube_icon.svg");
+}
+
+.home-link-card__icon--discord {
+  mask-image: url("/static/icons/discord_icon.svg");
+  -webkit-mask-image: url("/static/icons/discord_icon.svg");
 }
 
 .home-link-card__copy {
@@ -8258,8 +8280,8 @@ import sharp2 from "sharp";
 var Favicon = /* @__PURE__ */ __name(() => ({
   name: "Favicon",
   async *emit({ argv }) {
-    const iconPath3 = joinSegments(QUARTZ, "static", "icon.png");
-    const faviconContent = sharp2(iconPath3).resize(48, 48).toFormat("png");
+    const iconPath2 = joinSegments(QUARTZ, "static", "icon.png");
+    const faviconContent = sharp2(iconPath2).resize(48, 48).toFormat("png");
     yield write({
       ctx: { argv },
       slug: "favicon",
