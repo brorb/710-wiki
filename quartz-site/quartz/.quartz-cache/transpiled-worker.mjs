@@ -6944,11 +6944,16 @@ var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
   const sanitized = stripContentPrefix(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
-    const candidate = slugifyFilePath(withExt, true);
+    const candidateRaw = slugifyFilePath(withExt, true);
+    const candidate = candidateRaw.replace(/\.+$/, "");
     if (ctx.allSlugs.includes(candidate)) {
       return candidate;
     }
-    return ctx.allSlugs.find((slug) => slug.endsWith(`/${candidate}`));
+    const lowerCandidate = candidate.toLowerCase();
+    return ctx.allSlugs.find((slug) => {
+      const lowerSlug = slug.toLowerCase();
+      return lowerSlug === lowerCandidate || lowerSlug.endsWith(`/${lowerCandidate}`);
+    });
   } catch {
     return void 0;
   }
@@ -7156,6 +7161,8 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
   font-size: 0.85rem;
   color: var(--darkgray);
   text-align: center;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .infobox__facts {
