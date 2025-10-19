@@ -7077,13 +7077,14 @@ var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug, ctx) => {
   const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
   const imageCaption = normalizeString(raw.image?.caption);
+  const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : void 0;
   if (!title && !imageSrc && items.length === 0) {
     return null;
   }
   const image = imageSrc ? {
     src: imageSrc,
     alt: imageAlt,
-    caption: imageCaption
+    caption: imageCaptionNode
   } : void 0;
   return {
     title,
@@ -7137,9 +7138,9 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
 }
 
 .infobox__media {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .infobox__media img {

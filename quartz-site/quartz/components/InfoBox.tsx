@@ -39,7 +39,7 @@ type NormalizedInfoBox = {
   image?: {
     src: string
     alt?: string
-    caption?: string
+    caption?: ComponentChildren
   }
   items: NormalizedInfoBoxItem[]
 }
@@ -264,6 +264,7 @@ const parseInfoBox = (
   const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : undefined
   const imageAlt = normalizeString(raw.image?.alt)
   const imageCaption = normalizeString(raw.image?.caption)
+  const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : undefined
 
   if (!title && !imageSrc && items.length === 0) {
     return null
@@ -273,7 +274,7 @@ const parseInfoBox = (
     ? {
         src: imageSrc,
         alt: imageAlt,
-        caption: imageCaption,
+  caption: imageCaptionNode,
       }
     : undefined
 
@@ -343,9 +344,9 @@ export default (() => {
 }
 
 .infobox__media {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .infobox__media img {
