@@ -97,7 +97,7 @@ They are an organization responsible for some type of transmission. Most likely 
 
 Their logo feature a two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
 
-This logo would appear in videos such as [[LOG-116.mp4]] and[[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
+This logo would appear in videos such as [[LOG-116.mp4]] and [[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
 
 
 It is likely that TTH are the ones responsible for [[The Logs]] being made. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The [\_\_\_]", which likely refers to TTH. [[SYSTEM]] and other characters are often seen communicating with TTH servers <!-- discord-cite:cite-mgryowvm-smp3th --> <!-- discord-cite:cite-mgryo3jq-n0thtk --> <!-- discord-cite:cite-mgrypbv5-iz07jk -->
