@@ -15,7 +15,7 @@ infobox:
 
 _Travis_ was a scientist who previously had control over the [[710 Tone]] YouTube channel before he was poisoned by an agency (see image in infobox), possibly with [[Black Mold]]. He created [[prj_home.exe]] as a way to hide a message for anyone archiving the surroundings of 7/10 Tone in the form of lm-2 and the "CONVERSATION.gdc" script within the game's files.
 
-Unfortunately, the .gdc script is empty when it should have contained a conversation between him and a redacted character. According to [[SYSTEM]], the conversation itself was destroyed <!-- discord-cite:cite-mgvl8knp-m5mntx -->, but by whom remains unclear.
+Unfortunately, the .gdc script is empty when it should have contained a conversation between him and a redacted character. According to [[SYSTEM]], the conversation itself was destroyed<!-- discord-cite:cite-mgvl8knp-m5mntx -->, but by whom remains unclear.
 
 > [!discord-cite]- Discord citation (4 messages)
 > 1. lilithrose - 2025-10-10 17:56
