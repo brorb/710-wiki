@@ -64,7 +64,7 @@ TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Ha
 > }
 > ```
 
-They are an organization responsible for some type of transmission, with [[INDI]] and [[Kepler]] working for them^[[STATION_8 TERMINAL 8]]. Most likely other people are also involved, as indicated by the different chatters in the [[Private Room]] chats. It is not known whether they are a government institution or a private one, but TTH is a subbranch of some other organization.<!-- discord-cite:cite-mgqtc9qs-494koo -->
+They are an organization responsible for some type of transmission. Most likely other people are also involved, as indicated by the different chatters in the [[Private Room]] chats. It is not known whether they are a government institution or a private one, but TTH is a subbranch of some other organization.<!-- discord-cite:cite-mgqtc9qs-494koo -->
 
 > [!discord-cite]- Discord citation (1 message)
 > 1. SYSTEM - 2025-07-21 09:41
