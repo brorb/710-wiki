@@ -12,8 +12,8 @@ infobox:
         - "Community posts"
     - label: Workers
       value:
-	    - "[[INDI]]"
-	    - "[[Kepler]]"
+        - "[[INDI]]"
+        - "[[Kepler]]"
 ---
 
 _REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under.
