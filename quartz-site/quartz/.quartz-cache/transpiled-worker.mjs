@@ -5854,7 +5854,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const path11 = url.pathname;
     const baseDir = fileData.slug === "404" ? path11 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
-    const iconPath2 = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
+    const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName
@@ -5896,7 +5896,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
         /* @__PURE__ */ jsx17("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx17("meta", { property: "twitter:url", content: socialUrl })
       ] }),
-      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath2 }),
+      /* @__PURE__ */ jsx17("link", { rel: "icon", href: iconPath }),
       /* @__PURE__ */ jsx17("meta", { name: "description", content: description }),
       /* @__PURE__ */ jsx17("meta", { name: "generator", content: "Quartz" }),
       css.map((resource) => CSSResourceToStyleElement(resource, true)),
@@ -6733,7 +6733,6 @@ var theme_colors_default = {
 // quartz/components/LinksHeader.tsx
 import { jsx as jsx33, jsxs as jsxs21 } from "preact/jsx-runtime";
 var palette = theme_colors_default;
-var iconPath = /* @__PURE__ */ __name((slug) => `/static/icons/${slug}_icon.svg`, "iconPath");
 var navLinks = [
   {
     href: "/",
@@ -6789,7 +6788,7 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
           "--link-button-text": palette.buttonText
         },
         children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs21("a", { class: "links-header-item", href, children: [
-          /* @__PURE__ */ jsx33("span", { class: "links-header-icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx33("img", { src: iconPath(iconSlug), alt: "", loading: "lazy", decoding: "async" }) }),
+          /* @__PURE__ */ jsx33("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
           /* @__PURE__ */ jsx33("span", { children: label })
         ] }, href))
       }
@@ -8280,8 +8279,8 @@ import sharp2 from "sharp";
 var Favicon = /* @__PURE__ */ __name(() => ({
   name: "Favicon",
   async *emit({ argv }) {
-    const iconPath2 = joinSegments(QUARTZ, "static", "icon.png");
-    const faviconContent = sharp2(iconPath2).resize(48, 48).toFormat("png");
+    const iconPath = joinSegments(QUARTZ, "static", "icon.png");
+    const faviconContent = sharp2(iconPath).resize(48, 48).toFormat("png");
     yield write({
       ctx: { argv },
       slug: "favicon",

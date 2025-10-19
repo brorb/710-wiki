@@ -4,8 +4,6 @@ import themeColors from "../../theme.colors.json"
 
 const palette = themeColors
 
-const iconPath = (slug: string) => `/static/icons/${slug}_icon.svg`
-
 const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
   {
     href: "/",
@@ -64,9 +62,7 @@ export default (() => {
         >
           {navLinks.map(({ href, label, iconSlug }) => (
             <a class="links-header-item" href={href} key={href}>
-              <span class="links-header-icon" aria-hidden="true">
-                <img src={iconPath(iconSlug)} alt="" loading="lazy" decoding="async" />
-              </span>
+              <span class={`links-header-icon links-header-icon--${iconSlug}`} aria-hidden="true" />
               <span>{label}</span>
             </a>
           ))}
