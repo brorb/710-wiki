@@ -17,7 +17,7 @@ infobox:
     - label: Notable appearances
 	  value:
 	    - "[[LEAKED_1.mp4]]"
-		- "[LOG-109.mp4](https://www.youtube.com/watch?v=-LDiAWJQSOI)"
+		- "[[LOG-109.MP]]"
 		- "[[LOG-111.mp4]]"
 		- "[[LOG-132]]"
 ---
