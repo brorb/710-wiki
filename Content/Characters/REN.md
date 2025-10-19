@@ -11,6 +11,10 @@ infobox:
         - "[[STATION_8 TRIM 90]]"
         - "[[STATION_8 TERMINAL 8]]"
         - Community posts
+    - label: Workers
+      value:
+	    - [[INDI]]
+	    - [[Kepler]]
 ---
 
 _REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under.
