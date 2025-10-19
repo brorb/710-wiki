@@ -1,9 +1,9 @@
 ---
 title: Parting Gifts Puzzle
 aliases:
-- Parting Gifts
+  - Parting Gifts
 cssclasses:
-- puzzle
+  - puzzle
 canvas: parting-gifts-puzzle
 ---
 This puzzle

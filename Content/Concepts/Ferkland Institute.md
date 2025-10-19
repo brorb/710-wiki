@@ -3,11 +3,12 @@ title: Ferkland Institute
 infobox:
   title: Ferkland Institute
   image:
-    src: ![[Ferkland Institute.png|400]]
-    caption: The obfuscated logo of the Ferkland Institute from [[LOG-10444444444444444444444]]
+    src: "![[Ferkland Institute.png|400]]"
+    caption: "The obfuscated logo of the Ferkland Institute from
+      [[LOG-10444444444444444444444]]"
   items:
     - label: Region
-      value: [[Ferkland County]]
+      value: "[[Ferkland County]]"
 ---
 
 

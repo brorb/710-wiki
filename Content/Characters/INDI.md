@@ -15,11 +15,11 @@ infobox:
         - "[[SYSTEM]]"
         - "[[Kepler]]"
     - label: Notable appearances
-	  value:
-	    - "[[LEAKED_1.mp4]]"
-		- "[[LOG-109.MP]]"
-		- "[[LOG-111.mp4]]"
-		- "[[LOG-132]]"
+      value:
+        - "[[LEAKED_1.mp4]]"
+        - "[[LOG-109.MP]]"
+        - "[[LOG-111.mp4]]"
+        - "[[LOG-132]]"
 ---
 
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  

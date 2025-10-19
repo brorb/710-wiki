@@ -15,7 +15,6 @@ infobox:
         - "[[Parting Gifts]]"
         - "[[STATION_8 TRIM 90]]"
         - "[[STATION_8 TERMINAL 8]]"
-
 ---
 
 Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]].

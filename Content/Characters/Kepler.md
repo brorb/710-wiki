@@ -10,9 +10,8 @@ infobox:
       value:
         - "[[STATION_8 TRIM 90]]"
         - "[[STATION_8 TERMINAL 8]]"
-	- label: Also known as
+    - label: Also known as
       value: "K3P13R"
-
 ---
 
 *Kepler*  is the alias of the entity running the YouTube channel [[710 NPP]][^1]. It is likely that they are human.

@@ -3,7 +3,7 @@ title: Station Timer
 infobox:
   title: Station Timer
   image:
-    src: ![[Content/Media/Sleuth Media/Images/Station Timer.png]]
+    src: "![[Content/Media/Sleuth Media/Images/Station Timer.png]]"
     caption: Example of the Station Timer screen from the livestreams
   items:
     - label: Appearances
@@ -14,7 +14,6 @@ infobox:
         - "[[STATION_8 TRIM 5]]"
         - "[[STATION_8 TRIM 90]]"
         - "[[STATION_8 TERMINAL 8]]"
-
 ---
 
 A timer that always counts down to July 10th of every year, which is apparently an important event for the [[710 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right. During the livestreams, a continuous frequency would play in the background while it counts down.

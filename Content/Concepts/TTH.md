@@ -3,7 +3,7 @@ title: TTH
 infobox:
   title: TTH
   image:
-    src: ![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]
+    src: "![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]"
     caption: TTH Logo
   items:
     - label: Also known as
@@ -11,15 +11,14 @@ infobox:
         - The Transmitting Hands
         - Transmitting Hands
     - label: Region
-      value: [[Ferkland County]]
+      value: "[[Ferkland County]]"
     - label: Workers
       value:
-        - [[INDI]]
-        - [[Kepler]]
-        - [[TTHA0002]]
-        - [[A992144]]
-        - [[X331239]]
-
+        - "[[INDI]]"
+        - "[[Kepler]]"
+        - "[[TTHA0002]]"
+        - "[[A992144]]"
+        - "[[X331239]]"
 ---
 
 TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
