@@ -35,14 +35,13 @@ Most likely, Travis died after this conversation, as [[INDI]] later would go on 
 
 ## Travis' Parting Gift
 
-Not much more was known about Travis before the [[Parting Gifts Puzzle|Parting Gifts]] puzzle was solved, which resulted in his message (or "gift"):
+The [[Parting Gifts Puzzle|Parting Gifts]] puzzle gave a lot more insight into Kepler., resulting in this final "gift":
 
 ```HELLO. IF YOU'RE READING THIS. IT MEANS I AM DEAD. THIS IS A MESSAGE TO ANYONE DISCOVERING WHAT I HAD FOUND. A WARNING TO ANYONE ARCHIVING THIS. MY LIFE WAS STRANGE AND FILLED WITH FEAR. I HOLD THOSE WHO DID THAT TO ME AT THEIR NECK, AND WISH THAT THEY WOULD HAVE HAD A BETTER UNDERSTANDING OF ME AND MY HOBBIES. TO THE FBI, CIA, AND ANY FOREIGN INTELLIGENCE AGENCIES THAT HAD THEIR HOPE OF FINDING THE SECRET TO WHAT I HAVE FOUND, YOU ARE TOO LATE. I HAVE ALREADY SENT THE DATA TO ████. THIS WAS MY PARTING GIFT TO YOU BEFORE ONE OF YOUR AGENCY HAD POISONED ME AND TOOK MY HARDWARE. THIS FILE THAT I HAVE POSTED ON MY CHANNEL. HOPEFULLY BEFORE INDI PUT SOME SORT OF VIRUS IN IT. HAS THE CONTAINING A CONVERSATION BETWEEN ME AND ███. YOU'RE WELCOME EVERYONE AND THANK YOU.```
 
-This message confirms Travis died. It is not known who Travis sent the data to, but from the sentence " ... BEFORE ONE OF YOUR AGENCY HAD POISONED ME AND TOOK MY HARDWARE" it seems like he was betrayed.  
+This message confirms Travis died. It is not known who Travis sent the data to, but from the sentence " ... BEFORE ONE OF YOUR AGENCY HAD POISONED ME AND TOOK MY HARDWARE" it seems like he was betrayed by some party.
 
 By "... POSTED ON MY CHANNEL", Travis is likely referring to the videos [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which were uploaded less than two weeks prior to Travis' death. These videos are the only one on the [[710 Tone]] YouTube channel to feature the [[prj_Home.exe]] environment.
-
 It is therefore likely that Travis created [[prj_Home.exe]] as a way to hide a message for anyone archiving the surroundings of 7/10 Tone. To see how this puzzle was solved, visit the [[Parting Gifts Puzzle.canvas]]. 
 
 
