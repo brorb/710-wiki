@@ -11,10 +11,10 @@ infobox:
   items:
     - label: 
       value: Associates
-    - [[INDI]]
-    - [[Kepler]]
-    - [[Travis]]
-    - [[SYSTEM]]
+	    - [[INDI]]
+	    - [[Kepler]]
+	    - [[Travis]]
+	    - [[SYSTEM]]
 
 ---
 

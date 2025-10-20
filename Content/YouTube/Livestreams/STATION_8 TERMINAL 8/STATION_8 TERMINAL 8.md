@@ -34,7 +34,7 @@ As the Station Timer counts into July 10th, the livestream interferences become 
 
 Some viewers expressed concern about the [[710 Tone]] channel getting wiped by [[INDI]] since he has the power to delete things now, but [[INDI]] eventually responds that he can't speak about [[The Logs]] and that they are important to "someone else", but [[Kepler]] stops [[INDI]] before he can elaborate any further.
 
-[[INDI]] tells the chat that he hopes everyone will all meet again in the future.
+[[INDI]] tells the chat that he hopes everyone (as in the audience) will all meet again in the future, then Kepler says that "we" are increasing the power, warning [[INDI]] to be ready for it. INDI says he will be ready, then Kepler says "cursed thing should not be" (although not specifying on what that "thing" is). 
 
 ---
 
