@@ -3,7 +3,6 @@ tags:
   - "#YouTube"
 ---
 ---
-title: 710 Tone
 infobox:
   title: 710 Tone
   image:
