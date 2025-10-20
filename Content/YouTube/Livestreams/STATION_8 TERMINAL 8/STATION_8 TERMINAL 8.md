@@ -32,7 +32,9 @@ At around the four hour mark on the [[Station Timer]], a dial tone similar to th
 
 As the Station Timer counts into July 10th, the livestream interferences become a little more frequent with the [[Station Interruption]] screen and the [[Channel 14]] Demo Channel popping up as the timer reaches closer to 0|0|0|0. There are a lot more frequent beeping noises, as if INDI and Kepler are trying to do something (perhaps trying to contact someone or something). At around the 2 hour mark of the Station Timer, INDI asks Kepler if he ever deciphered [[The Logs]], which Kepler says that he did not. A viewer says that they didn't either and asks if [[The Logs]] were supposed to be deciphered, to which INDI says that [[The Logs]] are not for the viewers, adding that neither INDI nor Kepler have the proper skills or tools to decipher them. Same viewer asks who made [[The Logs]] and INDI responds with "the (blank, redacted), but I'm going to guess that you're not going to get that", which could be one of two things: [[The Eyes]] or The Hands (as in [[TTH]]). Kepler tells INDI not to say who it *actually* is, and INDI obeys.
 
-Some viewers expressed concern about the [[710 Tone]] channel getting wiped by INDI since he has the power to delete things now, but INDI eventually responds that he can't speak about [[The Logs]].
+Some viewers expressed concern about the [[710 Tone]] channel getting wiped by [[INDI]] since he has the power to delete things now, but [[INDI]] eventually responds that he can't speak about [[The Logs]] and that they are important to "someone else", but [[Kepler]] stops [[INDI]] before he can elaborate any further.
+
+[[INDI]] tells the chat that he hopes everyone will all meet again in the future.
 
 ---
 
