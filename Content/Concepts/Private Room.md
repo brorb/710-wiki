@@ -1,3 +1,8 @@
+---
+tags:
+  - component
+infobox:
+---
 
 
 The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public.
