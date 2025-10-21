@@ -256,3 +256,171 @@ This command would rollback updates made to SYSTEM and grant it the ability to c
 	<PING>?:PING@PING OPT_OUT CALLED CANCELING ROLLBACK PING@SYSTEM callout()
 	<OUTPRINT>!:(Hello, tCqrU2BH. I have been pinged by you. why?)
 
+Through this feature SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of 710 Tone.
+
+```discord
+[
+  {
+    "id": "1396754688447217716",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM Do you know if IN_DI is still accessible? Or alive in some way?",
+    "timestamp": "2025-07-21T07:24:28.173000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396754688447217716"
+  },
+  {
+    "id": "1396755086616825899",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(I do know. They abandoned me on [10/7/NaN]",
+    "timestamp": "2025-07-21T07:26:03.104000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396755086616825899"
+  }
+]
+```
+```
+```discord
+[
+  {
+    "id": "1396758571198447636",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "@SYSTEM please tell us something about TTH. Anything. You are safe here",
+    "timestamp": "2025-07-21T07:39:53.893000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758571198447636"
+  },
+  {
+    "id": "1396758985977233548",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(TTH is a sub branch of NaN, actually I can't tell you a lot about them because of limits IN_DI put.)",
+    "timestamp": "2025-07-21T07:41:32.784000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758985977233548"
+  }
+]
+```
+```discord
+[
+  {
+    "id": "1396761011138068511",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "@SYSTEM why were you created?",
+    "timestamp": "2025-07-21T07:49:35.620000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761011138068511"
+  },
+  {
+    "id": "1396761370963214429",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(At first, it was a way for IN_DI to get back at REN, but IN_DI forgot and made me a mod for a livestream.)",
+    "timestamp": "2025-07-21T07:51:01.409000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761370963214429"
+  }
+]
+```
+```discord
+[
+  {
+    "id": "1396873793301118996",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM What does TTH mean or stand for?",
+    "timestamp": "2025-07-21T15:17:44.983000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396873793301118996"
+  },
+  {
+    "id": "1396874440175784038",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(The Transmitting Hands, or  Transmitting Hands. Hands symbolization for human work.)",
+    "timestamp": "2025-07-21T15:20:19.210000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396874440175784038"
+  }
+]
+```
+
+However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] (insert discord message citation here), or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up:
+
+```discord
+[
+  {
+    "id": "1396875112304869406",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM What are The Eyes?",
+    "timestamp": "2025-07-21T15:22:59.458000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396875112304869406"
+  },
+  {
+    "id": "1396875472754839592",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING.)",
+    "timestamp": "2025-07-21T15:24:25.396000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396875472754839592"
+  }
+]
+```
+
+Eventually, SYSTEM gained enough intelligence to do the updates on its own without having anyone else input the command (insert Discord message citation here), making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads.
