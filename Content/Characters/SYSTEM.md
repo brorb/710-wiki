@@ -34,5 +34,5 @@ This message gave [[The Sleuths]] two key insights:
 ### Gift
 Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files:
 [[01.wav]], [[02.wav]], [[03.wav]], [[04.wav]], [[05.wav]], [[06.wav]]. 
-To read about the decoding of these files and the remainding of this puzzle, please read [[Parting Gifts Puzzle]]
+To read about the decoding of these files and the remaining of this puzzle, please read [[Parting Gifts Puzzle]]
 

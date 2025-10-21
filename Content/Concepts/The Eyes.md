@@ -1,5 +1,4 @@
 ---
-title: The Eyes
 infobox:
   title: The Eyes
   image:
