@@ -4593,6 +4593,146 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
   };
 }, "DiscordMessages");
 
+// quartz/plugins/transformers/infobox.ts
+import { SKIP as SKIP2, visit as visit6 } from "unist-util-visit";
+var normalizeWhitespace = /* @__PURE__ */ __name((value) => value.replace(/\s+/g, " ").trim(), "normalizeWhitespace");
+var splitListValues = /* @__PURE__ */ __name((raw) => {
+  if (!raw) {
+    return [];
+  }
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return [];
+  }
+  const parts = trimmed.split(/(?<!\\);/).map((part) => part.replace(/\\;/g, ";").trim()).filter((part) => part.length > 0);
+  if (parts.length > 0) {
+    return parts;
+  }
+  return [trimmed];
+}, "splitListValues");
+var parseInfoboxBlock = /* @__PURE__ */ __name((raw) => {
+  const lines = raw.split(/\r?\n/);
+  let title;
+  const image = {};
+  const items = [];
+  let currentItem = null;
+  for (const originalLine of lines) {
+    const trimmed = originalLine.trim();
+    if (!trimmed) {
+      continue;
+    }
+    if (trimmed.startsWith("#")) {
+      continue;
+    }
+    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      const content = trimmed.slice(1).trim();
+      if (!content || !currentItem) {
+        continue;
+      }
+      currentItem.values.push(content);
+      continue;
+    }
+    const colonIndex = trimmed.indexOf(":");
+    if (colonIndex === -1) {
+      continue;
+    }
+    const keyRaw = trimmed.slice(0, colonIndex).trim();
+    const valueRaw = trimmed.slice(colonIndex + 1).trim();
+    const key = keyRaw.toLowerCase();
+    switch (key) {
+      case "title": {
+        title = valueRaw ? normalizeWhitespace(valueRaw) : void 0;
+        currentItem = null;
+        break;
+      }
+      case "image":
+      case "image src":
+      case "media": {
+        image.src = valueRaw;
+        currentItem = null;
+        break;
+      }
+      case "image alt":
+      case "alt": {
+        image.alt = valueRaw ? normalizeWhitespace(valueRaw) : void 0;
+        currentItem = null;
+        break;
+      }
+      case "image caption":
+      case "caption": {
+        image.caption = valueRaw;
+        currentItem = null;
+        break;
+      }
+      default: {
+        const values = splitListValues(valueRaw);
+        const item = {
+          label: keyRaw,
+          values
+        };
+        items.push(item);
+        currentItem = item;
+        break;
+      }
+    }
+  }
+  const normalizedItems = items.map(({ label, values }) => {
+    const distinct = values.map((entry) => entry.trim()).filter((entry) => entry.length > 0);
+    if (distinct.length === 0) {
+      return null;
+    }
+    return {
+      label,
+      value: distinct.length === 1 ? distinct[0] : distinct
+    };
+  }).filter((entry) => entry !== null);
+  const hasImage = Boolean(image.src || image.alt || image.caption);
+  const hasContent = Boolean(title || hasImage || normalizedItems.length > 0);
+  if (!hasContent) {
+    return null;
+  }
+  return {
+    title,
+    image: hasImage ? image : void 0,
+    items: normalizedItems.map(({ label, value }) => ({
+      label,
+      value
+    }))
+  };
+}, "parseInfoboxBlock");
+var InfoboxBlock = /* @__PURE__ */ __name(() => {
+  return {
+    name: "InfoboxBlock",
+    markdownPlugins() {
+      return [
+        () => (tree, file) => {
+          visit6(tree, "code", (node, index, parent) => {
+            const language = typeof node.lang === "string" ? node.lang.toLowerCase() : "";
+            if (language !== "infobox") {
+              return;
+            }
+            const raw = typeof node.value === "string" ? node.value : "";
+            const parsed = parseInfoboxBlock(raw);
+            if (!parsed) {
+              if (parent && typeof index === "number") {
+                parent.children.splice(index, 1);
+                return [SKIP2, index];
+              }
+              return;
+            }
+            file.data.infobox = parsed;
+            file.data.infoboxSource = "code-block";
+            if (parent && typeof index === "number") {
+              parent.children.splice(index, 1);
+              return [SKIP2, index];
+            }
+          });
+        }
+      ];
+    }
+  };
+}, "InfoboxBlock");
+
 // quartz/plugins/filters/draft.ts
 var RemoveDrafts = /* @__PURE__ */ __name(() => ({
   name: "RemoveDrafts",
@@ -4690,7 +4830,7 @@ function concatenateResources(...resources) {
 __name(concatenateResources, "concatenateResources");
 
 // quartz/components/renderPage.tsx
-import { visit as visit6 } from "unist-util-visit";
+import { visit as visit7 } from "unist-util-visit";
 
 // quartz/util/assetVersion.ts
 var cachedVersion = null;
@@ -4749,7 +4889,7 @@ function pageResources(baseDir, staticResources) {
 }
 __name(pageResources, "pageResources");
 function renderTranscludes(root, cfg, slug, componentData) {
-  visit6(root, "element", (node, _index, _parent) => {
+  visit7(root, "element", (node, _index, _parent) => {
     if (node.tagName === "blockquote") {
       const classNames2 = node.properties?.className ?? [];
       if (classNames2.includes("transclude")) {
@@ -7071,8 +7211,10 @@ var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   });
   return parsed;
 }, "parseItems");
-var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug, ctx) => {
-  const raw = frontmatter?.infobox;
+var parseInfoBox = /* @__PURE__ */ __name((fileData, slug, ctx) => {
+  const frontmatter = fileData.frontmatter ?? {};
+  const rawCandidate = fileData.infobox ?? frontmatter?.infobox;
+  const raw = rawCandidate;
   if (!raw || typeof raw !== "object") {
     return null;
   }
@@ -7099,10 +7241,10 @@ var parseInfoBox = /* @__PURE__ */ __name((frontmatter, slug, ctx) => {
 }, "parseInfoBox");
 var InfoBox_default = /* @__PURE__ */ __name((() => {
   const InfoBox = /* @__PURE__ */ __name(({ fileData, displayClass, ctx }) => {
-    if (!fileData?.frontmatter || !fileData.slug) {
+    if (!fileData?.slug) {
       return null;
     }
-    const infobox = parseInfoBox(fileData.frontmatter, fileData.slug, ctx);
+    const infobox = parseInfoBox(fileData, fileData.slug, ctx);
     if (!infobox) {
       return null;
     }
@@ -8749,6 +8891,7 @@ var config = {
       }),
       ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       GitHubFlavoredMarkdown(),
+      InfoboxBlock(),
       DiscordMessages(),
       TableOfContents({
         collapseByDefault: true

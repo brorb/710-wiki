@@ -1,26 +1,23 @@
 ---
 title: INDI
-infobox:
-  title: INDI
-  image:
-    src: "![[Content/Media/710 Media/Images/INDI image.png]]"
-    caption: INDI as shown in LOG-109.MP$
-  items:
-    - label: Also known as
-      value:
-        - IN_DI
-        - IN_DI.servertype
-    - label: Associates
-      value:
-        - "[[SYSTEM]]"
-        - "[[Kepler]]"
-    - label: Notable appearances
-      value:
-        - "[[LEAKED_1.mp4]]"
-        - "[[LOG-109.MP]]"
-        - "[[LOG-111.mp4]]"
-        - "[[LOG-132]]"
 ---
+```infobox
+Title: INDI
+Image: ![[Content/Media/710 Media/Images/INDI image.png]]
+Caption: INDI as shown in LOG-109.MP$
+Also known as:
+- IN_DI
+- IN_DI.servertype
+Associates:
+- [[SYSTEM]]
+- [[Kepler]]
+Notable appearances:
+- [[LEAKED_1.mp4]]
+- [[LOG-109.MP]]
+- [[LOG-111.mp4]]
+- [[LOG-132]]
+```
+
 
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  
   

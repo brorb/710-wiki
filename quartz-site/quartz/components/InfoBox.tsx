@@ -1,6 +1,7 @@
 import { ComponentChildren, Fragment } from "preact"
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzPluginData } from "../plugins/vfile"
 import {
   FilePath,
   FullSlug,
@@ -253,11 +254,13 @@ const parseItems = (
 }
 
 const parseInfoBox = (
-  frontmatter: Record<string, unknown>,
+  fileData: QuartzPluginData,
   slug: FullSlug,
   ctx: QuartzComponentProps["ctx"],
 ): NormalizedInfoBox | null => {
-  const raw = frontmatter?.infobox as FrontmatterInfoBox | undefined
+  const frontmatter = (fileData.frontmatter as Record<string, unknown>) ?? {}
+  const rawCandidate = fileData.infobox ?? (frontmatter?.infobox as FrontmatterInfoBox | undefined)
+  const raw = rawCandidate as FrontmatterInfoBox | undefined
   if (!raw || typeof raw !== "object") {
     return null
   }
@@ -292,11 +295,11 @@ const parseInfoBox = (
 
 export default (() => {
   const InfoBox: QuartzComponent = ({ fileData, displayClass, ctx }: QuartzComponentProps) => {
-    if (!fileData?.frontmatter || !fileData.slug) {
+    if (!fileData?.slug) {
       return null
     }
 
-  const infobox = parseInfoBox(fileData.frontmatter as Record<string, unknown>, fileData.slug, ctx)
+  const infobox = parseInfoBox(fileData, fileData.slug, ctx)
     if (!infobox) {
       return null
     }

@@ -1,15 +1,12 @@
 ---
 title: Ferkland Institute
-infobox:
-  title: Ferkland Institute
-  image:
-    src: "![[Ferkland Institute.png|400]]"
-    caption: "The obfuscated logo of the Ferkland Institute from
-      [[LOG-10444444444444444444444]]"
-  items:
-    - label: Region
-      value: "[[Ferkland County]]"
 ---
+```infobox
+Title: Ferkland Institute
+Image: ![[Ferkland Institute.png|400]]
+Caption: The obfuscated logo of the Ferkland Institute from [[LOG-10444444444444444444444]]
+Region: [[Ferkland County]]
+```
 
 
 The Ferkland Institute is a mysterious organization possibly tied to [[TTH]] (as hinted at in [[LOG-15.mmp44]]), most likely from [[Ferkland County]]. Their purpose is unknown as if now (the time of writing this is October 17th, 2025).

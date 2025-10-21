@@ -1,16 +1,12 @@
 ---
 title: SYSTEM
-infobox:
-  title: SYSTEM
-  image:
-    src: ![[Content/Media/Sleuth Media/Images/SYSTEM screenshot Discord-min.png]]
-    caption: SYSTEM's Discord profile
-  items:
-    - label: 
-      value: Appearances
-	- [[STATION_8 TERMINAL 8]] (in chat)
-
 ---
+```infobox
+Title: SYSTEM
+Image: ![[Content/Media/Sleuth Media/Images/SYSTEM screenshot Discord-min.png]]
+Caption: SYSTEM's Discord profile
+Appearances: [[STATION_8 TERMINAL 8]] (in chat)
+```
 
 _SYSTEM_ (also known as *SYSTEMterminal8*, *system000008*) is a program created by [[INDI]].
 

@@ -1,21 +1,20 @@
 ---
 title: Channel 14
-infobox:
-  title: Channel 14
-  image:
-    src: "![[Content/Media/Sleuth Media/Images/Channel 14 Demo Channel-min.png]]"
-    caption: Channel 14 Demo screen from the STATION_8 livestreams
-  items:
-    - label: Appearances
-      value:
-        - "[[LOG-40.mp4]]"
-        - "[[garbage_sgl.mp4]]"
-        - "[[LOG-154.mp4]]"
-        - "[[LOG-155.mp4]]"
-        - "[[Parting Gifts]]"
-        - "[[STATION_8 TRIM 90]]"
-        - "[[STATION_8 TERMINAL 8]]"
 ---
+```infobox
+Title: Channel 14
+Image: ![[Content/Media/Sleuth Media/Images/Channel 14 Demo Channel-min.png]]
+Caption: Channel 14 Demo screen from the STATION_8 livestreams
+Appearances:
+- [[LOG-40.mp4]]
+- [[garbage_sgl.mp4]]
+- [[LOG-154.mp4]]
+- [[LOG-155.mp4]]
+- [[Parting Gifts]]
+- [[STATION_8 TRIM 90]]
+- [[STATION_8 TERMINAL 8]]
+```
+
 
 Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]].
 

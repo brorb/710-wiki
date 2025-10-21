@@ -1,23 +1,20 @@
 ---
 title: TTH
-infobox:
-  title: TTH
-  image:
-    src: "![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]"
-    caption: TTH Logo
-  items:
-    - label: Also known as
-      value:
-        - The Transmitting Hands
-        - Transmitting Hands
-    - label: Region
-      value: "[[Ferkland County]]"
-    - label: Workers
-      value:
-        - "[[TTHA0002]]"
-        - "[[A992144]]"
-        - "[[X331239]]"
 ---
+```infobox
+Title: TTH
+Image: ![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]
+Caption: TTH Logo
+Also known as:
+- The Transmitting Hands
+- Transmitting Hands
+Region: [[Ferkland County]]
+Workers:
+- [[TTHA0002]]
+- [[A992144]]
+- [[X331239]]
+```
+
 
 TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
 > [!discord-cite]- Discord citation (2 messages)

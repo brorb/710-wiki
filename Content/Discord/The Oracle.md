@@ -1,14 +1,12 @@
 ---
 title: The Oracle
-infobox:
-  title: The Oracle
-  image:
-    src: "![[oracle_pfp.png]]]"
-    caption: ""
-  items:
-    - label: "Also known as"
-      value: "ORA_CLE.servertype"
 ---
+```infobox
+Title: The Oracle
+Image: ![[oracle_pfp.png]]]
+Also known as: ORA_CLE.servertype
+```
+
 
 The Oracle is a Discord bot made by @brorb for [[The Sleuths]] Discord server. It is connected directly to the wiki and is able to use all existing data here to answer any questions. To use it, simply type 
 ```

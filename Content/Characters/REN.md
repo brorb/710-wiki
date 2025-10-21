@@ -1,20 +1,18 @@
 ---
 title: REN
-infobox:
-  title: REN
-  image:
-    src: "![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]"
-  items:
-    - label: Appearances
-      value:
-        - "[[STATION_8 TRIM 90]]"
-        - "[[STATION_8 TERMINAL 8]]"
-        - "Community posts"
-    - label: Workers
-      value:
-        - "[[INDI]]"
-        - "[[Kepler]]"
 ---
+```infobox
+Title: REN
+Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
+Appearances:
+- [[STATION_8 TRIM 90]]
+- [[STATION_8 TERMINAL 8]]
+- Community posts
+Workers:
+- [[INDI]]
+- [[Kepler]]
+```
+
 
 _REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under.^[[STATION_8 TERMINAL 8]]
 

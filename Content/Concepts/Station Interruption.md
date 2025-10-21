@@ -1,22 +1,21 @@
 ---
 title: Station Interruption
-infobox:
-  title: Station Interruption
-  image:
-    src: "![[Content/Media/Sleuth Media/Images/Technical difficulties screen.jpg]]"
-    caption: Technical difficulties screen
-  items:
-    - label: Appearances
-      value:
-        - "[[ECAA(TEST) CL5672]]"
-        - "[[ECAA(TEST) CL5909]]"
-        - "ECAA(TEST) CL5909 (1 sec restart)"
-        - "[[ES-ETA (June 7th, 2025)]]"
-        - "[[ES-ETA 5-5]]"
-        - "[[STATION_8 TRIM 5]]"
-        - "[[STATION_8 TRIM 90]]"
-        - "[[STATION_8 TERMINAL 8]]"
 ---
+```infobox
+Title: Station Interruption
+Image: ![[Content/Media/Sleuth Media/Images/Technical difficulties screen.jpg]]
+Caption: Technical difficulties screen
+Appearances:
+- [[ECAA(TEST) CL5672]]
+- [[ECAA(TEST) CL5909]]
+- ECAA(TEST) CL5909 (1 sec restart)
+- [[ES-ETA (June 7th, 2025)]]
+- [[ES-ETA 5-5]]
+- [[STATION_8 TRIM 5]]
+- [[STATION_8 TRIM 90]]
+- [[STATION_8 TERMINAL 8]]
+```
+
 
 Technical difficulties screen that appeared occasionally during the livestreams (also featured in some of [[The Logs]] as well), usually caused by REN or some other type of interference in signal connection.
 

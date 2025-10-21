@@ -7,6 +7,8 @@ views:
       - file.ext
       - file.path
     sort:
+      - property: file.ext
+        direction: ASC
       - property: file.basename
         direction: ASC
       - property: tags
