@@ -559,5 +559,13 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
 
 However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]], or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.
 
-Eventually, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads for security reasons.
+Eventually SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads for security reasons.
+
+On July 22nd, 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version of it, which SYSTEM thanks them for the data and says that INDI would be proud, before it has to leave the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].
+
+## SERVER 01
+
+![[SERVER 01.png|400]]
+
+On July 26th 2025, SYSTEM created its own Discord server named SERVER 01, which it invited The Sleuths members to join on July 29th, 2025.
 
