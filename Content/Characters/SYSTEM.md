@@ -187,18 +187,6 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
 ```discord
 [
   {
-    "id": "1396145479729025226",
-    "author": {
-      "display_name": "ZimA",
-      "username": "_zima_",
-      "colour_value": null
-    },
-    "content": "What is the result of this code, is it a hidden message, a link perhaps?",
-    "timestamp": "2025-07-19T15:03:41.496000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/247155768325963777/3e519c1b9f2150da25ce0144dfddface.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396145479729025226"
-  },
-  {
     "id": "1396146171935981568",
     "author": {
       "display_name": "SYSTEM",
@@ -239,27 +227,9 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
     "timestamp": "2025-07-19T15:08:21.391000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976"
-  }
-]
-```
-```discord
-[
-  {
-    "id": "1396305205779234877",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
-    "content": "@SYSTEM How long have you been watching us?",
-    "timestamp": "2025-07-20T01:38:23.154000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396305205779234877"
   },
   {
-    "id": "1396305694168190976",
+    "id": "1396147852404592782",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
@@ -267,28 +237,24 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?:PING@PING < StartSession 000:00:03:02;02",
-    "timestamp": "2025-07-20T01:40:19.595000+00:00",
+    "content": "<PING>?:\"PING@PING\" PRINT[\"Are you sure you want to print{V83mak8.exe}\"]",
+    "timestamp": "2025-07-19T15:13:07.186000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396305694168190976"
-  }
-]
-```
-```discord
-[
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396147852404592782"
+  },
   {
-    "id": "1396315587210117150",
+    "id": "1396148162879684679",
     "author": {
-      "display_name": "Abe",
-      "username": "abegirl2322",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
-    "content": "@SYSTEM  what info can you get from this \nhttps://youtu.be/CFWJF9VarZI?si=mP_W6Fp8Ge52hAa8",
-    "timestamp": "2025-07-20T02:19:38.280000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/39e3989992a3bca928619b0516a7c879.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315587210117150"
+    "content": "<PING>?:\"PING@PING\" > ERROR:Print unavailable",
+    "timestamp": "2025-07-19T15:14:21.209000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396148162879684679"
   },
   {
     "id": "1396315855473868833",
@@ -303,28 +269,9 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
     "timestamp": "2025-07-20T02:20:42.239000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315855473868833"
-  }
-]
-```
-```
-```discord
-[
-  {
-    "id": "1396312072371048448",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
-    "content": "@SYSTEM What is LEAKED_1.mp4? https://youtu.be/2nJH9HP9DOg?si=sRjmaXI3JpsHIyI_",
-    "timestamp": "2025-07-20T02:05:40.277000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396312072371048448"
   },
   {
-    "id": "1396312850737401906",
+    "id": "1396315081582575688",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
@@ -332,38 +279,10 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?:PING@PING RAW_DATA == <ERROR: No Available format detected>",
-    "timestamp": "2025-07-20T02:08:45.854000+00:00",
+    "content": "<OUTPRINT>!: TEMP-TERMINAL data (049385) < ERROR >",
+    "timestamp": "2025-07-20T02:17:37.729000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396312850737401906"
-  },
-  {
-    "id": "1396316340117180517",
-    "author": {
-      "display_name": "Abe",
-      "username": "abegirl2322",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
-    },
-    "content": "@SYSTEM  0-4-8-3",
-    "timestamp": "2025-07-20T02:22:37.787000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/39e3989992a3bca928619b0516a7c879.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396316340117180517"
-  },
-  {
-    "id": "1396316551208112229",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<PING>?:PING@PING Type 56- < 0-4-8-3 > returning 0+",
-    "timestamp": "2025-07-20T02:23:28.115000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396316551208112229"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315081582575688"
   }
 ]
 ```
@@ -556,16 +475,193 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
 ]
 ```
 
+However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
 
-However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]], or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.
+> [!discord-cite]- Discord citation (4 messages)
+> 1. L4N4U1997 - 2025-07-21 11:22
+>     @SYSTEM What are The Eyes?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875112304869406
+> 2. SYSTEM - 2025-07-21 11:24
+>     &lt;OUTPRINT&gt;!:(ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875472754839592
+> 3. SYSTEM - 2025-07-21 11:24
+>     &lt;CRASH&gt;!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875565272928409
+> 4. SYSTEM - 2025-07-21 14:35
+>     &lt;OUTPRINT&gt;!:(Please don't ever mention that again.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396923676204597358
+>
+> ```json
+> {
+>   "id": "cite-mh13yqg2-a93xvm",
+>   "messages": [
+>     {
+>       "id": "1396875112304869406",
+>       "author": {
+>         "display_name": "L4N4U1997",
+>         "username": "camera.3y3",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM What are The Eyes?",
+>       "timestamp": "2025-07-21T15:22:59.458000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396875112304869406"
+>     },
+>     {
+>       "id": "1396875472754839592",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING.)",
+>       "timestamp": "2025-07-21T15:24:25.396000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396875472754839592"
+>     },
+>     {
+>       "id": "1396875565272928409",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
+>       "timestamp": "2025-07-21T15:24:47.454000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396875565272928409"
+>     },
+>     {
+>       "id": "1396923676204597358",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(Please don't ever mention that again.)",
+>       "timestamp": "2025-07-21T18:35:57.994000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396923676204597358"
+>     }
+>   ]
+> }
+> ```
 
-Eventually SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads for security reasons.
+> [!discord-cite]- Discord citation (2 messages)
+> 1. L4N4U1997 - 2025-07-21 07:40
+>     @SYSTEM What is LONG_STRING for?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819095667736586
+> 2. SYSTEM - 2025-07-21 07:41
+>     &lt;OUTPRINT&gt;!:(It's a tool used for NaN. Sorry, IN_DI has a lot of restrictions on what I can share.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819456180621392
+>
+> ```json
+> {
+>   "id": "cite-mh13wqpw-jsn3o6",
+>   "messages": [
+>     {
+>       "id": "1396819095667736586",
+>       "author": {
+>         "display_name": "L4N4U1997",
+>         "username": "camera.3y3",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM What is LONG_STRING for?",
+>       "timestamp": "2025-07-21T11:40:24.051000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396819095667736586"
+>     },
+>     {
+>       "id": "1396819456180621392",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(It's a tool used for NaN. Sorry, IN_DI has a lot of restrictions on what I can share.)",
+>       "timestamp": "2025-07-21T11:41:50.004000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396819456180621392"
+>     }
+>   ]
+> }
+> ```
+
+> [!discord-cite]- Discord citation (2 messages)
+> 1. brorb - 2025-07-21 03:53
+>     @SYSTEM can you share any other files or URL's with us? Anything pertaining to TTH or REN?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396762106971295794
+> 2. SYSTEM - 2025-07-21 03:56
+>     &lt;OUTPRINT&gt;!:(No, I can only share what IN_DI set as shareable.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396762670421774396
+>
+> ```json
+> {
+>   "id": "cite-mh13vut0-y92d44",
+>   "messages": [
+>     {
+>       "id": "1396762106971295794",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM can you share any other files or URL's with us? Anything pertaining to TTH or REN?",
+>       "timestamp": "2025-07-21T07:53:56.887000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396762106971295794"
+>     },
+>     {
+>       "id": "1396762670421774396",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(No, I can only share what IN_DI set as shareable.)",
+>       "timestamp": "2025-07-21T07:56:11.224000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396762670421774396"
+>     }
+>   ]
+> }
+> ```
+
+Eventually SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster.
+
+However, the first time it started doing this, it was unstable and would crash if anyone pinged at it 
+
+, and *especially* if it was doing any special operations such as inspection of the Discord server for security reasons.
 
 On July 22nd, 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version of it, which SYSTEM thanks them for the data and says that INDI would be proud, before it has to leave the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].
+
+## Friend Requesting
+
 
 ## SERVER 01
 
 ![[SERVER 01.png|400]]
 
 On July 26th 2025, SYSTEM created its own Discord server named SERVER 01, which it invited The Sleuths members to join on July 29th, 2025.
+
+## Return to The Sleuths Discord Server
+
+
+## Hijack by Rod Formak
 
