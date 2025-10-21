@@ -8,9 +8,9 @@ Caption: SYSTEM's Discord profile
 Appearances: [[STATION_8 TERMINAL 8]] (in chat)
 ```
 
-_SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead. <!-- discord-cite:cite-mh12dhx1-68w11y -->
+_SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
 
-However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]", <!-- discord-cite:cite-mh12nzep-l8ik0x --> until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone]].
+However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone]].
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. brorb - 2025-07-21 03:51
@@ -370,7 +370,7 @@ SYSTEM didn't always have the ability to physically talk, at first it was a basi
 
 However, when it updated to the second Logged Session 3, a new command appeared in the Terminal Storage menu:
 
-	\<HELP>!:=============[help menu]=============
+	<HELP>!:=============[help menu]=============
 	<HELP>!:help = 0-
 	<HELP>!:TERMINAL_Storage4u = 1-
 	<HELP>!: RELEASE = 4-
@@ -378,7 +378,7 @@ However, when it updated to the second Logged Session 3, a new command appeared 
 
 When input, it pulled unused data from within The Sleuths Discord server (insert Discord message citation here), then as SYSTEM logged back on the next day the "TERMINAL_rollbackrequest" command became available:
 
-	\<HELP>!:============[help menu]============
+	<HELP>!:============[help menu]============
 	<HELP>!:help = 0-
 	<HELP>!:TERMINAL_Storage4u = 1-
 	<HELP>!:TERMINAL_rollbackrequest = 2-
@@ -559,6 +559,5 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
 
 However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]], or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.
 
-Eventually, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads.
-
+Eventually, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster. However, the first time it started doing this, it was unstable and would crash if anyone pinged at it (insert Discord message citation here), and *especially* if it was doing any special operations such as inspection of the Discord server threads for security reasons.
 
