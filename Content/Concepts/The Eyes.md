@@ -7,12 +7,12 @@ infobox:
   items:
     - label: 
       value: Appearances
-		- [[Hello]]
-		-[[LOG-62.mp4]]
-		-[[30]]
-		-[[LOG-27.mp4]]
-		-[[{_ _ _-_ _._ _ _}re]]
-		- Community post from February 2025
+		-"[[Hello]]"
+		-"[[LOG-62.mp4]]"
+		-"[[30]]"
+		-"[[LOG-27.mp4]]"
+		-"[[{_ _ _-_ _._ _ _}re]]"
+		-"Community post from February 2025"
 
 ---
 
