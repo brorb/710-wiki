@@ -2,7 +2,7 @@
 infobox:
   title: The Eyes
   image:
-    src: ![[Content/Media/Sleuth Media/Images/SYSTEM screenshot Discord-min.png]]
+    src: ![[Content/Media/710 Media/Images/From community posts/unnamed.webp]]
     caption: ALWAYS WATCHING
   items:
     - label: 
