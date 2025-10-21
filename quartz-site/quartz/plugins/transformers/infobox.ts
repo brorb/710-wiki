@@ -160,9 +160,14 @@ export const InfoboxBlock: QuartzTransformerPlugin = () => {
     markdownPlugins() {
       return [
         () => (tree, file) => {
+          let infoboxCaptured = false
           visit(tree, "code", (node: Code, index, parent) => {
             const language = typeof node.lang === "string" ? node.lang.toLowerCase() : ""
             if (language !== "infobox") {
+              return
+            }
+
+            if (infoboxCaptured) {
               return
             }
 
@@ -178,6 +183,7 @@ export const InfoboxBlock: QuartzTransformerPlugin = () => {
 
             file.data.infobox = parsed
             file.data.infoboxSource = "code-block"
+            infoboxCaptured = true
 
             if (parent && typeof index === "number") {
               parent.children.splice(index, 1)

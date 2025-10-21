@@ -4706,9 +4706,13 @@ var InfoboxBlock = /* @__PURE__ */ __name(() => {
     markdownPlugins() {
       return [
         () => (tree, file) => {
+          let infoboxCaptured = false;
           visit6(tree, "code", (node, index, parent) => {
             const language = typeof node.lang === "string" ? node.lang.toLowerCase() : "";
             if (language !== "infobox") {
+              return;
+            }
+            if (infoboxCaptured) {
               return;
             }
             const raw = typeof node.value === "string" ? node.value : "";
@@ -4722,6 +4726,7 @@ var InfoboxBlock = /* @__PURE__ */ __name(() => {
             }
             file.data.infobox = parsed;
             file.data.infoboxSource = "code-block";
+            infoboxCaptured = true;
             if (parent && typeof index === "number") {
               parent.children.splice(index, 1);
               return [SKIP2, index];
