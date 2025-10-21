@@ -1,7 +1,19 @@
 ---
-tags:
-  - component
 infobox:
+  title: The Eyes
+  image:
+    src: ![[Content/Media/710 Media/Images/From community posts/unnamed.webp]]
+    caption: ALWAYS WATCHING
+  items:
+    - label: 
+      value: Appearances
+		- [[Hello]]
+		-[[LOG-62.mp4]]
+		-[[30]]
+		-[[LOG-27.mp4]]
+		-[[{_ _ _-_ _._ _ _}re]]
+		- Community post from February 2025
+
 ---
 
 
