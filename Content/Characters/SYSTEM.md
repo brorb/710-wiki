@@ -185,13 +185,14 @@ Below is the original decoded image, as well as the recreation made by Sleuth me
 
 ![[gift-full.png|300]]![[gift_fixed.png|300]]
 
-After [[000001]] was uploaded to [[710 Tone]], SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in some of the member's DMs):
+After [[000001]] was uploaded to [[710 Tone]] on August 16th, 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
 
 ![[556839 (from main Discord).ogg]]
 _From main Discord server._
 
 ![[556839 (from brorb DMs).ogg]]
 _From @brorb's DMs._
+
 ### RELEASE
 
 SYSTEM didn't always have the ability to physically talk, at first it was a basic program that could only output logs of data, such as the following:
@@ -1399,7 +1400,9 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 > ```
 
 
-## Friend Requested from The Sleuths
+
+---
+## Friend Requests from The Sleuths
 
 ![[Friend request acceptance SYSTEM.png|400]]
 
@@ -1486,9 +1489,151 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, rand
 
 brorb: ttyl
 ```
+
+When [[The Sleuths]] found out about the KEY in the description of [[LOG-103.mp4]], SYSTEM DMed Sleuth member The Camera Eye with the actual link:
+```
+SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
+<TAGGING>!: {LOGGED SESSION_02-01}
+<PING>?: out+ [SYSTEM MESSAGE] VAR type out-
+
+L4N4U1997: @SYSTEM 0-
+
+SYSTEM:<HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!: Back = 3-
+
+L4N4U1997: @SYSTEM -1
+
+SYSTEM:<CALL>!:=======[TERMINAL_Storage4u]=======
+<CALL>!:IN_DI Message 01 = 1-
+<CALL>!:Gift = 2-
+<CALL>!:Back = 3-
+
+L4N4U1997: @SYSTEM 3-
+
+SYSTEM:<HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!: Back = 3-
+
+L4N4U1997: @SYSTEM 2-
+
+SYSTEM:<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))
+<PING>?:PING@PING PING@SYSTEM callout()
+<OUTPRINT>!:(Hello.)
+
+L4N4U1997: Hello again.
+@SYSTEM what is the KEY to the link?
+
+SYSTEM:<OUTPRINT>!:(Is it a URL?)
+
+L4N4U1997: Yes it is.
+
+SYSTEM:<OUTPRINT>!:(Can you send it to me.)
+
+L4N4U1997: Should I trust you?
+
+SYSTEM:<OUTPRINT>!:(IN_DI trusted me.)
+
+L4N4U1997: I see...
+You're not going to delete it right?
+
+SYSTEM:<OUTPRINT>!:(No.)
+
+L4N4U1997: Okay.
+Here it is: https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0
+
+SYSTEM:<OUTPRINT>!:(Strange. It seems as if the URL key has gone bad.)
+<OUTPRINT>!:(Give me a moment.)
+<IMPORTING>!: CODE IMPORT PING@PING :: / ../ REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]
+
+L4N4U1997: Thank you :)
+
+SYSTEM:<OUTPRINT>!:(Give it a try, if it doesn't work send it back.)
+
+L4N4U1997: It worked thanks. :D
+BTW, is IN_DI dead?
+
+SYSTEM:<OUTPRINT>!:(I don't know.)
+
+L4N4U1997: Okay that's fine.
+
+Is there another way to access the room in the Godot file?
+
+SYSTEM:<OUTPRINT>!:(No.)
+
+L4N4U1997: okay next question, what file did INDI send?
+
+SYSTEM:<OUTPRINT>!:(KEY and lm-1.)
+
+L4N4U1997: Will we find TRUTH.zip eventually?
+
+SYSTEM:<OUTPRINT>!:(No.)
+
+<PING>?:
+<PING>?:PING@PING
+<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
+```
+
+After [[The Sleuths]] explored [[prj_home.exe]] and found the "lm-2" image (see [[Travis]]), clarified some things regarding it with Sleuth member ThePortalNinja:
+```
+ThePortalNinja: @SYSTEM Is it too late for us to get Travis' parting gift?
+[uploaded "lm-2" image]
+
+SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
+<TAGGING>!: {LOGGED SESSION_03-01}
+<PING>?: out+ [SYSTEM MESSAGE] VAR type out-
+
+SYSTEM:<HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!: Back = 3-
+
+ThePortalNinja: 2-
+
+SYSTEM:<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))
+<PING>?:PING@PING PING@SYSTEM callout()
+<OUTPRINT>!:(Hello.)
+
+ThePortalNinja: Hello bestie :D
+
+SYSTEM:<OUTPRINT>!:(Yes, that is Travis' parting gift.)
+
+ThePortalNinja: Alright, does it lead to anything else?
+
+SYSTEM:<OUTPRINT>!:(No.)
+
+ThePortalNinja: Alright, so is there anything other than this that we haven't found yet? We haven't properly used lm-1 and it's 160 acres for anything unless we indirectly used it for something we haven't noticed... I imagined that we'd be let to TRUTH.zip along the way
+
+SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, that sequence was 132. Also no, you will not encounter TRUTH.zip.)
+
+ThePortalNinja: [gif of a scene from Pulp Fiction]
+
+SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, [160] -> [106].
+
+ThePortalNinja: 106 - 3 = KEY?
+
+ThePortalNinja: Oh my god so we used lm-1 indirectly, then... I see now thanks lol
+I see it perfectly now
+That lead to LOG-103 with the description that lead us to everything else... so we're done.
+
+SYSTEM:<OUTPRINT>!:(I'm glad to have helped. Goodbye.)
+
+ThePortalNinja: Thank you System
+I hope we meet again
+
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]
+```
+---
 ## SERVER 01
 
 See [[SERVER 01]] article.
+
+---
 ## Return to The Sleuths Discord Server
 
 On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
@@ -1617,6 +1762,8 @@ On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed so
 > ```
 
 During the third Live Sleuthing event in [[The Sleuths]] Discord server, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
+
+---
 ## LM-3
 
 On August 13th, 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
@@ -1649,8 +1796,55 @@ I HATE EVERYTHING YOU STAND FOR.
 UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. 
 AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
-
+---
 ## Hijack by Rod Formak
 
 
+SYSTEM posted the 
+```discord
+[
+  {
+    "id": "1410457414393790516",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "broadcast",
+    "timestamp": "2025-08-28T02:54:12.623000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392258274186756227/1410457414393790516"
+  },
+  {
+    "id": "1410457457834070016",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "hijacked",
+    "timestamp": "2025-08-28T02:54:22.980000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1410457457834070016"
+  },
+  {
+    "id": "1410457538792788071",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<HELP>!:help = 0-",
+    "timestamp": "2025-08-28T02:54:42.282000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1410457538792788071"
+  }
+]
+```
 
