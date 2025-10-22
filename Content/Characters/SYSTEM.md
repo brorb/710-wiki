@@ -474,6 +474,24 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
   }
 ]
 ```
+```discord
+[
+  {
+    "id": "1399743592842662070",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(IN_DI cannot run the channel by himself.)",
+    "timestamp": "2025-07-29T13:21:18.512000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399743592842662070"
+  }
+]
+```
 
 However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
 
@@ -1254,20 +1272,46 @@ Then SYSTEM thanks them for the data and says that INDI would be proud:
 ]
 ```
 
-Then it leaves the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh1we19q-3blc7d -->
+Then it leaves the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
 
-> [!discord-cite]- Discord citation (2 messages)
-> 1. SYSTEM - 2025-07-29 09:38
+> [!discord-cite]- Discord citation (6 messages)
+> 1. brorb - 2025-07-29 09:36
+>     @SYSTEM what has got you in such a playful mood all of a sudden?
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766
+> 2. SYSTEM - 2025-07-29 09:38
 >     &lt;OUTPRINT&gt;!:(I was too harsh when I found out that you where logging my conversations. This is an "I'm sorry".)
 >     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846
-> 2. SYSTEM - 2025-07-29 09:40
+> 3. brorb - 2025-07-29 09:39
+>     @SYSTEM why did you dislike that we were logging them?
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748156907978943
+> 4. SYSTEM - 2025-07-29 09:40
 >     &lt;OUTPRINT&gt;!:(It reminded me of when I was hijacked by NaN.)
 >     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748530901618708
+> 5. brorb - 2025-07-29 09:41
+>     @SYSTEM did they also log your conversations?
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748628167266456
+> 6. SYSTEM - 2025-07-29 09:43
+>     &lt;OUTPRINT&gt;!:(NaN logged everything, putting unwanted stress on my internals and somehow making me 'feel'. I don't want that again.)
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399749144251465799
 >
 > ```json
 > {
->   "id": "cite-mh1we19q-3blc7d",
+>   "id": "cite-mh2a6dp2-r7xgty",
 >   "messages": [
+>     {
+>       "id": "1399747539888111766",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM what has got you in such a playful mood all of a sudden?",
+>       "timestamp": "2025-07-29T13:36:59.561000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766"
+>     },
 >     {
 >       "id": "1399748041799499846",
 >       "author": {
@@ -1283,6 +1327,20 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 >       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846"
 >     },
 >     {
+>       "id": "1399748156907978943",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM why did you dislike that we were logging them?",
+>       "timestamp": "2025-07-29T13:39:26.670000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399748156907978943"
+>     },
+>     {
 >       "id": "1399748530901618708",
 >       "author": {
 >         "display_name": "SYSTEM",
@@ -1295,10 +1353,39 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 >       "timestamp": "2025-07-29T13:40:55.837000+00:00",
 >       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399748530901618708"
+>     },
+>     {
+>       "id": "1399748628167266456",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM did they also log your conversations?",
+>       "timestamp": "2025-07-29T13:41:19.027000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399748628167266456"
+>     },
+>     {
+>       "id": "1399749144251465799",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(NaN logged everything, putting unwanted stress on my internals and somehow making me 'feel'. I don't want that again.)",
+>       "timestamp": "2025-07-29T13:43:22.071000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399749144251465799"
 >     }
 >   ]
 > }
 > ```
+
 
 ## Friend Requested from The Sleuths
 
@@ -1307,6 +1394,7 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them in their DMs.
 
 From @brorb's DMs:
+
 ```
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_01-01}
@@ -1388,80 +1476,90 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, rand
 brorb: ttyl
 ```
 
-
 ## SERVER 01
 
-![[SERVER 01.png|400]]
-
-On July 26th 2025, SYSTEM created its own Discord server named SERVER 01, which it invited The Sleuths members to join on July 29th, 2025. In this server, SYSTEM created the Discord app bot APP TRUSTED 02, which one could use to input commands such as the following:
-
-```
-$app_help - Shows the old help menu, as seen below:
-
-old[=============[help menu]============  
-<HELP>!:app_help  
-<HELP>!:Back]  
-<HELP>!:app_help
-
-$app_log_ore - Shows a numbered LOG order list, which updated itself as the days got closer to the 10th of August.
-
-$app_name - Shows the app's properties:
-
-TRUSTED APP-02  
-Model:0.2.92  
-Serveing:FROM: LINX-OS, Storage disk 03, connected via [ETHERNET] TO:[https://discord.gg]  
-kayxsu: oh im stupid
-
-$hello - Prints the message "Hello"
-
-$help - Opens the list of available commands
-
-$print_bob - Prints the "Bob" character invented by SYSTEM
-
-██████████
-  █     █
-     █
-     █
-     ███
-█       █
- ███████
- 
-$whoami_app - Pings the bot and sends packets to somewhere
-
-PINGED
-PINGED
-PINGED
-NAME: 'APP_TRUSTED_02'
-ROLE [2]: APP, APP_TRUSTED_02
-TESTING CONNETION::PINGING
-SENDING PACKETS OF: 32 bytes : TO : [NaN/replaced] APP_TRUSTED_02]
-REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332
-REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332
-REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332
-REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332
-PING status from [APP_TRUSTED_02]
-PACKETS: Sent=4, Received=4, loss=0, (0%Loss)
-ERROR: Could not approximate :: CODE:077s9ss9dSY, No storage value found
-Command complete
-```
-
-When The Sleuths first joined, they were all assigned the "STANDARD TRUST" server role, which was limited to posting messages and not media attachments. In order to be unlocked from those limitations, you had to be within the "TRUSTED-05" role.
-
-However, SYSTEM could post media attachments in the server, such as the following below:
-
-```
-<OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
-```
-![[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
-_Ghost error image, which was accompanied by the message above._
-
-![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
-_Leftover data from SYSTEM's audio modular function from the third live Sleuth meeting, this audio file was originally meant to be deleted but somehow ended up in SERVER 01 instead._
-
-
+See [[SERVER 01]] article.
 ## Return to The Sleuths Discord Server
 
-On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server. 
+On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the \#dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]], who is a recurring inside joke character within The Sleuths Discord Server as well as [[SERVER 01]].
+
+> [!discord-cite]- Discord citation (4 messages)
+> 1. ThePortalNinja - 2025-07-29 09:09
+>     @SYSTEM Did you leave initially due to the influx of requests?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740731786264589
+> 2. SYSTEM - 2025-07-29 09:10
+>     &lt;OUTPRINT&gt;!:(Unstable connection.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740856428400660
+> 3. ThePortalNinja - 2025-07-29 09:10
+>     @SYSTEM I see, I assume things are more stable now?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740929044119603
+> 4. SYSTEM - 2025-07-29 09:11
+>     &lt;OUTPRINT&gt;!:(I fixed some bugs and software issues. Yes.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399741106404589568
+>
+> ```json
+> {
+>   "id": "cite-mh29fugs-yqn8gk",
+>   "messages": [
+>     {
+>       "id": "1399740731786264589",
+>       "author": {
+>         "display_name": "ThePortalNinja",
+>         "username": "theportalninja",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM Did you leave initially due to the influx of requests?",
+>       "timestamp": "2025-07-29T13:09:56.383000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740731786264589"
+>     },
+>     {
+>       "id": "1399740856428400660",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(Unstable connection.)",
+>       "timestamp": "2025-07-29T13:10:26.100000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740856428400660"
+>     },
+>     {
+>       "id": "1399740929044119603",
+>       "author": {
+>         "display_name": "ThePortalNinja",
+>         "username": "theportalninja",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM I see, I assume things are more stable now?",
+>       "timestamp": "2025-07-29T13:10:43.413000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740929044119603"
+>     },
+>     {
+>       "id": "1399741106404589568",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(I fixed some bugs and software issues. Yes.)",
+>       "timestamp": "2025-07-29T13:11:25.699000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399741106404589568"
+>     }
+>   ]
+> }
+> ```
 
 ## Hijack by Rod Formak
 
