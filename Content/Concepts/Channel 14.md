@@ -1,5 +1,7 @@
 ---
 title: Channel 14
+tags:
+  - component
 ---
 ```infobox
 Title: Channel 14

@@ -1,5 +1,7 @@
 ---
 title: REN
+tags:
+  - characters
 ---
 ```infobox
 Title: REN

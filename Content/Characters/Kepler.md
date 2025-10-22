@@ -1,5 +1,7 @@
 ---
 title: Kepler
+tags:
+  - characters
 ---
 ```infobox
 Title: Kepler

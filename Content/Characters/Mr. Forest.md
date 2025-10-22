@@ -1,5 +1,7 @@
 ---
 title: Mr. Forest
+tags:
+  - characters
 ---
 ```infobox
 Title: Mr. Forest

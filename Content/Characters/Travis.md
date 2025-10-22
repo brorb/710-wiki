@@ -1,5 +1,7 @@
 ---
 title: Travis
+tags:
+  - characters
 ---
 ```infobox
 Title: Travis

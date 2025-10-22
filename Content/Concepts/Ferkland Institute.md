@@ -1,5 +1,7 @@
 ---
 title: Ferkland Institute
+tags:
+  - documentation
 ---
 ```infobox
 Title: Ferkland Institute

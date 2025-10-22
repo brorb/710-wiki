@@ -1,5 +1,7 @@
 ---
 title: Black Mold
+tags:
+  - component
 ---
 ```infobox
 Title: Black Mold

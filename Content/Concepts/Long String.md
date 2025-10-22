@@ -1,5 +1,7 @@
 ---
 title: Long String
+tags:
+  - component
 ---
 ```infobox
 Title: Long String

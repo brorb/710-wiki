@@ -1,5 +1,7 @@
 ---
 title: D4V1NC1
+tags:
+  - characters
 ---
 ```infobox
 Title: D4V1NC1

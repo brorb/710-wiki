@@ -1,5 +1,7 @@
 ---
 title: Caper Waves
+tags:
+  - component
 ---
 ```infobox
 Title: Caper Waves

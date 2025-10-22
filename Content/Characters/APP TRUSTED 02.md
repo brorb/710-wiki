@@ -1,3 +1,8 @@
+---
+tags:
+  - component
+  - Meta
+---
 A discord app bot created by [[SYSTEM]] for [[SERVER 01]].
 
 According to [[SYSTEM]], the name came from a different software program.

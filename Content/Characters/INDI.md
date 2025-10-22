@@ -1,5 +1,7 @@
 ---
 title: INDI
+tags:
+  - characters
 ---
 ```infobox
 Title: INDI

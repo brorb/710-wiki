@@ -1,5 +1,7 @@
 ---
 title: TTH
+tags:
+  - characters
 ---
 ```infobox
 Title: TTH
