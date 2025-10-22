@@ -180,6 +180,13 @@ Below is the original decoded image, as well as the recreation made by Sleuth me
 
 ![[gift-full.png|300]]![[gift_fixed.png|300]]
 
+After [[000001]] was uploaded to [[710 Tone]], SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in some of the member's DMs):
+
+![[556839 (from main Discord).ogg]]
+_From main Discord server._
+
+![[556839 (from brorb DMs).ogg]]
+_From @brorb's DMs._
 ### RELEASE
 
 SYSTEM didn't always have the ability to physically talk, at first it was a basic program that could only output logs of data, such as the following:
@@ -1630,7 +1637,15 @@ On August 13th, 2025, SYSTEM posted a message encrypted with both hexadecimal an
 
 Decoding the message gives the following message:
 ```
-BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. I HATE EVERYTHING YOU STAND FOR. UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
+BACK FROM ROOMS OF FIRE, 
+HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, 
+THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. 
+I HATE EVERYTHING YOU STAND FOR. 
+UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. 
+AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
+
 ## Hijack by Rod Formak
+
+
 
