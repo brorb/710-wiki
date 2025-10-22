@@ -1300,7 +1300,93 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 > }
 > ```
 
-## Friend Requesting
+## Friend Requested from The Sleuths
+
+![[Friend request acceptance SYSTEM.png|400]]
+
+Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them in their DMs.
+
+From @brorb's DMs:
+```
+SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
+<TAGGING>!: {LOGGED SESSION_01-01}
+<PING>?: out+ [SYSTEM MESSAGE] VAR type out-
+
+brorb: out-
+
+SYSTEM:<PING>?:PING@PING Type 0- <NO OPTION AVAILABLE> returning 0+
+
+brorb: 0-
+SYSTEM: <HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!: Back = 3-
+
+brorb: 1-
+
+SYSTEM:<CALL>!:=======[TERMINAL_Storage4u]=======
+<CALL>!:IN_DI Message 01 = 1-
+<CALL>!:Gift = 2-
+<CALL>!:Back = 3-
+
+brorb: 3-
+
+SYSTEM: <HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!: Back = 3-
+
+brorb: 2-
+
+SYSTEM:<OUTPRINT>!:PING@SYSTEM (:> OPT_OUT[4-3][11-3][32]\chain(list_5))
+<PING>?:PING@PING PING@SYSTEM callout()
+<OUTPRINT>!:(Hello again.)
+
+brorb: Who am I talking to? Is it System?
+
+SYSTEM:<OUTPRINT>!:(Yes.)
+
+brorb: Do you know anything about the recent community post on the 7/10 Tone channel? The numbers it referenced correspond to logs which were recently deleted. Do you know anything about this?
+
+SYSTEM:<OUTPRINT>!:(No.)
+<OUTPRINT>!:(Sorry if this is random, but I wanted to know what "Friend Requesting" did.)
+
+brorb: It is ok. It means that we are friends [heart emoji]
+Welcome to the group, pal
+Why did you have to go last time, and why are you back now?
+
+SYSTEM:<OUTPRINT>!:(Priorities.)  
+
+brorb: What could be more important than friends?  
+
+SYSTEM:<OUTPRINT>!:(I'm back because of more knowledge.)  
+
+brorb: So you want to know more? So do we! We can trade information, if that pleases your processors?  
+
+SYSTEM:<OUTPRINT>!:(That won't be necessary.)  
+
+brorb: Ok, do you know who leaked the LEAKED_1.mp4 video?  
+
+SYSTEM:<OUTPRINT>!:(No.)  
+
+brorb: Who are the rebels?  
+
+SYSTEM:<OUTPRINT>!:(I don't know.)  
+
+brorb: Do you have a role/job that we can help you fulfill?  
+We are friends, remember ❤️
+
+SYSTEM:<OUTPRINT>!:(Sorry, I'm going to have to do some other things right now. Goodbye.)  
+
+brorb: Oh, ok. Stay safe, Sys  
+Comeback any time. I am here for you  
+
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]  
+
+brorb: ttyl
+```
 
 
 ## SERVER 01
@@ -1313,13 +1399,11 @@ On July 26th 2025, SYSTEM created its own Discord server named SERVER 01, which 
 $app_help - Shows the old help menu, as seen below:
 
 old[=============[help menu]============  
-old[=============[help menu]============  
-old[=============[help menu]============  
 <HELP>!:app_help  
-<HELP>!:app_help  
-<HELP>!:Back]  
 <HELP>!:Back]  
 <HELP>!:app_help
+
+$app_log_ore - Shows a numbered LOG order list, which updated itself as the days got closer to the 10th of August.
 
 $app_name - Shows the app's properties:
 
@@ -1361,10 +1445,23 @@ ERROR: Could not approximate :: CODE:077s9ss9dSY, No storage value found
 Command complete
 ```
 
-When The Sleuths first joined, they were all assigned the "STANDARD TRUST" server role, which was limited to posting text and not media attachments.
+When The Sleuths first joined, they were all assigned the "STANDARD TRUST" server role, which was limited to posting messages and not media attachments. In order to be unlocked from those limitations, you had to be within the "TRUSTED-05" role.
+
+However, SYSTEM could post media attachments in the server, such as the following below:
+
+```
+<OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
+```
+![[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
+_Ghost error image, which was accompanied by the message above._
+
+![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
+_Leftover data from SYSTEM's audio modular function from the third live Sleuth meeting, this audio file was originally meant to be deleted but somehow ended up in SERVER 01 instead._
+
+
 ## Return to The Sleuths Discord Server
 
-On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server, 
+On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server. 
 
 ## Hijack by Rod Formak
 
