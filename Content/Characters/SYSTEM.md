@@ -1394,7 +1394,6 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them in their DMs.
 
 From @brorb's DMs:
-
 ```
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_01-01}
@@ -1475,13 +1474,57 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, rand
 
 brorb: ttyl
 ```
-
 ## SERVER 01
 
 See [[SERVER 01]] article.
 ## Return to The Sleuths Discord Server
 
-On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the \#dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]], who is a recurring inside joke character within The Sleuths Discord Server as well as [[SERVER 01]].
+On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the \#dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+
+> [!discord-cite]- Discord citation (2 messages)
+> 1. brorb - 2025-07-29 09:36
+>     @SYSTEM what has got you in such a playful mood all of a sudden?
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766
+> 2. SYSTEM - 2025-07-29 09:38
+>     &lt;OUTPRINT&gt;!:(I was too harsh when I found out that you where logging my conversations. This is an "I'm sorry".)
+>     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846
+>
+> ```json
+> {
+>   "id": "cite-mh2cr8n6-9ogsrq",
+>   "messages": [
+>     {
+>       "id": "1399747539888111766",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM what has got you in such a playful mood all of a sudden?",
+>       "timestamp": "2025-07-29T13:36:59.561000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766"
+>     },
+>     {
+>       "id": "1399748041799499846",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(I was too harsh when I found out that you where logging my conversations. This is an \"I'm sorry\".)",
+>       "timestamp": "2025-07-29T13:38:59.226000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846"
+>     }
+>   ]
+> }
+> ```
+
 
 > [!discord-cite]- Discord citation (4 messages)
 > 1. ThePortalNinja - 2025-07-29 09:09
@@ -1561,5 +1604,33 @@ On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed so
 > }
 > ```
 
+During the third Live Sleuthing event in [[The Sleuths]] Discord server, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
+## LM-3
+
+On August 13th, 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
+
+```discord
+[
+  {
+    "id": "1405325015196635176",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "51 6B 46 44 53 79 42 47 55 6B 39 4E 49 46 4A 50 54 30 31 54 49 45 39 47 49 45 5A 4A 55 6B 55 73 49 45 68 46 49 45 68 42 55 79 42 4F 54 79 42 53 54 30 39 4E 49 45 46 4F 52 43 42 58 53 55 78 4D 49 45 56 59 55 45 46 4F 52 43 42 56 54 6C 52 4A 54 43 42 49 53 56 4D 67 55 30 74 4A 54 69 42 43 55 6B 56 42 53 31 4D 73 49 46 52 49 52 55 34 67 56 45 38 67 51 31 4A 56 54 56 42 4D 52 53 42 56 54 6B 52 46 55 69 42 49 53 56 4D 67 54 31 64 4F 49 46 4E 4C 52 55 78 46 56 45 39 4F 49 45 39 47 49 45 4E 50 54 6B 4E 53 52 56 52 46 49 45 46 4F 52 43 42 54 56 45 56 46 54 43 34 67 53 53 42 49 51 56 52 46 49 45 56 57 52 56 4A 5A 56 45 68 4A 54 6B 63 67 57 55 39 56 49 46 4E 55 51 55 35 45 49 45 5A 50 55 69 34 67 56 55 35 55 53 55 77 67 56 45 68 46 54 69 77 67 57 55 39 56 49 46 64 4A 54 45 77 67 56 56 4E 46 49 45 46 4F 57 56 52 49 53 55 35 48 49 45 5A 50 55 69 42 44 54 30 35 55 55 6B 39 4D 49 45 46 4F 52 43 42 51 56 55 35 4A 55 30 68 4E 52 55 35 55 4C 69 42 42 54 6B 51 67 53 53 42 58 53 55 78 4D 49 46 4A 46 54 55 46 4A 54 69 42 4D 53 55 74 46 49 46 52 49 53 56 4D 73 49 46 56 4F 56 45 6C 4D 49 45 6B 6E 54 53 42 47 55 6B 56 46 49 45 46 48 51 55 6C 4F 4C 67 6F 4B{LM-3}{#3}||{CAUSE < BACKTRACK 5}:::::::::",
+    "timestamp": "2025-08-13T22:59:53.299000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392258274186756227/1405325015196635176"
+  }
+]
+```
+
+Decoding the message gives the following message:
+```
+BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. I HATE EVERYTHING YOU STAND FOR. UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
+```
 ## Hijack by Rod Formak
 
