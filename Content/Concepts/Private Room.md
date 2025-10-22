@@ -1,9 +1,19 @@
 ---
+title: Private Room
 tags:
   - component
-infobox:
+  - Meta
 ---
-
+```infobox
+Title: Private Room
+Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
+Appearances: 
+- [[{_ _ _-_ _._ _ _}re]]
+- [[LOG-62.mp4]]
+- [[LOG-123.mp4]]
+- [[STATION_8 TRIM 90]] (mentioned)
+- [[STATION_8 TERMINAL 8]] (mentioned)
+```
 
 The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public.
 

@@ -1,6 +1,7 @@
 ---
 tags:
   - component
+  - Meta
 ---
 
 On July 26th 2025, [[SYSTEM]] created its own Discord server named SERVER 01, which it invited some of [[The Sleuths]] to join on July 29th, 2025. In this server, SYSTEM created the Discord app bot [[APP TRUSTED 02]], which one could use to input certain commands such as printing [[Bob]] or generating random keys for [[SYSTEM]] to get to [[The Transmitter]].
