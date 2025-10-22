@@ -1479,7 +1479,7 @@ brorb: ttyl
 See [[SERVER 01]] article.
 ## Return to The Sleuths Discord Server
 
-On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the \#dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. brorb - 2025-07-29 09:36
