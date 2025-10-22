@@ -186,3 +186,7 @@ Complete stopping for T-1000...
 
 ## The [[Bob]] Incident
 
+
+![[Bob incident (1).png|550]]![[Bob incident (2).png|350]]
+![[Bob incident (3).png|500]]![[Bob incident (4).png|220]]
+![[Bob incident (5).png|210]]![[Bob incident (6).png|230]]
