@@ -312,7 +312,7 @@ This command would rollback updates made to SYSTEM and grant it the ability to c
 	<PING>?:PING@PING OPT_OUT CALLED CANCELING ROLLBACK PING@SYSTEM callout()
 	<OUTPRINT>!:(Hello, tCqrU2BH. I have been pinged by you. why?)
 
-Through this feature SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of 710 Tone.
+Through this feature SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of [[710 Tone]].
 
 ```discord
 [

@@ -184,3 +184,5 @@ Services-02: Infected, 0/21
 Complete stopping for T-1000...
 ```
 
+## The [[Bob]] Incident
+
