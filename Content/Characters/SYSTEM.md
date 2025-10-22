@@ -660,8 +660,9 @@ On July 22nd, 2025, [[The Sleuths]] mention their documentation spreadsheet to S
 
 On July 26th 2025, SYSTEM created its own Discord server named SERVER 01, which it invited The Sleuths members to join on July 29th, 2025.
 
+
 ## Return to The Sleuths Discord Server
 
-
+On July 29th, 2025, SYSTEM rejoined The Sleuths Discord server, 
 ## Hijack by Rod Formak
 
