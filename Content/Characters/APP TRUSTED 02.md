@@ -20,7 +20,7 @@ Type $help command for more info on a command.
 You can also type $help category for more info on a category.
 ```
 ---
-## Commands:
+## Commands
 
 **$app_help**
 
@@ -85,16 +85,102 @@ Used to randomly generate 99 keys for [[SYSTEM]] to brute force its way into the
 
 **$hello**
 
-Simply prints out the message "hello"
+Simply prints out the message "Hello"
 
 **$help**
 
-Displays the command menu
+Displays the command menu.
 
 **$print_bob**
 
-Prints bob.
-
+Prints [[Bob]].
+```
+██████████
+ █     █
+    █
+    █
+    ███
+█      █
+ ██████
 ```
 
+**$whoami_app**
+
+Pings and sends packets to APP TRUSTED 02:
 ```
+PINGED  
+PINGED  
+PINGED  
+NAME: 'APP_TRUSTED_02'  
+ROLE [2]: APP, APP_TRUSTED_02  
+TESTING CONNETION::PINGING  
+SENDING PACKETS OF: 32 bytes : TO : [NaN/replaced] APP_TRUSTED_02]  
+REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332  
+REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332  
+REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332  
+REPLY FROM [APP_TRUSTED_02], bytes=32, time=<34ms, TTL=332  
+PING status from [APP_TRUSTED_02]  
+PACKETS: Sent=4, Received=4, loss=0, (0%Loss)  
+ERROR: Could not approximate :: CODE:077s9ss9dSY, No storage value found  
+Command complete
+```
+
+**$roaming_program**
+
+Roaming bot program that checked for [[710 Tone]]'s influence across various places, this feature wasn't intentionally added by [[SYSTEM]] and initially errored out.
+```
+REQUEST CALLED AWAITING RESPONSE  
+Pinged  
+REQUEST = TRUE, dailing  
+Connecting...  
+Connection confirmed :: ACCESSING local/roaming_BOT.ocl [DATA]...  
+{'Service': 'Google', 'Category': 'Search, Email, Cloud', 'Infected': 'No'}  
+{'Service': 'Amazon', 'Category': 'E-commerce, Cloud (AWS)', 'Infected': 'No'}  
+{'Service': 'Facebook (Meta)', 'Category': 'Social Media', 'Infected': 'No'}  
+{'Service': 'YouTube', 'Category': 'Video Streaming', 'Infected': 'Yes'}  
+{'Service': 'Netflix', 'Category': 'Video Streaming', 'Infected': 'No'}  
+{'Service': 'Microsoft', 'Category': 'Cloud, Software', 'Infected': 'No'}  
+{'Service': 'Apple', 'Category': 'Cloud, Devices', 'Infected': 'No'}  
+{'Service': 'Spotify', 'Category': 'Music Streaming', 'Infected': 'No'}  
+{'Service': 'Discord', 'Category': 'Messaging, VoIP', 'Infected': 'Yes'}  
+{'Service': 'Reddit', 'Category': 'Social News', 'Infected': 'No'}  
+{'Service': 'TikTok', 'Category': 'Short Video', 'Infected': 'No'}  
+{'Service': 'Steam', 'Category': 'Game Distribution', 'Infected': 'No'}  
+{'Service': 'Zoom', 'Category': 'Video Conferencing', 'Infected': 'No'}  
+{'Service': 'Slack', 'Category': 'Business Communication', 'Infected': 'No'}  
+{'Service': 'Dropbox', 'Category': 'Cloud Storage', 'Infected': 'No'}  
+{'Service': 'Twitter (X)', 'Category': 'Social Media', 'Infected': 'No'}  
+{'Service': 'GitHub', 'Category': 'Code Hosting', 'Infected': 'Yes'}  
+{'Service': 'Twitch', 'Category': 'Game Streaming', 'Infected': 'No'}  
+{'Service': 'LinkedIn', 'Category': 'Professional Network', 'Infected': 'No'}  
+{'Service': 'OpenAI (ChatGPT)', 'Category': 'AI, Cloud API', 'Infected': 'No'}  
+{'Service': 'Mega', 'Category': 'Cloud Storage', 'Infected': 'Yes'}  
+{'Service': 'Google Drive', 'Category': 'Cloud Storage', 'Infected': 'No'}  
+Complete accssesing--file02  
+{'Game': 'Fortnite', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Minecraft (Java)', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Call of Duty: Warzone', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Apex Legends', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Valorant', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'League of Legends', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'World of Warcraft', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Destiny 2', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'GTA Online', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'ARK: Survival Evolved', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Rust', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Counter-Strike 2', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Roblox', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'The Division 2', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Elder Scrolls Online', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'PUBG', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Escape From Tarkov', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Sea of Thieves', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'FIFA / EA Sports FC', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'Rainbow Six Siege', 'Server Required': 'Yes', 'Infected': 'No'}  
+{'Game': 'SCP: Secret Labortory', 'Server Required': 'Yes', 'Infected': 'No'}  
+Error: FILE-03 cannot be accessed, terminating call  
+Services-01: Infected, 4/22  
+Services-02: Infected, 0/21  
+Complete stopping for T-1000...
+```
+
