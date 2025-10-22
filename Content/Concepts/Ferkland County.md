@@ -1,7 +1,7 @@
 ---
 title: Ferkland County
 tags:
-  - place
+  - location
 ---
 ```infobox
 Title: Ferkland County
