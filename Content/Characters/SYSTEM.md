@@ -4446,3 +4446,5 @@ On 7 September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, 
   }
 ]
 ```
+
+During this charade, SYSTEM briefly entered the Voice Chat channel in the Discord server, most likely due to glitching out.
