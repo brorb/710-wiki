@@ -255,7 +255,7 @@ SYSTEM: out-put: "23 58 33 33 31 32 33 39 3A 20 41 42 4F 55 54 20 54 49 4D 45 20
 ---
 
 ```
-ATTENTION: ESPaP> All posts have been expunged regarding information about \*\*\*\. Please hold for further information. DIAL CODE &&&-789990-AB
+ATTENTION: ESPaP> All posts have been expunged regarding information about ***. Please hold for further information. DIAL CODE &&&-789990-AB
 ```
 
 ```
@@ -387,10 +387,10 @@ Option 1 (winner):                                     Option 2:
 ```
 root = J.sm
 
-1. **root 1**
-2. **root 5**
-3. **root 7**
-4. **root 10**
-5. **root 3**
+1. root 1
+2. root 5
+3. root 7
+4. root 10
+5. root 3
 ```
 **(root 1 had the most votes, 46%)**

@@ -18,15 +18,46 @@ Associates:
 ```
 
 
-The channel 7/10 Tone was created on 26 Jun 2021. There exists records of them uploading videos since early-mid 2023, although everything from before 2 January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [TRANSLATED-DD.PCV](https://www.youtube.com/watch?v=ex-OvfDoEYM&ab_channel=7%2F10Tone) (July 24th, 2023), which was went private sometime around August 2025, most likely after the 2025 "purge" (see below).
+The channel 7/10 Tone was created on 26th Jun 2021. There exists records of them uploading videos since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [TRANSLATED-DD.PCV](https://www.youtube.com/watch?v=ex-OvfDoEYM&ab_channel=7%2F10Tone) (24th July 2023), which was went private sometime around August 2025, most likely after the 2025 "purge" (see below).
 
-The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP]]. The “7/10” is a date (10th July) written in an American date format. This corresponds to the date which the countdowns from the [[Station Timer]] were counting down to, and also to the profile picture of the 7/10 Tone YouTube channel (see image to the right). We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
+The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP]]. The “7/10” is a date (July 10th) written in an American date format. This corresponds to the date which the countdowns from the [[Station Timer]] were counting down to, and also to the profile picture of the 7/10 Tone YouTube channel (see image to the right). We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
+
+## Owners
+
+The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] (during the STATION_8 livestreams, before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and possibly [[SYSTEM]] (since it was a moderator during the STATION_8 livestreams), however [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]].
+
+> [!discord-cite]- Discord citation (1 message)
+> 1. SYSTEM - 2025-08-03 11:41
+>     &lt;OUTPRINT&gt;!:(I don't know, I don't have control over that anymore after the livestream.)
+>     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401590763166634004
+>
+> ```json
+> {
+>   "id": "cite-mh3yb1uj-huk2wk",
+>   "messages": [
+>     {
+>       "id": "1401590763166634004",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(I don't know, I don't have control over that anymore after the livestream.)",
+>       "timestamp": "2025-08-03T15:41:18.236000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401590763166634004"
+>     }
+>   ]
+> }
+> ```
 
 ## 2025 Gradual Removal and Eventual Purge
 
 ![[HOST ERROR removing unmarked labals on august 10th 2025-min.png]]
 
-On 10 July 2025, the channel posted a community post (see [[Community Posts]]) stating that all "unmarked labels" would be removed on 20 August 2025.<!-- discord-cite:cite-mh3h3z1q-1ggw5e -->
+On 10th July 2025, the channel posted a community post (see [[Community Posts]]) stating that all "unmarked labels" would be removed on 20th August 2025.<!-- discord-cite:cite-mh3h3z1q-1ggw5e -->
 
 > [!discord-cite]- Discord citation (1 message)
 > 1. Noel | HLF - 2025-07-10 18:00
@@ -57,20 +88,20 @@ On 10 July 2025, the channel posted a community post (see [[Community Posts]]) s
 > }
 > ```
 
-However, this date would later get changed to 10 August in a new community post update (see image above), then briefly to 3 August before it quickly changed back to 10 August.
+However, this date would later get changed to 10th August in a new community post update (see image above), then briefly to 3rd August before it quickly changed back to 10th August.
 
-During the lead-up to August 10th, certain LOGs gradually got removed from the channels, accompanied with community posts announcing their removal.
+During the lead-up to 10th August, certain LOGs gradually got removed from the channels, accompanied with community posts announcing their removal.
 
 Here is a list of the removed LOGs in order:
-**23 July 2025:** [[LOG-124.mp4]], [[LOG-125.mp4]], [[LOG-126.mp4]], [[LOG-127.mp4]], [[LOG-154.mp4]], [[LOG-156.mp4]]
-**25 July  2025:** [[LOG-111.mp4]], [[LOG-123.mp4]], [[LOG-132]], [[33LOG-13]], [[LOG.138.mp4]]
-**27 July 2025:** [[LOG-102.mp3]], [[LOG-87.mp4]], [[LOG-47.mp4]], [[LOG-002.mp4]], [[LOG-005.mp4]] ([[LOG-46.mp4]] was added to the channel at this time)
-**28 July 2025:** [[LOG-84.mp4]], [[{_ _ _-_ _._ _ _}re]], [[LOG-44.mp4]], [[LOG-003.mp4]], [[LOG-12.mp4]]
-**29 July 2025:** [[LOG-39..mp4]], [[LOG-10.mp4]], [[machina_ad_mortem.mp4]], [[LOG-006.mp4]], [[LONG_STR.mp4]]
-**1 August 2025:** [[LLOOGG--2211..mmpp44]], [[LOG- _ _ _ ._ _ _ + + +]], [[LOG-43.mp4]], [[LOG-48.mp4]], [[LOG-128.mp4]]
+**23rd July 2025:** [[LOG-124.mp4]], [[LOG-125.mp4]], [[LOG-126.mp4]], [[LOG-127.mp4]], [[LOG-154.mp4]], [[LOG-156.mp4]]
+**25th July  2025:** [[LOG-111.mp4]], [[LOG-123.mp4]], [[LOG-132]], [[33LOG-13]], [[LOG.138.mp4]]
+**27th July 2025:** [[LOG-102.mp3]], [[LOG-87.mp4]], [[LOG-47.mp4]], [[LOG-002.mp4]], [[LOG-005.mp4]] ([[LOG-46.mp4]] was added to the channel at this time)
+**28th July 2025:** [[LOG-84.mp4]], [[{_ _ _-_ _._ _ _}re]], [[LOG-44.mp4]], [[LOG-003.mp4]], [[LOG-12.mp4]]
+**29th July 2025:** [[LOG-39..mp4]], [[LOG-10.mp4]], [[machina_ad_mortem.mp4]], [[LOG-006.mp4]], [[LONG_STR.mp4]]
+**1st August 2025:** [[LLOOGG--2211..mmpp44]], [[LOG- _ _ _ ._ _ _ + + +]], [[LOG-43.mp4]], [[LOG-48.mp4]], [[LOG-128.mp4]]
 
-Finally, as August 10th come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
+Finally, as 10th August come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
 
 ![[3 hidden videos-min.png]]
 
-However, on the next day these videos were also unlisted from the channel's page.
+However the next day these videos were also unlisted from the channel's page.

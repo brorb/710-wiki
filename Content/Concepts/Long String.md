@@ -16,12 +16,77 @@ Appearances:
 ```
 
 
-Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been referred to as a "tool" used by [[REN]]^[[[STATION_8 TERMINAL 8]]] and acts as a computer virus (as seen in all of it appearances).  The first (known) appearance of Long String is in [[LONG_STR.mp4]] from 23 Feb 2025, which shows a system getting infected with the virus.
+Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been referred to as a "tool" used by [[REN]]^[[[STATION_8 TERMINAL 8]]] and acts as a computer virus (as seen in all of it appearances).  The first (known) appearance of Long String is in [[LONG_STR.mp4]] from 23rd Feb 2025, which demonstrates a system getting infected with the virus.
 
-It is also likely related to INDI's [[TRUTH.zip]]
+It is also likely related to INDI's [[TRUTH.zip]] file, since it has associations with the command to run Long String, {V83mak8.exe}.<!-- discord-cite:cite-mh40eu7g-1vvn6o -->
+
+> [!discord-cite]- Discord citation (3 messages)
+> 1. SYSTEM - 2025-07-19 11:06
+>     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
+>     link_found = "V83mak8.pcv"
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146171935981568
+> 2. SYSTEM - 2025-07-19 11:07
+>     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
+>     link_found = "V83mak8.exe" &gt; package "TRUTH.zip"
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112
+> 3. SYSTEM - 2025-07-19 11:08
+>     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
+>     link_found = "Null"
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976
+>
+> ```json
+> {
+>   "id": "cite-mh40eu7g-1vvn6o",
+>   "messages": [
+>     {
+>       "id": "1396146171935981568",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"V83mak8.pcv\"",
+>       "timestamp": "2025-07-19T15:06:26.531000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146171935981568"
+>     },
+>     {
+>       "id": "1396146521367380112",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"V83mak8.exe\" > package \"TRUTH.zip\"",
+>       "timestamp": "2025-07-19T15:07:49.842000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112"
+>     },
+>     {
+>       "id": "1396146653693607976",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"Null\"",
+>       "timestamp": "2025-07-19T15:08:21.391000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976"
+>     }
+>   ]
+> }
+> ```
+
 
 # Content
-The video [[LONG_STR.mp4]] briefly flashes a wall of numbers:
+The video [[LONG_STR.mp4]] briefly flashes a wall of Long String's code:
 
 > [!Click to Reveal]-
 > LONG_STR-564729576731277902351569165057160763716092018576721687678169
@@ -44,7 +109,7 @@ The video [[LONG_STR.mp4]] briefly flashes a wall of numbers:
 > '-83489-1794930210957403712904217854835187'070723985749832759079435643
 > 7965784265786432596259678383838363643765
 
-When shown this transcript, [[SYSTEM]] responded with the following:
+When shown this transcript from [[The Sleuths]] Discord server, [[SYSTEM]] responded with the following:
 
 ```discord
 [
@@ -93,22 +158,79 @@ When shown this transcript, [[SYSTEM]] responded with the following:
 ]
 ```
 
-It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since it was uploaded onto the [[710 Tone]] channel. 
+It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since it was uploaded onto the [[710 Tone]] channel.
 ## Usage
+
 Upon execution, Long String fills the screen with "INFECTED BY LONG STRING ;-)" 
-It isn't know exactly *what* Long String was designed to do, but judging by clues contained within [[The Logs]]
+It isn't know exactly *what* Long String was designed to do, but judging by clues contained within [[The Logs]], it seems to be a weapon against [[TTH]] terminals.
 
-[[SYSTEM]] has commented on the use of Long String:
+[[SYSTEM]] has commented on the use of Long String, but couldn't speak about much due to restrictions placed by [[INDI]]:
+```discord
+[
+  {
+    "id": "1396819456180621392",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(It's a tool used for NaN. Sorry, IN_DI has a lot of restrictions on what I can share.)",
+    "timestamp": "2025-07-21T11:41:50.004000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396819456180621392"
+  }
+]
+```
 
-> It's a tool used for NaN. Sorry, [IN_DI](INDI) has a lot of restrictions on what I can share.^[[[System Chats]]]
-
-[[SYSTEM]] would often crash after any mention of Long String. For example, when asked if Long String was made in Fortran, [[SYSTEM]] crashed right after responding (paraphrasing):
-
-> No. 
-> (IIIIIIIIINNNNNNNNNNNNN___SJDISOAISHFHIAOISNBVB..........................................)
-> \<PING\>?:
-> \<CRASH\>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), \[unpingstatus=true\]
-
+[[SYSTEM]] would crash after any mention of Long String. For example, when asked if Long String was made in Fortran, [[SYSTEM]] responded with the following before it crashed:
+```discord
+[
+  {
+    "id": "1400563360176668824",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(IIIIIIIIINNNNNNNNNNNNN_______________________________________________SJDISOAISHFHIAOISNBVB..........................................)",
+    "timestamp": "2025-07-31T19:38:46.275000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563360176668824"
+  },
+  {
+    "id": "1400563370037477416",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:",
+    "timestamp": "2025-07-31T19:38:48.626000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563370037477416"
+  },
+  {
+    "id": "1400563409216340059",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
+    "timestamp": "2025-07-31T19:38:57.967000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563409216340059"
+  }
+]
+```
 
 ## Appearances:
 - [[LONG_STR.mp4]], first appearance
