@@ -3119,7 +3119,7 @@ After it crashed, it skipped Session 3 and the command worked this time:
 ]
 ```
 
-And [[The Sleuths]] were able to talk to an entity who types similarly to [[INDI]], but whether this was *actually* [[INDI]] or not remains unclear, since they don't seem to remember [[Kepler]]:
+After it successfully connected, [[The Sleuths]] were able to talk to an entity who types similarly to [[INDI]], but whether this was *actually* [[INDI]] or not remains unclear, since they don't seem to remember [[Kepler]]:
 ```discord
 [
   {
