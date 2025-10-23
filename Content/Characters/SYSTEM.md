@@ -1799,8 +1799,6 @@ AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ---
 ## Hijack by Rod Formak
 
-
-SYSTEM posted the 
 ```discord
 [
   {
@@ -1848,3 +1846,4 @@ SYSTEM posted the
 ]
 ```
 
+After [[RIGfunctionobservationTEST028.mp4]] was uploaded to [[710 Tone]] on August 27th, 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked", 
