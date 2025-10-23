@@ -16,6 +16,36 @@ Associates:
 
 On July 26th 2025, [[SYSTEM]] created its own Discord server named SERVER 01, which it invited some of [[The Sleuths]] to join on July 29th, 2025. In this server, SYSTEM created the Discord app bot [[APP TRUSTED 02]], which one could use to input certain commands such as printing [[Bob]] or generating random keys for [[SYSTEM]] to get to [[The Transmitter]].
 
+Its purpose for creation was "to understand and collect data" according to SYSTEM. <!-- discord-cite:cite-mh3xl38p-bitaq3 -->
+
+> [!discord-cite]- Discord citation (1 message)
+> 1. SYSTEM - 2025-08-03 11:37
+>     &lt;OUTPRINT&gt;!:(To understand and collect data.)
+>     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401589793111937197
+>
+> ```json
+> {
+>   "id": "cite-mh3xl38p-bitaq3",
+>   "messages": [
+>     {
+>       "id": "1401589793111937197",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(To understand and collect data.)",
+>       "timestamp": "2025-08-03T15:37:26.957000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589793111937197"
+>     }
+>   ]
+> }
+> ```
+
+
 When [[The Sleuths]] first joined, they were all assigned the "STANDARD TRUST" server role, which was limited to posting messages and not media attachments. In order to be unlocked from those limitations, you had to be within the "TRUSTED-05" role, which [[SYSTEM]] would later grant [[The Sleuths]] on August 8th, 2025.
 
 However, SYSTEM would post media attachments into the server, such as the following below:

@@ -181,7 +181,7 @@ Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files
 > }
 > ```
 
-Below is the original decoded image, as well as the recreation made by Sleuth member, The Camera Eye:
+Below is the original decoded image, as well as the recreation made by Sleuth member The Camera Eye:
 
 ![[gift-full.png|300]]![[gift_fixed.png|300]]
 
