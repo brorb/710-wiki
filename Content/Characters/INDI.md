@@ -25,9 +25,7 @@ Notable appearances:
 ```
 
 
-INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  
-
-
+INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone]] Youtube channel. Their job is to run signals for [[REN]], 
 ## Name
 
 Their official name is "IN_DI", as confirmed by [Kepler/710 NPP](Kepler.md) in a YouTube livestream.  Viewers of the stream were asked to "Think about why his name is INDI or more IN_DI". The true meaning behind INDI's name is not understood. 
