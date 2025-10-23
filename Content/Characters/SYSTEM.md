@@ -2255,7 +2255,8 @@ And the Terminal Storage menu contained a "bad" message from SYSTEM:
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742505207271507"
   }
 ]
-
+```
+```discord
 [
   {
     "id": "1413742955168272384",
