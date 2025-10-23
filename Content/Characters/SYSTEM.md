@@ -2641,7 +2641,7 @@ A few hours later, [[The Sleuths]] inputted the "ACCESS_Subframe" command to see
 ]
 ```
 
-After it crashed, it skipped Session 3 and the command worked this time:
+After it crashed, it skipped Session 3 and the "ACCESS_Subframe" command worked this time:
 ```discord
 [
   {
