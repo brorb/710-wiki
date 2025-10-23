@@ -1490,7 +1490,7 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, rand
 brorb: ttyl
 ```
 
-When [[The Sleuths]] found out about the KEY in the description of [[LOG-103.mp4]], SYSTEM DMed Sleuth member The Camera Eye with the actual link:
+When [[The Sleuths]] found out about the KEY for a Mega link in the description of [[LOG-103.mp4]], SYSTEM DMed Sleuth member The Camera Eye (@L4N4U1997 on Discord) with the actual link:
 ```
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_02-01}
@@ -1578,7 +1578,7 @@ SYSTEM:<OUTPRINT>!:(No.)
 <CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
 ```
 
-After [[The Sleuths]] explored [[prj_home.exe]] and found the "lm-2" image (see [[Travis]]), clarified some things regarding it with Sleuth member ThePortalNinja:
+After receiving the correct link, [[The Sleuths]] discovered [[prj_home.exe]] within the Mega link, then explored it to find the "lm-2" image (see [[Parting Gifts Puzzle|Parting Gifts]]). SYSTEM directly messaged Sleuth member ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished:
 ```
 ThePortalNinja: @SYSTEM Is it too late for us to get Travis' parting gift?
 [uploaded "lm-2" image]
@@ -3712,3 +3712,4 @@ And [[The Sleuths]] were able to talk to an entity who types similarly to [[INDI
   }
 ]
 ```
+
