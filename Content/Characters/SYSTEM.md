@@ -2330,7 +2330,13 @@ And the Terminal Storage menu contained a "bad" message from SYSTEM:
 
 The message was decoded as the following:
 ```
-Hello sleuths, this something that I did not want to talk about, but he got to me. I don't know how, but he did. I made this backup copy of myself just in case anything did go wrong. This isn't really me. I get that it's disappointing to see this, but please stay positive. I will find a way out, and I will take IN_DI with me. I hope.
+Hello sleuths, 
+this something that I did not want to talk about, but he got to me. 
+I don't know how, but he did. 
+I made this backup copy of myself just in case anything did go wrong. 
+This isn't really me. 
+I get that it's disappointing to see this, but please stay positive. 
+I will find a way out, and I will take IN_DI with me. I hope.
 ```
 
 This confirms that [[He]] had hijacked SYSTEM once again and now the real SYSTEM is gone, aside from a backup copy of itself in case of emergency situations.
