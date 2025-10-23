@@ -84,6 +84,51 @@ It is also likely related to INDI's [[TRUTH.zip]] file, since it has association
 > }
 > ```
 
+It is not programmed in Fortran according to [[SYSTEM]].<!-- discord-cite:cite-mh41h8c0-w3435z -->
+
+> [!discord-cite]- Discord citation (2 messages)
+> 1. ThePortalNinja - 2025-07-31 15:37
+>     @SYSTEM Is Long String made in Fortran?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1400562974942429255
+> 2. SYSTEM - 2025-07-31 15:37
+>     &lt;OUTPRINT&gt;!:(No.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1400563030277881948
+>
+> ```json
+> {
+>   "id": "cite-mh41h8c0-w3435z",
+>   "messages": [
+>     {
+>       "id": "1400562974942429255",
+>       "author": {
+>         "display_name": "ThePortalNinja",
+>         "username": "theportalninja",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM Is Long String made in Fortran?",
+>       "timestamp": "2025-07-31T19:37:14.428000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400562974942429255"
+>     },
+>     {
+>       "id": "1400563030277881948",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(No.)",
+>       "timestamp": "2025-07-31T19:37:27.621000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563030277881948"
+>     }
+>   ]
+> }
+> ```
 
 # Content
 The video [[LONG_STR.mp4]] briefly flashes a wall of Long String's code:
@@ -233,6 +278,7 @@ It isn't know exactly *what* Long String was designed to do, but judging by clue
 ```
 
 ## Appearances:
+
 - [[LONG_STR.mp4]], first appearance
 - In [[Parting Gifts]], Long String can be seen infecting a system, following the message "AND I WILL DO IT AGAIN". This video was uploaded a few days after the livestream [[STATION_8 TERMINAL 8]] ended.
 - [[LOG-123.mp4]]
