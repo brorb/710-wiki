@@ -5,7 +5,10 @@ tags:
   - documentation
   - YouTube
 ---
-#### LOGs of interest:
+
+The Logs (stylized as LOG) are videos uploaded to the [[710 Tone]] channel which usually contain red and black static, with a day counter at the end of each video that counts down to 10th July.
+
+### Logs of interest:
 [[{_ _ _-_ _._ _ _}re]]
 [[30]]
 [[LOG-15.mmp44]]

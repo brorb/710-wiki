@@ -93,8 +93,7 @@ They are an organization responsible for some type of transmission. Most likely 
 > ```
 
 
-
-Their logo feature a two hands on a red background. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
+Their logo features two hands inside a red circle/ellipse. The hands are a symbolization of human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> 
 
 This logo would appear in videos such as [[LOG-116.mp4]] and [[LOG-15.mmp44]] and at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH is behind these videos.
 
@@ -318,4 +317,4 @@ It is likely that TTH are the ones responsible for [[The Logs]] being made. This
 > }
 > ```
 
-TTH have numerous bases from which their operations are performed, as confirmed by [[LEAKED_1.mp4]]. 
+TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. 

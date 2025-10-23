@@ -209,4 +209,5 @@ After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again
 Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
 
 ![[bob incident fix (2).png|540]]
-![[bob incident fix (3).png]]
+![[bob incident fix (3).png|650]]
+
