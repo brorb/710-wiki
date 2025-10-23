@@ -59,3 +59,18 @@ On 10 July 2025, the channel posted a community post (see [[Community Posts]]) s
 
 However, this date would later get changed to 10 August in a new community post update (see image above), then briefly to 3 August before it quickly changed back to 10 August.
 
+During the lead-up to August 10th, certain LOGs gradually got removed from the channels, accompanied with community posts announcing their removal.
+
+Here is a list of the removed LOGs in order:
+**23 July 2025:** [[LOG-124.mp4]], [[LOG-125.mp4]], [[LOG-126.mp4]], [[LOG-127.mp4]], [[LOG-154.mp4]], [[LOG-156.mp4]]
+**25 July  2025:** [[LOG-111.mp4]], [[LOG-123.mp4]], [[LOG-132]], [[33LOG-13]], [[LOG.138.mp4]]
+**27 July 2025:** [[LOG-102.mp3]], [[LOG-87.mp4]], [[LOG-47.mp4]], [[LOG-002.mp4]], [[LOG-005.mp4]] ([[LOG-46.mp4]] was added to the channel at this time)
+**28 July 2025:** [[LOG-84.mp4]], [[{_ _ _-_ _._ _ _}re]], [[LOG-44.mp4]], [[LOG-003.mp4]], [[LOG-12.mp4]]
+**29 July 2025:** [[LOG-39..mp4]], [[LOG-10.mp4]], [[machina_ad_mortem.mp4]], [[LOG-006.mp4]], [[LONG_STR.mp4]]
+**1 August 2025:** [[LLOOGG--2211..mmpp44]], [[LOG- _ _ _ ._ _ _ + + +]], [[LOG-43.mp4]], [[LOG-48.mp4]], [[LOG-128.mp4]]
+
+Finally, as August 10th come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
+
+![[3 hidden videos-min.png]]
+
+However, on the next day these videos were also unlisted from the channel's page.
