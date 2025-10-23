@@ -18,3 +18,5 @@ _Ghost error image according to [[SYSTEM]], which was accompanied by the message
 ![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
 _Leftover data from [[SYSTEM]]'s audio modular function from the third live Sleuth meeting, this audio file was originally meant to be deleted but somehow ended up in [[SERVER 01]] instead._
 
+## Finding the Transmitter
+
