@@ -42,8 +42,9 @@ The [[Parting Gifts Puzzle|Parting Gifts]] puzzle gave a lot more insight into K
 
 This message confirms Travis died. It is not known who Travis sent the data to, but from the sentence " ... BEFORE ONE OF YOUR AGENCY HAD POISONED ME AND TOOK MY HARDWARE" it seems like he was betrayed by some party.
 
-By "... POSTED ON MY CHANNEL", Travis is likely referring to the videos [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which were uploaded less than two weeks prior to his death. These videos are the only one on the [[710 Tone]] YouTube channel to feature the [[prj_Home.exe]] environment.
-It is therefore likely that Travis created [[prj_Home.exe]] as a way to hide a message for anyone archiving the surroundings of 7/10 Tone. To see how this puzzle was solved, visit the [[Parting Gifts Puzzle.canvas]]. 
+By "... POSTED ON MY CHANNEL", Travis is likely referring to the videos [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which were uploaded less than two weeks prior to his death. These videos are the only one on the [[710 Tone]] YouTube channel to feature the [[prj_Home.exe]] environment. It is therefore likely that Travis created [[prj_Home.exe]] as a way to hide a message for anyone archiving the surroundings of 7/10 Tone.
+
+To see how this puzzle was solved, visit the [[Parting Gifts Puzzle.canvas]]. 
 
 
 [^1]: [[STATION_8 TRIM 5]]
