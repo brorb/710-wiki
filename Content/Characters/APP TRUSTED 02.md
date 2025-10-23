@@ -202,7 +202,7 @@ On August 7th, 2025, the $print_bob command glitched out and started spamming th
 ![[Bob incident (5).png|260]]
 ![[Bob incident (6).png|250]]
 
-After a moment of spam, [[SYSTEM]] stepped in to resolve the issue and quietly disabled the $print_bob command for a short while.
+After a moment of spam (an estimated total of 108 times the bot spammed), [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up.
 
 ![[bob incident fix (1).png|250]]
 
