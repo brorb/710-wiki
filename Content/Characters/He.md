@@ -13,7 +13,7 @@ Appearances:
 
 An elusive figure that was mentioned in the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]), possibly a Technician Engineer by the name of Rod Formak.
 
-In [[STATION_8 TERMINAL 8]], He hijacked [[SYSTEM]].
+In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]].
 
 He is most likely involved with TTH, according to a hint from [[SYSTEM]]. <!-- discord-cite:cite-mgvkt6vn-24zczg -->
 
