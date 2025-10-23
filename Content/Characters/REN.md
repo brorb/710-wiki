@@ -15,7 +15,6 @@ Workers:
 - [[Kepler]]
 ```
 
-
 _REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under.^[[STATION_8 TERMINAL 8]]
 
 REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any information regarding them confidential.
