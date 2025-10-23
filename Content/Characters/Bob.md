@@ -2,13 +2,15 @@
 tags:
   - dhitposting
 ---
+```
 ██████████
-   █              █
-       █
-       █
-       ███
-█                   █
-   ██████
+ █     █
+    █
+    █
+    ███
+█      █
+ ██████
+```
 
 Bob was created by [[SYSTEM]] as a form of a "meme", which it posted in the \#dhitposting channel of [[The Sleuths]] Discord server.
 
