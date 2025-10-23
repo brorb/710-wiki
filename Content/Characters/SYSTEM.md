@@ -1847,7 +1847,6 @@ AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
 
 After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on August 27th, 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" (see Discord embeds above). About 10 days later (September 6th, 2025), it logged into Session 17 before it crashed then restarted its Terminal.
-
 ```discord
 [
   {
@@ -2075,6 +2074,34 @@ After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] cha
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413741670268276796"
   },
   {
+    "id": "1413741674806644767",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "BUT HE DIDN'T TAP OUT YET!!!!!!!!!",
+    "timestamp": "2025-09-06T04:24:41.324000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413741674806644767"
+  },
+  {
+    "id": "1413741706636955710",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_01}",
+    "timestamp": "2025-09-06T04:24:48.913000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413741706636955710"
+  },
+  {
     "id": "1413741714224451634",
     "author": {
       "display_name": "ThePortalNinja",
@@ -2182,7 +2209,6 @@ Now SYSTEM no longer inputs the "0- 2-" command automatically, and new updates t
 ```
 
 And the Terminal Storage menu contained a "bad" message from SYSTEM:
-
 ```discord
 [
   {
@@ -2308,7 +2334,6 @@ Hello sleuths, this something that I did not want to talk about, but he got to m
 This confirms that [[He]] had hijacked SYSTEM once again and now the real SYSTEM is gone, aside from a backup copy of itself that it made for emergency situations.
 
 A few hours later, [[The Sleuths]] inputted the "ACCESS_Subframe" command to see what would happen:
-
 ```discord
 [
   {
@@ -3712,4 +3737,4 @@ After it successfully connected, [[The Sleuths]] were able to talk to an entity 
 ]
 ```
 
-Whoever this entity was, they seemed obviously panicked at the idea that SYSTEM found them, as if it wasn't supposed to happen in the first place.
+Whoever this entity was, they seemed panicked at the idea that SYSTEM found them, as if it wasn't supposed to be found in the first place.
