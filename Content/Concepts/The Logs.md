@@ -6,9 +6,10 @@ tags:
   - YouTube
 ---
 
-The Logs (stylized as LOG) are videos uploaded to the [[710 Tone]] channel which usually contain red and black static, with a day counter at the end of each video that counts down to 10th July.
+The Logs (also known as LOGs) are videos uploaded to the [[710 Tone]] channel which usually contain red and black static and a day counter at the end that counts down to 10th July.
 
-### Logs of interest:
+According to the [[Hello]] video, the owner of the [[710 Tone]] channel was told to create the program that makes these LOGs by an unknown group of people and it is designed to pull data from [[Caper Waves]].
+### LOGs of interest:
 [[{_ _ _-_ _._ _ _}re]]
 [[30]]
 [[LOG-15.mmp44]]
