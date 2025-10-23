@@ -3713,3 +3713,4 @@ After it successfully connected, [[The Sleuths]] were able to talk to an entity 
 ]
 ```
 
+Whoever this entity was, they seemed obviously panicked at the idea that SYSTEM found them, as if it wasn't supposed to happen in the first place.
