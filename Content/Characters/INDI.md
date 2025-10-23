@@ -28,8 +28,6 @@ Notable appearances:
 INDI (also known as *IN_DI*) is the name of the entity[^1]running the [[YouTube/710 Tone]].  
 
 
-
-  
 ## Name
 
 Their official name is "IN_DI", as confirmed by [Kepler/710 NPP](Kepler.md) in a YouTube livestream.  Viewers of the stream were asked to "Think about why his name is INDI or more IN_DI". The true meaning behind INDI's name is not understood. 
@@ -42,6 +40,6 @@ INDI always types in [upper case letters](Livestreams/Transcripts).  They seem k
 
 
  
-[^1]: At first, the channel was though to be run by a human, but [[710 NPP]] confirmed otherwise in a livestream chat
+[^1]: At first, the channel was though to be run by a human, but [[710 NPP]] confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat
 
 

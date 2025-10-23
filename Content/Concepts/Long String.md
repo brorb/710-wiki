@@ -16,10 +16,9 @@ Appearances:
 ```
 
 
-Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been refereed to as both a "virus" and a "tool"^[[[STATION_8 TERMINAL 8]]].  The first (known) mention of Long String is in [[LONG_STR.mp4]] from 23 Feb 2025. The video shows a system getting infected by a virus. 
+Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been referred to as a "tool" used by [[REN]]^[[[STATION_8 TERMINAL 8]]] and acts as a computer virus (as seen in all of it appearances).  The first (known) appearance of Long String is in [[LONG_STR.mp4]] from 23 Feb 2025, which shows a system getting infected with the virus.
 
-
-INDI's TRUTH.zip: see [[LEAKED_1.mp4]]
+It is also likely related to INDI's [[TRUTH.zip]]
 
 # Content
 The video [[LONG_STR.mp4]] briefly flashes a wall of numbers:
@@ -45,14 +44,59 @@ The video [[LONG_STR.mp4]] briefly flashes a wall of numbers:
 > '-83489-1794930210957403712904217854835187'070723985749832759079435643
 > 7965784265786432596259678383838363643765
 
-When shown this, [[SYSTEM]] responded with (paraphrased):
+When shown this transcript, [[SYSTEM]] responded with the following:
 
-> I wonder how you got this. It's a sample of Long String, but not the full code. The detonator part. You do not want the full code. Leave it at that.^[[[System Chats]]]
+```discord
+[
+  {
+    "id": "1400127729902420070",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(I wonder how you got this.)",
+    "timestamp": "2025-07-30T14:47:43.924000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400127729902420070"
+  },
+  {
+    "id": "1400127977580134501",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(It's a sample of Long String, but not the full code.)",
+    "timestamp": "2025-07-30T14:48:42.975000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400127977580134501"
+  },
+  {
+    "id": "1400128084216123453",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(The detonator part.)",
+    "timestamp": "2025-07-30T14:49:08.399000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400128084216123453"
+  }
+]
+```
 
-It is odd that [[SYSTEM]] is curious about how the sample was retrieved, since it was uploaded to the [[710 Tone]] channel. 
+It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since it was uploaded onto the [[710 Tone]] channel. 
 ## Usage
-Upon execution, Long String fills the screen with "INFECTED BY LONG STRING ;-)".  
-I is know exactly *what* Long String was designed to do, but users of the [[Private Room]] sometimes discuss how to "remove it" without "purging the terminal".
+Upon execution, Long String fills the screen with "INFECTED BY LONG STRING ;-)" 
+It isn't know exactly *what* Long String was designed to do, but judging by clues contained within [[The Logs]]
 
 [[SYSTEM]] has commented on the use of Long String:
 
