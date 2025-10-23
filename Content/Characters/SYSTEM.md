@@ -2182,6 +2182,7 @@ Now SYSTEM no longer inputs the "0- 2-" command automatically, and new updates t
 ```
 
 And the Terminal Storage menu contained a "bad" message from SYSTEM:
+
 ```discord
 [
   {
@@ -2253,11 +2254,7 @@ And the Terminal Storage menu contained a "bad" message from SYSTEM:
     "timestamp": "2025-09-06T04:27:59.307000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742505207271507"
-  }
-]
-```
-```discord
-[
+  },
   {
     "id": "1413742955168272384",
     "author": {
@@ -2304,7 +2301,7 @@ And the Terminal Storage menu contained a "bad" message from SYSTEM:
 ```
 
 The message was decoded as the following:
-```
+
 Hello sleuths, this something that I did not want to talk about, but he got to me. I don't know how, but he did. I made this backup copy of myself just in case anything did go wrong. This isn't really me. I get that it's disappointing to see this, but please stay positive. I will find a way out, and I will take IN_DI with me. I hope.
 ```
 
