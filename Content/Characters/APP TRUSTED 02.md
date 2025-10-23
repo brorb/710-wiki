@@ -192,7 +192,21 @@ Complete stopping for T-1000...
 ## The [[Bob]] Incident
 
 
-![[Bob incident (1).png|590]]![[Bob incident (2).png|380]]![[Bob incident (3).png|560]]
-![[Bob incident (4).png|240]]
-![[Bob incident (5).png|210]]
+![[Bob incident (1).png|590]]
+![[Bob incident (2).png|380]]
+
+On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]].
+
+![[Bob incident (3).png|610]]
+![[Bob incident (4).png|260]]
+![[Bob incident (5).png|260]]
 ![[Bob incident (6).png|250]]
+
+After a moment of spam, [[SYSTEM]] stepped in to resolve the issue and quietly disabled the $print_bob command for a short while.
+
+![[bob incident fix (1).png|250]]
+
+Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
+
+![[bob incident fix (2).png|540]]
+![[bob incident fix (3).png]]
