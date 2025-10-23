@@ -13,7 +13,6 @@ However, SYSTEM would post media attachments into the server, such as the follow
 <OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})\<!OUTPRINT=False>)
 ```
 ![[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
-
 _Ghost error image according to [[SYSTEM]], which was accompanied by the message above._ 
 
 ![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
