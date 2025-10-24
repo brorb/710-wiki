@@ -5093,7 +5093,7 @@ In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with t
 ]
 ```
 
-On 5th October 2025, SYSTEM posted the following cryptic message, which seems to related to some kind of "broadcast" (possibly hinting at an upcoming livestream):
+On 5th October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream):
 ```discord
 [
   {
@@ -5171,7 +5171,7 @@ Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.
 ]
 ```
 
-Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above message is SYSTEM's reaction to finding out about the "[[Indipler]]" ship.
+Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above message is SYSTEM's reaction to finding out about the "Indipler" ship.
 
 On 7th October 2025, SYSTEM used the "!ask" command on [[The Oracle]] for the first time ever, posting a cryptic message for it to try to interpret:
 ```discord
