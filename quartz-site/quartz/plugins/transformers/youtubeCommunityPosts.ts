@@ -10,6 +10,7 @@ type MdNode = {
   lang?: string
   depth?: number
   children?: MdNode[]
+  meta?: string
   [key: string]: unknown
 }
 
@@ -113,9 +114,19 @@ interface TextSegment {
 
 type Segment = EmbedSegment | TextSegment
 
+interface PostMetadata {
+  likes?: number
+  comments?: number
+  postedLabel?: string
+}
+
 const EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g
 
+const METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i
+const METADATA_PREFIX_REGEX = /^\s*\d+\s*,\s*\d+\s*,/
+
 const splitSegments = (raw: string): Segment[] => {
+  EMBED_REGEX.lastIndex = 0
   const segments: Segment[] = []
   let lastIndex = 0
   let match: RegExpExecArray | null
@@ -159,6 +170,59 @@ const parseNumericAlias = (alias?: string): number | undefined => {
 
   const numeric = Number.parseInt(alias.replace(/[^0-9]/g, ""), 10)
   return Number.isFinite(numeric) && numeric > 0 ? numeric : undefined
+}
+
+const parseMetadataMatch = (match: RegExpMatchArray | null): PostMetadata => {
+  if (!match) {
+    return {}
+  }
+
+  const [, likesRaw, commentsRaw, labelRaw] = match
+  const likes = Number.parseInt(likesRaw, 10)
+  const comments = Number.parseInt(commentsRaw, 10)
+  const postedLabel = labelRaw.trim()
+
+  const metadata: PostMetadata = {}
+  if (Number.isFinite(likes)) {
+    metadata.likes = likes
+  }
+  if (Number.isFinite(comments)) {
+    metadata.comments = comments
+  }
+  if (postedLabel.length > 0) {
+    metadata.postedLabel = postedLabel
+  }
+
+  return metadata
+}
+
+const parseBodyMetadata = (raw: string): { metadata: PostMetadata; body: string } => {
+  const match = raw.match(METADATA_LINE_REGEX)
+  if (!match) {
+    return { metadata: {}, body: raw }
+  }
+
+  const metadata = parseMetadataMatch(match)
+  const body = raw.slice(match[0].length)
+  return { metadata, body }
+}
+
+const parseFenceMetadata = (lang?: string, meta?: string): PostMetadata => {
+  const composite = [lang?.trim() ?? "", meta?.trim() ?? ""].filter((part) => part.length > 0).join(" ")
+  if (!composite || !METADATA_PREFIX_REGEX.test(composite)) {
+    return {}
+  }
+
+  const match = composite.match(METADATA_LINE_REGEX)
+  return parseMetadataMatch(match)
+}
+
+const formatCount = (value: number | undefined): string | undefined => {
+  if (value === undefined || Number.isNaN(value) || value < 0) {
+    return undefined
+  }
+
+  return value.toLocaleString("en-US")
 }
 
 const renderTextSegment = (segment: TextSegment): string => {
@@ -210,16 +274,31 @@ const renderPost = (options: {
   year?: string
   slug: FullSlug
   avatarSrc: string
+  metadataHint?: PostMetadata
 }): string => {
-  const { content, year, slug, avatarSrc } = options
+  const { content, year, slug, avatarSrc, metadataHint } = options
   const trimmed = content.replace(/^\s+|\s+$/g, "")
   if (!trimmed) {
     return ""
   }
 
-  const segments = splitSegments(trimmed)
+  const { metadata: bodyMetadata, body } = parseBodyMetadata(trimmed)
+  const metadata: PostMetadata = {
+    ...metadataHint,
+    ...bodyMetadata,
+  }
+  const cleanedBody = body.replace(/^\s+/, "")
+  const segments = splitSegments(cleanedBody)
   const bodyHtml = renderSegments(segments, slug)
-  const timestamp = year ? `Posted ${escapeHtml(year)}` : "Posted"
+  const timestamp = metadata.postedLabel
+    ? `Posted ${escapeHtml(metadata.postedLabel)}`
+    : year
+      ? `Posted ${escapeHtml(year)}`
+      : "Posted"
+
+  const likeCount = formatCount(metadata.likes)
+  const commentCount = formatCount(metadata.comments)
+  const dataPosted = metadata.postedLabel ?? year ?? ""
 
   const bodySection = bodyHtml.trim().length
     ? `<div class="yt-community-post__body">
@@ -227,7 +306,7 @@ const renderPost = (options: {
     </div>`
     : ""
 
-  return `<article class="yt-community-post" data-posted="${escapeAttribute(year ?? "")}">
+  return `<article class="yt-community-post" data-posted="${escapeAttribute(dataPosted)}">
   <span class="yt-community-post__avatar">
     <img src="${escapeAttribute(avatarSrc)}" alt="${escapeAttribute(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
   </span>
@@ -241,15 +320,11 @@ const renderPost = (options: {
       <div class="yt-community-post__actions" aria-hidden="true">
         <span class="yt-community-post__action">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14 1 7.59 7.41C7.22 7.78 7 8.3 7 8.83V19c0 1.1.9 2 2 2h8c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" /></svg>
-          <span>Like</span>
+          ${likeCount !== undefined ? `<span class="yt-community-post__count">${escapeHtml(likeCount)}</span>` : ""}
         </span>
         <span class="yt-community-post__action">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 3H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12l5 4V5c0-1.1-.9-2-2-2h-3z" /></svg>
-          <span>Comment</span>
-        </span>
-        <span class="yt-community-post__action">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.53.5 1.23.81 2.04.81 1.66 0 3-1.34 3-3S19.66 2 18 2s-3 1.34-3 3c0 .24.04.47.09.7L7.91 9.81C7.38 9.31 6.68 9 5.87 9 4.21 9 2.87 10.34 2.87 12s1.34 3 3 3c.81 0 1.51-.31 2.04-.81l7.12 4.16c-.05.2-.08.41-.08.63 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z" /></svg>
-          <span>Share</span>
+          ${commentCount !== undefined ? `<span class="yt-community-post__count">${escapeHtml(commentCount)}</span>` : ""}
         </span>
       </div>
     </footer>
@@ -307,7 +382,7 @@ const YT_COMMUNITY_CSS = `
 .yt-community-post__header {
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 8px;
   line-height: 1;
 }
 
@@ -378,6 +453,11 @@ const YT_COMMUNITY_CSS = `
   height: 20px;
   fill: currentColor;
 }
+
+.yt-community-post__count {
+  font-size: 0.78rem;
+  color: #cecece;
+}
 `
 
 export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
@@ -416,17 +496,24 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
               continue
             }
 
-            const lang = typeof child.lang === "string" ? child.lang.trim().toLowerCase() : ""
-            if (lang && lang !== "text") {
+            const langRaw = typeof child.lang === "string" ? child.lang.trim() : ""
+            const metaRaw = typeof child.meta === "string" ? child.meta.trim() : ""
+            const lowerLang = langRaw.toLowerCase()
+            const looksLikeMetadataFence =
+              METADATA_PREFIX_REGEX.test(langRaw) || METADATA_PREFIX_REGEX.test(metaRaw)
+
+            if (langRaw && lowerLang !== "text" && !looksLikeMetadataFence) {
               continue
             }
 
             const value = typeof child.value === "string" ? child.value : ""
+            const metadataHint = parseFenceMetadata(langRaw, metaRaw)
             const html = renderPost({
               content: value,
               year: currentYear,
               slug,
               avatarSrc,
+              metadataHint,
             })
 
             if (!html) {

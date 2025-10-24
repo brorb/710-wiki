@@ -4855,7 +4855,10 @@ var collectText = /* @__PURE__ */ __name((node) => {
   return "";
 }, "collectText");
 var EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
+var METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i;
+var METADATA_PREFIX_REGEX = /^\s*\d+\s*,\s*\d+\s*,/;
 var splitSegments = /* @__PURE__ */ __name((raw) => {
+  EMBED_REGEX.lastIndex = 0;
   const segments = [];
   let lastIndex = 0;
   let match;
@@ -4890,6 +4893,49 @@ var parseNumericAlias = /* @__PURE__ */ __name((alias) => {
   const numeric = Number.parseInt(alias.replace(/[^0-9]/g, ""), 10);
   return Number.isFinite(numeric) && numeric > 0 ? numeric : void 0;
 }, "parseNumericAlias");
+var parseMetadataMatch = /* @__PURE__ */ __name((match) => {
+  if (!match) {
+    return {};
+  }
+  const [, likesRaw, commentsRaw, labelRaw] = match;
+  const likes = Number.parseInt(likesRaw, 10);
+  const comments = Number.parseInt(commentsRaw, 10);
+  const postedLabel = labelRaw.trim();
+  const metadata = {};
+  if (Number.isFinite(likes)) {
+    metadata.likes = likes;
+  }
+  if (Number.isFinite(comments)) {
+    metadata.comments = comments;
+  }
+  if (postedLabel.length > 0) {
+    metadata.postedLabel = postedLabel;
+  }
+  return metadata;
+}, "parseMetadataMatch");
+var parseBodyMetadata = /* @__PURE__ */ __name((raw) => {
+  const match = raw.match(METADATA_LINE_REGEX);
+  if (!match) {
+    return { metadata: {}, body: raw };
+  }
+  const metadata = parseMetadataMatch(match);
+  const body = raw.slice(match[0].length);
+  return { metadata, body };
+}, "parseBodyMetadata");
+var parseFenceMetadata = /* @__PURE__ */ __name((lang, meta) => {
+  const composite = [lang?.trim() ?? "", meta?.trim() ?? ""].filter((part) => part.length > 0).join(" ");
+  if (!composite || !METADATA_PREFIX_REGEX.test(composite)) {
+    return {};
+  }
+  const match = composite.match(METADATA_LINE_REGEX);
+  return parseMetadataMatch(match);
+}, "parseFenceMetadata");
+var formatCount = /* @__PURE__ */ __name((value) => {
+  if (value === void 0 || Number.isNaN(value) || value < 0) {
+    return void 0;
+  }
+  return value.toLocaleString("en-US");
+}, "formatCount");
 var renderTextSegment = /* @__PURE__ */ __name((segment) => {
   const content = normaliseWhitespace(segment.content);
   if (!content.trim()) {
@@ -4925,18 +4971,27 @@ var renderSegments = /* @__PURE__ */ __name((segments, slug) => {
   }).filter((html) => html.length > 0).join("\n");
 }, "renderSegments");
 var renderPost = /* @__PURE__ */ __name((options2) => {
-  const { content, year, slug, avatarSrc } = options2;
+  const { content, year, slug, avatarSrc, metadataHint } = options2;
   const trimmed = content.replace(/^\s+|\s+$/g, "");
   if (!trimmed) {
     return "";
   }
-  const segments = splitSegments(trimmed);
+  const { metadata: bodyMetadata, body } = parseBodyMetadata(trimmed);
+  const metadata = {
+    ...metadataHint,
+    ...bodyMetadata
+  };
+  const cleanedBody = body.replace(/^\s+/, "");
+  const segments = splitSegments(cleanedBody);
   const bodyHtml = renderSegments(segments, slug);
-  const timestamp = year ? `Posted ${escapeHtml2(year)}` : "Posted";
+  const timestamp = metadata.postedLabel ? `Posted ${escapeHtml2(metadata.postedLabel)}` : year ? `Posted ${escapeHtml2(year)}` : "Posted";
+  const likeCount = formatCount(metadata.likes);
+  const commentCount = formatCount(metadata.comments);
+  const dataPosted = metadata.postedLabel ?? year ?? "";
   const bodySection = bodyHtml.trim().length ? `<div class="yt-community-post__body">
       ${bodyHtml}
     </div>` : "";
-  return `<article class="yt-community-post" data-posted="${escapeAttribute2(year ?? "")}">
+  return `<article class="yt-community-post" data-posted="${escapeAttribute2(dataPosted)}">
   <span class="yt-community-post__avatar">
     <img src="${escapeAttribute2(avatarSrc)}" alt="${escapeAttribute2(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
   </span>
@@ -4950,15 +5005,11 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
       <div class="yt-community-post__actions" aria-hidden="true">
         <span class="yt-community-post__action">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14 1 7.59 7.41C7.22 7.78 7 8.3 7 8.83V19c0 1.1.9 2 2 2h8c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" /></svg>
-          <span>Like</span>
+          ${likeCount !== void 0 ? `<span class="yt-community-post__count">${escapeHtml2(likeCount)}</span>` : ""}
         </span>
         <span class="yt-community-post__action">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 3H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12l5 4V5c0-1.1-.9-2-2-2h-3z" /></svg>
-          <span>Comment</span>
-        </span>
-        <span class="yt-community-post__action">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.53.5 1.23.81 2.04.81 1.66 0 3-1.34 3-3S19.66 2 18 2s-3 1.34-3 3c0 .24.04.47.09.7L7.91 9.81C7.38 9.31 6.68 9 5.87 9 4.21 9 2.87 10.34 2.87 12s1.34 3 3 3c.81 0 1.51-.31 2.04-.81l7.12 4.16c-.05.2-.08.41-.08.63 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z" /></svg>
-          <span>Share</span>
+          ${commentCount !== void 0 ? `<span class="yt-community-post__count">${escapeHtml2(commentCount)}</span>` : ""}
         </span>
       </div>
     </footer>
@@ -5015,7 +5066,7 @@ var YT_COMMUNITY_CSS = `
 .yt-community-post__header {
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 8px;
   line-height: 1;
 }
 
@@ -5086,6 +5137,11 @@ var YT_COMMUNITY_CSS = `
   height: 20px;
   fill: currentColor;
 }
+
+.yt-community-post__count {
+  font-size: 0.78rem;
+  color: #cecece;
+}
 `;
 var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
   return {
@@ -5117,16 +5173,21 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
             if (child.type !== "code") {
               continue;
             }
-            const lang = typeof child.lang === "string" ? child.lang.trim().toLowerCase() : "";
-            if (lang && lang !== "text") {
+            const langRaw = typeof child.lang === "string" ? child.lang.trim() : "";
+            const metaRaw = typeof child.meta === "string" ? child.meta.trim() : "";
+            const lowerLang = langRaw.toLowerCase();
+            const looksLikeMetadataFence = METADATA_PREFIX_REGEX.test(langRaw) || METADATA_PREFIX_REGEX.test(metaRaw);
+            if (langRaw && lowerLang !== "text" && !looksLikeMetadataFence) {
               continue;
             }
             const value = typeof child.value === "string" ? child.value : "";
+            const metadataHint = parseFenceMetadata(langRaw, metaRaw);
             const html = renderPost({
               content: value,
               year: currentYear,
               slug,
-              avatarSrc
+              avatarSrc,
+              metadataHint
             });
             if (!html) {
               continue;
