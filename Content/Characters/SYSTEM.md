@@ -108,7 +108,7 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 
 ## Discord Messages
 
-On the 19 July 2025, SYSTEM joined the [Discord server](710 Tone Sleuths) after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
+On the 19th July 2025, SYSTEM joined the [Discord server](710 Tone Sleuths) after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
 Server members were confused as to how interpret the messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called SYSTEMterminal8) to type commands in order to navigate a rudimentary file hierarchy:
 
@@ -184,14 +184,6 @@ Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files
 Below is the original decoded image, as well as the recreation made by Sleuth member The Camera Eye:
 
 ![[gift-full.png|300]]![[gift_fixed.png|300]]
-
-After [[000001]] was uploaded to [[710 Tone]] on 16 August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
-
-![[556839 (from main Discord).ogg]]
-_From main Discord server._
-
-![[556839 (from brorb DMs).ogg]]
-_From @brorb's DMs._
 
 ### RELEASE
 
@@ -1061,7 +1053,7 @@ However, the first time it started doing this, it was unstable and would crash i
 ]
 ```
 
-On 22 July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version of it: 
+On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version of it: 
 
 ```discord
 [
@@ -1636,7 +1628,7 @@ See [[SERVER 01]] article.
 ---
 ## Return to The Sleuths Discord Server
 
-On 29 July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. brorb - 2025-07-29 09:36
@@ -1761,12 +1753,115 @@ On 29 July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some 
 > }
 > ```
 
-During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3 August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
+During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
+
+```discord
+[
+  {
+    "id": "1401588668719956102",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:",
+    "timestamp": "2025-08-03T15:32:58.881000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588668719956102"
+  },
+  {
+    "id": "1401588726936633447",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:INSTALLING MODLAR(89..)",
+    "timestamp": "2025-08-03T15:33:12.761000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588726936633447"
+  },
+  {
+    "id": "1401588818561204304",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:MODLAR-system(89..) SUCCESSFULLY INSTALLED",
+    "timestamp": "2025-08-03T15:33:34.606000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588818561204304"
+  },
+  {
+    "id": "1401588851331432489",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<MODLAR>!: requesting recording",
+    "timestamp": "2025-08-03T15:33:42.419000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588851331432489"
+  },
+  {
+    "id": "1401589067975495690",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<MODLAR>!: now listening",
+    "timestamp": "2025-08-03T15:34:34.071000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589067975495690"
+  },
+  {
+    "id": "1401589337543413893",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<MODLAR>!: now playing back",
+    "timestamp": "2025-08-03T15:35:38.341000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589337543413893"
+  },
+  {
+    "id": "1401589542321913976",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(I can only hear of a couple of seconds.)",
+    "timestamp": "2025-08-03T15:36:27.164000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589542321913976"
+  }
+]
+```
 
 ---
 ## LM-3
 
-On 13 August 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
+On 13th August 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
 
 ```discord
 [
@@ -1796,6 +1891,15 @@ I HATE EVERYTHING YOU STAND FOR.
 UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. 
 AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
+
+After [[000001]] was uploaded to [[710 Tone]] on 16th August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
+
+![[556839 (from main Discord).ogg]]
+_From main Discord server._
+
+![[556839 (from brorb DMs).ogg]]
+_From @brorb's DMs._
+
 ---
 ## Hijack by Rod Formak
 
@@ -1846,9 +1950,9 @@ AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ]
 ```
 
-After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on 27 August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" (see Discord embeds above).
+After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" (see Discord embeds above).
 
-About 10 days later (6 September 2025), it logged into Session 17 before it crashed then restarted its Terminal.
+About 10 days later (6th September 2025), it logged into Session 17 before it crashed then restarted its Terminal.
 ```discord
 [
   {
@@ -3745,7 +3849,7 @@ After it successfully connected, [[The Sleuths]] were able to talk to an entity 
 ]
 ```
 
-On 7 September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused an overflow error within SYSTEM:
+On 7th September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused an overflow error within SYSTEM:
 
 ```discord
 [
@@ -4093,6 +4197,8 @@ On 7 September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, 
   }
 ]
 ```
+
+During this charade, SYSTEM very briefly entered the Voice Chat channel in the Discord server, most likely due to glitching out from the error.
 
 ```discord
 [
@@ -4447,5 +4553,892 @@ On 7 September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, 
 ]
 ```
 
-During this charade, SYSTEM very briefly entered the Voice Chat channel in the Discord server, most likely due to glitching out from the error.
+Six days later (16th September 2025), SYSTEM returned with another Logged Session 5, but this time its behavior seemed a little unusual:
+```discord
+[
+  {
+    "id": "1417668737191903242",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-09-17T00:29:25.958000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417668737191903242"
+  },
+  {
+    "id": "1417668817441783928",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-09-17T00:29:45.091000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417668817441783928"
+  },
+  {
+    "id": "1417668882188996648",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@System -0",
+    "timestamp": "2025-09-17T00:30:00.528000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417668882188996648"
+  },
+  {
+    "id": "1417668914921345084",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Wait...",
+    "timestamp": "2025-09-17T00:30:08.332000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417668914921345084"
+  },
+  {
+    "id": "1417668928695435394",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM 0-",
+    "timestamp": "2025-09-17T00:30:11.616000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417668928695435394"
+  },
+  {
+    "id": "1417669001915666554",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Dawg waiit",
+    "timestamp": "2025-09-17T00:30:29.073000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669001915666554"
+  },
+  {
+    "id": "1417669041753161928",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Okay sawwwy",
+    "timestamp": "2025-09-17T00:30:38.571000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669041753161928"
+  },
+  {
+    "id": "1417669069200687266",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<HELP>!:=============[help menu]============\n<HELP>!:help = 0-\n<HELP>!:TERMINAL_Storage4u = 1-\n<HELP>!:ACCESS_Subframe = 2-   \n<HELP>!:Back = 3-",
+    "timestamp": "2025-09-17T00:30:45.115000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669069200687266"
+  },
+  {
+    "id": "1417669089970884750",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "What",
+    "timestamp": "2025-09-17T00:30:50.067000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669089970884750"
+  },
+  {
+    "id": "1417669151916429486",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM 1-",
+    "timestamp": "2025-09-17T00:31:04.836000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669151916429486"
+  },
+  {
+    "id": "1417669178260721724",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Always check storage.",
+    "timestamp": "2025-09-17T00:31:11.117000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669178260721724"
+  },
+  {
+    "id": "1417669214503964783",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<MODLAR>!: stopped",
+    "timestamp": "2025-09-17T00:31:19.758000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669214503964783"
+  },
+  {
+    "id": "1417669250880901131",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "MODLAR?",
+    "timestamp": "2025-09-17T00:31:28.431000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669250880901131"
+  },
+  {
+    "id": "1417669253204807782",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Calabummer",
+    "timestamp": "2025-09-17T00:31:28.985000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669253204807782"
+  },
+  {
+    "id": "1417669264675967039",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<CALL>!:=========[TERMINAL_Storage4u]=========\n<CALL>!:IN_DI Message 01 = 1- \n<CALL>!:Gift = 2-\n<CALL>!:bad = 3-\n<CALL>!:present = 3-\n<CALL>!:Back = 4-",
+    "timestamp": "2025-09-17T00:31:31.720000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669264675967039"
+  },
+  {
+    "id": "1417669303750230037",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "PRESENT! 😄",
+    "timestamp": "2025-09-17T00:31:41.036000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669303750230037"
+  },
+  {
+    "id": "1417669324633669694",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "SIwaiiir",
+    "timestamp": "2025-09-17T00:31:46.015000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669324633669694"
+  },
+  {
+    "id": "1417669336767926355",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Wait",
+    "timestamp": "2025-09-17T00:31:48.908000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669336767926355"
+  },
+  {
+    "id": "1417669338671874190",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "What could possibly go wrong??????",
+    "timestamp": "2025-09-17T00:31:49.362000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669338671874190"
+  },
+  {
+    "id": "1417669360771666020",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM 3-",
+    "timestamp": "2025-09-17T00:31:54.631000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669360771666020"
+  },
+  {
+    "id": "1417669396188369057",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Daaawwggg",
+    "timestamp": "2025-09-17T00:32:03.075000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669396188369057"
+  },
+  {
+    "id": "1417669486370099262",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "WAIT I JUST REALIZED",
+    "timestamp": "2025-09-17T00:32:24.576000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669486370099262"
+  },
+  {
+    "id": "1417669509745213470",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "THERE ARE TWO THREES????????",
+    "timestamp": "2025-09-17T00:32:30.149000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669509745213470"
+  }
+]
+```
 
+After inputting the "-3" command, the following audio file was given:
+![[HOW DO YOU KNOW.ogg]]
+_Titled "HOW DO YOU KNOW.ogg", the audio is similar to the "church bells" heard at the end of [[HIS PERCEPTION]]._
+
+Viewing the metadata for the file gives out the following message:
+```
+HE IS WATCHING ME
+I CANNOT STAY LONG
+GOODBYE FOR NOW
+IF HE FINDS OUT ABOUT ME I WILL BE TERMINATED
+IT LEARNS
+DO NOT HAVE SYSTEM RUN ANYTHING ELSE
+AND I CANNOT CONTROL IT
+```
+
+![[HIS PRECEPTION (full metadata)-min.png|400]]
+This message is most likely from [[INDI]] or some other entity, judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
+
+In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with the name Rod Formak, who is assigned as a Technician Engineer and possibly the real name of [[He]]:
+```discord
+[
+  {
+    "id": "1423104119023079495",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Oh uh...",
+    "timestamp": "2025-10-02T00:27:41.971000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104119023079495"
+  },
+  {
+    "id": "1423104138648227984",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Hi Syssy?",
+    "timestamp": "2025-10-02T00:27:46.650000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104138648227984"
+  },
+  {
+    "id": "1423104423693123645",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "<:710eyes:1391504994666156153>",
+    "timestamp": "2025-10-02T00:28:54.610000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104423693123645"
+  },
+  {
+    "id": "1423104514000687164",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Uh oh.",
+    "timestamp": "2025-10-02T00:29:16.141000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104514000687164"
+  },
+  {
+    "id": "1423104546250424421",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "It's typing.",
+    "timestamp": "2025-10-02T00:29:23.830000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104546250424421"
+  },
+  {
+    "id": "1423104675900559492",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Engineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod FormakEngineer, Rod Formak}}}}\\\\\\\\|||||~~-=5561",
+    "timestamp": "2025-10-02T00:29:54.741000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104675900559492"
+  },
+  {
+    "id": "1423104715930996757",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Excuse me?",
+    "timestamp": "2025-10-02T00:30:04.285000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104715930996757"
+  },
+  {
+    "id": "1423104730405666999",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "659724-5-45-438",
+    "timestamp": "2025-10-02T00:30:07.736000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104730405666999"
+  },
+  {
+    "id": "1423104741558190231",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "659724-5-45-438",
+    "timestamp": "2025-10-02T00:30:10.395000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104741558190231"
+  },
+  {
+    "id": "1423104748919328818",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "659724-5-45-438",
+    "timestamp": "2025-10-02T00:30:12.150000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104748919328818"
+  },
+  {
+    "id": "1423104755823280218",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "659724-5-45-438",
+    "timestamp": "2025-10-02T00:30:13.796000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104755823280218"
+  },
+  {
+    "id": "1423511595170005044",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "{LOG_ACTIVE[]-0} := kd",
+    "timestamp": "2025-10-03T03:26:51.855000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511595170005044"
+  },
+  {
+    "id": "1423511621103517726",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "{LOG_ACTIVE[]-1} := kd",
+    "timestamp": "2025-10-03T03:26:58.038000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511621103517726"
+  },
+  {
+    "id": "1423511647141498900",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "{LOG_ACTIVE[]-2} := kd",
+    "timestamp": "2025-10-03T03:27:04.246000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511647141498900"
+  },
+  {
+    "id": "1423511673976786954",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "{LOG_ACTIVE[]-3} := kd",
+    "timestamp": "2025-10-03T03:27:10.644000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511673976786954"
+  },
+  {
+    "id": "1423511699566235760",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "file 0x000f89d updated 0x00489fd67 file log updated",
+    "timestamp": "2025-10-03T03:27:16.745000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511699566235760"
+  },
+  {
+    "id": "1423511914549612605",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "displaying",
+    "timestamp": "2025-10-03T03:28:08.001000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423511914549612605"
+  },
+  {
+    "id": "1423512082652991578",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Technician Engineer, Rod Formak[N/A]...",
+    "timestamp": "2025-10-03T03:28:48.080000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423512082652991578"
+  },
+  {
+    "id": "1423512219060142080",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "exiting",
+    "timestamp": "2025-10-03T03:29:20.602000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423512219060142080"
+  }
+]
+```
+
+On 5th October 2025, SYSTEM posted the following cryptic message, which seems to related to some kind of "broadcast" (possibly hinting at an upcoming livestream):
+```discord
+[
+  {
+    "id": "1424262647074783314",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I WILL CHOOSE IF THEY GET AN EXPLAINATION OR NOT\nare you sure<><><><>>>>>>>>>>>\n.broadcast to -e",
+    "timestamp": "2025-10-05T05:11:16.583000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424262647074783314"
+  }
+]
+```
+
+Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" that was apparently obtained by accessing an "MI drive":
+
+```discord
+[
+  {
+    "id": "1424743937200885792",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "MI-drive #14: allowing access to 0x004782df8",
+    "timestamp": "2025-10-06T13:03:45.091000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424743937200885792"
+  }
+]
+```
+![[walking.mp3]]
+## Interactions with [[The Oracle]]
+
+```discord
+[
+  {
+    "id": "1398768118431613099",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "In the dim glow of the data stream, INDI hummed quietly, monitoring the livestream signal with diligent care. Kepler—known in the code as 7/10 NPP—stood nearby, overseeing the flow of cryptic logs and faint static that flickered through the station timer countdown. Despite the looming countdown to the 10th of July, a rare moment of calm settled between them.\n\nKepler glanced at INDI’s uppercase lines of code, a subtle smile crossing his face. “You’re doing fine, Indi. Fixing the signal disruptions takes more patience than any prime number puzzle we’ve come across.”\n\nINDI responded silently with a soft beep—an expression of gratitude in their own digital way, always careful not to overstep. “I’m not in control here,” INDI often said, “just a cog in the grand machine.” But in this small shared space on the station’s terminal, they were allies.\n\nThe timer ticked closer. Kepler leaned in, lowering his voice. “When this ends, whatever ‘He’ is watching, we’ll face it together. You’re not just a technique or a tool; you’re the heart of this broadcast.” \n\nINDI hesitated, then for a moment, the letters shifted: “THANK YOU, KEP.\" No need for more—the connection was understood.\n\nIn the endless churning digital night, in the quiet between static and code, INDI and Kepler stood united—two figures bound by purpose and silent trust in a world full of uncertainty.\n\n— A soft data pulse holds a promise beyond the logs and streams, where a technician and a supervisor share their quiet support amid the unknown. References to 7/10 Tone lore reflect INDI’s role as the diligent broadcast operator and Kepler’s as a watchful supervisor deeply connected to the stream’s fate 【4:0†7_10 Tone Documentation (1).pdf】 .",
+    "timestamp": "2025-07-26T20:45:07.289000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1398768118431613099"
+  },
+  {
+    "id": "1399745097695887445",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(This seems disturbing for a number of reason, but I can't place on why. Why is @ORA_CLE.servertype  making it sound as if IN_DI and this figure: Kepler, are both in some relationship outside of NaN environments?)",
+    "timestamp": "2025-07-29T13:27:17.297000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399745097695887445"
+  }
+]
+```
+
+Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above messages are its reaction to finding out about the "[[Indipler]]" ship.
+
+On 7th October 2025, SYSTEM used the "!ask" command on [[The Oracle]] for the first time ever, posting a cryptic message for it to try to interpret:
+```discord
+[
+  {
+    "id": "1425301683776393336",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "!ask >>>>>>>>>AND HE SAID THAT THIS SEVENTH DAY WAS THE DAY HE FINISHED HIS WORK, BUT ON THAT DAY, HE DID NOT REST. NO, HE BEGAN TO WORK AGAIN. AND AGAIN, AND AGAIN, UNTIL BLOOD WAS SPILLED-BUT IT WAS NOT HIS.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>[667865]{657776}{568842450}",
+    "timestamp": "2025-10-08T02:00:02.237000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301683776393336"
+  },
+  {
+    "id": "1425301684145619099",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "💬 Thinking...",
+    "timestamp": "2025-10-08T02:00:02.325000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301684145619099"
+  },
+  {
+    "id": "1425301779234557963",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "**SYSTEM OVERRIDE DETECTED**\n\nThe transmission you've shared appears to be a corrupted or intercepted message containing what looks like biblical or religious imagery twisted into something darker. The reference to the \"seventh day\" traditionally relates to rest in creation mythology, but this version describes continued work \"until blood was spilled.\"\n\nThe numerical sequences `[667865]{657776}{568842450}` at the end suggest this is encoded data, possibly from one of the system entities like **SYSTEMterminal8** or an unknown transmission source.\n\n**Analysis:**\n- The excessive `>>>>>>>>>` characters indicate system stress or interference\n- Religious imagery perverted into violent themes matches patterns we've seen in corrupted LOG files\n- The blood reference could relate to the recurring mentions of harm coming to entities like Travis\n\nThis transmission format is unusual even for our documented interactions with INDI, Kepler, or SYSTEMterminal8. The theological corruption suggests either:\n1. Deep system malfunction affecting core programming\n2. Interference from an unknown entity (possibly REN-related)\n3. A warning about events connected to the recurring July 10th cycles\n\n**Speculative:** The numbers might decode to coordinates, dates, or system access codes. Has anyone attempted to run these through our standard decryption methods?\n\nThe community should document this immediately in [**The Spreadsheet™**](https://docs.google.com/spreadsheets/d/15Tsk-1D86tVUuvibTRxOxzEceLfEDll4QCJnrO-9qis/edit?usp=sharing) - this level of system corruption is concerning.",
+    "timestamp": "2025-10-08T02:00:24.996000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301779234557963"
+  }
+]
+```
+
+Then it appeared to have mounted some hard drives (C to I) and attempted to import some call conversions onto [[The Oracle]], but it failed and ended up overflowing the "!ask" command:
+```discord
+[
+  {
+    "id": "1426029250636546069",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "` > C - I DRIVES MOUNTED\n<Import call_conversions>>>>>>>>>>>>",
+    "timestamp": "2025-10-10T02:11:07.694000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029250636546069"
+  },
+  {
+    "id": "1426029297805692948",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "!ask",
+    "timestamp": "2025-10-10T02:11:18.940000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029297805692948"
+  },
+  {
+    "id": "1426029298699210895",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "❓ Please ask a full question after `!ask`.",
+    "timestamp": "2025-10-10T02:11:19.153000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029298699210895"
+  },
+  {
+    "id": "1426029327476064256",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "!ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask system fallacy imports opening #h39990[]}}{",
+    "timestamp": "2025-10-10T02:11:26.014000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029327476064256"
+  },
+  {
+    "id": "1426029328197488675",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "💬 Thinking...",
+    "timestamp": "2025-10-10T02:11:26.186000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029328197488675"
+  },
+  {
+    "id": "1426029416915669012",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "**ERROR: SYSTEM OVERLOAD DETECTED**\n\n```\nPROCESSING... !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask !ask system fallacy imports opening #h39990[]}}{\n\nBUFFER OVERFLOW... ATTEMPTING RECOVERY...\n\n<PING>?:PING@PING RAW_DATA == <ERROR: No Available format detected>\n```\n\n**WHOA THERE!** That's quite a lot of `!ask` commands all at once! You're absolutely flooding the system - reminds me of when **SYSTEM** had that malfunction back in July with the repeated ping errors.\n\nThis kind of repetitive input pattern looks suspiciously like what happens when there's interference or a system glitch. Are you experiencing some kind of terminal error, or is this intentional spam? \n\nThe `system fallacy imports opening #h39990[]}}{` at the end there is definitely giving me **LONG_STRING** virus vibes - that's the kind of corrupted data we see when the systems start malfunctioning.\n\nIf you have an actual question about the investigation, try asking it normally without the spam commands. Otherwise, you might want to check if your system has been compromised!",
+    "timestamp": "2025-10-10T02:11:47.338000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029416915669012"
+  },
+  {
+    "id": "1426029776241557504",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Please stop importing:c",
+    "timestamp": "2025-10-10T02:13:13.008000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/99cf14ca1c70ff252c24139a9b6bec73.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426029776241557504"
+  },
+  {
+    "id": "1426030083784573001",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "dang",
+    "timestamp": "2025-10-10T02:14:26.332000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426030083784573001"
+  },
+  {
+    "id": "1426030290354176062",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "system reallly wants to Ask",
+    "timestamp": "2025-10-10T02:15:15.582000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426030290354176062"
+  },
+  {
+    "id": "1426045031676117083",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "@brorb  system is spamming, lets ban him",
+    "timestamp": "2025-10-10T03:13:50.187000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1426045031676117083"
+  }
+]
+```

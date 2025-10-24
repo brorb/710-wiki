@@ -26,11 +26,13 @@ IWeUswantwillgiftgrantyouthemsomethingaanobject
 3. Remove 10
 ```
 **(Option 1 has the most votes, 88%)**
+_^At the time the above was posted (10th September 2025 at 22:40 EST) [[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server then crashed._
 
 ```
 "?/////////:canceled message  
 "
 ```
+_^At the time the above was posted (10th September 2025), [[SYSTEM]] sent [[The Sleuths]] the same message through DMs._
 
 ```
 SESSION LOGGED OUTPUT #2322:  
