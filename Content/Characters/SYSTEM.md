@@ -5191,7 +5191,7 @@ On 5th October 2025, SYSTEM posted the following cryptic message, which seems to
 ]
 ```
 
-Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" that was apparently obtained by accessing an "MI drive":
+Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" in the media channel of [[The Sleuths]] Discord server that was apparently obtained by accessing an "MI drive":
 
 ```discord
 [
@@ -5444,3 +5444,8 @@ Then it appeared to have mounted some hard drives (C to I) and attempted to impo
   }
 ]
 ```
+
+---
+## Hardware capabilities
+
+SYSTEM has the ability to speak in two different instances, as seen from [[SERVER 01]].
