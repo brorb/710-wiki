@@ -232,10 +232,10 @@ const renderPost = (options: {
     <img src="${escapeAttribute(avatarSrc)}" alt="${escapeAttribute(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
   </span>
   <div class="yt-community-post__content">
-    <header class="yt-community-post__header">
+    <div class="yt-community-post__header">
       <span class="yt-community-post__channel">${escapeHtml(CHANNEL_NAME)}</span>
       <span class="yt-community-post__timestamp">${timestamp}</span>
-    </header>
+    </div>
     ${bodySection}
     <footer class="yt-community-post__footer">
       <div class="yt-community-post__actions" aria-hidden="true">
@@ -262,16 +262,14 @@ const YT_COMMUNITY_CSS = `
   background: #202020;
   border: 1px solid #2f2f2f;
   border-radius: 16px;
-  padding: 16px 18px;
+  padding: 13px 18px 16px;
   color: #f1f1f1;
   max-width: min(640px, 100%);
   font-family: "Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  column-gap: 14px;
-  row-gap: 12px;
+  display: flex;
   align-items: flex-start;
+  gap: 12px;
 }
 
 .yt-community-post + .yt-community-post {
@@ -288,6 +286,8 @@ const YT_COMMUNITY_CSS = `
   overflow: hidden;
   background: #121212;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 .yt-community-post__avatar img {
@@ -301,30 +301,32 @@ const YT_COMMUNITY_CSS = `
 .yt-community-post__content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .yt-community-post__header {
   display: flex;
   align-items: baseline;
-  gap: 6px;
-  line-height: 1.2;
+  gap: 2px;
+  line-height: 1;
 }
 
 .yt-community-post__channel {
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1;
 }
 
 .yt-community-post__timestamp {
   color: #a7a7a7;
   font-size: 0.78rem;
+  line-height: 1;
 }
 
 .yt-community-post__body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   font-size: 0.93rem;
 }
 
