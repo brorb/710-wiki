@@ -5,6 +5,11 @@ tags:
   - documentation
   - YouTube
 ---
+```infobox
+Title: The Logs
+Image: ![[Content/Media/Sleuth Media/Images/Example of LOGs.png]]
+Caption: Example of LOG videos from the 7/10 Tone channel
+```
 
 The Logs (also known as LOGs) are videos uploaded to the [[710 Tone]] channel which usually contain red and black static and a day counter at the end that counts down to 10th July.
 
