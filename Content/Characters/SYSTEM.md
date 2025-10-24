@@ -5093,7 +5093,7 @@ In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with t
 ]
 ```
 
-On 5th October 2025, SYSTEM posted the following cryptic message, which seems to related to some kind of "broadcast" (possibly hinting at an upcoming livestream):
+On 5th October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream):
 ```discord
 [
   {
