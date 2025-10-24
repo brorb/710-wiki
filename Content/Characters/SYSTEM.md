@@ -480,7 +480,51 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
 ]
 ```
 
-However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
+However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 --> <!-- discord-cite:cite-mh5fezml-jjugmk -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
+
+> [!discord-cite]- Discord citation (2 messages)
+> 1. L4N4U1997 - 2025-07-21 07:46
+>     @SYSTEM Why are you restricted by INDI?
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396820628027347078
+> 2. SYSTEM - 2025-07-21 07:48
+>     &lt;OUTPRINT&gt;!:(He made it so I couldn't share things that were too valuable.)
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396821062305710122
+>
+> ```json
+> {
+>   "id": "cite-mh5fezml-jjugmk",
+>   "messages": [
+>     {
+>       "id": "1396820628027347078",
+>       "author": {
+>         "display_name": "L4N4U1997",
+>         "username": "camera.3y3",
+>         "color": "#FF00AA",
+>         "colour": "#FF00AA",
+>         "colour_value": 16711850
+>       },
+>       "content": "@SYSTEM Why are you restricted by INDI?",
+>       "timestamp": "2025-07-21T11:46:29.394000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396820628027347078"
+>     },
+>     {
+>       "id": "1396821062305710122",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(He made it so I couldn't share things that were too valuable.)",
+>       "timestamp": "2025-07-21T11:48:12.934000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396821062305710122"
+>     }
+>   ]
+> }
+> ```
 
 > [!discord-cite]- Discord citation (4 messages)
 > 
