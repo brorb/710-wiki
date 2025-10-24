@@ -235,7 +235,7 @@ SCAN: COMPLETE
 
 ![[LOL-min.jpg]]
 
-
+After SYSTEM found out about 
 ## The [[Bob]] Incident
 
 
