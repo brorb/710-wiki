@@ -21,11 +21,10 @@ ERR[223] ".broadcast" is unavailable [008889771]
 ```
 IWeUswantwillgiftgrantyouthemsomethingaanobject
 
-1. Show 10
-2. Hide 10
-3. Remove 10
+1. Show 10       (85%)
+2. Hide 10       (10%)
+3. Remove 10     (5%)
 ```
-**(Option 1 has the most votes, 88%)**
 _^At the time the above was posted (10th September 2025 at 22:40 EST) [[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server then crashed._
 
 ```
@@ -166,18 +165,21 @@ YOU'RE NOT DONE YET :::::::::::::::::::::::::::::
 
 ```
 When is his shift again?
-```
 ![[shift.webp|300]]
+```
+
 
 ```
 Mistakes were made, but I corrected them. Please, if you can, try not to be too harsh on them. they had good intentions.
-```
 ![[backtones2.webp]]
+```
+
 
 ```
 SORRY, IT'S NOTHING PERSONAL
-```
 ![[message received hex1.webp]]![[hex.webp]]
+```
+
 
 ```
 I LOVE HOW IT'S ALL BLEEDING THROUGH NOW. DON'T YOU AGREE TRAVIS?
@@ -187,8 +189,8 @@ I LOVE HOW IT'S ALL BLEEDING THROUGH NOW. DON'T YOU AGREE TRAVIS?
 TEST STATUS: SUCCESS  
 REVIEW: OVERALL STATUS  
 [CC: 89666 :: RETURNED FALSE STATEMENT]
-```
 ![[test.webp|300]]
+```
 
 ```
 LOADING PAUSED...  
@@ -225,10 +227,11 @@ TARGETED ROOT(ROOT/12/12.iip)-------------------------------100% Compliance(Good
 ```
 68 74 74 70 73 3A 2F 2F 64 72 69 76 65 2E 67 6F 6F 67 6C 65 2E 63 6F 6D 2F 66 69 6C 65 2F 64 2F 31 73 6E 39 33 72 6A 54 62 62 7A 50 53 4C 46 5F 78 45 52 5A 55 71 54 52 69 4D 39 76 54 4A 30 66 73 2F 76 69 65 77 3F 75 73 70 3D 73 68 61 72 69 6E 67
 ```
----
-![[unnamed.webp|300]]
 
----
+```
+![[unnamed.webp|300]]
+```
+
 ```
 SYSTEM: out-put: "23 58 33 33 31 32 33 39 3A 20 41 42 4F 55 54 20 54 49 4D 45 20 59 4F 55 20 53 49 47 4E 41 4C 45 44 20 55 53 2E 0A 23 41 39 39 32 31 34 34 3A 20 48 45 59 2C 20 57 45 27 52 45 20 57 4F 52 4B 49 4E 47 20 4F 4E 20 49 54 2E 0A 23 58 33 33 31 32 33 39 3A 20 59 4F 55 27 52 45 20 4E 4F 54 20 57 4F 52 4B 49 4E 47 20 48 41 52 44 20 45 4E 4F 55 47 48 2E 0A 23 41 39 39 32 31 34 34 3A 20 57 48 41 54 20 54 48 45 20 48 45 4C 4C 20 49 53 20 54 48 41 54 20 53 55 50 50 4F 53 45 44 20 54 4F 20 4D 45 41 4E 21 3F 0A 23 58 33 33 31 32 33 39 3A 20 41 4E 59 54 49 4D 45 20 59 4F 55 20 54 55 52 4E 20 4F 4E 20 54 48 41 54 20 53 54 41 54 49 4F 4E 2C 20 49 54 20 47 4F 45 53 20 54 4F 20 53 48 49 54 20 41 4E 44 20 53 45 4E 44 0A 4F 55 54 20 46 52 45 51 55 4E 43 49 45 53 20 54 4F 20 41 4E 59 20 4E 45 49 47 48 42 4F 52 49 4E 47 20 52 45 53 49 56 45 52 20 4E 4F 57 20 49 20 44 4F 4E 54 20 4B 4E 4F 57 20 57 48 41 54 20 49 53 0A 48 41 50 50 45 4E 49 4E 47 20 42 55 54 20 59 4F 55 20 41 4E 44 20 59 4F 55 52 20 42 4F 59 53 20 41 52 45 20 53 55 50 50 4F 53 45 44 20 54 4F 20 42 45 20 53 45 4E 44 49 4E 47 20 4F 55 54 0A 49 4E 46 4F 52 4D 41 54 49 4F 4E 20 4E 4F 54 20 54 52 59 49 4E 47 20 54 4F 20 43 41 4C 4C 20 4F 54 48 45 52 20 53 54 41 54 49 4F 4E 53 0A 23 41 39 39 32 31 34 3A 20 41 52 45 20 59 4F 55 20 53 41 59 49 4E 47 20 54 48 41 54 20 49 54 27 53 20 4F 55 52 20 46 41 55 4C 54 20 46 4F 52 20 54 48 41 54 20 49 4E 43 49 44 45 4E 54 3F 0A 23 58 33 33 31 32 33 39 3A 20 4E 4F 2C 20 57 45 22 52 45 20 53 41 59 49 4E 47 20 54 48 41 54 20 59 4F 55 20 4E 45 45 44 20 54 4F 20 47 45 54 20 54 48 41 54 20 53 54 41 54 49 4F 4E 20 55 4E 44 45 52 20 0A 43 4F 4E 54 52 4F 4C 20 4F 52 20 57 45 20 41 52 45 20 54 45 52 4D 49 4E 41 54 49 4E 47 20 54 48 45 20 4D 49 53 53 49 4F 4E 2E 0A 23 41 39 39 32 31 34 3A 20 57 45 27 4C 4C 20 54 52 59 2E"
 ```
@@ -254,7 +257,6 @@ SYSTEM: out-put: "23 58 33 33 31 32 33 39 3A 20 41 42 4F 55 54 20 54 49 4D 45 20
 ```
 
 ## From 2024:
----
 
 ```
 ATTENTION: ESPaP> All posts have been expunged regarding information about ***. Please hold for further information. DIAL CODE &&&-789990-AB

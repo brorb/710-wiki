@@ -87,6 +87,7 @@ const config: QuartzConfig = {
   Plugin.GitHubFlavoredMarkdown(),
   Plugin.InfoboxBlock(),
   Plugin.DiscordMessages(),
+  Plugin.YouTubeCommunityPosts(),
       Plugin.TableOfContents({
         collapseByDefault: true,
       }),

@@ -3125,6 +3125,9 @@ var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
                 }
                 if (!isAbsoluteUrl(node.properties.src)) {
                   let dest = node.properties.src;
+                  if (dest.includes("?")) {
+                    return;
+                  }
                   dest = node.properties.src = transformLink(
                     file.data.slug,
                     dest,
@@ -4789,6 +4792,364 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
   };
 }, "DiscordMessages");
 
+// quartz/plugins/transformers/youtubeCommunityPosts.ts
+import path4 from "node:path";
+import { globbySync } from "globby";
+var TARGET_SLUG = "youtube/community-posts";
+var CHANNEL_NAME = "7/10 Tone";
+var AVATAR_TARGET = "Media/710 Media/Images/710 tone pfp small.jpg";
+var CONTENT_ROOT = path4.resolve(process.cwd(), "../Content");
+var assetLookupCache = /* @__PURE__ */ new Map();
+var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var findAssetByBasename = /* @__PURE__ */ __name((basename) => {
+  const key = basename.toLowerCase();
+  if (assetLookupCache.has(key)) {
+    const cached = assetLookupCache.get(key);
+    return cached === null ? void 0 : cached;
+  }
+  const matches = globbySync(`**/${basename}`, {
+    cwd: CONTENT_ROOT,
+    caseSensitiveMatch: false,
+    onlyFiles: true
+  });
+  if (matches.length === 0) {
+    assetLookupCache.set(key, null);
+    return void 0;
+  }
+  matches.sort((a, b) => a.length - b.length || a.localeCompare(b));
+  const resolved = matches[0].replace(/\\/g, "/");
+  assetLookupCache.set(key, resolved);
+  return resolved;
+}, "findAssetByBasename");
+var resolveObsidianTarget2 = /* @__PURE__ */ __name((rawTarget, slug) => {
+  if (isExternalUrl2(rawTarget)) {
+    return rawTarget;
+  }
+  let targetPath = stripContentPrefix2(rawTarget);
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath);
+    if (matched) {
+      targetPath = matched;
+    }
+  }
+  const targetWithoutExt = targetPath;
+  const targetSlug = slugifyFilePath(targetWithoutExt);
+  const baseDir = pathToRoot(slug);
+  const resolved = joinSegments(baseDir, targetSlug);
+  const version = getAssetVersion();
+  return version ? `${resolved}?v=${version}` : resolved;
+}, "resolveObsidianTarget");
+var escapeHtml2 = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
+var escapeAttribute2 = /* @__PURE__ */ __name((value) => escapeHtml2(value), "escapeAttribute");
+var collectText = /* @__PURE__ */ __name((node) => {
+  if (!node || typeof node !== "object") {
+    return "";
+  }
+  if (typeof node.value === "string") {
+    return node.value;
+  }
+  if (Array.isArray(node.children)) {
+    return node.children.map((child) => collectText(child)).join("");
+  }
+  return "";
+}, "collectText");
+var EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
+var splitSegments = /* @__PURE__ */ __name((raw) => {
+  const segments = [];
+  let lastIndex = 0;
+  let match;
+  while ((match = EMBED_REGEX.exec(raw)) !== null) {
+    const [whole, target, alias] = match;
+    if (match.index > lastIndex) {
+      segments.push({ type: "text", content: raw.slice(lastIndex, match.index) });
+    }
+    segments.push({ type: "embed", target: target.trim(), alias: alias?.trim() });
+    lastIndex = match.index + whole.length;
+  }
+  if (lastIndex < raw.length) {
+    segments.push({ type: "text", content: raw.slice(lastIndex) });
+  }
+  return segments;
+}, "splitSegments");
+var normaliseWhitespace = /* @__PURE__ */ __name((segment) => segment.replace(/\r\n?/g, "\n"), "normaliseWhitespace");
+var toSentenceCase = /* @__PURE__ */ __name((input) => {
+  if (!input) {
+    return "";
+  }
+  const cleaned = input.replace(/[-_.]+/g, " ").replace(/\s+/g, " ").trim();
+  if (!cleaned) {
+    return "";
+  }
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+}, "toSentenceCase");
+var parseNumericAlias = /* @__PURE__ */ __name((alias) => {
+  if (!alias) {
+    return void 0;
+  }
+  const numeric = Number.parseInt(alias.replace(/[^0-9]/g, ""), 10);
+  return Number.isFinite(numeric) && numeric > 0 ? numeric : void 0;
+}, "parseNumericAlias");
+var renderTextSegment = /* @__PURE__ */ __name((segment) => {
+  const content = normaliseWhitespace(segment.content);
+  if (!content.trim()) {
+    return "";
+  }
+  const safe = escapeHtml2(content).replace(/\n/g, "<br />");
+  return `<div class="yt-community-post__text">${safe}</div>`;
+}, "renderTextSegment");
+var renderEmbedSegment = /* @__PURE__ */ __name((segment, slug) => {
+  if (!segment.target) {
+    return "";
+  }
+  const src = resolveObsidianTarget2(segment.target, slug);
+  const width = parseNumericAlias(segment.alias);
+  const fallbackAlt = toSentenceCase(segment.target.split("/").pop() ?? "") || CHANNEL_NAME;
+  const aliasAlt = width ? void 0 : segment.alias;
+  const alt = escapeAttribute2((aliasAlt && aliasAlt.length > 0 ? aliasAlt : fallbackAlt) || CHANNEL_NAME);
+  const styles = [];
+  if (width) {
+    styles.push(`max-width: ${width}px`);
+  }
+  const styleAttr = styles.length > 0 ? ` style="${escapeAttribute2(styles.join("; "))}"` : "";
+  return `<figure class="yt-community-post__embed">
+    <img src="${escapeAttribute2(src)}" alt="${alt}" loading="lazy" decoding="async"${styleAttr} />
+  </figure>`;
+}, "renderEmbedSegment");
+var renderSegments = /* @__PURE__ */ __name((segments, slug) => {
+  return segments.map((segment) => {
+    if (segment.type === "text") {
+      return renderTextSegment(segment);
+    }
+    return renderEmbedSegment(segment, slug);
+  }).filter((html) => html.length > 0).join("\n");
+}, "renderSegments");
+var renderPost = /* @__PURE__ */ __name((options2) => {
+  const { content, year, slug, avatarSrc } = options2;
+  const trimmed = content.replace(/^\s+|\s+$/g, "");
+  if (!trimmed) {
+    return "";
+  }
+  const segments = splitSegments(trimmed);
+  const bodyHtml = renderSegments(segments, slug);
+  const timestamp = year ? `Posted ${escapeHtml2(year)}` : "Posted";
+  const bodySection = bodyHtml.trim().length ? `<div class="yt-community-post__body">
+      ${bodyHtml}
+    </div>` : "";
+  return `<article class="yt-community-post" data-posted="${escapeAttribute2(year ?? "")}">
+  <span class="yt-community-post__avatar">
+    <img src="${escapeAttribute2(avatarSrc)}" alt="${escapeAttribute2(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
+  </span>
+  <div class="yt-community-post__content">
+    <header class="yt-community-post__header">
+      <span class="yt-community-post__channel">${escapeHtml2(CHANNEL_NAME)}</span>
+      <span class="yt-community-post__timestamp">${timestamp}</span>
+    </header>
+    ${bodySection}
+    <footer class="yt-community-post__footer">
+      <div class="yt-community-post__actions" aria-hidden="true">
+        <span class="yt-community-post__action">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14 1 7.59 7.41C7.22 7.78 7 8.3 7 8.83V19c0 1.1.9 2 2 2h8c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" /></svg>
+          <span>Like</span>
+        </span>
+        <span class="yt-community-post__action">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 3H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12l5 4V5c0-1.1-.9-2-2-2h-3z" /></svg>
+          <span>Comment</span>
+        </span>
+        <span class="yt-community-post__action">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.53.5 1.23.81 2.04.81 1.66 0 3-1.34 3-3S19.66 2 18 2s-3 1.34-3 3c0 .24.04.47.09.7L7.91 9.81C7.38 9.31 6.68 9 5.87 9 4.21 9 2.87 10.34 2.87 12s1.34 3 3 3c.81 0 1.51-.31 2.04-.81l7.12 4.16c-.05.2-.08.41-.08.63 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z" /></svg>
+          <span>Share</span>
+        </span>
+      </div>
+    </footer>
+  </div>
+</article>`;
+}, "renderPost");
+var YT_COMMUNITY_CSS = `
+.yt-community-post {
+  background: #202020;
+  border: 1px solid #2f2f2f;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #f1f1f1;
+  max-width: min(640px, 100%);
+  font-family: "Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 14px;
+  row-gap: 12px;
+  align-items: flex-start;
+}
+
+.yt-community-post + .yt-community-post {
+  margin-top: 20px;
+}
+
+.yt-community-post__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.yt-community-post__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.yt-community-post__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yt-community-post__header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.2;
+}
+
+.yt-community-post__channel {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.yt-community-post__timestamp {
+  color: #a7a7a7;
+  font-size: 0.78rem;
+}
+
+.yt-community-post__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.93rem;
+}
+
+.yt-community-post__text {
+  line-height: 1.48;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.yt-community-post__text br {
+  content: "";
+}
+
+.yt-community-post__embed {
+  margin: 0;
+  padding: 0;
+}
+
+.yt-community-post__embed img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.yt-community-post__footer {
+  margin-top: 4px;
+}
+
+.yt-community-post__actions {
+  display: flex;
+  gap: 16px;
+  color: #b0b0b0;
+  font-size: 0.82rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.yt-community-post__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+}
+
+.yt-community-post__action svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+`;
+var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
+  return {
+    name: "YouTubeCommunityPosts",
+    markdownPlugins() {
+      return [
+        () => (tree, file) => {
+          const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
+          if (!slug || slug.toLowerCase() !== TARGET_SLUG) {
+            return;
+          }
+          const root = tree;
+          if (!Array.isArray(root.children)) {
+            return;
+          }
+          const avatarSrc = resolveObsidianTarget2(AVATAR_TARGET, slug);
+          let currentYear;
+          for (let idx = 0; idx < root.children.length; idx++) {
+            const child = root.children[idx];
+            if (!child || typeof child !== "object") {
+              continue;
+            }
+            if (child.type === "heading" && Array.isArray(child.children)) {
+              const text = collectText(child).toLowerCase();
+              const match = text.match(/from\s+(\d{4})/);
+              currentYear = match ? match[1] : currentYear;
+              continue;
+            }
+            if (child.type !== "code") {
+              continue;
+            }
+            const lang = typeof child.lang === "string" ? child.lang.trim().toLowerCase() : "";
+            if (lang && lang !== "text") {
+              continue;
+            }
+            const value = typeof child.value === "string" ? child.value : "";
+            const html = renderPost({
+              content: value,
+              year: currentYear,
+              slug,
+              avatarSrc
+            });
+            if (!html) {
+              continue;
+            }
+            root.children.splice(idx, 1, {
+              type: "html",
+              value: html
+            });
+          }
+        }
+      ];
+    },
+    externalResources() {
+      return {
+        css: [
+          {
+            content: YT_COMMUNITY_CSS,
+            inline: true
+          }
+        ]
+      };
+    }
+  };
+}, "YouTubeCommunityPosts");
+
 // quartz/plugins/transformers/infobox.ts
 import { SKIP as SKIP2, visit as visit6 } from "unist-util-visit";
 var normalizeWhitespace = /* @__PURE__ */ __name((value) => value.replace(/\s+/g, " ").trim(), "normalizeWhitespace");
@@ -4944,7 +5305,7 @@ var RemoveDrafts = /* @__PURE__ */ __name(() => ({
 }), "RemoveDrafts");
 
 // quartz/plugins/emitters/contentPage.tsx
-import path5 from "path";
+import path6 from "path";
 
 // quartz/components/Header.tsx
 import { jsx } from "preact/jsx-runtime";
@@ -5036,7 +5397,7 @@ import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path11) => `${path11}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path12) => `${path12}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -5514,59 +5875,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path11 = joinSegments(...this.slugSegments);
+    const path12 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path11, "index");
+      return joinSegments(path12, "index");
     }
-    return path11;
+    return path12;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path11, file) {
-    const fullPath = [...this.slugSegments, path11[0]];
+  makeChild(path12, file) {
+    const fullPath = [...this.slugSegments, path12[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path11, file) {
-    if (path11.length === 0) {
+  insert(path12, file) {
+    if (path12.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path11[0];
-    if (path11.length === 1) {
+    const segment = path12[0];
+    if (path12.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path11, file);
+        this.makeChild(path12, file);
       }
-    } else if (path11.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path11, void 0);
+    } else if (path12.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path12, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path11.length);
-      child.insert(path11.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path12.length);
+      child.insert(path12.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path11) {
-    if (path11.length === 0 || path11.length === 1 && path11[0] === "index") {
+  findNode(path12) {
+    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path11[0])?.findNode(path11.slice(1));
+    return this.children.find((c) => c.slugSegment === path12[0])?.findNode(path12.slice(1));
   }
-  ancestryChain(path11) {
-    if (path11.length === 0 || path11.length === 1 && path11[0] === "index") {
+  ancestryChain(path12) {
+    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path11[0]);
+    const child = this.children.find((c) => c.slugSegment === path12[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path11.slice(1));
+    const childPath = child.ancestryChain(path12.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -5614,7 +5975,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path11, _]) => path11);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path12, _]) => path12);
   }
 };
 
@@ -5745,11 +6106,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx14, jsxs as jsxs7 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path11) => {
-  if (!path11) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path12) => {
+  if (!path12) {
     return null;
   }
-  const trimmed = path11.trim();
+  const trimmed = path12.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -6143,11 +6504,11 @@ import satori from "satori";
 var U200D = String.fromCharCode(8205);
 
 // quartz/plugins/emitters/helpers.ts
-import path4 from "path";
+import path5 from "path";
 import fs2 from "fs";
 var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
   const pathToPage = joinSegments(ctx.argv.output, slug + ext);
-  const dir = path4.dirname(pathToPage);
+  const dir = path5.dirname(pathToPage);
   await fs2.promises.mkdir(dir, { recursive: true });
   await fs2.promises.writeFile(pathToPage, content);
   return pathToPage;
@@ -6174,8 +6535,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path11 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path11 : pathToRoot(fileData.slug);
+    const path12 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path12 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -7245,10 +7606,10 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment6 } from "preact";
 import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
-var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var isExternalUrl3 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -7264,7 +7625,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix2(target);
+  const sanitized = stripContentPrefix3(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -7347,12 +7708,12 @@ var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
-var resolveObsidianTarget2 = /* @__PURE__ */ __name((rawTarget, slug) => {
+var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl2(rawTarget)) {
+  if (isExternalUrl3(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix2(rawTarget);
+  const targetWithoutExt = stripContentPrefix3(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
   return appendAssetVersion2(joinSegments(baseDir, targetSlug), version);
@@ -7364,13 +7725,13 @@ var resolveImageSource2 = /* @__PURE__ */ __name((raw, slug) => {
   }
   const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
   if (obsidianMatch?.groups?.target) {
-    return resolveObsidianTarget2(obsidianMatch.groups.target, slug);
+    return resolveObsidianTarget3(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl2(cleaned)) {
+  if (isExternalUrl3(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix2(cleaned);
+  const target = stripContentPrefix3(cleaned);
   return appendAssetVersion2(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
@@ -8078,7 +8439,7 @@ var ContentPage = /* @__PURE__ */ __name((userOpts) => {
           styleText3(
             "yellow",
             `
-Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path5.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`
+Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path6.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`
           )
         );
       }
@@ -8230,7 +8591,7 @@ var TagPage = /* @__PURE__ */ __name((userOpts) => {
 }, "TagPage");
 
 // quartz/plugins/emitters/folderPage.tsx
-import path6 from "path";
+import path7 from "path";
 async function* processFolderInfo(ctx, folderInfo, allFiles, opts, resources) {
   for (const [folder, folderContent] of Object.entries(folderInfo)) {
     const slug = joinSegments(folder, "index");
@@ -8279,10 +8640,10 @@ function computeFolderInfo(folders, content, locale) {
 }
 __name(computeFolderInfo, "computeFolderInfo");
 function _getFolders(slug) {
-  var folderName = path6.dirname(slug ?? "");
+  var folderName = path7.dirname(slug ?? "");
   const parentFolderNames = [folderName];
   while (folderName !== ".") {
-    folderName = path6.dirname(folderName ?? "");
+    folderName = path7.dirname(folderName ?? "");
     parentFolderNames.push(folderName);
   }
   return parentFolderNames.filter((folder) => folder !== "canvases");
@@ -8483,11 +8844,11 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
 }, "ContentIndex");
 
 // quartz/plugins/emitters/aliases.ts
-import path7 from "path";
+import path8 from "path";
 async function* processFile(ctx, file) {
   const ogSlug = simplifySlug(file.data.slug);
   for (const aliasTarget of file.data.aliases ?? []) {
-    const aliasTargetSlug = isRelativeURL(aliasTarget) ? path7.normalize(path7.join(ogSlug, "..", aliasTarget)) : aliasTarget;
+    const aliasTargetSlug = isRelativeURL(aliasTarget) ? path8.normalize(path8.join(ogSlug, "..", aliasTarget)) : aliasTarget;
     const redirUrl = resolveRelative(aliasTargetSlug, ogSlug);
     yield write({
       ctx,
@@ -8527,14 +8888,14 @@ var AliasRedirects = /* @__PURE__ */ __name(() => ({
 }), "AliasRedirects");
 
 // quartz/plugins/emitters/assets.ts
-import path9 from "path";
+import path10 from "path";
 import fs3 from "fs";
 
 // quartz/util/glob.ts
-import path8 from "path";
+import path9 from "path";
 import { globby } from "globby";
 function toPosixPath(fp) {
-  return fp.split(path8.sep).join("/");
+  return fp.split(path9.sep).join("/");
 }
 __name(toPosixPath, "toPosixPath");
 async function glob(pattern, cwd, ignorePatterns) {
@@ -8555,7 +8916,7 @@ var copyFile = /* @__PURE__ */ __name(async (argv, fp) => {
   const src = joinSegments(argv.directory, fp);
   const name = slugifyFilePath(fp);
   const dest = joinSegments(argv.output, name);
-  const dir = path9.dirname(dest);
+  const dir = path10.dirname(dest);
   await fs3.promises.mkdir(dir, { recursive: true });
   await fs3.promises.copyFile(src, dest);
   return dest;
@@ -8571,7 +8932,7 @@ var Assets = /* @__PURE__ */ __name(() => {
     },
     async *partialEmit(ctx, _content, _resources, changeEvents) {
       for (const changeEvent of changeEvents) {
-        const ext = path9.extname(changeEvent.path);
+        const ext = path10.extname(changeEvent.path);
         if (ext === ".md") continue;
         if (changeEvent.type === "add" || changeEvent.type === "change") {
           yield copyFile(ctx.argv, changeEvent.path);
@@ -8966,7 +9327,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path11 = url.pathname;
+      const path12 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -8974,7 +9335,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path11, resources);
+      const externalResources = pageResources(path12, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -9076,6 +9437,7 @@ var config = {
       GitHubFlavoredMarkdown(),
       InfoboxBlock(),
       DiscordMessages(),
+      YouTubeCommunityPosts(),
       TableOfContents({
         collapseByDefault: true
       }),
@@ -9134,7 +9496,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path10 from "path";
+import path11 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -9166,7 +9528,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path10.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path11.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
