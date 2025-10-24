@@ -69,7 +69,8 @@ _Ghost error image according to [[SYSTEM]], which was accompanied by the message
 ![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
 _Leftover data from [[SYSTEM]]'s audio modular function from the third live Sleuth meeting, this audio file was originally meant to be deleted but somehow ended up in [[SERVER 01]] instead._
 
-## Finding the Transmitter
-
+## Finding The Transmitter
 
 ![[SERVER 01 Close but no cigar (transmitter key).png|600]]
+
+On 5 August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to look for [[The Transmitter]] before 10 August, when the [[710 Tone]] channel would 
