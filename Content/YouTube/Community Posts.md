@@ -325,7 +325,7 @@ Edited post, transcribed as the following:
 "well, I think we have to resort to the next plan"  
 "Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������**
 
-```10,0,
+```10,0,2024,
 00000000
 ```
 Edited post, transcribed as the following: 
@@ -333,12 +333,12 @@ Edited post, transcribed as the following:
 "And did you see him again after that?"  
 "No, I l��ke� fo� ��� ��������������������������**
 
-```3,0,
+```3,0,2024,
 >>SYSTEM: UNEXPEXTED LOG COUNT  
 >>SYSTEM: RESTETING LOGS "LOG-98.PCV", "LOG-99.PCV"
 ```
 
-```5,3,
+```5,3,2024,
 00000000
 ```
 Edited post, transcribed as the following:
@@ -348,22 +348,22 @@ Edited post, transcribed as the following:
 =\=EMD\=\=  
 Ipse diabolus super nos est, et omnes remittuntur pro peccatis nostris**
 
-```2,1,
+```2,1,2024,
 "556: calltime out...  
 556: reset"
 ```
 
-```3,1,
+```3,1,2024,
 00000000
 ```
 Edited post, originally base 64 and reversed text:
 **}}6۝x nxۑx߀4 xמx۞m 9 oy۝xya8 xn8۟x8** 
 
-```2,0,
+```2,0,2024,
 INTELLECT WARNING: PATH OBSCURED CALLSIGN 848 REPEATE CONDITIONS >>
 ```
 
-```3,1,
+```3,1,2024,
 00000000
 ```
 Edited post, transcribed as the following:
@@ -371,24 +371,24 @@ Edited post, transcribed as the following:
 resolution finalized  
 continuing VP - "youtube.com"**
 
-```2,0,
+```2,0,2024,
 "<CALLSIGN 554> UPDATE- FOR(VAR-S, -117)//  
 <CALLSIGN 439> "UPDATE- FOR(VAR-S, -117)//* CONFIRMED ||"
 ```
 
-```5,1,
+```5,1,2024,
 00000000
 ```
 Edited post, transcribed as the following:
 **This is my only way through. Hi my name is ����. and if anyone and I mean anyone is getting please do�� ���� �� ������ � ������ �� ���������� ��.**
 
-```4,1,
+```4,1,2024,
 $$>skin - powershell.open 122325
 ```
 Option 1 (winner):                                     Option 2:
 ![[option1.webp]]![[option2.webp]]
 
-```2,0,
+```2,0,2024,
 root = J.sm
 
 1. root 1
