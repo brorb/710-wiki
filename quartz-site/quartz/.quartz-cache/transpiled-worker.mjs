@@ -3907,6 +3907,22 @@ var blockquoteRegex = new RegExp(/(\[\[>\]\])\s*(.*)/, "g");
 var roamHighlightRegex = new RegExp(/\^\^(.+)\^\^/, "g");
 var roamItalicRegex = new RegExp(/__(.+)__/, "g");
 
+// quartz/util/assetVersion.ts
+var cachedVersion = null;
+function getAssetVersion() {
+  if (cachedVersion) {
+    return cachedVersion;
+  }
+  const envVersion = process.env.QUARTZ_ASSET_VERSION;
+  if (envVersion && envVersion.trim().length > 0) {
+    cachedVersion = envVersion.trim();
+    return cachedVersion;
+  }
+  cachedVersion = Date.now().toString();
+  return cachedVersion;
+}
+__name(getAssetVersion, "getAssetVersion");
+
 // quartz/plugins/transformers/discordMessages.ts
 var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
 var DISCORD_CSS = `
@@ -3935,7 +3951,7 @@ var DISCORD_CSS = `
   grid-template-columns: 40px 1fr;
   gap: 12px;
   border-radius: 8px;
-  padding: 8px 8px 6px;
+  padding: 6px 8px 4px;
   color: var(--discord-text-primary);
   align-items: flex-start;
   --discord-author-color: var(--discord-author);
@@ -3965,12 +3981,12 @@ var DISCORD_CSS = `
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .discord-avatar img {
@@ -3983,7 +3999,7 @@ var DISCORD_CSS = `
 .discord-body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .discord-header {
@@ -4014,6 +4030,29 @@ var DISCORD_CSS = `
 
 .discord-content--compact {
   margin-top: 2px;
+}
+
+.discord-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.discord-attachment {
+  display: block;
+  max-width: min(420px, 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1f2126;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);
+}
+
+.discord-attachment img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .discord-message .external-icon {
@@ -4139,6 +4178,40 @@ var DISCORD_CSS = `
   display: none !important;
 }
 `;
+var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var stripContentPrefix = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
+  if (!version) {
+    return url;
+  }
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+}, "appendAssetVersion");
+var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
+  if (isExternalUrl(rawTarget)) {
+    return rawTarget;
+  }
+  const targetWithoutExt = stripContentPrefix(rawTarget);
+  const targetSlug = slugifyFilePath(targetWithoutExt);
+  const baseDir = pathToRoot(slug);
+  return appendAssetVersion(joinSegments(baseDir, targetSlug), getAssetVersion());
+}, "resolveObsidianTarget");
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  if (isExternalUrl(cleaned) || !slug) {
+    return cleaned;
+  }
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN);
+  if (embedMatch?.groups?.target) {
+    return resolveObsidianTarget(embedMatch.groups.target, slug);
+  }
+  const target = stripContentPrefix(cleaned);
+  const baseDir = pathToRoot(slug);
+  return appendAssetVersion(joinSegments(baseDir, target), getAssetVersion());
+}, "resolveImageSource");
 var CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi;
 var escapeHtml = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
 var escapeAttribute = /* @__PURE__ */ __name((value) => escapeHtml(value), "escapeAttribute");
@@ -4227,6 +4300,26 @@ var getAuthorKey = /* @__PURE__ */ __name((message) => {
   }
   return void 0;
 }, "getAuthorKey");
+var renderAttachments = /* @__PURE__ */ __name((attachments) => {
+  if (!attachments || attachments.length === 0) {
+    return "";
+  }
+  const items = attachments.map((attachment) => {
+    if (!attachment || attachment.type !== "image" || !attachment.src) {
+      return "";
+    }
+    const src = escapeAttribute(attachment.src);
+    const altText = attachment.alt?.trim() ?? "Discord attachment";
+    const alt = escapeAttribute(altText);
+    return `<span class="discord-attachment">
+        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+      </span>`;
+  }).filter((html) => html.length > 0);
+  if (items.length === 0) {
+    return "";
+  }
+  return `<span class="discord-attachments" role="group">${items.join("\n")}</span>`;
+}, "renderAttachments");
 var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}) => {
   const {
     wrapperTag = "article",
@@ -4272,12 +4365,14 @@ var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}) =>
   if (!showHeader) {
     contentClasses.push("discord-content--compact");
   }
+  const attachmentsMarkup = renderAttachments(message.attachments);
   const attributes = articleAttributes.join(" ");
   return `<${wrapperTag} ${attributes}>
     ${avatarMarkup}
     <${bodyTag} class="discord-body">
       ${headerMarkup}
       <${contentTag} class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</${contentTag}>
+      ${attachmentsMarkup}
     </${bodyTag}>
     <a class="discord-jump" href="${escapeAttribute(jumpUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Discord message in a new tab"></a>
   </${wrapperTag}>`;
@@ -4322,10 +4417,97 @@ var renderCitation = /* @__PURE__ */ __name((id, messages) => {
     </span>
   </span>`;
 }, "renderCitation");
-var parseDiscordBlock = /* @__PURE__ */ __name((value) => {
+var normaliseImageDescriptors = /* @__PURE__ */ __name((value) => {
+  if (value === null || value === void 0) {
+    return [];
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? [{ target: trimmed }] : [];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => normaliseImageDescriptors(entry));
+  }
+  if (typeof value === "object") {
+    const candidate = value;
+    const src = typeof candidate.src === "string" ? candidate.src.trim() : "";
+    if (!src) {
+      return [];
+    }
+    const alt = typeof candidate.alt === "string" ? candidate.alt.trim() : void 0;
+    return [{ target: src, alt: alt && alt.length > 0 ? alt : void 0 }];
+  }
+  return [];
+}, "normaliseImageDescriptors");
+var applyImageMetadataToMessages = /* @__PURE__ */ __name((messages, slug) => {
+  messages.forEach((message) => {
+    if (!message || typeof message !== "object") {
+      return;
+    }
+    const raw = message;
+    const descriptors = [
+      ...normaliseImageDescriptors(raw.image),
+      ...normaliseImageDescriptors(raw.images)
+    ];
+    if (descriptors.length === 0) {
+      delete raw.image;
+      delete raw.images;
+      delete raw.image_alt;
+      delete raw.imageAlt;
+      return;
+    }
+    const altFallbacks = [];
+    const snakeAlt = typeof raw.image_alt === "string" ? raw.image_alt.trim() : void 0;
+    const camelAlt = typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : void 0;
+    if (snakeAlt) {
+      altFallbacks.push(snakeAlt);
+    }
+    if (camelAlt && camelAlt !== snakeAlt) {
+      altFallbacks.push(camelAlt);
+    }
+    descriptors.forEach((descriptor, index) => {
+      if (!descriptor.alt && index < altFallbacks.length) {
+        const alt = altFallbacks[index];
+        if (alt) {
+          descriptor.alt = alt;
+        }
+      }
+    });
+    delete raw.image;
+    delete raw.images;
+    delete raw.image_alt;
+    delete raw.imageAlt;
+    const existing = Array.isArray(message.attachments) ? message.attachments.filter((attachment) => {
+      return !!attachment && attachment.type === "image" && typeof attachment.src === "string" && attachment.src.trim().length > 0;
+    }) : [];
+    const existingSources = new Set(existing.map((attachment) => attachment.src));
+    const resolved = [];
+    descriptors.forEach((descriptor) => {
+      const src = resolveImageSource(descriptor.target, slug);
+      if (!src || existingSources.has(src)) {
+        return;
+      }
+      existingSources.add(src);
+      resolved.push({
+        type: "image",
+        src,
+        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : void 0
+      });
+    });
+    if (resolved.length === 0) {
+      return;
+    }
+    message.attachments = [...existing, ...resolved];
+  });
+}, "applyImageMetadataToMessages");
+var parseDiscordBlock = /* @__PURE__ */ __name((value, slug) => {
   try {
     const data = JSON.parse(value.trim());
-    return normaliseMessages(data);
+    const messages = normaliseMessages(data);
+    if (messages.length > 0) {
+      applyImageMetadataToMessages(messages, slug);
+    }
+    return messages;
   } catch (error) {
     console.warn("Failed to parse discord block", error);
     return [];
@@ -4452,7 +4634,7 @@ var isDiscordCitationCallout = /* @__PURE__ */ __name((node) => {
   }
   return false;
 }, "isDiscordCitationCallout");
-var extractCitationDataFromCallout = /* @__PURE__ */ __name((node) => {
+var extractCitationDataFromCallout = /* @__PURE__ */ __name((node, slug) => {
   if (!Array.isArray(node.children)) {
     return void 0;
   }
@@ -4473,13 +4655,22 @@ var extractCitationDataFromCallout = /* @__PURE__ */ __name((node) => {
     if (!id || messages.length === 0) {
       return void 0;
     }
+    if (messages.length > 0) {
+      applyImageMetadataToMessages(messages, slug);
+    }
     return { id, messages };
   } catch (error) {
-    console.warn("Failed to parse Discord citation callout payload", error);
+    const preview = raw.slice(0, 160);
+    const slugLabel = slug ?? "unknown";
+    console.warn(
+      `Failed to parse Discord citation callout payload for ${slugLabel}`,
+      error,
+      { preview }
+    );
     return void 0;
   }
 }, "extractCitationDataFromCallout");
-var collectCitationCallouts = /* @__PURE__ */ __name((root) => {
+var collectCitationCallouts = /* @__PURE__ */ __name((root, slug) => {
   const citations = /* @__PURE__ */ new Map();
   const removals = [];
   const traverse = /* @__PURE__ */ __name((current) => {
@@ -4496,7 +4687,7 @@ var collectCitationCallouts = /* @__PURE__ */ __name((root) => {
         continue;
       }
       if (isDiscordCitationCallout(child)) {
-        const data = extractCitationDataFromCallout(child);
+        const data = extractCitationDataFromCallout(child, slug);
         if (data) {
           citations.set(data.id, data.messages);
         } else {
@@ -4551,9 +4742,10 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
     name: "DiscordMessages",
     markdownPlugins() {
       return [
-        () => (tree) => {
+        () => (tree, file) => {
           const root = tree;
-          const citations = collectCitationCallouts(root);
+          const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
+          const citations = collectCitationCallouts(root, slug);
           transformCitationMarkers(root, citations);
           visitCodeBlocks(root, (codeBlock, index, parent) => {
             const lang = typeof codeBlock.lang === "string" ? codeBlock.lang.toLowerCase() : "";
@@ -4561,7 +4753,7 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
               return;
             }
             const raw = typeof codeBlock.value === "string" ? codeBlock.value : "";
-            const messages = parseDiscordBlock(raw);
+            const messages = parseDiscordBlock(raw, slug);
             if (messages.length === 0) {
               return;
             }
@@ -4836,24 +5028,6 @@ __name(concatenateResources, "concatenateResources");
 
 // quartz/components/renderPage.tsx
 import { visit as visit7 } from "unist-util-visit";
-
-// quartz/util/assetVersion.ts
-var cachedVersion = null;
-function getAssetVersion() {
-  if (cachedVersion) {
-    return cachedVersion;
-  }
-  const envVersion = process.env.QUARTZ_ASSET_VERSION;
-  if (envVersion && envVersion.trim().length > 0) {
-    cachedVersion = envVersion.trim();
-    return cachedVersion;
-  }
-  cachedVersion = Date.now().toString();
-  return cachedVersion;
-}
-__name(getAssetVersion, "getAssetVersion");
-
-// quartz/components/renderPage.tsx
 import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
@@ -7067,10 +7241,10 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment6 } from "preact";
 import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
-var isExternalUrl = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -7086,7 +7260,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix(target);
+  const sanitized = stripContentPrefix2(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -7163,37 +7337,37 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   }
   return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
 }, "normalizeValue");
-var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
+var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
-var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
+var resolveObsidianTarget2 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl(rawTarget)) {
+  if (isExternalUrl2(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix(rawTarget);
+  const targetWithoutExt = stripContentPrefix2(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion(joinSegments(baseDir, targetSlug), version);
+  return appendAssetVersion2(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
-var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+var resolveImageSource2 = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
   if (obsidianMatch?.groups?.target) {
-    return resolveObsidianTarget(obsidianMatch.groups.target, slug);
+    return resolveObsidianTarget2(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl(cleaned)) {
+  if (isExternalUrl2(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix(cleaned);
-  return appendAssetVersion(joinSegments(pathToRoot(slug), target), version);
+  const target = stripContentPrefix2(cleaned);
+  return appendAssetVersion2(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {
@@ -7226,7 +7400,7 @@ var parseInfoBox = /* @__PURE__ */ __name((fileData, slug, ctx) => {
   const title = normalizeString(raw.title);
   const items = parseItems(raw.items, slug, ctx);
   const imageSrcRaw = normalizeString(raw.image?.src);
-  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
+  const imageSrc = imageSrcRaw ? resolveImageSource2(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
   const imageCaption = normalizeString(raw.image?.caption);
   const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : void 0;

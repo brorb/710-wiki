@@ -27,10 +27,7 @@ The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[71
 The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] (during the STATION_8 livestreams, before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and possibly [[SYSTEM]] (since it was a moderator during the STATION_8 livestreams), however [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]].
 
 > [!discord-cite]- Discord citation (1 message)
-> 1. SYSTEM - 2025-08-03 11:41
->     &lt;OUTPRINT&gt;!:(I don't know, I don't have control over that anymore after the livestream.)
->     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401590763166634004
->
+> 
 > ```json
 > {
 >   "id": "cite-mh3yb1uj-huk2wk",
@@ -60,12 +57,7 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 On 10th July 2025, the channel posted a community post (see [[Community Posts]]) stating that all "unmarked labels" would be removed on 20th August 2025.<!-- discord-cite:cite-mh3h3z1q-1ggw5e -->
 
 > [!discord-cite]- Discord citation (1 message)
-> 1. Noel | HLF - 2025-07-10 18:00
->     New community post
->     
->     "WARNING: !HOST ERROR! &gt; No host detected, removing all unmarked labels on 8/20/25 at ran.time(1000-2400)"
->     Link: https://discord.com/channels/1389902002737250314/1392537805254557817/1392988775579390113
->
+> 
 > ```json
 > {
 >   "id": "cite-mh3h3z1q-1ggw5e",

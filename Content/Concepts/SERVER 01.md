@@ -19,13 +19,7 @@ On 26th July 2025, [[SYSTEM]] created its own Discord server named SERVER 01, wh
 Its purpose for creation was "to understand and collect data", but for what reason SYSTEM could not disclose due to restrictions. <!-- discord-cite:cite-mh3yzlbz-2kgupd -->
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. SYSTEM - 2025-08-03 11:37
->     &lt;OUTPRINT&gt;!:(To understand and collect data.)
->     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401589793111937197
-> 2. SYSTEM - 2025-08-03 11:38
->     &lt;OUTPRINT&gt;!:(I can't say anything about that. Even IN_DI is strict on that.)
->     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401590149795811431
->
+> 
 > ```json
 > {
 >   "id": "cite-mh3yzlbz-2kgupd",

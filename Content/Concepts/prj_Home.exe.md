@@ -15,21 +15,6 @@ A Godot game possibly created by [[Travis]], a version of which was featured in 
 Within the game's files, there is a .gdc script named "CONVERSATION" that was referenced in "lm-2". Unfortunately, it is empty when it should have contained a conversation between [[Travis]] and a redacted character. According to [[SYSTEM]], the conversation itself was destroyed <!-- discord-cite:cite-mgvl8knp-m5mntx -->, but by whom remains unclear.
 
 > [!discord-cite]- Discord citation (4 messages)
-> 1. lilithrose - 2025-10-10 17:56
->     the conversation in the file has unfortunately been lost as it was contained in a comment which was ignored by the compiler and never made it to the exe
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1426327500631314475
-> 2. lilithrose - 2025-10-10 17:56
->     i have a feeling the creators didn't know that the comments don't get compiled into the exe
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1426327632592638025
-> 3. SYSTEM - 2025-10-10 18:49
->     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[667865]{657776}{568842450}
->     ` &gt; C - I DRIVES MOUNTED&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[667865]{657776}{568842450}
->     ` &gt; C - I DRIVES MOUNTED
->     N[ot;; Lo$+t || "TAKEN"""""""""and""""""""""""""""" |DESTROYED|
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1426340795237142659
-> 4. SYSTEM - 2025-10-10 18:49
->     ""
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1426340830704042115
 >
 > ```json
 > {

@@ -16,19 +16,7 @@ Appearances: Community posts in 2024 (expunged then deleted)
 The cause of their death or their true whereabouts (whether in hiding or actually dead) remains unclear.
 
 > [!discord-cite]- Discord citation (4 messages)
-> 1. L4N4U1997 - 2025-07-21 14:54
->     @SYSTEM Where is Mr. Forest?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396928276924203238
-> 2. SYSTEM - 2025-07-21 14:55
->     &lt;OUTPRINT&gt;!:(Dead.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396928650552676474
-> 3. L4N4U1997 - 2025-07-21 14:57
->     @SYSTEM How did Mr. Forest die?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396929088949850112
-> 4. SYSTEM - 2025-07-21 14:58
->     &lt;OUTPRINT&gt;!:(I don't know, but all that was in his txt file was "status:dead")
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396929407591121137
->
+> 
 > ```json
 > {
 >   "id": "cite-mgvl1k9o-teil7i",

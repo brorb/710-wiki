@@ -21,19 +21,7 @@ Long String (also known as "long_string", "long_str" ) is the name of a computer
 It is also likely related to INDI's [[TRUTH.zip]] file, since it has associations with the command to run Long String, {V83mak8.exe}.<!-- discord-cite:cite-mh40eu7g-1vvn6o -->
 
 > [!discord-cite]- Discord citation (3 messages)
-> 1. SYSTEM - 2025-07-19 11:06
->     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
->     link_found = "V83mak8.pcv"
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146171935981568
-> 2. SYSTEM - 2025-07-19 11:07
->     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
->     link_found = "V83mak8.exe" &gt; package "TRUTH.zip"
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112
-> 3. SYSTEM - 2025-07-19 11:08
->     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
->     link_found = "Null"
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976
->
+> 
 > ```json
 > {
 >   "id": "cite-mh40eu7g-1vvn6o",
@@ -87,13 +75,7 @@ It is also likely related to INDI's [[TRUTH.zip]] file, since it has association
 It is not programmed in Fortran according to [[SYSTEM]].<!-- discord-cite:cite-mh41h8c0-w3435z -->
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. ThePortalNinja - 2025-07-31 15:37
->     @SYSTEM Is Long String made in Fortran?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1400562974942429255
-> 2. SYSTEM - 2025-07-31 15:37
->     &lt;OUTPRINT&gt;!:(No.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1400563030277881948
->
+> 
 > ```json
 > {
 >   "id": "cite-mh41h8c0-w3435z",

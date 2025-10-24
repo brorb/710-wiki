@@ -216,25 +216,6 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     }
   }
 
-  private formatCitationTimestamp(source?: string): string | undefined {
-    if (!source) {
-      return undefined
-    }
-
-    const date = new Date(source)
-    if (Number.isNaN(date.getTime())) {
-      return source
-    }
-
-    const year = date.getFullYear().toString().padStart(4, "0")
-    const month = (date.getMonth() + 1).toString().padStart(2, "0")
-    const day = date.getDate().toString().padStart(2, "0")
-    const hours = date.getHours().toString().padStart(2, "0")
-    const minutes = date.getMinutes().toString().padStart(2, "0")
-
-    return `${year}-${month}-${day} ${hours}:${minutes}`
-  }
-
   private buildCitationCallout(citationId: string, messages: DiscordMessageBlock[]): string {
     if (messages.length === 0) {
       return ""
@@ -248,46 +229,15 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
 
     const jsonLines = JSON.stringify(payload, null, 2).split("\n")
 
-    const lines: string[] = [`> [!discord-cite]- Discord citation (${countLabel})`]
+    const lines: string[] = [`> [!discord-cite]- Discord citation (${countLabel})`, ">",
+      `> \`\`\`json`]
 
-    messages.forEach((message, index) => {
-      const authorName =
-        message.author.display_name?.trim() || message.author.username?.trim() || "Unknown User"
-      const timestamp = this.formatCitationTimestamp(message.timestamp)
-      const summaryParts = [`${index + 1}. ${authorName}`]
-      if (timestamp) {
-        summaryParts.push(timestamp)
-      }
-      lines.push(`> ${this.escapeMarkdownForCallout(summaryParts.join(" - "))}`)
-
-      const content = message.content?.trim()
-      if (content) {
-        content.split(/\r?\n/).forEach((line) => {
-          const text = line.trimEnd()
-          lines.push(`>     ${this.escapeMarkdownForCallout(text)}`)
-        })
-      }
-
-      if (message.url) {
-        lines.push(`>     Link: ${message.url}`)
-      }
-    })
-
-    lines.push(">")
-    lines.push(`> \`\`\`json`)
     jsonLines.forEach((line) => {
       lines.push(`> ${line}`)
     })
     lines.push(`> \`\`\``)
 
     return lines.join("\n")
-  }
-
-  private escapeMarkdownForCallout(value: string): string {
-    return value
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
   }
 
   private async fetchMessages(urls: string[]): Promise<DiscordMessageBlock[]> {

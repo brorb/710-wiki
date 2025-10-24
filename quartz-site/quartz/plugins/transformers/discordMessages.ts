@@ -1,4 +1,6 @@
 import { QuartzTransformerPlugin } from "../types"
+import { getAssetVersion } from "../../util/assetVersion"
+import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
 
 interface DiscordAuthor {
   id?: string
@@ -9,6 +11,14 @@ interface DiscordAuthor {
   colour_value?: number | string
 }
 
+interface DiscordAttachment {
+  type: "image"
+  src: string
+  alt?: string
+}
+
+type DiscordImageValue = string | { src?: string; alt?: string }
+
 interface DiscordMessage {
   url?: string
   jump_url?: string
@@ -17,6 +27,11 @@ interface DiscordMessage {
   timestamp?: string
   avatar_url?: string
   author?: DiscordAuthor
+  attachments?: DiscordAttachment[]
+  image?: DiscordImageValue | DiscordImageValue[]
+  images?: DiscordImageValue | DiscordImageValue[]
+  image_alt?: string
+  imageAlt?: string
 }
 
 const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
@@ -47,7 +62,7 @@ const DISCORD_CSS = `
   grid-template-columns: 40px 1fr;
   gap: 12px;
   border-radius: 8px;
-  padding: 8px 8px 6px;
+  padding: 6px 8px 4px;
   color: var(--discord-text-primary);
   align-items: flex-start;
   --discord-author-color: var(--discord-author);
@@ -77,12 +92,12 @@ const DISCORD_CSS = `
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .discord-avatar--hidden {
   visibility: hidden;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .discord-avatar img {
@@ -95,7 +110,7 @@ const DISCORD_CSS = `
 .discord-body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .discord-header {
@@ -126,6 +141,29 @@ const DISCORD_CSS = `
 
 .discord-content--compact {
   margin-top: 2px;
+}
+
+.discord-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.discord-attachment {
+  display: block;
+  max-width: min(420px, 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1f2126;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);
+}
+
+.discord-attachment img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .discord-message .external-icon {
@@ -251,6 +289,52 @@ const DISCORD_CSS = `
   display: none !important;
 }
 `
+
+const isExternalUrl = (url: string): boolean => /^(https?:)?\/\//i.test(url)
+
+const OBSIDIAN_EMBED_PATTERN = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/
+
+const stripContentPrefix = (target: string): string =>
+  target.replace(/^[./]+/, "").replace(/^content\//i, "")
+
+const appendAssetVersion = (url: string, version: string): string => {
+  if (!version) {
+    return url
+  }
+
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`
+}
+
+const resolveObsidianTarget = (rawTarget: string, slug: FullSlug): string => {
+  if (isExternalUrl(rawTarget)) {
+    return rawTarget
+  }
+
+  const targetWithoutExt = stripContentPrefix(rawTarget) as FilePath
+  const targetSlug = slugifyFilePath(targetWithoutExt)
+  const baseDir = pathToRoot(slug)
+  return appendAssetVersion(joinSegments(baseDir, targetSlug), getAssetVersion())
+}
+
+const resolveImageSource = (raw: string, slug?: FullSlug): string | undefined => {
+  const cleaned = raw.trim()
+  if (!cleaned) {
+    return undefined
+  }
+
+  if (isExternalUrl(cleaned) || !slug) {
+    return cleaned
+  }
+
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN)
+  if (embedMatch?.groups?.target) {
+    return resolveObsidianTarget(embedMatch.groups.target, slug)
+  }
+
+  const target = stripContentPrefix(cleaned)
+  const baseDir = pathToRoot(slug)
+  return appendAssetVersion(joinSegments(baseDir, target), getAssetVersion())
+}
 
 const CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi
 
@@ -394,6 +478,34 @@ interface RenderMessagesOptions {
   messageOptions?: RenderMessageOptions
 }
 
+const renderAttachments = (attachments?: DiscordAttachment[]): string => {
+  if (!attachments || attachments.length === 0) {
+    return ""
+  }
+
+  const items = attachments
+    .map((attachment) => {
+      if (!attachment || attachment.type !== "image" || !attachment.src) {
+        return ""
+      }
+
+      const src = escapeAttribute(attachment.src)
+      const altText = attachment.alt?.trim() ?? "Discord attachment"
+      const alt = escapeAttribute(altText)
+
+      return `<span class="discord-attachment">
+        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+      </span>`
+    })
+    .filter((html) => html.length > 0)
+
+  if (items.length === 0) {
+    return ""
+  }
+
+  return `<span class="discord-attachments" role="group">${items.join("\n")}</span>`
+}
+
 const renderMessage = (
   message: DiscordMessage,
   previous?: DiscordMessage,
@@ -459,6 +571,7 @@ const renderMessage = (
     contentClasses.push("discord-content--compact")
   }
 
+  const attachmentsMarkup = renderAttachments(message.attachments)
   const attributes = articleAttributes.join(" ")
 
   return `<${wrapperTag} ${attributes}>
@@ -466,6 +579,7 @@ const renderMessage = (
     <${bodyTag} class="discord-body">
       ${headerMarkup}
       <${contentTag} class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</${contentTag}>
+      ${attachmentsMarkup}
     </${bodyTag}>
     <a class="discord-jump" href="${escapeAttribute(jumpUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Discord message in a new tab"></a>
   </${wrapperTag}>`
@@ -519,10 +633,132 @@ const renderCitation = (id: string, messages: DiscordMessage[]): string | undefi
   </span>`
 }
 
-const parseDiscordBlock = (value: string): DiscordMessage[] => {
+type ImageDescriptor = { target: string; alt?: string }
+
+const normaliseImageDescriptors = (value: unknown): ImageDescriptor[] => {
+  if (value === null || value === undefined) {
+    return []
+  }
+
+  if (typeof value === "string") {
+    const trimmed = value.trim()
+    return trimmed.length > 0 ? [{ target: trimmed }] : []
+  }
+
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => normaliseImageDescriptors(entry))
+  }
+
+  if (typeof value === "object") {
+    const candidate = value as { src?: unknown; alt?: unknown }
+    const src = typeof candidate.src === "string" ? candidate.src.trim() : ""
+    if (!src) {
+      return []
+    }
+
+    const alt = typeof candidate.alt === "string" ? candidate.alt.trim() : undefined
+    return [{ target: src, alt: alt && alt.length > 0 ? alt : undefined }]
+  }
+
+  return []
+}
+
+const applyImageMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlug): void => {
+  messages.forEach((message) => {
+    if (!message || typeof message !== "object") {
+      return
+    }
+
+    const raw = message as DiscordMessage & {
+      image?: unknown
+      images?: unknown
+      image_alt?: unknown
+      imageAlt?: unknown
+    }
+
+    const descriptors: ImageDescriptor[] = [
+      ...normaliseImageDescriptors(raw.image),
+      ...normaliseImageDescriptors(raw.images),
+    ]
+
+    if (descriptors.length === 0) {
+      delete raw.image
+      delete raw.images
+      delete raw.image_alt
+      delete raw.imageAlt
+      return
+    }
+
+    const altFallbacks: string[] = []
+    const snakeAlt = typeof raw.image_alt === "string" ? raw.image_alt.trim() : undefined
+    const camelAlt = typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : undefined
+
+    if (snakeAlt) {
+      altFallbacks.push(snakeAlt)
+    }
+    if (camelAlt && camelAlt !== snakeAlt) {
+      altFallbacks.push(camelAlt)
+    }
+
+    descriptors.forEach((descriptor, index) => {
+      if (!descriptor.alt && index < altFallbacks.length) {
+        const alt = altFallbacks[index]
+        if (alt) {
+          descriptor.alt = alt
+        }
+      }
+    })
+
+    delete raw.image
+    delete raw.images
+    delete raw.image_alt
+    delete raw.imageAlt
+
+    const existing = Array.isArray(message.attachments)
+      ? message.attachments.filter((attachment): attachment is DiscordAttachment => {
+          return (
+            !!attachment &&
+            attachment.type === "image" &&
+            typeof attachment.src === "string" &&
+            attachment.src.trim().length > 0
+          )
+        })
+      : []
+
+    const existingSources = new Set(existing.map((attachment) => attachment.src))
+
+    const resolved: DiscordAttachment[] = []
+
+    descriptors.forEach((descriptor) => {
+      const src = resolveImageSource(descriptor.target, slug)
+      if (!src || existingSources.has(src)) {
+        return
+      }
+
+      existingSources.add(src)
+      resolved.push({
+        type: "image",
+        src,
+        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : undefined,
+      })
+    })
+
+    if (resolved.length === 0) {
+      return
+    }
+
+    message.attachments = [...existing, ...resolved]
+  })
+}
+
+const parseDiscordBlock = (value: string, slug?: FullSlug): DiscordMessage[] => {
   try {
     const data = JSON.parse(value.trim()) as unknown
-    return normaliseMessages(data)
+    const messages = normaliseMessages(data)
+    if (messages.length > 0) {
+      applyImageMetadataToMessages(messages, slug)
+    }
+    return messages
   } catch (error) {
     console.warn("Failed to parse discord block", error)
     return []
@@ -694,7 +930,10 @@ const isDiscordCitationCallout = (node: MdNode | undefined): boolean => {
   return false
 }
 
-const extractCitationDataFromCallout = (node: MdParent):
+const extractCitationDataFromCallout = (
+  node: MdParent,
+  slug?: FullSlug,
+):
   | { id: string; messages: DiscordMessage[] }
   | undefined => {
   if (!Array.isArray(node.children)) {
@@ -723,14 +962,24 @@ const extractCitationDataFromCallout = (node: MdParent):
       return undefined
     }
 
+    if (messages.length > 0) {
+      applyImageMetadataToMessages(messages, slug)
+    }
+
     return { id, messages }
   } catch (error) {
-    console.warn("Failed to parse Discord citation callout payload", error)
+    const preview = raw.slice(0, 160)
+    const slugLabel = slug ?? "unknown"
+    console.warn(
+      `Failed to parse Discord citation callout payload for ${slugLabel}`,
+      error,
+      { preview },
+    )
     return undefined
   }
 }
 
-const collectCitationCallouts = (root: MdNode): Map<string, DiscordMessage[]> => {
+const collectCitationCallouts = (root: MdNode, slug?: FullSlug): Map<string, DiscordMessage[]> => {
   const citations = new Map<string, DiscordMessage[]>()
   const removals: Array<{ parent: MdParent; index: number }> = []
 
@@ -751,7 +1000,7 @@ const collectCitationCallouts = (root: MdNode): Map<string, DiscordMessage[]> =>
       }
 
       if (isDiscordCitationCallout(child)) {
-        const data = extractCitationDataFromCallout(child as MdParent)
+        const data = extractCitationDataFromCallout(child as MdParent, slug)
         if (data) {
           citations.set(data.id, data.messages)
         } else {
@@ -825,9 +1074,10 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
     name: "DiscordMessages",
     markdownPlugins() {
       return [
-        () => (tree: unknown) => {
+        () => (tree: unknown, file: { data?: { slug?: FullSlug } }) => {
           const root = tree as MdNode
-          const citations = collectCitationCallouts(root)
+          const slug = typeof file?.data?.slug === "string" ? (file.data.slug as FullSlug) : undefined
+          const citations = collectCitationCallouts(root, slug)
           transformCitationMarkers(root, citations)
 
           visitCodeBlocks(root, (codeBlock, index, parent) => {
@@ -837,7 +1087,7 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
             }
 
             const raw = typeof codeBlock.value === "string" ? codeBlock.value : ""
-            const messages = parseDiscordBlock(raw)
+            const messages = parseDiscordBlock(raw, slug)
             if (messages.length === 0) {
               return
             }

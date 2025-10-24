@@ -18,13 +18,7 @@ In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]].
 He is most likely involved with TTH, according to a hint from [[SYSTEM]]. <!-- discord-cite:cite-mgvkt6vn-24zczg -->
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-10-14 17:22
->     (fixed with GIMP in five secs)
->     Link: https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749
-> 2. SYSTEM - 2025-10-17 16:50
->     """""HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND &lt;REPORT STOPPED&gt;"""""""""""
->     Link: https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482
->
+> 
 > ```json
 > {
 >   "id": "cite-mgvkt6vn-24zczg",

@@ -25,13 +25,7 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->.
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-07-21 20:46
->     @SYSTEM What is Channel 14 for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396926447616000000
-> 2. SYSTEM - 2025-07-21 20:47
->     &lt;OUTPRINT&gt;!:(News, movies, etc. Why?)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396926631419052102
->
+> 
 > ```json
 > {
 >   "id": "cite-mgs1zew5-bxccf1",
@@ -70,13 +64,7 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-07-21 13:43
->     @SYSTEM What is the Channel 14 Schedual used for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819893571158027
-> 2. SYSTEM - 2025-07-21 13:45
->     &lt;OUTPRINT&gt;!:(You spelt schedule wrong, but it's used to keep up with when NaN.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396820314255790220
->
+> 
 > ```json
 > {
 >   "id": "cite-mgs1xi27-v10ct8",

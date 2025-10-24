@@ -14,13 +14,7 @@ Appearances: [[710 Tone]] YouTube channel description
 A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-07-21 14:56
->     @SYSTEM What does Black Mold stand for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396928807125913693
-> 2. SYSTEM - 2025-07-21 14:57
->     &lt;OUTPRINT&gt;!:(Data corruption from NaN.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396929009828233438
->
+> 
 > ```json
 > {
 >   "id": "cite-mgvkfl4d-lkjdzm",

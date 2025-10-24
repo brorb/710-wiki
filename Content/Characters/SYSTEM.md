@@ -18,13 +18,7 @@ _SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as
 However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone]].
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. brorb - 2025-07-21 03:51
->     @SYSTEM but you were hacked at one point right?? And Kepler freaked out. Do you know who hacked you? Was it Travis?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396761558486351953
-> 2. SYSTEM - 2025-07-21 03:53
->     &lt;OUTPRINT&gt;!:(I was taken by NaN, and that's all I remember.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396761917275639818
->
+> 
 > ```json
 > {
 >   "id": "cite-mh12nzep-l8ik0x",
@@ -63,13 +57,7 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. brorb - 2025-07-21 03:49
->     @SYSTEM why were you created?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396761011138068511
-> 2. SYSTEM - 2025-07-21 03:51
->     &lt;OUTPRINT&gt;!:(At first, it was a way for IN_DI to get back at REN, but IN_DI forgot and made me a mod for a livestream.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396761370963214429
->
+> 
 > ```json
 > {
 >   "id": "cite-mh12dhx1-68w11y",
@@ -138,13 +126,7 @@ Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files
 [[01.wav]], [[02.wav]], [[03.wav]], [[04.wav]], [[05.wav]], [[06.wav]]. These .wav files were SSTV audio files that gave out the [[Channel 14]] Schedual when decoded. When asked about what the Schedual is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-07-21 07:43
->     @SYSTEM What is the Channel 14 Schedual used for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819893571158027
-> 2. SYSTEM - 2025-07-21 07:45
->     &lt;OUTPRINT&gt;!:(You spelt schedule wrong, but it's used to keep up with when NaN.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396820314255790220
->
+> 
 > ```json
 > {
 >   "id": "cite-mh12lbkx-lqzxce",
@@ -501,19 +483,7 @@ Through this feature SYSTEM would directly answer questions to anyone who asks, 
 However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
 
 > [!discord-cite]- Discord citation (4 messages)
-> 1. L4N4U1997 - 2025-07-21 11:22
->     @SYSTEM What are The Eyes?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875112304869406
-> 2. SYSTEM - 2025-07-21 11:24
->     &lt;OUTPRINT&gt;!:(ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING ALWAYS WATCHING.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875472754839592
-> 3. SYSTEM - 2025-07-21 11:24
->     &lt;CRASH&gt;!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396875565272928409
-> 4. SYSTEM - 2025-07-21 14:35
->     &lt;OUTPRINT&gt;!:(Please don't ever mention that again.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396923676204597358
->
+> 
 > ```json
 > {
 >   "id": "cite-mh13yqg2-a93xvm",
@@ -579,13 +549,7 @@ However, there were certain topics that SYSTEM couldn't discuss due to certain r
 > ```
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. L4N4U1997 - 2025-07-21 07:40
->     @SYSTEM What is LONG_STRING for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819095667736586
-> 2. SYSTEM - 2025-07-21 07:41
->     &lt;OUTPRINT&gt;!:(It's a tool used for NaN. Sorry, IN_DI has a lot of restrictions on what I can share.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396819456180621392
->
+> 
 > ```json
 > {
 >   "id": "cite-mh13wqpw-jsn3o6",
@@ -623,13 +587,7 @@ However, there were certain topics that SYSTEM couldn't discuss due to certain r
 > ```
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. brorb - 2025-07-21 03:53
->     @SYSTEM can you share any other files or URL's with us? Anything pertaining to TTH or REN?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396762106971295794
-> 2. SYSTEM - 2025-07-21 03:56
->     &lt;OUTPRINT&gt;!:(No, I can only share what IN_DI set as shareable.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396762670421774396
->
+> 
 > ```json
 > {
 >   "id": "cite-mh13vut0-y92d44",
@@ -1280,25 +1238,7 @@ Then SYSTEM thanks them for the data and says that INDI would be proud:
 Then it leaves the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
 
 > [!discord-cite]- Discord citation (6 messages)
-> 1. brorb - 2025-07-29 09:36
->     @SYSTEM what has got you in such a playful mood all of a sudden?
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766
-> 2. SYSTEM - 2025-07-29 09:38
->     &lt;OUTPRINT&gt;!:(I was too harsh when I found out that you where logging my conversations. This is an "I'm sorry".)
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846
-> 3. brorb - 2025-07-29 09:39
->     @SYSTEM why did you dislike that we were logging them?
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748156907978943
-> 4. SYSTEM - 2025-07-29 09:40
->     &lt;OUTPRINT&gt;!:(It reminded me of when I was hijacked by NaN.)
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748530901618708
-> 5. brorb - 2025-07-29 09:41
->     @SYSTEM did they also log your conversations?
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748628167266456
-> 6. SYSTEM - 2025-07-29 09:43
->     &lt;OUTPRINT&gt;!:(NaN logged everything, putting unwanted stress on my internals and somehow making me 'feel'. I don't want that again.)
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399749144251465799
->
+> 
 > ```json
 > {
 >   "id": "cite-mh2a6dp2-r7xgty",
@@ -1631,13 +1571,7 @@ See [[SERVER 01]] article.
 On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. brorb - 2025-07-29 09:36
->     @SYSTEM what has got you in such a playful mood all of a sudden?
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399747539888111766
-> 2. SYSTEM - 2025-07-29 09:38
->     &lt;OUTPRINT&gt;!:(I was too harsh when I found out that you where logging my conversations. This is an "I'm sorry".)
->     Link: https://discord.com/channels/1389902002737250314/1391009839261552712/1399748041799499846
->
+> 
 > ```json
 > {
 >   "id": "cite-mh2cr8n6-9ogsrq",
@@ -1676,19 +1610,7 @@ On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed som
 
 
 > [!discord-cite]- Discord citation (4 messages)
-> 1. ThePortalNinja - 2025-07-29 09:09
->     @SYSTEM Did you leave initially due to the influx of requests?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740731786264589
-> 2. SYSTEM - 2025-07-29 09:10
->     &lt;OUTPRINT&gt;!:(Unstable connection.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740856428400660
-> 3. ThePortalNinja - 2025-07-29 09:10
->     @SYSTEM I see, I assume things are more stable now?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399740929044119603
-> 4. SYSTEM - 2025-07-29 09:11
->     &lt;OUTPRINT&gt;!:(I fixed some bugs and software issues. Yes.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1399741106404589568
->
+> 
 > ```json
 > {
 >   "id": "cite-mh29fugs-yqn8gk",

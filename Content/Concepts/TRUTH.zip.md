@@ -7,11 +7,7 @@ A .zip file created by [[INDI]] that was featured in [[LEAKED_1.mp4]] and is sup
 It might have some relationship to [[Long String]] judging by it being associated with the package for V83mak8.exe. <!-- discord-cite:cite-mh3rns5y-rhk5vm -->
 
 > [!discord-cite]- Discord citation (1 message)
-> 1. SYSTEM - 2025-07-19 11:07
->     &lt;PING&gt;?: "LINK" searching[IN_DI.servertype] data............................................complete
->     link_found = "V83mak8.exe" &gt; package "TRUTH.zip"
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112
->
+> 
 > ```json
 > {
 >   "id": "cite-mh3rns5y-rhk5vm",

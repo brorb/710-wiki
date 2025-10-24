@@ -20,13 +20,7 @@ Workers:
 
 TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Hands".<!-- discord-cite:cite-mgqt94ga-p0y1ah -->
 > [!discord-cite]- Discord citation (2 messages)
-> 1. ThePortalNinja - 2025-07-21 17:17
->     @SYSTEM What does TTH mean or stand for?
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396873793301118996
-> 2. SYSTEM - 2025-07-21 17:20
->     &lt;OUTPRINT&gt;!:(The Transmitting Hands, or  Transmitting Hands. Hands symbolization for human work.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396874440175784038
->
+> 
 > ```json
 > {
 >   "id": "cite-mgqt94ga-p0y1ah",
@@ -66,10 +60,7 @@ TTH stands for "The Transmitting Hands", sometimes shortened as "Transmitting Ha
 They are an organization responsible for some type of transmission. Most likely other people are also involved, as indicated by the different chatters in the [[Private Room]] chats. It is not known whether they are a government institution or a private one, but TTH is a subbranch of some other organization.<!-- discord-cite:cite-mgqtc9qs-494koo -->
 
 > [!discord-cite]- Discord citation (1 message)
-> 1. SYSTEM - 2025-07-21 09:41
->     &lt;OUTPRINT&gt;!:(TTH is a sub branch of NaN, actually I can't tell you a lot about them because of limits IN_DI put.)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396758985977233548
->
+> 
 > ```json
 > {
 >   "id": "cite-mgqtc9qs-494koo",
@@ -101,19 +92,7 @@ This logo would appear in videos such as [[LOG-116.mp4]] and [[LOG-15.mmp44]] an
 It is likely that TTH are the ones responsible for [[The Logs]] being made. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The [\_\_\_]", which likely refers to TTH. [[SYSTEM]] and other characters are often seen communicating with TTH servers <!-- discord-cite:cite-mgryowvm-smp3th --> <!-- discord-cite:cite-mgryo3jq-n0thtk --> <!-- discord-cite:cite-mgrypbv5-iz07jk -->
 
 > [!discord-cite]- Discord citation (4 messages)
-> 1. SYSTEM - 2025-07-21 09:19
->     &lt;OUTPRINT&gt;!:TEMP-TERMINAL ROLLBACK REQUEST SENT TO TTH SERVERLINE
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396753316842836069
-> 2. SYSTEM - 2025-07-21 09:19
->     &lt;OUTPRINT&gt;!:ERROR ROLLBACK REQUEST COULD NOT BE SENT &lt; ! ERROR [serverline(09) unreachable]
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396753442235486340
-> 3. SYSTEM - 2025-07-21 09:19
->     &lt;OUTPRINT&gt;!:PING@SYSTEM OPT_OUT[4-3[11-3][32]]\\chain(list_5)
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396753468848476190
-> 4. SYSTEM - 2025-07-21 09:19
->     &lt;PING&gt;?:PING@PING OPT_OUT CALLED CANCELING ROLLBACK PING@SYSTEM callout()
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396753497524797542
->
+> 
 > ```json
 > {
 >   "id": "cite-mgrypbv5-iz07jk",
@@ -179,13 +158,7 @@ It is likely that TTH are the ones responsible for [[The Logs]] being made. This
 > ```
 
 > [!discord-cite]- Discord citation (2 messages)
-> 1. SYSTEM - 2025-07-21 01:15
->     &lt;SAVED&gt;!: dataSTORED@ ADDRESS[IN_DI.servertype&gt;prg_02&gt;load] loading@554.lan
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631693099536534
-> 2. SYSTEM - 2025-07-21 01:16
->     &lt;SAVED&gt;!: data[sending] || SENDING &lt;== TTH SERVERline 09
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631768559386706
->
+> 
 > ```json
 > {
 >   "id": "cite-mgryowvm-smp3th",
@@ -223,22 +196,7 @@ It is likely that TTH are the ones responsible for [[The Logs]] being made. This
 > ```
 
 > [!discord-cite]- Discord citation (5 messages)
-> 1. SYSTEM - 2025-09-07 05:55
->     &lt;SAVED&gt;!: dataSTORED@ ADDRESS[IN_DI.servertype&gt;prg_02&gt;load] loading@554.lan
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1414096783910375514
-> 2. SYSTEM - 2025-09-07 05:55
->     &lt;SAVED&gt;!: data[sending] || SENDING &lt;== TTH SERVERline 09
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1414096832753045605
-> 3. SYSTEM - 2025-09-07 05:56
->     &lt;EXPORTING&gt;!: data[file] || -
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1414096868731916349
-> 4. SYSTEM - 2025-09-07 05:56
->     &lt;EXPORTING&gt;!: data[file] || ------------------------------- [complete]
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1414096927087132772
-> 5. SYSTEM - 2025-09-07 05:56
->     &lt;IMPORTING&gt;!: canceled
->     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1414096953557520414
->
+> 
 > ```json
 > {
 >   "id": "cite-mgryo3jq-n0thtk",
