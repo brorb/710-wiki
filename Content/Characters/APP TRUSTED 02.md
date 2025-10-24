@@ -75,6 +75,10 @@ This command was added after [[SYSTEM]] posted this message in [[SERVER 01]], wh
 <OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
 ```
 
+According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone]] channel, instead they come from "storage files"
+
+![[storage files app_log_ore.png|500]]
+
 **$app_name**
 
 Displays the properties of APP TRUSTED 02:
@@ -132,7 +136,7 @@ Command complete
 
 **$roaming_program**
 
-Roaming bot program that checked for [[710 Tone]]'s influence across various places, this feature wasn't intentionally added by [[SYSTEM]] and initially errored out.
+Roaming bot program that checked for [[710 Tone]]'s influence across various places, this feature wasn't intentionally added by [[SYSTEM]] (it wanted an update counter instead) and initially errored out when trying to run.
 ```
 REQUEST CALLED AWAITING RESPONSE  
 Pinged  
