@@ -10,7 +10,7 @@ tags:
 [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]
 Community post from 25 June, 2025 (see [[Community Posts]])
 
-A Godot game possibly created by [[Travis]], a version of which was featured in [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]. This version, which was received from the [[Parting Gifts Puzzle|Parting Gifts]] puzzle, has a 3D enviroment with a house that the player can enter inside. The house contains a blue room with an IBM computer that plays an SSTV audio file when interacted with, which gives out the mega link for "lm-2" when decoded.
+A Godot game possibly created by [[Travis]], a version of which was featured in [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]. This version, which was received from the [[Parting Gifts Puzzle.canvas|Parting Gifts Puzzle]], has a 3D enviroment with a house that the player can enter inside. The house contains a blue room with an IBM computer that plays an SSTV audio file when interacted with, which gives out the mega link for "lm-2" when decoded.
 
 Within the game's files, there is a .gdc script named "CONVERSATION" that was referenced in "lm-2". Unfortunately, it is empty when it should have contained a conversation between [[Travis]] and a redacted character. According to [[SYSTEM]], the conversation itself was destroyed <!-- discord-cite:cite-mgvl8knp-m5mntx -->, but by whom remains unclear.
 
@@ -95,5 +95,5 @@ Within the game's files, there is a .gdc script named "CONVERSATION" that was re
 > }
 > ```
 
-Link to prj_home.exe here: https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
-Godot decompile tool here: https://github.com/GDRETools/gdsdecomp
+**Link to prj_home.exe here:** https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
+**Godot decompile tool here:** https://github.com/GDRETools/gdsdecomp
