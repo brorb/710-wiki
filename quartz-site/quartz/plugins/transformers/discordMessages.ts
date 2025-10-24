@@ -305,7 +305,17 @@ const appendAssetVersion = (url: string, version: string): string => {
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`
 }
 
-const resolveObsidianTarget = (rawTarget: string, slug: FullSlug): string => {
+interface ResolveAssetOptions {
+  appendVersion?: boolean
+}
+
+const resolveObsidianTarget = (
+  rawTarget: string,
+  slug: FullSlug,
+  options: ResolveAssetOptions = {},
+): string => {
+  const { appendVersion: shouldAppendVersion = true } = options
+
   if (isExternalUrl(rawTarget)) {
     return rawTarget
   }
@@ -313,10 +323,17 @@ const resolveObsidianTarget = (rawTarget: string, slug: FullSlug): string => {
   const targetWithoutExt = stripContentPrefix(rawTarget) as FilePath
   const targetSlug = slugifyFilePath(targetWithoutExt)
   const baseDir = pathToRoot(slug)
-  return appendAssetVersion(joinSegments(baseDir, targetSlug), getAssetVersion())
+  const resolved = joinSegments(baseDir, targetSlug)
+  return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved
 }
 
-const resolveImageSource = (raw: string, slug?: FullSlug): string | undefined => {
+const resolveImageSource = (
+  raw: string,
+  slug?: FullSlug,
+  options: ResolveAssetOptions = {},
+): string | undefined => {
+  const { appendVersion: shouldAppendVersion = true } = options
+
   const cleaned = raw.trim()
   if (!cleaned) {
     return undefined
@@ -328,12 +345,13 @@ const resolveImageSource = (raw: string, slug?: FullSlug): string | undefined =>
 
   const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN)
   if (embedMatch?.groups?.target) {
-    return resolveObsidianTarget(embedMatch.groups.target, slug)
+    return resolveObsidianTarget(embedMatch.groups.target, slug, { appendVersion: shouldAppendVersion })
   }
 
   const target = stripContentPrefix(cleaned)
   const baseDir = pathToRoot(slug)
-  return appendAssetVersion(joinSegments(baseDir, target), getAssetVersion())
+  const resolved = joinSegments(baseDir, target)
+  return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved
 }
 
 const CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi
@@ -730,7 +748,7 @@ const applyImageMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlu
     const resolved: DiscordAttachment[] = []
 
     descriptors.forEach((descriptor) => {
-      const src = resolveImageSource(descriptor.target, slug)
+      const src = resolveImageSource(descriptor.target, slug, { appendVersion: false })
       if (!src || existingSources.has(src)) {
         return
       }
