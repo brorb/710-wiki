@@ -71,3 +71,5 @@ _Leftover data from [[SYSTEM]]'s audio modular function from the third live Sleu
 
 ## Finding the Transmitter
 
+
+![[SERVER 01 Close but no cigar (transmitter key).png|600]]
