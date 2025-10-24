@@ -19,4 +19,7 @@ Appearances:
 
 Possibly a program that manages data and creates [[The Logs]], can be seen in the [[Private Room]] scanning through data before the chatroom fully connects.
 
-It is a forbidden topic of discussion around SYSTEM, since it tends to crash whenever it is brought up.
+It is a forbidden topic of discussion around [[SYSTEM]] because it tends to output strange statements and crash whenever it is mentioned.
+![[SERVER 01 The Eyes statement-min.png|500]]
+In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves the phrase "The Eyes" and therefore its functions don't know how to handle it.
+![[SERVER 01 cannot read or write The Eyes statemen-min.jpg|600]]

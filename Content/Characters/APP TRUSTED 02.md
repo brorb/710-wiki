@@ -235,7 +235,8 @@ SCAN: COMPLETE
 
 ![[LOL-min.jpg]]
 
-After SYSTEM found out about 
+After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep anymore secrets from it.
+
 ## The [[Bob]] Incident
 
 

@@ -186,6 +186,7 @@ When shown this transcript from [[The Sleuths]] Discord server, [[SYSTEM]] respo
 ```
 
 It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since it was uploaded onto the [[710 Tone]] channel.
+
 ## Usage
 
 Upon execution, Long String fills the screen with "INFECTED BY LONG STRING ;-)" 
