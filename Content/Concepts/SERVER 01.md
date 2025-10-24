@@ -73,4 +73,5 @@ _Leftover data from [[SYSTEM]]'s audio modular function from the third live Sleu
 
 ![[SERVER 01 Close but no cigar (transmitter key).png|600]]
 
-On 5 August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to look for [[The Transmitter]] before 10 August, when the [[710 Tone]] channel would 
+On 5 August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to look for [[The Transmitter]] before 10 August, when the [[710 Tone]] channel would remove the "unmarked labels" (see [[Community Posts]]) and everything (including [[SYSTEM]] itself) would be shut down.
+
