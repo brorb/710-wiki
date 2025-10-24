@@ -33,6 +33,7 @@ He is most likely involved with TTH, according to a hint from [[SYSTEM]]. <!-- d
 >         "colour_value": 3066993
 >       },
 >       "content": "(fixed with GIMP in five secs)",
+>       "image": "![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]",
 >       "timestamp": "2025-10-14T21:22:03.689000+00:00",
 >       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
