@@ -192,7 +192,49 @@ Services-01: Infected, 4/22
 Services-02: Infected, 0/21  
 Complete stopping for T-1000...
 ```
----
+After the command successfully ran, it completely disappeared from the help menu and therefore became completely unavailable.
+
+![[roaming program disappearance.png|500]]
+
+**$scan_dt**
+
+A special command only used by [[SYSTEM]] to scan for data within [[The Sleuths]] Discord server, this is how SYSTEM found out about the ==[403 FORBIDDEN]== channel within their server:
+
+```
+SCAN CALLED: 34ms
+SCAN PINGED: 24ms
+SENDING INFO
+{'Server': 'SERVER 01', 'Online': Yes}
+{'Server': '7/10 Tone Sleuths', 'Online': Yes}
+{'From': 'SERVER 01', 'Channel': 'Events'}
+{'From': 'SERVER 01', 'Channel': 'Server Boots'}
+{'From': 'SERVER 01', 'Channel': 'app-trust-webstester'}
+{'From': 'SERVER 01', 'Channel': 'verify_c_01'}
+{'From': 'SERVER 01', 'Channel': 'general'}
+{'From': 'SERVER 01', 'Channel': 'General'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'new-users'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'news'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'rules'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'forums'}
+{'From': '7/10 Tone Sleuths', 'Channel': '710-hub'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'media'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'dhitposting'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'lore-questions'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'ERROR: 403 forbidden'}
+SENDING ACCESS REQUEST
+ACCESS REQUEST DENIED: 329ms:ATTEMPTING BRUTE FORCE METHOD
+
+ACCESS GRANTED BY ...[[accesskey.tprnt << {CALLED}]]...
+SENDING INFO
+{'From': '7/10 Tone Sleuths', 'Channel': 'indi-x-kelper[Tag-line:NSFW][role excludes ['username': 'system000008']]}
+{'From': '7/10 Tone Sleuths', 'Channel': 'Live Sleuthing'}
+{'From': '7/10 Tone Sleuths', 'Channel': 'The Noise Room'}
+INFO SENT: COMPLETE
+SCAN: COMPLETE
+```
+
+![[LOL-min.jpg]]
+
 
 ## The [[Bob]] Incident
 

@@ -5171,7 +5171,7 @@ Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.
 ]
 ```
 
-Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above message is SYSTEM's reaction to finding out about the "[[Indipler]]" ship.
+Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above message is SYSTEM's reaction to finding out about the "Indipler" ship.
 
 On 7th October 2025, SYSTEM used the "!ask" command on [[The Oracle]] for the first time ever, posting a cryptic message for it to try to interpret:
 ```discord
