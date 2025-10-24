@@ -4187,16 +4187,19 @@ var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
-var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug) => {
+var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug, options2 = {}) => {
+  const { appendVersion: shouldAppendVersion = true } = options2;
   if (isExternalUrl(rawTarget)) {
     return rawTarget;
   }
   const targetWithoutExt = stripContentPrefix(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion(joinSegments(baseDir, targetSlug), getAssetVersion());
+  const resolved = joinSegments(baseDir, targetSlug);
+  return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
 }, "resolveObsidianTarget");
-var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug, options2 = {}) => {
+  const { appendVersion: shouldAppendVersion = true } = options2;
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
@@ -4206,11 +4209,12 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   }
   const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN);
   if (embedMatch?.groups?.target) {
-    return resolveObsidianTarget(embedMatch.groups.target, slug);
+    return resolveObsidianTarget(embedMatch.groups.target, slug, { appendVersion: shouldAppendVersion });
   }
   const target = stripContentPrefix(cleaned);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion(joinSegments(baseDir, target), getAssetVersion());
+  const resolved = joinSegments(baseDir, target);
+  return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
 }, "resolveImageSource");
 var CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi;
 var escapeHtml = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
@@ -4483,7 +4487,7 @@ var applyImageMetadataToMessages = /* @__PURE__ */ __name((messages, slug) => {
     const existingSources = new Set(existing.map((attachment) => attachment.src));
     const resolved = [];
     descriptors.forEach((descriptor) => {
-      const src = resolveImageSource(descriptor.target, slug);
+      const src = resolveImageSource(descriptor.target, slug, { appendVersion: false });
       if (!src || existingSources.has(src)) {
         return;
       }
