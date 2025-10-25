@@ -101,7 +101,7 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 > }
 > ```
 
-## Schedule
+## Schedule Gallery
 
 Channel 14's schedule is often subject to change.
 
