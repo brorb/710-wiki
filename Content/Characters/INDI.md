@@ -36,7 +36,7 @@ His official name is "IN_DI" as confirmed by [Kepler/710 NPP](Kepler.md) in the 
 Sparsely, INDI has been named "IN_DI.SERVERTYPE" (or something adjacent), as seen in the description of [[LOG-109.MP]], in the livestream chats of [[STATION_8 TERMINAL 8]], and in [[LOG-132]].
 
 ## Personality
-INDI always types in upper case letters[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor. 
+INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor. 
 
 
  
