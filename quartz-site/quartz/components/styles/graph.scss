@@ -4,25 +4,25 @@
   & > h3 {
     font-size: 1rem;
     margin: 0;
-      color: var(--color-tone-contrast);
+    color: var(--color-tone-contrast);
   }
 
   & > .graph-outer {
     border-radius: 5px;
-      border: 1px solid var(--color-accent-deep);
+    border: 1px solid var(--color-accent-deep);
     box-sizing: border-box;
     height: 250px;
     margin: 0.5em 0;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-surface-overlay);
+    background-color: var(--color-primary-background);
 
     & > .global-graph-icon {
       cursor: pointer;
       background: none;
       border: none;
-      color: var(--dark);
-      opacity: 0.5;
+      color: var(--color-tone-contrast);
+      opacity: 0.85;
       width: 24px;
       height: 24px;
       position: absolute;
@@ -35,37 +35,42 @@
       transition: background-color 0.5s ease;
       cursor: pointer;
       &:hover {
-        background-color: var(--lightgray);
+        background-color: var(--color-highlight-overlay);
       }
     }
   }
 
   & > .global-graph-outer {
     position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100%;
+    z-index: 9999999;
+    inset: 0;
     backdrop-filter: blur(4px);
     display: none;
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
 
     &.active {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      ~ .sidebar,
+      ~ .sidebar-left,
+      ~ .sidebar-right {
+        pointer-events: none;
+      }
     }
 
     & > .global-graph-container {
-        border: 1px solid var(--color-accent-deep);
-  background-color: var(--color-surface-overlay);
+      border: 1px solid var(--color-accent-deep);
+      background-color: var(--color-primary-background);
       border-radius: 5px;
       box-sizing: border-box;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
       height: 80vh;
       width: 80vw;
+      z-index: 10000000;
+      pointer-events: auto;
 
       @media all and not ($desktop) {
         width: 90%;

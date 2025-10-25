@@ -630,12 +630,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const containers = [...document.getElementsByClassName("global-graph-outer")] as HTMLElement[]
   async function renderGlobalGraph() {
     const slug = getFullSlug(window)
+    document.body.classList.add("graph-modal-active")
     for (const container of containers) {
       container.classList.add("active")
-      const sidebar = container.closest(".sidebar") as HTMLElement
-      if (sidebar) {
-        sidebar.style.zIndex = "1"
-      }
 
       const graphContainer = container.querySelector(".global-graph-container") as HTMLElement
       registerEscapeHandler(container, hideGlobalGraph)
@@ -647,12 +644,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   function hideGlobalGraph() {
     cleanupGlobalGraphs()
+    document.body.classList.remove("graph-modal-active")
     for (const container of containers) {
       container.classList.remove("active")
-      const sidebar = container.closest(".sidebar") as HTMLElement
-      if (sidebar) {
-        sidebar.style.zIndex = ""
-      }
     }
   }
 
@@ -666,10 +660,10 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
   }
 
-  const containerIcons = document.getElementsByClassName("global-graph-icon")
-  Array.from(containerIcons).forEach((icon) => {
-    icon.addEventListener("click", renderGlobalGraph)
-    window.addCleanup(() => icon.removeEventListener("click", renderGlobalGraph))
+  const triggerElements = document.getElementsByClassName("global-graph-icon")
+  Array.from(triggerElements).forEach((trigger) => {
+    trigger.addEventListener("click", renderGlobalGraph)
+    window.addCleanup(() => trigger.removeEventListener("click", renderGlobalGraph))
   })
 
   document.addEventListener("keydown", shortcutHandler)

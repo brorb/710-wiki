@@ -57,6 +57,82 @@ const DISCORD_CSS = `
   gap: 0;
   max-width: min(720px, 100%);
   font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+}
+
+.discord-thread-wrapper {
+  position: relative;
+  max-width: min(720px, 100%);
+}
+
+.discord-thread-content {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.discord-thread-content.collapsed {
+  max-height: 600px;
+}
+
+.discord-thread-content.collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--color-primary-background) 85%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.discord-collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  margin: 0 auto;
+  margin-top: -3rem;
+  background: var(--color-surface-overlay);
+  border: 1px solid var(--color-accent-deep);
+  border-radius: 8px;
+  color: var(--color-tone-contrast);
+  font-family: var(--bodyFont);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 3;
+  width: fit-content;
+  min-width: 140px;
+}
+
+.discord-thread-content:not(.collapsed) + .discord-collapse-toggle {
+  margin-top: 0.75rem;
+}
+
+.discord-collapse-toggle:hover {
+  background: var(--color-highlight-overlay);
+  border-color: var(--color-accent-bright);
+  color: var(--color-tone-contrast);
+}
+
+.discord-collapse-toggle:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.discord-collapse-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.discord-collapse-toggle[aria-expanded="false"] .discord-collapse-icon {
+  transform: rotate(180deg);
 }
 
 .discord-message {
@@ -648,9 +724,22 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
       renderMessage(message, index > 0 ? messages[index - 1] : undefined, messageOptions),
     )
     .join("\n")
-  return `<${containerTag} class="discord-thread" data-message-count="${messages.length}">
+  
+  const threadId = `discord-thread-${Math.random().toString(36).substr(2, 9)}`
+  
+  return `<div class="discord-thread-wrapper">
+  <div class="discord-thread-content collapsed" id="${threadId}-content">
+    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
-</${containerTag}>`
+    </${containerTag}>
+  </div>
+  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
+    <span>Show More</span>
+    <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+</div>`
 }
 
 const renderCitation = (id: string, messages: DiscordMessage[]): string | undefined => {
@@ -1120,6 +1209,9 @@ const transformCitationMarkers = (
   traverse(root)
 }
 
+// @ts-ignore
+import discordCollapseScript from "../../components/scripts/discordCollapse.inline"
+
 export const DiscordMessages: QuartzTransformerPlugin = () => {
   return {
     name: "DiscordMessages",
@@ -1166,6 +1258,13 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
           {
             content: DISCORD_CSS,
             inline: true,
+          },
+        ],
+        js: [
+          {
+            script: discordCollapseScript,
+            loadTime: "afterDOMReady",
+            contentType: "inline",
           },
         ],
       }
