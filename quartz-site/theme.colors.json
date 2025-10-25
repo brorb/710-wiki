@@ -13,7 +13,5 @@
   "highlightOverlay": "rgba(235, 28, 36, 0.18)",
   "link": "#ff5860",
   "buttonText": "#fff7f8",
-  "buttonBackground": "#b71002",
-  "textHighlight": "#ff3a4066",
-  "scrollbarThumb": "#61070a"
+  "textHighlight": "#ff3a4066"
 }

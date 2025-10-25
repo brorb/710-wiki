@@ -79,6 +79,13 @@ async function joinScripts(scripts: string[]): Promise<string> {
 function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentResources) {
   const cfg = ctx.cfg.configuration
 
+  componentResources.beforeDOMLoaded.unshift(`
+    window.__quartzCleanupFns = window.__quartzCleanupFns || new Set()
+    window.addCleanup = (fn) => {
+      window.__quartzCleanupFns.add(fn)
+    }
+  `)
+
   // popovers
   if (cfg.enablePopovers) {
     componentResources.afterDOMLoaded.push(popoverScript)
@@ -244,9 +251,9 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
   }
 
   if (cfg.enableSPA) {
-    componentResources.afterDOMLoaded.push(spaRouterScript)
+    componentResources.afterDOMLoaded.unshift(spaRouterScript)
   } else {
-    componentResources.afterDOMLoaded.push(`
+    componentResources.afterDOMLoaded.unshift(`
       window.spaNavigate = (url, _) => window.location.assign(url)
       window.addCleanup = () => {}
       const event = new CustomEvent("nav", { detail: { url: document.body.dataset.slug } })

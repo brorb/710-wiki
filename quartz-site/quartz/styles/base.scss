@@ -47,7 +47,7 @@ ul.overflow,
 .search .results-container,
 .search .preview-container {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar-thumb) var(--color-surface-overlay);
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -55,14 +55,14 @@ ul.overflow,
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--color-surface-overlay);
+    background: var(--color-scrollbar-track);
     border-radius: 999px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: var(--color-scrollbar-thumb);
     border-radius: 999px;
-    border: 2px solid var(--color-surface-overlay);
+    border: 2px solid var(--color-scrollbar-track);
   }
 }
 p,
@@ -438,6 +438,14 @@ h1 {
   color: var(--color-tone-contrast);
 }
 
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-tone-contrast);
+}
+
 // typography improvements
 h1 {
   font-size: 1.75rem;
@@ -615,7 +623,7 @@ hr {
   margin: 2rem auto;
   height: 1px;
   border: none;
-  background-color: var(--lightgray);
+  background-color: var(--color-accent-deep);
 }
 
 audio,
@@ -623,6 +631,54 @@ video {
   width: 100%;
   border-radius: 5px;
 }
+
+audio {
+  background: var(--color-surface-overlay);
+  border: 1px solid var(--color-tone-subtle);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+  color: var(--color-tone-primary);
+  color-scheme: dark;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-bright);
+    outline-offset: 2px;
+  }
+
+  &::-webkit-media-controls-enclosure {
+    background-color: var(--color-surface-overlay);
+    border-radius: 5px;
+    border: 1px solid var(--color-tone-subtle);
+  }
+
+  &::-webkit-media-controls-panel {
+    background-color: transparent;
+    color: var(--color-tone-primary);
+  }
+
+  &::-webkit-media-controls-play-button,
+  &::-webkit-media-controls-mute-button,
+  &::-webkit-media-controls-volume-slider,
+  &::-webkit-media-controls-timeline {
+    color: var(--color-tone-primary);
+  }
+
+  &::-webkit-media-controls-play-button {
+    background-color: var(--color-accent-bright);
+    border-radius: 50%;
+  }
+
+  &::-webkit-media-controls-timeline {
+    background-color: color-mix(in srgb, var(--color-tone-subtle) 55%, transparent);
+    border-radius: 999px;
+  }
+
+  &::-webkit-media-controls-current-time-display,
+  &::-webkit-media-controls-time-remaining-display {
+    color: var(--color-tone-primary);
+  }
+}
+
 
 .spacer {
   flex: 2 1 auto;

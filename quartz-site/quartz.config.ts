@@ -19,8 +19,10 @@ const sharedCssVars = {
   "color-highlight-overlay": palette.highlightOverlay,
   "color-link": palette.link,
   "color-button-text": palette.buttonText,
-  "color-button-background": palette.buttonBackground,
-  "color-scrollbar-thumb": palette.scrollbarThumb,
+  "color-button-background": palette.accentDeep,
+  "color-button-hover": palette.accentBright,
+  "color-scrollbar-thumb": palette.accentShadow,
+  "color-scrollbar-track": palette.surfaceOverlay,
 }
 
 const sharedColorScheme = {

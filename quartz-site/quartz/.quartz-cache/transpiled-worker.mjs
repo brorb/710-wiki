@@ -7714,9 +7714,7 @@ var theme_colors_default = {
   highlightOverlay: "rgba(235, 28, 36, 0.18)",
   link: "#ff5860",
   buttonText: "#fff7f8",
-  buttonBackground: "#b71002",
-  textHighlight: "#ff3a4066",
-  scrollbarThumb: "#61070a"
+  textHighlight: "#ff3a4066"
 };
 
 // quartz/components/LinksHeader.tsx
@@ -7771,7 +7769,7 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
       {
         id: "links-header",
         style: {
-          "--link-button-bg": palette.buttonBackground,
+          "--link-button-bg": palette.accentDeep,
           "--link-button-border": palette.accentDeep,
           "--link-button-text": palette.buttonText
         },
@@ -9351,6 +9349,12 @@ async function joinScripts(scripts) {
 __name(joinScripts, "joinScripts");
 function addGlobalPageResources(ctx, componentResources) {
   const cfg = ctx.cfg.configuration;
+  componentResources.beforeDOMLoaded.unshift(`
+    window.__quartzCleanupFns = window.__quartzCleanupFns || new Set()
+    window.addCleanup = (fn) => {
+      window.__quartzCleanupFns.add(fn)
+    }
+  `);
   if (cfg.enablePopovers) {
     componentResources.afterDOMLoaded.push(popover_inline_default);
     componentResources.css.push(popover_default);
@@ -9510,9 +9514,9 @@ function addGlobalPageResources(ctx, componentResources) {
     `);
   }
   if (cfg.enableSPA) {
-    componentResources.afterDOMLoaded.push(spa_inline_default);
+    componentResources.afterDOMLoaded.unshift(spa_inline_default);
   } else {
-    componentResources.afterDOMLoaded.push(`
+    componentResources.afterDOMLoaded.unshift(`
       window.spaNavigate = (url, _) => window.location.assign(url)
       window.addCleanup = () => {}
       const event = new CustomEvent("nav", { detail: { url: document.body.dataset.slug } })
@@ -9679,8 +9683,10 @@ var sharedCssVars = {
   "color-highlight-overlay": palette2.highlightOverlay,
   "color-link": palette2.link,
   "color-button-text": palette2.buttonText,
-  "color-button-background": palette2.buttonBackground,
-  "color-scrollbar-thumb": palette2.scrollbarThumb
+  "color-button-background": palette2.accentDeep,
+  "color-button-hover": palette2.accentBright,
+  "color-scrollbar-thumb": palette2.accentShadow,
+  "color-scrollbar-track": palette2.surfaceOverlay
 };
 var sharedColorScheme = {
   light: palette2.primaryBackground,

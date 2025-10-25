@@ -2,6 +2,13 @@ import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
 
+declare global {
+  interface Window {
+    __quartzCleanupFns?: Set<(...args: any[]) => void>
+    addCleanup: (fn: (...args: any[]) => void) => void
+  }
+}
+
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
 const NODE_TYPE_ELEMENT = 1
@@ -40,7 +47,8 @@ function notifyNav(url: FullSlug) {
   document.dispatchEvent(event)
 }
 
-const cleanupFns: Set<(...args: any[]) => void> = new Set()
+const cleanupFns: Set<(...args: any[]) => void> = window.__quartzCleanupFns ?? new Set()
+window.__quartzCleanupFns = cleanupFns
 window.addCleanup = (fn) => cleanupFns.add(fn)
 
 function startLoading() {
@@ -188,7 +196,15 @@ function createRouter() {
 }
 
 createRouter()
-notifyNav(getFullSlug(window))
+
+// Defer the initial nav notification so component scripts have time to
+// register their `nav` listeners during the rest of the bundle execution.
+const runInitialNav = () => notifyNav(getFullSlug(window))
+if (typeof queueMicrotask === "function") {
+  queueMicrotask(runInitialNav)
+} else {
+  Promise.resolve().then(runInitialNav)
+}
 
 if (!customElements.get("route-announcer")) {
   const attrs = {

@@ -201,10 +201,27 @@ async function setupExplorer(currentSlug: FullSlug) {
       }
     })
 
-    const explorerUl = explorer.querySelector(".explorer-ul")
+    const explorerUl = explorer.querySelector(".explorer-ul") as HTMLUListElement | null
     if (!explorerUl) continue
 
-    // Create and insert new content
+    const overflowEnd = explorerUl.querySelector(".overflow-end") as HTMLLIElement | null
+
+    // Clear previous entries while keeping the overflow sentinel anchored at the end
+    for (const child of Array.from(explorerUl.children)) {
+      if (child !== overflowEnd) {
+        child.remove()
+      }
+    }
+
+    const sentinel =
+      overflowEnd ?? (() => {
+        const end = explorerUl.ownerDocument.createElement("li")
+        end.className = "overflow-end"
+        explorerUl.append(end)
+        return end
+      })()
+
+    // Create and insert new content ahead of the sentinel to preserve overflow gradients
     const fragment = document.createDocumentFragment()
     for (const child of trie.children) {
       const node = child.isFolder
@@ -213,7 +230,8 @@ async function setupExplorer(currentSlug: FullSlug) {
 
       fragment.appendChild(node)
     }
-    explorerUl.insertBefore(fragment, explorerUl.firstChild)
+
+    explorerUl.insertBefore(fragment, sentinel)
 
     // restore explorer scrollTop position if it exists
     const scrollTop = sessionStorage.getItem("explorerScrollTop")

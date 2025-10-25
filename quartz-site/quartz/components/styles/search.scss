@@ -8,14 +8,15 @@
   min-width: fit-content;
   max-width: 14rem;
   padding: 0.75rem 0.85rem;
-  border: 1px solid var(--lightgray);
+  border: 1px solid var(--color-accent-deep);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--light) 85%, rgba(0, 0, 0, 0.03));
-  transition: border-color 0.2s ease;
+  background-color: color-mix(in srgb, var(--color-surface-overlay) 65%, transparent);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 
   &:hover,
   &:focus-within {
-    border-color: var(--secondary);
+    border-color: var(--color-accent-deep);
+    background-color: var(--color-accent-shadow);
   }
 
   @media all and ($mobile) {
@@ -45,7 +46,7 @@
 
     & > p {
       display: inline;
-      color: var(--gray);
+      color: var(--color-tone-contrast);
     }
 
     & svg {

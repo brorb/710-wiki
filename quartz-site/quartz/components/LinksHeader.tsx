@@ -54,7 +54,7 @@ export default (() => {
         <nav
           id="links-header"
           style={{
-            "--link-button-bg": palette.buttonBackground,
+            "--link-button-bg": palette.accentDeep,
             "--link-button-border": palette.accentDeep,
             "--link-button-text": palette.buttonText,
           } as Record<string, string>}
