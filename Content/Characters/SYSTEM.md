@@ -1924,7 +1924,51 @@ During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd A
 ]
 ```
 
-During this session, SYSTEM 
+During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who possibly runs the [[710 Tone]] channel, among other things and could only listen for a couple of seconds at a time. <!-- discord-cite:cite-mh5ji12v-z1lnh7 --> Sleuth member The Portal Ninja also shared a song inspired by [[710 Tone]] with SYSTEM as well, which SYSTEM had to extend its modular function timer to listen.
+
+> [!discord-cite]- Discord citation (2 messages)
+> 1. SYSTEM - 2025-08-03 11:35
+>     &lt;MODLAR&gt;!: now playing back
+>     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401589337543413893
+> 2. SYSTEM - 2025-08-03 11:36
+>     &lt;OUTPRINT&gt;!:(I can only hear of a couple of seconds.)
+>     Link: https://discord.com/channels/1389902002737250314/1399760916962213959/1401589542321913976
+>
+> ```json
+> {
+>   "id": "cite-mh5ji12v-z1lnh7",
+>   "messages": [
+>     {
+>       "id": "1401589337543413893",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<MODLAR>!: now playing back",
+>       "timestamp": "2025-08-03T15:35:38.341000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589337543413893"
+>     },
+>     {
+>       "id": "1401589542321913976",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(I can only hear of a couple of seconds.)",
+>       "timestamp": "2025-08-03T15:36:27.164000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589542321913976"
+>     }
+>   ]
+> }
+> ```
 
 ---
 ## LM-3
