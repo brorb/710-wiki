@@ -103,11 +103,24 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 
 ## Schedule
 
-The schedule for Channel 14 often subject to change.
+Channel 14's schedule is often subject to change.
 
-From [[LOG-40.mp4]]:
+**From [[LOG-40.mp4]]:**
+![[LOG-40 Channel 14 schedule.png|500]]
 
+**From [[LOG-154.mp4]]:**
+![[Weather from LOG-154 (channel 14).png|500]]
+![[(blank) Against Russia Channel 14.png|500]]
+![[Atomic Channel 14.png|500]]
+![[Atomic glitch Channel 14.png|500]]
+![[Wonders of Nationol Park Channel 14.png|500]]
 
+**From [[garbage_sgl.mp4]]:**
 
-This is a recreation. See [gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png) for the original one.
+![[Weather and Morning Chats this Lyoce J.png|500]]
+![[(blank)'s Mighty Construction.png|500]]
+![[Ferkland Channel 14 reveal better.png|500]]
+![[LowLock5 Channel 14.png|500]]
+
+**Gift from [[SYSTEM]]** _(this is a recreation, see [gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png) for the original)
 ![[gift_fixed.png|500]]
