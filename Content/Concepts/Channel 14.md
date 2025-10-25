@@ -101,5 +101,10 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 > }
 > ```
 
+
+## Schedule
+
+The schedule for Channel 14 often subject to change, 
+
 This is a recreation. See [gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png) for the original one.
 ![[gift_fixed.png|500]]
