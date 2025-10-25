@@ -24,7 +24,6 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->.
 
-
 > [!discord-cite]- Discord citation (2 messages)
 > 
 > ```json
@@ -102,5 +101,5 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 > }
 > ```
 
-This is a recreation. See [[[gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png)]] for the original one.
+This is a recreation. See [gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png) for the original one.
 ![[gift_fixed.png|500]]
