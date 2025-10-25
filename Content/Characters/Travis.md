@@ -10,6 +10,7 @@ Caption: Travis' parting gift from [[prj_home.exe]].
 Appearances:
 - [[STATION_8 TRIM 5]]
 - Community posts
+Status: Dead
 ```
 
 
