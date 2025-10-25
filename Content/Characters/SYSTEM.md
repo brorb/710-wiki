@@ -2062,9 +2062,9 @@ _From @brorb's DMs._
 ]
 ```
 
-After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" (see Discord embeds above).
+After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" and that it was possibly in danger.
 
-About 10 days later (6th September 2025), it logged into Session 17 before it crashed then restarted its Terminal.
+On 6th September 2025, after the "SESSION LOGGED OUTPUT 2322" community post was uploaded (see [[Community Posts]]), it logged into Session 17 before it crashed then restarted its Terminal.
 ```discord
 [
   {
@@ -2350,80 +2350,109 @@ About 10 days later (6th September 2025), it logged into Session 17 before it cr
 ]
 ```
 
-Now SYSTEM no longer inputs the "0- 2-" command automatically, and a new update to the command help menu was discovered within its Terminal menu:
-```discord
-[
-  {
-    "id": "1413742210750349404",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<HELP>!:=============[help menu]============",
-    "timestamp": "2025-09-06T04:26:49.103000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742210750349404"
-  },
-  {
-    "id": "1413742234871926898",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<HELP>!:help = 0-",
-    "timestamp": "2025-09-06T04:26:54.854000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742234871926898"
-  },
-  {
-    "id": "1413742256912994354",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<HELP>!:TERMINAL_Storage4u = 1-",
-    "timestamp": "2025-09-06T04:27:00.109000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742256912994354"
-  },
-  {
-    "id": "1413742280296366081",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<HELP>!:ACCESS_Subframe = 2-",
-    "timestamp": "2025-09-06T04:27:05.684000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742280296366081"
-  },
-  {
-    "id": "1413742302383308842",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<HELP>!:Back = 3-",
-    "timestamp": "2025-09-06T04:27:10.950000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742302383308842"
-  }
-]
+Now SYSTEM no longer input the "0- 2-" command automatically, and a new minor update to the command help menu was discovered within its Terminal menu<!-- discord-cite:cite-mh5jsec5-lgx0vc -->:
+
+> [!discord-cite]- Discord citation (5 messages)
+> 1. SYSTEM - 2025-09-06 00:26
+>     &lt;HELP&gt;!:=============[help menu]============
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1413742210750349404
+> 2. SYSTEM - 2025-09-06 00:26
+>     &lt;HELP&gt;!:help = 0-
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1413742234871926898
+> 3. SYSTEM - 2025-09-06 00:27
+>     &lt;HELP&gt;!:TERMINAL_Storage4u = 1-
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1413742256912994354
+> 4. SYSTEM - 2025-09-06 00:27
+>     &lt;HELP&gt;!:ACCESS_Subframe = 2-
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1413742280296366081
+> 5. SYSTEM - 2025-09-06 00:27
+>     &lt;HELP&gt;!:Back = 3-
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1413742302383308842
+>
+> ```json
+> {
+>   "id": "cite-mh5jsec5-lgx0vc",
+>   "messages": [
+>     {
+>       "id": "1413742210750349404",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<HELP>!:=============[help menu]============",
+>       "timestamp": "2025-09-06T04:26:49.103000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742210750349404"
+>     },
+>     {
+>       "id": "1413742234871926898",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<HELP>!:help = 0-",
+>       "timestamp": "2025-09-06T04:26:54.854000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742234871926898"
+>     },
+>     {
+>       "id": "1413742256912994354",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<HELP>!:TERMINAL_Storage4u = 1-",
+>       "timestamp": "2025-09-06T04:27:00.109000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742256912994354"
+>     },
+>     {
+>       "id": "1413742280296366081",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<HELP>!:ACCESS_Subframe = 2-",
+>       "timestamp": "2025-09-06T04:27:05.684000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742280296366081"
+>     },
+>     {
+>       "id": "1413742302383308842",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<HELP>!:Back = 3-",
+>       "timestamp": "2025-09-06T04:27:10.950000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742302383308842"
+>     }
+>   ]
+> }
+> ```
+
+```
+<HELP>!:=============[help menu]============
+<HELP>!:help = 0-
+<HELP>!:TERMINAL_Storage4u = 1-
+<HELP>!:ACCESS_Subframe = 2-
+<HELP>!:Back = 3-
 ```
 
 And the Terminal Storage menu contained a "bad" message from SYSTEM:
@@ -2555,7 +2584,7 @@ I get that it's disappointing to see this, but please stay positive.
 I will find a way out, and I will take IN_DI with me. I hope.
 ```
 
-This confirms that [[He]] had hijacked SYSTEM once again and now the real SYSTEM is gone, aside from a backup copy of itself in case of emergency situations.
+This confirms that [[He]] had hijacked SYSTEM and now the real SYSTEM is gone, aside from a backup copy of itself in case of emergency situations.
 
 A few hours later, [[The Sleuths]] inputted the "ACCESS_Subframe" command to see what would happen:
 ```discord
@@ -2857,7 +2886,7 @@ A few hours later, [[The Sleuths]] inputted the "ACCESS_Subframe" command to see
 ]
 ```
 
-After it crashed, it skipped Session 3 and the "ACCESS_Subframe" command worked this time:
+After it crashed, it skipped Session 3 completely and the "ACCESS_Subframe" command worked this time:
 ```discord
 [
   {
@@ -3961,8 +3990,7 @@ After it successfully connected, [[The Sleuths]] were able to talk to an entity 
 ]
 ```
 
-On 7th September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused an overflow error within SYSTEM:
-
+On 7th September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused SYSTEM to experience an overflow error:
 ```discord
 [
   {
@@ -5009,7 +5037,7 @@ AND I CANNOT CONTROL IT
 ```
 
 ![[HIS PRECEPTION (full metadata)-min.png|400]]
-This message is most likely from [[INDI]] or some other entity, judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
+This message is most likely from [[INDI]] or another similar entity judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
 
 In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with the name Rod Formak, who is assigned as a Technician Engineer and possibly the real name of [[He]]:
 ```discord
@@ -5283,7 +5311,7 @@ In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with t
 ]
 ```
 
-On 5th October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream):
+On 5th October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream) that also could come with an "explanation" for something:
 ```discord
 [
   {
@@ -5303,8 +5331,7 @@ On 5th October 2025, SYSTEM posted the following cryptic message, which seems to
 ]
 ```
 
-Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" in the media channel of [[The Sleuths]] Discord server that was apparently obtained by accessing an "MI drive":
-
+Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" in the media channel of [[The Sleuths]] Discord server that was apparently obtained by accessing an MI drive:
 ```discord
 [
   {
@@ -5560,4 +5587,4 @@ Then it appeared to have mounted some hard drives (C to I) and attempted to impo
 ---
 ## Hardware capabilities
 
-SYSTEM sometimes had the ability to speak in two different instances, as seen from [[SERVER 01]].
+SYSTEM sometimes has the ability to speak in two different instances, as seen from [[SERVER 01]].
