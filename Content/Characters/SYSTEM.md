@@ -5587,4 +5587,7 @@ Then it appeared to have mounted some hard drives (C to I) and attempted to impo
 ---
 ## Hardware capabilities
 
-SYSTEM sometimes has the ability to speak in two different instances, as seen from [[SERVER 01]].
+SYSTEM sometimes has the ability to speak in two different instances (as seen from [[SERVER 01]]), which it refers as a "brainstorming program"
+
+![[Brainstorming program SYSTEM.png|700]]
+

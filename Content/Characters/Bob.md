@@ -12,7 +12,7 @@ tags:
  ██████
 ```
 
-Bob was created by [[SYSTEM]] as a form of a "meme", which it posted in the \#dhitposting channel of [[The Sleuths]] Discord server.
+Bob was created by [[SYSTEM]] as a form of a "meme", which it posted in the dhitposting (off-topic) channel of [[The Sleuths]] Discord server.
 
 ```discord
 [
