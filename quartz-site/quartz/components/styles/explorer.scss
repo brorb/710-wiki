@@ -38,6 +38,11 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    color: var(--color-tone-contrast);
+
+    & h2 {
+      color: var(--color-tone-contrast);
+    }
   }
 
   & .explorer-header-slot {
@@ -151,7 +156,7 @@ button.desktop-explorer {
   text-align: left;
   cursor: pointer;
   padding: 0;
-  color: var(--dark);
+  color: var(--color-tone-contrast);
   display: flex;
   align-items: center;
 
@@ -183,13 +188,13 @@ button.desktop-explorer {
     overscroll-behavior: contain;
 
     & li > a {
-      color: var(--dark);
+      color: var(--color-tone-muted);
       opacity: 0.75;
       pointer-events: all;
 
       &.active {
         opacity: 1;
-        color: var(--tertiary);
+        color: var(--color-tone-contrast);
       }
     }
   }

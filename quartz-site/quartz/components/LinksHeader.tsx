@@ -55,8 +55,7 @@ export default (() => {
           id="links-header"
           style={{
             "--link-button-bg": palette.buttonBackground,
-            "--link-button-border": palette.accentSecondary,
-            "--link-button-hover": palette.buttonHover,
+            "--link-button-border": palette.accentDeep,
             "--link-button-text": palette.buttonText,
           } as Record<string, string>}
         >

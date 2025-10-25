@@ -4,6 +4,37 @@ import themeColors from "./theme.colors.json"
 
 const palette = themeColors
 
+const sharedCssVars = {
+  "color-primary-background": palette.primaryBackground,
+  "color-surface-overlay": palette.surfaceOverlay,
+  "color-panel-depth": palette.panelDepth,
+  "color-tone-primary": palette.tonePrimary,
+  "color-tone-contrast": palette.toneContrast,
+  "color-tone-subtle": palette.toneSubtle,
+  "color-tone-muted": palette.toneMuted,
+  "color-accent-bright": palette.accentBright,
+  "color-accent-deep": palette.accentDeep,
+  "color-accent-shadow": palette.accentShadow,
+  "color-accent-shadow-light": palette.accentShadowLight,
+  "color-highlight-overlay": palette.highlightOverlay,
+  "color-link": palette.link,
+  "color-button-text": palette.buttonText,
+  "color-button-background": palette.buttonBackground,
+  "color-scrollbar-thumb": palette.scrollbarThumb,
+}
+
+const sharedColorScheme = {
+  light: palette.primaryBackground,
+  lightgray: palette.surfaceOverlay,
+  gray: palette.panelDepth,
+  darkgray: palette.toneContrast,
+  dark: palette.tonePrimary,
+  secondary: palette.accentBright,
+  tertiary: palette.accentDeep,
+  highlight: palette.highlightOverlay,
+  textHighlight: palette.textHighlight,
+}
+
 /**
  * Quartz 4 Configuration
  *
@@ -46,26 +77,16 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: palette.backgroundPrimary,
-          lightgray: palette.backgroundSecondary,
-          gray: palette.muted,
-          darkgray: palette.textSecondary,
-          dark: palette.textPrimary,
-          secondary: palette.accentPrimary,
-          tertiary: palette.accentSecondary,
-          highlight: palette.highlight,
-          textHighlight: palette.textHighlight,
+          ...sharedColorScheme,
+          cssVars: {
+            ...sharedCssVars,
+          },
         },
         darkMode: {
-          light: palette.backgroundPrimary,
-          lightgray: palette.backgroundSecondary,
-          gray: palette.muted,
-          darkgray: palette.textSecondary,
-          dark: palette.textPrimary,
-          secondary: palette.accentPrimary,
-          tertiary: palette.accentSecondary,
-          highlight: palette.highlight,
-          textHighlight: palette.textHighlight,
+          ...sharedColorScheme,
+          cssVars: {
+            ...sharedCssVars,
+          },
         },
       },
     },

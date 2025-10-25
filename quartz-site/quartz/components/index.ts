@@ -2,6 +2,7 @@ import Content from "./pages/Content"
 import TagContent from "./pages/TagContent"
 import FolderContent from "./pages/FolderContent"
 import NotFound from "./pages/404"
+import ArticleHeader from "./ArticleHeader"
 import ArticleTitle from "./ArticleTitle"
 import Canvas from "./Canvas"
 import Head from "./Head"
@@ -26,6 +27,7 @@ import InfoBox from "./InfoBox"
 import HomepageFeatures from "./HomepageFeatures"
 
 export {
+  ArticleHeader,
   ArticleTitle,
   Canvas,
   Content,

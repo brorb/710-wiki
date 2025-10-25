@@ -164,6 +164,18 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const width = graph.offsetWidth
   const height = Math.max(graph.offsetHeight, 250)
 
+  const linkCountMap = new Map<SimpleSlug, number>()
+  for (const node of graphData.nodes) {
+    linkCountMap.set(node.id, 0)
+  }
+
+  for (const link of graphData.links) {
+    linkCountMap.set(link.source.id, (linkCountMap.get(link.source.id) ?? 0) + 1)
+    linkCountMap.set(link.target.id, (linkCountMap.get(link.target.id) ?? 0) + 1)
+  }
+
+  const nodeRadius = (d: NodeData) => 2 + Math.sqrt(linkCountMap.get(d.id) ?? 0)
+
   // we virtualize the simulation and use pixi to actually render it
   const simulation: Simulation<NodeData, LinkData> = forceSimulation<NodeData>(graphData.nodes)
     .force("charge", forceManyBody().strength(-100 * repelForce))
@@ -176,13 +188,15 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
   // precompute style prop strings as pixi doesn't support css variables
   const cssVars = [
-    "--secondary",
-    "--tertiary",
-    "--gray",
     "--light",
-    "--lightgray",
-    "--dark",
-    "--darkgray",
+    "--color-accent-bright",
+    "--color-accent-deep",
+    "--color-accent-shadow",
+    "--color-accent-shadow-light",
+    "--color-tone-subtle",
+    "--color-tone-contrast",
+    "--color-tone-primary",
+    "--color-tone-muted",
     "--bodyFont",
   ] as const
   const computedStyleMap = cssVars.reduce(
@@ -193,23 +207,29 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     {} as Record<(typeof cssVars)[number], string>,
   )
 
-  // calculate color
-  const color = (d: NodeData) => {
-    const isCurrent = d.id === slug
-    if (isCurrent) {
-      return computedStyleMap["--secondary"]
-    } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-      return computedStyleMap["--tertiary"]
-    } else {
-      return computedStyleMap["--gray"]
+  const getNodeTone = (degree: number) => {
+    if (degree >= 6) {
+      return computedStyleMap["--color-accent-bright"]
     }
+
+    if (degree >= 3) {
+      return computedStyleMap["--color-accent-deep"]
+    }
+
+    return computedStyleMap["--color-accent-shadow-light"]
   }
 
-  function nodeRadius(d: NodeData) {
-    const numLinks = graphData.links.filter(
-      (l) => l.source.id === d.id || l.target.id === d.id,
-    ).length
-    return 2 + Math.sqrt(numLinks)
+  const color = (d: NodeData) => {
+    if (d.id === slug) {
+      return computedStyleMap["--color-accent-bright"]
+    }
+
+    if (visited.has(d.id)) {
+      return computedStyleMap["--color-accent-deep"]
+    }
+
+    const degree = linkCountMap.get(d.id) ?? 0
+    return getNodeTone(degree)
   }
 
   let hoveredNodeId: string | null = null
@@ -262,7 +282,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
         alpha = l.active ? 1 : 0.2
       }
 
-      l.color = l.active ? computedStyleMap["--gray"] : computedStyleMap["--lightgray"]
+  const edgeColor = computedStyleMap["--color-tone-subtle"]
+  l.color = edgeColor
       tweenGroup.add(new Tweened<LinkRenderData>(l).to({ alpha }, 200))
     }
 
@@ -371,6 +392,15 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const linkContainer = new Container<Graphics>({ zIndex: 1, isRenderGroup: true })
   stage.addChild(nodesContainer, labelsContainer, linkContainer)
 
+  const baseZoom = Math.max(scale ?? 1, 0.1)
+  const initialZoom = baseZoom * 1.25
+  const initialTranslateX = (width * (1 - initialZoom)) / 2
+  const initialTranslateY = (height * (1 - initialZoom)) / 2
+  const initialTransform = zoomIdentity.translate(initialTranslateX, initialTranslateY).scale(initialZoom)
+  let currentTransform = initialTransform
+  stage.scale.set(initialTransform.k, initialTransform.k)
+  stage.position.set(initialTransform.x, initialTransform.y)
+
   for (const n of graphData.nodes) {
     const nodeId = n.id
 
@@ -382,7 +412,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,
-        fill: computedStyleMap["--dark"],
+  fill: computedStyleMap["--color-tone-contrast"],
         fontFamily: computedStyleMap["--bodyFont"],
       },
       resolution: window.devicePixelRatio * 4,
@@ -416,7 +446,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       })
 
     if (isTagNode) {
-      gfx.stroke({ width: 2, color: computedStyleMap["--tertiary"] })
+      gfx.stroke({ width: 2, color: computedStyleMap["--color-accent-deep"] })
     }
 
     nodesContainer.addChild(gfx)
@@ -441,7 +471,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     const linkRenderDatum: LinkRenderData = {
       simulationData: l,
       gfx,
-      color: computedStyleMap["--lightgray"],
+  color: computedStyleMap["--color-tone-subtle"],
       alpha: 1,
       active: false,
     }
@@ -449,7 +479,6 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     linkRenderData.push(linkRenderDatum)
   }
 
-  let currentTransform = zoomIdentity
   if (enableDrag) {
     select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
       drag<HTMLCanvasElement, NodeData | undefined>()
@@ -497,30 +526,33 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   if (enableZoom) {
-    select<HTMLCanvasElement, NodeData>(app.canvas).call(
-      zoom<HTMLCanvasElement, NodeData>()
-        .extent([
-          [0, 0],
-          [width, height],
-        ])
-        .scaleExtent([0.25, 4])
-        .on("zoom", ({ transform }) => {
-          currentTransform = transform
-          stage.scale.set(transform.k, transform.k)
-          stage.position.set(transform.x, transform.y)
+    const zoomBehavior = zoom<HTMLCanvasElement, NodeData>()
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .scaleExtent([0.25, 4])
+      .on("zoom", ({ transform }) => {
+        currentTransform = transform
+        stage.scale.set(transform.k, transform.k)
+        stage.position.set(transform.x, transform.y)
 
-          // zoom adjusts opacity of labels too
-          const scale = transform.k * opacityScale
-          let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
-          const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
+        // zoom adjusts opacity of labels too
+        const scaleValue = transform.k * opacityScale
+        let scaleOpacity = Math.max((scaleValue - 1) / 3.75, 0)
+        const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
 
-          for (const label of labelsContainer.children) {
-            if (!activeNodes.includes(label)) {
-              label.alpha = scaleOpacity
-            }
+        for (const label of labelsContainer.children) {
+          if (!activeNodes.includes(label)) {
+            label.alpha = scaleOpacity
           }
-        }),
-    )
+        }
+      })
+
+    const canvasSelection = select<HTMLCanvasElement, NodeData>(app.canvas).call(zoomBehavior)
+    canvasSelection.call(zoomBehavior.transform, initialTransform)
+  } else {
+    currentTransform = initialTransform
   }
 
   let stopAnimation = false

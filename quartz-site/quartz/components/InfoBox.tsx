@@ -333,13 +333,14 @@ export default (() => {
   margin: 0 0 1.5rem 1.5rem;
   width: clamp(220px, 28vw, 320px);
   background: var(--lightgray);
-  border: 1px solid var(--gray);
+  border: 1px solid var(--color-tone-subtle);
   border-radius: 14px;
   padding: 1.25rem 1.25rem 1.5rem;
   box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.12);
   position: sticky;
   top: clamp(1.5rem, 6vh, 4rem);
   z-index: 2;
+  color: var(--color-tone-primary);
 }
 
 .infobox__title {
@@ -349,6 +350,7 @@ export default (() => {
   letter-spacing: 0.08em;
   margin: 0 0 1rem 0;
   text-align: center;
+  color: var(--color-tone-contrast);
 }
 
 .infobox__media {
@@ -368,7 +370,7 @@ export default (() => {
 
 .infobox__media figcaption {
   font-size: 0.85rem;
-  color: var(--darkgray);
+  color: var(--color-tone-primary);
   text-align: center;
   margin: 0;
   line-height: 1.3;
@@ -388,7 +390,7 @@ export default (() => {
 .infobox__fact dt {
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--darkgray);
+  color: var(--color-tone-contrast);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -397,7 +399,7 @@ export default (() => {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.35;
-  color: var(--gray);
+  color: var(--color-tone-primary);
 }
 
 @media (max-width: 1024px) {
