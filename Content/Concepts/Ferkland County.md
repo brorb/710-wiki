@@ -11,5 +11,8 @@ Associates:
 - Ferkland Institute
 ```
 
-In the 7/10 Universe, Ferkland County is a location in Nebraska, USA.
+In the 7/10 Universe, Ferkland County is a location in Nebraska, USA. This is where [[Channel 14]]'s broadcasting station is located.
 
+It was briefly mentioned in one of the [[Channel 14]] schedules shown in [[garbage_sgl.mp4]] as censored text, which was accidentally revealed for a split second as the text faded out.
+
+![[Ferkland Channel 14 reveal.png|500]]
