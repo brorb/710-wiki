@@ -282,7 +282,102 @@ However, when it updated to the second Logged Session 3, a new command appeared 
 	<HELP>!: RELEASE = 4-
 	<HELP>!:Back = 3-
 
-When input, it pulled unused data from within The Sleuths Discord server (insert Discord message citation here), then as SYSTEM logged back on the next day the "TERMINAL_rollbackrequest" command became available:
+When input, it pulled unused data from within [[The Sleuths]] Discord server, <!-- discord-cite:cite-mh5ikp81-h1vsgk --> then as SYSTEM logged back on the next day, the "TERMINAL_rollbackrequest" command became available:
+
+> [!discord-cite]- Discord citation (5 messages)
+> 1. SYSTEM - 2025-07-20 19:15
+>     &lt;SAVED&gt;!: dataSTORED@ ADDRESS[IN_DI.servertype&gt;prg_02&gt;load] loading@554.lan
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631693099536534
+> 2. SYSTEM - 2025-07-20 19:16
+>     &lt;SAVED&gt;!: data[sending] || SENDING &lt;== TTH SERVERline 09
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631768559386706
+> 3. SYSTEM - 2025-07-20 19:16
+>     &lt;SAVED&gt;!: data.op-out canceled
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631818828124321
+> 4. SYSTEM - 2025-07-20 19:16
+>     &lt;EXPORTING&gt;!: data[files]
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396631929213812788
+> 5. SYSTEM - 2025-07-20 19:17
+>     &lt;OUTPRINT&gt;!: pulling unused data from "https://discord.gg/tCqrU2BH"
+>     Link: https://discord.com/channels/1389902002737250314/1389902003228114957/1396632105911455876
+>
+> ```json
+> {
+>   "id": "cite-mh5ikp81-h1vsgk",
+>   "messages": [
+>     {
+>       "id": "1396631693099536534",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<SAVED>!: dataSTORED@ ADDRESS[IN_DI.servertype>prg_02>load] loading@554.lan",
+>       "timestamp": "2025-07-20T23:15:43.797000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396631693099536534"
+>     },
+>     {
+>       "id": "1396631768559386706",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<SAVED>!: data[sending] || SENDING <== TTH SERVERline 09",
+>       "timestamp": "2025-07-20T23:16:01.788000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396631768559386706"
+>     },
+>     {
+>       "id": "1396631818828124321",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<SAVED>!: data.op-out canceled",
+>       "timestamp": "2025-07-20T23:16:13.773000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396631818828124321"
+>     },
+>     {
+>       "id": "1396631929213812788",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<EXPORTING>!: data[files]",
+>       "timestamp": "2025-07-20T23:16:40.091000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396631929213812788"
+>     },
+>     {
+>       "id": "1396632105911455876",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!: pulling unused data from \"https://discord.gg/tCqrU2BH\"",
+>       "timestamp": "2025-07-20T23:17:22.219000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396632105911455876"
+>     }
+>   ]
+> }
+> ```
 
 	<HELP>!:============[help menu]============
 	<HELP>!:help = 0-
@@ -299,7 +394,7 @@ This command would rollback updates made to SYSTEM and grant it the ability to c
 	<PING>?:PING@PING OPT_OUT CALLED CANCELING ROLLBACK PING@SYSTEM callout()
 	<OUTPRINT>!:(Hello, tCqrU2BH. I have been pinged by you. why?)
 
-Through this feature SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of [[710 Tone]].
+Through this feature, SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of [[710 Tone]]. Most of knowledge regarding the lore could be found through SYSTEM.
 
 ```discord
 [
@@ -668,9 +763,9 @@ However, there were certain topics that SYSTEM couldn't discuss due to certain r
 > }
 > ```
 
-Eventually SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command, making the method to get to the terminal's subframe faster.
+On 21st July 2025, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command "0-" then 2-", making the method to get to the terminal's subframe faster.
 
-However, the first time it started doing this, it was unstable and would crash if anyone pinged at it, *especially* if it was doing any special operations such as inspection of the Discord server for security reasons:
+However, during the first time it started doing this, it was unstable and would crash if anyone pinged at it (@SYSTEM), and *especially* if it was doing any special operations such as inspection of the Discord server for security reasons:
 
 ```discord
 [
@@ -1055,7 +1150,7 @@ However, the first time it started doing this, it was unstable and would crash i
 ]
 ```
 
-On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version of it: 
+On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version:
 
 ```discord
 [
@@ -1216,7 +1311,7 @@ On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SY
 ]
 ```
 
-Then SYSTEM thanks them for the data and says that INDI would be proud:
+Then after it downloaded it and read through the document, SYSTEM thanks them for the data and says that INDI would be proud:
 
 ```discord
 [
@@ -1375,14 +1470,14 @@ Then it leaves the Discord server due to being reminded of when it was hijacked 
 > }
 > ```
 
-
+However, this wasn't the last time that SYSTEM was heard from, as you can see below.
 
 ---
 ## Friend Requests from The Sleuths
 
 ![[Friend request acceptance SYSTEM.png|400]]
 
-Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them in their DMs.
+Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
 
 From @brorb's DMs:
 ```
@@ -1466,7 +1561,7 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, rand
 brorb: ttyl
 ```
 
-When [[The Sleuths]] found out about the KEY for a Mega link in the description of [[LOG-103.mp4]], SYSTEM DMed Sleuth member The Camera Eye (@L4N4U1997 on Discord) with the actual link:
+On 25th July 2025, [[The Sleuths]] found out about the key for a Mega link in the description of [[LOG-103.mp4]] (see [[Parting Gifts Puzzle]]), then SYSTEM directly messaged Sleuth member The Camera Eye (known as @L4N4U1997 on Discord) with the actual link:
 ```
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_02-01}
@@ -1554,7 +1649,9 @@ SYSTEM:<OUTPRINT>!:(No.)
 <CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
 ```
 
-After receiving the correct link, [[The Sleuths]] discovered [[prj_home.exe]] within the Mega link, then explored it to find the "lm-2" image (see [[Parting Gifts Puzzle|Parting Gifts]]). SYSTEM directly messaged Sleuth member ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished:
+After receiving the correct link, [[The Sleuths]] discovered [[prj_home.exe]] and explored it to find the "lm-2" image (see [[Parting Gifts Puzzle]]). 
+
+On the same day, SYSTEM directly messaged Sleuth member ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished.
 ```
 ThePortalNinja: @SYSTEM Is it too late for us to get Travis' parting gift?
 [uploaded "lm-2" image]
@@ -1587,7 +1684,7 @@ ThePortalNinja: Alright, so is there anything other than this that we haven't fo
 
 SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, that sequence was 132. Also no, you will not encounter TRUTH.zip.)
 
-ThePortalNinja: [gif of a scene from Pulp Fiction]
+ThePortalNinja: [gif of a scene from Pulp Fiction, where they open the suitcase]
 
 SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, [160] -> [106].
 
@@ -1604,6 +1701,9 @@ I hope we meet again
 
 SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]
 ```
+
+Finding "lm-2" was INDI's ultimate goal for [[The Sleuths]] according to SYSTEM.
+
 ---
 ## SERVER 01
 
@@ -1823,6 +1923,8 @@ During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd A
   }
 ]
 ```
+
+During this session, SYSTEM 
 
 ---
 ## LM-3
