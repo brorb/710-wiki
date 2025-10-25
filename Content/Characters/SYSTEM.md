@@ -109,7 +109,24 @@ Users would then reply with "0-", "1-", "2-", etc., to navigate the file system.
 
 ### IN_DI Message
 
-![[Example of System message.png]]
+```discord
+[
+  {
+    "id": "1417669264675967039",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<CALL>!:=========[TERMINAL_Storage4u]=========\n<CALL>!:IN_DI Message 01 = 1- \n<CALL>!:Gift = 2-\n<CALL>!:bad = 3-\n<CALL>!:present = 3-\n<CALL>!:Back = 4-",
+    "timestamp": "2025-09-17T00:31:31.720000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669264675967039"
+  }
+]
+```
 _Example of the TERMINAL\_Storage4u command menu._
 
 Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received [[INDI]]'s message:
