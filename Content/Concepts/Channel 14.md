@@ -102,5 +102,5 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 > }
 > ```
 
-This is a recreation. See [gift-full.png] for the original one.
+This is a recreation. See [[[gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png)]] for the original one.
 ![[gift_fixed.png|500]]
