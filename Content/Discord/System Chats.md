@@ -23025,7 +23025,35 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 
 ## From Sleuths DMs
 
+![[brorb SYSTEM DM 1.png|450]]
+![[brorb SYSTEM DM 2.png|700]]
+![[brorb SYSTEM DM 3.png|600]]
+![[brorb SYSTEM DM 4.png|700]]
+![[Camera SYSTEM DM(1).png|450]]
+![[Camera SYSTEM DM(2).png|450]]
+![[Camera SYSTEM DM(3).png|600]]
+![[Camera SYSTEM DM(4).png|700]]
+![[Camera SYSTEM DM(5).png|700]]
+![[portal1.png|450]]
+![[portal2.png|600]]
+![[portal3.png|450]]
+![[portal4.png|600]]
+![[portal5.png|600]]
 
+**LM-2 Clarification**
+![[Portal SYSTEM DM lm-2 clarification1.png|600]]
+![[Portal SYSTEM DM lm-2 clarification2.png|450]]
+![[Portal SYSTEM DM lm-2 clarification3.png|600]]
+![[Portal SYSTEM DM lm-2 clarification4.png|600]]
+
+![[document 08 (noel).jpg|350]]
+
+**DM codes from SYSTEM:**
+![[brorb SYSTEM DM code.png|400]]
+![[portal code from SYSTEM.jpg|350]]
+![[Camera SYSTEM DM code.png|700]]
+![[Noel SYSTEM code.jpg|350]]
+![[kay SYSTEM DM code.png|300]]
 
 ## SERVER 01
 
