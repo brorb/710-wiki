@@ -3958,34 +3958,6 @@ var DISCORD_CSS = `
   max-width: min(720px, 100%);
 }
 
-.discord-thread-wrapper::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 96px;
-  pointer-events: none;
-  opacity: 0;
-  background: none;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.discord-thread-wrapper.collapsed {
-  max-height: 420px;
-  overflow: hidden;
-}
-
-.discord-thread-wrapper.collapsed::after {
-  opacity: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(43, 45, 49, 0) 0%,
-    rgba(43, 45, 49, 0.68) 52%,
-    color-mix(in srgb, rgba(43, 45, 49, 0.92) 70%, var(--color-primary-background) 30%) 100%
-  );
-}
-
 .discord-thread-content {
   position: relative;
   overflow: hidden;
@@ -3994,6 +3966,29 @@ var DISCORD_CSS = `
 
 .discord-thread-content.collapsed {
   max-height: 420px;
+}
+
+.discord-thread-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 120px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 45, 49, 0) 0%,
+    rgba(43, 45, 49, 0.72) 52%,
+    color-mix(in srgb, rgba(43, 45, 49, 0.9) 30%, var(--color-primary-background) 70%) 78%,
+    var(--color-primary-background) 100%
+  );
+  transition: opacity 0.28s ease;
+  z-index: 2;
+}
+
+.discord-thread-wrapper.collapsed .discord-thread-fade,
+.discord-thread-content.collapsed .discord-thread-fade {
+  opacity: 1;
 }
 
 .discord-collapse-toggle {
@@ -4037,6 +4032,7 @@ var DISCORD_CSS = `
 .discord-collapse-icon {
   width: 16px;
   height: 16px;
+  transform-origin: 50% 50%;
   transition: transform 0.3s ease;
 }
 
@@ -4044,7 +4040,8 @@ var DISCORD_CSS = `
   transform: rotate(0deg);
 }
 
-.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon {
+.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon,
+.discord-collapse-toggle.is-expanded .discord-collapse-icon {
   transform: rotate(180deg);
 }
 
@@ -4528,6 +4525,7 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
     </${containerTag}>
+    <div class="discord-thread-fade" aria-hidden="true"></div>
   </div>
   <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
     <span>Show More</span>
@@ -7164,7 +7162,7 @@ var OverflowList_default = /* @__PURE__ */ __name(() => {
   return {
     OverflowList: /* @__PURE__ */ __name((props) => /* @__PURE__ */ jsx22(OverflowList, { ...props, id }), "OverflowList"),
     overflowListAfterDOMLoaded: `
-document.addEventListener("nav", (e) => {
+document.addEventListener("nav", () => {
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       const parentUl = entry.target.parentElement
@@ -7185,6 +7183,58 @@ document.addEventListener("nav", (e) => {
 
   observer.observe(end)
   window.addCleanup(() => observer.disconnect())
+
+  const scrollHostCandidate = ul.closest(".explorer-content, .toc-content, .backlinks-content")
+  const scrollContainer = scrollHostCandidate instanceof HTMLElement ? scrollHostCandidate : ul
+  const hostCandidate =
+    scrollContainer.closest(".explorer") ||
+    scrollContainer.closest(".toc-container") ||
+    scrollContainer.closest(".backlinks-container")
+  const proxyHost = hostCandidate instanceof HTMLElement ? hostCandidate : scrollContainer
+
+  if (!(proxyHost instanceof HTMLElement) || proxyHost.hasAttribute("data-scroll-proxy")) {
+    return
+  }
+
+  const wheelHandler = (event) => {
+    if (proxyHost.classList.contains("collapsed") || scrollContainer.classList.contains("collapsed")) {
+      return
+    }
+
+    if (scrollContainer.scrollHeight <= scrollContainer.clientHeight + 1) {
+      return
+    }
+
+    const multiplier =
+      event.deltaMode === 1
+        ? 16
+        : event.deltaMode === 2
+          ? scrollContainer.clientHeight
+          : 1
+    const delta = event.deltaY * multiplier
+    if (delta === 0) {
+      return
+    }
+
+    const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight
+    const nextScroll = Math.min(maxScroll, Math.max(0, scrollContainer.scrollTop + delta))
+
+    if (nextScroll === scrollContainer.scrollTop) {
+      return
+    }
+
+    scrollContainer.scrollTop = nextScroll
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  proxyHost.addEventListener("wheel", wheelHandler, { passive: false })
+  proxyHost.setAttribute("data-scroll-proxy", "true")
+
+  window.addCleanup(() => {
+    proxyHost.removeEventListener("wheel", wheelHandler)
+    proxyHost.removeAttribute("data-scroll-proxy")
+  })
 })
 `
   };
@@ -7240,6 +7290,7 @@ var TableOfContents_default = /* @__PURE__ */ __name(((opts) => {
           ]
         }
       ),
+      /* @__PURE__ */ jsx23("span", { class: "toc-scroll-indicator", "aria-hidden": "true" }),
       /* @__PURE__ */ jsx23(
         OverflowList2,
         {

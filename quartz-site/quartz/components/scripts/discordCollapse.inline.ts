@@ -20,32 +20,39 @@ document.addEventListener("nav", () => {
       if (!threadElement) return
 
       const wrapper = content.closest(".discord-thread-wrapper") as HTMLElement | null
-  const collapsedHeight = 420
+      const toggleButton = toggle as HTMLElement
+      const contentElement = content as HTMLElement
+      const collapsedHeight = 420
 
       const applyWrapperState = (isCollapsed: boolean) => {
         if (!wrapper) return
-        if (isCollapsed) {
-          wrapper.classList.add("collapsed")
-          wrapper.style.maxHeight = `${collapsedHeight}px`
-        } else {
-          wrapper.classList.remove("collapsed")
-          wrapper.style.removeProperty("max-height")
+        wrapper.classList.toggle("collapsed", isCollapsed)
+      }
+
+      const setToggleState = (expanded: boolean) => {
+        toggleButton.setAttribute("aria-expanded", expanded ? "true" : "false")
+        toggleButton.classList.toggle("is-expanded", expanded)
+        const toggleText = toggleButton.querySelector("span")
+        if (toggleText) {
+          toggleText.textContent = expanded ? "Show Less" : "Show More"
         }
       }
       
       // Check if content is taller than collapsed height
       const checkHeight = () => {
-  const fullHeight = threadElement.scrollHeight
-        
+        const fullHeight = threadElement.scrollHeight
+
         if (fullHeight <= collapsedHeight) {
-          (toggle as HTMLElement).style.display = "none"
-          content.classList.remove("collapsed")
-          ;(content as HTMLElement).style.maxHeight = "none"
+          toggleButton.style.display = "none"
+          contentElement.classList.remove("collapsed")
+          contentElement.style.maxHeight = "none"
           applyWrapperState(false)
+          setToggleState(true)
         } else {
-          (toggle as HTMLElement).style.display = "flex"
-          const isCollapsed = content.classList.contains("collapsed")
+          toggleButton.style.display = "flex"
+          const isCollapsed = contentElement.classList.contains("collapsed")
           applyWrapperState(isCollapsed)
+          setToggleState(!isCollapsed)
         }
       }
       
@@ -54,29 +61,26 @@ document.addEventListener("nav", () => {
       
       // Handle toggle click
       toggle.addEventListener("click", () => {
-        const isCollapsed = content.classList.contains("collapsed")
-        const toggleText = toggle.querySelector("span")
-        
+        const isCollapsed = contentElement.classList.contains("collapsed")
+
         if (isCollapsed) {
-          content.classList.remove("collapsed")
-          ;(content as HTMLElement).style.maxHeight = `${threadElement.scrollHeight}px`
+          contentElement.classList.remove("collapsed")
+          contentElement.style.maxHeight = `${threadElement.scrollHeight}px`
           applyWrapperState(false)
-          toggle.setAttribute("aria-expanded", "true")
-          if (toggleText) toggleText.textContent = "Show Less"
+          setToggleState(true)
           
           // Force reflow to ensure smooth animation on first expand
-          void (content as HTMLElement).offsetHeight
+          void contentElement.offsetHeight
           window.setTimeout(() => {
-            if (!content.classList.contains("collapsed")) {
-              ;(content as HTMLElement).style.maxHeight = "none"
+            if (!contentElement.classList.contains("collapsed")) {
+              contentElement.style.maxHeight = "none"
             }
           }, 400)
         } else {
-          content.classList.add("collapsed")
-          ;(content as HTMLElement).style.maxHeight = "420px"
+          contentElement.classList.add("collapsed")
+          contentElement.style.maxHeight = `${collapsedHeight}px`
           applyWrapperState(true)
-          toggle.setAttribute("aria-expanded", "false")
-          if (toggleText) toggleText.textContent = "Show More"
+          setToggleState(false)
         }
       })
       

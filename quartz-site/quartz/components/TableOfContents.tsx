@@ -63,6 +63,7 @@ export default ((opts?: Partial<Options>) => {
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
+          <span class="toc-scroll-indicator" aria-hidden="true"></span>
           <OverflowList
             id={id}
             class={initiallyCollapsed ? "collapsed toc-content" : "toc-content"}

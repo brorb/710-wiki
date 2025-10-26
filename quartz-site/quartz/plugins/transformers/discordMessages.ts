@@ -65,34 +65,6 @@ const DISCORD_CSS = `
   max-width: min(720px, 100%);
 }
 
-.discord-thread-wrapper::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 96px;
-  pointer-events: none;
-  opacity: 0;
-  background: none;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.discord-thread-wrapper.collapsed {
-  max-height: 420px;
-  overflow: hidden;
-}
-
-.discord-thread-wrapper.collapsed::after {
-  opacity: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(43, 45, 49, 0) 0%,
-    rgba(43, 45, 49, 0.68) 52%,
-    color-mix(in srgb, rgba(43, 45, 49, 0.92) 70%, var(--color-primary-background) 30%) 100%
-  );
-}
-
 .discord-thread-content {
   position: relative;
   overflow: hidden;
@@ -101,6 +73,29 @@ const DISCORD_CSS = `
 
 .discord-thread-content.collapsed {
   max-height: 420px;
+}
+
+.discord-thread-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 120px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 45, 49, 0) 0%,
+    rgba(43, 45, 49, 0.72) 52%,
+    color-mix(in srgb, rgba(43, 45, 49, 0.9) 30%, var(--color-primary-background) 70%) 78%,
+    var(--color-primary-background) 100%
+  );
+  transition: opacity 0.28s ease;
+  z-index: 2;
+}
+
+.discord-thread-wrapper.collapsed .discord-thread-fade,
+.discord-thread-content.collapsed .discord-thread-fade {
+  opacity: 1;
 }
 
 .discord-collapse-toggle {
@@ -144,6 +139,7 @@ const DISCORD_CSS = `
 .discord-collapse-icon {
   width: 16px;
   height: 16px;
+  transform-origin: 50% 50%;
   transition: transform 0.3s ease;
 }
 
@@ -151,7 +147,8 @@ const DISCORD_CSS = `
   transform: rotate(0deg);
 }
 
-.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon {
+.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon,
+.discord-collapse-toggle.is-expanded .discord-collapse-icon {
   transform: rotate(180deg);
 }
 
@@ -752,6 +749,7 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
     </${containerTag}>
+    <div class="discord-thread-fade" aria-hidden="true"></div>
   </div>
   <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
     <span>Show More</span>

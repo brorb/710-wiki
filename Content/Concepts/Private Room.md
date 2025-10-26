@@ -13,6 +13,9 @@ Appearances:
 - [[LOG-123.mp4]]
 - [[STATION_8 TRIM 90]] (mentioned)
 - [[STATION_8 TERMINAL 8]] (mentioned)
+Also known as:
+- Super Private Chat
+- SPR
 ```
 
 The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public. It is also called SPR chat, for "Super Private Chat"
@@ -21,19 +24,29 @@ There are two ways in which the chats have become available to the public:
 1. Via [[Community Posts]] on the [[710 Tone]] channel
 2. Via videos on the [[710 Tone]] channel
 
-There are 10 known private room chats, of which 7 have been from community posts, and 3 from videos. Below they appear 
+
 
 ## Content
 There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without alias. The topics are usually about 
 
-# Community post, 2024:
+There are 10 known private room chats, of which 7 have been from community posts, and 3 from videos. Below they appear in chronological order
 
+
+
+## Chat #1
+```
 "He only stared at me, and the last thing he tells me is to watch for the red star. I couldn't get that stupid logo out of my head ever since that day, like it had been burned into the gray matter."
 "And did you see him again after that?"
 "No, I l��ke� fo� ��� ��������������������������
+```
+This one originates from a [[Community Posts|2024 community post]]. 
+It is possible that the unspecified "he" is [[He]], but the lack of capitalization puts this into debate. The logo referred to could be that of [[TTH]], [[The Eyes]] or even the [[Ferkland Institute]].
+The last message gets cut off and corrupted, likely meant to start with "No, I looked for ....".
 
-# Community post, 2024:
-
+It is unknown who the two chatters were.
+ 
+## Chat #2 
+```
 "Technician speaking"
 "Hi, what's your number?"
 "F8887, and yours?"
@@ -44,11 +57,13 @@ There are only two parties chatting at a time, often under aliases, although [[T
 "Well now we are picking up random frequencies from the stations"
 "well, I think we have to resort to the next plan"
 "Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������
+```
+ This one originates from a [[Community Posts|2024 community post]] and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
 
+In this chat, they talk about picking up noise from the "stations".
+## Chat #3
 
-# 2025.01.24: 
-From [[{_ _ _-_ _._ _ _}re]]:
-
+```
 YOU ARE ID ==A992144==
 OTHER IS ID ==X331239==
 
@@ -60,6 +75,8 @@ OTHER IS ID ==X331239==
 ==A992144== ARE YOU SAYING THAT IT'S OUT FAULT FOR THAT INCIDENT?
 ==X331239==: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE ARE TERMINATING THE MISSION
 ==A992144==: WE'LL TRY
+```
+This chat comes from the video [[{_ _ _-_ _._ _ _}re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's.
 
 # 2025.03.04:
 From [[LOG-62.mp4]]:

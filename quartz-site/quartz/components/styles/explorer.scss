@@ -12,7 +12,7 @@
   border-radius: 10px;
   background-color: color-mix(in srgb, var(--color-surface-overlay) 65%, transparent);
   transition: border-color 0.2s ease, background-color 0.2s ease;
-  overflow: hidden;
+  overflow: visible;
 
   &:hover {
     border-color: var(--color-accent-deep);
@@ -177,6 +177,7 @@ button.desktop-explorer {
   max-height: 60vh;
   opacity: 1;
   pointer-events: auto;
+  scrollbar-gutter: stable both-edges;
   transition:
     max-height 0.32s ease,
     opacity 0.32s ease,

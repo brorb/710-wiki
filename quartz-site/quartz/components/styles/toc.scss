@@ -17,6 +17,7 @@
     padding: 0.75rem 0.85rem;
     background-color: color-mix(in srgb, var(--color-surface-overlay) 65%, transparent);
     transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
 
     &:hover {
       border-color: var(--color-accent-deep);
@@ -69,6 +70,7 @@ ul.toc-content.overflow {
   list-style: none;
   overflow: hidden;
   overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
   transition:
     max-height 0.28s ease,
     opacity 0.28s ease,
@@ -100,4 +102,19 @@ ul.toc-content.overflow {
       padding-left: calc(1rem * #{$i});
     }
   }
+}
+
+.toc-scroll-indicator {
+  position: absolute;
+  left: -0.7rem;
+  top: 0.9rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-accent-bright);
+  box-shadow: 0 0 0.65rem rgba(235, 28, 36, 0.5);
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform 160ms ease, opacity 160ms ease;
+  pointer-events: none;
 }
