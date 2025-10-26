@@ -51,6 +51,24 @@ const cleanupFns: Set<(...args: any[]) => void> = window.__quartzCleanupFns ?? n
 window.__quartzCleanupFns = cleanupFns
 window.addCleanup = (fn) => cleanupFns.add(fn)
 
+const scrollToHashTarget = (hash: string, behavior: ScrollBehavior = "smooth"): boolean => {
+  const id = decodeURIComponent(hash.startsWith("#") ? hash.substring(1) : hash)
+  if (!id) {
+    return false
+  }
+
+  const el = document.getElementById(id)
+  if (!el) {
+    return false
+  }
+
+  const styles = window.getComputedStyle(el)
+  const marginTop = Number.parseFloat(styles.scrollMarginTop) || 0
+  const targetTop = window.scrollY + el.getBoundingClientRect().top - marginTop
+  window.scrollTo({ top: targetTop, left: window.scrollX, behavior })
+  return true
+}
+
 function startLoading() {
   const loadingBar = document.createElement("div")
   loadingBar.className = "navigation-progress"
@@ -115,10 +133,11 @@ async function _navigate(url: URL, isBack: boolean = false) {
   // scroll into place and add history
   if (!isBack) {
     if (url.hash) {
-      const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
-      el?.scrollIntoView()
+      if (!scrollToHashTarget(url.hash, "smooth")) {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+      }
     } else {
-      window.scrollTo({ top: 0 })
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     }
   }
 
@@ -162,8 +181,7 @@ function createRouter() {
       event.preventDefault()
 
       if (isSamePage(url) && url.hash) {
-        const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
-        el?.scrollIntoView()
+        scrollToHashTarget(url.hash, "smooth")
         history.pushState({}, "", url)
         return
       }
@@ -196,6 +214,12 @@ function createRouter() {
 }
 
 createRouter()
+
+window.addEventListener("load", () => {
+  if (window.location.hash) {
+    scrollToHashTarget(window.location.hash, "auto")
+  }
+})
 
 // Defer the initial nav notification so component scripts have time to
 // register their `nav` listeners during the rest of the bundle execution.
