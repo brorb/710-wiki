@@ -181,12 +181,12 @@ ArticleHeader.css = `
 }
 
 .article-share__feedback[data-state="success"] {
-  color: #7de49a;
+  color: var(--color-feedback-success);
   opacity: 1;
 }
 
 .article-share__feedback[data-state="error"] {
-  color: #ff8a8a;
+  color: var(--color-feedback-error);
   opacity: 1;
 }
 

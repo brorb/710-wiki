@@ -1,5 +1,4 @@
 import sourceMapSupport from "source-map-support"
-sourceMapSupport.install(options)
 import path from "path"
 import { PerfTimer } from "./util/perf"
 import { rm } from "fs/promises"
@@ -22,6 +21,8 @@ import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
 
+sourceMapSupport.install(options)
+
 type ContentMap = Map<
   FilePath,
   | {
@@ -39,7 +40,6 @@ type BuildData = {
   mut: Mutex
   contentMap: ContentMap
   changesSinceLastBuild: Record<FilePath, ChangeEvent["type"]>
-  lastBuildMs: number
 }
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
@@ -54,6 +54,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const perf = new PerfTimer()
   const output = argv.output
+  let parsedFiles: ProcessedContent[] = []
 
   const pluginCount = Object.values(cfg.plugins).flat().length
   const pluginNames = (key: "transformers" | "filters" | "emitters") =>
@@ -66,29 +67,32 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   }
 
   const release = await mut.acquire()
-  perf.addEvent("clean")
-  await rm(output, { recursive: true, force: true })
-  console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
+  try {
+    perf.addEvent("clean")
+    await rm(output, { recursive: true, force: true })
+    console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
-  perf.addEvent("glob")
-  const allFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
-  const markdownPaths = allFiles.filter((fp) => fp.endsWith(".md")).sort()
-  console.log(
-    `Found ${markdownPaths.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
-  )
+    perf.addEvent("glob")
+    const allFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
+    const markdownPaths = allFiles.filter((fp) => fp.endsWith(".md")).sort()
+    console.log(
+      `Found ${markdownPaths.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
+    )
 
-  const filePaths = markdownPaths.map((fp) => joinSegments(argv.directory, fp) as FilePath)
-  ctx.allFiles = allFiles
-  ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+    const filePaths = markdownPaths.map((fp) => joinSegments(argv.directory, fp) as FilePath)
+    ctx.allFiles = allFiles
+    ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
 
-  const parsedFiles = await parseMarkdown(ctx, filePaths)
+  parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
 
-  await emitContent(ctx, filteredContent)
-  console.log(
-    styleText("green", `Done processing ${markdownPaths.length} files in ${perf.timeSince()}`),
-  )
-  release()
+    await emitContent(ctx, filteredContent)
+    console.log(
+      styleText("green", `Done processing ${markdownPaths.length} files in ${perf.timeSince()}`),
+    )
+  } finally {
+    release()
+  }
 
   if (argv.watch) {
     ctx.incremental = true
@@ -139,7 +143,6 @@ async function startWatching(
     },
 
     changesSinceLastBuild: {},
-    lastBuildMs: 0,
   }
 
   const watcher = chokidar.watch(".", {
@@ -180,120 +183,115 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
 
   const buildId = randomIdNonSecure()
   ctx.buildId = buildId
-  buildData.lastBuildMs = new Date().getTime()
   const numChangesInBuild = changes.length
   const release = await mut.acquire()
-
-  // if there's another build after us, release and let them do it
-  if (ctx.buildId !== buildId) {
-    release()
-    return
-  }
-
-  const perf = new PerfTimer()
-  perf.addEvent("rebuild")
-  console.log(styleText("yellow", "Detected change, rebuilding..."))
-
-  // update changesSinceLastBuild
-  for (const change of changes) {
-    changesSinceLastBuild[change.path] = change.type
-  }
-
-  const staticResources = getStaticResourcesFromPlugins(ctx)
-  const pathsToParse: FilePath[] = []
-  for (const [fp, type] of Object.entries(changesSinceLastBuild)) {
-    if (type === "delete" || path.extname(fp) !== ".md") continue
-    const fullPath = joinSegments(argv.directory, toPosixPath(fp)) as FilePath
-    pathsToParse.push(fullPath)
-  }
-
-  const parsed = await parseMarkdown(ctx, pathsToParse)
-  for (const content of parsed) {
-    contentMap.set(content[1].data.relativePath!, {
-      type: "markdown",
-      content,
-    })
-  }
-
-  // update state using changesSinceLastBuild
-  // we do this weird play of add => compute change events => remove
-  // so that partialEmitters can do appropriate cleanup based on the content of deleted files
-  for (const [file, change] of Object.entries(changesSinceLastBuild)) {
-    if (change === "delete") {
-      // universal delete case
-      contentMap.delete(file as FilePath)
+  try {
+    // if there's another build after us, release and let them do it
+    if (ctx.buildId !== buildId) {
+      return
     }
 
-    // manually track non-markdown files as processed files only
-    // contains markdown files
-    if (change === "add" && path.extname(file) !== ".md") {
-      contentMap.set(file as FilePath, {
-        type: "other",
+    const perf = new PerfTimer()
+    perf.addEvent("rebuild")
+    console.log(styleText("yellow", "Detected change, rebuilding..."))
+
+    for (const change of changes) {
+      changesSinceLastBuild[change.path] = change.type
+    }
+
+    const staticResources = getStaticResourcesFromPlugins(ctx)
+    const pathsToParse: FilePath[] = []
+    for (const [fp, type] of Object.entries(changesSinceLastBuild)) {
+      if (type === "delete" || path.extname(fp) !== ".md") continue
+      const fullPath = joinSegments(argv.directory, toPosixPath(fp)) as FilePath
+      pathsToParse.push(fullPath)
+    }
+
+    const parsed = await parseMarkdown(ctx, pathsToParse)
+    for (const content of parsed) {
+      contentMap.set(content[1].data.relativePath!, {
+        type: "markdown",
+        content,
       })
     }
-  }
 
-  const changeEvents: ChangeEvent[] = Object.entries(changesSinceLastBuild).map(([fp, type]) => {
-    const path = fp as FilePath
-    const processedContent = contentMap.get(path)
-    if (processedContent?.type === "markdown") {
-      const [_tree, file] = processedContent.content
+    for (const [file, change] of Object.entries(changesSinceLastBuild)) {
+      if (change === "delete") {
+        contentMap.delete(file as FilePath)
+      }
+
+      if (change === "add" && path.extname(file) !== ".md") {
+        contentMap.set(file as FilePath, {
+          type: "other",
+        })
+      }
+    }
+
+    const changeEntries = Object.entries(changesSinceLastBuild)
+    const changeEvents: ChangeEvent[] = changeEntries.map(([fp, type]) => {
+      const path = fp as FilePath
+      const processedContent = contentMap.get(path)
+      if (processedContent?.type === "markdown") {
+        const [_tree, file] = processedContent.content
+        return {
+          type,
+          path,
+          file,
+        }
+      }
+
       return {
         type,
         path,
-        file,
       }
-    }
+    })
 
-    return {
-      type,
-      path,
-    }
-  })
+    ctx.allFiles = Array.from(contentMap.keys())
+    ctx.allSlugs = ctx.allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+    const processedFiles = filterContent(
+      ctx,
+      Array.from(contentMap.values())
+        .filter((file) => file.type === "markdown")
+        .map((file) => file.content),
+    )
 
-  // update allFiles and then allSlugs with the consistent view of content map
-  ctx.allFiles = Array.from(contentMap.keys())
-  ctx.allSlugs = ctx.allFiles.map((fp) => slugifyFilePath(fp as FilePath))
-  let processedFiles = filterContent(
-    ctx,
-    Array.from(contentMap.values())
-      .filter((file) => file.type === "markdown")
-      .map((file) => file.content),
-  )
+    let emittedFiles = 0
+    for (const emitter of cfg.plugins.emitters) {
+      const emitFn = emitter.partialEmit ?? emitter.emit
+      const emitted = await emitFn(ctx, processedFiles, staticResources, changeEvents)
+      if (emitted === null) {
+        continue
+      }
 
-  let emittedFiles = 0
-  for (const emitter of cfg.plugins.emitters) {
-    // Try to use partialEmit if available, otherwise assume the output is static
-    const emitFn = emitter.partialEmit ?? emitter.emit
-    const emitted = await emitFn(ctx, processedFiles, staticResources, changeEvents)
-    if (emitted === null) {
-      continue
-    }
-
-    if (Symbol.asyncIterator in emitted) {
-      // Async generator case
-      for await (const file of emitted) {
-        emittedFiles++
+      if (Symbol.asyncIterator in emitted) {
+        for await (const file of emitted) {
+          emittedFiles++
+          if (ctx.argv.verbose) {
+            console.log(`[emit:${emitter.name}] ${file}`)
+          }
+        }
+      } else {
+        emittedFiles += emitted.length
         if (ctx.argv.verbose) {
-          console.log(`[emit:${emitter.name}] ${file}`)
-        }
-      }
-    } else {
-      // Array case
-      emittedFiles += emitted.length
-      if (ctx.argv.verbose) {
-        for (const file of emitted) {
-          console.log(`[emit:${emitter.name}] ${file}`)
+          for (const file of emitted) {
+            console.log(`[emit:${emitter.name}] ${file}`)
+          }
         }
       }
     }
-  }
 
-  console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`)
-  console.log(styleText("green", `Done rebuilding in ${perf.timeSince()}`))
-  changes.splice(0, numChangesInBuild)
-  clientRefresh()
-  release()
+    console.log(
+      `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`,
+    )
+    console.log(styleText("green", `Done rebuilding in ${perf.timeSince()}`))
+    changes.splice(0, numChangesInBuild)
+    for (const [fp] of changeEntries) {
+      delete changesSinceLastBuild[fp as FilePath]
+    }
+    clientRefresh()
+  } finally {
+    release()
+  }
 }
 
 export default async (argv: Argv, mut: Mutex, clientRefresh: () => void) => {

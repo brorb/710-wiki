@@ -7,8 +7,8 @@ import fs from "fs"
 export function escapePath(fp) {
   return fp
     .replace(/\\ /g, " ") // unescape spaces
-    .replace(/^".*"$/, "$1")
-    .replace(/^'.*"$/, "$1")
+    .replace(/^"(.*)"$/, "$1")
+    .replace(/^'(.*)'$/, "$1")
     .trim()
 }
 
@@ -35,10 +35,9 @@ export async function stashContentFolder(contentFolder) {
 export function gitPull(origin, branch) {
   const flags = ["--no-rebase", "--autostash", "-s", "recursive", "-X", "ours", "--no-edit"]
   const out = spawnSync("git", ["pull", ...flags, origin, branch], { stdio: "inherit" })
-  if (out.stderr) {
-    throw new Error(styleText("red", `Error while pulling updates: ${out.stderr}`))
-  } else if (out.status !== 0) {
-    throw new Error(styleText("red", "Error while pulling updates"))
+  if (out.status !== 0) {
+    const reason = out.error?.message ?? `Error while pulling updates from ${origin}/${branch}`
+    throw new Error(styleText("red", reason))
   }
 }
 

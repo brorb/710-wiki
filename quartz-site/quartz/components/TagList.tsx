@@ -10,7 +10,7 @@ const TagList: QuartzComponent = ({ fileData, displayClass }: QuartzComponentPro
         {tags.map((tag) => {
           const linkDest = resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)
           return (
-            <li>
+            <li key={tag}>
               <a href={linkDest} class="internal tag-link">
                 {tag}
               </a>

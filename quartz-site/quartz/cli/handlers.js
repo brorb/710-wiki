@@ -303,25 +303,35 @@ export async function handleBuild(argv) {
   let lastBuildMs = 0
   let cleanupBuild = null
   const build = async (clientRefresh) => {
-    const buildStart = new Date().getTime()
+    const buildStart = Date.now()
     lastBuildMs = buildStart
     const release = await buildMutex.acquire()
-    if (lastBuildMs > buildStart) {
+    let result
+    try {
+      if (lastBuildMs > buildStart) {
+        return
+      }
+
+      if (cleanupBuild) {
+        console.log(
+          styleText("yellow", "Detected a source code change, doing a hard rebuild..."),
+        )
+        await cleanupBuild()
+        cleanupBuild = null
+      }
+
+      result = await ctx.rebuild().catch((err) => {
+        console.error(`${styleText("red", "Couldn't parse Quartz configuration:")} ${fp}`)
+        console.log(`Reason: ${styleText("grey", err)}`)
+        process.exit(1)
+      })
+    } finally {
       release()
+    }
+
+    if (!result) {
       return
     }
-
-    if (cleanupBuild) {
-      console.log(styleText("yellow", "Detected a source code change, doing a hard rebuild..."))
-      await cleanupBuild()
-    }
-
-    const result = await ctx.rebuild().catch((err) => {
-      console.error(`${styleText("red", "Couldn't parse Quartz configuration:")} ${fp}`)
-      console.log(`Reason: ${styleText("grey", err)}`)
-      process.exit(1)
-    })
-    release()
 
     if (argv.bundleInfo) {
       const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
@@ -334,11 +344,8 @@ export async function handleBuild(argv) {
       console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
     }
 
-    // bypass module cache
-    // https://github.com/nodejs/modules/issues/307
-    const { default: buildQuartz } = await import(`../../${cacheFile}?update=${randomUUID()}`)
-    // ^ this import is relative, so base "cacheFile" path can't be used
-
+  // bust the module cache so rebuilding picks up the latest transpiled output
+  const { default: buildQuartz } = await import(`../../${cacheFile}?update=${randomUUID()}`)
     cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
     clientRefresh()
   }
@@ -371,32 +378,34 @@ export async function handleBuild(argv) {
 
       const serve = async () => {
         const release = await buildMutex.acquire()
-        await serveHandler(req, res, {
-          public: argv.output,
-          directoryListing: false,
-          headers: [
-            {
-              source: "**/*.*",
-              headers: [{ key: "Content-Disposition", value: "inline" }],
-            },
-            {
-              source: "**/*.webp",
-              headers: [{ key: "Content-Type", value: "image/webp" }],
-            },
-            // fixes bug where avif images are displayed as text instead of images (future proof)
-            {
-              source: "**/*.avif",
-              headers: [{ key: "Content-Type", value: "image/avif" }],
-            },
-          ],
-        })
-        const status = res.statusCode
-        const statusString =
-          status >= 200 && status < 300
-            ? styleText("green", `[${status}]`)
-            : styleText("red", `[${status}]`)
-        console.log(statusString + styleText("grey", ` ${argv.baseDir}${req.url}`))
-        release()
+        try {
+          await serveHandler(req, res, {
+            public: argv.output,
+            directoryListing: false,
+            headers: [
+              {
+                source: "**/*.*",
+                headers: [{ key: "Content-Disposition", value: "inline" }],
+              },
+              {
+                source: "**/*.webp",
+                headers: [{ key: "Content-Type", value: "image/webp" }],
+              },
+              {
+                source: "**/*.avif",
+                headers: [{ key: "Content-Type", value: "image/avif" }],
+              },
+            ],
+          })
+          const status = res.statusCode
+          const statusString =
+            status >= 200 && status < 300
+              ? styleText("green", `[${status}]`)
+              : styleText("red", `[${status}]`)
+          console.log(statusString + styleText("grey", ` ${argv.baseDir}${req.url}`))
+        } finally {
+          release()
+        }
       }
 
       const redirect = (newFp) => {
@@ -455,7 +464,15 @@ export async function handleBuild(argv) {
 
     server.listen(argv.port)
     const wss = new WebSocketServer({ port: argv.wsPort })
-    wss.on("connection", (ws) => connections.push(ws))
+    wss.on("connection", (ws) => {
+      connections.push(ws)
+      ws.on("close", () => {
+        const idx = connections.indexOf(ws)
+        if (idx !== -1) {
+          connections.splice(idx, 1)
+        }
+      })
+    })
     console.log(
       styleText(
         "cyan",
@@ -468,14 +485,17 @@ export async function handleBuild(argv) {
   }
 
   if (argv.watch) {
-    const paths = await globby([
-      "**/*.ts",
-      "quartz/cli/*.js",
-      "quartz/static/**/*",
-      "**/*.tsx",
-      "**/*.scss",
-      "package.json",
-    ])
+    const paths = await globby(
+      [
+        "**/*.ts",
+        "quartz/cli/*.js",
+        "quartz/static/**/*",
+        "**/*.tsx",
+        "**/*.scss",
+        "package.json",
+      ],
+      { gitignore: true },
+    )
     chokidar
       .watch(paths, { ignoreInitial: true })
       .on("add", () => build(clientRefresh))

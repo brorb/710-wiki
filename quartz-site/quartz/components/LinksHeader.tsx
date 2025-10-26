@@ -1,8 +1,5 @@
 import { QuartzComponentConstructor } from "./types"
 import style from "./styles/linksHeader.scss"
-import themeColors from "../../theme.colors.json"
-
-const palette = themeColors
 
 const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
   {
@@ -51,14 +48,7 @@ export default (() => {
   const LinksHeader = () => {
     return (
       <div id="links-header-container">
-        <nav
-          id="links-header"
-          style={{
-            "--link-button-bg": palette.accentDeep,
-            "--link-button-border": palette.accentDeep,
-            "--link-button-text": palette.buttonText,
-          } as Record<string, string>}
-        >
+        <nav id="links-header">
           {navLinks.map(({ href, label, iconSlug }) => (
             <a class="links-header-item" href={href} key={href}>
               <span class={`links-header-icon links-header-icon--${iconSlug}`} aria-hidden="true" />

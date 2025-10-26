@@ -30,16 +30,19 @@ header {
     border-radius: 999px;
     text-decoration: none;
     font-weight: 600;
-    color: var(--link-button-text, var(--dark));
-    background: var(--link-button-bg, rgba(183, 16, 2, 0.35));
-    border: 1px solid var(--link-button-border, rgba(235, 28, 36, 0.45));
+    color: var(
+      --link-button-text,
+      var(--color-button-text, var(--dark))
+    );
+    background: var(--link-button-bg, var(--color-button-background));
+    border: 1px solid var(--link-button-border, var(--color-button-background));
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover,
     &:focus-visible {
-      background: var(--color-accent-bright);
-      color: var(--light);
+      background: var(--color-button-hover);
+      color: var(--color-button-text);
       transform: translateY(-2px);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
     }

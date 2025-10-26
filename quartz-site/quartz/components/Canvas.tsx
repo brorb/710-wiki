@@ -219,7 +219,7 @@ export default ((options?: CanvasOptions) => {
 
 .canvas-loading.is-error {
   background: rgba(255, 232, 230, 0.95);
-  color: #a13a28;
+  color: var(--color-accent-deep);
 }
 
 .canvas-spinner {

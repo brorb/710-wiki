@@ -59,15 +59,13 @@ type Props = {
 
 export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
   const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg)
-  let list = allFiles.sort(sorter)
-  if (limit) {
-    list = list.slice(0, limit)
-  }
+  const sorted = [...allFiles].sort(sorter)
+  const list = typeof limit === "number" ? sorted.slice(0, limit) : sorted
 
   return (
     <ul class="section-ul">
       {list.map((page) => {
-        const title = page.frontmatter?.title
+        const title = page.frontmatter?.title ?? page.slug ?? "Untitled"
         const tags = page.frontmatter?.tags ?? []
 
         return (
@@ -85,7 +83,7 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
               </div>
               <ul class="tags">
                 {tags.map((tag) => (
-                  <li>
+                  <li key={tag}>
                     <a
                       class="internal tag-link"
                       href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
