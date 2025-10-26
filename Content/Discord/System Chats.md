@@ -18328,20 +18328,6 @@ This was after the "SESSION LOGGED OUTPUT 2322" community post (see [[Community 
 ```discord
 [
   {
-    "id": "1413741074240770108",
-    "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
-    "content": "",
-    "timestamp": "2025-09-06T04:22:18.138000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413741074240770108"
-  },
-  {
     "id": "1413741132650778706",
     "author": {
       "display_name": "SYSTEM",
@@ -23038,6 +23024,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ```
 
 ## From Sleuths DMs
+
 
 
 ## SERVER 01
