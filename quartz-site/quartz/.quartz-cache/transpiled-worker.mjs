@@ -3932,6 +3932,8 @@ var discordCollapse_inline_default = "";
 // quartz/plugins/transformers/discordMessages.ts
 var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
 var DISCORD_CITE_ICON_PATH = "M20.992 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.050 0.005 0.109 0.005 0.168 0 1.523-1.191 2.768-2.693 2.854l-0.008 0zM11.026 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.048 0.005 0.104 0.005 0.161 0 1.525-1.19 2.771-2.692 2.862l-0.008 0zM26.393 6.465c-1.763-0.832-3.811-1.49-5.955-1.871l-0.149-0.022c-0.005-0.001-0.011-0.002-0.017-0.002-0.035 0-0.065 0.019-0.081 0.047l-0 0c-0.234 0.411-0.488 0.924-0.717 1.45l-0.043 0.111c-1.030-0.165-2.218-0.259-3.428-0.259s-2.398 0.094-3.557 0.275l0.129-0.017c-0.27-0.63-0.528-1.142-0.813-1.638l0.041 0.077c-0.017-0.029-0.048-0.047-0.083-0.047-0.005 0-0.011 0-0.016 0.001l0.001-0c-2.293 0.403-4.342 1.060-6.256 1.957l0.151-0.064c-0.017 0.007-0.031 0.019-0.040 0.034l-0 0c-2.854 4.041-4.562 9.069-4.562 14.496 0 0.907 0.048 1.802 0.141 2.684l-0.009-0.11c0.003 0.029 0.018 0.053 0.039 0.070l0 0c2.14 1.601 4.628 2.891 7.313 3.738l0.176 0.048c0.008 0.003 0.018 0.004 0.028 0.004 0.032 0 0.060-0.015 0.077-0.038l0-0c0.535-0.72 1.044-1.536 1.485-2.392l0.047-0.1c0.006-0.012 0.010-0.027 0.010-0.043 0-0.041-0.026-0.075-0.062-0.089l-0.001-0c-0.912-0.352-1.683-0.727-2.417-1.157l0.077 0.042c-0.029-0.017-0.048-0.048-0.048-0.083 0-0.031 0.015-0.059 0.038-0.076l0-0c0.157-0.118 0.315-0.24 0.465-0.364 0.016-0.013 0.037-0.021 0.059-0.021 0.014 0 0.027 0.003 0.038 0.008l-0.001-0c2.208 1.061 4.8 1.681 7.536 1.681s5.329-0.62 7.643-1.727l-0.107 0.046c0.012-0.006 0.025-0.009 0.040-0.009 0.022 0 0.043 0.008 0.059 0.021l-0-0c0.15 0.124 0.307 0.248 0.466 0.365 0.023 0.018 0.038 0.046 0.038 0.077 0 0.035-0.019 0.065-0.046 0.082l-0 0c-0.661 0.395-1.432 0.769-2.235 1.078l-0.105 0.036c-0.036 0.014-0.062 0.049-0.062 0.089 0 0.016 0.004 0.031 0.011 0.044l-0-0.001c0.501 0.96 1.009 1.775 1.571 2.548l-0.040-0.057c0.017 0.024 0.046 0.040 0.077 0.040 0.010 0 0.020-0.002 0.029-0.004l-0.001 0c2.865-0.892 5.358-2.182 7.566-3.832l-0.065 0.047c0.022-0.016 0.036-0.041 0.039-0.069l0-0c0.087-0.784 0.136-1.694 0.136-2.615 0-5.415-1.712-10.43-4.623-14.534l0.052 0.078c-0.008-0.016-0.022-0.029-0.038-0.036l-0-0z";
+var SHARE_ICON_MASK_URL = "/static/icons/share_icon.svg";
+var discordThreadSequence = 0;
 var DISCORD_CSS = `
 .discord-thread {
   --discord-bg: #2b2d31;
@@ -4052,6 +4054,7 @@ var DISCORD_CSS = `
   color: var(--discord-text-primary);
   align-items: flex-start;
   --discord-author-color: var(--discord-author);
+  scroll-margin-top: 120px;
 }
 
 .discord-message__link {
@@ -4192,6 +4195,91 @@ var DISCORD_CSS = `
   display: none !important;
 }
 
+.discord-thread-wrapper {
+  position: relative;
+  max-width: min(720px, 100%);
+  scroll-margin-top: 120px;
+}
+
+.discord-thread-share.article-share__button {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: color-mix(in srgb, rgba(43, 45, 49, 0.85) 65%, transparent);
+  color: #d6dae3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -6px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  z-index: 4;
+}
+
+.discord-thread-share__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url("${SHARE_ICON_MASK_URL}");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("${SHARE_ICON_MASK_URL}");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.discord-thread-wrapper:hover .discord-thread-share.article-share__button,
+.discord-thread-wrapper:focus-within .discord-thread-share.article-share__button,
+.discord-thread-wrapper:target .discord-thread-share.article-share__button,
+.discord-thread-share.article-share__button:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.discord-thread-share.article-share__button:hover {
+  background: color-mix(in srgb, rgba(120, 126, 142, 0.6) 50%, transparent);
+  color: #f1f3f9;
+}
+
+.discord-thread-share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+@media (hover: none) {
+  .discord-thread-share.article-share__button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@keyframes discord-target-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.65), 0 0 0 rgba(235, 28, 36, 0.1);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.25), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.discord-message:target,
+.discord-thread-wrapper:target .discord-thread {
+  animation: discord-target-glow 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 24px rgba(235, 28, 36, 0.35);
+}
+
 .discord-timestamp-sr {
   position: absolute;
   width: 1px;
@@ -4310,6 +4398,80 @@ var appendAssetVersion = /* @__PURE__ */ __name((url, version) => {
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
+var extractMessageIdentifier = /* @__PURE__ */ __name((message) => {
+  const direct = message.id?.trim();
+  if (direct) {
+    return direct;
+  }
+  const jump = message.jump_url ?? message.url;
+  if (jump) {
+    const parts = jump.trim().split("/");
+    const candidate = parts.pop() ?? "";
+    if (candidate.trim().length > 0) {
+      return candidate.trim();
+    }
+  }
+  return void 0;
+}, "extractMessageIdentifier");
+var normaliseFragment = /* @__PURE__ */ __name((raw) => raw.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+/, "").replace(/-+$/, ""), "normaliseFragment");
+var buildMessageAnchorId = /* @__PURE__ */ __name((message, context) => {
+  const fallback = context ? `${context.threadId}-message-${context.index + 1}` : void 0;
+  const source = extractMessageIdentifier(message) ?? fallback;
+  if (!source) {
+    return void 0;
+  }
+  const fragment = normaliseFragment(source);
+  if (!fragment) {
+    return void 0;
+  }
+  return fragment.startsWith("discord-message") ? fragment : `discord-message-${fragment}`;
+}, "buildMessageAnchorId");
+var createShareSnippet = /* @__PURE__ */ __name((raw) => {
+  if (!raw) {
+    return void 0;
+  }
+  const cleaned = raw.replace(/\s+/g, " ").trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  return cleaned.length > 160 ? `${cleaned.slice(0, 157)}\u2026` : cleaned;
+}, "createShareSnippet");
+var toOptionalFragment = /* @__PURE__ */ __name((raw) => {
+  if (!raw) {
+    return void 0;
+  }
+  const fragment = normaliseFragment(raw);
+  return fragment.length > 0 ? fragment : void 0;
+}, "toOptionalFragment");
+var buildThreadAnchorMetadata = /* @__PURE__ */ __name((messages, slug) => {
+  const primary = messages.find((message) => Boolean(message));
+  const snippet = primary ? createShareSnippet(primary.content) : void 0;
+  const candidates = primary ? [
+    extractMessageIdentifier(primary),
+    primary.timestamp,
+    primary.author?.id,
+    primary.author?.display_name,
+    primary.author?.username,
+    snippet
+  ] : [];
+  const slugFragment = toOptionalFragment(slug);
+  let anchorBase = candidates.map(toOptionalFragment).find((fragment) => fragment);
+  if (anchorBase) {
+    if (!anchorBase.startsWith("discord-thread")) {
+      anchorBase = `discord-thread-${anchorBase}`;
+    }
+  } else {
+    anchorBase = slugFragment ? `${slugFragment}-discord-thread` : "discord-thread";
+  }
+  if (slugFragment && !anchorBase.startsWith(`${slugFragment}-`)) {
+    anchorBase = `${slugFragment}-${anchorBase}`;
+  }
+  const sequence = (discordThreadSequence++).toString(36);
+  return {
+    anchorId: `${anchorBase}-${sequence}`,
+    snippet
+  };
+}, "buildThreadAnchorMetadata");
 var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug, options2 = {}) => {
   const { appendVersion: shouldAppendVersion = true } = options2;
   if (isExternalUrl(rawTarget)) {
@@ -4447,7 +4609,7 @@ var renderAttachments = /* @__PURE__ */ __name((attachments) => {
   }
   return `<span class="discord-attachments" role="group">${items.join("\n")}</span>`;
 }, "renderAttachments");
-var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}) => {
+var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}, context) => {
   const {
     wrapperTag = "article",
     avatarTag = "div",
@@ -4473,9 +4635,13 @@ var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}) =>
   if (!showAvatar) {
     articleClasses.push("discord-message--compact");
   }
+  const anchorId = buildMessageAnchorId(message, context);
   const articleAttributes = [`class="${articleClasses.join(" ")}"`];
   if (message.id) {
     articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`);
+  }
+  if (anchorId) {
+    articleAttributes.push(`id="${escapeAttribute(anchorId)}"`);
   }
   if (authorColor) {
     articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);
@@ -4515,19 +4681,43 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
   if (messages.length === 0) {
     return "";
   }
-  const { containerTag = "section", messageOptions } = options2;
+  const { containerTag = "section", messageOptions, enableShare = true, slug } = options2;
+  const { anchorId: wrapperAnchorId, snippet: primarySnippet } = buildThreadAnchorMetadata(messages, slug);
   const htmlMessages = messages.map(
-    (message, index) => renderMessage(message, index > 0 ? messages[index - 1] : void 0, messageOptions)
+    (message, index) => renderMessage(message, index > 0 ? messages[index - 1] : void 0, messageOptions, {
+      index,
+      threadId: wrapperAnchorId
+    })
   ).join("\n");
-  const threadId = `discord-thread-${Math.random().toString(36).substr(2, 9)}`;
-  return `<div class="discord-thread-wrapper collapsed">
-  <div class="discord-thread-content collapsed" id="${threadId}-content">
+  let shareMarkup = "";
+  if (enableShare) {
+    const messageCount = messages.length;
+    const countLabel = messageCount === 1 ? "Share Discord message" : `Share Discord thread (${messageCount} messages)`;
+    const shareTitle = messageCount === 1 ? "Discord message" : "Discord thread";
+    const shareAttributes = [
+      'type="button"',
+      'class="discord-thread-share article-share__button"',
+      `aria-label="${escapeAttribute(countLabel)}"`,
+      `data-share-url="#${escapeAttribute(wrapperAnchorId)}"`,
+      `data-share-title="${escapeAttribute(shareTitle)}"`
+    ];
+    const shareText = primarySnippet ?? createShareSnippet(messages[0]?.content);
+    if (shareText) {
+      shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`);
+    }
+    shareMarkup = `<button ${shareAttributes.join(" ")}>
+      <span class="discord-thread-share__icon" aria-hidden="true"></span>
+    </button>`;
+  }
+  return `<div class="discord-thread-wrapper collapsed" id="${wrapperAnchorId}">
+  ${shareMarkup}
+  <div class="discord-thread-content collapsed" id="${wrapperAnchorId}-content">
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
     </${containerTag}>
     <div class="discord-thread-fade" aria-hidden="true"></div>
   </div>
-  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
+  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
     <span>Show More</span>
     <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
@@ -4535,7 +4725,7 @@ ${htmlMessages}
   </button>
 </div>`;
 }, "renderMessages");
-var renderCitation = /* @__PURE__ */ __name((id, messages) => {
+var renderCitation = /* @__PURE__ */ __name((id, messages, slug) => {
   const threadHtml = renderMessages(messages, {
     containerTag: "span",
     messageOptions: {
@@ -4544,7 +4734,9 @@ var renderCitation = /* @__PURE__ */ __name((id, messages) => {
       bodyTag: "span",
       headerTag: "span",
       contentTag: "span"
-    }
+    },
+    enableShare: false,
+    slug
   });
   if (!threadHtml) {
     return void 0;
@@ -4675,7 +4867,7 @@ var visitCodeBlocks = /* @__PURE__ */ __name((node, callback) => {
     visitCodeBlocks(child, callback);
   }
 }, "visitCodeBlocks");
-var replaceCitationMarkers = /* @__PURE__ */ __name((value, citations) => {
+var replaceCitationMarkers = /* @__PURE__ */ __name((value, citations, slug) => {
   CITATION_MARKER_PATTERN.lastIndex = 0;
   let match;
   let lastIndex = 0;
@@ -4693,7 +4885,7 @@ var replaceCitationMarkers = /* @__PURE__ */ __name((value, citations) => {
     }
     const messages = citations.get(id) ?? [];
     if (messages.length > 0) {
-      const citationHtml = renderCitation(id, messages);
+      const citationHtml = renderCitation(id, messages, slug);
       if (citationHtml) {
         nodes.push({ type: "html", value: citationHtml });
         replaced = true;
@@ -4855,7 +5047,7 @@ var collectCitationCallouts = /* @__PURE__ */ __name((root, slug) => {
   }
   return citations;
 }, "collectCitationCallouts");
-var transformCitationMarkers = /* @__PURE__ */ __name((root, citations) => {
+var transformCitationMarkers = /* @__PURE__ */ __name((root, citations, slug) => {
   const traverse = /* @__PURE__ */ __name((node) => {
     if (!node || typeof node !== "object") {
       return;
@@ -4871,7 +5063,7 @@ var transformCitationMarkers = /* @__PURE__ */ __name((root, citations) => {
       }
       const value = typeof child.value === "string" ? child.value ?? "" : void 0;
       if (typeof value === "string") {
-        const replacements = replaceCitationMarkers(value, citations);
+        const replacements = replaceCitationMarkers(value, citations, slug);
         if (replacements) {
           parent.children.splice(idx, 1, ...replacements);
           idx += replacements.length - 1;
@@ -4892,7 +5084,7 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
           const root = tree;
           const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
           const citations = collectCitationCallouts(root, slug);
-          transformCitationMarkers(root, citations);
+          transformCitationMarkers(root, citations, slug);
           visitCodeBlocks(root, (codeBlock, index, parent) => {
             const lang = typeof codeBlock.lang === "string" ? codeBlock.lang.toLowerCase() : "";
             if (lang !== "discord") {
@@ -4903,7 +5095,7 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
             if (messages.length === 0) {
               return;
             }
-            const html = renderMessages(messages);
+            const html = renderMessages(messages, { slug });
             if (parent.type === "paragraph" && parent.children?.length === 1) {
               delete parent.children;
               parent.type = "html";
@@ -5082,6 +5274,41 @@ var formatCount = /* @__PURE__ */ __name((value) => {
   }
   return value.toLocaleString("en-US");
 }, "formatCount");
+var normaliseFragment2 = /* @__PURE__ */ __name((value) => value.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+/, "").replace(/-+$/, ""), "normaliseFragment");
+var toOptionalFragment2 = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return void 0;
+  }
+  const fragment = normaliseFragment2(value);
+  return fragment.length > 0 ? fragment : void 0;
+}, "toOptionalFragment");
+var createShareSnippet2 = /* @__PURE__ */ __name((raw) => {
+  if (!raw) {
+    return void 0;
+  }
+  const cleaned = raw.replace(/\s+/g, " ").trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  return cleaned.length > 160 ? `${cleaned.slice(0, 157)}\u2026` : cleaned;
+}, "createShareSnippet");
+var communityPostSequence = 0;
+var buildPostAnchorId = /* @__PURE__ */ __name((slug, metadata, snippet) => {
+  const slugFragment = toOptionalFragment2(slug);
+  let base = [metadata.postedLabel, snippet].map(toOptionalFragment2).find((fragment) => fragment);
+  if (base) {
+    if (!base.startsWith("youtube-post")) {
+      base = `youtube-post-${base}`;
+    }
+  } else {
+    base = "youtube-post";
+  }
+  if (slugFragment && !base.startsWith(`${slugFragment}-`)) {
+    base = `${slugFragment}-${base}`;
+  }
+  const sequence = (communityPostSequence++).toString(36);
+  return `${base}-${sequence}`;
+}, "buildPostAnchorId");
 var renderTextSegment = /* @__PURE__ */ __name((segment) => {
   const content = normaliseWhitespace(segment.content);
   if (!content.trim()) {
@@ -5134,17 +5361,37 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
   const likeCount = formatCount(metadata.likes);
   const commentCount = formatCount(metadata.comments);
   const dataPosted = metadata.postedLabel ?? year ?? "";
+  const textSegments = segments.filter((segment) => segment.type === "text").map((segment) => normaliseWhitespace(segment.content)).join(" ").replace(/\s+/g, " ").trim();
+  const shareSnippet = createShareSnippet2(textSegments || metadata.postedLabel || void 0);
+  const anchorId = buildPostAnchorId(slug, metadata, shareSnippet);
+  const shareLabel = metadata.postedLabel || year ? `Share YouTube community post (${metadata.postedLabel ?? year})` : "Share YouTube community post";
+  const shareAttributes = [
+    'type="button"',
+    'class="yt-community-post__share article-share__button"',
+    `aria-label="${escapeAttribute2(shareLabel)}"`,
+    `data-share-url="#${escapeAttribute2(anchorId)}"`,
+    `data-share-title="${escapeAttribute2(`${CHANNEL_NAME} community post`)}"`
+  ];
+  if (shareSnippet) {
+    shareAttributes.push(`data-share-text="${escapeAttribute2(shareSnippet)}"`);
+  }
+  const shareMarkup = `<button ${shareAttributes.join(" ")}>
+      <span class="yt-community-post__share-icon" aria-hidden="true"></span>
+    </button>`;
   const bodySection = bodyHtml.trim().length ? `<div class="yt-community-post__body">
       ${bodyHtml}
     </div>` : "";
-  return `<article class="yt-community-post" data-posted="${escapeAttribute2(dataPosted)}">
+  return `<article class="yt-community-post" id="${escapeAttribute2(anchorId)}" data-posted="${escapeAttribute2(dataPosted)}">
   <span class="yt-community-post__avatar">
     <img src="${escapeAttribute2(avatarSrc)}" alt="${escapeAttribute2(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
   </span>
   <div class="yt-community-post__content">
     <div class="yt-community-post__header">
-      <span class="yt-community-post__channel">${escapeHtml2(CHANNEL_NAME)}</span>
-      <span class="yt-community-post__timestamp">${timestamp}</span>
+      <div class="yt-community-post__identity">
+        <span class="yt-community-post__channel">${escapeHtml2(CHANNEL_NAME)}</span>
+        <span class="yt-community-post__timestamp">${timestamp}</span>
+      </div>
+      ${shareMarkup}
     </div>
     ${bodySection}
     <footer class="yt-community-post__footer">
@@ -5175,6 +5422,9 @@ var YT_COMMUNITY_CSS = `
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  position: relative;
+  scroll-margin-top: 120px;
+  transition: box-shadow 0.24s ease;
 }
 
 .yt-community-post + .yt-community-post {
@@ -5211,6 +5461,14 @@ var YT_COMMUNITY_CSS = `
 
 .yt-community-post__header {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.yt-community-post__identity {
+  display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 8px;
   line-height: 1;
@@ -5226,6 +5484,51 @@ var YT_COMMUNITY_CSS = `
   color: #a7a7a7;
   font-size: 0.78rem;
   line-height: 1;
+}
+
+.yt-community-post__share.article-share__button {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d7dae2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.yt-community-post:hover .yt-community-post__share.article-share__button,
+.yt-community-post__share.article-share__button:focus-visible {
+  opacity: 1;
+}
+
+.yt-community-post__share.article-share__button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.yt-community-post__share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.yt-community-post__share-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url("/static/icons/share_icon.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
 .yt-community-post__body {
@@ -5287,6 +5590,33 @@ var YT_COMMUNITY_CSS = `
 .yt-community-post__count {
   font-size: 0.78rem;
   color: #cecece;
+}
+
+@media (hover: none) {
+  .yt-community-post__share.article-share__button {
+    opacity: 1;
+  }
+}
+
+@keyframes yt-community-post-target {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.55), 0 0 0 rgba(235, 28, 36, 0.12);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.3), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.yt-community-post:target {
+  animation: yt-community-post-target 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 28px rgba(235, 28, 36, 0.32);
+}
+
+.yt-community-post:target .yt-community-post__share.article-share__button {
+  opacity: 1;
 }
 `;
 var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
@@ -5606,7 +5936,7 @@ import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path12) => `${path12}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path13) => `${path13}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -6084,59 +6414,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path12 = joinSegments(...this.slugSegments);
+    const path13 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path12, "index");
+      return joinSegments(path13, "index");
     }
-    return path12;
+    return path13;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path12, file) {
-    const fullPath = [...this.slugSegments, path12[0]];
+  makeChild(path13, file) {
+    const fullPath = [...this.slugSegments, path13[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path12, file) {
-    if (path12.length === 0) {
+  insert(path13, file) {
+    if (path13.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path12[0];
-    if (path12.length === 1) {
+    const segment = path13[0];
+    if (path13.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path12, file);
+        this.makeChild(path13, file);
       }
-    } else if (path12.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path12, void 0);
+    } else if (path13.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path13, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path12.length);
-      child.insert(path12.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path13.length);
+      child.insert(path13.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  findNode(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path12[0])?.findNode(path12.slice(1));
+    return this.children.find((c) => c.slugSegment === path13[0])?.findNode(path13.slice(1));
   }
-  ancestryChain(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  ancestryChain(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path12[0]);
+    const child = this.children.find((c) => c.slugSegment === path13[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path12.slice(1));
+    const childPath = child.ancestryChain(path13.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -6184,7 +6514,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path12, _]) => path12);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path13, _]) => path13);
   }
 };
 
@@ -6300,7 +6630,6 @@ var shareButton_inline_default = "";
 
 // quartz/components/ArticleHeader.tsx
 import { jsx as jsx13, jsxs as jsxs7 } from "preact/jsx-runtime";
-var SHARE_ICON_PATH = "M331,750 C329.343,750 328,748.657 328,747 C328,745.343 329.343,744 331,744 C332.657,744 334,745.343 334,747 C334,748.657 332.657,750 331,750 L331,750 Z M317,742 C315.343,742 314,740.657 314,739 C314,737.344 315.343,736 317,736 C318.657,736 320,737.344 320,739 C320,740.657 318.657,742 317,742 L317,742 Z M331,728 C332.657,728 334,729.343 334,731 C334,732.657 332.657,734 331,734 C329.343,734 328,732.657 328,731 C328,729.343 329.343,728 331,728 L331,728 Z M331,742 C329.23,742 327.685,742.925 326.796,744.312 L321.441,741.252 C321.787,740.572 322,739.814 322,739 C322,738.497 321.903,738.021 321.765,737.563 L327.336,734.38 C328.249,735.37 329.547,736 331,736 C333.762,736 336,733.762 336,731 C336,728.238 333.762,726 331,726 C328.238,726 326,728.238 326,731 C326,731.503 326.097,731.979 326.235,732.438 L320.664,735.62 C319.751,734.631 318.453,734 317,734 C314.238,734 312,736.238 312,739 C312,741.762 314.238,744 317,744 C318.14,744 319.179,743.604 320.02,742.962 L320,743 L326.055,746.46 C326.035,746.64 326,746.814 326,747 C326,749.762 328.238,752 331,752 C333.762,752 336,749.762 336,747 C336,744.238 333.762,742 331,742 L331,742 Z";
 var resolveShareUrl = /* @__PURE__ */ __name((cfg, slug) => {
   if (!slug) {
     return void 0;
@@ -6348,7 +6677,7 @@ var ArticleHeader = /* @__PURE__ */ __name(({ cfg, fileData, displayClass }) => 
           "data-share-shared": "Share dialog opened.",
           "data-share-error": "Sharing not available.",
           "data-share-cancel": "Share cancelled.",
-          children: /* @__PURE__ */ jsx13("span", { class: "article-share__icon", "aria-hidden": "true", children: /* @__PURE__ */ jsx13("svg", { viewBox: "-1 0 26 26", role: "img", focusable: "false", children: /* @__PURE__ */ jsx13("path", { d: SHARE_ICON_PATH }) }) })
+          children: /* @__PURE__ */ jsx13("span", { class: "article-share__icon", "aria-hidden": "true" })
         }
       ),
       /* @__PURE__ */ jsx13("span", { class: "article-share__feedback", "aria-live": "polite" })
@@ -6442,11 +6771,19 @@ ArticleHeader.css = `
   outline-offset: 2px;
 }
 
-.article-share__icon svg {
+.article-share__icon {
   width: 20px;
   height: 20px;
   display: block;
-  fill: currentColor;
+  background-color: currentColor;
+  mask-image: url("/static/icons/share_icon.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
 .article-share__feedback {
@@ -6502,11 +6839,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path12) => {
-  if (!path12) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path13) => {
+  if (!path13) {
     return null;
   }
-  const trimmed = path12.trim();
+  const trimmed = path13.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -6953,8 +7290,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path12 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path12 : pathToRoot(fileData.slug);
+    const path13 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path13 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -7192,7 +7529,7 @@ document.addEventListener("nav", () => {
     scrollContainer.closest(".backlinks-container")
   const proxyHost = hostCandidate instanceof HTMLElement ? hostCandidate : scrollContainer
 
-  if (!(proxyHost instanceof HTMLElement) || proxyHost.hasAttribute("data-scroll-proxy")) {
+  if (!(proxyHost instanceof HTMLElement)) {
     return
   }
 
@@ -7228,12 +7565,30 @@ document.addEventListener("nav", () => {
     event.stopPropagation()
   }
 
-  proxyHost.addEventListener("wheel", wheelHandler, { passive: false })
-  proxyHost.setAttribute("data-scroll-proxy", "true")
+  const wheelTargets: HTMLElement[] = []
+
+  const registerWheelTarget = (element?: HTMLElement | null) => {
+    if (!element || element.dataset.scrollProxyBound === "true") {
+      return
+    }
+
+    element.addEventListener("wheel", wheelHandler, { passive: false })
+    element.dataset.scrollProxyBound = "true"
+    wheelTargets.push(element)
+  }
+
+  registerWheelTarget(proxyHost)
+  if (scrollContainer !== proxyHost) {
+    registerWheelTarget(scrollContainer)
+  }
 
   window.addCleanup(() => {
-    proxyHost.removeEventListener("wheel", wheelHandler)
-    proxyHost.removeAttribute("data-scroll-proxy")
+    wheelTargets.forEach((element) => {
+      element.removeEventListener("wheel", wheelHandler)
+      if (element.dataset.scrollProxyBound === "true") {
+        delete element.dataset.scrollProxyBound
+      }
+    })
   })
 })
 `
@@ -9478,6 +9833,10 @@ var Favicon = /* @__PURE__ */ __name(() => ({
   }
 }), "Favicon");
 
+// quartz/plugins/emitters/componentResources.ts
+import fs5 from "node:fs";
+import path11 from "node:path";
+
 // quartz/components/scripts/spa.inline.ts
 var spa_inline_default = "";
 
@@ -9718,6 +10077,7 @@ var ComponentResources = /* @__PURE__ */ __name(() => {
   return {
     name: "ComponentResources",
     async *emit(ctx, _content, _resources) {
+      console.error("[ComponentResources] emit start");
       const cfg = ctx.cfg.configuration;
       const componentResources = getComponentResources(ctx);
       let googleFontsStyleSheet = "";
@@ -9767,11 +10127,26 @@ ${await response2.text()}`;
         joinScripts(componentResources.beforeDOMLoaded),
         joinScripts(componentResources.afterDOMLoaded)
       ]);
-      yield write({
-        ctx,
-        slug: "index",
-        ext: ".css",
-        content: transform({
+      try {
+        fs5.appendFileSync(
+          "C:/Users/ireal/Documents/710-wiki/component-resource-log.txt",
+          `ComponentResources output=${ctx.argv.output}
+`
+        );
+      } catch {
+      }
+      const debugStylesPath = path11.resolve(process.cwd(), "component-styles-debug.css");
+      try {
+        fs5.mkdirSync(path11.dirname(debugStylesPath), { recursive: true });
+        fs5.writeFileSync(debugStylesPath, stylesheet);
+      } catch (error) {
+        console.warn("Failed to write debug stylesheet", error);
+        throw new Error(`Failed to dump component stylesheet: ${error}`);
+      }
+      throw new Error(`Component stylesheet dumped to ${debugStylesPath}`);
+      let transformedCss;
+      try {
+        const result = transform({
           filename: "index.css",
           code: Buffer.from(stylesheet),
           minify: true,
@@ -9785,7 +10160,34 @@ ${await response2.text()}`;
             chrome: 109 << 16
           },
           include: Features.MediaQueries
-        }).code.toString()
+        });
+        transformedCss = result.code.toString();
+      } catch (error) {
+        console.error("Failed to transform component stylesheet");
+        if (error && typeof error === "object") {
+          const message = "message" in error && typeof error.message === "string" ? error.message : "";
+          const lineMatch = message.match(/:(\d+):(\d+)/);
+          if (lineMatch) {
+            const [, lineStr] = lineMatch;
+            const lineNumber = Number.parseInt(lineStr, 10);
+            if (Number.isFinite(lineNumber)) {
+              const lines = stylesheet.split("\n");
+              const start = Math.max(0, lineNumber - 5);
+              const end = Math.min(lines.length, lineNumber + 4);
+              console.error(`Problematic stylesheet lines ${start + 1}-${end}:`);
+              for (let i = start; i < end; i++) {
+                console.error(`${i + 1}: ${lines[i]}`);
+              }
+            }
+          }
+        }
+        throw error;
+      }
+      yield write({
+        ctx,
+        slug: "index",
+        ext: ".css",
+        content: transformedCss
       });
       yield write({
         ctx,
@@ -9825,7 +10227,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path12 = url.pathname;
+      const path13 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -9833,7 +10235,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path12, resources);
+      const externalResources = pageResources(path13, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -10015,7 +10417,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path11 from "path";
+import path12 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -10047,7 +10449,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path11.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path12.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
@@ -10086,7 +10488,7 @@ Failed to process html \`${file.data.filePath}\``, err);
 __name(createMarkdownParser, "createMarkdownParser");
 
 // quartz/util/sourcemap.ts
-import fs5 from "fs";
+import fs6 from "fs";
 import { fileURLToPath } from "url";
 var options = {
   // source map hack to get around query param
@@ -10095,7 +10497,7 @@ var options = {
     if (source.includes(".quartz-cache")) {
       let realSource = fileURLToPath(source.split("?", 2)[0] + ".map");
       return {
-        map: fs5.readFileSync(realSource, "utf8")
+        map: fs6.readFileSync(realSource, "utf8")
       };
     } else {
       return null;

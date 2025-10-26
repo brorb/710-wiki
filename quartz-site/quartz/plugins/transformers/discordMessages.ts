@@ -39,6 +39,9 @@ const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
 const DISCORD_CITE_ICON_PATH =
   "M20.992 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.050 0.005 0.109 0.005 0.168 0 1.523-1.191 2.768-2.693 2.854l-0.008 0zM11.026 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.048 0.005 0.104 0.005 0.161 0 1.525-1.19 2.771-2.692 2.862l-0.008 0zM26.393 6.465c-1.763-0.832-3.811-1.49-5.955-1.871l-0.149-0.022c-0.005-0.001-0.011-0.002-0.017-0.002-0.035 0-0.065 0.019-0.081 0.047l-0 0c-0.234 0.411-0.488 0.924-0.717 1.45l-0.043 0.111c-1.030-0.165-2.218-0.259-3.428-0.259s-2.398 0.094-3.557 0.275l0.129-0.017c-0.27-0.63-0.528-1.142-0.813-1.638l0.041 0.077c-0.017-0.029-0.048-0.047-0.083-0.047-0.005 0-0.011 0-0.016 0.001l0.001-0c-2.293 0.403-4.342 1.060-6.256 1.957l0.151-0.064c-0.017 0.007-0.031 0.019-0.040 0.034l-0 0c-2.854 4.041-4.562 9.069-4.562 14.496 0 0.907 0.048 1.802 0.141 2.684l-0.009-0.11c0.003 0.029 0.018 0.053 0.039 0.070l0 0c2.14 1.601 4.628 2.891 7.313 3.738l0.176 0.048c0.008 0.003 0.018 0.004 0.028 0.004 0.032 0 0.060-0.015 0.077-0.038l0-0c0.535-0.72 1.044-1.536 1.485-2.392l0.047-0.1c0.006-0.012 0.010-0.027 0.010-0.043 0-0.041-0.026-0.075-0.062-0.089l-0.001-0c-0.912-0.352-1.683-0.727-2.417-1.157l0.077 0.042c-0.029-0.017-0.048-0.048-0.048-0.083 0-0.031 0.015-0.059 0.038-0.076l0-0c0.157-0.118 0.315-0.24 0.465-0.364 0.016-0.013 0.037-0.021 0.059-0.021 0.014 0 0.027 0.003 0.038 0.008l-0.001-0c2.208 1.061 4.8 1.681 7.536 1.681s5.329-0.62 7.643-1.727l-0.107 0.046c0.012-0.006 0.025-0.009 0.040-0.009 0.022 0 0.043 0.008 0.059 0.021l-0-0c0.15 0.124 0.307 0.248 0.466 0.365 0.023 0.018 0.038 0.046 0.038 0.077 0 0.035-0.019 0.065-0.046 0.082l-0 0c-0.661 0.395-1.432 0.769-2.235 1.078l-0.105 0.036c-0.036 0.014-0.062 0.049-0.062 0.089 0 0.016 0.004 0.031 0.011 0.044l-0-0.001c0.501 0.96 1.009 1.775 1.571 2.548l-0.040-0.057c0.017 0.024 0.046 0.040 0.077 0.040 0.010 0 0.020-0.002 0.029-0.004l-0.001 0c2.865-0.892 5.358-2.182 7.566-3.832l-0.065 0.047c0.022-0.016 0.036-0.041 0.039-0.069l0-0c0.087-0.784 0.136-1.694 0.136-2.615 0-5.415-1.712-10.43-4.623-14.534l0.052 0.078c-0.008-0.016-0.022-0.029-0.038-0.036l-0-0z"
 
+const SHARE_ICON_MASK_URL = "/static/icons/share_icon.svg"
+let discordThreadSequence = 0
+
 const DISCORD_CSS = `
 .discord-thread {
   --discord-bg: #2b2d31;
@@ -159,6 +162,7 @@ const DISCORD_CSS = `
   color: var(--discord-text-primary);
   align-items: flex-start;
   --discord-author-color: var(--discord-author);
+  scroll-margin-top: 120px;
 }
 
 .discord-message__link {
@@ -299,6 +303,91 @@ const DISCORD_CSS = `
   display: none !important;
 }
 
+.discord-thread-wrapper {
+  position: relative;
+  max-width: min(720px, 100%);
+  scroll-margin-top: 120px;
+}
+
+.discord-thread-share.article-share__button {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: color-mix(in srgb, rgba(43, 45, 49, 0.85) 65%, transparent);
+  color: #d6dae3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -6px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  z-index: 4;
+}
+
+.discord-thread-share__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url("${SHARE_ICON_MASK_URL}");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("${SHARE_ICON_MASK_URL}");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.discord-thread-wrapper:hover .discord-thread-share.article-share__button,
+.discord-thread-wrapper:focus-within .discord-thread-share.article-share__button,
+.discord-thread-wrapper:target .discord-thread-share.article-share__button,
+.discord-thread-share.article-share__button:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.discord-thread-share.article-share__button:hover {
+  background: color-mix(in srgb, rgba(120, 126, 142, 0.6) 50%, transparent);
+  color: #f1f3f9;
+}
+
+.discord-thread-share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+@media (hover: none) {
+  .discord-thread-share.article-share__button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@keyframes discord-target-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.65), 0 0 0 rgba(235, 28, 36, 0.1);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.25), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.discord-message:target,
+.discord-thread-wrapper:target .discord-thread {
+  animation: discord-target-glow 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 24px rgba(235, 28, 36, 0.35);
+}
+
 .discord-timestamp-sr {
   position: absolute;
   width: 1px;
@@ -422,6 +511,113 @@ const appendAssetVersion = (url: string, version: string): string => {
   }
 
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`
+}
+
+const extractMessageIdentifier = (message: DiscordMessage): string | undefined => {
+  const direct = message.id?.trim()
+  if (direct) {
+    return direct
+  }
+
+  const jump = message.jump_url ?? message.url
+  if (jump) {
+    const parts = jump.trim().split("/")
+    const candidate = parts.pop() ?? ""
+    if (candidate.trim().length > 0) {
+      return candidate.trim()
+    }
+  }
+
+  return undefined
+}
+
+const normaliseFragment = (raw: string): string =>
+  raw
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+
+const buildMessageAnchorId = (
+  message: DiscordMessage,
+  context?: { index: number; threadId: string },
+): string | undefined => {
+  const fallback = context ? `${context.threadId}-message-${context.index + 1}` : undefined
+  const source = extractMessageIdentifier(message) ?? fallback
+  if (!source) {
+    return undefined
+  }
+
+  const fragment = normaliseFragment(source)
+  if (!fragment) {
+    return undefined
+  }
+
+  return fragment.startsWith("discord-message") ? fragment : `discord-message-${fragment}`
+}
+
+const createShareSnippet = (raw?: string): string | undefined => {
+  if (!raw) {
+    return undefined
+  }
+
+  const cleaned = raw.replace(/\s+/g, " ").trim()
+  if (!cleaned) {
+    return undefined
+  }
+
+  return cleaned.length > 160 ? `${cleaned.slice(0, 157)}…` : cleaned
+}
+
+const toOptionalFragment = (raw?: string | null): string | undefined => {
+  if (!raw) {
+    return undefined
+  }
+
+  const fragment = normaliseFragment(raw)
+  return fragment.length > 0 ? fragment : undefined
+}
+
+const buildThreadAnchorMetadata = (
+  messages: DiscordMessage[],
+  slug?: FullSlug,
+): { anchorId: string; snippet?: string } => {
+  const primary = messages.find((message) => Boolean(message))
+  const snippet = primary ? createShareSnippet(primary.content) : undefined
+
+  const candidates: Array<string | undefined> = primary
+    ? [
+        extractMessageIdentifier(primary),
+        primary.timestamp,
+        primary.author?.id,
+        primary.author?.display_name,
+        primary.author?.username,
+        snippet,
+      ]
+    : []
+
+  const slugFragment = toOptionalFragment(slug)
+  let anchorBase = candidates.map(toOptionalFragment).find((fragment) => fragment)
+
+  if (anchorBase) {
+    if (!anchorBase.startsWith("discord-thread")) {
+      anchorBase = `discord-thread-${anchorBase}`
+    }
+  } else {
+    anchorBase = slugFragment ? `${slugFragment}-discord-thread` : "discord-thread"
+  }
+
+  if (slugFragment && !anchorBase.startsWith(`${slugFragment}-`)) {
+    anchorBase = `${slugFragment}-${anchorBase}`
+  }
+
+  const sequence = (discordThreadSequence++).toString(36)
+
+  return {
+    anchorId: `${anchorBase}-${sequence}`,
+    snippet,
+  }
 }
 
 interface ResolveAssetOptions {
@@ -613,6 +809,8 @@ interface RenderMessageOptions {
 interface RenderMessagesOptions {
   containerTag?: string
   messageOptions?: RenderMessageOptions
+  enableShare?: boolean
+  slug?: FullSlug
 }
 
 const renderAttachments = (attachments?: DiscordAttachment[]): string => {
@@ -647,6 +845,7 @@ const renderMessage = (
   message: DiscordMessage,
   previous?: DiscordMessage,
   options: RenderMessageOptions = {},
+  context?: { index: number; threadId: string },
 ): string => {
   const {
     wrapperTag = "article",
@@ -678,9 +877,14 @@ const renderMessage = (
     articleClasses.push("discord-message--compact")
   }
 
+  const anchorId = buildMessageAnchorId(message, context)
+
   const articleAttributes: string[] = [`class="${articleClasses.join(" ")}"`]
   if (message.id) {
     articleAttributes.push(`data-discord-id="${escapeAttribute(message.id)}"`)
+  }
+  if (anchorId) {
+    articleAttributes.push(`id="${escapeAttribute(anchorId)}"`)
   }
   if (authorColor) {
     articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`)
@@ -734,24 +938,51 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
     return ""
   }
 
-  const { containerTag = "section", messageOptions } = options
+  const { containerTag = "section", messageOptions, enableShare = true, slug } = options
+
+  const { anchorId: wrapperAnchorId, snippet: primarySnippet } = buildThreadAnchorMetadata(messages, slug)
 
   const htmlMessages = messages
     .map((message, index) =>
-      renderMessage(message, index > 0 ? messages[index - 1] : undefined, messageOptions),
+      renderMessage(message, index > 0 ? messages[index - 1] : undefined, messageOptions, {
+        index,
+        threadId: wrapperAnchorId,
+      }),
     )
     .join("\n")
-  
-  const threadId = `discord-thread-${Math.random().toString(36).substr(2, 9)}`
-  
-  return `<div class="discord-thread-wrapper collapsed">
-  <div class="discord-thread-content collapsed" id="${threadId}-content">
+
+  let shareMarkup = ""
+  if (enableShare) {
+    const messageCount = messages.length
+    const countLabel = messageCount === 1 ? "Share Discord message" : `Share Discord thread (${messageCount} messages)`
+    const shareTitle = messageCount === 1 ? "Discord message" : "Discord thread"
+    const shareAttributes: string[] = [
+      'type="button"',
+      'class="discord-thread-share article-share__button"',
+      `aria-label="${escapeAttribute(countLabel)}"`,
+      `data-share-url="#${escapeAttribute(wrapperAnchorId)}"`,
+      `data-share-title="${escapeAttribute(shareTitle)}"`,
+    ]
+
+    const shareText = primarySnippet ?? createShareSnippet(messages[0]?.content)
+    if (shareText) {
+      shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`)
+    }
+
+    shareMarkup = `<button ${shareAttributes.join(" ")}>
+      <span class="discord-thread-share__icon" aria-hidden="true"></span>
+    </button>`
+  }
+
+  return `<div class="discord-thread-wrapper collapsed" id="${wrapperAnchorId}">
+  ${shareMarkup}
+  <div class="discord-thread-content collapsed" id="${wrapperAnchorId}-content">
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
     </${containerTag}>
     <div class="discord-thread-fade" aria-hidden="true"></div>
   </div>
-  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
+  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
     <span>Show More</span>
     <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
@@ -760,7 +991,7 @@ ${htmlMessages}
 </div>`
 }
 
-const renderCitation = (id: string, messages: DiscordMessage[]): string | undefined => {
+const renderCitation = (id: string, messages: DiscordMessage[], slug?: FullSlug): string | undefined => {
   const threadHtml = renderMessages(messages, {
     containerTag: "span",
     messageOptions: {
@@ -770,6 +1001,8 @@ const renderCitation = (id: string, messages: DiscordMessage[]): string | undefi
       headerTag: "span",
       contentTag: "span",
     },
+    enableShare: false,
+    slug,
   })
   if (!threadHtml) {
     return undefined
@@ -950,6 +1183,7 @@ const visitCodeBlocks = (
 const replaceCitationMarkers = (
   value: string,
   citations: Map<string, DiscordMessage[]>,
+  slug?: FullSlug,
 ): MdNode[] | null => {
   CITATION_MARKER_PATTERN.lastIndex = 0
 
@@ -972,7 +1206,7 @@ const replaceCitationMarkers = (
 
     const messages = citations.get(id) ?? []
     if (messages.length > 0) {
-      const citationHtml = renderCitation(id, messages)
+      const citationHtml = renderCitation(id, messages, slug)
       if (citationHtml) {
         nodes.push({ type: "html", value: citationHtml })
         replaced = true
@@ -1190,6 +1424,7 @@ const collectCitationCallouts = (root: MdNode, slug?: FullSlug): Map<string, Dis
 const transformCitationMarkers = (
   root: MdNode,
   citations: Map<string, DiscordMessage[]>,
+  slug?: FullSlug,
 ): void => {
   const traverse = (node: MdNode | undefined) => {
     if (!node || typeof node !== "object") {
@@ -1212,7 +1447,7 @@ const transformCitationMarkers = (
         : undefined
 
       if (typeof value === "string") {
-        const replacements = replaceCitationMarkers(value, citations)
+  const replacements = replaceCitationMarkers(value, citations, slug)
         if (replacements) {
           parent.children.splice(idx, 1, ...replacements)
           idx += replacements.length - 1
@@ -1239,7 +1474,7 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
           const root = tree as MdNode
           const slug = typeof file?.data?.slug === "string" ? (file.data.slug as FullSlug) : undefined
           const citations = collectCitationCallouts(root, slug)
-          transformCitationMarkers(root, citations)
+          transformCitationMarkers(root, citations, slug)
 
           visitCodeBlocks(root, (codeBlock, index, parent) => {
             const lang = typeof codeBlock.lang === "string" ? codeBlock.lang.toLowerCase() : ""
@@ -1253,7 +1488,7 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
               return
             }
 
-            const html = renderMessages(messages)
+            const html = renderMessages(messages, { slug })
 
             if (parent.type === "paragraph" && parent.children?.length === 1) {
               delete (parent as MdNode).children
