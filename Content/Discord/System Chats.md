@@ -23059,7 +23059,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ![[Noel SERVER 01 invite code SYSTEM DM.jpg|300]]
 ![[portal code SERVER 01.png|600]]
 ![[Portal SYSTEM code do not use yet.png|600]]
-![[Portal message.png|700]]
+![[Portal SYSTEM message play the game.png|700]]
 ![[Abe SYSTEM DM (canceled message).jpg|300]]
 ![[Noel SYSTEM DM  canceled message.jpg|350]]
 
