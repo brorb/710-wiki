@@ -470,6 +470,8 @@ const YT_COMMUNITY_CSS = `
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .yt-community-post__header {
@@ -477,6 +479,7 @@ const YT_COMMUNITY_CSS = `
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
 }
 
 .yt-community-post__identity {
@@ -505,8 +508,8 @@ const YT_COMMUNITY_CSS = `
   height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.08);
-  color: #d7dae2;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -520,8 +523,7 @@ const YT_COMMUNITY_CSS = `
 }
 
 .yt-community-post__share.article-share__button:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  color: var(--color-accent-deep);
 }
 
 .yt-community-post__share.article-share__button:focus-visible {
@@ -534,11 +536,11 @@ const YT_COMMUNITY_CSS = `
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;

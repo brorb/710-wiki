@@ -3958,11 +3958,13 @@ var DISCORD_CSS = `
 .discord-thread-wrapper {
   position: relative;
   max-width: min(720px, 100%);
+  display: block;
 }
 
 .discord-thread-content {
   position: relative;
   overflow: hidden;
+  display: block;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -4209,7 +4211,7 @@ var DISCORD_CSS = `
   height: 34px;
   border-radius: 999px;
   border: none;
-  background: color-mix(in srgb, rgba(43, 45, 49, 0.85) 65%, transparent);
+  background: transparent;
   color: #d6dae3;
   display: inline-flex;
   align-items: center;
@@ -4226,11 +4228,11 @@ var DISCORD_CSS = `
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("${SHARE_ICON_MASK_URL}");
+  mask-image: url(${SHARE_ICON_MASK_URL});
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("${SHARE_ICON_MASK_URL}");
+  -webkit-mask-image: url(${SHARE_ICON_MASK_URL});
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -4246,8 +4248,7 @@ var DISCORD_CSS = `
 }
 
 .discord-thread-share.article-share__button:hover {
-  background: color-mix(in srgb, rgba(120, 126, 142, 0.6) 50%, transparent);
-  color: #f1f3f9;
+  color: var(--color-accent-deep);
 }
 
 .discord-thread-share.article-share__button:focus-visible {
@@ -4681,7 +4682,15 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
   if (messages.length === 0) {
     return "";
   }
-  const { containerTag = "section", messageOptions, enableShare = true, slug } = options2;
+  const {
+    containerTag = "section",
+    messageOptions,
+    enableShare = true,
+    slug,
+    wrapperTag = "div",
+    contentWrapperTag = "div",
+    collapsible = true
+  } = options2;
   const { anchorId: wrapperAnchorId, snippet: primarySnippet } = buildThreadAnchorMetadata(messages, slug);
   const htmlMessages = messages.map(
     (message, index) => renderMessage(message, index > 0 ? messages[index - 1] : void 0, messageOptions, {
@@ -4709,21 +4718,29 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
       <span class="discord-thread-share__icon" aria-hidden="true"></span>
     </button>`;
   }
-  return `<div class="discord-thread-wrapper collapsed" id="${wrapperAnchorId}">
-  ${shareMarkup}
-  <div class="discord-thread-content collapsed" id="${wrapperAnchorId}-content">
-    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
-${htmlMessages}
-    </${containerTag}>
-    <div class="discord-thread-fade" aria-hidden="true"></div>
-  </div>
-  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
+  const wrapperClasses = ["discord-thread-wrapper"];
+  const contentClasses = ["discord-thread-content"];
+  if (collapsible) {
+    wrapperClasses.push("collapsed");
+    contentClasses.push("collapsed");
+  }
+  const fadeMarkup = collapsible ? `<div class="discord-thread-fade" aria-hidden="true"></div>` : "";
+  const collapseToggleMarkup = collapsible ? `<button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
     <span>Show More</span>
     <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
-  </button>
-</div>`;
+  </button>` : "";
+  return `<${wrapperTag} class="${wrapperClasses.join(" ")}" id="${wrapperAnchorId}">
+  ${shareMarkup}
+  <${contentWrapperTag} class="${contentClasses.join(" ")}" id="${wrapperAnchorId}-content">
+    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
+${htmlMessages}
+    </${containerTag}>
+    ${fadeMarkup}
+  </${contentWrapperTag}>
+  ${collapseToggleMarkup}
+</${wrapperTag}>`;
 }, "renderMessages");
 var renderCitation = /* @__PURE__ */ __name((id, messages, slug) => {
   const threadHtml = renderMessages(messages, {
@@ -4736,7 +4753,10 @@ var renderCitation = /* @__PURE__ */ __name((id, messages, slug) => {
       contentTag: "span"
     },
     enableShare: false,
-    slug
+    slug,
+    wrapperTag: "span",
+    contentWrapperTag: "span",
+    collapsible: false
   });
   if (!threadHtml) {
     return void 0;
@@ -5457,6 +5477,8 @@ var YT_COMMUNITY_CSS = `
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .yt-community-post__header {
@@ -5464,6 +5486,7 @@ var YT_COMMUNITY_CSS = `
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
 }
 
 .yt-community-post__identity {
@@ -5492,8 +5515,8 @@ var YT_COMMUNITY_CSS = `
   height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.08);
-  color: #d7dae2;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5507,8 +5530,7 @@ var YT_COMMUNITY_CSS = `
 }
 
 .yt-community-post__share.article-share__button:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  color: var(--color-accent-deep);
 }
 
 .yt-community-post__share.article-share__button:focus-visible {
@@ -5521,11 +5543,11 @@ var YT_COMMUNITY_CSS = `
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -6800,11 +6822,11 @@ ArticleHeader.css = `
   height: 20px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;

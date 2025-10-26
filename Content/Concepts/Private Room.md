@@ -116,21 +116,23 @@ INFECTED BY LONG STRING ;-)
 
 This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-) "
 
-## Chats #6 - #10
+## Chat #6
 The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2025.07.02 - 2025.07.04:
 
 ```
 TRANSCRIPT 001:
 TTH: F2930 We see your signal, transferring in a bit. Hold tight.
 ```
-
+This chat features yet another unknown [[TTH]] worker, [[F2930]], chatting with [[TTH]].
+## Chat #7
 ```
 TRANSCRIPT 002:
 TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200
 F2930: Why is there a wait time?
 TTH: Difficulties with some Datacores and CIN Centers, but it that will be resolved soon.
 ```
-
+Here we see that it takes 10 hours for[[F2930]] to receive the signal sent from [[TTH]].  They blame the "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
+## Chat #8
 ```
 TRANSCRIP 003:
 TTH: F2930, we encountered some anomalous interference with your signal
@@ -141,7 +143,9 @@ TTH: Then just send the serial code back and we'll get you back on it.
 F2930: YEAH, WHAT'S A SERIAL CODE?
 TTH: The code from the signal generation key.
 ```
+This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is possible that it is [[INDI]] talking here, but this is not confirmed.
 
+## Chat #9
 ```
 TRANSCRIPT 004:
 TTH: F2930, We're getting some REN signals. Do you have anything to explain that?
@@ -150,7 +154,9 @@ TTH: Don't play dumb, we're going to have to search your terminal before we can 
 F2930: NO, WAIT! I DON'T CONTRIBUTE WITH REN!
 TTH: Don't worry F2930. If we find nothing then you can pass through, but if you are hiding something then we will have to do something about that.
 ```
+Here, the mysterious [[REN]] signals are mentioned. [[F2930]] is suspected of having something nefarious in their terminal -- perhaps [[Long String]]?
 
+## Chat #10
 ```
 TRANSCRIPT 005:
 TTH: Okay, we went through everything and found nothing. It is suspicious however, that your terminal is completely clean of anything, but it's whatever. We just have to monitor your signals for 3 - 6 days and we will conclude whether or not we'll allow your signals to continue being private.
@@ -160,4 +166,4 @@ F2930: Nothing, just I have 2000 Credit somewhere. I'll tell you where it is if 
 TTH: I'm sorry, but I can\<INSERT S PROTECTED CODE>'t take bribes.
 F2930: I see, what a shame, well it's near\<INSERT LAN CORD EXPUNGED AFTER 0432 AM>
 ```
-
+In this last private room chat, it is confirmed that [[F2930]] has purged their terminal. [[F2930]] mentions that they aren't "going to have that district for that long", implying that they have a changing jurisdictional responsibilities. They try to bribe the [[TTH]] agent with 2000 Credits. This is the first mention of this "Credit" currency. The [[TTH]] agent does not accept the bribe.

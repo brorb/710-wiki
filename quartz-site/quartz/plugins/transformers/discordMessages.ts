@@ -66,11 +66,13 @@ const DISCORD_CSS = `
 .discord-thread-wrapper {
   position: relative;
   max-width: min(720px, 100%);
+  display: block;
 }
 
 .discord-thread-content {
   position: relative;
   overflow: hidden;
+  display: block;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -317,7 +319,7 @@ const DISCORD_CSS = `
   height: 34px;
   border-radius: 999px;
   border: none;
-  background: color-mix(in srgb, rgba(43, 45, 49, 0.85) 65%, transparent);
+  background: transparent;
   color: #d6dae3;
   display: inline-flex;
   align-items: center;
@@ -334,11 +336,11 @@ const DISCORD_CSS = `
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("${SHARE_ICON_MASK_URL}");
+  mask-image: url(${SHARE_ICON_MASK_URL});
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("${SHARE_ICON_MASK_URL}");
+  -webkit-mask-image: url(${SHARE_ICON_MASK_URL});
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -354,8 +356,7 @@ const DISCORD_CSS = `
 }
 
 .discord-thread-share.article-share__button:hover {
-  background: color-mix(in srgb, rgba(120, 126, 142, 0.6) 50%, transparent);
-  color: #f1f3f9;
+  color: var(--color-accent-deep);
 }
 
 .discord-thread-share.article-share__button:focus-visible {
@@ -811,6 +812,9 @@ interface RenderMessagesOptions {
   messageOptions?: RenderMessageOptions
   enableShare?: boolean
   slug?: FullSlug
+  wrapperTag?: string
+  contentWrapperTag?: string
+  collapsible?: boolean
 }
 
 const renderAttachments = (attachments?: DiscordAttachment[]): string => {
@@ -938,7 +942,15 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
     return ""
   }
 
-  const { containerTag = "section", messageOptions, enableShare = true, slug } = options
+  const {
+    containerTag = "section",
+    messageOptions,
+    enableShare = true,
+    slug,
+    wrapperTag = "div",
+    contentWrapperTag = "div",
+    collapsible = true,
+  } = options
 
   const { anchorId: wrapperAnchorId, snippet: primarySnippet } = buildThreadAnchorMetadata(messages, slug)
 
@@ -974,21 +986,37 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
     </button>`
   }
 
-  return `<div class="discord-thread-wrapper collapsed" id="${wrapperAnchorId}">
-  ${shareMarkup}
-  <div class="discord-thread-content collapsed" id="${wrapperAnchorId}-content">
-    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
-${htmlMessages}
-    </${containerTag}>
-    <div class="discord-thread-fade" aria-hidden="true"></div>
-  </div>
-  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
+  const wrapperClasses = ["discord-thread-wrapper"]
+  const contentClasses = ["discord-thread-content"]
+
+  if (collapsible) {
+    wrapperClasses.push("collapsed")
+    contentClasses.push("collapsed")
+  }
+
+  const fadeMarkup = collapsible
+    ? `<div class="discord-thread-fade" aria-hidden="true"></div>`
+    : ""
+
+  const collapseToggleMarkup = collapsible
+    ? `<button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
     <span>Show More</span>
     <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
-  </button>
-</div>`
+  </button>`
+    : ""
+
+  return `<${wrapperTag} class="${wrapperClasses.join(" ")}" id="${wrapperAnchorId}">
+  ${shareMarkup}
+  <${contentWrapperTag} class="${contentClasses.join(" ")}" id="${wrapperAnchorId}-content">
+    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
+${htmlMessages}
+    </${containerTag}>
+    ${fadeMarkup}
+  </${contentWrapperTag}>
+  ${collapseToggleMarkup}
+</${wrapperTag}>`
 }
 
 const renderCitation = (id: string, messages: DiscordMessage[], slug?: FullSlug): string | undefined => {
@@ -1003,6 +1031,9 @@ const renderCitation = (id: string, messages: DiscordMessage[], slug?: FullSlug)
     },
     enableShare: false,
     slug,
+    wrapperTag: "span",
+    contentWrapperTag: "span",
+    collapsible: false,
   })
   if (!threadHtml) {
     return undefined

@@ -161,11 +161,11 @@ ArticleHeader.css = `
   height: 20px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;

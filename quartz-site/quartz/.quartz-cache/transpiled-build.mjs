@@ -159,11 +159,13 @@ pre:hover > .expand-button {
 .discord-thread-wrapper {
   position: relative;
   max-width: min(720px, 100%);
+  display: block;
 }
 
 .discord-thread-content {
   position: relative;
   overflow: hidden;
+  display: block;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -410,7 +412,7 @@ pre:hover > .expand-button {
   height: 34px;
   border-radius: 999px;
   border: none;
-  background: color-mix(in srgb, rgba(43, 45, 49, 0.85) 65%, transparent);
+  background: transparent;
   color: #d6dae3;
   display: inline-flex;
   align-items: center;
@@ -427,11 +429,11 @@ pre:hover > .expand-button {
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("${SHARE_ICON_MASK_URL}");
+  mask-image: url(${SHARE_ICON_MASK_URL});
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("${SHARE_ICON_MASK_URL}");
+  -webkit-mask-image: url(${SHARE_ICON_MASK_URL});
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -447,8 +449,7 @@ pre:hover > .expand-button {
 }
 
 .discord-thread-share.article-share__button:hover {
-  background: color-mix(in srgb, rgba(120, 126, 142, 0.6) 50%, transparent);
-  color: #f1f3f9;
+  color: var(--color-accent-deep);
 }
 
 .discord-thread-share.article-share__button:focus-visible {
@@ -606,24 +607,24 @@ pre:hover > .expand-button {
         ${attachmentsMarkup}
       </${bodyTag}>
     </a>
-  </${wrapperTag}>`},"renderMessage"),renderMessages=__name((messages,options2={})=>{if(messages.length===0)return"";let{containerTag="section",messageOptions,enableShare=!0,slug}=options2,{anchorId:wrapperAnchorId,snippet:primarySnippet}=buildThreadAnchorMetadata(messages,slug),htmlMessages=messages.map((message,index)=>renderMessage(message,index>0?messages[index-1]:void 0,messageOptions,{index,threadId:wrapperAnchorId})).join(`
+  </${wrapperTag}>`},"renderMessage"),renderMessages=__name((messages,options2={})=>{if(messages.length===0)return"";let{containerTag="section",messageOptions,enableShare=!0,slug,wrapperTag="div",contentWrapperTag="div",collapsible=!0}=options2,{anchorId:wrapperAnchorId,snippet:primarySnippet}=buildThreadAnchorMetadata(messages,slug),htmlMessages=messages.map((message,index)=>renderMessage(message,index>0?messages[index-1]:void 0,messageOptions,{index,threadId:wrapperAnchorId})).join(`
 `),shareMarkup="";if(enableShare){let messageCount=messages.length,countLabel=messageCount===1?"Share Discord message":`Share Discord thread (${messageCount} messages)`,shareTitle=messageCount===1?"Discord message":"Discord thread",shareAttributes=['type="button"','class="discord-thread-share article-share__button"',`aria-label="${escapeAttribute(countLabel)}"`,`data-share-url="#${escapeAttribute(wrapperAnchorId)}"`,`data-share-title="${escapeAttribute(shareTitle)}"`],shareText=primarySnippet??createShareSnippet(messages[0]?.content);shareText&&shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`),shareMarkup=`<button ${shareAttributes.join(" ")}>
       <span class="discord-thread-share__icon" aria-hidden="true"></span>
-    </button>`}return`<div class="discord-thread-wrapper collapsed" id="${wrapperAnchorId}">
-  ${shareMarkup}
-  <div class="discord-thread-content collapsed" id="${wrapperAnchorId}-content">
-    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
-${htmlMessages}
-    </${containerTag}>
-    <div class="discord-thread-fade" aria-hidden="true"></div>
-  </div>
-  <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
+    </button>`}let wrapperClasses=["discord-thread-wrapper"],contentClasses=["discord-thread-content"];collapsible&&(wrapperClasses.push("collapsed"),contentClasses.push("collapsed"));let fadeMarkup=collapsible?'<div class="discord-thread-fade" aria-hidden="true"></div>':"",collapseToggleMarkup=collapsible?`<button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${wrapperAnchorId}-content" data-discord-toggle="${wrapperAnchorId}">
     <span>Show More</span>
     <svg class="discord-collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
-  </button>
-</div>`},"renderMessages"),renderCitation=__name((id,messages,slug)=>{let threadHtml=renderMessages(messages,{containerTag:"span",messageOptions:{wrapperTag:"span",avatarTag:"span",bodyTag:"span",headerTag:"span",contentTag:"span"},enableShare:!1,slug});if(!threadHtml)return;let count=messages.length,labelText=count===1?"View Discord citation (1 message)":`View Discord citation (${count} messages)`;return`<span class="discord-cite" data-discord-id="${escapeAttribute(id)}">
+  </button>`:"";return`<${wrapperTag} class="${wrapperClasses.join(" ")}" id="${wrapperAnchorId}">
+  ${shareMarkup}
+  <${contentWrapperTag} class="${contentClasses.join(" ")}" id="${wrapperAnchorId}-content">
+    <${containerTag} class="discord-thread" data-message-count="${messages.length}">
+${htmlMessages}
+    </${containerTag}>
+    ${fadeMarkup}
+  </${contentWrapperTag}>
+  ${collapseToggleMarkup}
+</${wrapperTag}>`},"renderMessages"),renderCitation=__name((id,messages,slug)=>{let threadHtml=renderMessages(messages,{containerTag:"span",messageOptions:{wrapperTag:"span",avatarTag:"span",bodyTag:"span",headerTag:"span",contentTag:"span"},enableShare:!1,slug,wrapperTag:"span",contentWrapperTag:"span",collapsible:!1});if(!threadHtml)return;let count=messages.length,labelText=count===1?"View Discord citation (1 message)":`View Discord citation (${count} messages)`;return`<span class="discord-cite" data-discord-id="${escapeAttribute(id)}">
     <button type="button" class="discord-cite__trigger" aria-label="${escapeAttribute(labelText)}" title="${escapeAttribute(labelText)}">
       <svg viewBox="0 0 32 32" role="img" aria-hidden="true" focusable="false">
         <path d="${DISCORD_CITE_ICON_PATH}" />
@@ -715,6 +716,8 @@ ${htmlMessages}
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .yt-community-post__header {
@@ -722,6 +725,7 @@ ${htmlMessages}
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
 }
 
 .yt-community-post__identity {
@@ -750,8 +754,8 @@ ${htmlMessages}
   height: 32px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.08);
-  color: #d7dae2;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -765,8 +769,7 @@ ${htmlMessages}
 }
 
 .yt-community-post__share.article-share__button:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  color: var(--color-accent-deep);
 }
 
 .yt-community-post__share.article-share__button:focus-visible {
@@ -779,11 +782,11 @@ ${htmlMessages}
   height: 18px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -1063,11 +1066,11 @@ li.section-li > .section .meta {
   height: 20px;
   display: block;
   background-color: currentColor;
-  mask-image: url("/static/icons/share_icon.svg");
+  mask-image: url(/static/icons/share_icon.svg);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
