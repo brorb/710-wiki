@@ -23051,7 +23051,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour_value": 16777215
     },
     "content": "<TAGGING>!: {LOGGED SESSION_01-01}",
-    "timestamp": "2025-10-12T18:35:17.060000+00:00",
+    "timestamp": "2025-07-24T15:33:17.060000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -23065,7 +23065,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour_value": 16777215
     },
     "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
-    "timestamp": "2025-10-12T18:33:27.913000+00:00",
+    "timestamp": "2025-07-24T15:33:27.913000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
