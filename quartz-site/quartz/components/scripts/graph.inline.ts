@@ -591,6 +591,45 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 let localGraphCleanups: (() => void)[] = []
 let globalGraphCleanups: (() => void)[] = []
 
+const graphTeleportState = new WeakMap<
+  HTMLElement,
+  {
+    parent: Node
+    placeholder: Comment
+  }
+>()
+
+function moveGraphToBody(container: HTMLElement) {
+  if (container.parentElement === document.body) {
+    return
+  }
+
+  const parent = container.parentNode
+  if (!parent) {
+    return
+  }
+
+  const placeholder = document.createComment("global-graph-home")
+  parent.insertBefore(placeholder, container)
+  graphTeleportState.set(container, { parent, placeholder })
+  document.body.appendChild(container)
+}
+
+function restoreGraph(container: HTMLElement) {
+  const state = graphTeleportState.get(container)
+  if (!state) {
+    return
+  }
+
+  const { parent, placeholder } = state
+  if (parent.isConnected) {
+    parent.insertBefore(container, placeholder)
+  }
+
+  placeholder.remove()
+  graphTeleportState.delete(container)
+}
+
 function cleanupLocalGraphs() {
   for (const cleanup of localGraphCleanups) {
     cleanup()
@@ -632,6 +671,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     const slug = getFullSlug(window)
     document.body.classList.add("graph-modal-active")
     for (const container of containers) {
+      moveGraphToBody(container)
       container.classList.add("active")
 
       const graphContainer = container.querySelector(".global-graph-container") as HTMLElement
@@ -647,6 +687,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     document.body.classList.remove("graph-modal-active")
     for (const container of containers) {
       container.classList.remove("active")
+      restoreGraph(container)
     }
   }
 
@@ -670,6 +711,6 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   window.addCleanup(() => {
     document.removeEventListener("keydown", shortcutHandler)
     cleanupLocalGraphs()
-    cleanupGlobalGraphs()
+    hideGlobalGraph()
   })
 })

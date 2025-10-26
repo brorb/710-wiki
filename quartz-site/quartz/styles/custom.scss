@@ -7,18 +7,6 @@
   width: 100%;
   margin: 0;
 }
-
-.sidebar.left {
-  margin-top: 0.5rem;
-  align-items: stretch;
-  gap: 1rem;
-}
-
-#quartz-body .sidebar.left {
-  margin-top: 0.5rem;
-}
-
-
 @media screen and ($mobile) {
   #quartz-body .sidebar.left {
     margin-top: 0;
@@ -79,19 +67,19 @@
   max-height: calc(100vh - 420px);
 }
 
-img:not(.Logo) {
+#quartz-body article img:not([data-no-zoom]) {
   cursor: zoom-in;
 }
 
-img:active:not(.Logo) {
+#quartz-body article img:active:not([data-no-zoom]) {
   cursor: zoom-out;
   display: block;
   position: fixed;
   z-index: 100;
   max-height: 100% !important;
   max-width: 100% !important;
-  height: 100% !important;
-  width: 100% !important;
+  height: auto !important;
+  width: auto !important;
   object-fit: contain;
   margin: 0 auto !important;
   text-align: center;
@@ -102,6 +90,21 @@ img:active:not(.Logo) {
   transform: translateY(-50%);
   background: var(--background-primary);
   padding: 0;
+}
+
+.page-title-link img {
+  cursor: pointer;
+}
+
+.page-title-link img:active {
+  cursor: pointer;
+  position: static;
+  transform: none;
+  max-height: none !important;
+  max-width: 100% !important;
+  height: auto !important;
+  width: 100% !important;
+  background: transparent;
 }
 
 kbd {
@@ -218,7 +221,7 @@ a.wiki-download-link svg {
 .comments-separator {
   margin: 1.75rem 0 0;
   border: none;
-  border-bottom: 1px solid var(--tertiary);
+  border-bottom: 1px solid var(--color-accent-deep);
   opacity: 0.4;
 }
 

@@ -4,12 +4,43 @@
 @use "./syntax.scss";
 @use "./callouts.scss";
 
+@mixin themed-scrollbars {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-scrollbar-track);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar-thumb);
+    border-radius: 999px;
+    border: 2px solid var(--color-scrollbar-track);
+  }
+
+  &::-webkit-scrollbar-thumb:horizontal {
+    background: var(--color-scrollbar-thumb);
+    border: 2px solid var(--color-scrollbar-track);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: var(--color-scrollbar-track);
+  }
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
   color: var(--color-tone-primary);
+  @include themed-scrollbars;
 }
 
 p,
@@ -46,24 +77,7 @@ ul.overflow,
 .backlinks-content,
 .search .results-container,
 .search .preview-container {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--color-scrollbar-track);
-    border-radius: 999px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-scrollbar-thumb);
-    border-radius: 999px;
-    border: 2px solid var(--color-scrollbar-track);
-  }
+  @include themed-scrollbars;
 }
 p,
 .math {
@@ -175,6 +189,7 @@ a {
   margin: 0;
   padding: 0 clamp(0.75rem, 2vw, 2.5rem);
   box-sizing: border-box;
+  @include themed-scrollbars;
   & article {
     & > h1 {
       font-size: 2rem;
