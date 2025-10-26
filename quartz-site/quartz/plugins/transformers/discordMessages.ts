@@ -65,6 +65,34 @@ const DISCORD_CSS = `
   max-width: min(720px, 100%);
 }
 
+.discord-thread-wrapper::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 96px;
+  pointer-events: none;
+  opacity: 0;
+  background: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.discord-thread-wrapper.collapsed {
+  max-height: 420px;
+  overflow: hidden;
+}
+
+.discord-thread-wrapper.collapsed::after {
+  opacity: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 45, 49, 0) 0%,
+    rgba(43, 45, 49, 0.68) 52%,
+    color-mix(in srgb, rgba(43, 45, 49, 0.92) 70%, var(--color-primary-background) 30%) 100%
+  );
+}
+
 .discord-thread-content {
   position: relative;
   overflow: hidden;
@@ -73,23 +101,6 @@ const DISCORD_CSS = `
 
 .discord-thread-content.collapsed {
   max-height: 420px;
-}
-
-.discord-thread-content.collapsed::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    rgba(43, 45, 49, 0),
-    rgba(43, 45, 49, 0.6) 48%,
-    var(--color-primary-background) 90%
-  );
-  pointer-events: none;
-  z-index: 1;
 }
 
 .discord-collapse-toggle {
@@ -736,7 +747,7 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
   
   const threadId = `discord-thread-${Math.random().toString(36).substr(2, 9)}`
   
-  return `<div class="discord-thread-wrapper">
+  return `<div class="discord-thread-wrapper collapsed">
   <div class="discord-thread-content collapsed" id="${threadId}-content">
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
