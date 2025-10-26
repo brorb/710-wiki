@@ -271,16 +271,22 @@ export function renderPage(
 
   const LeftComponent = (
     <div class="left sidebar">
-      {left.map((BodyComponent) => (
-        <BodyComponent {...componentData} />
+      {left.map((BodyComponent, index) => (
+        <BodyComponent
+          {...componentData}
+          key={BodyComponent.name ?? `left-${index}`}
+        />
       ))}
     </div>
   )
 
   const RightComponent = (
     <div class="right sidebar">
-      {right.map((BodyComponent) => (
-        <BodyComponent {...componentData} />
+      {right.map((BodyComponent, index) => (
+        <BodyComponent
+          {...componentData}
+          key={BodyComponent.name ?? `right-${index}`}
+        />
       ))}
     </div>
   )
@@ -297,13 +303,19 @@ export function renderPage(
             <div class="center">
               <div class="page-header">
                 <Header {...componentData}>
-                  {header.map((HeaderComponent) => (
-                    <HeaderComponent {...componentData} />
+                  {header.map((HeaderComponent, index) => (
+                    <HeaderComponent
+                      {...componentData}
+                      key={HeaderComponent.name ?? `header-${index}`}
+                    />
                   ))}
                 </Header>
                 <div class="popover-hint">
-                  {beforeBody.map((BodyComponent) => (
-                    <BodyComponent {...componentData} />
+                  {beforeBody.map((BodyComponent, index) => (
+                    <BodyComponent
+                      {...componentData}
+                      key={BodyComponent.name ?? `before-${index}`}
+                    />
                   ))}
                 </div>
               </div>

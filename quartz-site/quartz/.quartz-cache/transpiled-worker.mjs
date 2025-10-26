@@ -5849,7 +5849,8 @@ import path6 from "path";
 // quartz/components/Header.tsx
 import { jsx } from "preact/jsx-runtime";
 var Header = /* @__PURE__ */ __name(({ children }) => {
-  return children.length > 0 ? /* @__PURE__ */ jsx("header", { children }) : null;
+  const hasChildren = Array.isArray(children) ? children.length > 0 : children !== null && children !== void 0 && children !== false;
+  return hasChildren ? /* @__PURE__ */ jsx("header", { children }) : null;
 }, "Header");
 Header.css = `
 header {
@@ -5933,10 +5934,11 @@ __name(concatenateResources, "concatenateResources");
 // quartz/components/renderPage.tsx
 import { visit as visit7 } from "unist-util-visit";
 import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
+import { createElement } from "preact";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path13) => `${path13}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path12) => `${path12}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -6129,8 +6131,20 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
       footerNodes.push(node);
     }
   }
-  const LeftComponent = /* @__PURE__ */ jsx4("div", { class: "left sidebar", children: left.map((BodyComponent) => /* @__PURE__ */ jsx4(BodyComponent, { ...componentData })) });
-  const RightComponent = /* @__PURE__ */ jsx4("div", { class: "right sidebar", children: right.map((BodyComponent) => /* @__PURE__ */ jsx4(BodyComponent, { ...componentData })) });
+  const LeftComponent = /* @__PURE__ */ jsx4("div", { class: "left sidebar", children: left.map((BodyComponent, index) => /* @__PURE__ */ createElement(
+    BodyComponent,
+    {
+      ...componentData,
+      key: BodyComponent.name ?? `left-${index}`
+    }
+  )) });
+  const RightComponent = /* @__PURE__ */ jsx4("div", { class: "right sidebar", children: right.map((BodyComponent, index) => /* @__PURE__ */ createElement(
+    BodyComponent,
+    {
+      ...componentData,
+      key: BodyComponent.name ?? `right-${index}`
+    }
+  )) });
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en";
   const direction = i18n(cfg.locale).direction ?? "ltr";
   const doc = /* @__PURE__ */ jsxs("html", { lang, dir: direction, "saved-theme": "dark", children: [
@@ -6139,8 +6153,20 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
       LeftComponent,
       /* @__PURE__ */ jsxs("div", { class: "center", children: [
         /* @__PURE__ */ jsxs("div", { class: "page-header", children: [
-          /* @__PURE__ */ jsx4(Header2, { ...componentData, children: header.map((HeaderComponent) => /* @__PURE__ */ jsx4(HeaderComponent, { ...componentData })) }),
-          /* @__PURE__ */ jsx4("div", { class: "popover-hint", children: beforeBody.map((BodyComponent) => /* @__PURE__ */ jsx4(BodyComponent, { ...componentData })) })
+          /* @__PURE__ */ jsx4(Header2, { ...componentData, children: header.map((HeaderComponent, index) => /* @__PURE__ */ createElement(
+            HeaderComponent,
+            {
+              ...componentData,
+              key: HeaderComponent.name ?? `header-${index}`
+            }
+          )) }),
+          /* @__PURE__ */ jsx4("div", { class: "popover-hint", children: beforeBody.map((BodyComponent, index) => /* @__PURE__ */ createElement(
+            BodyComponent,
+            {
+              ...componentData,
+              key: BodyComponent.name ?? `before-${index}`
+            }
+          )) })
         ] }),
         /* @__PURE__ */ jsx4(Content2, { ...componentData }),
         mobileBacklinksNodes,
@@ -6273,12 +6299,10 @@ function byDateAndAlphabeticalFolderFirst(cfg) {
 __name(byDateAndAlphabeticalFolderFirst, "byDateAndAlphabeticalFolderFirst");
 var PageList = /* @__PURE__ */ __name(({ cfg, fileData, allFiles, limit, sort }) => {
   const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg);
-  let list = allFiles.sort(sorter);
-  if (limit) {
-    list = list.slice(0, limit);
-  }
+  const sorted = [...allFiles].sort(sorter);
+  const list = typeof limit === "number" ? sorted.slice(0, limit) : sorted;
   return /* @__PURE__ */ jsx9("ul", { class: "section-ul", children: list.map((page) => {
-    const title = page.frontmatter?.title;
+    const title = page.frontmatter?.title ?? page.slug ?? "Untitled";
     const tags = page.frontmatter?.tags ?? [];
     return /* @__PURE__ */ jsx9("li", { class: "section-li", children: /* @__PURE__ */ jsxs3("div", { class: "section", children: [
       /* @__PURE__ */ jsx9("p", { class: "meta", children: page.dates && /* @__PURE__ */ jsx9(Date2, { date: getDate(cfg, page), locale: cfg.locale }) }),
@@ -6290,7 +6314,7 @@ var PageList = /* @__PURE__ */ __name(({ cfg, fileData, allFiles, limit, sort })
           href: resolveRelative(fileData.slug, `tags/${tag}`),
           children: tag
         }
-      ) })) })
+      ) }, tag)) })
     ] }) });
   }) });
 }, "PageList");
@@ -6414,59 +6438,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path13 = joinSegments(...this.slugSegments);
+    const path12 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path13, "index");
+      return joinSegments(path12, "index");
     }
-    return path13;
+    return path12;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path13, file) {
-    const fullPath = [...this.slugSegments, path13[0]];
+  makeChild(path12, file) {
+    const fullPath = [...this.slugSegments, path12[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path13, file) {
-    if (path13.length === 0) {
+  insert(path12, file) {
+    if (path12.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path13[0];
-    if (path13.length === 1) {
+    const segment = path12[0];
+    if (path12.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path13, file);
+        this.makeChild(path12, file);
       }
-    } else if (path13.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path13, void 0);
+    } else if (path12.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path12, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path13.length);
-      child.insert(path13.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path12.length);
+      child.insert(path12.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path13) {
-    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
+  findNode(path12) {
+    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path13[0])?.findNode(path13.slice(1));
+    return this.children.find((c) => c.slugSegment === path12[0])?.findNode(path12.slice(1));
   }
-  ancestryChain(path13) {
-    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
+  ancestryChain(path12) {
+    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path13[0]);
+    const child = this.children.find((c) => c.slugSegment === path12[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path13.slice(1));
+    const childPath = child.ancestryChain(path12.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -6514,7 +6538,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path13, _]) => path13);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path12, _]) => path12);
   }
 };
 
@@ -6796,12 +6820,12 @@ ArticleHeader.css = `
 }
 
 .article-share__feedback[data-state="success"] {
-  color: #7de49a;
+  color: var(--color-feedback-success);
   opacity: 1;
 }
 
 .article-share__feedback[data-state="error"] {
-  color: #ff8a8a;
+  color: var(--color-feedback-error);
   opacity: 1;
 }
 
@@ -6839,11 +6863,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path13) => {
-  if (!path13) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path12) => {
+  if (!path12) {
     return null;
   }
-  const trimmed = path13.trim();
+  const trimmed = path12.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -7007,7 +7031,7 @@ var Canvas_default = /* @__PURE__ */ __name(((options2) => {
 
 .canvas-loading.is-error {
   background: rgba(255, 232, 230, 0.95);
-  color: #a13a28;
+  color: var(--color-accent-deep);
 }
 
 .canvas-spinner {
@@ -7290,8 +7314,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path13 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path13 : pathToRoot(fileData.slug);
+    const path12 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path12 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -7565,9 +7589,9 @@ document.addEventListener("nav", () => {
     event.stopPropagation()
   }
 
-  const wheelTargets: HTMLElement[] = []
+  const wheelTargets = []
 
-  const registerWheelTarget = (element?: HTMLElement | null) => {
+  const registerWheelTarget = (element) => {
     if (!element || element.dataset.scrollProxyBound === "true") {
       return
     }
@@ -7842,7 +7866,7 @@ var TagList = /* @__PURE__ */ __name(({ fileData, displayClass }) => {
   if (tags && tags.length > 0) {
     return /* @__PURE__ */ jsx25("ul", { class: classNames(displayClass, "tags"), children: tags.map((tag) => {
       const linkDest = resolveRelative(fileData.slug, `tags/${tag}`);
-      return /* @__PURE__ */ jsx25("li", { children: /* @__PURE__ */ jsx25("a", { href: linkDest, class: "internal tag-link", children: tag }) });
+      return /* @__PURE__ */ jsx25("li", { children: /* @__PURE__ */ jsx25("a", { href: linkDest, class: "internal tag-link", children: tag }) }, tag);
     }) });
   } else {
     return null;
@@ -8011,7 +8035,7 @@ var Backlinks_default = /* @__PURE__ */ __name(((opts) => {
           ]
         }
       ),
-      /* @__PURE__ */ jsx27(OverflowList2, { id: containerId, class: "backlinks-content collapsed", children: backlinkFiles.length > 0 ? backlinkFiles.map((f) => /* @__PURE__ */ jsx27("li", { children: /* @__PURE__ */ jsx27("a", { href: resolveRelative(fileData.slug, f.slug), class: "internal", children: f.frontmatter?.title }) })) : /* @__PURE__ */ jsx27("li", { children: i18n(cfg.locale).components.backlinks.noBacklinksFound }) })
+      /* @__PURE__ */ jsx27(OverflowList2, { id: containerId, class: "backlinks-content collapsed", children: backlinkFiles.length > 0 ? backlinkFiles.map((f) => /* @__PURE__ */ jsx27("li", { children: /* @__PURE__ */ jsx27("a", { href: resolveRelative(fileData.slug, f.slug), class: "internal", children: f.frontmatter?.title }) }, f.slug ?? f.filePath ?? f.frontmatter?.title ?? "backlink")) : /* @__PURE__ */ jsx27("li", { children: i18n(cfg.locale).components.backlinks.noBacklinksFound }) })
     ] }) });
   }, "Backlinks");
   Backlinks.css = backlinks_default;
@@ -8242,28 +8266,8 @@ var ConditionalRender_default = /* @__PURE__ */ __name(((config2) => {
 // quartz/components/styles/linksHeader.scss
 var linksHeader_default = "";
 
-// theme.colors.json
-var theme_colors_default = {
-  primaryBackground: "#080001",
-  surfaceOverlay: "#1a0507",
-  panelDepth: "#240709",
-  tonePrimary: "#c48a91",
-  toneContrast: "#fbe2e6",
-  toneSubtle: "#8c4c52",
-  toneMuted: "#b09598",
-  accentBright: "#eb1c24",
-  accentDeep: "#b71000",
-  accentShadow: "#610700",
-  accentShadowLight: "#7a0600",
-  highlightOverlay: "rgba(235, 28, 36, 0.18)",
-  link: "#ff5860",
-  buttonText: "#fff7f8",
-  textHighlight: "#ff3a4066"
-};
-
 // quartz/components/LinksHeader.tsx
 import { jsx as jsx34, jsxs as jsxs22 } from "preact/jsx-runtime";
-var palette = theme_colors_default;
 var navLinks = [
   {
     href: "/",
@@ -8308,21 +8312,10 @@ var navLinks = [
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsx34("div", { id: "links-header-container", children: /* @__PURE__ */ jsx34(
-      "nav",
-      {
-        id: "links-header",
-        style: {
-          "--link-button-bg": palette.accentDeep,
-          "--link-button-border": palette.accentDeep,
-          "--link-button-text": palette.buttonText
-        },
-        children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs22("a", { class: "links-header-item", href, children: [
-          /* @__PURE__ */ jsx34("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
-          /* @__PURE__ */ jsx34("span", { children: label })
-        ] }, href))
-      }
-    ) });
+    return /* @__PURE__ */ jsx34("div", { id: "links-header-container", children: /* @__PURE__ */ jsx34("nav", { id: "links-header", children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs22("a", { class: "links-header-item", href, children: [
+      /* @__PURE__ */ jsx34("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
+      /* @__PURE__ */ jsx34("span", { children: label })
+    ] }, href)) }) });
   }, "LinksHeader");
   LinksHeader.css = linksHeader_default;
   return LinksHeader;
@@ -8422,7 +8415,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   height: var(--discord-widget-height, 500px);
   border: none;
   border-radius: 12px;
-  background-color: #040405;
+  background-color: var(--color-panel-depth);
   filter: url(#${FILTER_ID});
 }
 
@@ -8641,13 +8634,21 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
     return /* @__PURE__ */ jsxs24("aside", { class: classNames(displayClass, "infobox"), role: "complementary", "aria-label": "Infobox", children: [
       infobox.title ? /* @__PURE__ */ jsx36("h3", { class: "infobox__title", children: infobox.title }) : null,
       infobox.image ? /* @__PURE__ */ jsxs24("figure", { class: "infobox__media", children: [
-        /* @__PURE__ */ jsx36("img", { src: infobox.image.src, alt: infobox.image.alt ?? infobox.title ?? "Infobox image", loading: "lazy", decoding: "async" }),
+        /* @__PURE__ */ jsx36(
+          "img",
+          {
+            src: infobox.image.src,
+            alt: infobox.image.alt ?? infobox.title ?? "Infobox image",
+            loading: "lazy",
+            decoding: "async"
+          }
+        ),
         infobox.image.caption ? /* @__PURE__ */ jsx36("figcaption", { children: infobox.image.caption }) : null
       ] }) : null,
-      infobox.items.length > 0 ? /* @__PURE__ */ jsx36("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value }) => /* @__PURE__ */ jsxs24("div", { class: "infobox__fact", children: [
+      infobox.items.length > 0 ? /* @__PURE__ */ jsx36("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value, key }) => /* @__PURE__ */ jsxs24("div", { class: "infobox__fact", children: [
         /* @__PURE__ */ jsx36("dt", { children: label }),
         /* @__PURE__ */ jsx36("dd", { children: value })
-      ] }, `${label}-${value}`)) }) : null
+      ] }, key)) }) : null
     ] });
   }, "InfoBox");
   InfoBox.css = `
@@ -8986,7 +8987,7 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   height: 30px;
   display: inline-block;
   flex-shrink: 0;
-  background-color: var(--accentPrimary);
+  background-color: var(--color-accent-bright);
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: contain;
@@ -9833,10 +9834,6 @@ var Favicon = /* @__PURE__ */ __name(() => ({
   }
 }), "Favicon");
 
-// quartz/plugins/emitters/componentResources.ts
-import fs5 from "node:fs";
-import path11 from "node:path";
-
 // quartz/components/scripts/spa.inline.ts
 var spa_inline_default = "";
 
@@ -9889,10 +9886,24 @@ function getComponentResources(ctx) {
 __name(getComponentResources, "getComponentResources");
 async function joinScripts(scripts) {
   const script = scripts.map((script2) => `(function () {${script2}})();`).join("\n");
-  const res = await transpile(script, {
-    minify: true
-  });
-  return res.code;
+  if (script.trim().length === 0) {
+    return "";
+  }
+  try {
+    const res = await transpile(script, {
+      minify: true
+    });
+    return res.code;
+  } catch (error) {
+    if (error instanceof Error) {
+      const preview = script.split("\n").map((line, idx) => `${idx + 1}: ${line}`).slice(0, 160).join("\n");
+      error.message = `${error.message}
+Failed script preview:
+${preview}`;
+      throw error;
+    }
+    throw new Error(`Failed to minify component scripts: ${String(error)}`);
+  }
 }
 __name(joinScripts, "joinScripts");
 function addGlobalPageResources(ctx, componentResources) {
@@ -10077,7 +10088,6 @@ var ComponentResources = /* @__PURE__ */ __name(() => {
   return {
     name: "ComponentResources",
     async *emit(ctx, _content, _resources) {
-      console.error("[ComponentResources] emit start");
       const cfg = ctx.cfg.configuration;
       const componentResources = getComponentResources(ctx);
       let googleFontsStyleSheet = "";
@@ -10127,23 +10137,6 @@ ${await response2.text()}`;
         joinScripts(componentResources.beforeDOMLoaded),
         joinScripts(componentResources.afterDOMLoaded)
       ]);
-      try {
-        fs5.appendFileSync(
-          "C:/Users/ireal/Documents/710-wiki/component-resource-log.txt",
-          `ComponentResources output=${ctx.argv.output}
-`
-        );
-      } catch {
-      }
-      const debugStylesPath = path11.resolve(process.cwd(), "component-styles-debug.css");
-      try {
-        fs5.mkdirSync(path11.dirname(debugStylesPath), { recursive: true });
-        fs5.writeFileSync(debugStylesPath, stylesheet);
-      } catch (error) {
-        console.warn("Failed to write debug stylesheet", error);
-        throw new Error(`Failed to dump component stylesheet: ${error}`);
-      }
-      throw new Error(`Component stylesheet dumped to ${debugStylesPath}`);
       let transformedCss;
       try {
         const result = transform({
@@ -10227,7 +10220,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path13 = url.pathname;
+      const path12 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -10235,7 +10228,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path13, resources);
+      const externalResources = pageResources(path12, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -10257,38 +10250,61 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
   };
 }, "NotFoundPage");
 
+// theme.colors.json
+var theme_colors_default = {
+  primaryBackground: "#080001",
+  surfaceOverlay: "#1a0507",
+  panelDepth: "#240709",
+  tonePrimary: "#c48a91",
+  toneContrast: "#fbe2e6",
+  toneSubtle: "#8c4c52",
+  toneMuted: "#b09598",
+  accentBright: "#eb1c24",
+  accentDeep: "#b71000",
+  accentShadow: "#610700",
+  accentShadowLight: "#7a0600",
+  highlightOverlay: "rgba(235, 28, 36, 0.18)",
+  link: "#ff5860",
+  buttonText: "#fff7f8",
+  textHighlight: "#ff3a4066",
+  feedbackSuccess: "#7de49a",
+  feedbackError: "#ff8a8a"
+};
+
 // quartz.config.ts
-var palette2 = theme_colors_default;
+var palette = theme_colors_default;
 var sharedCssVars = {
-  "color-primary-background": palette2.primaryBackground,
-  "color-surface-overlay": palette2.surfaceOverlay,
-  "color-panel-depth": palette2.panelDepth,
-  "color-tone-primary": palette2.tonePrimary,
-  "color-tone-contrast": palette2.toneContrast,
-  "color-tone-subtle": palette2.toneSubtle,
-  "color-tone-muted": palette2.toneMuted,
-  "color-accent-bright": palette2.accentBright,
-  "color-accent-deep": palette2.accentDeep,
-  "color-accent-shadow": palette2.accentShadow,
-  "color-accent-shadow-light": palette2.accentShadowLight,
-  "color-highlight-overlay": palette2.highlightOverlay,
-  "color-link": palette2.link,
-  "color-button-text": palette2.buttonText,
-  "color-button-background": palette2.accentDeep,
-  "color-button-hover": palette2.accentBright,
-  "color-scrollbar-thumb": palette2.accentDeep,
-  "color-scrollbar-track": palette2.surfaceOverlay
+  "color-primary-background": palette.primaryBackground,
+  "color-surface-overlay": palette.surfaceOverlay,
+  "color-panel-depth": palette.panelDepth,
+  "color-tone-primary": palette.tonePrimary,
+  "color-tone-contrast": palette.toneContrast,
+  "color-tone-subtle": palette.toneSubtle,
+  "color-tone-muted": palette.toneMuted,
+  "color-accent-bright": palette.accentBright,
+  "color-accent-deep": palette.accentDeep,
+  "color-accent-shadow": palette.accentShadow,
+  "color-accent-shadow-light": palette.accentShadowLight,
+  "color-highlight-overlay": palette.highlightOverlay,
+  "color-link": palette.link,
+  "color-button-text": palette.buttonText,
+  "color-button-background": palette.accentDeep,
+  "color-button-hover": palette.accentBright,
+  "color-scrollbar-thumb": palette.accentDeep,
+  "color-scrollbar-track": palette.surfaceOverlay,
+  "color-feedback-success": palette.feedbackSuccess,
+  "color-feedback-error": palette.feedbackError
 };
 var sharedColorScheme = {
-  light: palette2.primaryBackground,
-  lightgray: palette2.surfaceOverlay,
-  gray: palette2.panelDepth,
-  darkgray: palette2.toneContrast,
-  dark: palette2.tonePrimary,
-  secondary: palette2.accentBright,
-  tertiary: palette2.accentDeep,
-  highlight: palette2.highlightOverlay,
-  textHighlight: palette2.textHighlight
+  light: palette.primaryBackground,
+  lightgray: palette.surfaceOverlay,
+  gray: palette.panelDepth,
+  darkgray: palette.toneContrast,
+  dark: palette.tonePrimary,
+  secondary: palette.accentBright,
+  tertiary: palette.accentDeep,
+  highlight: palette.highlightOverlay,
+  textHighlight: palette.textHighlight
 };
 var config = {
   configuration: {
@@ -10417,7 +10433,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path12 from "path";
+import path11 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -10449,7 +10465,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path12.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path11.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
@@ -10488,7 +10504,7 @@ Failed to process html \`${file.data.filePath}\``, err);
 __name(createMarkdownParser, "createMarkdownParser");
 
 // quartz/util/sourcemap.ts
-import fs6 from "fs";
+import fs5 from "fs";
 import { fileURLToPath } from "url";
 var options = {
   // source map hack to get around query param
@@ -10497,7 +10513,7 @@ var options = {
     if (source.includes(".quartz-cache")) {
       let realSource = fileURLToPath(source.split("?", 2)[0] + ".map");
       return {
-        map: fs6.readFileSync(realSource, "utf8")
+        map: fs5.readFileSync(realSource, "utf8")
       };
     } else {
       return null;

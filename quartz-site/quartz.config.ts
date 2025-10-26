@@ -23,6 +23,8 @@ const sharedCssVars = {
   "color-button-hover": palette.accentBright,
   "color-scrollbar-thumb": palette.accentDeep,
   "color-scrollbar-track": palette.surfaceOverlay,
+  "color-feedback-success": palette.feedbackSuccess,
+  "color-feedback-error": palette.feedbackError,
 }
 
 const sharedColorScheme = {

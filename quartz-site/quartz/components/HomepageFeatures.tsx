@@ -281,7 +281,7 @@ export default (() => {
   height: 30px;
   display: inline-block;
   flex-shrink: 0;
-  background-color: var(--accentPrimary);
+  background-color: var(--color-accent-bright);
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: contain;

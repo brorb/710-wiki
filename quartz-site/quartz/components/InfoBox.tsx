@@ -31,7 +31,7 @@ interface FrontmatterInfoBox {
 
 type NormalizedInfoBoxItem = {
   label: string
-  value: preact.ComponentChildren
+  value: ComponentChildren
   key: string
 }
 
@@ -282,7 +282,7 @@ const parseInfoBox = (
     ? {
         src: imageSrc,
         alt: imageAlt,
-  caption: imageCaptionNode,
+        caption: imageCaptionNode,
       }
     : undefined
 
@@ -299,7 +299,7 @@ export default (() => {
       return null
     }
 
-  const infobox = parseInfoBox(fileData, fileData.slug, ctx)
+    const infobox = parseInfoBox(fileData, fileData.slug, ctx)
     if (!infobox) {
       return null
     }
@@ -309,14 +309,19 @@ export default (() => {
         {infobox.title ? <h3 class="infobox__title">{infobox.title}</h3> : null}
         {infobox.image ? (
           <figure class="infobox__media">
-            <img src={infobox.image.src} alt={infobox.image.alt ?? infobox.title ?? "Infobox image"} loading="lazy" decoding="async" />
+            <img
+              src={infobox.image.src}
+              alt={infobox.image.alt ?? infobox.title ?? "Infobox image"}
+              loading="lazy"
+              decoding="async"
+            />
             {infobox.image.caption ? <figcaption>{infobox.image.caption}</figcaption> : null}
           </figure>
         ) : null}
         {infobox.items.length > 0 ? (
           <dl class="infobox__facts">
-            {infobox.items.map(({ label, value }) => (
-              <div class="infobox__fact" key={`${label}-${value}`}>
+            {infobox.items.map(({ label, value, key }) => (
+              <div class="infobox__fact" key={key}>
                 <dt>{label}</dt>
                 <dd>{value}</dd>
               </div>

@@ -64,7 +64,7 @@ export default ((opts?: Partial<BacklinksOptions>) => {
           <OverflowList id={containerId} class="backlinks-content collapsed">
             {backlinkFiles.length > 0 ? (
               backlinkFiles.map((f) => (
-                <li>
+                <li key={f.slug ?? f.filePath ?? f.frontmatter?.title ?? "backlink"}>
                   <a href={resolveRelative(fileData.slug!, f.slug!)} class="internal">
                     {f.frontmatter?.title}
                   </a>

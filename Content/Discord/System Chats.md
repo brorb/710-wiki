@@ -23359,7 +23359,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#FFFFFF",
       "colour_value": 16777215
     },
-    "content": "<OUTPRINT>!:PING@SYSTEM (:> OPT_OUT[4-3][11-3][32]\chain(list_5))",
+  "content": "<OUTPRINT>!:PING@SYSTEM (:> OPT_OUT[4-3][11-3][32]\\chain(list_5))",
     "timestamp": "2025-07-29T15:36:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -23457,7 +23457,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#FFFFFF",
       "colour_value": 16777215
     },
-    "content": "<OUTPRINT>!:(Sorry if this is random, but I wanted to know what "Friend Requesting" did.)",
+  "content": "<OUTPRINT>!:(Sorry if this is random, but I wanted to know what \"Friend Requesting\" did.)",
     "timestamp": "2025-07-30T15:38:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"

@@ -1,5 +1,3 @@
-import fs from "node:fs"
-import path from "node:path"
 import { FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
@@ -71,11 +69,29 @@ async function joinScripts(scripts: string[]): Promise<string> {
   const script = scripts.map((script) => `(function () {${script}})();`).join("\n")
 
   // minify with esbuild
-  const res = await transpile(script, {
-    minify: true,
-  })
+  if (script.trim().length === 0) {
+    return ""
+  }
 
-  return res.code
+  try {
+    const res = await transpile(script, {
+      minify: true,
+    })
+
+    return res.code
+  } catch (error) {
+    if (error instanceof Error) {
+      const preview = script
+        .split("\n")
+        .map((line, idx) => `${idx + 1}: ${line}`)
+        .slice(0, 160)
+        .join("\n")
+      error.message = `${error.message}\nFailed script preview:\n${preview}`
+      throw error
+    }
+
+    throw new Error(`Failed to minify component scripts: ${String(error)}`)
+  }
 }
 
 function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentResources) {
@@ -270,8 +286,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
   return {
     name: "ComponentResources",
     async *emit(ctx, _content, _resources) {
-      console.error("[ComponentResources] emit start")
-  const cfg = ctx.cfg.configuration
+      const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       let googleFontsStyleSheet = ""
@@ -335,24 +350,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         joinScripts(componentResources.afterDOMLoaded),
       ])
 
-      try {
-        fs.appendFileSync(
-          "C:/Users/ireal/Documents/710-wiki/component-resource-log.txt",
-          `ComponentResources output=${ctx.argv.output}\n`,
-        )
-      } catch {}
-
-      const debugStylesPath = path.resolve(process.cwd(), "component-styles-debug.css")
-      try {
-        fs.mkdirSync(path.dirname(debugStylesPath), { recursive: true })
-        fs.writeFileSync(debugStylesPath, stylesheet)
-      } catch (error: unknown) {
-        console.warn("Failed to write debug stylesheet", error)
-        throw new Error(`Failed to dump component stylesheet: ${error}`)
-      }
-      throw new Error(`Component stylesheet dumped to ${debugStylesPath}`)
-
-  let transformedCss: string
+      let transformedCss: string
       try {
         const result = transform({
           filename: "index.css",
@@ -369,7 +367,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         })
         transformedCss = result.code.toString()
       } catch (error: unknown) {
-  console.error("Failed to transform component stylesheet")
+        console.error("Failed to transform component stylesheet")
         if (error && typeof error === "object") {
           // Attempt to extract line information for easier debugging
           const message = "message" in error && typeof error.message === "string" ? error.message : ""

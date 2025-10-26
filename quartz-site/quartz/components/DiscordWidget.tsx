@@ -95,7 +95,7 @@ export default ((options?: DiscordWidgetOptions) => {
   height: var(--discord-widget-height, 500px);
   border: none;
   border-radius: 12px;
-  background-color: #040405;
+  background-color: var(--color-panel-depth);
   filter: url(#${FILTER_ID});
 }
 

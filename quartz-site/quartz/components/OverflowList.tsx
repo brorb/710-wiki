@@ -87,9 +87,9 @@ document.addEventListener("nav", () => {
     event.stopPropagation()
   }
 
-  const wheelTargets: HTMLElement[] = []
+  const wheelTargets = []
 
-  const registerWheelTarget = (element?: HTMLElement | null) => {
+  const registerWheelTarget = (element) => {
     if (!element || element.dataset.scrollProxyBound === "true") {
       return
     }

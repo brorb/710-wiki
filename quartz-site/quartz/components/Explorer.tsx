@@ -82,7 +82,7 @@ export default ((userOpts?: Partial<Options>) => {
       <div
         class={rootClasses}
         data-behavior={opts.folderClickBehavior}
-  data-collapsed={opts.folderDefaultState}
+        data-collapsed={opts.folderDefaultState}
         data-savestate={opts.useSavedState}
         data-data-fns={JSON.stringify({
           order: opts.order,
