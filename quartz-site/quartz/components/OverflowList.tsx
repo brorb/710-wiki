@@ -51,7 +51,7 @@ document.addEventListener("nav", () => {
     scrollContainer.closest(".backlinks-container")
   const proxyHost = hostCandidate instanceof HTMLElement ? hostCandidate : scrollContainer
 
-  if (!(proxyHost instanceof HTMLElement) || proxyHost.hasAttribute("data-scroll-proxy")) {
+  if (!(proxyHost instanceof HTMLElement)) {
     return
   }
 
@@ -87,12 +87,30 @@ document.addEventListener("nav", () => {
     event.stopPropagation()
   }
 
-  proxyHost.addEventListener("wheel", wheelHandler, { passive: false })
-  proxyHost.setAttribute("data-scroll-proxy", "true")
+  const wheelTargets: HTMLElement[] = []
+
+  const registerWheelTarget = (element?: HTMLElement | null) => {
+    if (!element || element.dataset.scrollProxyBound === "true") {
+      return
+    }
+
+    element.addEventListener("wheel", wheelHandler, { passive: false })
+    element.dataset.scrollProxyBound = "true"
+    wheelTargets.push(element)
+  }
+
+  registerWheelTarget(proxyHost)
+  if (scrollContainer !== proxyHost) {
+    registerWheelTarget(scrollContainer)
+  }
 
   window.addCleanup(() => {
-    proxyHost.removeEventListener("wheel", wheelHandler)
-    proxyHost.removeAttribute("data-scroll-proxy")
+    wheelTargets.forEach((element) => {
+      element.removeEventListener("wheel", wheelHandler)
+      if (element.dataset.scrollProxyBound === "true") {
+        delete element.dataset.scrollProxyBound
+      }
+    })
   })
 })
 `,

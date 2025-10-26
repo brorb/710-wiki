@@ -76,11 +76,14 @@ OTHER IS ID ==X331239==
 ==X331239==: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE ARE TERMINATING THE MISSION
 ==A992144==: WE'LL TRY
 ```
-This chat comes from the video [[{_ _ _-_ _._ _ _}re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's.
+This chat comes from the video [[{_ _ _-_ _._ _ _}re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats.
 
-# 2025.03.04:
-From [[LOG-62.mp4]]:
+In this chat, [[A992144]] and [[X331239]] discuss an "incident" and a "mission" -- both of which are unknown. [[X331239]] is an autoreactive figure relative to [[A992144]] who seemingly has a crew working alongside them ("YOU AND YOUR BOYS").
+[[A992144]] is reprimanded for carelessly broadcasting on undesirable frequencies.  
 
+## Chat #4
+
+```
 YOU ARE ID ==A992144==
 OTHER IS ID ==TTHA0002==
 
@@ -91,7 +94,8 @@ OTHER IS ID ==TTHA0002==
 ==TTHA0002==: IF SO, THEN WE MIGHT JUST HAVE TO DEMOTE YOU BACK TO A SERVICEMEN WHEN WE GET BACK THERE
 ==A992144==:WHAT?! NO! PLEASE, SEE REASON WITH THIS. I HAD TO PURGE THE ENTIRE TERMINAL BECAUSE OF HOW CORRUPTED THE
 ==TTHA0002==: THE WHAT?
-
+```
+This chat fomes from the video [[LOG-62.mp4]], posted on 2025.03.04, and follows the format of the previous chat. It follows the conversation between [[A992144]] (previously encountered in [[Private Room#Chat 3|chat #3]]) and [[TTHA0002]]. Like the previous chat, [[A992144]] is being reprimanded by a higher-up in [[TTH]], this time for purging their terminal. They blame [[REN]] and [[Long String]] for this and are threatened with demotion to a "serviceman" (likely a role similar to the technician [[F8887]] we saw in [[Private Room#Chat 2|chat #2]]). When trying to justify the purge, [[A992144]] gets cut off mid-sentence. This could either be because of the signal being cut, or perhaps because of censorship rules put on which topics are allowed to be discussed in the private room.
 
 # 2025.05.04:
 From [[LOG-123.mp4]]:

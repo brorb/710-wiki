@@ -225,6 +225,64 @@ const formatCount = (value: number | undefined): string | undefined => {
   return value.toLocaleString("en-US")
 }
 
+const normaliseFragment = (value: string): string =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+
+const toOptionalFragment = (value?: string | null): string | undefined => {
+  if (!value) {
+    return undefined
+  }
+
+  const fragment = normaliseFragment(value)
+  return fragment.length > 0 ? fragment : undefined
+}
+
+const createShareSnippet = (raw?: string): string | undefined => {
+  if (!raw) {
+    return undefined
+  }
+
+  const cleaned = raw.replace(/\s+/g, " ").trim()
+  if (!cleaned) {
+    return undefined
+  }
+
+  return cleaned.length > 160 ? `${cleaned.slice(0, 157)}…` : cleaned
+}
+
+let communityPostSequence = 0
+
+const buildPostAnchorId = (
+  slug: FullSlug,
+  metadata: PostMetadata,
+  snippet?: string,
+): string => {
+  const slugFragment = toOptionalFragment(slug)
+  let base = [metadata.postedLabel, snippet]
+    .map(toOptionalFragment)
+    .find((fragment) => fragment)
+
+  if (base) {
+    if (!base.startsWith("youtube-post")) {
+      base = `youtube-post-${base}`
+    }
+  } else {
+    base = "youtube-post"
+  }
+
+  if (slugFragment && !base.startsWith(`${slugFragment}-`)) {
+    base = `${slugFragment}-${base}`
+  }
+
+  const sequence = (communityPostSequence++).toString(36)
+  return `${base}-${sequence}`
+}
+
 const renderTextSegment = (segment: TextSegment): string => {
   const content = normaliseWhitespace(segment.content)
   if (!content.trim()) {
@@ -300,20 +358,52 @@ const renderPost = (options: {
   const commentCount = formatCount(metadata.comments)
   const dataPosted = metadata.postedLabel ?? year ?? ""
 
+  const textSegments = segments
+    .filter((segment): segment is TextSegment => segment.type === "text")
+    .map((segment) => normaliseWhitespace(segment.content))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim()
+
+  const shareSnippet = createShareSnippet(textSegments || metadata.postedLabel || undefined)
+  const anchorId = buildPostAnchorId(slug, metadata, shareSnippet)
+  const shareLabel = metadata.postedLabel || year
+    ? `Share YouTube community post (${metadata.postedLabel ?? year})`
+    : "Share YouTube community post"
+
+  const shareAttributes: string[] = [
+    'type="button"',
+    'class="yt-community-post__share article-share__button"',
+    `aria-label="${escapeAttribute(shareLabel)}"`,
+    `data-share-url="#${escapeAttribute(anchorId)}"`,
+    `data-share-title="${escapeAttribute(`${CHANNEL_NAME} community post`)}"`,
+  ]
+
+  if (shareSnippet) {
+    shareAttributes.push(`data-share-text="${escapeAttribute(shareSnippet)}"`)
+  }
+
+  const shareMarkup = `<button ${shareAttributes.join(" ")}>
+      <span class="yt-community-post__share-icon" aria-hidden="true"></span>
+    </button>`
+
   const bodySection = bodyHtml.trim().length
     ? `<div class="yt-community-post__body">
       ${bodyHtml}
     </div>`
     : ""
 
-  return `<article class="yt-community-post" data-posted="${escapeAttribute(dataPosted)}">
+  return `<article class="yt-community-post" id="${escapeAttribute(anchorId)}" data-posted="${escapeAttribute(dataPosted)}">
   <span class="yt-community-post__avatar">
     <img src="${escapeAttribute(avatarSrc)}" alt="${escapeAttribute(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
   </span>
   <div class="yt-community-post__content">
     <div class="yt-community-post__header">
-      <span class="yt-community-post__channel">${escapeHtml(CHANNEL_NAME)}</span>
-      <span class="yt-community-post__timestamp">${timestamp}</span>
+      <div class="yt-community-post__identity">
+        <span class="yt-community-post__channel">${escapeHtml(CHANNEL_NAME)}</span>
+        <span class="yt-community-post__timestamp">${timestamp}</span>
+      </div>
+      ${shareMarkup}
     </div>
     ${bodySection}
     <footer class="yt-community-post__footer">
@@ -345,6 +435,9 @@ const YT_COMMUNITY_CSS = `
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  position: relative;
+  scroll-margin-top: 120px;
+  transition: box-shadow 0.24s ease;
 }
 
 .yt-community-post + .yt-community-post {
@@ -381,6 +474,14 @@ const YT_COMMUNITY_CSS = `
 
 .yt-community-post__header {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.yt-community-post__identity {
+  display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 8px;
   line-height: 1;
@@ -396,6 +497,51 @@ const YT_COMMUNITY_CSS = `
   color: #a7a7a7;
   font-size: 0.78rem;
   line-height: 1;
+}
+
+.yt-community-post__share.article-share__button {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d7dae2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.yt-community-post:hover .yt-community-post__share.article-share__button,
+.yt-community-post__share.article-share__button:focus-visible {
+  opacity: 1;
+}
+
+.yt-community-post__share.article-share__button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.yt-community-post__share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.yt-community-post__share-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url("/static/icons/share_icon.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("/static/icons/share_icon.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
 .yt-community-post__body {
@@ -457,6 +603,33 @@ const YT_COMMUNITY_CSS = `
 .yt-community-post__count {
   font-size: 0.78rem;
   color: #cecece;
+}
+
+@media (hover: none) {
+  .yt-community-post__share.article-share__button {
+    opacity: 1;
+  }
+}
+
+@keyframes yt-community-post-target {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.55), 0 0 0 rgba(235, 28, 36, 0.12);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.3), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.yt-community-post:target {
+  animation: yt-community-post-target 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 28px rgba(235, 28, 36, 0.32);
+}
+
+.yt-community-post:target .yt-community-post__share.article-share__button {
+  opacity: 1;
 }
 `
 
