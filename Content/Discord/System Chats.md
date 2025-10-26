@@ -23048,12 +23048,20 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 
 ![[document 08 (noel).jpg|350]]
 
-**DM codes from SYSTEM:**
+**DM codes from SYSTEM**
 ![[brorb SYSTEM DM code.png|400]]
 ![[portal code from SYSTEM.jpg|350]]
 ![[Camera SYSTEM DM code.png|700]]
 ![[Noel SYSTEM code.jpg|350]]
 ![[kay SYSTEM DM code.png|300]]
+
+**SERVER 01 invite codes**
+![[Noel SERVER 01 invite code SYSTEM DM.jpg|300]]
+![[portal code SERVER 01.png|600]]
+![[Portal SYSTEM code do not use yet.png|600]]
+![[Portal message.png|700]]
+![[Abe SYSTEM DM (canceled message).jpg|300]]
+![[Noel SYSTEM DM  canceled message.jpg|350]]
 
 ## SERVER 01
 
