@@ -23,19 +23,20 @@
       border: none;
       color: var(--color-tone-contrast);
       opacity: 0.85;
-      width: 24px;
-      height: 24px;
+      width: 36px;
+      height: 36px;
       position: absolute;
-      padding: 0.2rem;
+      padding: 0.35rem;
       margin: 0.3rem;
       top: 0;
       right: 0;
       border-radius: 4px;
       background-color: transparent;
-      transition: background-color 0.5s ease;
+      transition: background-color 0.5s ease, transform 0.25s ease;
 
       &:hover {
         background-color: var(--color-highlight-overlay);
+        transform: scale(1.02);
       }
     }
   }

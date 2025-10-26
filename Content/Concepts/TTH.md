@@ -274,4 +274,5 @@ It is likely that TTH are the ones responsible for [[The Logs]] being made. This
 > }
 > ```
 
+## TTH Bases
 TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. 

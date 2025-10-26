@@ -13,8 +13,8 @@ const installShareHandler = (button: HTMLButtonElement): void => {
     return
   }
 
-  const url = normalize(button.dataset.shareUrl)
-  if (!url) {
+  const rawUrl = normalize(button.dataset.shareUrl)
+  if (!rawUrl) {
     button.disabled = true
     return
   }
@@ -62,7 +62,17 @@ const installShareHandler = (button: HTMLButtonElement): void => {
     }
   }
 
+  const resolveUrl = (): string => {
+    try {
+      return new URL(rawUrl, window.location.href).toString()
+    } catch {
+      return rawUrl
+    }
+  }
+
   const handleClick = async () => {
+    const url = resolveUrl()
+
     try {
       if (navigator.share && typeof navigator.share === "function") {
         await navigator.share({

@@ -75,21 +75,27 @@ const DISCORD_CSS = `
   max-height: 420px;
 }
 
-.discord-thread-content.collapsed::after {
-  content: "";
+.discord-thread-fade {
   position: absolute;
+  inset-inline: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   height: 120px;
+  pointer-events: none;
+  opacity: 0;
   background: linear-gradient(
     to bottom,
-    rgba(43, 45, 49, 0),
-    rgba(43, 45, 49, 0.6) 48%,
-    var(--color-primary-background) 90%
+    rgba(43, 45, 49, 0) 0%,
+    rgba(43, 45, 49, 0.72) 52%,
+    color-mix(in srgb, rgba(43, 45, 49, 0.9) 30%, var(--color-primary-background) 70%) 78%,
+    var(--color-primary-background) 100%
   );
-  pointer-events: none;
-  z-index: 1;
+  transition: opacity 0.28s ease;
+  z-index: 2;
+}
+
+.discord-thread-wrapper.collapsed .discord-thread-fade,
+.discord-thread-content.collapsed .discord-thread-fade {
+  opacity: 1;
 }
 
 .discord-collapse-toggle {
@@ -133,6 +139,7 @@ const DISCORD_CSS = `
 .discord-collapse-icon {
   width: 16px;
   height: 16px;
+  transform-origin: 50% 50%;
   transition: transform 0.3s ease;
 }
 
@@ -140,7 +147,8 @@ const DISCORD_CSS = `
   transform: rotate(0deg);
 }
 
-.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon {
+.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon,
+.discord-collapse-toggle.is-expanded .discord-collapse-icon {
   transform: rotate(180deg);
 }
 
@@ -736,11 +744,12 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
   
   const threadId = `discord-thread-${Math.random().toString(36).substr(2, 9)}`
   
-  return `<div class="discord-thread-wrapper">
+  return `<div class="discord-thread-wrapper collapsed">
   <div class="discord-thread-content collapsed" id="${threadId}-content">
     <${containerTag} class="discord-thread" data-message-count="${messages.length}">
 ${htmlMessages}
     </${containerTag}>
+    <div class="discord-thread-fade" aria-hidden="true"></div>
   </div>
   <button class="discord-collapse-toggle" aria-expanded="false" aria-controls="${threadId}-content" data-discord-toggle="${threadId}">
     <span>Show More</span>
