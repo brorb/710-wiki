@@ -39,7 +39,7 @@ There are 10 known private room chats, of which 7 have been from community posts
 "And did you see him again after that?"
 "No, I l��ke� fo� ��� ��������������������������
 ```
-This one originates from a [[Community Posts|2024 community post]]. 
+This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-2024-1). 
 It is possible that the unspecified "he" is [[He]], but the lack of capitalization puts this into debate. The logo referred to could be that of [[TTH]], [[The Eyes]] or even the [[Ferkland Institute]].
 The last message gets cut off and corrupted, likely meant to start with "No, I looked for ....".
 
@@ -58,7 +58,7 @@ It is unknown who the two chatters were.
 "well, I think we have to resort to the next plan"
 "Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������
 ```
- This one originates from a [[Community Posts|2024 community post]] and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
+ This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-august-2024-1k)and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
 
 In this chat, they talk about picking up noise from the "stations".
 ## Chat #3
