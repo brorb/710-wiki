@@ -17455,6 +17455,7 @@
 
 (insert Live Sleuthing recording here)
 
+**After exiting Live Sleuthing Stage, 710-hub**
 ```discord
 [
   {
