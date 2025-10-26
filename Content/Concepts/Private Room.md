@@ -64,17 +64,17 @@ In this chat, they talk about picking up noise from the "stations".
 ## Chat #3
 
 ```
-YOU ARE ID ==A992144==
-OTHER IS ID ==X331239==
+YOU ARE ID A992144
+OTHER IS ID X331239
 
-==X331239==: ABOUT TIME YOU SIGNALED US
-==A992144==: HEY, WE'RE WORKING ON IT
-==X331239==: YOU'RE NOT WORKING HARD ENOUGH
-==A992144==: WHAT THE HELL IS THAT SUPPOSED TO MEAN?
-==X331239==: ANYTIME YOU TURN ON THAT STATION, IT GOES TO SHIT AND SEND OUT FREQUENCIES TO ANY NEIGHBOTING RESIVER NOW I DONT KNOW WHAT IS HAPPENING BUT YOU AND YOUR BOYS ARE SUPPOSED TO BE SENDING OUT INFORMATION NOT TRYING TO CALL OTHER STATIONS
-==A992144== ARE YOU SAYING THAT IT'S OUT FAULT FOR THAT INCIDENT?
-==X331239==: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE ARE TERMINATING THE MISSION
-==A992144==: WE'LL TRY
+X331239: ABOUT TIME YOU SIGNALED US
+A992144: HEY, WE'RE WORKING ON IT
+X331239: YOU'RE NOT WORKING HARD ENOUGH
+A992144: WHAT THE HELL IS THAT SUPPOSED TO MEAN?
+X331239: ANYTIME YOU TURN ON THAT STATION, IT GOES TO SHIT AND SEND OUT FREQUENCIES TO ANY NEIGHBOTING RESIVER NOW I DONT KNOW WHAT IS HAPPENING BUT YOU AND YOUR BOYS ARE SUPPOSED TO BE SENDING OUT INFORMATION NOT TRYING TO CALL OTHER STATIONS
+A992144 ARE YOU SAYING THAT IT'S OUT FAULT FOR THAT INCIDENT?
+X331239: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE ARE TERMINATING THE MISSION
+A992144: WE'LL TRY
 ```
 This chat comes from the video [[{_ _ _-_ _._ _ _}re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats.
 
@@ -84,35 +84,37 @@ In this chat, [[A992144]] and [[X331239]] discuss an "incident" and a "mission" 
 ## Chat #4
 
 ```
-YOU ARE ID ==A992144==
-OTHER IS ID ==TTHA0002==
+YOU ARE ID A992144
+OTHER IS ID TTHA0002
 
-==A992144==: I CAN EXPLAIN
-==TTHA0002==: THEN DO SO. YOU WERE NOT TOLD TO PURGE YOUR TERMINAL. PLEASE STATE WHY YOU DID SO.
-==A992144==: IT WAS REN. THEY SOMEHOW SENT A LONG STRING BACK TO US.
-==TTHA0002==: SO YOU'RE SAYING, YOU'RE TO INCOMPETENT FOR YOU'RE HAND POSITION?
-==TTHA0002==: IF SO, THEN WE MIGHT JUST HAVE TO DEMOTE YOU BACK TO A SERVICEMEN WHEN WE GET BACK THERE
-==A992144==:WHAT?! NO! PLEASE, SEE REASON WITH THIS. I HAD TO PURGE THE ENTIRE TERMINAL BECAUSE OF HOW CORRUPTED THE
-==TTHA0002==: THE WHAT?
+A992144: I CAN EXPLAIN
+TTHA0002: THEN DO SO. YOU WERE NOT TOLD TO PURGE YOUR TERMINAL. PLEASE STATE WHY YOU DID SO.
+A992144: IT WAS REN. THEY SOMEHOW SENT A LONG STRING BACK TO US.
+TTHA0002: SO YOU'RE SAYING, YOU'RE TO INCOMPETENT FOR YOU'RE HAND POSITION?
+TTHA0002: IF SO, THEN WE MIGHT JUST HAVE TO DEMOTE YOU BACK TO A SERVICEMEN WHEN WE GET BACK THERE
+A992144:WHAT?! NO! PLEASE, SEE REASON WITH THIS. I HAD TO PURGE THE ENTIRE TERMINAL BECAUSE OF HOW CORRUPTED THE
+TTHA0002: THE WHAT?
 ```
 This chat fomes from the video [[LOG-62.mp4]], posted on 2025.03.04, and follows the format of the previous chat. It follows the conversation between [[A992144]] (previously encountered in [[Private Room#Chat 3|chat #3]]) and [[TTHA0002]]. Like the previous chat, [[A992144]] is being reprimanded by a higher-up in [[TTH]], this time for purging their terminal. They blame [[REN]] and [[Long String]] for this and are threatened with demotion to a "serviceman" (likely a role similar to the technician [[F8887]] we saw in [[Private Room#Chat 2|chat #2]]). When trying to justify the purge, [[A992144]] gets cut off mid-sentence. This could either be because of the signal being cut, or perhaps because of censorship rules put on which topics are allowed to be discussed in the private room.
 
-# 2025.05.04:
-From [[LOG-123.mp4]]:
+## Chat #5
 
-==SS==:     MAINTENANCE; ==F82991== SPEAKING, WHO IS THIS?
-==CLS==:   HELLO, THIS IS RECEIVER #439 ON FPIDI 9     (not sure about this transcription)
-==SS==:     OH I KNOW YOU, YOU'RE THE GUY WHO PURGED HIS TERMINAL RIGHT?
-==CLS==:   YES, DO I NEED TO GO INTO SPECIFICS OF WHY I DID THAT OR ARE YOU GOING TO HELP ME ==F82991==?
-==SS==:      SORRY, HOW MAY I HELP YOU?
-==CLS==:    I NEED TO KNOW HOW TO GET RID OF LONG_STRING ON THIS WITHOUT PURGING MY TERMINAL AGAIN
-==SS==:     OKAY FIRST TING YOU WILL NEED TO DO IS:
+```
+SS:     MAINTENANCE; F82991 SPEAKING, WHO IS THIS?
+CLS:    HELLO, THIS IS RECEIVER #439 ON FPIDI 9    
+SS:     OH I KNOW YOU, YOU'RE THE GUY WHO PURGED HIS TERMINAL RIGHT?
+CLS:    YES, DO I NEED TO GO INTO SPECIFICS OF WHY I DID THAT OR ARE YOU GOING TO HELP ME F82991?
+SS:     SORRY, HOW MAY I HELP YOU?
+CLS:    I NEED TO KNOW HOW TO GET RID OF LONG_STRING ON THIS WITHOUT PURGING MY TERMINAL AGAIN
+SS:     OKAY FIRST TING YOU WILL NEED TO DO IS:
 
 (screen cuts to black).
 The screen is then filled with the repeating text:
 
 INFECTED BY LONG STRING ;-) 
+```
 
+This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-) "
 
 # Community posts from 2nd - 4th July 2025:
 

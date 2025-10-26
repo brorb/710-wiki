@@ -5936,7 +5936,7 @@ import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path12) => `${path12}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path13) => `${path13}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -6414,59 +6414,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path12 = joinSegments(...this.slugSegments);
+    const path13 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path12, "index");
+      return joinSegments(path13, "index");
     }
-    return path12;
+    return path13;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path12, file) {
-    const fullPath = [...this.slugSegments, path12[0]];
+  makeChild(path13, file) {
+    const fullPath = [...this.slugSegments, path13[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path12, file) {
-    if (path12.length === 0) {
+  insert(path13, file) {
+    if (path13.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path12[0];
-    if (path12.length === 1) {
+    const segment = path13[0];
+    if (path13.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path12, file);
+        this.makeChild(path13, file);
       }
-    } else if (path12.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path12, void 0);
+    } else if (path13.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path13, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path12.length);
-      child.insert(path12.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path13.length);
+      child.insert(path13.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  findNode(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path12[0])?.findNode(path12.slice(1));
+    return this.children.find((c) => c.slugSegment === path13[0])?.findNode(path13.slice(1));
   }
-  ancestryChain(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  ancestryChain(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path12[0]);
+    const child = this.children.find((c) => c.slugSegment === path13[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path12.slice(1));
+    const childPath = child.ancestryChain(path13.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -6514,7 +6514,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path12, _]) => path12);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path13, _]) => path13);
   }
 };
 
@@ -6839,11 +6839,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path12) => {
-  if (!path12) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path13) => {
+  if (!path13) {
     return null;
   }
-  const trimmed = path12.trim();
+  const trimmed = path13.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -7290,8 +7290,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path12 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path12 : pathToRoot(fileData.slug);
+    const path13 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path13 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -9833,6 +9833,10 @@ var Favicon = /* @__PURE__ */ __name(() => ({
   }
 }), "Favicon");
 
+// quartz/plugins/emitters/componentResources.ts
+import fs5 from "node:fs";
+import path11 from "node:path";
+
 // quartz/components/scripts/spa.inline.ts
 var spa_inline_default = "";
 
@@ -10073,6 +10077,7 @@ var ComponentResources = /* @__PURE__ */ __name(() => {
   return {
     name: "ComponentResources",
     async *emit(ctx, _content, _resources) {
+      console.error("[ComponentResources] emit start");
       const cfg = ctx.cfg.configuration;
       const componentResources = getComponentResources(ctx);
       let googleFontsStyleSheet = "";
@@ -10122,11 +10127,26 @@ ${await response2.text()}`;
         joinScripts(componentResources.beforeDOMLoaded),
         joinScripts(componentResources.afterDOMLoaded)
       ]);
-      yield write({
-        ctx,
-        slug: "index",
-        ext: ".css",
-        content: transform({
+      try {
+        fs5.appendFileSync(
+          "C:/Users/ireal/Documents/710-wiki/component-resource-log.txt",
+          `ComponentResources output=${ctx.argv.output}
+`
+        );
+      } catch {
+      }
+      const debugStylesPath = path11.resolve(process.cwd(), "component-styles-debug.css");
+      try {
+        fs5.mkdirSync(path11.dirname(debugStylesPath), { recursive: true });
+        fs5.writeFileSync(debugStylesPath, stylesheet);
+      } catch (error) {
+        console.warn("Failed to write debug stylesheet", error);
+        throw new Error(`Failed to dump component stylesheet: ${error}`);
+      }
+      throw new Error(`Component stylesheet dumped to ${debugStylesPath}`);
+      let transformedCss;
+      try {
+        const result = transform({
           filename: "index.css",
           code: Buffer.from(stylesheet),
           minify: true,
@@ -10140,7 +10160,34 @@ ${await response2.text()}`;
             chrome: 109 << 16
           },
           include: Features.MediaQueries
-        }).code.toString()
+        });
+        transformedCss = result.code.toString();
+      } catch (error) {
+        console.error("Failed to transform component stylesheet");
+        if (error && typeof error === "object") {
+          const message = "message" in error && typeof error.message === "string" ? error.message : "";
+          const lineMatch = message.match(/:(\d+):(\d+)/);
+          if (lineMatch) {
+            const [, lineStr] = lineMatch;
+            const lineNumber = Number.parseInt(lineStr, 10);
+            if (Number.isFinite(lineNumber)) {
+              const lines = stylesheet.split("\n");
+              const start = Math.max(0, lineNumber - 5);
+              const end = Math.min(lines.length, lineNumber + 4);
+              console.error(`Problematic stylesheet lines ${start + 1}-${end}:`);
+              for (let i = start; i < end; i++) {
+                console.error(`${i + 1}: ${lines[i]}`);
+              }
+            }
+          }
+        }
+        throw error;
+      }
+      yield write({
+        ctx,
+        slug: "index",
+        ext: ".css",
+        content: transformedCss
       });
       yield write({
         ctx,
@@ -10180,7 +10227,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path12 = url.pathname;
+      const path13 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -10188,7 +10235,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path12, resources);
+      const externalResources = pageResources(path13, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -10370,7 +10417,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path11 from "path";
+import path12 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -10402,7 +10449,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path11.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path12.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
@@ -10441,7 +10488,7 @@ Failed to process html \`${file.data.filePath}\``, err);
 __name(createMarkdownParser, "createMarkdownParser");
 
 // quartz/util/sourcemap.ts
-import fs5 from "fs";
+import fs6 from "fs";
 import { fileURLToPath } from "url";
 var options = {
   // source map hack to get around query param
@@ -10450,7 +10497,7 @@ var options = {
     if (source.includes(".quartz-cache")) {
       let realSource = fileURLToPath(source.split("?", 2)[0] + ".map");
       return {
-        map: fs5.readFileSync(realSource, "utf8")
+        map: fs6.readFileSync(realSource, "utf8")
       };
     } else {
       return null;

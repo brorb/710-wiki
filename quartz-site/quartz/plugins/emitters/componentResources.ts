@@ -1,3 +1,5 @@
+import fs from "node:fs"
+import path from "node:path"
 import { FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
@@ -268,7 +270,8 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
   return {
     name: "ComponentResources",
     async *emit(ctx, _content, _resources) {
-      const cfg = ctx.cfg.configuration
+      console.error("[ComponentResources] emit start")
+  const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       let googleFontsStyleSheet = ""
@@ -332,11 +335,26 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         joinScripts(componentResources.afterDOMLoaded),
       ])
 
-      yield write({
-        ctx,
-        slug: "index" as FullSlug,
-        ext: ".css",
-        content: transform({
+      try {
+        fs.appendFileSync(
+          "C:/Users/ireal/Documents/710-wiki/component-resource-log.txt",
+          `ComponentResources output=${ctx.argv.output}\n`,
+        )
+      } catch {}
+
+      const debugStylesPath = path.resolve(process.cwd(), "component-styles-debug.css")
+      try {
+        fs.mkdirSync(path.dirname(debugStylesPath), { recursive: true })
+        fs.writeFileSync(debugStylesPath, stylesheet)
+      } catch (error: unknown) {
+        console.warn("Failed to write debug stylesheet", error)
+        throw new Error(`Failed to dump component stylesheet: ${error}`)
+      }
+      throw new Error(`Component stylesheet dumped to ${debugStylesPath}`)
+
+  let transformedCss: string
+      try {
+        const result = transform({
           filename: "index.css",
           code: Buffer.from(stylesheet),
           minify: true,
@@ -348,7 +366,36 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
             chrome: 109 << 16,
           },
           include: Features.MediaQueries,
-        }).code.toString(),
+        })
+        transformedCss = result.code.toString()
+      } catch (error: unknown) {
+  console.error("Failed to transform component stylesheet")
+        if (error && typeof error === "object") {
+          // Attempt to extract line information for easier debugging
+          const message = "message" in error && typeof error.message === "string" ? error.message : ""
+          const lineMatch = message.match(/:(\d+):(\d+)/)
+          if (lineMatch) {
+            const [, lineStr] = lineMatch
+            const lineNumber = Number.parseInt(lineStr, 10)
+            if (Number.isFinite(lineNumber)) {
+              const lines = stylesheet.split("\n")
+              const start = Math.max(0, lineNumber - 5)
+              const end = Math.min(lines.length, lineNumber + 4)
+              console.error(`Problematic stylesheet lines ${start + 1}-${end}:`)
+              for (let i = start; i < end; i++) {
+                console.error(`${i + 1}: ${lines[i]}`)
+              }
+            }
+          }
+        }
+        throw error
+      }
+
+      yield write({
+        ctx,
+        slug: "index" as FullSlug,
+        ext: ".css",
+        content: transformedCss,
       })
 
       yield write({
