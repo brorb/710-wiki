@@ -3965,7 +3965,7 @@ var DISCORD_CSS = `
 }
 
 .discord-thread-content.collapsed {
-  max-height: 600px;
+  max-height: 420px;
 }
 
 .discord-thread-content.collapsed::after {
@@ -3974,8 +3974,13 @@ var DISCORD_CSS = `
   bottom: 0;
   left: 0;
   right: 0;
-  height: 150px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--color-primary-background) 85%);
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 45, 49, 0),
+    rgba(43, 45, 49, 0.6) 48%,
+    var(--color-primary-background) 90%
+  );
   pointer-events: none;
   z-index: 1;
 }
@@ -4025,6 +4030,10 @@ var DISCORD_CSS = `
 }
 
 .discord-collapse-toggle[aria-expanded="false"] .discord-collapse-icon {
+  transform: rotate(0deg);
+}
+
+.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon {
   transform: rotate(180deg);
 }
 

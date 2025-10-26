@@ -22,7 +22,7 @@ document.addEventListener("nav", () => {
       // Check if content is taller than collapsed height
       const checkHeight = () => {
         const fullHeight = threadElement.scrollHeight
-        const collapsedHeight = 600
+        const collapsedHeight = 420
         
         if (fullHeight <= collapsedHeight) {
           (toggle as HTMLElement).style.display = "none"
@@ -51,7 +51,7 @@ document.addEventListener("nav", () => {
           void (content as HTMLElement).offsetHeight
         } else {
           content.classList.add("collapsed")
-          ;(content as HTMLElement).style.maxHeight = "600px"
+          ;(content as HTMLElement).style.maxHeight = "420px"
           toggle.setAttribute("aria-expanded", "false")
           if (toggleText) toggleText.textContent = "Show More"
         }
