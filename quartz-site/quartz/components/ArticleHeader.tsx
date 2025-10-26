@@ -84,7 +84,7 @@ ArticleHeader.css = `
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.25rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
+  border-bottom: 1px solid var(--color-accent-deep);
 }
 
 .article-header__content {

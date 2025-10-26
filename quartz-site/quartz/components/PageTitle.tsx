@@ -13,10 +13,24 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
 
   return (
     <div class={classNames(displayClass, "page-title-container")}>
-      <a class="page-title-link" href={baseDir} aria-label={title}>
-        <img class="logo-desktop" src={logoPath} alt={title} loading="lazy" decoding="async" />
+      <a class="page-title-link" href={baseDir} aria-label={title} data-no-popover="true">
+        <img
+          class="logo-desktop Logo site-logo"
+          src={logoPath}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          data-no-zoom="true"
+        />
         <span class="banner-wrapper">
-          <img class="banner-mobile" src={bannerPath} alt={title} loading="lazy" decoding="async" />
+          <img
+            class="banner-mobile"
+            src={bannerPath}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            data-no-zoom="true"
+          />
         </span>
       </a>
     </div>
@@ -37,12 +51,13 @@ PageTitle.css = `
   justify-content: center;
   width: 100%;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .logo-desktop {
   display: block;
-  max-width: 175px;
-  width: 100%;
+  max-width: clamp(200px, 16vw, 260px);
+  width: min(100%, clamp(200px, 16vw, 260px));
   height: auto;
 }
 

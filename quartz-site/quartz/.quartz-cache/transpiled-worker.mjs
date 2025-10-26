@@ -6354,7 +6354,7 @@ ArticleHeader.css = `
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.25rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
+  border-bottom: 1px solid var(--color-accent-deep);
 }
 
 .article-header__content {
@@ -7014,9 +7014,29 @@ var PageTitle = /* @__PURE__ */ __name(({ fileData, cfg, displayClass }) => {
   const assetVersion = `?v=${getAssetVersion()}`;
   const logoPath = `${joinSegments(baseDir, "static/wiki_logo.png")}${assetVersion}`;
   const bannerPath = `${joinSegments(baseDir, "static/branding/banner.png")}${assetVersion}`;
-  return /* @__PURE__ */ jsx19("div", { class: classNames(displayClass, "page-title-container"), children: /* @__PURE__ */ jsxs12("a", { class: "page-title-link", href: baseDir, "aria-label": title, children: [
-    /* @__PURE__ */ jsx19("img", { class: "logo-desktop", src: logoPath, alt: title, loading: "lazy", decoding: "async" }),
-    /* @__PURE__ */ jsx19("span", { class: "banner-wrapper", children: /* @__PURE__ */ jsx19("img", { class: "banner-mobile", src: bannerPath, alt: title, loading: "lazy", decoding: "async" }) })
+  return /* @__PURE__ */ jsx19("div", { class: classNames(displayClass, "page-title-container"), children: /* @__PURE__ */ jsxs12("a", { class: "page-title-link", href: baseDir, "aria-label": title, "data-no-popover": "true", children: [
+    /* @__PURE__ */ jsx19(
+      "img",
+      {
+        class: "logo-desktop Logo site-logo",
+        src: logoPath,
+        alt: title,
+        loading: "lazy",
+        decoding: "async",
+        "data-no-zoom": "true"
+      }
+    ),
+    /* @__PURE__ */ jsx19("span", { class: "banner-wrapper", children: /* @__PURE__ */ jsx19(
+      "img",
+      {
+        class: "banner-mobile",
+        src: bannerPath,
+        alt: title,
+        loading: "lazy",
+        decoding: "async",
+        "data-no-zoom": "true"
+      }
+    ) })
   ] }) });
 }, "PageTitle");
 PageTitle.css = `
@@ -7033,12 +7053,13 @@ PageTitle.css = `
   justify-content: center;
   width: 100%;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .logo-desktop {
   display: block;
-  max-width: 175px;
-  width: 100%;
+  max-width: clamp(200px, 16vw, 260px);
+  width: min(100%, clamp(200px, 16vw, 260px));
   height: auto;
 }
 
@@ -9791,7 +9812,7 @@ var sharedCssVars = {
   "color-button-text": palette2.buttonText,
   "color-button-background": palette2.accentDeep,
   "color-button-hover": palette2.accentBright,
-  "color-scrollbar-thumb": palette2.accentShadow,
+  "color-scrollbar-thumb": palette2.accentDeep,
   "color-scrollbar-track": palette2.surfaceOverlay
 };
 var sharedColorScheme = {
