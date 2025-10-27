@@ -11,13 +11,28 @@ interface DiscordAuthor {
   colour_value?: number | string
 }
 
+type DiscordAttachmentType = "image" | "audio" | "video" | "file"
+
 interface DiscordAttachment {
-  type: "image"
+  type: DiscordAttachmentType
   src: string
   alt?: string
+  title?: string
 }
 
-type DiscordImageValue = string | { src?: string; alt?: string }
+type DiscordAttachmentValue =
+  | string
+  | {
+      src?: string
+      attachment?: string
+      target?: string
+      url?: string
+      alt?: string
+      type?: string
+      mtype?: string
+    }
+
+type DiscordImageValue = DiscordAttachmentValue
 
 interface DiscordMessage {
   url?: string
@@ -27,7 +42,8 @@ interface DiscordMessage {
   timestamp?: string
   avatar_url?: string
   author?: DiscordAuthor
-  attachments?: DiscordAttachment[]
+  attachments?: DiscordAttachment[] | DiscordAttachmentValue | DiscordAttachmentValue[]
+  attachment?: DiscordAttachmentValue | DiscordAttachmentValue[]
   image?: DiscordImageValue | DiscordImageValue[]
   images?: DiscordImageValue | DiscordImageValue[]
   image_alt?: string
@@ -299,6 +315,42 @@ const DISCORD_CSS = `
   display: block;
   width: 100%;
   height: auto;
+}
+
+.discord-attachment audio,
+.discord-attachment video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+}
+
+.discord-attachment video {
+  max-height: 360px;
+  background: #000;
+}
+
+.discord-attachment--audio {
+  padding: 12px 16px;
+}
+
+.discord-attachment--video {
+  padding: 0;
+}
+
+.discord-attachment--file {
+  padding: 10px 16px;
+}
+
+.discord-attachment--file a {
+  color: var(--discord-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.discord-attachment--file a:hover {
+  text-decoration: underline;
+  color: var(--discord-accent);
 }
 
 .discord-message .external-icon {
@@ -669,7 +721,7 @@ const resolveObsidianTarget = (
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved
 }
 
-const resolveImageSource = (
+const resolveAttachmentSource = (
   raw: string,
   slug?: FullSlug,
   options: ResolveAssetOptions = {},
@@ -848,19 +900,65 @@ const renderAttachments = (attachments?: DiscordAttachment[]): string => {
     return ""
   }
 
+  const deriveFileName = (src: string): string => {
+    const withoutQuery = src.split(/[?#]/)[0]
+    const segments = withoutQuery.split("/")
+    const candidate = segments.pop() ?? ""
+    return candidate.trim().length > 0 ? candidate : "discord-attachment"
+  }
+
   const items = attachments
     .map((attachment) => {
-      if (!attachment || attachment.type !== "image" || !attachment.src) {
+      if (!attachment || typeof attachment.src !== "string") {
         return ""
       }
 
-      const src = escapeAttribute(attachment.src)
-      const altText = attachment.alt?.trim() ?? "Discord attachment"
-      const alt = escapeAttribute(altText)
+      const type = attachment.type ?? "file"
+      const src = attachment.src.trim()
+      if (!src) {
+        return ""
+      }
 
-      return `<span class="discord-attachment">
-        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+      const escapedSrc = escapeAttribute(src)
+      const baseLabel = attachment.alt?.trim() || attachment.title?.trim()
+
+      if (type === "image") {
+        const altText = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord attachment"
+        return `<span class="discord-attachment discord-attachment--image">
+        <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
       </span>`
+      }
+
+      if (type === "audio") {
+        const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord audio attachment"
+        const escapedLabel = escapeAttribute(label)
+        const safeText = escapeHtml(label)
+        return `<span class="discord-attachment discord-attachment--audio">
+        <audio controls preload="metadata" aria-label="${escapedLabel}">
+          <source src="${escapedSrc}" />
+          ${safeText} — <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download audio</a>
+        </audio>
+      </span>`
+      }
+
+      if (type === "video") {
+        const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord video attachment"
+        const escapedLabel = escapeAttribute(label)
+        const safeText = escapeHtml(label)
+        return `<span class="discord-attachment discord-attachment--video">
+        <video controls preload="metadata" playsinline aria-label="${escapedLabel}">
+          <source src="${escapedSrc}" />
+          ${safeText} — <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download video</a>
+        </video>
+      </span>`
+      }
+
+      const linkText = baseLabel && baseLabel.length > 0 ? baseLabel : deriveFileName(src)
+      const escapedLinkText = escapeHtml(linkText)
+
+      return `<span class="discord-attachment discord-attachment--file">
+      <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">${escapedLinkText}</a>
+    </span>`
     })
     .filter((html) => html.length > 0)
 
@@ -942,7 +1040,10 @@ const renderMessage = (
     contentClasses.push("discord-content--compact")
   }
 
-  const attachmentsMarkup = renderAttachments(message.attachments)
+  const attachmentsArray = Array.isArray(message.attachments)
+    ? (message.attachments as DiscordAttachment[])
+    : undefined
+  const attachmentsMarkup = renderAttachments(attachmentsArray)
   const attributes = articleAttributes.join(" ")
   const linkAttributes = [
     'class="discord-message__link"',
@@ -1081,9 +1182,61 @@ const renderCitation = (id: string, messages: DiscordMessage[], slug?: FullSlug)
   </span>`
 }
 
-type ImageDescriptor = { target: string; alt?: string }
+type AttachmentDescriptor = {
+  target: string
+  alt?: string
+  typeHint?: string
+  title?: string
+}
 
-const normaliseImageDescriptors = (value: unknown): ImageDescriptor[] => {
+const IMAGE_EXTENSIONS = new Set([
+  "png",
+  "apng",
+  "avif",
+  "gif",
+  "jpg",
+  "jpeg",
+  "jfif",
+  "pjpeg",
+  "pjp",
+  "svg",
+  "webp",
+  "bmp",
+  "tif",
+  "tiff",
+  "heic",
+  "heif",
+])
+
+const AUDIO_EXTENSIONS = new Set([
+  "mp3",
+  "wav",
+  "ogg",
+  "oga",
+  "opus",
+  "flac",
+  "aac",
+  "m4a",
+  "weba",
+  "mid",
+  "midi",
+])
+
+const VIDEO_EXTENSIONS = new Set([
+  "mp4",
+  "m4v",
+  "mov",
+  "webm",
+  "ogv",
+  "ogg",
+  "mkv",
+  "avi",
+  "wmv",
+  "flv",
+  "gifv",
+])
+
+const normaliseAttachmentDescriptors = (value: unknown): AttachmentDescriptor[] => {
   if (value === null || value === undefined) {
     return []
   }
@@ -1094,24 +1247,112 @@ const normaliseImageDescriptors = (value: unknown): ImageDescriptor[] => {
   }
 
   if (Array.isArray(value)) {
-    return value.flatMap((entry) => normaliseImageDescriptors(entry))
+    return value.flatMap((entry) => normaliseAttachmentDescriptors(entry))
   }
 
   if (typeof value === "object") {
-    const candidate = value as { src?: unknown; alt?: unknown }
-    const src = typeof candidate.src === "string" ? candidate.src.trim() : ""
-    if (!src) {
+    const record = value as Record<string, unknown>
+    const candidateValues = [
+      record.target,
+      record.src,
+      record.attachment,
+      record.url,
+      record.path,
+      record.href,
+      record.file,
+      record.source,
+    ]
+    const source = candidateValues.find(
+      (candidate): candidate is string => typeof candidate === "string" && candidate.trim().length > 0,
+    )
+
+    if (!source) {
       return []
     }
 
-    const alt = typeof candidate.alt === "string" ? candidate.alt.trim() : undefined
-    return [{ target: src, alt: alt && alt.length > 0 ? alt : undefined }]
+    const altValue = record.alt
+    const alt = typeof altValue === "string" ? altValue.trim() : undefined
+    const typeValue = record.type ?? record.mtype ?? record.kind
+    const typeHint = typeof typeValue === "string" ? typeValue.trim() : undefined
+    const titleValue = record.title ?? record.name ?? record.label ?? record.caption ?? record.description
+    const title = typeof titleValue === "string" ? titleValue.trim() : undefined
+
+    return [
+      {
+        target: source.trim(),
+        alt: alt && alt.length > 0 ? alt : undefined,
+        typeHint: typeHint && typeHint.length > 0 ? typeHint : undefined,
+        title: title && title.length > 0 ? title : undefined,
+      },
+    ]
   }
 
   return []
 }
 
-const applyImageMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlug): void => {
+const toLowerSafe = (value?: string): string | undefined =>
+  typeof value === "string" ? value.trim().toLowerCase() : undefined
+
+const extractExtension = (source: string): string | undefined => {
+  if (!source) {
+    return undefined
+  }
+
+  const withoutQuery = source.split(/[?#]/)[0]?.trim()
+  if (!withoutQuery) {
+    return undefined
+  }
+
+  const lastDot = withoutQuery.lastIndexOf(".")
+  if (lastDot === -1 || lastDot === withoutQuery.length - 1) {
+    return undefined
+  }
+
+  return withoutQuery.slice(lastDot + 1).toLowerCase()
+}
+
+const determineAttachmentType = (src: string, hint?: string): DiscordAttachmentType => {
+  const hintValue = toLowerSafe(hint)
+
+  if (hintValue) {
+    if (hintValue.includes("image") || hintValue === "img" || hintValue === "picture" || hintValue === "photo") {
+      return "image"
+    }
+
+    if (
+      hintValue.includes("audio") ||
+      hintValue.includes("sound") ||
+      hintValue.includes("voice") ||
+      hintValue === "music"
+    ) {
+      return "audio"
+    }
+
+    if (hintValue.includes("video") || hintValue === "gifv" || hintValue === "movie") {
+      return "video"
+    }
+  }
+
+  const extension = extractExtension(src)
+
+  if (extension) {
+    if (IMAGE_EXTENSIONS.has(extension)) {
+      return "image"
+    }
+
+    if (AUDIO_EXTENSIONS.has(extension)) {
+      return "audio"
+    }
+
+    if (VIDEO_EXTENSIONS.has(extension)) {
+      return "video"
+    }
+  }
+
+  return "file"
+}
+
+const applyAttachmentMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlug): void => {
   messages.forEach((message) => {
     if (!message || typeof message !== "object") {
       return
@@ -1122,11 +1363,17 @@ const applyImageMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlu
       images?: unknown
       image_alt?: unknown
       imageAlt?: unknown
+      attachment?: unknown
+      attachment_alt?: unknown
+      attachmentAlt?: unknown
+      attachments?: unknown
     }
 
-    const descriptors: ImageDescriptor[] = [
-      ...normaliseImageDescriptors(raw.image),
-      ...normaliseImageDescriptors(raw.images),
+    const descriptors: AttachmentDescriptor[] = [
+      ...normaliseAttachmentDescriptors(raw.attachments),
+      ...normaliseAttachmentDescriptors(raw.attachment),
+      ...normaliseAttachmentDescriptors(raw.image),
+      ...normaliseAttachmentDescriptors(raw.images),
     ]
 
     if (descriptors.length === 0) {
@@ -1134,68 +1381,69 @@ const applyImageMetadataToMessages = (messages: DiscordMessage[], slug?: FullSlu
       delete raw.images
       delete raw.image_alt
       delete raw.imageAlt
+      delete raw.attachment
+      delete raw.attachment_alt
+      delete raw.attachmentAlt
+      if (!Array.isArray(message.attachments)) {
+        delete message.attachments
+      }
       return
     }
 
-    const altFallbacks: string[] = []
-    const snakeAlt = typeof raw.image_alt === "string" ? raw.image_alt.trim() : undefined
-    const camelAlt = typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : undefined
+    const altFallbacks = [
+      typeof raw.attachment_alt === "string" ? raw.attachment_alt.trim() : undefined,
+      typeof raw.attachmentAlt === "string" ? raw.attachmentAlt.trim() : undefined,
+      typeof raw.image_alt === "string" ? raw.image_alt.trim() : undefined,
+      typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : undefined,
+    ].filter((value): value is string => Boolean(value))
 
-    if (snakeAlt) {
-      altFallbacks.push(snakeAlt)
-    }
-    if (camelAlt && camelAlt !== snakeAlt) {
-      altFallbacks.push(camelAlt)
-    }
-
-    descriptors.forEach((descriptor, index) => {
-      if (!descriptor.alt && index < altFallbacks.length) {
-        const alt = altFallbacks[index]
-        if (alt) {
-          descriptor.alt = alt
+    let fallbackIndex = 0
+    descriptors.forEach((descriptor) => {
+      if (!descriptor.alt && fallbackIndex < altFallbacks.length) {
+        const fallback = altFallbacks[fallbackIndex]
+        if (fallback) {
+          descriptor.alt = fallback
         }
+        fallbackIndex += 1
       }
     })
+
+    const seenSources = new Set<string>()
+    const resolved: DiscordAttachment[] = []
+
+    descriptors.forEach((descriptor) => {
+      const src = resolveAttachmentSource(descriptor.target, slug, { appendVersion: false })
+      if (!src) {
+        return
+      }
+
+      const trimmedSrc = src.trim()
+      if (!trimmedSrc || seenSources.has(trimmedSrc)) {
+        return
+      }
+
+      seenSources.add(trimmedSrc)
+      resolved.push({
+        type: determineAttachmentType(trimmedSrc, descriptor.typeHint),
+        src: trimmedSrc,
+        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : undefined,
+        title: descriptor.title && descriptor.title.trim().length > 0 ? descriptor.title.trim() : undefined,
+      })
+    })
+
+    if (resolved.length > 0) {
+      message.attachments = resolved
+    } else {
+      delete message.attachments
+    }
 
     delete raw.image
     delete raw.images
     delete raw.image_alt
     delete raw.imageAlt
-
-    const existing = Array.isArray(message.attachments)
-      ? message.attachments.filter((attachment): attachment is DiscordAttachment => {
-          return (
-            !!attachment &&
-            attachment.type === "image" &&
-            typeof attachment.src === "string" &&
-            attachment.src.trim().length > 0
-          )
-        })
-      : []
-
-    const existingSources = new Set(existing.map((attachment) => attachment.src))
-
-    const resolved: DiscordAttachment[] = []
-
-    descriptors.forEach((descriptor) => {
-      const src = resolveImageSource(descriptor.target, slug, { appendVersion: false })
-      if (!src || existingSources.has(src)) {
-        return
-      }
-
-      existingSources.add(src)
-      resolved.push({
-        type: "image",
-        src,
-        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : undefined,
-      })
-    })
-
-    if (resolved.length === 0) {
-      return
-    }
-
-    message.attachments = [...existing, ...resolved]
+    delete raw.attachment
+    delete raw.attachment_alt
+    delete raw.attachmentAlt
   })
 }
 
@@ -1204,7 +1452,7 @@ const parseDiscordBlock = (value: string, slug?: FullSlug): DiscordMessage[] => 
     const data = JSON.parse(value.trim()) as unknown
     const messages = normaliseMessages(data)
     if (messages.length > 0) {
-      applyImageMetadataToMessages(messages, slug)
+      applyAttachmentMetadataToMessages(messages, slug)
     }
     return messages
   } catch (error) {
@@ -1412,7 +1660,7 @@ const extractCitationDataFromCallout = (
     }
 
     if (messages.length > 0) {
-      applyImageMetadataToMessages(messages, slug)
+      applyAttachmentMetadataToMessages(messages, slug)
     }
 
     return { id, messages }
