@@ -2,6 +2,30 @@
 @use "./variables.scss" as *;
 @use "./custom/image-adjustments.scss";
 
+#quartz-body .sidebar.left {
+  min-height: 0;
+}
+
+#quartz-body .sidebar.left > .explorer.desktop-only {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+#quartz-body .sidebar.left > .explorer.desktop-only:not(.collapsed) {
+  flex: 1 1 auto;
+}
+
+#quartz-body .sidebar.left > .explorer.desktop-only .explorer-content {
+  min-height: 0;
+}
+
+#quartz-body .sidebar.left > .explorer.desktop-only:not(.collapsed) .explorer-content {
+  flex: 1 1 auto;
+  max-height: none;
+}
+
 
 .page-title {
   width: 100%;

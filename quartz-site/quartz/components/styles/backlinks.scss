@@ -69,7 +69,7 @@
       margin 0.28s ease;
     opacity: 1;
     pointer-events: auto;
-    overscroll-behavior: contain;
+  overscroll-behavior: auto;
     max-height: 40vh;
 
     &.collapsed {
