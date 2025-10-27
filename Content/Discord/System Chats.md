@@ -25724,7 +25724,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-**@L4N4U1997
+**@L4N4U1997**
 ```discord
 [
   {
