@@ -23734,7 +23734,6 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ```
 
 **@L4N4U1997**
-
 ```discord
 [
   {
@@ -23749,7 +23748,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "0-4-8-3=cPTACZG6j0ivany-fACqASY#WfOgY5kB1FulFcQdRd0bNJEbb",
     "timestamp": "2025-07-24T21:51:00.138000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1431606468859265135"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396141894156685392",
@@ -23763,7 +23762,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
     "timestamp": "2025-07-25T16:15:26.629000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396141894156685392"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396142340816502794",
@@ -23777,7 +23776,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<TAGGING>!: {LOGGED SESSION_02-01}",
     "timestamp": "2025-07-25T16:15:13.121000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396142340816502794"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396143254566731876",
@@ -23791,7 +23790,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
     "timestamp": "2025-07-25T16:15:50.976000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396143254566731876"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427031597877825638",
@@ -23805,7 +23804,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "@SYSTEM 0-",
     "timestamp": "2025-07-25T16:16:05.899000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427031597877825638"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396144409799823412",
@@ -23819,7 +23818,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:=============[help menu]============",
     "timestamp": "2025-07-25T16:16:26.405000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396144409799823412"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396145366981673010",
@@ -23833,7 +23832,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:help = 0-",
     "timestamp": "2025-07-25T16:16:14.615000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396145366981673010"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396146171935981568",
@@ -23847,7 +23846,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:TERMINAL_Storage4u = 1-,
     "timestamp": "2025-07-25T16:16:26.531000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146171935981568"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396146521367380112",
@@ -23861,7 +23860,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:ACCESS_Subframe = 2-",
     "timestamp": "2025-07-25T16:16:49.842000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396146653693607976",
@@ -23875,7 +23874,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!: Back = 3-",
     "timestamp": "2025-07-25T16:16:21.391000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427026609654861955",
@@ -23889,7 +23888,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "@SYSTEM -1",
     "timestamp": "2025-07-25T16:17:16.614000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427026609654861955"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396147064898846893",
@@ -23903,7 +23902,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<CALL>!:=======[TERMINAL_Storage4u]=======",
     "timestamp": "2025-07-25T16:17:59.430000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396147064898846893"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396147195455213659",
@@ -23917,7 +23916,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<CALL>!:IN_DI Message 01 = 1-",
     "timestamp": "2025-07-25T16:17:30.557000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396147195455213659"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396147852404592782",
@@ -23931,7 +23930,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<CALL>!:Gift = 2-",
     "timestamp": "2025-07-25T16:17:07.186000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396147852404592782"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396148162879684679",
@@ -23945,7 +23944,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<CALL>!:Back = 3-",
     "timestamp": "2025-07-25T16:17:21.209000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396148162879684679"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427026538838360074",
@@ -23959,7 +23958,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "@SYSTEM 3-",
     "timestamp": "2025-07-25T16:17:59.730000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427026538838360074"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396304695424978945",
@@ -23973,7 +23972,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:=============[help menu]============",
     "timestamp": "2025-07-25T16:17:21.476000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304695424978945"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396304736487080007",
@@ -23987,7 +23986,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:help = 0-",
     "timestamp": "2025-07-25T16:17:31.266000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304736487080007"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396304788903432263",
@@ -24001,7 +24000,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:TERMINAL_Storage4u = 1-",
     "timestamp": "2025-07-25T16:17:43.763000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304788903432263"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396305694168190976",
@@ -24015,7 +24014,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!:ACCESS_Subframe = 2-",
     "timestamp": "2025-07-25T16:17:19.595000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396305694168190976"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396306489794105396",
@@ -24029,7 +24028,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<HELP>!: Back = 3-",
     "timestamp": "2025-07-25T16:17:29.287000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396306489794105396"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427025938264227891",
@@ -24043,7 +24042,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "@SYSTEM 2-",
     "timestamp": "2025-07-25T16:18:36.542000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427025938264227891"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396310147726446604",
@@ -24057,7 +24056,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))",
     "timestamp": "2025-07-25T16:18:01.406000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396310147726446604"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396312850737401906",
@@ -24071,7 +24070,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<PING>?:PING@PING PING@SYSTEM callout()",
     "timestamp": "2025-07-25T16:18:45.854000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396312850737401906"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396313864554942625",
@@ -24085,7 +24084,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Hello.)",
     "timestamp": "2025-07-25T16:18:47.567000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396313864554942625"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427025904499949568",
@@ -24099,7 +24098,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Hello again.",
     "timestamp": "2025-07-25T16:18:28.492000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427025904499949568"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427025850653737061",
@@ -24113,7 +24112,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "@SYSTEM what is the KEY to the link?",
     "timestamp": "2025-07-25T16:18:15.654000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427025850653737061"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396315041883623434",
@@ -24127,7 +24126,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Is it a URL?)",
     "timestamp": "2025-07-25T16:19:28.264000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315041883623434"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427024446941827142",
@@ -24141,7 +24140,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Yes it is.",
     "timestamp": "2025-07-25T16:19:40.983000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427024446941827142"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396315081582575688",
@@ -24155,7 +24154,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Can you send it to me.)",
     "timestamp": "2025-07-25T16:20:37.729000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315081582575688"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022937810145381",
@@ -24169,7 +24168,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Should I trust you?",
     "timestamp": "2025-07-25T16:20:41.178000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022937810145381"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396315855473868833",
@@ -24183,7 +24182,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(IN_DI trusted me.)",
     "timestamp": "2025-07-25T16:20:42.239000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396315855473868833"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022744758784020",
@@ -24197,7 +24196,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "I see...",
     "timestamp": "2025-07-25T16:21:55.151000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022744758784020"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022703424176300",
@@ -24211,7 +24210,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "You're not going to delete it right?",
     "timestamp": "2025-07-25T16:21:45.296000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022703424176300"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396316551208112229",
@@ -24225,7 +24224,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(No.)",
     "timestamp": "2025-07-25T16:21:28.115000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396316551208112229"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022353841258637",
@@ -24239,7 +24238,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Okay.",
     "timestamp": "2025-07-25T16:21:21.949000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022353841258637"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022289001517107",
@@ -24253,7 +24252,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Here it is: https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0",
     "timestamp": "2025-07-25T16:21:06.490000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022289001517107"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396336701617737769",
@@ -24267,7 +24266,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Strange. It seems as if the URL key has gone bad.)",
     "timestamp": "2025-07-25T16:22:32.347000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396336701617737769"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396336740603662377",
@@ -24281,7 +24280,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Give me a moment.)",
     "timestamp": "2025-07-25T16:22:41.642000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396336740603662377"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396336776389464256",
@@ -24295,7 +24294,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<IMPORTING>!: CODE IMPORT PING@PING :: / ../ REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]",
     "timestamp": "2025-07-25T16:25:50.174000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396336776389464256"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022220093423686",
@@ -24309,7 +24308,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Thank you :)",
     "timestamp": "2025-07-25T16:26:50.061000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022220093423686"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396337589450965154",
@@ -24323,7 +24322,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(Give it a try, if it doesn't work send it back.)",
     "timestamp": "2025-07-25T16:26:04.023000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396337589450965154"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427022149058560000",
@@ -24337,7 +24336,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "It worked thanks. : D",
     "timestamp": "2025-07-25T16:26:33.125000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427022149058560000"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427021846972465252",
@@ -24351,7 +24350,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "BTW, is IN_DI dead?",
     "timestamp": "2025-07-25T16:26:21.102000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427021846972465252"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396338076783214633",
@@ -24365,7 +24364,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(I don't know.)",
     "timestamp": "2025-07-25T16:36:00.212000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396338076783214633"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427021497842794556",
@@ -24379,7 +24378,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Okay that's fine.",
     "timestamp": "2025-07-25T16:36:57.863000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427021497842794556"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427021255374278767",
@@ -24393,7 +24392,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Is there another way to access the room in the Godot file?",
     "timestamp": "2025-07-25T16:36:00.054000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427021255374278767"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396339635596169236",
@@ -24407,7 +24406,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(No.)",
     "timestamp": "2025-07-25T16:39:11.862000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396339635596169236"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427018801358311645",
@@ -24421,7 +24420,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "okay next question, what file did INDI send?",
     "timestamp": "2025-07-25T16:40:14.971000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427018801358311645"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396344615745097759",
@@ -24435,7 +24434,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(KEY and lm-1.)",
     "timestamp": "2025-07-25T16:40:59.222000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396344615745097759"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427018662216208516",
@@ -24449,7 +24448,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "Will we find TRUTH.zip eventually?",
     "timestamp": "2025-07-25T16:41:41.797000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427018662216208516"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396367200016793720",
@@ -24463,7 +24462,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<OUTPRINT>!:(No.)",
     "timestamp": "2025-07-25T16:43:43.732000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396367200016793720"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396367224981422213",
@@ -24477,7 +24476,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<PING>?:",
     "timestamp": "2025-07-25T16:43:49.684000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396367224981422213"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396367250994364447",
@@ -24491,7 +24490,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<PING>?:PING@PING",
     "timestamp": "2025-07-25T16:43:55.886000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396367250994364447"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396367274465824891",
@@ -24505,7 +24504,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "content": "<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
     "timestamp": "2025-07-25T16:43:01.482000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396367274465824891"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
@@ -24530,8 +24529,570 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 ![[lm-2.png|500]]
-
-
+```discord
+[
+  {
+    "id": "1397043388087406806",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-07-22T02:31:39.531000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043388087406806"
+  },
+  {
+    "id": "1397043426461093900",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_09}",
+    "timestamp": "2025-07-22T02:31:48.680000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043426461093900"
+  },
+  {
+    "id": "1397043464746827807",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-07-22T02:31:57.808000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043464746827807"
+  },
+  {
+    "id": "1390614504211218484",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Weither it be my own very reliably bad memory or spooky unnatural forces I don't remember subbing to this channel",
+    "timestamp": "2025-07-04T08:45:34.172000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390614504211218484"
+  },
+  {
+    "id": "1397043717097128059",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?: PING@SYSTEM 0- 2-",
+    "timestamp": "2025-07-22T02:32:57.973000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043717097128059"
+  },
+  {
+    "id": "1397043800177901628",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\\\\chain(list_5))",
+    "timestamp": "2025-07-22T02:33:17.781000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043800177901628"
+  },
+  {
+    "id": "1397043866699300966",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
+    "timestamp": "2025-07-22T02:33:33.641000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043866699300966"
+  },
+  {
+    "id": "1397043986182574185",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(I warned you about that.)",
+    "timestamp": "2025-07-22T02:34:02.128000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397043986182574185"
+  },
+  {
+    "id": "1397044537745997954",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(I cannot be mad, it was on my behalf too. I just need to make sure that I can ignore pings when I'm on other \"threads\".)",
+    "timestamp": "2025-07-22T02:36:13.631000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397044537745997954"
+  },
+  {
+    "id": "1390613880941838359",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Hello",
+    "timestamp": "2025-07-04T08:43:05.573000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390613880941838359"
+  },
+  {
+    "id": "1390613962030317579",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Do we do counting in here",
+    "timestamp": "2025-07-04T08:43:24.906000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390613962030317579"
+  },
+  {
+    "id": "1397044837508714518",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(Is there anything you want to talk about right now?)",
+    "timestamp": "2025-07-22T02:37:25.100000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397044837508714518"
+  },
+  {
+    "id": "1397045280163102855",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(You're only human. I understand.)",
+    "timestamp": "2025-07-22T02:39:10.637000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397045280163102855"
+  },
+  {
+    "id": "1397045443405418528",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(Okay.)",
+    "timestamp": "2025-07-22T02:39:49.557000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397045443405418528"
+  },
+  {
+    "id": "1390614068930281503",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Jokes aside",
+    "timestamp": "2025-07-04T08:43:50.393000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390614068930281503"
+  },
+  {
+    "id": "1390614085296459838",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Youtube chat",
+    "timestamp": "2025-07-04T08:43:54.295000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390614085296459838"
+  },
+  {
+    "id": "1397045960751972353",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(I need to be the most compatible with my environment.)",
+    "timestamp": "2025-07-22T02:41:52.902000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397045960751972353"
+  },
+  {
+    "id": "1397046533404491896",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(Okay.)",
+    "timestamp": "2025-07-22T02:44:09.433000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397046533404491896"
+  },
+  {
+    "id": "1397047415638327308",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(Key, is keyNaN. Sorry, I can only give vague hints because of restrictions.)",
+    "timestamp": "2025-07-22T02:47:39.774000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397047415638327308"
+  },
+  {
+    "id": "1397047678210146476",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(I don't know.)",
+    "timestamp": "2025-07-22T02:48:42.376000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397047678210146476"
+  },
+  {
+    "id": "1397048029944746024",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:(NaN.)",
+    "timestamp": "2025-07-22T02:50:06.236000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397048029944746024"
+  },
+  {
+    "id": "1390614646121041990",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Or maybe I do, it's a faint memory",
+    "timestamp": "2025-07-04T08:46:08.006000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390614646121041990"
+  },
+  {
+    "id": "1397048081815699466",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?:",
+    "timestamp": "2025-07-22T02:50:18.603000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397048081815699466"
+  },
+  {
+    "id": "1397048111486210112",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "PING>?:PING@PING",
+    "timestamp": "2025-07-22T02:50:25.677000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397048111486210112"
+  },
+  {
+    "id": "1397048202116468826",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
+    "timestamp": "2025-07-22T02:50:47.285000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397048202116468826"
+  },
+  {
+    "id": "1390614719693324319",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Nonetheless I prob found it somehow somewhere and fw'd it",
+    "timestamp": "2025-07-04T08:46:25.547000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390614719693324319"
+  },
+  {
+    "id": "1397228213733818579",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-07-22T14:46:05.399000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228213733818579"
+  },
+  {
+    "id": "1390615067665371156",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "I can't wait for us all to be featured in the next big \"obscure youtube ARGs that will make you shit\"",
+    "timestamp": "2025-07-04T08:47:48.510000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390615067665371156"
+  },
+  {
+    "id": "1397228276417691758",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_10}",
+    "timestamp": "2025-07-22T14:46:20.344000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228276417691758"
+  },
+  {
+    "id": "1390615114469867520",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "top ten video",
+    "timestamp": "2025-07-04T08:47:59.669000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390615114469867520"
+  },
+  {
+    "id": "1397228319509975234",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-07-22T14:46:30.618000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228319509975234"
+  },
+  {
+    "id": "1397228757458096138",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?: PING@SYSTEM 0- 2-",
+    "timestamp": "2025-07-22T14:48:15.033000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228757458096138"
+  },
+  {
+    "id": "1390616648901201930",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "I saw the Youtube chats on the stream today - was that the first time they ever spoke to us directly?",
+    "timestamp": "2025-07-04T08:54:05.506000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390616648901201930"
+  },
+  {
+    "id": "1390616758662201374",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Witnessed",
+    "timestamp": "2025-07-04T08:54:31.675000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390616758662201374"
+  },
+  {
+    "id": "1390617177203277826",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "At the end of this video a computer voice says at the end with text on the screen \"QUANDO NATUS EST\" which translates from latin \"WHEN HE WAS BORN\"",
+    "timestamp": "2025-07-04T08:56:11.463000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390617177203277826"
+  },
+  {
+    "id": "1390617434859376700",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF,
+      "colour_value": 16777215
+    },
+    "content": "This seems to be inside of the house on the next video",
+    "timestamp": "2025-07-04T08:57:12.893000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390617434859376700"
+  },
+  {
+    "id": "1397228831441682442",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\\\\chain(list_5))",
+    "timestamp": "2025-07-22T14:48:32.672000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228831441682442"
+  },
+  {
+    "id": "1390617531005403146",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Unless the jump to the \"red room\" when going to the door is a convenient cut",
+    "timestamp": "2025-07-04T08:57:35.816000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390617531005403146"
+  },
+  {
+    "id": "1390620393748037714",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "Do you have screenshots/archives of the chat messages by 7/10?",
+    "timestamp": "2025-07-04T09:08:58.347000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390620393748037714"
+  },
+  {
+    "id": "1397228910579548312",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
+    "timestamp": "2025-07-22T14:48:51.540000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228910579548312"
+  }
+]
+```
 
 **ThePortalNinja (Session 2)**
 
@@ -24558,344 +25119,13 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ##### SERVER 01 Invites (28th July 2025)
 
 **@Noel|HLF**
-```discord
-[
-  {
-    "id": "1396628903652753470",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
-    "timestamp": "2025-07-20T23:04:38.741000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396628955351486525",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<TAGGING>!: {LOGGED SESSION_04-03}",
-    "timestamp": "2025-07-20T23:04:51.067000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396628986620149801",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
-    "timestamp": "2025-07-20T23:04:58.522000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629930875424839",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: PING@SYSTEM 0- 2-",
-    "timestamp": "2025-07-20T23:08:43.650000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629979139280916",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))",
-    "timestamp": "2025-07-20T23:08:55.157000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396630005198618785",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
-    "timestamp": "2025-07-20T23:09:01.370000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396630030926352415",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:(Use Cs9TAevrNh at end. leave if it does not work.)",
-    "timestamp": "2025-07-20T23:09:07.504000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  }
-]
-```
+
 
 **@ThePortalNinja**
-```discord
-[
-  {
-    "id": "1396629355433824406",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))",
-    "timestamp": "2025-07-20T23:06:26.454000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629431052931295",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
-    "timestamp": "2025-07-20T23:06:44.483000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629527223996448",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:(Use Cs9TAevrNh at end. leave if it does not work.)",
-    "timestamp": "2025-07-20T23:07:07.412000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1427031611031027815",
-    "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "What does that mean?",
-    "timestamp": "2025-10-12T20:34:09.035000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629930875424839",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:(What this is using. Key.)",
-    "timestamp": "2025-07-20T23:08:43.650000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629979139280916",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]",
-    "timestamp": "2025-07-20T23:08:55.157000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  }
-]
-```
+
 
 **@ThePortalNinja (code rework)**
-```discord
-[
-  {
-    "id": "1396629355433824406",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
-    "timestamp": "2025-07-20T23:06:26.454000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629431052931295",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<TAGGING>!: {LOGGED SESSION_02-04}",
-    "timestamp": "2025-07-20T23:06:44.483000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629527223996448",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
-    "timestamp": "2025-07-20T23:07:07.412000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629930875424839",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: PING@SYSTEM 0- 2-",
-    "timestamp": "2025-07-20T23:08:43.650000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396629979139280916",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))",
-    "timestamp": "2025-07-20T23:08:55.157000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396630005198618785",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
-    "timestamp": "2025-07-20T23:09:01.370000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396630030926352415",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<OUTPRINT>!:(Do not use Cs9TAevrNh, it will not work. I have to do something before I can let you in. Tell everyone else.)",
-    "timestamp": "2025-07-20T23:09:07.504000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1396630620846686229",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]",
-    "timestamp": "2025-07-20T23:11:28.152000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1427031611031027815",
-    "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "Of course you choose to message me something insanely important while I'm out... I'll spread the word.",
-    "timestamp": "2025-10-12T20:34:09.035000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
-    "id": "1427031505112137910",
-    "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "If you get this, we'll be on standby until you're ready to let us in to whatever this is about. We're still unsure about what ""Cs9TAevrNh"" means, but I trust you. Just make sure there's a path to follow.",
-    "timestamp": "2025-10-12T20:33:43.782000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  }
-]
-```
+
 
 ##### Miscellaneous messages
 
