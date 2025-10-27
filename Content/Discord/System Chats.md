@@ -24496,7 +24496,6 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-
 **@ThePortalNinja (Session 1)**
 ```discord
 [
@@ -25516,6 +25515,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
   }
 ]
 ```
+
 ##### SYSTEM codes (28th July 2025)
 
 **@brorb**
