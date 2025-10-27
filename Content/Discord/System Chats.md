@@ -23737,20 +23737,6 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ```discord
 [
   {
-    "id": "1431606468859265135",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FFFFFF",
-      "colour": "#FFFFFF",
-      "colour_value": 16777215
-    },
-    "content": "0-4-8-3=cPTACZG6j0ivany-fACqASY#WfOgY5kB1FulFcQdRd0bNJEbb",
-    "timestamp": "2025-07-24T21:51:00.000000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
-  },
-  {
     "id": "1396141894156685392",
     "author": {
       "display_name": "SYSTEM",
