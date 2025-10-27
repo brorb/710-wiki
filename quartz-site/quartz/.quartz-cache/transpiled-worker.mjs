@@ -3910,6 +3910,10 @@ var blockquoteRegex = new RegExp(/(\[\[>\]\])\s*(.*)/, "g");
 var roamHighlightRegex = new RegExp(/\^\^(.+)\^\^/, "g");
 var roamItalicRegex = new RegExp(/__(.+)__/, "g");
 
+// quartz/plugins/transformers/discordMessages.ts
+import path4 from "node:path";
+import { globbySync } from "globby";
+
 // quartz/util/assetVersion.ts
 var cachedVersion = null;
 function getAssetVersion() {
@@ -3934,6 +3938,109 @@ var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
 var DISCORD_CITE_ICON_PATH = "M20.992 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.050 0.005 0.109 0.005 0.168 0 1.523-1.191 2.768-2.693 2.854l-0.008 0zM11.026 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.048 0.005 0.104 0.005 0.161 0 1.525-1.19 2.771-2.692 2.862l-0.008 0zM26.393 6.465c-1.763-0.832-3.811-1.49-5.955-1.871l-0.149-0.022c-0.005-0.001-0.011-0.002-0.017-0.002-0.035 0-0.065 0.019-0.081 0.047l-0 0c-0.234 0.411-0.488 0.924-0.717 1.45l-0.043 0.111c-1.030-0.165-2.218-0.259-3.428-0.259s-2.398 0.094-3.557 0.275l0.129-0.017c-0.27-0.63-0.528-1.142-0.813-1.638l0.041 0.077c-0.017-0.029-0.048-0.047-0.083-0.047-0.005 0-0.011 0-0.016 0.001l0.001-0c-2.293 0.403-4.342 1.060-6.256 1.957l0.151-0.064c-0.017 0.007-0.031 0.019-0.040 0.034l-0 0c-2.854 4.041-4.562 9.069-4.562 14.496 0 0.907 0.048 1.802 0.141 2.684l-0.009-0.11c0.003 0.029 0.018 0.053 0.039 0.070l0 0c2.14 1.601 4.628 2.891 7.313 3.738l0.176 0.048c0.008 0.003 0.018 0.004 0.028 0.004 0.032 0 0.060-0.015 0.077-0.038l0-0c0.535-0.72 1.044-1.536 1.485-2.392l0.047-0.1c0.006-0.012 0.010-0.027 0.010-0.043 0-0.041-0.026-0.075-0.062-0.089l-0.001-0c-0.912-0.352-1.683-0.727-2.417-1.157l0.077 0.042c-0.029-0.017-0.048-0.048-0.048-0.083 0-0.031 0.015-0.059 0.038-0.076l0-0c0.157-0.118 0.315-0.24 0.465-0.364 0.016-0.013 0.037-0.021 0.059-0.021 0.014 0 0.027 0.003 0.038 0.008l-0.001-0c2.208 1.061 4.8 1.681 7.536 1.681s5.329-0.62 7.643-1.727l-0.107 0.046c0.012-0.006 0.025-0.009 0.040-0.009 0.022 0 0.043 0.008 0.059 0.021l-0-0c0.15 0.124 0.307 0.248 0.466 0.365 0.023 0.018 0.038 0.046 0.038 0.077 0 0.035-0.019 0.065-0.046 0.082l-0 0c-0.661 0.395-1.432 0.769-2.235 1.078l-0.105 0.036c-0.036 0.014-0.062 0.049-0.062 0.089 0 0.016 0.004 0.031 0.011 0.044l-0-0.001c0.501 0.96 1.009 1.775 1.571 2.548l-0.040-0.057c0.017 0.024 0.046 0.040 0.077 0.040 0.010 0 0.020-0.002 0.029-0.004l-0.001 0c2.865-0.892 5.358-2.182 7.566-3.832l-0.065 0.047c0.022-0.016 0.036-0.041 0.039-0.069l0-0c0.087-0.784 0.136-1.694 0.136-2.615 0-5.415-1.712-10.43-4.623-14.534l0.052 0.078c-0.008-0.016-0.022-0.029-0.038-0.036l-0-0z";
 var SHARE_ICON_MASK_URL = "/static/icons/share_icon.svg";
 var discordThreadSequence = 0;
+var CONTENT_ROOT = path4.resolve(process.cwd(), "../Content");
+var assetLookupCache = /* @__PURE__ */ new Map();
+var slugLookupCache = /* @__PURE__ */ new Map();
+var slugLookupInitialised = false;
+var escapeForGlob = /* @__PURE__ */ __name((value) => value.replace(/([*?\[\]{}()!+@\\])/g, "\\$1"), "escapeForGlob");
+var expandBasenameCandidates = /* @__PURE__ */ __name((basename) => {
+  const candidates = [];
+  const seen = /* @__PURE__ */ new Set();
+  const addCandidate = /* @__PURE__ */ __name((value) => {
+    if (!value) {
+      return;
+    }
+    const trimmed = value.trim();
+    if (!trimmed) {
+      return;
+    }
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) {
+      return;
+    }
+    seen.add(key);
+    candidates.push(trimmed);
+  }, "addCandidate");
+  addCandidate(basename);
+  try {
+    addCandidate(decodeURIComponent(basename));
+  } catch {
+  }
+  const hyphenAsSpace = basename.replace(/-/g, " ");
+  addCandidate(hyphenAsSpace);
+  try {
+    addCandidate(decodeURIComponent(hyphenAsSpace));
+  } catch {
+  }
+  const underscoreAsSpace = basename.replace(/_/g, " ");
+  addCandidate(underscoreAsSpace);
+  try {
+    addCandidate(decodeURIComponent(underscoreAsSpace));
+  } catch {
+  }
+  const spacesAsHyphen = basename.replace(/\s+/g, "-");
+  addCandidate(spacesAsHyphen);
+  return candidates;
+}, "expandBasenameCandidates");
+var ensureSlugLookup = /* @__PURE__ */ __name(() => {
+  if (slugLookupInitialised) {
+    return;
+  }
+  const matches = globbySync("**/*", {
+    cwd: CONTENT_ROOT,
+    caseSensitiveMatch: false,
+    onlyFiles: true
+  });
+  matches.forEach((match) => {
+    const normalised = match.replace(/\\/g, "/");
+    const base = path4.basename(normalised);
+    const slugKey = slugifyFilePath(base).toLowerCase();
+    if (!slugLookupCache.has(slugKey)) {
+      slugLookupCache.set(slugKey, normalised);
+    }
+  });
+  slugLookupInitialised = true;
+}, "ensureSlugLookup");
+var findAssetByBasename = /* @__PURE__ */ __name((basename) => {
+  const key = basename.toLowerCase();
+  if (assetLookupCache.has(key)) {
+    const cached = assetLookupCache.get(key);
+    return cached === null ? void 0 : cached;
+  }
+  const candidates = expandBasenameCandidates(basename);
+  for (const candidate of candidates) {
+    const pattern = `**/${escapeForGlob(candidate)}`;
+    const matches = globbySync(pattern, {
+      cwd: CONTENT_ROOT,
+      caseSensitiveMatch: false,
+      onlyFiles: true
+    });
+    if (matches.length > 0) {
+      matches.sort((a, b) => a.length - b.length || a.localeCompare(b));
+      const resolved = matches[0].replace(/\\/g, "/");
+      assetLookupCache.set(key, resolved);
+      const slugKey2 = slugifyFilePath(path4.basename(resolved)).toLowerCase();
+      if (!slugLookupCache.has(slugKey2)) {
+        slugLookupCache.set(slugKey2, resolved);
+      }
+      return resolved;
+    }
+  }
+  ensureSlugLookup();
+  const slugKey = slugifyFilePath(basename).toLowerCase();
+  if (slugLookupCache.has(slugKey)) {
+    const mapped = slugLookupCache.get(slugKey);
+    if (mapped) {
+      assetLookupCache.set(key, mapped);
+      return mapped;
+    }
+    assetLookupCache.set(key, null);
+    return void 0;
+  }
+  assetLookupCache.set(key, null);
+  slugLookupCache.set(slugKey, null);
+  return void 0;
+}, "findAssetByBasename");
 var DISCORD_CSS = `
 .discord-thread {
   --discord-bg: #2b2d31;
@@ -4134,19 +4241,26 @@ var DISCORD_CSS = `
   display: block;
 }
 
+
 .discord-body {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.35rem;
+}
+
+.discord-message--compact .discord-body {
+  gap: 0.18rem;
 }
 
 .discord-header {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
-  gap: 8px;
+  column-gap: 0.5rem;
+  row-gap: 0.15rem;
   line-height: 1.25;
   margin-bottom: 2px;
+  min-width: 0;
 }
 
 .discord-author {
@@ -4157,6 +4271,8 @@ var DISCORD_CSS = `
 .discord-header time {
   font-size: 0.8125rem;
   color: var(--discord-text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .discord-content {
@@ -4187,6 +4303,87 @@ var DISCORD_CSS = `
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);
 }
 
+.discord-attachment__card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--discord-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.discord-attachment__card:hover,
+.discord-attachment__card:focus-visible {
+  background: rgba(88, 101, 242, 0.16);
+  border-color: rgba(88, 101, 242, 0.32);
+  text-decoration: none;
+  outline: none;
+}
+
+.discord-attachment__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(88, 101, 242, 0.2);
+  color: #c7ccff;
+  flex-shrink: 0;
+}
+
+.discord-attachment__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.discord-attachment__card--video .discord-attachment__icon {
+  background: rgba(89, 54, 255, 0.24);
+  color: #d7cbff;
+}
+
+.discord-attachment__card--file .discord-attachment__icon {
+  background: rgba(79, 84, 92, 0.35);
+  color: #d6dae3;
+}
+
+.discord-attachment__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.discord-attachment__name {
+  font-weight: 600;
+  color: var(--discord-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__subtitle {
+  font-size: 0.8rem;
+  color: var(--discord-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__image-link {
+  display: block;
+  color: inherit;
+}
+
+.discord-attachment__image-link:hover,
+.discord-attachment__image-link:focus-visible {
+  opacity: 0.94;
+  outline: none;
+}
+
 .discord-attachment img {
   display: block;
   width: 100%;
@@ -4206,27 +4403,29 @@ var DISCORD_CSS = `
   background: #000;
 }
 
-.discord-attachment--audio {
-  padding: 12px 16px;
+.discord-attachment__control {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(15, 17, 22, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-.discord-attachment--video {
-  padding: 0;
+.discord-attachment__control::-webkit-media-controls-panel {
+  background-color: rgba(32, 34, 37, 0.95);
+}
+
+.discord-attachment__control::-webkit-media-controls-enclosure {
+  border-radius: 10px;
+  background-color: transparent;
 }
 
 .discord-attachment--file {
-  padding: 10px 16px;
+  padding: 0;
 }
 
 .discord-attachment--file a {
-  color: var(--discord-text-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.discord-attachment--file a:hover {
-  text-decoration: underline;
-  color: var(--discord-accent);
+  color: inherit;
 }
 
 .discord-message .external-icon {
@@ -4540,8 +4739,17 @@ var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug, options2 = 
   if (isExternalUrl(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix(rawTarget);
-  const targetSlug = slugifyFilePath(targetWithoutExt);
+  let targetPath = stripContentPrefix(rawTarget);
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath);
+    if (matched) {
+      targetPath = matched;
+    }
+  }
+  const targetSlug = slugifyFilePath(targetPath);
+  if (!slug) {
+    return shouldAppendVersion ? appendAssetVersion(targetSlug, getAssetVersion()) : targetSlug;
+  }
   const baseDir = pathToRoot(slug);
   const resolved = joinSegments(baseDir, targetSlug);
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
@@ -4559,9 +4767,19 @@ var resolveAttachmentSource = /* @__PURE__ */ __name((raw, slug, options2 = {}) 
   if (embedMatch?.groups?.target) {
     return resolveObsidianTarget(embedMatch.groups.target, slug, { appendVersion: shouldAppendVersion });
   }
-  const target = stripContentPrefix(cleaned);
+  let targetPath = stripContentPrefix(cleaned);
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath);
+    if (matched) {
+      targetPath = matched;
+    }
+  }
+  const targetSlug = slugifyFilePath(targetPath);
+  if (!slug) {
+    return shouldAppendVersion ? appendAssetVersion(targetSlug, getAssetVersion()) : targetSlug;
+  }
   const baseDir = pathToRoot(slug);
-  const resolved = joinSegments(baseDir, target);
+  const resolved = joinSegments(baseDir, targetSlug);
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
 }, "resolveAttachmentSource");
 var CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi;
@@ -4652,16 +4870,72 @@ var getAuthorKey = /* @__PURE__ */ __name((message) => {
   }
   return void 0;
 }, "getAuthorKey");
+var ATTACHMENT_ICON_AUDIO = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
+    <path d="M14 3v4.5H19" />
+    <path d="M10.5 13.5v4a2 2 0 1 1-2-2" />
+  </svg>
+`;
+var ATTACHMENT_ICON_VIDEO = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="13" height="14" rx="2.5" ry="2.5" />
+    <path d="M16.5 9.5L21 7v10l-4.5-2.5" />
+    <path d="M9.5 9.5l4 2.5-4 2.5v-5z" />
+  </svg>
+`;
+var ATTACHMENT_ICON_FILE = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
+    <path d="M14 3v4.5H19" />
+    <path d="M9 13h6" />
+    <path d="M9 16.5h4" />
+  </svg>
+`;
 var renderAttachments = /* @__PURE__ */ __name((attachments) => {
   if (!attachments || attachments.length === 0) {
     return "";
   }
-  const deriveFileName = /* @__PURE__ */ __name((src) => {
+  const decodeFileName = /* @__PURE__ */ __name((src) => {
     const withoutQuery = src.split(/[?#]/)[0];
     const segments = withoutQuery.split("/");
     const candidate = segments.pop() ?? "";
-    return candidate.trim().length > 0 ? candidate : "discord-attachment";
-  }, "deriveFileName");
+    const fallback = candidate.trim().length > 0 ? candidate.trim() : "discord-attachment";
+    try {
+      return decodeURIComponent(fallback);
+    } catch {
+      return fallback;
+    }
+  }, "decodeFileName");
+  const scrubLabel = /* @__PURE__ */ __name((value) => {
+    if (!value) {
+      return void 0;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : void 0;
+  }, "scrubLabel");
+  const buildSubtitle = /* @__PURE__ */ __name((attachment, displayName) => {
+    const subtitleSource = scrubLabel(attachment.title) ?? scrubLabel(attachment.alt);
+    if (!subtitleSource) {
+      return "";
+    }
+    if (subtitleSource.toLowerCase() === displayName.toLowerCase()) {
+      return "";
+    }
+    return `<span class="discord-attachment__subtitle">${escapeHtml(subtitleSource)}</span>`;
+  }, "buildSubtitle");
+  const renderCard = /* @__PURE__ */ __name((type, src, displayName, subtitle) => {
+    const escapedSrc = escapeAttribute(src);
+    const typeLabel = type === "audio" ? "Audio" : type === "video" ? "Video" : type === "image" ? "Image" : "File";
+    const icon = type === "audio" ? ATTACHMENT_ICON_AUDIO : type === "video" ? ATTACHMENT_ICON_VIDEO : ATTACHMENT_ICON_FILE;
+    return `<a class="discord-attachment__card discord-attachment__card--${type}" href="${escapedSrc}" target="_blank" rel="noopener noreferrer" aria-label="${escapeAttribute(`${typeLabel}: ${displayName}`)}">
+      <span class="discord-attachment__icon" aria-hidden="true">${icon}</span>
+      <span class="discord-attachment__info">
+        <span class="discord-attachment__name">${escapeHtml(displayName)}</span>
+        ${subtitle}
+      </span>
+    </a>`;
+  }, "renderCard");
   const items = attachments.map((attachment) => {
     if (!attachment || typeof attachment.src !== "string") {
       return "";
@@ -4671,40 +4945,42 @@ var renderAttachments = /* @__PURE__ */ __name((attachments) => {
     if (!src) {
       return "";
     }
-    const escapedSrc = escapeAttribute(src);
-    const baseLabel = attachment.alt?.trim() || attachment.title?.trim();
+    const displayName = scrubLabel(attachment.alt) ?? scrubLabel(attachment.title) ?? decodeFileName(src);
+    const subtitle = buildSubtitle(attachment, displayName);
     if (type === "image") {
-      const altText = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord attachment";
+      const altText = scrubLabel(attachment.alt) ?? "Discord attachment";
+      const escapedSrc = escapeAttribute(src);
       return `<span class="discord-attachment discord-attachment--image">
-        <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
+        <a class="discord-attachment__image-link" href="${escapedSrc}" target="_blank" rel="noopener noreferrer">
+          <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
+        </a>
       </span>`;
     }
     if (type === "audio") {
-      const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord audio attachment";
-      const escapedLabel = escapeAttribute(label);
-      const safeText = escapeHtml(label);
+      const escapedLabel = escapeAttribute(displayName);
+      const card2 = renderCard(type, src, displayName, subtitle);
+      const escapedSrc = escapeAttribute(src);
       return `<span class="discord-attachment discord-attachment--audio">
-        <audio controls preload="metadata" aria-label="${escapedLabel}">
+        ${card2}
+        <audio class="discord-attachment__control" controls preload="metadata" aria-label="${escapedLabel}">
           <source src="${escapedSrc}" />
-          ${safeText} \u2014 <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download audio</a>
         </audio>
       </span>`;
     }
     if (type === "video") {
-      const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord video attachment";
-      const escapedLabel = escapeAttribute(label);
-      const safeText = escapeHtml(label);
+      const escapedLabel = escapeAttribute(displayName);
+      const card2 = renderCard(type, src, displayName, subtitle);
+      const escapedSrc = escapeAttribute(src);
       return `<span class="discord-attachment discord-attachment--video">
-        <video controls preload="metadata" playsinline aria-label="${escapedLabel}">
+        ${card2}
+        <video class="discord-attachment__control" controls preload="metadata" playsinline aria-label="${escapedLabel}">
           <source src="${escapedSrc}" />
-          ${safeText} \u2014 <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download video</a>
         </video>
       </span>`;
     }
-    const linkText = baseLabel && baseLabel.length > 0 ? baseLabel : deriveFileName(src);
-    const escapedLinkText = escapeHtml(linkText);
+    const card = renderCard("file", src, displayName, subtitle);
     return `<span class="discord-attachment discord-attachment--file">
-      <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">${escapedLinkText}</a>
+      ${card}
     </span>`;
   }).filter((html) => html.length > 0);
   if (items.length === 0) {
@@ -5377,33 +5653,33 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
 }, "DiscordMessages");
 
 // quartz/plugins/transformers/youtubeCommunityPosts.ts
-import path4 from "node:path";
-import { globbySync } from "globby";
+import path5 from "node:path";
+import { globbySync as globbySync2 } from "globby";
 var TARGET_SLUG = "youtube/community-posts";
 var CHANNEL_NAME = "7/10 Tone";
 var AVATAR_TARGET = "Media/710 Media/Images/710 tone pfp small.jpg";
-var CONTENT_ROOT = path4.resolve(process.cwd(), "../Content");
-var assetLookupCache = /* @__PURE__ */ new Map();
+var CONTENT_ROOT2 = path5.resolve(process.cwd(), "../Content");
+var assetLookupCache2 = /* @__PURE__ */ new Map();
 var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
-var findAssetByBasename = /* @__PURE__ */ __name((basename) => {
+var findAssetByBasename2 = /* @__PURE__ */ __name((basename) => {
   const key = basename.toLowerCase();
-  if (assetLookupCache.has(key)) {
-    const cached = assetLookupCache.get(key);
+  if (assetLookupCache2.has(key)) {
+    const cached = assetLookupCache2.get(key);
     return cached === null ? void 0 : cached;
   }
-  const matches = globbySync(`**/${basename}`, {
-    cwd: CONTENT_ROOT,
+  const matches = globbySync2(`**/${basename}`, {
+    cwd: CONTENT_ROOT2,
     caseSensitiveMatch: false,
     onlyFiles: true
   });
   if (matches.length === 0) {
-    assetLookupCache.set(key, null);
+    assetLookupCache2.set(key, null);
     return void 0;
   }
   matches.sort((a, b) => a.length - b.length || a.localeCompare(b));
   const resolved = matches[0].replace(/\\/g, "/");
-  assetLookupCache.set(key, resolved);
+  assetLookupCache2.set(key, resolved);
   return resolved;
 }, "findAssetByBasename");
 var resolveObsidianTarget2 = /* @__PURE__ */ __name((rawTarget, slug) => {
@@ -5412,7 +5688,7 @@ var resolveObsidianTarget2 = /* @__PURE__ */ __name((rawTarget, slug) => {
   }
   let targetPath = stripContentPrefix2(rawTarget);
   if (!targetPath.includes("/")) {
-    const matched = findAssetByBasename(targetPath);
+    const matched = findAssetByBasename2(targetPath);
     if (matched) {
       targetPath = matched;
     }
@@ -6092,7 +6368,7 @@ var RemoveDrafts = /* @__PURE__ */ __name(() => ({
 }), "RemoveDrafts");
 
 // quartz/plugins/emitters/contentPage.tsx
-import path6 from "path";
+import path7 from "path";
 
 // quartz/components/Header.tsx
 import { jsx } from "preact/jsx-runtime";
@@ -6186,7 +6462,7 @@ import { createElement } from "preact";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path12) => `${path12}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path13) => `${path13}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -6686,59 +6962,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path12 = joinSegments(...this.slugSegments);
+    const path13 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path12, "index");
+      return joinSegments(path13, "index");
     }
-    return path12;
+    return path13;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path12, file) {
-    const fullPath = [...this.slugSegments, path12[0]];
+  makeChild(path13, file) {
+    const fullPath = [...this.slugSegments, path13[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path12, file) {
-    if (path12.length === 0) {
+  insert(path13, file) {
+    if (path13.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path12[0];
-    if (path12.length === 1) {
+    const segment = path13[0];
+    if (path13.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path12, file);
+        this.makeChild(path13, file);
       }
-    } else if (path12.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path12, void 0);
+    } else if (path13.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path13, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path12.length);
-      child.insert(path12.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path13.length);
+      child.insert(path13.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  findNode(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path12[0])?.findNode(path12.slice(1));
+    return this.children.find((c) => c.slugSegment === path13[0])?.findNode(path13.slice(1));
   }
-  ancestryChain(path12) {
-    if (path12.length === 0 || path12.length === 1 && path12[0] === "index") {
+  ancestryChain(path13) {
+    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path12[0]);
+    const child = this.children.find((c) => c.slugSegment === path13[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path12.slice(1));
+    const childPath = child.ancestryChain(path13.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -6786,7 +7062,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path12, _]) => path12);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path13, _]) => path13);
   }
 };
 
@@ -7111,11 +7387,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path12) => {
-  if (!path12) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path13) => {
+  if (!path13) {
     return null;
   }
-  const trimmed = path12.trim();
+  const trimmed = path13.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -7531,11 +7807,11 @@ import satori from "satori";
 var U200D = String.fromCharCode(8205);
 
 // quartz/plugins/emitters/helpers.ts
-import path5 from "path";
+import path6 from "path";
 import fs2 from "fs";
 var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
   const pathToPage = joinSegments(ctx.argv.output, slug + ext);
-  const dir = path5.dirname(pathToPage);
+  const dir = path6.dirname(pathToPage);
   await fs2.promises.mkdir(dir, { recursive: true });
   await fs2.promises.writeFile(pathToPage, content);
   return pathToPage;
@@ -7562,8 +7838,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path12 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path12 : pathToRoot(fileData.slug);
+    const path13 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path13 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -9535,7 +9811,7 @@ var ContentPage = /* @__PURE__ */ __name((userOpts) => {
           styleText3(
             "yellow",
             `
-Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path6.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`
+Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path7.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`
           )
         );
       }
@@ -9687,7 +9963,7 @@ var TagPage = /* @__PURE__ */ __name((userOpts) => {
 }, "TagPage");
 
 // quartz/plugins/emitters/folderPage.tsx
-import path7 from "path";
+import path8 from "path";
 async function* processFolderInfo(ctx, folderInfo, allFiles, opts, resources) {
   for (const [folder, folderContent] of Object.entries(folderInfo)) {
     const slug = joinSegments(folder, "index");
@@ -9736,10 +10012,10 @@ function computeFolderInfo(folders, content, locale) {
 }
 __name(computeFolderInfo, "computeFolderInfo");
 function _getFolders(slug) {
-  var folderName = path7.dirname(slug ?? "");
+  var folderName = path8.dirname(slug ?? "");
   const parentFolderNames = [folderName];
   while (folderName !== ".") {
-    folderName = path7.dirname(folderName ?? "");
+    folderName = path8.dirname(folderName ?? "");
     parentFolderNames.push(folderName);
   }
   return parentFolderNames.filter((folder) => folder !== "canvases");
@@ -9940,11 +10216,11 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
 }, "ContentIndex");
 
 // quartz/plugins/emitters/aliases.ts
-import path8 from "path";
+import path9 from "path";
 async function* processFile(ctx, file) {
   const ogSlug = simplifySlug(file.data.slug);
   for (const aliasTarget of file.data.aliases ?? []) {
-    const aliasTargetSlug = isRelativeURL(aliasTarget) ? path8.normalize(path8.join(ogSlug, "..", aliasTarget)) : aliasTarget;
+    const aliasTargetSlug = isRelativeURL(aliasTarget) ? path9.normalize(path9.join(ogSlug, "..", aliasTarget)) : aliasTarget;
     const redirUrl = resolveRelative(aliasTargetSlug, ogSlug);
     yield write({
       ctx,
@@ -9984,14 +10260,14 @@ var AliasRedirects = /* @__PURE__ */ __name(() => ({
 }), "AliasRedirects");
 
 // quartz/plugins/emitters/assets.ts
-import path10 from "path";
+import path11 from "path";
 import fs3 from "fs";
 
 // quartz/util/glob.ts
-import path9 from "path";
+import path10 from "path";
 import { globby } from "globby";
 function toPosixPath(fp) {
-  return fp.split(path9.sep).join("/");
+  return fp.split(path10.sep).join("/");
 }
 __name(toPosixPath, "toPosixPath");
 async function glob(pattern, cwd, ignorePatterns) {
@@ -10012,7 +10288,7 @@ var copyFile = /* @__PURE__ */ __name(async (argv, fp) => {
   const src = joinSegments(argv.directory, fp);
   const name = slugifyFilePath(fp);
   const dest = joinSegments(argv.output, name);
-  const dir = path10.dirname(dest);
+  const dir = path11.dirname(dest);
   await fs3.promises.mkdir(dir, { recursive: true });
   await fs3.promises.copyFile(src, dest);
   return dest;
@@ -10028,7 +10304,7 @@ var Assets = /* @__PURE__ */ __name(() => {
     },
     async *partialEmit(ctx, _content, _resources, changeEvents) {
       for (const changeEvent of changeEvents) {
-        const ext = path10.extname(changeEvent.path);
+        const ext = path11.extname(changeEvent.path);
         if (ext === ".md") continue;
         if (changeEvent.type === "add" || changeEvent.type === "change") {
           yield copyFile(ctx.argv, changeEvent.path);
@@ -10468,7 +10744,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path12 = url.pathname;
+      const path13 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -10476,7 +10752,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path12, resources);
+      const externalResources = pageResources(path13, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -10681,7 +10957,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path11 from "path";
+import path12 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -10713,7 +10989,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path11.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path12.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
