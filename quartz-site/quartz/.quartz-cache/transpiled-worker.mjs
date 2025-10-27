@@ -4193,6 +4193,42 @@ var DISCORD_CSS = `
   height: auto;
 }
 
+.discord-attachment audio,
+.discord-attachment video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+}
+
+.discord-attachment video {
+  max-height: 360px;
+  background: #000;
+}
+
+.discord-attachment--audio {
+  padding: 12px 16px;
+}
+
+.discord-attachment--video {
+  padding: 0;
+}
+
+.discord-attachment--file {
+  padding: 10px 16px;
+}
+
+.discord-attachment--file a {
+  color: var(--discord-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.discord-attachment--file a:hover {
+  text-decoration: underline;
+  color: var(--discord-accent);
+}
+
 .discord-message .external-icon {
   display: none !important;
 }
@@ -4510,7 +4546,7 @@ var resolveObsidianTarget = /* @__PURE__ */ __name((rawTarget, slug, options2 = 
   const resolved = joinSegments(baseDir, targetSlug);
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
 }, "resolveObsidianTarget");
-var resolveImageSource = /* @__PURE__ */ __name((raw, slug, options2 = {}) => {
+var resolveAttachmentSource = /* @__PURE__ */ __name((raw, slug, options2 = {}) => {
   const { appendVersion: shouldAppendVersion = true } = options2;
   const cleaned = raw.trim();
   if (!cleaned) {
@@ -4527,7 +4563,7 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug, options2 = {}) => {
   const baseDir = pathToRoot(slug);
   const resolved = joinSegments(baseDir, target);
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved;
-}, "resolveImageSource");
+}, "resolveAttachmentSource");
 var CITATION_MARKER_PATTERN = /(?:\{\{discord-cite:([a-z0-9-]+)\}\}|<!--\s*discord-cite:([a-z0-9-]+)\s*-->)/gi;
 var escapeHtml = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
 var escapeAttribute = /* @__PURE__ */ __name((value) => escapeHtml(value), "escapeAttribute");
@@ -4620,16 +4656,56 @@ var renderAttachments = /* @__PURE__ */ __name((attachments) => {
   if (!attachments || attachments.length === 0) {
     return "";
   }
+  const deriveFileName = /* @__PURE__ */ __name((src) => {
+    const withoutQuery = src.split(/[?#]/)[0];
+    const segments = withoutQuery.split("/");
+    const candidate = segments.pop() ?? "";
+    return candidate.trim().length > 0 ? candidate : "discord-attachment";
+  }, "deriveFileName");
   const items = attachments.map((attachment) => {
-    if (!attachment || attachment.type !== "image" || !attachment.src) {
+    if (!attachment || typeof attachment.src !== "string") {
       return "";
     }
-    const src = escapeAttribute(attachment.src);
-    const altText = attachment.alt?.trim() ?? "Discord attachment";
-    const alt = escapeAttribute(altText);
-    return `<span class="discord-attachment">
-        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+    const type = attachment.type ?? "file";
+    const src = attachment.src.trim();
+    if (!src) {
+      return "";
+    }
+    const escapedSrc = escapeAttribute(src);
+    const baseLabel = attachment.alt?.trim() || attachment.title?.trim();
+    if (type === "image") {
+      const altText = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord attachment";
+      return `<span class="discord-attachment discord-attachment--image">
+        <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
       </span>`;
+    }
+    if (type === "audio") {
+      const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord audio attachment";
+      const escapedLabel = escapeAttribute(label);
+      const safeText = escapeHtml(label);
+      return `<span class="discord-attachment discord-attachment--audio">
+        <audio controls preload="metadata" aria-label="${escapedLabel}">
+          <source src="${escapedSrc}" />
+          ${safeText} \u2014 <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download audio</a>
+        </audio>
+      </span>`;
+    }
+    if (type === "video") {
+      const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord video attachment";
+      const escapedLabel = escapeAttribute(label);
+      const safeText = escapeHtml(label);
+      return `<span class="discord-attachment discord-attachment--video">
+        <video controls preload="metadata" playsinline aria-label="${escapedLabel}">
+          <source src="${escapedSrc}" />
+          ${safeText} \u2014 <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download video</a>
+        </video>
+      </span>`;
+    }
+    const linkText = baseLabel && baseLabel.length > 0 ? baseLabel : deriveFileName(src);
+    const escapedLinkText = escapeHtml(linkText);
+    return `<span class="discord-attachment discord-attachment--file">
+      <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">${escapedLinkText}</a>
+    </span>`;
   }).filter((html) => html.length > 0);
   if (items.length === 0) {
     return "";
@@ -4685,7 +4761,8 @@ var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}, co
   if (!showHeader) {
     contentClasses.push("discord-content--compact");
   }
-  const attachmentsMarkup = renderAttachments(message.attachments);
+  const attachmentsArray = Array.isArray(message.attachments) ? message.attachments : void 0;
+  const attachmentsMarkup = renderAttachments(attachmentsArray);
   const attributes = articleAttributes.join(" ");
   const linkAttributes = [
     'class="discord-message__link"',
@@ -4801,7 +4878,51 @@ var renderCitation = /* @__PURE__ */ __name((id, messages, slug) => {
     </span>
   </span>`;
 }, "renderCitation");
-var normaliseImageDescriptors = /* @__PURE__ */ __name((value) => {
+var IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
+  "png",
+  "apng",
+  "avif",
+  "gif",
+  "jpg",
+  "jpeg",
+  "jfif",
+  "pjpeg",
+  "pjp",
+  "svg",
+  "webp",
+  "bmp",
+  "tif",
+  "tiff",
+  "heic",
+  "heif"
+]);
+var AUDIO_EXTENSIONS = /* @__PURE__ */ new Set([
+  "mp3",
+  "wav",
+  "ogg",
+  "oga",
+  "opus",
+  "flac",
+  "aac",
+  "m4a",
+  "weba",
+  "mid",
+  "midi"
+]);
+var VIDEO_EXTENSIONS = /* @__PURE__ */ new Set([
+  "mp4",
+  "m4v",
+  "mov",
+  "webm",
+  "ogv",
+  "ogg",
+  "mkv",
+  "avi",
+  "wmv",
+  "flv",
+  "gifv"
+]);
+var normaliseAttachmentDescriptors = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return [];
   }
@@ -4810,86 +4931,165 @@ var normaliseImageDescriptors = /* @__PURE__ */ __name((value) => {
     return trimmed.length > 0 ? [{ target: trimmed }] : [];
   }
   if (Array.isArray(value)) {
-    return value.flatMap((entry) => normaliseImageDescriptors(entry));
+    return value.flatMap((entry) => normaliseAttachmentDescriptors(entry));
   }
   if (typeof value === "object") {
-    const candidate = value;
-    const src = typeof candidate.src === "string" ? candidate.src.trim() : "";
-    if (!src) {
+    const record = value;
+    const candidateValues = [
+      record.target,
+      record.src,
+      record.attachment,
+      record.url,
+      record.path,
+      record.href,
+      record.file,
+      record.source
+    ];
+    const source = candidateValues.find(
+      (candidate) => typeof candidate === "string" && candidate.trim().length > 0
+    );
+    if (!source) {
       return [];
     }
-    const alt = typeof candidate.alt === "string" ? candidate.alt.trim() : void 0;
-    return [{ target: src, alt: alt && alt.length > 0 ? alt : void 0 }];
+    const altValue = record.alt;
+    const alt = typeof altValue === "string" ? altValue.trim() : void 0;
+    const typeValue = record.type ?? record.mtype ?? record.kind;
+    const typeHint = typeof typeValue === "string" ? typeValue.trim() : void 0;
+    const titleValue = record.title ?? record.name ?? record.label ?? record.caption ?? record.description;
+    const title = typeof titleValue === "string" ? titleValue.trim() : void 0;
+    return [
+      {
+        target: source.trim(),
+        alt: alt && alt.length > 0 ? alt : void 0,
+        typeHint: typeHint && typeHint.length > 0 ? typeHint : void 0,
+        title: title && title.length > 0 ? title : void 0
+      }
+    ];
   }
   return [];
-}, "normaliseImageDescriptors");
-var applyImageMetadataToMessages = /* @__PURE__ */ __name((messages, slug) => {
+}, "normaliseAttachmentDescriptors");
+var toLowerSafe = /* @__PURE__ */ __name((value) => typeof value === "string" ? value.trim().toLowerCase() : void 0, "toLowerSafe");
+var extractExtension = /* @__PURE__ */ __name((source) => {
+  if (!source) {
+    return void 0;
+  }
+  const withoutQuery = source.split(/[?#]/)[0]?.trim();
+  if (!withoutQuery) {
+    return void 0;
+  }
+  const lastDot = withoutQuery.lastIndexOf(".");
+  if (lastDot === -1 || lastDot === withoutQuery.length - 1) {
+    return void 0;
+  }
+  return withoutQuery.slice(lastDot + 1).toLowerCase();
+}, "extractExtension");
+var determineAttachmentType = /* @__PURE__ */ __name((src, hint) => {
+  const hintValue = toLowerSafe(hint);
+  if (hintValue) {
+    if (hintValue.includes("image") || hintValue === "img" || hintValue === "picture" || hintValue === "photo") {
+      return "image";
+    }
+    if (hintValue.includes("audio") || hintValue.includes("sound") || hintValue.includes("voice") || hintValue === "music") {
+      return "audio";
+    }
+    if (hintValue.includes("video") || hintValue === "gifv" || hintValue === "movie") {
+      return "video";
+    }
+  }
+  const extension = extractExtension(src);
+  if (extension) {
+    if (IMAGE_EXTENSIONS.has(extension)) {
+      return "image";
+    }
+    if (AUDIO_EXTENSIONS.has(extension)) {
+      return "audio";
+    }
+    if (VIDEO_EXTENSIONS.has(extension)) {
+      return "video";
+    }
+  }
+  return "file";
+}, "determineAttachmentType");
+var applyAttachmentMetadataToMessages = /* @__PURE__ */ __name((messages, slug) => {
   messages.forEach((message) => {
     if (!message || typeof message !== "object") {
       return;
     }
     const raw = message;
     const descriptors = [
-      ...normaliseImageDescriptors(raw.image),
-      ...normaliseImageDescriptors(raw.images)
+      ...normaliseAttachmentDescriptors(raw.attachments),
+      ...normaliseAttachmentDescriptors(raw.attachment),
+      ...normaliseAttachmentDescriptors(raw.image),
+      ...normaliseAttachmentDescriptors(raw.images)
     ];
     if (descriptors.length === 0) {
       delete raw.image;
       delete raw.images;
       delete raw.image_alt;
       delete raw.imageAlt;
+      delete raw.attachment;
+      delete raw.attachment_alt;
+      delete raw.attachmentAlt;
+      if (!Array.isArray(message.attachments)) {
+        delete message.attachments;
+      }
       return;
     }
-    const altFallbacks = [];
-    const snakeAlt = typeof raw.image_alt === "string" ? raw.image_alt.trim() : void 0;
-    const camelAlt = typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : void 0;
-    if (snakeAlt) {
-      altFallbacks.push(snakeAlt);
-    }
-    if (camelAlt && camelAlt !== snakeAlt) {
-      altFallbacks.push(camelAlt);
-    }
-    descriptors.forEach((descriptor, index) => {
-      if (!descriptor.alt && index < altFallbacks.length) {
-        const alt = altFallbacks[index];
-        if (alt) {
-          descriptor.alt = alt;
+    const altFallbacks = [
+      typeof raw.attachment_alt === "string" ? raw.attachment_alt.trim() : void 0,
+      typeof raw.attachmentAlt === "string" ? raw.attachmentAlt.trim() : void 0,
+      typeof raw.image_alt === "string" ? raw.image_alt.trim() : void 0,
+      typeof raw.imageAlt === "string" ? raw.imageAlt.trim() : void 0
+    ].filter((value) => Boolean(value));
+    let fallbackIndex = 0;
+    descriptors.forEach((descriptor) => {
+      if (!descriptor.alt && fallbackIndex < altFallbacks.length) {
+        const fallback = altFallbacks[fallbackIndex];
+        if (fallback) {
+          descriptor.alt = fallback;
         }
+        fallbackIndex += 1;
       }
     });
+    const seenSources = /* @__PURE__ */ new Set();
+    const resolved = [];
+    descriptors.forEach((descriptor) => {
+      const src = resolveAttachmentSource(descriptor.target, slug, { appendVersion: false });
+      if (!src) {
+        return;
+      }
+      const trimmedSrc = src.trim();
+      if (!trimmedSrc || seenSources.has(trimmedSrc)) {
+        return;
+      }
+      seenSources.add(trimmedSrc);
+      resolved.push({
+        type: determineAttachmentType(trimmedSrc, descriptor.typeHint),
+        src: trimmedSrc,
+        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : void 0,
+        title: descriptor.title && descriptor.title.trim().length > 0 ? descriptor.title.trim() : void 0
+      });
+    });
+    if (resolved.length > 0) {
+      message.attachments = resolved;
+    } else {
+      delete message.attachments;
+    }
     delete raw.image;
     delete raw.images;
     delete raw.image_alt;
     delete raw.imageAlt;
-    const existing = Array.isArray(message.attachments) ? message.attachments.filter((attachment) => {
-      return !!attachment && attachment.type === "image" && typeof attachment.src === "string" && attachment.src.trim().length > 0;
-    }) : [];
-    const existingSources = new Set(existing.map((attachment) => attachment.src));
-    const resolved = [];
-    descriptors.forEach((descriptor) => {
-      const src = resolveImageSource(descriptor.target, slug, { appendVersion: false });
-      if (!src || existingSources.has(src)) {
-        return;
-      }
-      existingSources.add(src);
-      resolved.push({
-        type: "image",
-        src,
-        alt: descriptor.alt && descriptor.alt.trim().length > 0 ? descriptor.alt.trim() : void 0
-      });
-    });
-    if (resolved.length === 0) {
-      return;
-    }
-    message.attachments = [...existing, ...resolved];
+    delete raw.attachment;
+    delete raw.attachment_alt;
+    delete raw.attachmentAlt;
   });
-}, "applyImageMetadataToMessages");
+}, "applyAttachmentMetadataToMessages");
 var parseDiscordBlock = /* @__PURE__ */ __name((value, slug) => {
   try {
     const data = JSON.parse(value.trim());
     const messages = normaliseMessages(data);
     if (messages.length > 0) {
-      applyImageMetadataToMessages(messages, slug);
+      applyAttachmentMetadataToMessages(messages, slug);
     }
     return messages;
   } catch (error) {
@@ -5040,7 +5240,7 @@ var extractCitationDataFromCallout = /* @__PURE__ */ __name((node, slug) => {
       return void 0;
     }
     if (messages.length > 0) {
-      applyImageMetadataToMessages(messages, slug);
+      applyAttachmentMetadataToMessages(messages, slug);
     }
     return { id, messages };
   } catch (error) {
@@ -8605,7 +8805,7 @@ var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const baseDir = pathToRoot(slug);
   return appendAssetVersion2(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
-var resolveImageSource2 = /* @__PURE__ */ __name((raw, slug) => {
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
@@ -8652,7 +8852,7 @@ var parseInfoBox = /* @__PURE__ */ __name((fileData, slug, ctx) => {
   const title = normalizeString(raw.title);
   const items = parseItems(raw.items, slug, ctx);
   const imageSrcRaw = normalizeString(raw.image?.src);
-  const imageSrc = imageSrcRaw ? resolveImageSource2(imageSrcRaw, slug) : void 0;
+  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
   const imageCaption = normalizeString(raw.image?.caption);
   const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : void 0;
