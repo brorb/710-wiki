@@ -364,6 +364,32 @@ const DISCORD_CSS = `
   outline-offset: 2px;
 }
 
+.discord-thread-wrapper:target,
+.discord-thread-wrapper:has(.discord-message:target) {
+  isolation: isolate;
+  z-index: 6;
+}
+
+.discord-thread-wrapper:target .discord-thread-content,
+.discord-thread-wrapper:has(.discord-message:target) .discord-thread-content {
+  overflow: visible;
+}
+
+.discord-thread-wrapper:target .discord-thread-fade,
+.discord-thread-wrapper:has(.discord-message:target) .discord-thread-fade {
+  opacity: 0;
+}
+
+.discord-thread-wrapper:target .discord-thread,
+.discord-message:target {
+  position: relative;
+  z-index: 2;
+}
+
+.discord-message:target {
+  isolation: isolate;
+}
+
 @media (hover: none) {
   .discord-thread-share.article-share__button {
     opacity: 1;

@@ -51,21 +51,106 @@ const cleanupFns: Set<(...args: any[]) => void> = window.__quartzCleanupFns ?? n
 window.__quartzCleanupFns = cleanupFns
 window.addCleanup = (fn) => cleanupFns.add(fn)
 
+const HASH_SCROLL_TOLERANCE_PX = 2
+const HASH_SCROLL_RETRY_DELAY_MS = 120
+const HASH_SCROLL_MAX_ATTEMPTS = 8
+
+let hashScrollTimeout: number | undefined
+let hashScrollFrame: number | undefined
+let hashResizeObserver: ResizeObserver | undefined
+let hashTargetId: string | null = null
+let hashAlignmentAttempts = 0
+
+const clearHashScrollTimers = () => {
+  if (hashScrollTimeout !== undefined) {
+    window.clearTimeout(hashScrollTimeout)
+    hashScrollTimeout = undefined
+  }
+  if (hashScrollFrame !== undefined) {
+    window.cancelAnimationFrame(hashScrollFrame)
+    hashScrollFrame = undefined
+  }
+}
+
+const resetHashScrollState = () => {
+  clearHashScrollTimers()
+  if (hashResizeObserver) {
+    hashResizeObserver.disconnect()
+    hashResizeObserver = undefined
+  }
+  hashTargetId = null
+  hashAlignmentAttempts = 0
+}
+
+const computeHashTargetOffset = (target: HTMLElement): number => {
+  const styles = window.getComputedStyle(target)
+  const marginTop = Number.parseFloat(styles.scrollMarginTop) || 0
+  return target.getBoundingClientRect().top - marginTop
+}
+
+const evaluateHashTarget = (target: HTMLElement, behavior: ScrollBehavior, resetAttempts: boolean) => {
+  if (resetAttempts) {
+    hashAlignmentAttempts = 0
+  }
+
+  clearHashScrollTimers()
+  target.scrollIntoView({ behavior, block: "start", inline: "nearest" })
+
+  hashScrollFrame = window.requestAnimationFrame(() => {
+    hashScrollFrame = undefined
+    const offset = computeHashTargetOffset(target)
+
+    if (Math.abs(offset) <= HASH_SCROLL_TOLERANCE_PX) {
+      hashAlignmentAttempts = 0
+      return
+    }
+
+    if (hashAlignmentAttempts >= HASH_SCROLL_MAX_ATTEMPTS) {
+      resetHashScrollState()
+      return
+    }
+
+    hashAlignmentAttempts += 1
+    hashScrollTimeout = window.setTimeout(() => {
+      hashScrollTimeout = undefined
+      evaluateHashTarget(target, "auto", false)
+    }, HASH_SCROLL_RETRY_DELAY_MS)
+  })
+}
+
 const scrollToHashTarget = (hash: string, behavior: ScrollBehavior = "smooth"): boolean => {
   const id = decodeURIComponent(hash.startsWith("#") ? hash.substring(1) : hash)
   if (!id) {
     return false
   }
 
-  const el = document.getElementById(id)
-  if (!el) {
+  const target = document.getElementById(id)
+  if (!target) {
     return false
   }
 
-  const styles = window.getComputedStyle(el)
-  const marginTop = Number.parseFloat(styles.scrollMarginTop) || 0
-  const targetTop = window.scrollY + el.getBoundingClientRect().top - marginTop
-  window.scrollTo({ top: targetTop, left: window.scrollX, behavior })
+  resetHashScrollState()
+  hashTargetId = id
+
+  evaluateHashTarget(target, behavior, true)
+
+  if (typeof ResizeObserver !== "undefined") {
+    hashResizeObserver = new ResizeObserver((entries) => {
+      if (!hashTargetId) {
+        return
+      }
+
+      for (const entry of entries) {
+        if (entry.target === target && hashTargetId === id) {
+          evaluateHashTarget(target, "auto", true)
+          break
+        }
+      }
+    })
+
+    hashResizeObserver.observe(target)
+  }
+
   return true
 }
 
@@ -134,11 +219,15 @@ async function _navigate(url: URL, isBack: boolean = false) {
   if (!isBack) {
     if (url.hash) {
       if (!scrollToHashTarget(url.hash, "smooth")) {
+        resetHashScrollState()
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
       }
     } else {
+      resetHashScrollState()
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     }
+  } else if (!url.hash) {
+    resetHashScrollState()
   }
 
   // now, patch head, re-executing scripts
@@ -218,6 +307,16 @@ createRouter()
 window.addEventListener("load", () => {
   if (window.location.hash) {
     scrollToHashTarget(window.location.hash, "auto")
+  } else {
+    resetHashScrollState()
+  }
+})
+
+window.addEventListener("hashchange", () => {
+  if (window.location.hash) {
+    scrollToHashTarget(window.location.hash, "auto")
+  } else {
+    resetHashScrollState()
   }
 })
 

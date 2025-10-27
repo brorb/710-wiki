@@ -24,6 +24,10 @@
     border: 2px solid var(--color-scrollbar-track);
   }
 
+  &::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--color-scrollbar-thumb) 70%, #ffffff 30%);
+  }
+
   &::-webkit-scrollbar-thumb:horizontal {
     background: var(--color-scrollbar-thumb);
     border: 2px solid var(--color-scrollbar-track);
@@ -271,6 +275,18 @@ a {
       z-index: 1;
       grid-area: grid-sidebar-left;
       flex-direction: column;
+      max-height: 100vh;
+      overflow: hidden;
+      overflow-x: visible;
+      scrollbar-gutter: stable both-edges;
+      overscroll-behavior: contain;
+      @include themed-scrollbars;
+
+      &:hover,
+      &:focus-within {
+        overflow-y: auto;
+      }
+
       @media all and ($mobile) {
         position: initial;
         display: grid;
@@ -303,6 +319,17 @@ a {
       grid-area: grid-sidebar-right;
       margin-right: 0;
   flex-direction: column;
+  overflow-x: visible;
+  overflow-y: auto;
+  max-height: 100vh;
+  min-height: 0;
+  scrollbar-width: none;
+  scrollbar-gutter: stable both-edges;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
 
       @media all and ($mobile) {
         margin-left: inherit;

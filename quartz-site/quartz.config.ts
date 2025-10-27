@@ -21,7 +21,7 @@ const sharedCssVars = {
   "color-button-text": palette.buttonText,
   "color-button-background": palette.accentDeep,
   "color-button-hover": palette.accentBright,
-  "color-scrollbar-thumb": palette.accentDeep,
+  "color-scrollbar-thumb": palette.accentBright,
   "color-scrollbar-track": palette.surfaceOverlay,
   "color-feedback-success": palette.feedbackSuccess,
   "color-feedback-error": palette.feedbackError,
