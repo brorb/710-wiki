@@ -1,3 +1,5 @@
+import path from "node:path"
+import { globbySync } from "globby"
 import { QuartzTransformerPlugin } from "../types"
 import { getAssetVersion } from "../../util/assetVersion"
 import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
@@ -57,6 +59,137 @@ const DISCORD_CITE_ICON_PATH =
 
 const SHARE_ICON_MASK_URL = "/static/icons/share_icon.svg"
 let discordThreadSequence = 0
+
+const CONTENT_ROOT = path.resolve(process.cwd(), "../Content")
+const assetLookupCache = new Map<string, string | null>()
+const slugLookupCache = new Map<string, string | null>()
+let slugLookupInitialised = false
+
+const escapeForGlob = (value: string): string => value.replace(/([*?\[\]{}()!+@\\])/g, "\\$1")
+
+const expandBasenameCandidates = (basename: string): string[] => {
+  const candidates: string[] = []
+  const seen = new Set<string>()
+
+  const addCandidate = (value?: string) => {
+    if (!value) {
+      return
+    }
+
+    const trimmed = value.trim()
+    if (!trimmed) {
+      return
+    }
+
+    const key = trimmed.toLowerCase()
+    if (seen.has(key)) {
+      return
+    }
+
+    seen.add(key)
+    candidates.push(trimmed)
+  }
+
+  addCandidate(basename)
+
+  try {
+    addCandidate(decodeURIComponent(basename))
+  } catch {
+    // noop
+  }
+
+  const hyphenAsSpace = basename.replace(/-/g, " ")
+  addCandidate(hyphenAsSpace)
+  try {
+    addCandidate(decodeURIComponent(hyphenAsSpace))
+  } catch {
+    // noop
+  }
+
+  const underscoreAsSpace = basename.replace(/_/g, " ")
+  addCandidate(underscoreAsSpace)
+  try {
+    addCandidate(decodeURIComponent(underscoreAsSpace))
+  } catch {
+    // noop
+  }
+
+  const spacesAsHyphen = basename.replace(/\s+/g, "-")
+  addCandidate(spacesAsHyphen)
+
+  return candidates
+}
+
+const ensureSlugLookup = (): void => {
+  if (slugLookupInitialised) {
+    return
+  }
+
+  const matches = globbySync("**/*", {
+    cwd: CONTENT_ROOT,
+    caseSensitiveMatch: false,
+    onlyFiles: true,
+  })
+
+  matches.forEach((match) => {
+    const normalised = match.replace(/\\/g, "/")
+    const base = path.basename(normalised)
+    const slugKey = slugifyFilePath(base as FilePath).toLowerCase()
+    if (!slugLookupCache.has(slugKey)) {
+      slugLookupCache.set(slugKey, normalised)
+    }
+  })
+
+  slugLookupInitialised = true
+}
+
+const findAssetByBasename = (basename: string): string | undefined => {
+  const key = basename.toLowerCase()
+  if (assetLookupCache.has(key)) {
+    const cached = assetLookupCache.get(key)
+    return cached === null ? undefined : cached
+  }
+
+  const candidates = expandBasenameCandidates(basename)
+  for (const candidate of candidates) {
+    const pattern = `**/${escapeForGlob(candidate)}`
+    const matches = globbySync(pattern, {
+      cwd: CONTENT_ROOT,
+      caseSensitiveMatch: false,
+      onlyFiles: true,
+    })
+
+    if (matches.length > 0) {
+      matches.sort((a, b) => a.length - b.length || a.localeCompare(b))
+      const resolved = matches[0].replace(/\\/g, "/")
+      assetLookupCache.set(key, resolved)
+
+      const slugKey = slugifyFilePath(path.basename(resolved) as FilePath).toLowerCase()
+      if (!slugLookupCache.has(slugKey)) {
+        slugLookupCache.set(slugKey, resolved)
+      }
+
+      return resolved
+    }
+  }
+
+  ensureSlugLookup()
+
+  const slugKey = slugifyFilePath(basename as FilePath).toLowerCase()
+  if (slugLookupCache.has(slugKey)) {
+    const mapped = slugLookupCache.get(slugKey)
+    if (mapped) {
+      assetLookupCache.set(key, mapped)
+      return mapped
+    }
+    assetLookupCache.set(key, null)
+    return undefined
+  }
+
+  assetLookupCache.set(key, null)
+  slugLookupCache.set(slugKey, null)
+  return undefined
+}
 
 const DISCORD_CSS = `
 .discord-thread {
@@ -258,19 +391,26 @@ const DISCORD_CSS = `
   display: block;
 }
 
+
 .discord-body {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.35rem;
+}
+
+.discord-message--compact .discord-body {
+  gap: 0.18rem;
 }
 
 .discord-header {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
-  gap: 8px;
+  column-gap: 0.5rem;
+  row-gap: 0.15rem;
   line-height: 1.25;
   margin-bottom: 2px;
+  min-width: 0;
 }
 
 .discord-author {
@@ -281,6 +421,8 @@ const DISCORD_CSS = `
 .discord-header time {
   font-size: 0.8125rem;
   color: var(--discord-text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .discord-content {
@@ -311,6 +453,87 @@ const DISCORD_CSS = `
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);
 }
 
+.discord-attachment__card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--discord-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.discord-attachment__card:hover,
+.discord-attachment__card:focus-visible {
+  background: rgba(88, 101, 242, 0.16);
+  border-color: rgba(88, 101, 242, 0.32);
+  text-decoration: none;
+  outline: none;
+}
+
+.discord-attachment__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(88, 101, 242, 0.2);
+  color: #c7ccff;
+  flex-shrink: 0;
+}
+
+.discord-attachment__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.discord-attachment__card--video .discord-attachment__icon {
+  background: rgba(89, 54, 255, 0.24);
+  color: #d7cbff;
+}
+
+.discord-attachment__card--file .discord-attachment__icon {
+  background: rgba(79, 84, 92, 0.35);
+  color: #d6dae3;
+}
+
+.discord-attachment__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.discord-attachment__name {
+  font-weight: 600;
+  color: var(--discord-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__subtitle {
+  font-size: 0.8rem;
+  color: var(--discord-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__image-link {
+  display: block;
+  color: inherit;
+}
+
+.discord-attachment__image-link:hover,
+.discord-attachment__image-link:focus-visible {
+  opacity: 0.94;
+  outline: none;
+}
+
 .discord-attachment img {
   display: block;
   width: 100%;
@@ -330,27 +553,29 @@ const DISCORD_CSS = `
   background: #000;
 }
 
-.discord-attachment--audio {
-  padding: 12px 16px;
+.discord-attachment__control {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(15, 17, 22, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-.discord-attachment--video {
-  padding: 0;
+.discord-attachment__control::-webkit-media-controls-panel {
+  background-color: rgba(32, 34, 37, 0.95);
+}
+
+.discord-attachment__control::-webkit-media-controls-enclosure {
+  border-radius: 10px;
+  background-color: transparent;
 }
 
 .discord-attachment--file {
-  padding: 10px 16px;
+  padding: 0;
 }
 
 .discord-attachment--file a {
-  color: var(--discord-text-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.discord-attachment--file a:hover {
-  text-decoration: underline;
-  color: var(--discord-accent);
+  color: inherit;
 }
 
 .discord-message .external-icon {
@@ -714,8 +939,19 @@ const resolveObsidianTarget = (
     return rawTarget
   }
 
-  const targetWithoutExt = stripContentPrefix(rawTarget) as FilePath
-  const targetSlug = slugifyFilePath(targetWithoutExt)
+  let targetPath = stripContentPrefix(rawTarget)
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath)
+    if (matched) {
+      targetPath = matched
+    }
+  }
+
+  const targetSlug = slugifyFilePath(targetPath as FilePath)
+  if (!slug) {
+    return shouldAppendVersion ? appendAssetVersion(targetSlug, getAssetVersion()) : targetSlug
+  }
+
   const baseDir = pathToRoot(slug)
   const resolved = joinSegments(baseDir, targetSlug)
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved
@@ -742,9 +978,21 @@ const resolveAttachmentSource = (
     return resolveObsidianTarget(embedMatch.groups.target, slug, { appendVersion: shouldAppendVersion })
   }
 
-  const target = stripContentPrefix(cleaned)
+  let targetPath = stripContentPrefix(cleaned)
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath)
+    if (matched) {
+      targetPath = matched
+    }
+  }
+
+  const targetSlug = slugifyFilePath(targetPath as FilePath)
+  if (!slug) {
+    return shouldAppendVersion ? appendAssetVersion(targetSlug, getAssetVersion()) : targetSlug
+  }
+
   const baseDir = pathToRoot(slug)
-  const resolved = joinSegments(baseDir, target)
+  const resolved = joinSegments(baseDir, targetSlug)
   return shouldAppendVersion ? appendAssetVersion(resolved, getAssetVersion()) : resolved
 }
 
@@ -895,16 +1143,92 @@ interface RenderMessagesOptions {
   collapsible?: boolean
 }
 
+const ATTACHMENT_ICON_AUDIO = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
+    <path d="M14 3v4.5H19" />
+    <path d="M10.5 13.5v4a2 2 0 1 1-2-2" />
+  </svg>
+`
+
+const ATTACHMENT_ICON_VIDEO = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="13" height="14" rx="2.5" ry="2.5" />
+    <path d="M16.5 9.5L21 7v10l-4.5-2.5" />
+    <path d="M9.5 9.5l4 2.5-4 2.5v-5z" />
+  </svg>
+`
+
+const ATTACHMENT_ICON_FILE = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
+    <path d="M14 3v4.5H19" />
+    <path d="M9 13h6" />
+    <path d="M9 16.5h4" />
+  </svg>
+`
+
 const renderAttachments = (attachments?: DiscordAttachment[]): string => {
   if (!attachments || attachments.length === 0) {
     return ""
   }
 
-  const deriveFileName = (src: string): string => {
+  const decodeFileName = (src: string): string => {
     const withoutQuery = src.split(/[?#]/)[0]
     const segments = withoutQuery.split("/")
     const candidate = segments.pop() ?? ""
-    return candidate.trim().length > 0 ? candidate : "discord-attachment"
+    const fallback = candidate.trim().length > 0 ? candidate.trim() : "discord-attachment"
+    try {
+      return decodeURIComponent(fallback)
+    } catch {
+      return fallback
+    }
+  }
+
+  const scrubLabel = (value?: string): string | undefined => {
+    if (!value) {
+      return undefined
+    }
+    const trimmed = value.trim()
+    return trimmed.length > 0 ? trimmed : undefined
+  }
+
+  const buildSubtitle = (attachment: DiscordAttachment, displayName: string): string => {
+    const subtitleSource = scrubLabel(attachment.title) ?? scrubLabel(attachment.alt)
+    if (!subtitleSource) {
+      return ""
+    }
+
+    if (subtitleSource.toLowerCase() === displayName.toLowerCase()) {
+      return ""
+    }
+
+    return `<span class="discord-attachment__subtitle">${escapeHtml(subtitleSource)}</span>`
+  }
+
+  const renderCard = (
+    type: DiscordAttachmentType,
+    src: string,
+    displayName: string,
+    subtitle: string,
+  ): string => {
+    const escapedSrc = escapeAttribute(src)
+    const typeLabel =
+      type === "audio" ? "Audio" : type === "video" ? "Video" : type === "image" ? "Image" : "File"
+    const icon =
+      type === "audio"
+        ? ATTACHMENT_ICON_AUDIO
+        : type === "video"
+          ? ATTACHMENT_ICON_VIDEO
+          : ATTACHMENT_ICON_FILE
+
+    return `<a class="discord-attachment__card discord-attachment__card--${type}" href="${escapedSrc}" target="_blank" rel="noopener noreferrer" aria-label="${escapeAttribute(`${typeLabel}: ${displayName}`)}">
+      <span class="discord-attachment__icon" aria-hidden="true">${icon}</span>
+      <span class="discord-attachment__info">
+        <span class="discord-attachment__name">${escapeHtml(displayName)}</span>
+        ${subtitle}
+      </span>
+    </a>`
   }
 
   const items = attachments
@@ -919,45 +1243,46 @@ const renderAttachments = (attachments?: DiscordAttachment[]): string => {
         return ""
       }
 
-      const escapedSrc = escapeAttribute(src)
-      const baseLabel = attachment.alt?.trim() || attachment.title?.trim()
+      const displayName = scrubLabel(attachment.alt) ?? scrubLabel(attachment.title) ?? decodeFileName(src)
+      const subtitle = buildSubtitle(attachment, displayName)
 
       if (type === "image") {
-        const altText = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord attachment"
+        const altText = scrubLabel(attachment.alt) ?? "Discord attachment"
+        const escapedSrc = escapeAttribute(src)
         return `<span class="discord-attachment discord-attachment--image">
-        <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
+        <a class="discord-attachment__image-link" href="${escapedSrc}" target="_blank" rel="noopener noreferrer">
+          <img src="${escapedSrc}" alt="${escapeAttribute(altText)}" loading="lazy" decoding="async" />
+        </a>
       </span>`
       }
 
       if (type === "audio") {
-        const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord audio attachment"
-        const escapedLabel = escapeAttribute(label)
-        const safeText = escapeHtml(label)
+        const escapedLabel = escapeAttribute(displayName)
+        const card = renderCard(type, src, displayName, subtitle)
+        const escapedSrc = escapeAttribute(src)
         return `<span class="discord-attachment discord-attachment--audio">
-        <audio controls preload="metadata" aria-label="${escapedLabel}">
+        ${card}
+        <audio class="discord-attachment__control" controls preload="metadata" aria-label="${escapedLabel}">
           <source src="${escapedSrc}" />
-          ${safeText} — <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download audio</a>
         </audio>
       </span>`
       }
 
       if (type === "video") {
-        const label = baseLabel && baseLabel.length > 0 ? baseLabel : "Discord video attachment"
-        const escapedLabel = escapeAttribute(label)
-        const safeText = escapeHtml(label)
+        const escapedLabel = escapeAttribute(displayName)
+        const card = renderCard(type, src, displayName, subtitle)
+        const escapedSrc = escapeAttribute(src)
         return `<span class="discord-attachment discord-attachment--video">
-        <video controls preload="metadata" playsinline aria-label="${escapedLabel}">
+        ${card}
+        <video class="discord-attachment__control" controls preload="metadata" playsinline aria-label="${escapedLabel}">
           <source src="${escapedSrc}" />
-          ${safeText} — <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">Download video</a>
         </video>
       </span>`
       }
 
-      const linkText = baseLabel && baseLabel.length > 0 ? baseLabel : deriveFileName(src)
-      const escapedLinkText = escapeHtml(linkText)
-
+      const card = renderCard("file", src, displayName, subtitle)
       return `<span class="discord-attachment discord-attachment--file">
-      <a href="${escapedSrc}" target="_blank" rel="noopener noreferrer">${escapedLinkText}</a>
+      ${card}
     </span>`
     })
     .filter((html) => html.length > 0)
