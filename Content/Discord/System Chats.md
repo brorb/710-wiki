@@ -22973,7 +22973,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "(fixed with GIMP in five secs)",
+    "content": "(fixed with GIMP in five secs) [[https://cdn.discordapp.com/attachments/1392537805254557817/1427768443553185852/TTH_logo_enhanced_fixed.png?ex=69008b3b&is=68ff39bb&hm=fb12de20b81508b190e15d9c5a9654f0ffaca3d352e7e970638c8bac60816d7a&]]",
     "timestamp": "2025-10-14T21:22:03.689000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
