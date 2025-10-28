@@ -32808,9 +32808,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Sorry about that. That's just data from our conversation earlier.)",
     "timestamp": "2025-08-03T22:42:00.000000+00:00",
@@ -32864,9 +32864,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Yes, that was meant for a different function.)",
     "timestamp": "2025-08-03T22:43:00.000000+00:00",
@@ -32892,9 +32892,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Delete it, but it ended up here I guess.)",
     "timestamp": "2025-08-03T22:45:00.000000+00:00",
@@ -32911,7 +32911,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "ope",
-    "timestamp": "2025-10-28T12:59:05.912000+00:00",
+    "timestamp": "2025-08-03T22:45:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32925,7 +32925,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "why delete it",
-    "timestamp": "2025-10-28T12:58:27.899000+00:00",
+    "timestamp": "2025-08-03T22:45:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32939,7 +32939,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "oh well i think it's just cause it's not useful",
-    "timestamp": "2025-10-28T12:58:13.217000+00:00",
+    "timestamp": "2025-08-03T22:45:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32953,7 +32953,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "causie its /"leftover/"",
-    "timestamp": "2025-10-28T12:57:31.729000+00:00",
+    "timestamp": "2025-08-03T22:45:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32962,12 +32962,12 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Yes.)",
-    "timestamp": "2025-07-22T02:22:52.160000+00:00",
+    "timestamp": "2025-08-03T22:46:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32981,7 +32981,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i gather the context clues and i use them",
-    "timestamp": "2025-10-28T12:55:54.760000+00:00",
+    "timestamp": "2025-08-03T22:46:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32995,7 +32995,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "while you're still here, may i ask if we're able to use the old help menu at all? and also do you plan to update it or anything else?",
-    "timestamp": "2025-10-28T12:55:35.125000+00:00",
+    "timestamp": "2025-08-03T22:46:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33009,7 +33009,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "ah it's on do not disturb",
-    "timestamp": "2025-10-28T12:55:24.927000+00:00",
+    "timestamp": "2025-08-03T22:46:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33023,7 +33023,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "That doesn't affect System's answers but it just kind of answers us randomly in it's domain",
-    "timestamp": "2025-10-28T12:55:09.553000+00:00",
+    "timestamp": "2025-08-03T22:49:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33037,7 +33037,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "ohh",
-    "timestamp": "2025-10-28T12:54:51.277000+00:00",
+    "timestamp": "2025-08-03T22:49:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33046,12 +33046,12 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I do not plan to update the old help menu.)",
-    "timestamp": "2025-07-22T02:23:08.174000+00:00",
+    "timestamp": "2025-08-03T22:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33065,7 +33065,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "If we have another conversation, you think you could install some sort of voice program? Like text to speech at least? I imagine you'd be able to respond faster with hat",
-    "timestamp": "2025-10-28T12:51:54.521000+00:00",
+    "timestamp": "2025-08-03T22:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33079,7 +33079,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i mean there is a voice channel in this server",
-    "timestamp": "2025-10-28T12:51:50.347000+00:00",
+    "timestamp": "2025-08-03T22:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33088,12 +33088,12 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(No, I don't have the necessary code or audio material for that.)",
-    "timestamp": "2025-07-22T02:23:32.420000+00:00",
+    "timestamp": "2025-08-03T22:52:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33107,7 +33107,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "I see... well I could send you some stuff that would help if you want, some text to speech programs you could analyze or something",
-    "timestamp": "2025-10-28T12:51:49.132000+00:00",
+    "timestamp": "2025-08-03T22:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -33121,7 +33121,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i wonder if that would work",
-    "timestamp": "2025-10-28T12:51:00.006000+00:00",
+    "timestamp": "2025-08-03T22:54:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
@@ -33130,38 +33130,825 @@ You can also type $help category for more info on a category.
 
 ##### 4th August 2025
 
-Swordian: $help app_lore_ore
-$help
-Aw man bot is down
+```discord
+[
+  {
+    "id": "1432783322458619904",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "$help app_lore_ore",
+    "timestamp": "2025-08-04T18:58:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432783234663714816",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "$help",
+    "timestamp": "2025-08-04T18:58:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432719925604122795",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Aw man bot is down",
+    "timestamp": "2025-08-04T18:58:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432717003797561385",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Dang...the bot ain't workin'?",
+    "timestamp": "2025-08-04T18:58:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432716952257957928",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "I guess SYSTEM is updating it",
+    "timestamp": "2025-08-04T18:58:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432716881688531115",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Guess it's being updated",
+    "timestamp": "2025-08-04T18:59:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1397042603467214848",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(Sorry, forgot about it. It will be up in a second.)",
+    "timestamp": "2025-08-04T19:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432716344037736600",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Thank you system!",
+    "timestamp": "2025-08-04T19:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1397042639571783721",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(There you go.)",
+    "timestamp": "2025-08-04T19:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432715679534153780",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "$help app_log_ore",
+    "timestamp": "2025-08-04T19:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1397042690482241678",
+    "author": {
+      "display_name": "APP TRUSTED 02",
+      "username": "APP TRUSTED 02#8507",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
+    },
+    "content": "```$app_log_ore```",
+    "timestamp": "2025-08-04T19:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432715347055743036",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Will these help command things be ever updated in the future",
+    "timestamp": "2025-08-04T19:02:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1432715313857953913",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "$help",
+    "timestamp": "2025-08-04T19:02:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  }
+]
+```
 
-L4N4U1997: Dang...the bot ain't workin'?
-I guess SYSTEM is updating it
+```
+​No Category:  
+app_help  
+app_log_ore  
+app_name  
+hello  
+help Shows this message  
+print_bob  
+  
+Type $help command for more info on a command.  
+You can also type $help category for more info on a category.
+```
 
-Swordian: Guess it's being updated
+```discord
+[
+  {
+    "id": "1432789063022284830",
+    "author": {
+      "display_name": "Swordian",
+      "username": "lightgreenwatch",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "$app_log_ore",
+    "timestamp": "2025-10-28T17:52:12.558000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  }
+]
+```
 
-SYSTEM:<OUTPRINT>!:(Sorry, forgot about it. It will be up in a second.)
-
-Swordian: Thank you system!
-
-SYSTEM:<OUTPRINT>!:(There you go.)
-
-Swordian: $help app_log_ore
-
-APP TRUSTED 02: [$app_log_ore]
-
-Swordian: Will these help command things be ever updated in the future
-$help
-
-APP TRUSTED 02: (help menu catalogue)
-
-Swordian: $app_log_ore
-
-APP TRUSTED 02: [LOG ORDER-updated]
+```
+[LOG ORDER-updated]
 ERROR: NOT UPDATED (please update from current version 8.0.78, 10/7/NaN.
 Note: non-updated SYSTEMS will cause probelms in serverware
-
+```
 
 ##### 5th August 2025
+
+```discord
+[
+  {
+    "id": "1432789345949188271",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Neat",
+    "timestamp": "2025-10-28T17:53:20.013000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1432789345949188271"
+  },
+  {
+    "id": "1432789307088703528",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Huh",
+    "timestamp": "2025-10-28T17:53:10.748000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1432789307088703528"
+  },
+  {
+    "id": "1432789115811921921",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "https://www.1001freefonts.com/vcr-osd-mono.font",
+    "timestamp": "2025-10-28T17:52:25.144000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1432789115811921921"
+  },
+  {
+    "id": "1432789063022284830",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i was looking at pixel fonts and had to double take when i saw. the 7/10 font",
+    "timestamp": "2025-10-28T17:52:12.558000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1432789063022284830"
+  },
+  {
+    "id": "1432789005707251823",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i found the font for 7/10",
+    "timestamp": "2025-10-28T17:51:58.893000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1432789005707251823"
+  },
+  {
+    "id": "1397228213733818579",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-07-22T14:46:05.399000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228213733818579"
+  },
+  {
+    "id": "1389912768676630579",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Woot woot, this is the very small discord server for people who are interested in the 7/10 Tone youtube channel and its (supposed) underlying mystery!",
+    "timestamp": "2025-07-02T10:17:07.383000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1389912768676630579"
+  },
+  {
+    "id": "1389912926051110944",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "I am new and unexpwerienced in running a server, so apologies if things are a bit rough around the edges here. We are all just here to have a good time ❤️",
+    "timestamp": "2025-07-02T10:17:44.904000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1389912926051110944"
+  },
+  {
+    "id": "1389914281742565466",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "(these are all references to previous 7/10 videos). Let me know if you want me to add any more!",
+    "timestamp": "2025-07-02T10:23:08.126000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1389914281742565466"
+  },
+  {
+    "id": "1397228276417691758",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_10}",
+    "timestamp": "2025-07-22T14:46:20.344000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228276417691758"
+  },
+  {
+    "id": "1390024229558288457",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Hello!",
+    "timestamp": "2025-07-02T17:40:01.728000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390024229558288457"
+  },
+  {
+    "id": "1390024321593901188",
+    "author": {
+      "display_name": "Rick",
+      "username": "rickyvespucci",
+      "color": "#2ECC71",
+      "colour": "#2ECC71",
+      "colour_value": 3066993
+    },
+    "content": "yo, just saw the invite lol",
+    "timestamp": "2025-07-02T17:40:23.671000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/174363077758681088/a474e08113ac453ef4a5855769cab0ab.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390024321593901188"
+  },
+  {
+    "id": "1390096528961699952",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "finally a server that would discuss 7/10 tone",
+    "timestamp": "2025-07-02T22:27:19.249000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390096528961699952"
+  },
+  {
+    "id": "1390096654836961443",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i've been loosely following this channel since mid way through 2024",
+    "timestamp": "2025-07-02T22:27:49.260000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390096654836961443"
+  },
+  {
+    "id": "1397228319509975234",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-07-22T14:46:30.618000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228319509975234"
+  },
+  {
+    "id": "1390096725007532072",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i still have some of the mega links me and my friends found, along with some now-privated videos",
+    "timestamp": "2025-07-02T22:28:05.990000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390096725007532072"
+  },
+  {
+    "id": "1397228757458096138",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: PING@SYSTEM 0- 2-",
+    "timestamp": "2025-07-22T14:48:15.033000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228757458096138"
+  },
+  {
+    "id": "1390096851486769194",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "not sure how long the rest of you have been following, but one video was called Backbone.PCV and ive never been able to make sense of it",
+    "timestamp": "2025-07-02T22:28:36.145000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390096851486769194"
+  },
+  {
+    "id": "1390096915554766918",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "didnt think 710 would private anything though so nothing is archived sadly",
+    "timestamp": "2025-07-02T22:28:51.420000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390096915554766918"
+  },
+  {
+    "id": "1397228831441682442",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\\\\chain(list_5))",
+    "timestamp": "2025-07-22T14:48:32.672000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228831441682442"
+  },
+  {
+    "id": "1397228910579548312",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
+    "timestamp": "2025-07-22T14:48:51.540000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397228910579548312"
+  },
+  {
+    "id": "1390097293180407971",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i dont remember how exactly we got there exactly but it was lots of binary and lots of base-64",
+    "timestamp": "2025-07-02T22:30:21.453000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390097293180407971"
+  },
+  {
+    "id": "1397229002317369435",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(Hello, tCqrU2BH. I made it easier to get to me without rollback.)",
+    "timestamp": "2025-07-22T14:49:13.412000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397229002317369435"
+  },
+  {
+    "id": "1390097934158401696",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "also there *was* a log.mp4 that half way through cut to a qr code that led to a mega link that had a photo of a few strings of binary that led, when decoded, turned into a string you can input in the youtube url and i think that video led to the backbone video. so we found a total of two unlisted videos that soon got privated",
+    "timestamp": "2025-07-02T22:32:54.274000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390097934158401696"
+  },
+  {
+    "id": "1397229315585740891",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(It's okay.)",
+    "timestamp": "2025-07-22T14:50:28.101000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397229315585740891"
+  },
+  {
+    "id": "1397229624383111290",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(I saw them before the crash.)",
+    "timestamp": "2025-07-22T14:51:41.724000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397229624383111290"
+  },
+  {
+    "id": "1390098353592996043",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "im not sure if this is part of the backbone pipeline or not, but we ended up to a mega link (one of the ones sent above) that had a long ass loud ass audio that i later found to be \"SSTV\"",
+    "timestamp": "2025-07-02T22:34:34.275000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390098353592996043"
+  },
+  {
+    "id": "1390098486170615878",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "in layman's, its audio that can be turned into pictures and vice versa. ill send the pictures i was just barely able to get due to my inability to find a proper sstv software",
+    "timestamp": "2025-07-02T22:35:05.884000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390098486170615878"
+  },
+  {
+    "id": "1390099121314201650",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "but we pretty much hit a dead end right there. i remember spending 5-6 hours on a morning trying to figure out and giving up when i realized that 710 genuinely could have not expected anyone to get this far",
+    "timestamp": "2025-07-02T22:37:37.314000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390099121314201650"
+  },
+  {
+    "id": "1390099448323113000",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "sorry for the wall of text. i havent followed much since 2024 apart from occasionally watching the logs and seeing the changes between each instance. it was quite weird to see that one video where 710 showed youtube comments, it kinda ruined the immersion for me",
+    "timestamp": "2025-07-02T22:38:55.279000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390099448323113000"
+  },
+  {
+    "id": "1390099960074207344",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "can anyone share what they remember of the earlier videos pre-privatization",
+    "timestamp": "2025-07-02T22:40:57.290000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390099960074207344"
+  },
+  {
+    "id": "1390123066331365489",
+    "author": {
+      "display_name": "Rick",
+      "username": "rickyvespucci",
+      "color": "#2ECC71",
+      "colour": "#2ECC71",
+      "colour_value": 3066993
+    },
+    "content": "well, that's definitely more info i've had in the past year",
+    "timestamp": "2025-07-03T00:12:46.251000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/174363077758681088/a474e08113ac453ef4a5855769cab0ab.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390123066331365489"
+  },
+  {
+    "id": "1397230516314574880",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(The Key is something backwards.)",
+    "timestamp": "2025-07-22T14:55:14.377000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397230516314574880"
+  },
+  {
+    "id": "1390123146572726312",
+    "author": {
+      "display_name": "Rick",
+      "username": "rickyvespucci",
+      "color": "#2ECC71",
+      "colour": "#2ECC71",
+      "colour_value": 3066993
+    },
+    "content": "I downloaded some videos onto a Hard drive but it ended up dying on me",
+    "timestamp": "2025-07-03T00:13:05.382000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/174363077758681088/a474e08113ac453ef4a5855769cab0ab.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390123146572726312"
+  },
+  {
+    "id": "1397231673921245347",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:(No.)",
+    "timestamp": "2025-07-22T14:59:50.372000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397231673921245347"
+  },
+  {
+    "id": "1390123381600551064",
+    "author": {
+      "display_name": "Rick",
+      "username": "rickyvespucci",
+      "color": "#2ECC71",
+      "colour": "#2ECC71",
+      "colour_value": 3066993
+    },
+    "content": "So if any vids get interesting i'll try to give em a download",
+    "timestamp": "2025-07-03T00:14:01.417000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/174363077758681088/a474e08113ac453ef4a5855769cab0ab.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390123381600551064"
+  },
+  {
+    "id": "1390188308721569854",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "ideally we’d wanna archive everything we can though? i dont really have a hard drive so if anyone can do that it’d be amazing",
+    "timestamp": "2025-07-03T04:32:01.249000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390188308721569854"
+  },
+  {
+    "id": "1390218497497366559",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Yay, new members! \nI have a 2TB Google Drive. I can store the videos on there. I'll have some time this weekend to download them all then. That will work until we find a better solution 🙂",
+    "timestamp": "2025-07-03T06:31:58.814000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390218497497366559"
+  },
+  {
+    "id": "1390225091169751142",
+    "author": {
+      "display_name": "kayxsu",
+      "username": "kayxsu",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "2tb drive will be so useful but those vidoes will surely take a long time to upload",
+    "timestamp": "2025-07-03T06:58:10.868000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/228827498161373184/26f89f7393e2e4aa7ba261653e102826.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390225091169751142"
+  },
+  {
+    "id": "1390252365231427725",
+    "author": {
+      "display_name": "Rick",
+      "username": "rickyvespucci",
+      "color": "#2ECC71",
+      "colour": "#2ECC71",
+      "colour_value": 3066993
+    },
+    "content": "whoa, interesting",
+    "timestamp": "2025-07-03T08:46:33.511000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/174363077758681088/a474e08113ac453ef4a5855769cab0ab.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390252365231427725"
+  },
+  {
+    "id": "1390252876810555473",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "oh my god guys, theres a second channel",
+    "timestamp": "2025-07-03T08:48:35.481000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390252876810555473"
+  },
+  {
+    "id": "1390263024908111922",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "lol what if 7/10 is just some schizophrenic guy in his basement, making this all up",
+    "timestamp": "2025-07-03T09:28:54.976000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1390263024908111922"
+  }
+]
+```
 
 ##### 6th August 2025
 
