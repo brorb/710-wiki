@@ -35422,10 +35422,10 @@ You can also type $help category for more info on a category.
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "I'm back",
-    "timestamp": "2025-09-19T14:45:43.705000+00:00",
+    "content": "$app_log_ore",
+    "timestamp": "2025-08-06T12:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1040863553344778240/768187847563f88707af052325e781a5.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1418609006813122742"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
@@ -35443,58 +35443,58 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1418610580188692503",
     "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
-    "content": "We haven't had a lot of activity for a while, System gave us an audio clip of the same bells as the last video with some interesting metadata in it",
-    "timestamp": "2025-09-19T14:51:58.827000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1418610580188692503"
+    "content": "1 2?",
+    "timestamp": "2025-08-06T12:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1418609081999949979",
     "author": {
       "display_name": "Carlos",
       "username": "1776_1",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
-    "content": "What did i miss?",
-    "timestamp": "2025-09-19T14:46:01.631000+00:00",
+    "content": "is that new?",
+    "timestamp": "2025-08-06T12:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1040863553344778240/768187847563f88707af052325e781a5.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1418609081999949979"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1418612266848489664",
     "author": {
-      "display_name": "ThePortalNinja",
-      "username": "theportalninja",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
-    "content": "Not really, in case you missed it we managed to get back into contact with Indi",
-    "timestamp": "2025-09-19T14:58:40.958000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1418612266848489664"
+    "content": "now it is stopped for T-500. Before it was T-300",
+    "timestamp": "2025-08-06T12:01:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1418612172908658710",
     "author": {
       "display_name": "Carlos",
       "username": "1776_1",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
-    "content": "So same same system trolling with us, lol",
-    "timestamp": "2025-09-19T14:58:18.561000+00:00",
+    "content": "damn",
+    "timestamp": "2025-08-06T12:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1040863553344778240/768187847563f88707af052325e781a5.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1418612172908658710"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
