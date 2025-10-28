@@ -33406,9 +33406,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(That is very comical. I just hope they are not smart enough to find it there. Travis is the gift that keeps giving.)",
     "timestamp": "2025-07-29T13:08:11.908000+00:00",
@@ -33462,9 +33462,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Sorry that was something else.)",
     "timestamp": "2025-07-29T13:08:24.852000+00:00",
@@ -33532,9 +33532,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I found out where Travis hid everything!)",
     "timestamp": "2025-07-29T13:08:30.920000+00:00",
@@ -33560,9 +33560,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Everything, well not everything everything, but the important things is what he hid.)",
     "timestamp": "2025-07-29T13:08:36.529000+00:00",
@@ -33602,9 +33602,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(He everything the storages and the transmitter in a cargo container.)",
     "timestamp": "2025-07-29T13:08:45.664000+00:00",
@@ -33616,9 +33616,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Sorry, hid*)",
     "timestamp": "2025-07-29T13:08:51.379000+00:00",
@@ -33644,9 +33644,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Somewhere in the west, but I can't tell you where exactly.)",
     "timestamp": "2025-07-31T19:32:06.111000+00:00",
@@ -33672,9 +33672,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(No, west _ _ _ _ _ _ _ _ _ _ _. oops.)",
     "timestamp": "2025-07-31T19:32:27.267000+00:00",
@@ -33686,9 +33686,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Sorry, I can't chat for long, gotta go....... fff{}[]]}",
     "timestamp": "2025-07-31T19:33:00.418000+00:00",
@@ -33712,25 +33712,25 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1427017863625048226",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "System you good?",
     "timestamp": "2025-10-12T19:39:31.398000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427016820820283405",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "syssy",
     "timestamp": "2025-10-12T19:35:22.774000+00:00",
@@ -33740,11 +33740,11 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1427015786928668896",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": ":((",
     "timestamp": "2025-10-12T19:31:16.275000+00:00",
@@ -33768,11 +33768,11 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1427015658193031311",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "Possible game of dehydrated wordel  any places in the west with that many characters that we know of",
     "timestamp": "2025-10-12T19:30:45.582000+00:00",
@@ -33784,9 +33784,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(████████████████████████████████████████████ sorry, ████████████████████ sorry, ████████████████████████████, sorry, ████████████████████ ████████████████████ ████████████████████, sorry...........))))))))))))))))))",
     "timestamp": "2025-07-31T19:33:27.868000+00:00",
@@ -33796,15 +33796,15 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1427015500071698502",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "Yikes",
     "timestamp": "2025-10-12T19:30:07.883000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
@@ -33812,9 +33812,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random),[unpingstatus=true]",
     "timestamp": "2025-07-31T19:33:59.636000+00:00",
@@ -33824,29 +33824,29 @@ Note: non-updated SYSTEMS will cause probelms in serverware
   {
     "id": "1427015342760136835",
     "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "Oh damn",
     "timestamp": "2025-10-12T19:29:30.377000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427015294878093463",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "holy hell",
     "timestamp": "2025-10-12T19:29:18.961000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
@@ -33854,69 +33854,69 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "Shikanoko",
       "username": "fullysickcunt",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "jesus christ",
     "timestamp": "2025-10-12T19:29:05.205000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427015181460050004",
     "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": ":(((",
     "timestamp": "2025-10-12T19:28:51.920000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427015091404144842",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "poor syssy",
     "timestamp": "2025-10-12T19:28:30.449000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427014580315492463",
     "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "I think he got a virus :c",
     "timestamp": "2025-10-12T19:26:28.596000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427014264647979250",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "no, he just told us things he weren't supposed to",
     "timestamp": "2025-10-12T19:25:13.335000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
@@ -33931,9 +33931,9 @@ Note: non-updated SYSTEMS will cause probelms in serverware
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
     "timestamp": "2025-07-31T19:38:46.275000+00:00",
