@@ -31984,7 +31984,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "We need to find a GitHub repo",
-    "timestamp": "2025-10-11T22:24:04.306000+00:00",
+    "timestamp": "2025-08-03T14:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -31998,7 +31998,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Why's this have to happen each time me and Brorb call...",
-    "timestamp": "2025-10-11T22:24:09.121000+00:00",
+    "timestamp": "2025-08-03T14:56:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32012,7 +32012,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(What happened? What dod you do?)",
-    "timestamp": "2025-07-21T18:35:08.234000+00:00",
+    "timestamp": "2025-08-03T14:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32026,7 +32026,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "I have no idea lmao",
-    "timestamp": "2025-10-11T22:24:21.202000+00:00",
+    "timestamp": "2025-08-03T14:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32040,7 +32040,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Carlos ran the roaming_program",
-    "timestamp": "2025-10-11T22:24:30.602000+00:00",
+    "timestamp": "2025-08-03T14:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32054,7 +32054,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "And it spat out all sorts of stuff",
-    "timestamp": "2025-10-12T01:09:16.824000+00:00",
+    "timestamp": "2025-08-03T14:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32068,7 +32068,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I did not want it to access that.)",
-    "timestamp": "2025-07-21T18:35:57.994000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32082,7 +32082,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i can't believe system plays valorant",
-    "timestamp": "2025-10-12T01:12:09.429000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32096,7 +32096,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Why would it do that?)",
-    "timestamp": "2025-07-21T18:36:31.968000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32110,7 +32110,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "System plays a lot of games apparently!",
-    "timestamp": "2025-10-12T01:12:20.897000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32124,7 +32124,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Okay I joke, but I know it spat out a list of different things...",
-    "timestamp": "2025-10-12T01:12:23.790000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32138,7 +32138,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Especially things that have involved 7/10 as a whole...",
-    "timestamp": "2025-10-12T01:12:28.055000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32152,7 +32152,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "It listed those as /"infected/"",
-    "timestamp": "2025-10-12T01:12:32.501000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32166,7 +32166,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Infected with black mold perhaps?",
-    "timestamp": "2025-10-12T01:12:44.565000+00:00",
+    "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32180,7 +32180,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I don't /"play/" anything. This is a old roaming program I made.)",
-    "timestamp": "2025-07-21T18:38:16.773000+00:00",
+    "timestamp": "2025-08-03T14:59:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32194,7 +32194,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "I know I was joking",
-    "timestamp": "2025-10-12T01:13:30.632000+00:00",
+    "timestamp": "2025-08-03T14:59:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32208,7 +32208,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Did it list services infected with black mold?",
-    "timestamp": "2025-10-12T01:13:34.357000+00:00",
+    "timestamp": "2025-08-03T14:59:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32222,7 +32222,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Where did the command go? I am confused? For the first time.)",
-    "timestamp": "2025-07-21T18:39:00.829000+00:00",
+    "timestamp": "2025-08-03T15:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32236,7 +32236,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Even System is confused... wow",
-    "timestamp": "2025-10-12T01:13:36.646000+00:00",
+    "timestamp": "2025-08-03T15:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32250,7 +32250,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Poor syssy",
-    "timestamp": "2025-10-12T01:13:40.798000+00:00",
+    "timestamp": "2025-08-03T15:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32264,7 +32264,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Infected is where the influence of 7/10 has been.)",
-    "timestamp": "2025-07-21T18:40:15.191000+00:00",
+    "timestamp": "2025-08-03T15:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32278,7 +32278,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Ah, so that was correct",
-    "timestamp": "2025-10-12T01:13:50.622000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32292,7 +32292,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Guys I found something",
-    "timestamp": "2025-10-12T01:13:55.580000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32306,7 +32306,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I have to go and debug this.)",
-    "timestamp": "2025-07-21T18:40:50.625000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32320,7 +32320,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "https://github.com/systemTerminal8",
-    "timestamp": "2025-10-12T01:14:29.546000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32334,7 +32334,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "@SYSTEM Is this your account?",
-    "timestamp": "2025-10-12T01:14:43.870000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32348,7 +32348,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "It has one contribution from Jan 31st this year",
-    "timestamp": "2025-10-12T01:15:09.119000+00:00",
+    "timestamp": "2025-08-03T15:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32362,7 +32362,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Stop looking into it.)",
-    "timestamp": "2025-07-21T18:41:49.356000+00:00",
+    "timestamp": "2025-08-03T15:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32376,7 +32376,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "That might have been it's join date, not a contribution",
-    "timestamp": "2025-10-12T01:17:36.066000+00:00",
+    "timestamp": "2025-08-03T15:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32390,7 +32390,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "!",
-    "timestamp": "2025-10-12T01:17:37.109000+00:00",
+    "timestamp": "2025-08-03T15:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32404,7 +32404,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "Bullseye.",
-    "timestamp": "2025-10-12T01:18:26.030000+00:00",
+    "timestamp": "2025-08-03T15:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32418,7 +32418,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(This is very bad. Roaming program should not be called anymore.)",
-    "timestamp": "2025-07-21T18:42:58.238000+00:00",
+    "timestamp": "2025-08-03T15:05:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32432,7 +32432,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "but why",
-    "timestamp": "2025-10-12T01:18:29.361000+00:00",
+    "timestamp": "2025-08-03T15:05:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32446,7 +32446,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i mean, what can we even do with this information?",
-    "timestamp": "2025-10-12T01:18:33.094000+00:00",
+    "timestamp": "2025-08-03T15:05:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32460,7 +32460,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Or be able.)",
-    "timestamp": "2025-07-21T18:44:28.929000+00:00",
+    "timestamp": "2025-08-03T15:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32474,7 +32474,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "ight be indi s steam games",
-    "timestamp": "2025-10-12T01:19:22.330000+00:00",
+    "timestamp": "2025-08-03T15:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32488,7 +32488,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "@SYSTEM What are you using github for?",
-    "timestamp": "2025-10-12T01:19:31.180000+00:00",
+    "timestamp": "2025-08-03T15:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32502,7 +32502,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "i can't believe indi is a gamer",
-    "timestamp": "2025-10-12T01:20:59.249000+00:00",
+    "timestamp": "2025-08-03T15:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32516,7 +32516,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "I mean I don't expect a straight answer but I might as well try.",
-    "timestamp": "2025-10-12T02:32:56.023000+00:00",
+    "timestamp": "2025-08-03T15:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32530,7 +32530,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "Or the other guys computer from leak",
-    "timestamp": "2025-10-12T02:32:56.874000+00:00",
+    "timestamp": "2025-08-03T15:07:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32544,7 +32544,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I cannot tell you.)",
-    "timestamp": "2025-07-21T18:46:32.454000+00:00",
+    "timestamp": "2025-08-03T15:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32558,7 +32558,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "It's none of that, it's a service search that scans for influence of 7/10",
-    "timestamp": "2025-10-12T16:57:50.691000+00:00",
+    "timestamp": "2025-08-03T15:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32572,7 +32572,7 @@ You can also type $help category for more info on a category.
       "colour_value": 11494874
     },
     "content": "Expected response...",
-    "timestamp": "2025-10-12T18:33:39.998000+00:00",
+    "timestamp": "2025-08-03T15:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32586,7 +32586,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "hey",
-    "timestamp": "2025-10-12T18:33:57.740000+00:00",
+    "timestamp": "2025-08-03T15:09:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32600,7 +32600,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "wait",
-    "timestamp": "2025-10-12T18:35:29.654000+00:00",
+    "timestamp": "2025-08-03T15:09:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32614,7 +32614,7 @@ You can also type $help category for more info on a category.
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Yes.)",
-    "timestamp": "2025-07-21T18:47:42.572000+00:00",
+    "timestamp": "2025-08-03T15:09:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32628,7 +32628,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "what does a github repo look like",
-    "timestamp": "2025-10-12T18:35:57.470000+00:00",
+    "timestamp": "2025-08-03T15:09:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -32642,7 +32642,7 @@ You can also type $help category for more info on a category.
       "colour_value": 321478
     },
     "content": "wait should i even be asking that here",
-    "timestamp": "2025-10-12T18:37:04.217000+00:00",
+    "timestamp": "2025-08-03T15:09:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
