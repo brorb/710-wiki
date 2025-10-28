@@ -28382,63 +28382,628 @@ COMMAND MESSAGE STOPPED FOR T-300
 
 ##### 31st July 2025
 
-SYSTEM:<\OUTPRINT>!:(There are some fixes that are taking some more time with APP TRUSRTED-02.)
-<\OUTPRINT>!:(But that is all that I have to say.)
+```discord
+[
+  {
+    "id": "1396140928506527795",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(There are some fixes that are taking some more time with APP TRUSRTED-02.)",
+    "timestamp": "2025-07-30T02:09:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1396141894156685392",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(But that is all that I have to say.)",
+    "timestamp": "2025-07-30T02:09:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391640358605160599",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "That's fine, unlike Brorb I can wait as long as you or it needs",
+    "timestamp": "2025-07-30T02:10:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391640411394539550",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "However long it takes",
+    "timestamp": "2025-07-30T02:10:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391640435084230700",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "I'm real curious what the update will be...",
+    "timestamp": "2025-07-30T02:10:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391640462397542501",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": ":o",
+    "timestamp": "2025-07-30T02:10:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1396142340816502794",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(APP TRUSTED-02 will approximately be back up tomorrow.)",
+    "timestamp": "2025-07-30T02:12:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391643663334903949",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Understood",
+    "timestamp": "2025-07-30T02:13:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1391644288416350278",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
+    },
+    "content": "Thanks for the update",
+    "timestamp": "2025-07-30T02:13:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1396143254566731876",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:(Sorry about that.)",
+    "timestamp": "2025-07-30T15:46:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  }
+]
+```
+---
 
-ThePortalNinja: That's fine, unlike Brorb I can wait as long as you or it needs
-However long it takes
-I'm real curious what the update will be...
-:o
-SYSTEM:<\OUTPRINT>!:(APP TRUSTED-02 will approximately be back up tomorrow.)
-ThePortalNinja: Understood
-Thanks for the update
-SYSTEM:<\OUTPRINT>!:(Sorry about that.)
-
-***(break here)***
-
-SYSTEM: $broadcast_update
-
-APP TRUSTED 02: @everyone APP TRUSTED-02 has been updated.
-
-ThePortalNinja: I assume that's a question we can't ask?
-
-HLF-8031: $help
+```discord
+[
+  {
+    "id": "1396304695424978945",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-07-20T01:36:21.476000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304695424978945"
+  },
+  {
+    "id": "1396304736487080007",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_02}",
+    "timestamp": "2025-07-20T01:36:31.266000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304736487080007"
+  },
+  {
+    "id": "1391719376553508905",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Welcome!",
+    "timestamp": "2025-07-07T09:55:56.266000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391719376553508905"
+  },
+  {
+    "id": "1391722894068940882",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "I honestly think that that stuff is long_string",
+    "timestamp": "2025-07-07T10:09:54.907000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391722894068940882"
+  }
+]
+```
 
 APP TRUSTED 02: (help menu catalogue, nothing new, seperate this)
 
-APP TRUSTED 02: @brorb it's spelled 'shit' not 'dhit'
-@HLF-8031 it's spelled 'shit' not 'dhit'
+---
 
-Abe: Daaammnnn
+```discord
+[
+  {
+    "id": "1396304788903432263",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-07-20T01:36:43.763000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304788903432263"
+  },
+  {
+    "id": "1396305694168190976",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING < StartSession 000:00:03:02;02",
+    "timestamp": "2025-07-20T01:40:19.595000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396305694168190976"
+  },
+  {
+    "id": "1391644462102483035",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "so what is the text at the bottom of the first three vids",
+    "timestamp": "2025-07-07T04:58:15.269000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644462102483035"
+  },
+  {
+    "id": "1396306489794105396",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING Type 0- < NO OPTION AVAILABLE > returning 0+",
+    "timestamp": "2025-07-20T01:43:29.287000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396306489794105396"
+  }
+]
+```
 
-SYSTEM: <\OUTPRINT>!:(I find that comedic.)
+_(@Noel HLF rejoins the server after getting kicked out)_
 
-_(HLF-8031 rejoins the server after getting kicked out)_
+```discord
+[
+  {
+    "id": "1391644478246223922",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "and whats the last two things",
+    "timestamp": "2025-07-07T04:58:19.118000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644478246223922"
+  },
+  {
+    "id": "1391644499738103838",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "the game dev things",
+    "timestamp": "2025-07-07T04:58:24.242000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644499738103838"
+  },
+  {
+    "id": "1391644567295754301",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "shoo",
+    "timestamp": "2025-07-07T04:58:40.349000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644567295754301"
+  },
+  {
+    "id": "1391644578377105479",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "shoot",
+    "timestamp": "2025-07-07T04:58:42.991000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644578377105479"
+  },
+  {
+    "id": "1391644587063509094",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "theres more",
+    "timestamp": "2025-07-07T04:58:45.062000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644587063509094"
+  },
+  {
+    "id": "1391645727897161788",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "oh",
+    "timestamp": "2025-07-07T05:03:17.058000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645727897161788"
+  },
+  {
+    "id": "1391645740547182592",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "this is a",
+    "timestamp": "2025-07-07T05:03:20.074000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645740547182592"
+  },
+  {
+    "id": "1391645762005373038",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "fun? arg",
+    "timestamp": "2025-07-07T05:03:25.190000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645762005373038"
+  }
+]
+```
 
-ThePortalNinja: IT KICKS YOU???
-HAHAHAHAHA
-I thought it would just correct you holy moly
-That's insaneeee
+_(@brorb rejoins the server after getting kicked out)_
 
-Abe: That's 7/10 fault not ours it's just a fact of how you spell shit now
-HLF-8031: this is horrible
-ThePortalNinja: Jesus that's a good one System LMAO
+```discord
+[
+  {
+    "id": "1391645773669601310",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "...",
+    "timestamp": "2025-07-07T05:03:27.971000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645773669601310"
+  },
+  {
+    "id": "1391648520439730297",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "have you tried putting the videos together?",
+    "timestamp": "2025-07-07T05:14:22.852000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648520439730297"
+  },
+  {
+    "id": "1391648583962464331",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "like compile them into one big screen of the videos playing simultaneosly?",
+    "timestamp": "2025-07-07T05:14:37.997000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648583962464331"
+  },
+  {
+    "id": "1396310147726446604",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING Type LOGGED C-WAVE[#382940] > ! ERROR < IMPROPER DATA PROGRAM OR NOT ENOUGH SPACE > logged-0-0-3",
+    "timestamp": "2025-07-20T01:58:01.406000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396310147726446604"
+  },
+  {
+    "id": "1391648737293631588",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "the way they act reminds me a lot of a zoomed in image, and the static are the pixels moving",
+    "timestamp": "2025-07-07T05:15:14.554000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648737293631588"
+  },
+  {
+    "id": "1391648748630966385",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "could just be static",
+    "timestamp": "2025-07-07T05:15:17.257000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648748630966385"
+  },
+  {
+    "id": "1391651858917097572",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "hmm",
+    "timestamp": "2025-07-07T05:27:38.807000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391651858917097572"
+  },
+  {
+    "id": "1391651912818098177",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "could the text at the bottom of the screen for the red static screens",
+    "timestamp": "2025-07-07T05:27:51.658000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391651912818098177"
+  },
+  {
+    "id": "1391651928307666985",
+    "author": {
+      "display_name": "Jovenly 'training for job' Cosmo",
+      "username": "mastery_jove",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "be long_String?",
+    "timestamp": "2025-07-07T05:27:55.351000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391651928307666985"
+  },
+  {
+    "id": "1391662037733740635",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Thank goodness you're recording hehe",
+    "timestamp": "2025-07-07T06:08:05.626000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391662037733740635"
+  },
+  {
+    "id": "1391662200355164191",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Or _are_ you? ... REN",
+    "timestamp": "2025-07-07T06:08:44.398000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391662200355164191"
+  },
+  {
+    "id": "1391662484275855433",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Ah! Yes! Maybe we can make a new sheet for just the clips? And for screenshots?",
+    "timestamp": "2025-07-07T06:09:52.090000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391662484275855433"
+  },
+  {
+    "id": "1391662717424631819",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "I'm gonna try to finish writing down all the videos today",
+    "timestamp": "2025-07-07T06:10:47.677000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391662717424631819"
+  },
+  {
+    "id": "1396312850737401906",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING RAW_DATA == <ERROR: No Available format detected>",
+    "timestamp": "2025-07-20T02:08:45.854000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396312850737401906"
+  },
+  {
+    "id": "1391705852150415370",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "guys, LOG-123 is kind of insane...",
+    "timestamp": "2025-07-07T09:02:11.797000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391705852150415370"
+  },
+  {
+    "id": "1396313864554942625",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING Type LOGGED C-WAVE[#382049] > ! ERROR < IMPROPER DATA PROGRAM OR NOT ENOUGH SPACE > logged-0-1-5",
+    "timestamp": "2025-07-20T02:12:47.567000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396313864554942625"
+  }
+]
+```
 
-SYSTEM:<\OUTPRINT>!:(I don't believe that did.)
-
-HLF-8031: so misspelling shit has an effect not listed on the help
-i wonder if there's more
-Long String
-oh
-brorb: D H I T
-HLF-8031: drats
-hmm
-Imperfect Value: Redo It
-brorb: I will rebel
-SYSTEM:<\OUTPRINT>!:(It was apart of the update.)
-
-brorb: [insert Wikipedia link for The Streisand Effect]
-SYSTEM: <\OUTPRINT>!:(Interesting.)
 ##### 2nd August 2025
 
 SYSTEM:<\OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
