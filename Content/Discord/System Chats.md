@@ -27486,7 +27486,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "HAHAHAGAHAHA",
     "timestamp": "2025-07-29T12:12:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396756452961685556"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396756458221076510",
@@ -27500,7 +27500,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "$print_bob",
     "timestamp": "2025-07-29T12:12:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396756458221076510"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
@@ -27852,7 +27852,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])",
     "timestamp": "2025-07-30T09:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400129236328775781"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427017546393190440",
@@ -27880,7 +27880,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "Good morning to you too System",
     "timestamp": "2025-07-30T09:25:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427017366491107421"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1400129284001107999",
@@ -27894,7 +27894,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "$broadcast_update",
     "timestamp": "2025-07-30T09:43:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400129284001107999"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1400561254275354664",
@@ -27908,7 +27908,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "@everyone APP TRUSTED-02 has been updated.",
     "timestamp": "2025-07-30T09:43:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400561254275354664"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427016820820283405",
@@ -27922,7 +27922,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "Oh shit",
     "timestamp": "2025-07-30T09:43:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427016820820283405"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1427016340685979839",
@@ -27936,7 +27936,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
     "content": "$help",
     "timestamp": "2025-07-30T09:43:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427016340685979839"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
@@ -27957,7 +27957,7 @@ APP TRUSTED 02: (help menu catalogue, $app_log_ore command is now available, sep
     "content": "Log ore?",
     "timestamp": "2025-07-30T09:44:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758250468282478"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396758428910620712",
@@ -27971,7 +27971,7 @@ APP TRUSTED 02: (help menu catalogue, $app_log_ore command is now available, sep
     "content": "$app_log_ore",
     "timestamp": "2025-07-30T09:44:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758428910620712"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
