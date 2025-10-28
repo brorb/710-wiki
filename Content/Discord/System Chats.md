@@ -27133,7 +27133,7 @@ _(@Yuri joins the server on 29th July 2025, 08:17)
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "forgot what this was said and left lol",
+    "content": "forgot what this was and left lol",
     "timestamp": "2025-07-29T08:54:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1040863553344778240/768187847563f88707af052325e781a5.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
