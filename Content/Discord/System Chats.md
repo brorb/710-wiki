@@ -28812,7 +28812,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "Daaaamnn",
-    "timestamp": "2025-07-07T09:56:19.295000+00:00",
+    "timestamp": "2025-07-31T15:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28826,7 +28826,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "System",
-    "timestamp": "2025-07-07T09:56:33.287000+00:00",
+    "timestamp": "2025-07-31T15:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28840,7 +28840,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "That hurt",
-    "timestamp": "2025-07-07T09:56:45.346000+00:00",
+    "timestamp": "2025-07-31T15:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28854,7 +28854,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 2247297
     },
     "content": "@Abe, it's spelled 'shit' not 'dhit'",
-    "timestamp": "2025-07-20T02:08:45.854000+00:00",
+    "timestamp": "2025-07-31T15:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28868,7 +28868,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "that hurr",
-    "timestamp": "2025-07-07T09:57:20.241000+00:00",
+    "timestamp": "2025-07-31T15:50:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28882,7 +28882,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "System I have been off my chair laughing so hard",
-    "timestamp": "2025-07-07T09:57:24.400000+00:00",
+    "timestamp": "2025-07-31T15:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28896,7 +28896,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 2247297
     },
     "content": "@brorb, it's spelled 'shit' not 'dhit'",
-    "timestamp": "2025-07-20T02:12:47.567000+00:00",
+    "timestamp": "2025-07-31T15:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28910,7 +28910,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "i literally just woke up right now",
-    "timestamp": "2025-07-07T09:57:44.359000+00:00",
+    "timestamp": "2025-07-31T15:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28924,7 +28924,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "HAHAHAHAHA",
-    "timestamp": "2025-07-07T10:09:54.907000+00:00",
+    "timestamp": "2025-07-31T15:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28938,7 +28938,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I don't believe that did.)",
-    "timestamp": "2025-07-20T02:17:28.264000+00:00",
+    "timestamp": "2025-07-31T15:51:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28952,7 +28952,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "so misspelling shit has an effect not listed on the help",
-    "timestamp": "2025-07-07T10:11:28.858000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28966,7 +28966,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "i wonder if there's more",
-    "timestamp": "2025-07-07T10:12:46.206000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28980,7 +28980,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "Long String",
-    "timestamp": "2025-07-07T10:12:55.764000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -28994,7 +28994,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "oh",
-    "timestamp": "2025-07-07T10:12:58.183000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29008,7 +29008,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "D H I T",
-    "timestamp": "2025-07-07T10:18:39.593000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29022,7 +29022,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "drats",
-    "timestamp": "2025-07-07T10:19:06.299000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29036,7 +29036,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "hmm",
-    "timestamp": "2025-07-07T10:19:14.208000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29050,7 +29050,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "Imperfect Value: Redo It",
-    "timestamp": "2025-07-07T10:19:57.967000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29064,7 +29064,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "I will rebel",
-    "timestamp": "2025-07-07T12:24:06.491000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29078,7 +29078,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(It was apart of the update.)",
-    "timestamp": "2025-07-20T02:17:37.729000+00:00",
+    "timestamp": "2025-07-31T15:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29092,7 +29092,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 321478
     },
     "content": "[https://en.wikipedia.org/wiki/Streisand_effect]",
-    "timestamp": "2025-07-07T12:24:43.617000+00:00",
+    "timestamp": "2025-07-31T15:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
@@ -29106,7 +29106,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Interesting.)",
-    "timestamp": "2025-07-20T02:20:42.239000+00:00",
+    "timestamp": "2025-07-31T15:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
@@ -29115,8 +29115,31 @@ _(@brorb rejoins the server after getting kicked out)_
 
 ##### 2nd August 2025
 
-SYSTEM:<\OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
-1
+```discord
+[
+  {
+    "id": "1431606426266243172",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
+    },
+    "content": "<OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]",
+        "alt": "Ghost error picture"
+      }
+    ],
+    "timestamp": "2025-08-02T11:32:49.983000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  }
+]
+```
 
 ThePortalNinja: Woah!
 1
