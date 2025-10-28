@@ -28629,7 +28629,7 @@ You can also type $help category for more info on a category.
       "colour": "#234DD1",
       "colour_value": 2247297
     },
-    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "content": "@brorb it's spelled 'shit' not 'dhit'",
     "timestamp": "2025-07-20T01:36:43.763000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396304788903432263"
@@ -28643,7 +28643,7 @@ You can also type $help category for more info on a category.
       "colour": "#234DD1",
       "colour_value": 2247297
     },
-    "content": "<PING>?:PING@PING < StartSession 000:00:03:02;02",
+    "content": "@HLF-8031 it's spelled 'shit' not 'dhit'",
     "timestamp": "2025-07-20T01:40:19.595000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396305694168190976"
@@ -28657,7 +28657,7 @@ You can also type $help category for more info on a category.
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "so what is the text at the bottom of the first three vids",
+    "content": "Daaammnnn",
     "timestamp": "2025-07-07T04:58:15.269000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644462102483035"
@@ -28671,7 +28671,7 @@ You can also type $help category for more info on a category.
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<PING>?:PING@PING Type 0- < NO OPTION AVAILABLE > returning 0+",
+    "content": "<OUTPRINT>!:(I find that comedic.)",
     "timestamp": "2025-07-20T01:43:29.287000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396306489794105396"
@@ -28692,7 +28692,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "and whats the last two things",
+    "content": "IT KICKS YOU???",
     "timestamp": "2025-07-07T04:58:19.118000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644478246223922"
@@ -28706,7 +28706,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "the game dev things",
+    "content": "HAHAHAHAHA",
     "timestamp": "2025-07-07T04:58:24.242000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644499738103838"
@@ -28720,7 +28720,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "shoo",
+    "content": "I thought it would just correct you holy moly",
     "timestamp": "2025-07-07T04:58:40.349000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644567295754301"
@@ -28734,7 +28734,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "shoot",
+    "content": "That's insaneeee",
     "timestamp": "2025-07-07T04:58:42.991000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644578377105479"
@@ -28748,7 +28748,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "theres more",
+    "content": "That's 7/10 fault not ours it's just a fact of how you spell shit now",
     "timestamp": "2025-07-07T04:58:45.062000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391644587063509094"
@@ -28762,7 +28762,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "oh",
+    "content": "this is horrible",
     "timestamp": "2025-07-07T05:03:17.058000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645727897161788"
@@ -28776,7 +28776,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "this is a",
+    "content": "Jesus that's a good one System LMAO",
     "timestamp": "2025-07-07T05:03:20.074000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645740547182592"
@@ -28790,7 +28790,7 @@ _(@Noel HLF rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "fun? arg",
+    "content": "OH IT DID",
     "timestamp": "2025-07-07T05:03:25.190000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645762005373038"
@@ -28811,7 +28811,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "...",
+    "content": "Daaaamnn",
     "timestamp": "2025-07-07T05:03:27.971000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391645773669601310"
@@ -28825,7 +28825,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "have you tried putting the videos together?",
+    "content": "System",
     "timestamp": "2025-07-07T05:14:22.852000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648520439730297"
@@ -28839,7 +28839,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "like compile them into one big screen of the videos playing simultaneosly?",
+    "content": "That hurt",
     "timestamp": "2025-07-07T05:14:37.997000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648583962464331"
@@ -28853,7 +28853,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?:PING@PING Type LOGGED C-WAVE[#382940] > ! ERROR < IMPROPER DATA PROGRAM OR NOT ENOUGH SPACE > logged-0-0-3",
+    "content": "@Abe, it's spelled 'shit' not 'dhit'",
     "timestamp": "2025-07-20T01:58:01.406000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396310147726446604"
@@ -28867,7 +28867,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "the way they act reminds me a lot of a zoomed in image, and the static are the pixels moving",
+    "content": "that hurr",
     "timestamp": "2025-07-07T05:15:14.554000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648737293631588"
@@ -28881,7 +28881,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "could just be static",
+    "content": "System I have been off my chair laughing so hard",
     "timestamp": "2025-07-07T05:15:17.257000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1391648748630966385"
