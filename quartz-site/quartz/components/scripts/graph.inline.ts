@@ -84,12 +84,48 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     centerForce,
     linkDistance,
     fontSize,
-    opacityScale,
+  opacityScale,
+    labelVisibility,
     removeTags,
     showTags,
     focusOnHover,
     enableRadial,
   } = JSON.parse(graph.dataset["cfg"]!) as D3Config
+
+  opacityScale = Number.isFinite(opacityScale) && opacityScale > 0 ? opacityScale : 1
+  fontSize = Number.isFinite(fontSize) && fontSize > 0 ? fontSize : 0.6
+
+  const resolvedLabelVisibility = (() => {
+    const defaults = {
+      minAlpha: 0,
+      maxAlpha: 1,
+      startZoom: 1,
+      endZoom: 3.75,
+    }
+
+    if (!labelVisibility) {
+      return defaults
+    }
+
+    const minAlpha = Number.isFinite(labelVisibility.minAlpha) ? labelVisibility.minAlpha : defaults.minAlpha
+    const maxAlpha = Number.isFinite(labelVisibility.maxAlpha) ? labelVisibility.maxAlpha : defaults.maxAlpha
+    const startZoom = Number.isFinite(labelVisibility.startZoom)
+      ? labelVisibility.startZoom
+      : defaults.startZoom
+    const endZoom = Number.isFinite(labelVisibility.endZoom) ? labelVisibility.endZoom : defaults.endZoom
+
+    const orderedMin = Math.max(0, Math.min(1, minAlpha))
+    const orderedMax = Math.max(orderedMin, Math.min(1, maxAlpha))
+    const orderedStart = Math.max(0.01, startZoom)
+    const orderedEnd = Math.max(orderedStart + 0.01, endZoom)
+
+    return {
+      minAlpha: orderedMin,
+      maxAlpha: orderedMax,
+      startZoom: orderedStart,
+      endZoom: orderedEnd,
+    }
+  })()
 
   const data: Map<SimpleSlug, SerializedContentDetails> = new Map(
     Object.entries<SerializedContentDetails>(await fetchData).map(([k, v]) => [
@@ -461,14 +497,19 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const linkContainer = new Container<Graphics>({ zIndex: 1, isRenderGroup: true })
   stage.addChild(nodesContainer, labelsContainer, linkContainer)
 
+  const clamp01 = (value: number) => Math.min(Math.max(value, 0), 1)
+
   const updateLabelVisibility = (transform: ZoomTransform) => {
     const scaleValue = transform.k * opacityScale
-    let scaleOpacity = Math.max((scaleValue - 1) / 3.75, 0)
+    const { minAlpha, maxAlpha, startZoom, endZoom } = resolvedLabelVisibility
+    const span = Math.max(endZoom - startZoom, 0.01)
+    const normalized = clamp01((scaleValue - startZoom) / span)
+    const targetAlpha = minAlpha + (maxAlpha - minAlpha) * normalized
     const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
 
     for (const label of labelsContainer.children) {
       if (!activeNodes.includes(label)) {
-        label.alpha = scaleOpacity
+        label.alpha = targetAlpha
       }
     }
   }
@@ -522,7 +563,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       interactive: false,
       eventMode: "none",
       text: n.text,
-      alpha: 0,
+      alpha: resolvedLabelVisibility.minAlpha,
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,

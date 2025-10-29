@@ -1,11 +1,11 @@
 [
   "webpage-html-export",
   "obsidian-git",
+  "discord-message-embed",
+  "obsidian42-brat",
   "convert-url-to-iframe",
+  "editing-toolbar",
   "obsidian-footnotes",
   "obsidian-linter",
-  "discord-message-embed",
-  "editing-toolbar",
-  "obsidian42-brat",
   "omnisearch"
 ]

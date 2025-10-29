@@ -6,6 +6,7 @@ import { commentsConfig } from "./quartz/comments.config"
 const graphHiddenTags = ["graph-exclude"]
 
 const sharedAfterBody = [
+  Component.MediaNormalizer(),
   Component.ConditionalRender({
     component: Component.Canvas(),
     condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
