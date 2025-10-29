@@ -10,6 +10,22 @@ export interface D3Config {
   zoom: boolean
   depth: number
   scale: number
+  autoZoom?: {
+    enabled: boolean
+    padding: number
+    zoomLevels: {
+      nodes1?: number
+      nodes2?: number
+      nodes3?: number
+      nodes4?: number
+      nodes5?: number
+      nodes6?: number
+      nodes7to9?: number
+      nodes10to15?: number
+      nodes15to25?: number
+      nodesAbove25?: number
+    }
+  }
   repelForce: number
   centerForce: number
   linkDistance: number
@@ -32,6 +48,22 @@ const defaultOptions: GraphOptions = {
     zoom: true,
     depth: 1,
     scale: 1.1,
+    autoZoom: {
+      enabled: true,
+      padding: 1.2,
+      zoomLevels: {
+        nodes1: 6,
+        nodes2: 5,
+        nodes3: 3.5,
+        nodes4: 3.0,
+        nodes5: 2.7,
+        nodes6: 2.4,
+        nodes7to9: 1.85,
+        nodes10to15: 1.5,
+        nodes15to25: 1.15,
+        nodesAbove25: 1,
+      },
+    },
     repelForce: 0.5,
     centerForce: 0.3,
     linkDistance: 30,
@@ -47,6 +79,22 @@ const defaultOptions: GraphOptions = {
     zoom: true,
     depth: -1,
     scale: 0.9,
+    autoZoom: {
+      enabled: true,
+      padding: 1.15,
+      zoomLevels: {
+        nodes1: 2.4,
+        nodes2: 2.2,
+        nodes3: 2,
+        nodes4: 1.85,
+        nodes5: 1.75,
+        nodes6: 1.65,
+        nodes7to9: 1.5,
+        nodes10to15: 1.2,
+        nodes15to25: 1,
+        nodesAbove25: 0.85,
+      },
+    },
     repelForce: 0.5,
     centerForce: 0.2,
     linkDistance: 30,
@@ -65,7 +113,12 @@ export default ((opts?: Partial<GraphOptions>) => {
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
     return (
       <div class={classNames(displayClass, "graph")}>
-        <h3>{i18n(cfg.locale).components.graph.title}</h3>
+        <div class="graph__heading-row">
+          <h3>{i18n(cfg.locale).components.graph.title}</h3>
+          <button class="graph__show-full" type="button">
+            Show full graph
+          </button>
+        </div>
         <div class="graph-outer">
           <div class="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <button class="global-graph-icon" aria-label="Global Graph">

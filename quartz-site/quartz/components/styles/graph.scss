@@ -1,10 +1,38 @@
 @use "../../styles/variables.scss" as *;
 
+
 .graph {
-  & > h3 {
+  &__heading-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__heading-row > h3 {
     font-size: 1rem;
     margin: 0;
     color: var(--color-tone-contrast);
+  }
+
+  &__show-full {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-accent-deep);
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-accent-bright);
+      text-decoration: underline;
+      outline: none;
+      transform: translateY(-1px);
+    }
   }
 
   & > .graph-outer {
