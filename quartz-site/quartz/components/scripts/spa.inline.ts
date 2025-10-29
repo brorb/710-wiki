@@ -5,7 +5,7 @@ import { fetchCanonical } from "./util"
 declare global {
   interface Window {
     __quartzCleanupFns?: Set<(...args: any[]) => void>
-    addCleanup: (fn: (...args: any[]) => void) => void
+    addCleanup: (fn: (...args: any[]) => void) => any
   }
 }
 
@@ -213,7 +213,13 @@ async function _navigate(url: URL, isBack: boolean = false) {
   html.body.appendChild(announcer)
 
   // morph body
-  micromorph(document.body, html.body)
+  try {
+    await micromorph(document.body, html.body)
+  } catch (err) {
+    console.error("Quartz SPA navigation failed during DOM diff", err)
+    window.location.assign(url)
+    return
+  }
 
   // scroll into place and add history
   if (!isBack) {

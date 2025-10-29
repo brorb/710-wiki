@@ -8485,9 +8485,9 @@ var defaultOptions13 = {
         nodes4: 3,
         nodes5: 2.7,
         nodes6: 2.4,
-        nodes7to9: 1.85,
-        nodes10to15: 1.5,
-        nodes15to25: 1.15,
+        nodes7to9: 2.1,
+        nodes10to15: 1.7,
+        nodes15to25: 1.2,
         nodesAbove25: 1
       }
     },
@@ -8538,10 +8538,17 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
     const localGraph = { ...defaultOptions13.localGraph, ...opts?.localGraph };
     const globalGraph = { ...defaultOptions13.globalGraph, ...opts?.globalGraph };
     return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
-      /* @__PURE__ */ jsxs17("div", { class: "graph__heading-row", children: [
-        /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.graph.title }),
-        /* @__PURE__ */ jsx26("button", { class: "graph__show-full", type: "button", children: "SHOW FULL GRAPH" })
-      ] }),
+      /* @__PURE__ */ jsxs17(
+        "div",
+        {
+          class: "graph__heading-row",
+          style: { display: "flex", justifyContent: "space-between", alignItems: "center" },
+          children: [
+            /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.graph.title }),
+            /* @__PURE__ */ jsx26("button", { class: "graph__show-full", type: "button", children: "SHOW FULL GRAPH" })
+          ]
+        }
+      ),
       /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
         /* @__PURE__ */ jsx26("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
         /* @__PURE__ */ jsx26("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx26(
