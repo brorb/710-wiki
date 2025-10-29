@@ -5717,7 +5717,41 @@ var collectText = /* @__PURE__ */ __name((node) => {
 }, "collectText");
 var EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
 var METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i;
-var METADATA_PREFIX_REGEX = /^\s*\d+\s*,\s*\d+\s*,/;
+var COMMUNITY_POST_PREFIX_REGEX = /^\s*community-post\s*,/i;
+var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
+  if (!raw) {
+    return null;
+  }
+  const trimmed = raw.trim();
+  if (!COMMUNITY_POST_PREFIX_REGEX.test(trimmed)) {
+    return null;
+  }
+  const parts = trimmed.split(",").map((part) => part.trim());
+  if (parts.length < 4) {
+    return null;
+  }
+  const likes = Number.parseInt(parts[1] ?? "", 10);
+  const comments = Number.parseInt(parts[2] ?? "", 10);
+  if (!Number.isFinite(likes) || !Number.isFinite(comments)) {
+    return null;
+  }
+  const postedLabelRaw = parts[3] ?? "";
+  const inlineSegments = parts.slice(4);
+  while (inlineSegments.length > 0 && inlineSegments[inlineSegments.length - 1].length === 0) {
+    inlineSegments.pop();
+  }
+  const inlineBody = inlineSegments.join(",").trim();
+  const metadata = {};
+  metadata.likes = likes;
+  metadata.comments = comments;
+  if (postedLabelRaw.length > 0) {
+    metadata.postedLabel = postedLabelRaw;
+  }
+  return {
+    metadata,
+    inlineBody: inlineBody.length > 0 ? inlineBody : void 0
+  };
+}, "parseCommunityPostHeader");
 var splitSegments = /* @__PURE__ */ __name((raw) => {
   EMBED_REGEX.lastIndex = 0;
   const segments = [];
@@ -5783,14 +5817,6 @@ var parseBodyMetadata = /* @__PURE__ */ __name((raw) => {
   const body = raw.slice(match[0].length);
   return { metadata, body };
 }, "parseBodyMetadata");
-var parseFenceMetadata = /* @__PURE__ */ __name((lang, meta) => {
-  const composite = [lang?.trim() ?? "", meta?.trim() ?? ""].filter((part) => part.length > 0).join(" ");
-  if (!composite || !METADATA_PREFIX_REGEX.test(composite)) {
-    return {};
-  }
-  const match = composite.match(METADATA_LINE_REGEX);
-  return parseMetadataMatch(match);
-}, "parseFenceMetadata");
 var formatCount = /* @__PURE__ */ __name((value) => {
   if (value === void 0 || Number.isNaN(value) || value < 0) {
     return void 0;
@@ -6176,19 +6202,21 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
             }
             const langRaw = typeof child.lang === "string" ? child.lang.trim() : "";
             const metaRaw = typeof child.meta === "string" ? child.meta.trim() : "";
-            const lowerLang = langRaw.toLowerCase();
-            const looksLikeMetadataFence = METADATA_PREFIX_REGEX.test(langRaw) || METADATA_PREFIX_REGEX.test(metaRaw);
-            if (langRaw && lowerLang !== "text" && !looksLikeMetadataFence) {
+            const headerResult = parseCommunityPostHeader(langRaw) ?? parseCommunityPostHeader(metaRaw);
+            if (!headerResult) {
               continue;
             }
-            const value = typeof child.value === "string" ? child.value : "";
-            const metadataHint = parseFenceMetadata(langRaw, metaRaw);
+            let value = typeof child.value === "string" ? child.value : "";
+            if (headerResult.inlineBody) {
+              value = value.length > 0 ? `${headerResult.inlineBody}
+${value}` : headerResult.inlineBody;
+            }
             const html = renderPost({
               content: value,
               year: currentYear,
               slug,
               avatarSrc,
-              metadataHint
+              metadataHint: headerResult.metadata
             });
             if (!html) {
               continue;
@@ -9241,6 +9269,7 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
   margin: 0 0 1rem 0;
   text-align: center;
   color: var(--color-tone-contrast);
+  font-family: var(--font-thematic);
 }
 
 .infobox__media {
@@ -9283,6 +9312,7 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
   color: var(--color-tone-contrast);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-family: var(--font-thematic);
 }
 
 .infobox__fact dd {
