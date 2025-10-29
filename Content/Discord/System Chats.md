@@ -31226,9 +31226,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "brorb",
       "username": "brorb",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "WHAT",
     "timestamp": "2025-08-03T14:51:00.000000+00:00",
