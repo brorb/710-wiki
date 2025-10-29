@@ -217,7 +217,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  padding-top: 0.5rem;
+  padding: 0.5rem 0.65rem 0;
   border-top: 1px solid color-mix(in srgb, var(--color-tone-muted) 30%, transparent);
 }
 
@@ -227,12 +227,14 @@
   gap: 0.6rem;
   font-size: 0.78rem;
   color: var(--color-tone-muted);
+  margin: 0;
 
   &__input {
     width: 18px;
     height: 18px;
     accent-color: var(--color-accent-bright);
     cursor: pointer;
+    margin: 0;
   }
 
   &__label {

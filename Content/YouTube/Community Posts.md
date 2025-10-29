@@ -2,7 +2,7 @@
 tags:
   - YouTube
 ---
-Below are all the community posts that have been made to the [[710 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
+Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
 
 ```community-post,2,0,11 October 2025

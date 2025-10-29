@@ -7,11 +7,11 @@ tags:
 Title: Black Mold
 Image: ![[Content/Media/Sleuth Media/Images/7-10 Tone channel description (circa April 11th).png]]
 Caption: Mentioned in the channel's description, deleted on July 10th
-Appearances: [[710 Tone]] YouTube channel description
+Appearances: [[710 Tone|7/10 Tone]] YouTube channel description
 ```
 
 
-A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
+A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone|7/10 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
 
 > [!discord-cite]- Discord citation (2 messages)
 > 

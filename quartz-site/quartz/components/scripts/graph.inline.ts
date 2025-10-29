@@ -497,6 +497,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   const nodeRenderMap = new Map<SimpleSlug, NodeRenderData>()
+  const linkRenderData: LinkRenderData[] = []
+  const nodeRenderData: NodeRenderData[] = []
 
   const drawNodeGraphic = (node: NodeRenderData) => {
     const tone = parseColorToNumber(color(node.simulationData))
@@ -518,6 +520,45 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     }
   }
 
+  let hoveredNodeId: string | null = null
+  let hoveredNeighbours: Set<string> = new Set()
+
+  const getRenderNodeFromLinkEnd = (end: LinkData["source"]): NodeRenderData | undefined => {
+    if (typeof end === "object" && end) {
+      return nodeRenderMap.get(end.id)
+    }
+
+    if (typeof end === "string") {
+      return nodeRenderMap.get(end as unknown as SimpleSlug)
+    }
+
+    if (typeof end === "number") {
+      const index = Number.isInteger(end) ? end : Math.trunc(end)
+      const fallback = graphData.nodes[index]
+      if (fallback) {
+        return nodeRenderMap.get(fallback.id)
+      }
+    }
+
+    return undefined
+  }
+
+  const updateSimulationParticipants = () => {
+    const activeNodes = nodeRenderData.filter((node) => node.visible).map((node) => node.simulationData)
+    simulation.nodes(activeNodes)
+
+    const activeLinks = graphData.links.filter((link) => {
+      const sourceNode = getRenderNodeFromLinkEnd(link.source)
+      const targetNode = getRenderNodeFromLinkEnd(link.target)
+      return Boolean(sourceNode?.visible && targetNode?.visible)
+    })
+
+    linkForce.links(activeLinks)
+    if (activeNodes.length > 0) {
+      simulation.alpha(0.85).restart()
+    }
+  }
+
   const applyBooleanOptions = () => {
     const showSinglets = booleanOptions.showSinglets
 
@@ -530,20 +571,16 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     })
 
     linkRenderData.forEach((link) => {
-      const sourceNode = nodeRenderMap.get(link.simulationData.source.id)
-      const targetNode = nodeRenderMap.get(link.simulationData.target.id)
+      const sourceNode = getRenderNodeFromLinkEnd(link.simulationData.source)
+      const targetNode = getRenderNodeFromLinkEnd(link.simulationData.target)
       const bothVisible = Boolean(sourceNode?.visible && targetNode?.visible)
       link.visible = bothVisible
       link.gfx.visible = bothVisible
     })
 
+    updateSimulationParticipants()
     renderPixiFromD3()
   }
-
-  let hoveredNodeId: string | null = null
-  let hoveredNeighbours: Set<string> = new Set()
-  const linkRenderData: LinkRenderData[] = []
-  const nodeRenderData: NodeRenderData[] = []
   function updateHoverInfo(newHoveredId: string | null) {
     const hoveredNode = newHoveredId ? nodeRenderMap.get(newHoveredId as SimpleSlug) : undefined
     if (newHoveredId && !hoveredNode?.visible) {

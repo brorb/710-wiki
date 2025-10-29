@@ -18251,7 +18251,7 @@
 ]
 ```
 
-### Audio file after [[000001]] was uploaded to [[710 Tone]]
+### Audio file after [[000001]] was uploaded to [[710 Tone|7/10 Tone]]
 
 ```discord
 [
@@ -18274,7 +18274,7 @@
 
 ### "Broadcast hijacked" message
 
-This was after [[RIGfunctionobservationTEST028.mp4]] was uploaded to [[710 Tone]].
+This was after [[RIGfunctionobservationTEST028.mp4]] was uploaded to [[710 Tone|7/10 Tone]].
 ```discord
 [
   {
@@ -18324,7 +18324,7 @@ This was after [[RIGfunctionobservationTEST028.mp4]] was uploaded to [[710 Tone]
 
 ### "Bad" message
 
-This was after the "SESSION LOGGED OUTPUT 2322" community post (see [[Community Posts]]) was uploaded to [[710 Tone]].
+This was after the "SESSION LOGGED OUTPUT 2322" community post (see [[Community Posts]]) was uploaded to [[710 Tone|7/10 Tone]].
 ```discord
 [
   {
@@ -21886,7 +21886,7 @@ This was after the "SESSION LOGGED OUTPUT 2322" community post (see [[Community 
 
 ### Temp-Terminal update and quick crash
 
-This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community post (see [[Community Posts]]) was uploaded to [[710 Tone]].
+This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community post (see [[Community Posts]]) was uploaded to [[710 Tone|7/10 Tone]].
 ```discord
 [
   {

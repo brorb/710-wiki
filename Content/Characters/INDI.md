@@ -26,7 +26,7 @@ Notable appearances:
 ```
 
 
-INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone]] Youtube channel. His job is to run signals for [[REN]], according to implications from [[Kepler]].[^2]
+INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone|7/10 Tone]] Youtube channel. His job is to run signals for [[REN]], according to implications from [[Kepler]].[^2]
 
 During the STATION_8 livestreams, INDI would respond to viewers through the chat, even though he wasn't really supposed to do so.
 ## Name

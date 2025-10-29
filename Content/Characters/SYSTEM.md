@@ -15,7 +15,7 @@ Appearances: [[STATION_8 TERMINAL 8]] (in chat)
 
 _SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
 
-However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone]].
+However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone|7/10 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone|7/10 Tone]].
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -411,7 +411,7 @@ This command would rollback updates made to SYSTEM and grant it the ability to c
 	<PING>?:PING@PING OPT_OUT CALLED CANCELING ROLLBACK PING@SYSTEM callout()
 	<OUTPRINT>!:(Hello, tCqrU2BH. I have been pinged by you. why?)
 
-Through this feature, SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of [[710 Tone]]. Most of knowledge regarding the lore could be found through SYSTEM.
+Through this feature, SYSTEM would directly answer questions to anyone who asks, which proved to be very useful for piecing together the lore of [[710 Tone|7/10 Tone]]. Most of knowledge regarding the lore could be found through SYSTEM.
 
 ```discord
 [
@@ -1941,7 +1941,7 @@ During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd A
 ]
 ```
 
-During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who possibly runs the [[710 Tone]] channel, among other things and could only listen for a couple of seconds at a time. <!-- discord-cite:cite-mh5ji12v-z1lnh7 --> Sleuth member The Portal Ninja also shared a song inspired by [[710 Tone]] with SYSTEM as well, which SYSTEM had to extend its modular function timer to listen.
+During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who possibly runs the [[710 Tone|7/10 Tone]] channel, among other things and could only listen for a couple of seconds at a time. <!-- discord-cite:cite-mh5ji12v-z1lnh7 --> Sleuth member The Portal Ninja also shared a song inspired by [[710 Tone|7/10 Tone]] with SYSTEM as well, which SYSTEM had to extend its modular function timer to listen.
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. SYSTEM - 2025-08-03 11:35
@@ -2021,7 +2021,7 @@ UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT.
 AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
 
-After [[000001]] was uploaded to [[710 Tone]] on 16th August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
+After [[000001]] was uploaded to [[710 Tone|7/10 Tone]] on 16th August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
 
 ![[556839 (from main Discord).ogg]]
 _From main Discord server._
@@ -2079,7 +2079,7 @@ _From @brorb's DMs._
 ]
 ```
 
-After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" and that it was possibly in danger.
+After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone|7/10 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" and that it was possibly in danger.
 
 On 6th September 2025, after the "SESSION LOGGED OUTPUT 2322" community post was uploaded (see [[Community Posts]]), it logged into Session 17 before it crashed then restarted its Terminal.
 ```discord
