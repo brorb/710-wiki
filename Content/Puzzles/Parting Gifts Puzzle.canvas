@@ -129,7 +129,7 @@
 		{
 			"id":"4d243120bf9ad03d",
 			"type":"text",
-			"text":"After the stream [[STATION_8 TERMINAL 8]] ended, two videos were uploaded to the [[710 Tone]] channel:",
+			"text":"After the stream [[STATION_8 TERMINAL 8]] ended, two videos were uploaded to the [[710 Tone|7/10 Tone]] channel:",
 			"styleAttributes":{},
 			"x":-560,
 			"y":336,
@@ -149,7 +149,7 @@
 		{
 			"id":"f81b1a620d09fa34",
 			"type":"text",
-			"text":"The file [[prj_Home.exe]] is a bare-bones game made with the game engine Godot. It features a green/black checkered world with nothing but a white house. Within the house is a small computer that plays a range of beeping noises. This is the full extent of the game. \n\nThis game had been seen on [[710 Tone]] before, in the video [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which had been uploaded weeks prior.\n\nAttempts at decompiling [[prj_Home.exe]] yielded no significant data, and the file metadata was also uninteresting",
+			"text":"The file [[prj_Home.exe]] is a bare-bones game made with the game engine Godot. It features a green/black checkered world with nothing but a white house. Within the house is a small computer that plays a range of beeping noises. This is the full extent of the game. \n\nThis game had been seen on [[710 Tone|7/10 Tone]] before, in the video [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which had been uploaded weeks prior.\n\nAttempts at decompiling [[prj_Home.exe]] yielded no significant data, and the file metadata was also uninteresting",
 			"styleAttributes":{},
 			"x":2535,
 			"y":670,

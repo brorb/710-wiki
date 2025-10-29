@@ -21,8 +21,8 @@ Also known as:
 The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public. It is also called SPR chat, for "Super Private Chat"
 
 There are two ways in which the chats have become available to the public:
-1. Via [[Community Posts]] on the [[710 Tone]] channel
-2. Via videos on the [[710 Tone]] channel
+1. Via [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
+2. Via videos on the [[710 Tone|7/10 Tone]] channel
 
 
 

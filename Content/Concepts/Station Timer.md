@@ -17,7 +17,7 @@ Appearances:
 ```
 
 
-A timer that always counts down to 10th July of every year, which is apparently an important event for the [[710 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right. During the livestreams, a continuous frequency would play in the background while it counts down.
+A timer that always counts down to 10th July of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right. During the livestreams, a continuous frequency would play in the background while it counts down.
 
 ---
 ### Purpose:

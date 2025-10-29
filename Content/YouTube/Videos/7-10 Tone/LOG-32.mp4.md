@@ -12,7 +12,7 @@ SYSTEM ID: 198403958**
 
 **Video Summary:** Normal red and black static, timer morphs from 160 to 159 with text in the bottom left corner flashing "2nd opened" (see clue below).
 
-**Clues:** The comments of this video on YouTube contained the following exchange between [[710 NPP]] and [[710 Tone]]:
+**Clues:** The comments of this video on YouTube contained the following exchange between [[710 NPP]] and [[710 Tone|7/10 Tone]]:
 
 ==710NPP:== BIN APPLICATION COMPLETE
 ==7/10 Tone:== INITIALIZE BIN 0002 in \*\*\*\,*\*\,\*

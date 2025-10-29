@@ -76,5 +76,5 @@ _What [[The Transmitter]] sounds like, according to [[SYSTEM]]._
 
 ![[SERVER 01 Close but no cigar (transmitter key).png|600]]
 
-On 5th August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to gain access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to retrieve it before 10 August, when the [[710 Tone]] channel would remove the "unmarked labels" (see [[Community Posts]]) and everything (including [[SYSTEM]] itself) would be shut down.
+On 5th August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to gain access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to retrieve it before 10 August, when the [[710 Tone|7/10 Tone]] channel would remove the "unmarked labels" (see [[Community Posts]]) and everything (including [[SYSTEM]] itself) would be shut down.
 
