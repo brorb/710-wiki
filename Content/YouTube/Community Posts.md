@@ -178,7 +178,11 @@ Mistakes were made, but I corrected them. Please, if you can, try not to be too 
 SORRY, IT'S NOTHING PERSONAL
 ![[message received hex1.webp]]![[hex.webp]]
 ```
-_^The Hexadecimal roughly translates to: "!SYSTEM ALERT!: DOWNED @ 2920 (subject(logsynprotcogut.exe, lngsynview.exe, logpublisher.exe)) HAS CRASHED"_
+_^The hex in the images translate to:_
+
+```
+!SYSTEM ALERT!: DOWNED @ 2920 (subject(logsynprotcogut.exe, lngsynview.exe, logpublisher.exe)) HAS CRASHED
+```
 
 ```community-post,6,1,June 2025,
 I LOVE HOW IT'S ALL BLEEDING THROUGH NOW. DON'T YOU AGREE TRAVIS?
@@ -247,27 +251,67 @@ _which is a Google Drive link to a file called [vacsystemrestart.mp3](https://dr
 ```community-post,4,0,February 2025,
 SYSTEM: out-put: "23 58 33 33 31 32 33 39 3A 20 41 42 4F 55 54 20 54 49 4D 45 20 59 4F 55 20 53 49 47 4E 41 4C 45 44 20 55 53 2E 0A 23 41 39 39 32 31 34 34 3A 20 48 45 59 2C 20 57 45 27 52 45 20 57 4F 52 4B 49 4E 47 20 4F 4E 20 49 54 2E 0A 23 58 33 33 31 32 33 39 3A 20 59 4F 55 27 52 45 20 4E 4F 54 20 57 4F 52 4B 49 4E 47 20 48 41 52 44 20 45 4E 4F 55 47 48 2E 0A 23 41 39 39 32 31 34 34 3A 20 57 48 41 54 20 54 48 45 20 48 45 4C 4C 20 49 53 20 54 48 41 54 20 53 55 50 50 4F 53 45 44 20 54 4F 20 4D 45 41 4E 21 3F 0A 23 58 33 33 31 32 33 39 3A 20 41 4E 59 54 49 4D 45 20 59 4F 55 20 54 55 52 4E 20 4F 4E 20 54 48 41 54 20 53 54 41 54 49 4F 4E 2C 20 49 54 20 47 4F 45 53 20 54 4F 20 53 48 49 54 20 41 4E 44 20 53 45 4E 44 0A 4F 55 54 20 46 52 45 51 55 4E 43 49 45 53 20 54 4F 20 41 4E 59 20 4E 45 49 47 48 42 4F 52 49 4E 47 20 52 45 53 49 56 45 52 20 4E 4F 57 20 49 20 44 4F 4E 54 20 4B 4E 4F 57 20 57 48 41 54 20 49 53 0A 48 41 50 50 45 4E 49 4E 47 20 42 55 54 20 59 4F 55 20 41 4E 44 20 59 4F 55 52 20 42 4F 59 53 20 41 52 45 20 53 55 50 50 4F 53 45 44 20 54 4F 20 42 45 20 53 45 4E 44 49 4E 47 20 4F 55 54 0A 49 4E 46 4F 52 4D 41 54 49 4F 4E 20 4E 4F 54 20 54 52 59 49 4E 47 20 54 4F 20 43 41 4C 4C 20 4F 54 48 45 52 20 53 54 41 54 49 4F 4E 53 0A 23 41 39 39 32 31 34 3A 20 41 52 45 20 59 4F 55 20 53 41 59 49 4E 47 20 54 48 41 54 20 49 54 27 53 20 4F 55 52 20 46 41 55 4C 54 20 46 4F 52 20 54 48 41 54 20 49 4E 43 49 44 45 4E 54 3F 0A 23 58 33 33 31 32 33 39 3A 20 4E 4F 2C 20 57 45 22 52 45 20 53 41 59 49 4E 47 20 54 48 41 54 20 59 4F 55 20 4E 45 45 44 20 54 4F 20 47 45 54 20 54 48 41 54 20 53 54 41 54 49 4F 4E 20 55 4E 44 45 52 20 0A 43 4F 4E 54 52 4F 4C 20 4F 52 20 57 45 20 41 52 45 20 54 45 52 4D 49 4E 41 54 49 4E 47 20 54 48 45 20 4D 49 53 53 49 4F 4E 2E 0A 23 41 39 39 32 31 34 3A 20 57 45 27 4C 4C 20 54 52 59 2E"
 ```
-_^_
+_^The hex translates to:_
+```
+ # X 3 3 1 2 3 9 :   A B O U T   T I M E   Y O U   S I G N A L E D   U S . 
+ # A 9 9 2 1 4 4 :   H E Y ,   W E ' R E   W O R K I N G   O N   I T . 
+ # X 3 3 1 2 3 9 :   Y O U ' R E   N O T   W O R K I N G   H A R D   E N O U G H . 
+ # A 9 9 2 1 4 4 :   W H A T   T H E   H E L L   I S   T H A T   S U P P O S E D   T O   M E A N ! ? 
+ # X 3 3 1 2 3 9 :   A N Y T I M E   Y O U   T U R N   O N   T H A T   S T A T I O N ,   I T   G O E S   T O   S H I T   A N D   S E N D 
+ O U T   F R E Q U N C I E S   T O   A N Y   N E I G H B O R I N G   R E S I V E R   N O W   I   D O N T   K N O W   W H A T   I S 
+ H A P P E N I N G   B U T   Y O U   A N D   Y O U R   B O Y S   A R E   S U P P O S E D   T O   B E   S E N D I N G   O U T 
+ I N F O R M A T I O N   N O T   T R Y I N G   T O   C A L L   O T H E R   S T A T I O N S 
+ # A 9 9 2 1 4 :   A R E   Y O U   S A Y I N G   T H A T   I T ' S   O U R   F A U L T   F O R   T H A T   I N C I D E N T ? 
+ # X 3 3 1 2 3 9 :   N O ,   W E " R E   S A Y I N G   T H A T   Y O U   N E E D   T O   G E T   T H A T   S T A T I O N   U N D E R   
+ C O N T R O L   O R   W E   A R E   T E R M I N A T I N G   T H E   M I S S I O N . 
+ # A 9 9 2 1 4 :   W E ' L L   T R Y .
+```
+This is an example of a [[Private Room]] chat, and its content matches that of [[Private Room#Chat 3|chat #3]], also appearing in [[{_ _ _-_ _._ _ _}re]]. 
 
 ```community-post,4,1,February 2025,
 53 59 53 54 45 4D 5F 55 50 44 41 54 45 28 66 69 6C 65 2E 33 33 6C 30 29 3A 3A 44 45 54 45 43 54 45 44 3D 2D 35 20 65 72 72 6F 72 73 20 26 26 20 31 20 6D 69 73 63 2D 20 55 50 44 41 54 49 4E 47 3D 3D 3D 3D 3D 30 30 30 30 31 2D 30 30 30 30 34 2F 73 77 61 77 73 7C 65 78 63 6C 75 73 69 6F 6E 2F
+```
+_^The hex translates to:_
+```
+S Y S T E M _ U P D A T E ( f i l e . 3 3 l 0 ) : : D E T E C T E D = - 5   e r r o r s   & &   1   m i s c -   U P D A T I N G = = = = = 0 0 0 0 1 - 0 0 0 0 4 / s w a w s | e x c l u s i o n /
 ```
 
 ```community-post,4,0,February 2025,
 53 59 53 54 45 4D 20 4D 45 53 53 41 47 45 20 4F 55 54 50 55 54 3C 22 4C 55 46 4E 49 41 50 20 44 4E 41 20 57 4F 4C 53 20 53 52 55 4F 59 20 52 4B 41 4D 20 4C 4C 49 57 20 49 22
 ```
+_^The hex translates to:_
+```
+S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   R K A M   L L I W   I "
+```
+which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous message is not yet understood.
 
 ```community-post,2,1,February 2025,
 22 53 59 53 54 45 4D 2D 4F 55 54 50 55 54 3A 20 57 41 52 4E 49 4E 47 20 41 4E 4F 4D 41 4C 4F 55 53 20 45 52 52 4F 52 20 44 45 54 45 43 54 45 44 7C 7C 30 78 30 30 32 33 31 31 65 33 31 6E 22
 ```
+_^The hex translates to:_
+```
+" S Y S T E M - O U T P U T :   W A R N I N G   A N O M A L O U S   E R R O R   D E T E C T E D | | 0 x 0 0 2 3 1 1 e 3 1 n "
+```
+
 
 ```community-post,4,1,February 2025,
 75 70 64 61 74 65 20 6F 75 74 70 75 74 20 61 70 70 65 6E 64 69 6E 67 3C 22 53 59 53 54 45 4D 3A 20 53 59 53 54 45 4D 20 41 50 50 45 4E 44 3A 20 56 41 52 2D 49 2C 20 43 2C 20 4F 50 63 2C 20 4F 50 73 2C 20 53 2C 20 7C 7C 20 4C 49 53 54 20 26 26 20 63 61 63 68 65 20 35 3A 20 4C 4F 43 4B 24 24 20 4C 4F 43 4B 20 43 4F 44 45 20 38 3B 20 48 41 53 48 43 4F 44 45 3A 20 37 36 38 62 62 66 31 62 62 63 31 38 32 62 30 36 33 35 37 64 31 38 32 39 38 64 62 62 34 61 65 39 2F 72 65 74 75 72 6E 20 61 6C 6C 3A 30 22 20 3A 3A 20 6D 69 78 20 30 31
 ```
+_^The hex translates to:_
+```
+u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D :   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
+```
+:This references a hash code "768bbf1bbc182b06357d18298dbb4ae9", but its use has not been found._
 
 ```community-post,3,0,January 2025,
 ;d!\$u784n&78Q9A;Cs+I0JYCD3Zpd`;BU%&EZeCK;H"\^82DG4,"5-K+FJPZ6VLB#Cia\@<^BV^+<jKtF>4s^,"uos2Bj8kHltdM;BU+$;BSA9FC?:H0et:&1FsY)/0HZ%1+XP'$<()+<(0M(;FNoJ:K/nj0JG7C+B)6*;H+c"3ZoV#0JG13+>>K#+>>K#+>>Jl9N32e+@T$n4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Z,Gg5<h@s5<h@s5<h@s5<g_H,Ur
 ```
+_^This is base 85 / ASCII 85 and translates to:_
+```
+SYSTEM REPAIR-#00229: CLR str VARS "H3" "EK" || CLR lst VARS "Lot1" "Lot6" || CLR upR Data 112, 3, 3, 112, 2
+SYSTEM REBOOT-#002: START :: "0000, 00, 00, 00 LT", END=============================================================================================================================================================================5????????????????-&$*
+```
+_This is the first and only time ASCII 85 has been used, and its relevance is not understood._
 
 ```community-post,5,0,January 2025,
 ATTENTION: ESPaP> All posts have been expunged regarding information about ***. Please hold for further information. DIAL CODE &&&-789990-AB
@@ -337,6 +381,7 @@ _^This post was edited. Original read:
 "well, I think we have to resort to the next plan"  
 "Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������**_
 ```
+This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]].
 
 ```community-post,10,0,2024,
 00000000
@@ -350,19 +395,19 @@ _^This post was edited. Original read:
 >>SYSTEM: UNEXPEXTED LOG COUNT  
 >>SYSTEM: RESTETING LOGS "LOG-98.PCV", "LOG-99.PCV"
 ```
-
+_^This post references [[LOG-99.mp4]], but has the wrong extension (.PCV vs .mp4). Also, LOG-98 does not exist. It is believed that this isa  remnant of old purged videos and logs, since it is known that older logs used to have the .PCV extension, whereas the new ones typically have .mp4._
 ```community-post,5,3,2024,
 00000000
 ```
-_^This post was edited. Original read:
+_^This post was edited. Original read:_
 ```
-**"YOU WILL COWER IN THE WAKE OF MY PROGRESSION AND YOU WILL WATCH FOR ETERNITY!"  
+"YOU WILL COWER IN THE WAKE OF MY PROGRESSION AND YOU WILL WATCH FOR ETERNITY!"  
 "PLEASE, DON'T DO THIS!"  
 "PLEASE!"  
 =\=EMD\=\=  
-Ipse diabolus super nos est, et omnes remittuntur pro peccatis nostris**_
+Ipse diabolus super nos est, et omnes remittuntur pro peccatis nostris
 ```
-
+_The phrase is Latin and translates to: “The Devil himself is over us, and all are forgiven for our sins.” The meaning of this is not understood._
 ```community-post,2,1,2024,
 "556: calltime out...  
 556: reset"

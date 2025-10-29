@@ -356,6 +356,7 @@ export default (() => {
   margin: 0 0 1rem 0;
   text-align: center;
   color: var(--color-tone-contrast);
+  font-family: var(--font-thematic);
 }
 
 .infobox__media {
@@ -398,6 +399,7 @@ export default (() => {
   color: var(--color-tone-contrast);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-family: var(--font-thematic);
 }
 
 .infobox__fact dd {

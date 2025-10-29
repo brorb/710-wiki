@@ -123,7 +123,54 @@ interface PostMetadata {
 const EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g
 
 const METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i
-const METADATA_PREFIX_REGEX = /^\s*\d+\s*,\s*\d+\s*,/
+const COMMUNITY_POST_PREFIX_REGEX = /^\s*community-post\s*,/i
+
+interface CommunityPostHeaderResult {
+  metadata: PostMetadata
+  inlineBody?: string
+}
+
+const parseCommunityPostHeader = (raw?: string): CommunityPostHeaderResult | null => {
+  if (!raw) {
+    return null
+  }
+
+  const trimmed = raw.trim()
+  if (!COMMUNITY_POST_PREFIX_REGEX.test(trimmed)) {
+    return null
+  }
+
+  const parts = trimmed.split(",").map((part) => part.trim())
+  if (parts.length < 4) {
+    return null
+  }
+
+  const likes = Number.parseInt(parts[1] ?? "", 10)
+  const comments = Number.parseInt(parts[2] ?? "", 10)
+  if (!Number.isFinite(likes) || !Number.isFinite(comments)) {
+    return null
+  }
+
+  const postedLabelRaw = parts[3] ?? ""
+  const inlineSegments = parts.slice(4)
+  while (inlineSegments.length > 0 && inlineSegments[inlineSegments.length - 1].length === 0) {
+    inlineSegments.pop()
+  }
+
+  const inlineBody = inlineSegments.join(",").trim()
+  const metadata: PostMetadata = {}
+  metadata.likes = likes
+  metadata.comments = comments
+
+  if (postedLabelRaw.length > 0) {
+    metadata.postedLabel = postedLabelRaw
+  }
+
+  return {
+    metadata,
+    inlineBody: inlineBody.length > 0 ? inlineBody : undefined,
+  }
+}
 
 const splitSegments = (raw: string): Segment[] => {
   EMBED_REGEX.lastIndex = 0
@@ -205,16 +252,6 @@ const parseBodyMetadata = (raw: string): { metadata: PostMetadata; body: string 
   const metadata = parseMetadataMatch(match)
   const body = raw.slice(match[0].length)
   return { metadata, body }
-}
-
-const parseFenceMetadata = (lang?: string, meta?: string): PostMetadata => {
-  const composite = [lang?.trim() ?? "", meta?.trim() ?? ""].filter((part) => part.length > 0).join(" ")
-  if (!composite || !METADATA_PREFIX_REGEX.test(composite)) {
-    return {}
-  }
-
-  const match = composite.match(METADATA_LINE_REGEX)
-  return parseMetadataMatch(match)
 }
 
 const formatCount = (value: number | undefined): string | undefined => {
@@ -673,22 +710,22 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
 
             const langRaw = typeof child.lang === "string" ? child.lang.trim() : ""
             const metaRaw = typeof child.meta === "string" ? child.meta.trim() : ""
-            const lowerLang = langRaw.toLowerCase()
-            const looksLikeMetadataFence =
-              METADATA_PREFIX_REGEX.test(langRaw) || METADATA_PREFIX_REGEX.test(metaRaw)
+            const headerResult = parseCommunityPostHeader(langRaw) ?? parseCommunityPostHeader(metaRaw)
 
-            if (langRaw && lowerLang !== "text" && !looksLikeMetadataFence) {
+            if (!headerResult) {
               continue
             }
 
-            const value = typeof child.value === "string" ? child.value : ""
-            const metadataHint = parseFenceMetadata(langRaw, metaRaw)
+            let value = typeof child.value === "string" ? child.value : ""
+            if (headerResult.inlineBody) {
+              value = value.length > 0 ? `${headerResult.inlineBody}\n${value}` : headerResult.inlineBody
+            }
             const html = renderPost({
               content: value,
               year: currentYear,
               slug,
               avatarSrc,
-              metadataHint,
+              metadataHint: headerResult.metadata,
             })
 
             if (!html) {

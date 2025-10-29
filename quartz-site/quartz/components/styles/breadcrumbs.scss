@@ -20,3 +20,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.breadcrumb-element a,
+.breadcrumb-element p {
+  font-family: var(--font-thematic);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
