@@ -40574,7 +40574,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Oh.",
     "timestamp": "2025-08-08T22:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402177731810037832"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402177752592945182",
@@ -40588,7 +40588,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Uh oh",
     "timestamp": "2025-08-08T22:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402177752592945182"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402178065014067221",
@@ -40602,7 +40602,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Was that intentional?",
     "timestamp": "2025-08-08T22:53:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402178065014067221"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396930167070392412",
@@ -40616,7 +40616,7 @@ In content: Must be 2000 or fewer in length.
     "content": "<OUTPRINT>!:(No, give me a second.)",
     "timestamp": "2025-08-08T22:54:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930167070392412"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402178106122567811",
@@ -40630,7 +40630,7 @@ In content: Must be 2000 or fewer in length.
     "content": "I assumed not",
     "timestamp": "2025-08-08T22:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402178106122567811"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402190814414897284",
@@ -40644,21 +40644,21 @@ In content: Must be 2000 or fewer in length.
     "content": "Figured",
     "timestamp": "2025-08-08T22:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402190814414897284"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396930191829237953",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Sorry about that, it was trying to get the entire list and send it.)",
     "timestamp": "2025-08-08T22:56:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930191829237953"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402275801852022824",
@@ -40672,21 +40672,21 @@ In content: Must be 2000 or fewer in length.
     "content": "What's it for?",
     "timestamp": "2025-08-08T22:56:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402275801852022824"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396930222623949131",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I want to see if you can get at least one key. I need 10 to get the password to the transmitter.)",
     "timestamp": "2025-08-08T22:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930222623949131"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1402275829756465163",
@@ -40700,7 +40700,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Alright!",
     "timestamp": "2025-08-08T22:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402275829756465163"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401986318766047253",
@@ -40714,7 +40714,7 @@ In content: Must be 2000 or fewer in length.
     "content": "you could probably make the list into a .txt file and then make it send that .txt file to bypass the character limit",
     "timestamp": "2025-08-08T22:57:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401986318766047253"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985404114043051",
@@ -40728,35 +40728,35 @@ In content: Must be 2000 or fewer in length.
     "content": "Good idea, it could generate the codes and send it as a file",
     "timestamp": "2025-08-08T22:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985404114043051"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397038618194870435",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Not right now.)",
     "timestamp": "2025-08-08T22:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038618194870435"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397038649136386138",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I have 5 of the keys and I'm trying everything right now.)",
     "timestamp": "2025-08-08T22:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038649136386138"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985189130928249",
@@ -40770,21 +40770,21 @@ In content: Must be 2000 or fewer in length.
     "content": "whoa you are close, huh?",
     "timestamp": "2025-08-08T22:59:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985189130928249"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397038692886904952",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Yes, it was very difficult to get those keys, this is just a brute force method.)",
     "timestamp": "2025-08-08T23:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038692886904952"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985179026980874",
@@ -40798,7 +40798,7 @@ In content: Must be 2000 or fewer in length.
     "content": "How do we test the code?",
     "timestamp": "2025-08-08T23:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985179026980874"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985168163471420",
@@ -40812,7 +40812,7 @@ In content: Must be 2000 or fewer in length.
     "content": "wait... how did you get those keys then?",
     "timestamp": "2025-08-08T23:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985168163471420"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985095157547051",
@@ -40826,35 +40826,35 @@ In content: Must be 2000 or fewer in length.
     "content": "I need to know how we use/test the codes, or ifwe even can right now",
     "timestamp": "2025-08-08T23:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985095157547051"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397039846970757212",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(Very complicated ciphers that only I know about.)",
     "timestamp": "2025-08-08T23:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039846970757212"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397039924233900032",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I test them.)",
     "timestamp": "2025-08-08T23:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039924233900032"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401985092905078889",
@@ -40868,7 +40868,7 @@ In content: Must be 2000 or fewer in length.
     "content": "How do we find the right ones, then?",
     "timestamp": "2025-08-08T23:02:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985092905078889"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401984972394594505",
@@ -40882,35 +40882,35 @@ In content: Must be 2000 or fewer in length.
     "content": "I guess SYSTEM will figure that out itself.",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401984972394594505"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961401534124233",
     "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "Heheh knew it",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961401534124233"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397039960233873468",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(It will alert me.)",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039960233873468"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961351533953084",
@@ -40924,21 +40924,21 @@ In content: Must be 2000 or fewer in length.
     "content": "ahhh",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961351533953084"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961316515840000",
     "author": {
-      "display_name": "brorb",
-      "username": "brorb",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "You can do it system yeaaa",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961316515840000"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961259741745305",
@@ -40952,7 +40952,7 @@ In content: Must be 2000 or fewer in length.
     "content": "this might be a way we can help then",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961259741745305"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961229051756625",
@@ -40966,7 +40966,7 @@ In content: Must be 2000 or fewer in length.
     "content": "We believe in you SYSTEM :)",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961229051756625"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401961192158658832",
@@ -40980,7 +40980,7 @@ In content: Must be 2000 or fewer in length.
     "content": "brute force till one pops up",
     "timestamp": "2025-08-08T23:03:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961192158658832"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960952638996590",
@@ -40994,7 +40994,7 @@ In content: Must be 2000 or fewer in length.
     "content": "The way to find the right keys has to either be somewhere in App's menus or on the channel.",
     "timestamp": "2025-08-08T23:04:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960952638996590"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960914466639933",
@@ -41008,7 +41008,7 @@ In content: Must be 2000 or fewer in length.
     "content": "We have to find at least one, but System needs 5 to get to the transmitter so that it can get back into contact with Indi before the 10th, which is when everything including System gets turned off.",
     "timestamp": "2025-08-08T23:04:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960914466639933"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960885320286331",
@@ -41022,7 +41022,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Other than that, I don't know who System is talking to but I'm betting it ""copied"" itself in a way to better go through it's logic.",
     "timestamp": "2025-08-08T23:05:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960885320286331"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960698925547533",
@@ -41036,35 +41036,35 @@ In content: Must be 2000 or fewer in length.
     "content": "In a way, System is talking to itself",
     "timestamp": "2025-08-08T23:05:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960698925547533"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960347140755608",
     "author": {
-      "display_name": "Noel | HLF",
-      "username": "herodytheus",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "Mitoes",
     "timestamp": "2025-08-08T23:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960347140755608"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397040483946991677",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(It's called a brainstorming program.)",
     "timestamp": "2025-08-08T23:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397040483946991677"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960157436444723",
@@ -41078,7 +41078,7 @@ In content: Must be 2000 or fewer in length.
     "content": "How fitting LOL",
     "timestamp": "2025-08-08T23:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960157436444723"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960149073137745",
@@ -41092,7 +41092,7 @@ In content: Must be 2000 or fewer in length.
     "content": "Bullseye",
     "timestamp": "2025-08-08T23:06:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960149073137745"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401960076700549181",
@@ -41106,7 +41106,7 @@ In content: Must be 2000 or fewer in length.
     "content": "schizophrenia arc confirmed true",
     "timestamp": "2025-08-08T23:07:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960076700549181"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959939890610186",
@@ -41120,35 +41120,35 @@ In content: Must be 2000 or fewer in length.
     "content": "joking btw",
     "timestamp": "2025-08-08T23:07:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959939890610186"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959899608518749",
     "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "System got a Alexa and is useing a roundabout way to ask google",
     "timestamp": "2025-08-08T23:07:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959899608518749"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1397040526854721657",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
     "content": "<OUTPRINT>!:(I have to get back to it. Goodbye for right now.)",
     "timestamp": "2025-08-08T23:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397040526854721657"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959758105411685",
@@ -41162,7 +41162,7 @@ In content: Must be 2000 or fewer in length.
     "content": "We'll keep looking",
     "timestamp": "2025-08-08T23:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959758105411685"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959742649405613",
@@ -41176,21 +41176,21 @@ In content: Must be 2000 or fewer in length.
     "content": "🫡",
     "timestamp": "2025-08-08T23:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959742649405613"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959632187953162",
     "author": {
-      "display_name": "brorb",
-      "username": "brorb",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "Bye bye hope you do ittt",
     "timestamp": "2025-08-08T23:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959632187953162"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1401959446871277568",
@@ -41204,7 +41204,7 @@ In content: Must be 2000 or fewer in length.
     "content": "seeya you got this",
     "timestamp": "2025-08-08T23:08:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959446871277568"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
