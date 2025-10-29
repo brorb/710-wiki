@@ -40222,33 +40222,48 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
 ---
 
 SYSTEM: $broadcast_update
+https://discord.com/channels/1389902002737250314/1389902003228114957/1396928223840829664
 
 APP TRUSTED 02: @everyone APP TRUSTED-02 has been updated
+https://discord.com/channels/1389902002737250314/1389902003228114957/1396928650552676474
 
 ThePortalNinja: OH
 $help
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406437508719443969
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406438067568640070
 
 APP TRUSTED 02: (help menu catalogue)
 
 L4N4U1997: Oh my! Another update!
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406534439940653097
 
 ThePortalNinja: Hm...
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406534490620166164
 
 L4N4U1997: What-?
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406534940828500082
 
 ThePortalNinja: Wait
 I want to see what System will say
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406537794720890952
+https://discord.com/channels/1389902002737250314/1389902003228114957/1406540330270199808
 
 Shikanoko: Lets go system
+https://discord.com/channels/1389902002737250314/1401641646583578756/1402165013103378514
 
 SYSTEM:<\OUTPRINT>!:(I made generate key more useful.)
+https://discord.com/channels/1389902002737250314/1389902003228114957/1396929009828233438
 
 L4N4U1997: Thanks. :)
+https://discord.com/channels/1389902002737250314/1401641646583578756/1402165019189448745
 
 Swordian: ahhh
 thanks
+https://discord.com/channels/1389902002737250314/1401641646583578756/1402165311591153705
+https://discord.com/channels/1389902002737250314/1401641646583578756/1402165456995094592
 
 ThePortalNinja: $generate_randomkey
+https://discord.com/channels/1389902002737250314/1401641646583578756/1402165495356194926
 
 ```
 KEY, 1, GxEMWOmpmTDaDEt6IkxR
@@ -40354,82 +40369,692 @@ Command error: Command raised an exception: HTTPException: 400 Bad Request (erro
 In content: Must be 2000 or fewer in length.
 ```
 
-L4N4U1997: Oh.
-ThePortalNinja: Uh oh
-Was that intentional?
-SYSTEM:<OUTPRINT>!:(No, give me a second.)
-ThePortalNinja: I assumed not
-L4N4U1997: Figured
-SYSTEM:<OUTPRINT>!:(Sorry about that, it was trying to get the entire list and send it.)
-ThePortalNinja: What's it for?
-SYSTEM:<OUTPRINT>!:(I want to see if you can get at least one key. I need 10 to get the password to the transmitter.)
-
-SYSTEM:<OUTPRINT>!:(I want to see if you can get at least one key. I need 10 to get the password to the transmitter.)
-ThePortalNinja: Alright!
-Swordian: you could probably make the list into a .txt file and then make it send that .txt file to bypass the character limit
-ThePortalNinja: Good idea, it could generate the codes and send it as a file
-SYSTEM:<OUTPRINT>!:(Not right now.)
-<OUTPRINT>!:(I have 5 of the keys and I'm trying everything right now.)
-Swordian: whoa you are close, huh?
-SYSTEM:<OUTPRINT>!:(Yes, it was very difficult to get those keys, this is just a brute force method.)
-
-ThePortalNinja: How do we test the code?
-Swordian: wait... how did you get those keys then?
-ThePortalNinja: I need to know how we use/test the codes, or ifwe even can right now
-SYSTEM:<OUTPRINT>!:(Very complicated ciphers that only I know about.)
-SYSTEM:<OUTPRINT>!:(I test them.)
-ThePortalNinja: How do we find the right ones, then?
-L4N4U1997: I guess SYSTEM will figure that out itself.
-Abe: Heheh knew it
-SYSTEM:<OUTPRINT>!:(It will alert me.)
-
-Swordian: ahhh
-Abe: You can do it system yeaaa
-Swordian: this might be a way we can help then
-L4N4U1997: We believe in you SYSTEM :)
-Swordian: brute force till one pops up
-ThePortalNinja: The way to find the right keys has to either be somewhere in App's menus or on the channel.
-We have to find at least one, but System needs 5 to get to the transmitter so that it can get back into contact with Indi before the 10th, which is when everything including System gets turned off.
-Other than that, I don't know who System is talking to but I'm betting it "copied" itself in a way to better go through it's logic.
-In a way, System is talking to itself
-Abe: Mitoes
-
-SYSTEM:<OUTPRINT>!:(It's called a brainstorming program.)
-L4N4U1997: How fitting LOL
-ThePortalNinja: Bullseye
-Swordian: schizophrenia arc confirmed true
-joking btw
-Abe: System got a Alexa and is useing a roundabout way to ask google
-SYSTEM:<OUTPRINT>!:(I have to get back to it. Goodbye for right now.)
-ThePortalNinja: We'll keep looking
-L4N4U1997: (salute emoji)
-Abe: Bye bye hope you do ittt
-Swordian: seeya you got this
+```discord
+[
+  {
+    "id": "1402177731810037832",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "well",
+    "timestamp": "2025-08-05T06:33:42.466000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402177731810037832"
+  },
+  {
+    "id": "1402177752592945182",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "INDI did love making viruses",
+    "timestamp": "2025-08-05T06:33:47.421000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402177752592945182"
+  },
+  {
+    "id": "1402178065014067221",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "if github hosts code",
+    "timestamp": "2025-08-05T06:35:01.908000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402178065014067221"
+  },
+  {
+    "id": "1396930167070392412",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:",
+    "timestamp": "2025-07-21T19:01:45.537000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930167070392412"
+  },
+  {
+    "id": "1402178106122567811",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Well",
+    "timestamp": "2025-08-05T06:35:11.709000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402178106122567811"
+  },
+  {
+    "id": "1402190814414897284",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Well, maybe System is part of the rebel forces and every platform that it is present in is \"infected\"?",
+    "timestamp": "2025-08-05T07:25:41.602000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402190814414897284"
+  },
+  {
+    "id": "1396930191829237953",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING",
+    "timestamp": "2025-07-21T19:01:51.440000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930191829237953"
+  },
+  {
+    "id": "1402275801852022824",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "thats what leads me to believe its some sort of advanced malware or something",
+    "timestamp": "2025-08-05T13:03:24.186000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402275801852022824"
+  },
+  {
+    "id": "1396930222623949131",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
+    "timestamp": "2025-07-21T19:01:58.782000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396930222623949131"
+  },
+  {
+    "id": "1402275829756465163",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "every platform its on it deems as infected",
+    "timestamp": "2025-08-05T13:03:30.839000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1401641646583578756/1402275829756465163"
+  },
+  {
+    "id": "1401986318766047253",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "i wanna know why the system chose to use discord instead of anything else",
+    "timestamp": "2025-08-04T17:53:06.040000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401986318766047253"
+  },
+  {
+    "id": "1401985404114043051",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "and we joined it",
+    "timestamp": "2025-08-04T17:49:27.970000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985404114043051"
+  },
+  {
+    "id": "1397038618194870435",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "timestamp": "2025-07-22T02:12:42.300000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038618194870435"
+  },
+  {
+    "id": "1397038649136386138",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<TAGGING>!: {LOGGED SESSION_07}",
+    "timestamp": "2025-07-22T02:12:49.677000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038649136386138"
+  },
+  {
+    "id": "1401985189130928249",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "and!",
+    "timestamp": "2025-08-04T17:48:36.714000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985189130928249"
+  },
+  {
+    "id": "1397038692886904952",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "timestamp": "2025-07-22T02:13:00.108000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397038692886904952"
+  },
+  {
+    "id": "1401985179026980874",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "ah!",
+    "timestamp": "2025-08-04T17:48:34.305000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985179026980874"
+  },
+  {
+    "id": "1401985168163471420",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Yes, but they primarily communicate through Servers",
+    "timestamp": "2025-08-04T17:48:31.715000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985168163471420"
+  },
+  {
+    "id": "1401985095157547051",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "have u guys dmed the system at all",
+    "timestamp": "2025-08-04T17:48:14.309000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985095157547051"
+  },
+  {
+    "id": "1397039846970757212",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: PING@SYSTEM 0- 2-",
+    "timestamp": "2025-07-22T02:17:35.263000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039846970757212"
+  },
+  {
+    "id": "1397039924233900032",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\\\\chain(list_5))",
+    "timestamp": "2025-07-22T02:17:53.684000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039924233900032"
+  },
+  {
+    "id": "1401985092905078889",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "So, just so you know the ropes, Shikanoko, after System has answered a question ,we go to the spreadsheet and enter it and the answer",
+    "timestamp": "2025-08-04T17:48:13.772000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401985092905078889"
+  },
+  {
+    "id": "1401984972394594505",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "We all do",
+    "timestamp": "2025-08-04T17:47:45.040000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401984972394594505"
+  },
+  {
+    "id": "1401961401534124233",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "xD",
+    "timestamp": "2025-08-04T16:14:05.309000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961401534124233"
+  },
+  {
+    "id": "1397039960233873468",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
+    "timestamp": "2025-07-22T02:18:02.267000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397039960233873468"
+  },
+  {
+    "id": "1401961351533953084",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "lmao",
+    "timestamp": "2025-08-04T16:13:53.388000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961351533953084"
+  },
+  {
+    "id": "1401961316515840000",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "The spreadsheet and the ORACLE are your friends here",
+    "timestamp": "2025-08-04T16:13:45.039000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961316515840000"
+  },
+  {
+    "id": "1401961259741745305",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "But, there are several tools for this",
+    "timestamp": "2025-08-04T16:13:31.503000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961259741745305"
+  },
+  {
+    "id": "1401961229051756625",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Which is.. hard",
+    "timestamp": "2025-08-04T16:13:24.186000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961229051756625"
+  },
+  {
+    "id": "1401961192158658832",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "So the best way to start helping, is by getting caught up on what has happened",
+    "timestamp": "2025-08-04T16:13:15.390000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401961192158658832"
+  },
+  {
+    "id": "1401960952638996590",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "35 members big",
+    "timestamp": "2025-08-04T16:12:18.284000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960952638996590"
+  },
+  {
+    "id": "1401960914466639933",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "Its literally just us lol",
+    "timestamp": "2025-08-04T16:12:09.183000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960914466639933"
+  },
+  {
+    "id": "1401960885320286331",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "The server is only 1 month old - no one has tried to systematically decode the 7/10 Tone ARG before this",
+    "timestamp": "2025-08-04T16:12:02.234000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960885320286331"
+  },
+  {
+    "id": "1401960698925547533",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "and system is canon",
+    "timestamp": "2025-08-04T16:11:17.794000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960698925547533"
+  },
+  {
+    "id": "1401960347140755608",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "a previous member was there for the 2024 era of 7/10",
+    "timestamp": "2025-08-04T16:09:53.922000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960347140755608"
+  },
+  {
+    "id": "1397040483946991677",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:",
+    "timestamp": "2025-07-22T02:20:07.130000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397040483946991677"
+  },
+  {
+    "id": "1401960157436444723",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "It was created in 2021, but the earliest evidence we have of activity is 2023",
+    "timestamp": "2025-08-04T16:09:08.693000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960157436444723"
+  },
+  {
+    "id": "1401960149073137745",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "bro what holy shit",
+    "timestamp": "2025-08-04T16:09:06.699000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960149073137745"
+  },
+  {
+    "id": "1401960076700549181",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "We have evidence of lore from 2023, but we believe the trail runs even further",
+    "timestamp": "2025-08-04T16:08:49.444000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401960076700549181"
+  },
+  {
+    "id": "1401959939890610186",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "this is the most obscure arg i have ever seen",
+    "timestamp": "2025-08-04T16:08:16.826000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959939890610186"
+  },
+  {
+    "id": "1401959899608518749",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "We also have a spreadsheet with all the notes that we've gathered so far, it's pinned in the main hub channel (this channel)",
+    "timestamp": "2025-08-04T16:08:07.222000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959899608518749"
+  },
+  {
+    "id": "1397040526854721657",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?:PING@PING",
+    "timestamp": "2025-07-22T02:20:17.360000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397040526854721657"
+  },
+  {
+    "id": "1401959758105411685",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "yea",
+    "timestamp": "2025-08-04T16:07:33.485000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959758105411685"
+  },
+  {
+    "id": "1401959742649405613",
+    "author": {
+      "display_name": "Shikanoko",
+      "username": "fullysickcunt",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Arg?",
+    "timestamp": "2025-08-04T16:07:29.800000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1247518647824547852/a50a0f6acc05dedd9c7232e037867971.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959742649405613"
+  },
+  {
+    "id": "1401959632187953162",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "So the 7/10 Tone channel is a youtube channel which uploads odd and glitchy videos. MOst of them are titled \"LOG-xxx.mp4\" with a xxx being a number",
+    "timestamp": "2025-08-04T16:07:03.464000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959632187953162"
+  },
+  {
+    "id": "1401959446871277568",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "not really",
+    "timestamp": "2025-08-04T16:06:19.281000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401959446871277568"
+  }
+]
+```
 
 ##### 9th August 2025
 
 SYSTEM:<OUTPRINT>!:<OUTPRINT>!: //////////////////////////////////
 <OUTPRINT>!:<OUTPRINT>!:<OUTPRINT>!://///////////////////////////////////////
+2
+
 ThePortalNinja: Hello!
 Did I crack a jackpot?
+
 Swordian: system what's happening to you
+
 SYSTEM:<OUTPRINT>!:<OUTPRINT>!:<OUTPRINT>!:<OUTPRINT>!:///////////////////////////////////////////////
+
 ThePortalNinja: System, bud...
+
 SYSTEM:////////////////////////////////////////////////////////////////////////////<ERROR>!:
 <CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random),[unpingstatus=true]
+2
+
 ThePortalNinja: Shit.
 Well that certainly worked
 $help
 Slow or not working?
+4
 
 Swordian: since system is down app is down too
+
 ThePortalNinja: Yep
 It just went offline
+
 Swordian: so did system
+
 ThePortalNinja: Welp
 Goodnight Syssy
 Maybe not?
 Always a wildcard...
+
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_78902}
 ThePortalNinja: Welcome back
@@ -40440,24 +41065,33 @@ SYSTEM: <PING>?: out+ [SYSTEM MESSAGE] VAR type out-
 <OUTPRINT>!:(Resuming.)
 
 ThePortalNinja: A question.
+
 Swordian: alrighty then
+
 ThePortalNinja: Just one
 Does regenerating the codes do anything?
 Like, does it get us closer in any way?
+
 Swordian: system says: nothing
 system has important work to attend to
 
 SYSTEM:<OUTPRINT>!:(6/10 keys found. This next one is going to take a while, so if you need me for anything, do not message me until then. Goodbye for now.)
+
 Swordian: seeya system
+
 ThePortalNinja: Oh my god
 Alright we'll stay quiet for now, keep us posted
 Good luck
+
 Swordian: dont ping system fr
+
 APP TRUSTED 02: @brorb, it's spelled 'shit' not 'dhit'.
+
 brorb: What did I miss
+
 ThePortalNinja: A lot...
 
-**(break here)**
+---
 
 (insert generated keys here)
 
