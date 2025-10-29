@@ -420,7 +420,7 @@ const renderPost = (options: {
     shareAttributes.push(`data-share-text="${escapeAttribute(shareSnippet)}"`)
   }
 
-  shareAttributes.push('data-share-copied="url copied"')
+  shareAttributes.push('data-share-copied="URL copied"')
 
   const shareMarkup = `<div class="yt-community-post__share-container article-share">
       <button ${shareAttributes.join(" ")}>
