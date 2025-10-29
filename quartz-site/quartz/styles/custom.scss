@@ -2,35 +2,23 @@
 @use "./variables.scss" as *;
 @use "./custom/image-adjustments.scss";
 
-#quartz-body .sidebar.left {
-  min-height: 0;
-}
-
-#quartz-body .sidebar.left > .explorer.desktop-only {
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-  min-height: 0;
-}
-
-#quartz-body .sidebar.left > .explorer.desktop-only:not(.collapsed) {
-  flex: 1 1 auto;
-}
-
-#quartz-body .sidebar.left > .explorer.desktop-only .explorer-content {
-  min-height: 0;
-}
-
-#quartz-body .sidebar.left > .explorer.desktop-only:not(.collapsed) .explorer-content {
-  flex: 1 1 auto;
-  max-height: none;
-}
-
 
 .page-title {
   width: 100%;
   margin: 0;
 }
+
+.sidebar.left {
+  margin-top: 0.5rem;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+#quartz-body .sidebar.left {
+  margin-top: 0.5rem;
+}
+
+
 @media screen and ($mobile) {
   #quartz-body .sidebar.left {
     margin-top: 0;
@@ -91,19 +79,19 @@
   max-height: calc(100vh - 420px);
 }
 
-#quartz-body article img:not([data-no-zoom]) {
+img:not(.Logo) {
   cursor: zoom-in;
 }
 
-#quartz-body article img:active:not([data-no-zoom]) {
+img:active:not(.Logo) {
   cursor: zoom-out;
   display: block;
   position: fixed;
   z-index: 100;
   max-height: 100% !important;
   max-width: 100% !important;
-  height: auto !important;
-  width: auto !important;
+  height: 100% !important;
+  width: 100% !important;
   object-fit: contain;
   margin: 0 auto !important;
   text-align: center;
@@ -114,21 +102,6 @@
   transform: translateY(-50%);
   background: var(--background-primary);
   padding: 0;
-}
-
-.page-title-link img {
-  cursor: pointer;
-}
-
-.page-title-link img:active {
-  cursor: pointer;
-  position: static;
-  transform: none;
-  max-height: none !important;
-  max-width: 100% !important;
-  height: auto !important;
-  width: 100% !important;
-  background: transparent;
 }
 
 kbd {
@@ -179,7 +152,7 @@ a.wiki-download-link svg {
 
 
 .comments-section {
-  margin: 3rem 0 0;
+  margin: 3rem auto 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -188,24 +161,18 @@ a.wiki-download-link svg {
 
 .comments-wrapper {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.25rem, 2vw, 1.75rem);
 }
 
-
 .comments-wrapper .comments {
-  position: relative;
   width: 100%;
   max-width: none !important;
-  border-radius: 18px;
-  border: 2px solid var(--tertiary);
-  background: rgba(183, 16, 0, 0.08);
-  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 0;
+  box-sizing: border-box;
+  padding: 1.75rem 1.5rem;
+  border-radius: 16px;
+  background: var(--lightgray);
+  border: 1px solid var(--tertiary);
+  box-shadow: 0 16px 36px -24px rgba(0, 0, 0, 0.55);
+  display: block;
 }
 
 .comments-mobile-append {
@@ -219,33 +186,76 @@ a.wiki-download-link svg {
   margin-top: 0.75rem;
 }
 
-
-.comments-wrapper .comments > *,
-.comments-wrapper .comments iframe,
-.comments-wrapper .comments .utterances-frame,
-.comments-wrapper .comments .utterances iframe,
-.comments-wrapper .comments .utterances .utterances-frame {
+.comments-wrapper .comments iframe {
+  filter: saturate(1.05);
   width: 100% !important;
-  margin: 0 !important;
-  display: block;
-  border: 0;
-  background-color: transparent;
-  flex: 1 1 auto;
 }
 
-.comments-wrapper .comments .utterances,
-.comments-wrapper .comments .utterances > div {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
+.discord-widget {
+  position: relative;
+  isolation: isolate;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--accentTertiary) 55%, rgba(0, 0, 0, 0.75)) 0%,
+    color-mix(in srgb, var(--accentSecondary) 75%, rgba(0, 0, 0, 0.55)) 55%,
+    color-mix(in srgb, var(--accentPrimary) 85%, rgba(0, 0, 0, 0.4)) 100%
+  );
+  box-shadow: 0 14px 44px -28px rgba(235, 28, 36, 0.55);
+
+  iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: inherit;
+    filter: invert(11%) sepia(78%) saturate(2479%) hue-rotate(355deg) brightness(96%) contrast(88%);
+    transform-origin: center;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    background: radial-gradient(
+        circle at 10% 20%,
+        color-mix(in srgb, var(--accentPrimary) 65%, transparent) 0,
+        transparent 65%
+      ),
+      radial-gradient(
+        circle at 80% 30%,
+        color-mix(in srgb, var(--accentSecondary) 45%, transparent) 0,
+        transparent 55%
+      );
+    opacity: 0.72;
+    mix-blend-mode: color-dodge;
+  }
+
+  &::after {
+    background: rgba(12, 0, 0, 0.35);
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+  }
+}
+
+.page-footer {
   display: flex;
-  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.page-footer > .comments-section {
+  width: 100%;
 }
 
 .comments-separator {
   margin: 1.75rem 0 0;
   border: none;
-  border-bottom: 1px solid var(--color-accent-deep);
+  border-bottom: 1px solid var(--tertiary);
   opacity: 0.4;
 }
 
@@ -276,8 +286,9 @@ a.wiki-download-link svg {
   }
 
   .comments-wrapper .comments {
-    border-radius: 16px;
-    box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.65);
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 22px -18px rgba(0, 0, 0, 0.65);
   }
 
   .comments-mobile-append {
