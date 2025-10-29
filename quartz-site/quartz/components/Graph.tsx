@@ -58,10 +58,10 @@ const defaultOptions: GraphOptions = {
         nodes4: 3.0,
         nodes5: 2.7,
         nodes6: 2.4,
-        nodes7to9: 1.85,
-        nodes10to15: 1.5,
-        nodes15to25: 1.15,
-        nodesAbove25: 1,
+        nodes7to9: 2.1,
+        nodes10to15: 1.7,
+        nodes15to25: 1.2,
+        nodesAbove25: 1.0,
       },
     },
     repelForce: 0.5,
@@ -113,9 +113,12 @@ export default ((opts?: Partial<GraphOptions>) => {
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
     return (
       <div class={classNames(displayClass, "graph")}>
-        <div class="graph__heading-row">
+        <div
+          class="graph__heading-row"
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+        >
           <h3>{i18n(cfg.locale).components.graph.title}</h3>
-          <button class="graph__show-full" type="button">
+          <button class="graph__show-full" type="button" >
             SHOW FULL GRAPH
           </button>
         </div>
