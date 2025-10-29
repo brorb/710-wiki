@@ -46,11 +46,61 @@ type LinkData = {
 
 type LinkRenderData = GraphicsInfo & {
   simulationData: LinkData
+  visible: boolean
 }
 
 type NodeRenderData = GraphicsInfo & {
   simulationData: NodeData
   label: Text
+  visible: boolean
+  singlet: boolean
+}
+
+type GraphForceSettings = {
+  repelForce: number
+  centerForce: number
+  linkDistance: number
+}
+
+type GraphBooleanOptions = {
+  showSinglets: boolean
+  highlightVisited: boolean
+  focusOnHover: boolean
+}
+
+type GraphRuntimeHandle = {
+  getForceSettings: () => GraphForceSettings
+  getDefaultForceSettings: () => GraphForceSettings
+  updateForceSettings: (settings: Partial<GraphForceSettings>) => GraphForceSettings
+  resetForceSettings: () => GraphForceSettings
+  getBooleanOptions: () => GraphBooleanOptions
+  updateBooleanOptions: (settings: Partial<GraphBooleanOptions>) => GraphBooleanOptions
+  resetBooleanOptions: () => GraphBooleanOptions
+  zoomBy: (direction: "in" | "out") => void
+}
+
+type GraphElement = HTMLElement & {
+  __graphHandle?: GraphRuntimeHandle
+}
+
+type GraphControlKey = keyof GraphForceSettings
+
+const DEFAULT_FORCE_SETTINGS: GraphForceSettings = {
+  repelForce: 0.5,
+  centerForce: 0.2,
+  linkDistance: 30,
+}
+
+const FORCE_LIMITS: Record<GraphControlKey, { min: number; max: number }> = {
+  repelForce: { min: 0.1, max: 2 },
+  centerForce: { min: 0, max: 2 },
+  linkDistance: { min: 12, max: 160 },
+}
+
+const DEFAULT_BOOLEAN_OPTIONS: GraphBooleanOptions = {
+  showSinglets: true,
+  highlightVisited: true,
+  focusOnHover: true,
 }
 
 const localStorageKey = "graph-visited"
@@ -73,6 +123,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const slug = simplifySlug(fullSlug)
   const visited = getVisited()
   removeAllChildren(graph)
+  const graphElement = graph as GraphElement
+  graphElement.__graphHandle = undefined
 
   let {
     drag: enableDrag,
@@ -269,10 +321,90 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const nodeRadius = (d: NodeData) => 2 + Math.sqrt(linkCountMap.get(d.id) ?? 0)
 
   // we virtualize the simulation and use pixi to actually render it
+  const clampForceValue = (key: GraphControlKey, value: number, fallback: number): number => {
+    if (!Number.isFinite(value)) {
+      return fallback
+    }
+
+    const limits = FORCE_LIMITS[key]
+    if (!limits) {
+      return value
+    }
+
+    const { min, max } = limits
+    return Math.min(Math.max(value, min), max)
+  }
+
+  const defaultForceSettings: GraphForceSettings = {
+    repelForce: clampForceValue("repelForce", repelForce, DEFAULT_FORCE_SETTINGS.repelForce),
+    centerForce: clampForceValue("centerForce", centerForce, DEFAULT_FORCE_SETTINGS.centerForce),
+    linkDistance: Number.isFinite(linkDistance)
+      ? clampForceValue("linkDistance", linkDistance, DEFAULT_FORCE_SETTINGS.linkDistance)
+      : DEFAULT_FORCE_SETTINGS.linkDistance,
+  }
+
+  const currentForceSettings: GraphForceSettings = { ...defaultForceSettings }
+
+  const chargeForce = forceManyBody<NodeData>().strength(-100 * currentForceSettings.repelForce)
+  const centerForceInstance = forceCenter().strength(currentForceSettings.centerForce)
+  const linkForce = forceLink<NodeData, LinkData>(graphData.links).distance(currentForceSettings.linkDistance)
+
+  const applyForceSettings = () => {
+    chargeForce.strength(-100 * currentForceSettings.repelForce)
+    centerForceInstance.strength(currentForceSettings.centerForce)
+    linkForce.distance(currentForceSettings.linkDistance)
+    simulation.alpha(0.85).restart()
+  }
+
+  const updateForceSettings = (settings: Partial<GraphForceSettings>) => {
+    (Object.entries(settings) as [GraphControlKey, number | undefined][]).forEach(([key, value]) => {
+      if (typeof value !== "number") {
+        return
+      }
+
+      currentForceSettings[key] = clampForceValue(key, value, currentForceSettings[key])
+    })
+
+    applyForceSettings()
+    return { ...currentForceSettings }
+  }
+
+  const resetForceSettings = () => {
+    currentForceSettings.repelForce = defaultForceSettings.repelForce
+    currentForceSettings.centerForce = defaultForceSettings.centerForce
+    currentForceSettings.linkDistance = defaultForceSettings.linkDistance
+    applyForceSettings()
+    return { ...currentForceSettings }
+  }
+
+  const updateBooleanOptions = (settings: Partial<GraphBooleanOptions>) => {
+    Object.entries(settings).forEach(([key, value]) => {
+      if (typeof value !== "boolean") {
+        return
+      }
+
+      const typedKey = key as keyof GraphBooleanOptions
+      booleanOptions[typedKey] = value
+    })
+
+    applyBooleanOptions()
+    return { ...booleanOptions }
+  }
+
+  const resetBooleanOptions = () => {
+    booleanOptions.showSinglets = defaultBooleanOptions.showSinglets
+    booleanOptions.highlightVisited = defaultBooleanOptions.highlightVisited
+    booleanOptions.focusOnHover = defaultBooleanOptions.focusOnHover
+    applyBooleanOptions()
+    return { ...booleanOptions }
+  }
+
+  const getBooleanOptions = () => ({ ...booleanOptions })
+
   const simulation: Simulation<NodeData, LinkData> = forceSimulation<NodeData>(graphData.nodes)
-    .force("charge", forceManyBody().strength(-100 * repelForce))
-    .force("center", forceCenter().strength(centerForce))
-    .force("link", forceLink(graphData.links).distance(linkDistance))
+    .force("charge", chargeForce)
+    .force("center", centerForceInstance)
+    .force("link", linkForce)
     .force("collide", forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
 
   const warmupIterations = autoZoom?.enabled
@@ -307,6 +439,38 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     {} as Record<(typeof cssVars)[number], string>,
   )
 
+  const parseColorToNumber = (value: string): number => {
+    const trimmed = value.trim()
+    if (!trimmed) {
+      return 0xffffff
+    }
+
+    if (trimmed.startsWith("#")) {
+      const hex = trimmed.slice(1).replace(/[^0-9a-fA-F]/g, "")
+      const normalized = hex.length === 3 ? hex.split("").map((c) => c + c).join("") : hex.padEnd(6, "0")
+      return Number.parseInt(normalized.slice(0, 6), 16)
+    }
+
+    const rgbMatch = trimmed.match(/rgba?\(([^)]+)\)/)
+    if (rgbMatch) {
+      const [r, g, b] = rgbMatch[1]
+        .split(/,\s*/)
+        .slice(0, 3)
+        .map((segment) => Number.parseInt(segment, 10))
+      const safe = (component: number) => Math.max(0, Math.min(255, Number.isFinite(component) ? component : 255))
+      return (safe(r) << 16) + (safe(g) << 8) + safe(b)
+    }
+
+    return 0xffffff
+  }
+
+  const defaultBooleanOptions: GraphBooleanOptions = {
+    ...DEFAULT_BOOLEAN_OPTIONS,
+    focusOnHover: focusOnHover !== false,
+  }
+
+  const booleanOptions: GraphBooleanOptions = { ...defaultBooleanOptions }
+
   const getNodeTone = (degree: number) => {
     if (degree >= 6) {
       return computedStyleMap["--color-accent-bright"]
@@ -324,7 +488,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       return computedStyleMap["--color-accent-bright"]
     }
 
-    if (visited.has(d.id)) {
+    if (booleanOptions.highlightVisited && visited.has(d.id)) {
       return computedStyleMap["--color-accent-deep"]
     }
 
@@ -332,11 +496,60 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     return getNodeTone(degree)
   }
 
+  const nodeRenderMap = new Map<SimpleSlug, NodeRenderData>()
+
+  const drawNodeGraphic = (node: NodeRenderData) => {
+    const tone = parseColorToNumber(color(node.simulationData))
+    const radiusSize = nodeRadius(node.simulationData)
+    const isTagNode = node.simulationData.id.startsWith("tags/")
+
+    node.gfx.clear()
+    node.gfx.circle(0, 0, radiusSize).fill({ color: tone })
+    if (isTagNode) {
+      node.gfx.stroke({ width: 2, color: parseColorToNumber(computedStyleMap["--color-accent-deep"]) })
+    }
+
+    node.gfx.alpha = node.visible ? 1 : 0
+    node.gfx.visible = node.visible
+    node.gfx.eventMode = node.visible ? "static" : "none"
+    node.label.visible = node.visible
+    if (!node.visible) {
+      node.label.alpha = 0
+    }
+  }
+
+  const applyBooleanOptions = () => {
+    const showSinglets = booleanOptions.showSinglets
+
+    nodeRenderData.forEach((node) => {
+      node.visible = showSinglets || !node.singlet
+      if (!node.visible && hoveredNodeId === node.simulationData.id) {
+        updateHoverInfo(null)
+      }
+      drawNodeGraphic(node)
+    })
+
+    linkRenderData.forEach((link) => {
+      const sourceNode = nodeRenderMap.get(link.simulationData.source.id)
+      const targetNode = nodeRenderMap.get(link.simulationData.target.id)
+      const bothVisible = Boolean(sourceNode?.visible && targetNode?.visible)
+      link.visible = bothVisible
+      link.gfx.visible = bothVisible
+    })
+
+    renderPixiFromD3()
+  }
+
   let hoveredNodeId: string | null = null
   let hoveredNeighbours: Set<string> = new Set()
   const linkRenderData: LinkRenderData[] = []
   const nodeRenderData: NodeRenderData[] = []
   function updateHoverInfo(newHoveredId: string | null) {
+    const hoveredNode = newHoveredId ? nodeRenderMap.get(newHoveredId as SimpleSlug) : undefined
+    if (newHoveredId && !hoveredNode?.visible) {
+      newHoveredId = null
+    }
+
     hoveredNodeId = newHoveredId
 
     if (newHoveredId === null) {
@@ -379,6 +592,12 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     const tweenGroup = new TweenGroup()
 
     for (const l of linkRenderData) {
+      if (!l.visible) {
+        l.gfx.visible = false
+        continue
+      }
+
+      l.gfx.visible = true
       let alpha = 1
 
       // if we are hovering over a node, we want to highlight the immediate neighbours
@@ -408,6 +627,12 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     const defaultScale = 1 / scale
     const activeScale = defaultScale * 1.1
     for (const n of nodeRenderData) {
+      if (!n.visible) {
+        n.label.visible = false
+        continue
+      }
+
+      n.label.visible = true
       const nodeId = n.simulationData.id
 
       if (hoveredNodeId === nodeId) {
@@ -447,10 +672,17 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
     const tweenGroup = new TweenGroup()
     for (const n of nodeRenderData) {
+      if (!n.visible) {
+        n.gfx.visible = false
+        n.gfx.alpha = 0
+        continue
+      }
+
+      n.gfx.visible = true
       let alpha = 1
 
       // if we are hovering over a node, we want to highlight the immediate neighbours
-      if (hoveredNodeId !== null && focusOnHover) {
+      if (hoveredNodeId !== null && booleanOptions.focusOnHover) {
         alpha = n.active ? 1 : 0.2
       }
 
@@ -539,6 +771,15 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   let suppressZoomHandler = false
   let pendingTransform: ZoomTransform | null = null
 
+  const zoomStep = (direction: "in" | "out") => {
+    if (!enableZoom || !canvasSelection || !zoomBehavior) {
+      return
+    }
+
+    const factor = direction === "in" ? 1.2 : 1 / 1.2
+    canvasSelection.call(zoomBehavior.scaleBy, factor)
+  }
+
   const syncTransform = (transform: ZoomTransform) => {
     applyTransform(transform)
     updateLabelVisibility(transform)
@@ -576,6 +817,9 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
     let oldLabelOpacity = 0
     const isTagNode = nodeId.startsWith("tags/")
+    const degree = linkCountMap.get(nodeId) ?? 0
+    const isSinglet = degree <= 1
+    const initiallyVisible = booleanOptions.showSinglets || !isSinglet
     const gfx = new Graphics({
       interactive: true,
       label: nodeId,
@@ -583,8 +827,6 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       hitArea: new Circle(0, 0, nodeRadius(n)),
       cursor: "pointer",
     })
-      .circle(0, 0, nodeRadius(n))
-      .fill({ color: isTagNode ? computedStyleMap["--light"] : color(n) })
       .on("pointerover", (e) => {
         updateHoverInfo(e.target.label)
         oldLabelOpacity = label.alpha
@@ -614,25 +856,40 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       color: color(n),
       alpha: 1,
       active: false,
+      visible: initiallyVisible,
+      singlet: isSinglet,
     }
 
+    drawNodeGraphic(nodeRenderDatum)
+    nodeRenderDatum.gfx.eventMode = initiallyVisible ? "static" : "none"
+    nodeRenderDatum.label.visible = initiallyVisible
+    label.alpha = initiallyVisible ? label.alpha : 0
+
+    nodeRenderMap.set(nodeId, nodeRenderDatum)
     nodeRenderData.push(nodeRenderDatum)
   }
 
   for (const l of graphData.links) {
     const gfx = new Graphics({ interactive: false, eventMode: "none" })
     linkContainer.addChild(gfx)
+    const sourceNode = nodeRenderMap.get(l.source.id)
+    const targetNode = nodeRenderMap.get(l.target.id)
+    const linkVisible = Boolean(sourceNode?.visible && targetNode?.visible)
 
     const linkRenderDatum: LinkRenderData = {
       simulationData: l,
       gfx,
-  color: computedStyleMap["--color-tone-subtle"],
+      color: computedStyleMap["--color-tone-subtle"],
       alpha: 1,
       active: false,
+      visible: linkVisible,
     }
 
+    linkRenderDatum.gfx.visible = linkVisible
     linkRenderData.push(linkRenderDatum)
   }
+
+  applyBooleanOptions()
 
   if (enableDrag) {
     select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
@@ -721,6 +978,12 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
     for (const l of linkRenderData) {
       const linkData = l.simulationData
+      if (!l.visible) {
+        l.gfx.visible = false
+        continue
+      }
+
+      l.gfx.visible = true
       l.gfx.clear()
       l.gfx.moveTo(linkData.source.x! + width / 2, linkData.source.y! + height / 2)
       l.gfx
@@ -740,8 +1003,19 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   requestAnimationFrame(animate)
+  graphElement.__graphHandle = {
+    getForceSettings: () => ({ ...currentForceSettings }),
+    getDefaultForceSettings: () => ({ ...defaultForceSettings }),
+    updateForceSettings,
+    resetForceSettings,
+    getBooleanOptions,
+    updateBooleanOptions,
+    resetBooleanOptions,
+    zoomBy: zoomStep,
+  }
   return () => {
     stopAnimation = true
+    delete graphElement.__graphHandle
     app.destroy()
   }
 }
@@ -788,6 +1062,174 @@ function restoreGraph(container: HTMLElement) {
   graphTeleportState.delete(container)
 }
 
+const formatForceValue = (key: GraphControlKey, value: number): string => {
+  if (!Number.isFinite(value)) {
+    return "—"
+  }
+
+  switch (key) {
+    case "linkDistance":
+      return `${Math.round(value)} px`
+    case "repelForce":
+    case "centerForce":
+    default:
+      return value.toFixed(2)
+  }
+}
+
+const setupGlobalGraphControls = (container: HTMLElement, graphElement: GraphElement) => {
+  const controls = container.querySelector<HTMLElement>('[data-graph-controls]')
+  if (!controls) {
+    return () => {}
+  }
+
+  const handle = graphElement.__graphHandle
+  if (!handle) {
+    return () => {}
+  }
+
+  const sliderElements = Array.from(
+    controls.querySelectorAll<HTMLInputElement>('[data-graph-slider]'),
+  )
+  const toggleElements = Array.from(
+    controls.querySelectorAll<HTMLInputElement>('[data-graph-toggle]'),
+  )
+
+  const cleanupFns: Array<() => void> = []
+
+  const syncUI = (
+    settings?: GraphForceSettings,
+    booleanSettings?: GraphBooleanOptions,
+  ) => {
+    const forceSettings = settings ?? handle.getForceSettings()
+    const boolSettings = booleanSettings ?? handle.getBooleanOptions()
+
+    sliderElements.forEach((input) => {
+      const key = input.dataset.graphSlider as GraphControlKey | undefined
+      if (!key) {
+        return
+      }
+
+      const value = forceSettings[key]
+      if (typeof value !== "number" || Number.isNaN(value)) {
+        return
+      }
+
+      input.value = value.toString()
+      input.setAttribute("aria-valuenow", value.toString())
+
+      const display = controls.querySelector(`[data-graph-value="${key}"]`)
+      if (display) {
+        display.textContent = formatForceValue(key, value)
+      }
+    })
+
+    toggleElements.forEach((input) => {
+      const key = input.dataset.graphToggle as keyof GraphBooleanOptions | undefined
+      if (!key) {
+        return
+      }
+
+      const value = boolSettings[key]
+      input.checked = Boolean(value)
+    })
+  }
+
+  syncUI(handle.getForceSettings(), handle.getBooleanOptions())
+
+  sliderElements.forEach((input) => {
+    const key = input.dataset.graphSlider as GraphControlKey | undefined
+    if (!key) {
+      return
+    }
+
+    const updateFromEvent = (event: Event) => {
+      const target = event.currentTarget as HTMLInputElement
+      const nextValue = Number.parseFloat(target.value)
+      const updated = handle.updateForceSettings({ [key]: nextValue })
+      syncUI(updated, handle.getBooleanOptions())
+    }
+
+    input.addEventListener("input", updateFromEvent)
+    input.addEventListener("change", updateFromEvent)
+    cleanupFns.push(() => {
+      input.removeEventListener("input", updateFromEvent)
+      input.removeEventListener("change", updateFromEvent)
+    })
+  })
+
+  toggleElements.forEach((input) => {
+    const key = input.dataset.graphToggle as keyof GraphBooleanOptions | undefined
+    if (!key) {
+      return
+    }
+
+    const handleToggle = (event: Event) => {
+      const target = event.currentTarget as HTMLInputElement
+      const booleanState = handle.updateBooleanOptions({ [key]: target.checked })
+      syncUI(undefined, booleanState)
+    }
+
+    input.addEventListener("change", handleToggle)
+    cleanupFns.push(() => {
+      input.removeEventListener("change", handleToggle)
+    })
+  })
+
+  const resetButton = controls.querySelector<HTMLButtonElement>('[data-graph-reset]')
+  if (resetButton) {
+    const handleReset = () => {
+      const settings = handle.resetForceSettings()
+      const boolState = handle.resetBooleanOptions()
+      syncUI(settings, boolState)
+    }
+
+    resetButton.addEventListener("click", handleReset)
+    cleanupFns.push(() => resetButton.removeEventListener("click", handleReset))
+  }
+
+  return () => {
+    cleanupFns.forEach((fn) => fn())
+  }
+}
+
+const setupZoomControls = (container: HTMLElement, graphElement: GraphElement) => {
+  const zoomControls = container.querySelector<HTMLElement>('[data-graph-zoom-controls]')
+  if (!zoomControls) {
+    return () => {}
+  }
+
+  const handle = graphElement.__graphHandle
+  if (!handle) {
+    return () => {}
+  }
+
+  const buttons = Array.from(
+    zoomControls.querySelectorAll<HTMLButtonElement>('[data-graph-zoom]'),
+  )
+
+  const cleanupFns: Array<() => void> = []
+
+  buttons.forEach((button) => {
+    const direction = button.dataset.graphZoom === "in" ? "in" : button.dataset.graphZoom === "out" ? "out" : undefined
+    if (!direction) {
+      return
+    }
+
+    const handleClick = (event: Event) => {
+      event.preventDefault()
+      handle.zoomBy(direction)
+    }
+
+    button.addEventListener("click", handleClick)
+    cleanupFns.push(() => button.removeEventListener("click", handleClick))
+  })
+
+  return () => {
+    cleanupFns.forEach((fn) => fn())
+  }
+}
+
 function cleanupLocalGraphs() {
   for (const cleanup of localGraphCleanups) {
     cleanup()
@@ -832,10 +1274,39 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       moveGraphToBody(container)
       container.classList.add("active")
 
-      const graphContainer = container.querySelector(".global-graph-container") as HTMLElement
+      const graphContainer = container.querySelector(".global-graph-container") as GraphElement | null
       registerEscapeHandler(container, hideGlobalGraph)
       if (graphContainer) {
-        globalGraphCleanups.push(await renderGraph(graphContainer, slug))
+        const localCleanupFns: Array<() => void> = []
+        const graphCleanup = await renderGraph(graphContainer, slug)
+        localCleanupFns.push(graphCleanup)
+
+        const controlsCleanup = setupGlobalGraphControls(container, graphContainer)
+        if (controlsCleanup) {
+          localCleanupFns.push(controlsCleanup)
+        }
+
+        const zoomCleanup = setupZoomControls(container, graphContainer)
+        if (zoomCleanup) {
+          localCleanupFns.push(zoomCleanup)
+        }
+
+        const closeButton = container.querySelector<HTMLElement>("[data-graph-close]")
+        if (closeButton) {
+          const closeHandler = (event: Event) => {
+            event.preventDefault()
+            hideGlobalGraph()
+          }
+
+          closeButton.addEventListener("click", closeHandler)
+          localCleanupFns.push(() => closeButton.removeEventListener("click", closeHandler))
+        }
+
+        globalGraphCleanups.push(() => {
+          for (let i = localCleanupFns.length - 1; i >= 0; i--) {
+            localCleanupFns[i]()
+          }
+        })
       }
     }
   }
