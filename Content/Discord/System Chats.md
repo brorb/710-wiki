@@ -42617,140 +42617,140 @@ COMMAND MESSAGE STOPPED FOR T-500
     "author": {
       "display_name": "Noel | HLF",
       "username": "herodytheus",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "will we get an explanation, though?",
-    "timestamp": "2025-10-05T17:59:38.333000+00:00",
+    "content": "system cmon",
+    "timestamp": "2025-08-09T14:33:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424456011829346314"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424455811169517780",
     "author": {
-      "display_name": "brorb",
-      "username": "brorb",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "I'm guessing you'll get it later",
-    "timestamp": "2025-10-05T17:58:50.492000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424455811169517780"
+    "content": "all 10 keys are here hooray",
+    "timestamp": "2025-08-09T14:33:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1413742461502750862",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
-    "content": "<CALL>!:Gift = 2-",
-    "timestamp": "2025-09-06T04:27:48.887000+00:00",
+    "content": "<OUTPRINT>!:(That is pure luck you have. Thank you. 10/10 keys. I hope this will work.)",
+    "timestamp": "2025-08-09T14:36:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742461502750862"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424446041067094086",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "and the I WILL CHOOSE IF THEY GET AN [EXPLANATION] OR NOT",
-    "timestamp": "2025-10-05T17:20:01.118000+00:00",
+    "content": "Really",
+    "timestamp": "2025-08-09T14:36:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424446041067094086"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424445858732314686",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "what's that about are you sure <><><><><>>>>>>>>",
-    "timestamp": "2025-10-05T17:19:17.646000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424445858732314686"
+    "content": "😭",
+    "timestamp": "2025-08-09T14:36:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1413742484319768719",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
-    "content": "<CALL>!:bad = 3-",
-    "timestamp": "2025-09-06T04:27:54.327000+00:00",
+    "content": "<OUTPRINT>!:(I'm going to have to go offline for a bit.)",
+    "timestamp": "2025-08-09T14:36:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742484319768719"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424445828642111581",
     "author": {
-      "display_name": "Jovenly 'training for job' Cosmo",
-      "username": "mastery_jove",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "yeah.",
-    "timestamp": "2025-10-05T17:19:10.472000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424445828642111581"
+    "content": "I got 14/20 touch",
+    "timestamp": "2025-08-09T14:37:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1413742505207271507",
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "color": "#0404D8",
+      "colour": "#0404D8",
+      "colour_value": 263384
     },
-    "content": "<CALL>!:Back = 4-",
-    "timestamp": "2025-09-06T04:27:59.307000+00:00",
+    "content": "<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random),[unpingstatus=true]",
+    "timestamp": "2025-08-09T14:37:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1413742505207271507"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424433818831683724",
     "author": {
       "display_name": "brorb",
       "username": "brorb",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "Yeah seems like we're all getting that message, but at different times",
-    "timestamp": "2025-10-05T16:31:27.110000+00:00",
+    "content": "Whoa!",
+    "timestamp": "2025-08-09T14:40:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424433818831683724"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1424433715781832834",
     "author": {
       "display_name": "brorb",
       "username": "brorb",
-      "color": "#FFDA43",
-      "colour": "#FFDA43",
-      "colour_value": 16767555
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
-    "content": "Hah",
-    "timestamp": "2025-10-05T16:31:02.541000+00:00",
+    "content": "Wonder what will happen?",
+    "timestamp": "2025-08-09T14:40:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424433715781832834"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
@@ -42768,8 +42768,8 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FFDA43",
       "colour_value": 16767555
     },
-    "content": "Can someone please make an animated gif of Kepler and Indi making out",
-    "timestamp": "2025-10-06T21:02:28.029000+00:00",
+    "content": "WAIT WE GOT A KEY??",
+    "timestamp": "2025-08-09T15:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864409934893217"
   },
@@ -42782,8 +42782,8 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "...",
-    "timestamp": "2025-10-06T21:02:33.477000+00:00",
+    "content": "HOLY SHOOT",
+    "timestamp": "2025-08-09T15:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864432785457266"
   },
@@ -42796,8 +42796,8 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "meeep",
-    "timestamp": "2025-10-06T21:02:56.789000+00:00",
+    "content": "Yea right after the last one",
+    "timestamp": "2025-08-09T15:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864530562814033"
   },
@@ -42810,8 +42810,8 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "what ?",
-    "timestamp": "2025-10-06T21:03:00.493000+00:00",
+    "content": "2 keys in a row??",
+    "timestamp": "2025-08-09T15:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864546098774077"
   },
@@ -42824,8 +42824,8 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "hmmm",
-    "timestamp": "2025-10-06T21:03:03.547000+00:00",
+    "content": "holy freaking heck",
+    "timestamp": "2025-08-09T15:00:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864558907916360"
   },
@@ -42838,7 +42838,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "I don't think there's any scenes in any indiana jones movie with anyone making out",
+    "content": "good golly gee wizz\",
     "timestamp": "2025-10-06T21:03:17.010000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864615375962112"
@@ -42852,7 +42852,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<OUTPRINT>!:(Goodbye.)",
+    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
     "timestamp": "2025-07-22T17:57:21.125000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1397276346417152184"
@@ -42866,7 +42866,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "so uh",
+    "content": "What",
     "timestamp": "2025-10-06T21:03:20.840000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864631440146472"
@@ -42880,7 +42880,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "",
+    "content": "<TAGGING>!: {LOGGED SESSON_78903}",
     "timestamp": "2025-07-29T13:07:16.893000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740062836457593"
@@ -42894,7 +42894,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
+    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
     "timestamp": "2025-07-29T13:08:11.908000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740293586227281"
@@ -42908,7 +42908,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<TAGGING>!: {LOGGED SESSION_11}",
+    "content": "<PING>?: PING@SYSTEM 0- 2-",
     "timestamp": "2025-07-29T13:08:24.852000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740347877294201"
@@ -42922,7 +42922,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "brorb",
+    "content": "Welcome back",
     "timestamp": "2025-10-06T21:03:21.986000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864636246823022"
@@ -42936,7 +42936,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
+    "content": "<OUTPRINT>!:PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\chain(list_5))",
     "timestamp": "2025-07-29T13:08:30.920000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740373328330803"
@@ -42950,7 +42950,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?: PING@SYSTEM 0- 2-",
+    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
     "timestamp": "2025-07-29T13:08:36.529000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740396854186215"
@@ -42964,7 +42964,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "....",
+    "content": "Hi",
     "timestamp": "2025-10-06T21:03:22.984000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864640432869447"
@@ -42978,7 +42978,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "PING@SYSTEM (: > OPT_OUT[4-3[11-3][32]]\\\\chain(list_5))",
+    "content": "<OUTPRINT>!:(Okay, good news and bad news. Good news is that most of the keys worked. Bad news is that one key is wrong.)",
     "timestamp": "2025-07-29T13:08:45.664000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740435169021974"
@@ -42992,7 +42992,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "Tomorrow is October 7th...",
+    "content": "... What",
     "timestamp": "2025-10-06T23:41:16.872000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424904376799068271"
@@ -43006,7 +43006,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "Oh boy.",
+    "content": "Do you know why?",
     "timestamp": "2025-10-06T23:41:24.927000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424904410584318083"
@@ -43020,7 +43020,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "BWAHAHA",
+    "content": "Back to mineing",
     "timestamp": "2025-10-06T21:01:51.605000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864257161429013"
@@ -43034,7 +43034,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "hmmm",
+    "content": "$help",
     "timestamp": "2025-10-06T21:01:56.268000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864276719341588"
@@ -43048,7 +43048,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<PING>?:PING@PING PING@SYSTEM callout()",
+    "content": "<OUTPRINT>!:(I am guessing I'm off 3 or 4 places on it.)",
     "timestamp": "2025-07-29T13:08:51.379000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740459139465309"
@@ -43062,7 +43062,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FFDA43",
       "colour_value": 16767555
     },
-    "content": "Hehe",
+    "content": "That's concerning",
     "timestamp": "2025-10-06T21:01:56.857000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424864279189913762"
@@ -43076,7 +43076,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "I need to make it bigger* gimme a moment...",
+    "content": "Do u know which ones are wrong",
     "timestamp": "2025-10-06T20:54:00.967000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424862283162718278"
@@ -43090,7 +43090,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<OUTPRINT>!:(Hello, QWuEJSBB.)",
+    "content": "<OUTPRINT>!:(Key 2.)",
     "timestamp": "2025-07-29T13:09:28.582000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740615180292127"
@@ -43104,7 +43104,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FFDA43",
       "colour_value": 16767555
     },
-    "content": "Hi",
+    "content": "good thing we figured this out much earlier with our luck",
     "timestamp": "2025-10-06T20:46:40.224000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424860434552455279"
@@ -43118,7 +43118,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<OUTPRINT>!:(Unstable connection.)",
+    "content": "<OUTPRINT>!:(I caught a glimpse of the transmitter, would you like to hear it?)",
     "timestamp": "2025-07-29T13:10:26.100000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1399740856428400660"
@@ -43132,7 +43132,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "hmmm",
+    "content": "YES!",
     "timestamp": "2025-10-06T20:34:46.525000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424857441081753600"
@@ -43151,7 +43151,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FFDA43",
       "colour_value": 16767555
     },
-    "content": "<CALL>",
+    "content": "<CALL>!:",
     "attachments": [
       {
         "mtype": "attachment",
@@ -43177,7 +43177,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "monarchy = brorb..",
+    "content": "I had my shit at full volume",
     "timestamp": "2025-10-06T20:34:16.695000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424857315965800529"
@@ -43191,7 +43191,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "I don't want to do anything without his permission first.",
+    "content": "that's crazy",
     "timestamp": "2025-10-06T20:34:09.620000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424857286291230840"
@@ -43205,7 +43205,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "<OUTPRINT>!:(No.)",
+    "content": "<OUTPRINT>!:(I have to go. I will update you if there is anything important.)",
     "timestamp": "2025-08-04T17:45:23.429000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1401984378435014728"
@@ -43219,7 +43219,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "I'll just wait for brorb.",
+    "content": "good luck out there system!",
     "timestamp": "2025-10-06T20:33:51.346000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1424857209644519616"
