@@ -39886,9 +39886,9 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "author": {
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
     },
     "content": "Why and how are you getting conversations mixed up?",
     "timestamp": "2025-08-08T22:20:00.000000+00:00",
@@ -39963,7 +39963,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(Dammit why is this key not working.)/n<OUTPRINT>!:(Are you trying all 100?)",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396865122370191410"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953897509097515",
@@ -39977,7 +39977,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "Where do we try the keys?",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953897509097515"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953878550970420",
@@ -39991,7 +39991,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "I don't think we do",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953878550970420"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953848641388635",
@@ -40005,7 +40005,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "LOL there's a missing KEY of course.",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953848641388635"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953826373570601",
@@ -40019,7 +40019,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "Maybe it's not for us specifically?",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953826373570601"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953752939954269",
@@ -40033,7 +40033,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "Sorry I suggest doing that command",
     "timestamp": "2025-08-08T22:22:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953752939954269"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396868763218874510",
@@ -40047,7 +40047,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(I did have your cache cleared yet?)/n<OUTPRINT>!:(Return all to false.)",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396868763218874510"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953327733997609",
@@ -40061,7 +40061,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "I don't think system knows its posting stuff here",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953327733997609"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396868794043072663",
@@ -40075,7 +40075,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(Okay I'm turning this off.)/n<OUTPRINT>!:(Turn off that program.)",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396868794043072663"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953318804193313",
@@ -40089,7 +40089,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "Oop.",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953318804193313"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396868889970999418",
@@ -40103,7 +40103,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(Why did it send everything here?)",
     "timestamp": "2025-08-08T22:24:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396868889970999418"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953290006102038",
@@ -40117,7 +40117,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "system schizophrenia arc",
     "timestamp": "2025-08-08T22:24:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953290006102038"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953283848998922",
@@ -40131,7 +40131,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "Multiple personality disorder LOL",
     "timestamp": "2025-08-08T22:24:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953283848998922"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953267931484202",
@@ -40145,7 +40145,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "That's what Im saying system yo build is not really good 😭",
     "timestamp": "2025-08-08T22:24:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953267931484202"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396869590566309948",
@@ -40159,7 +40159,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(That was annoying. Sorry about that.)",
     "timestamp": "2025-08-08T22:24:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396869590566309948"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953265804836957",
@@ -40173,7 +40173,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "It's okay bud :)",
     "timestamp": "2025-08-08T22:25:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953265804836957"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953242580979822",
@@ -40187,7 +40187,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "it is alright",
     "timestamp": "2025-08-08T22:25:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953242580979822"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1411953132287823983",
@@ -40201,7 +40201,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "System is the end  underscore 29 a command?",
     "timestamp": "2025-08-08T22:25:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/000916a41d0d3185081032b2a110462d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1411953132287823983"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   },
   {
     "id": "1396869646803537930",
@@ -40215,34 +40215,144 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
     "content": "<OUTPRINT>!:(No.)",
     "timestamp": "2025-08-08T22:25:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396869646803537930"
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
   }
 ]
 ```
 ---
 
 SYSTEM: $broadcast_update
+
 APP TRUSTED 02: @everyone APP TRUSTED-02 has been updated
+
 ThePortalNinja: OH
 $help
-APP TRUSTED 02: [help menu catalogue]
+
+APP TRUSTED 02: (help menu catalogue)
 
 L4N4U1997: Oh my! Another update!
+
 ThePortalNinja: Hm...
+
 L4N4U1997: What-?
+
 ThePortalNinja: Wait
 I want to see what System will say
+
 Shikanoko: Lets go system
-SYSTEM:<OUTPRINT>!:(I made generate key more useful.)
+
+SYSTEM:<\OUTPRINT>!:(I made generate key more useful.)
+
 L4N4U1997: Thanks. :)
+
 Swordian: ahhh
 thanks
 
 ThePortalNinja: $generate_randomkey
 
-[insert portal generated keys here]
+```
+KEY, 1, GxEMWOmpmTDaDEt6IkxR
+KEY, 2, BLssNCopzmc2dKN9Wpch
+KEY, 3, EQjBdE2EH6E7BgkQy5tD
+KEY, 4, GZjufsFpd8nZEAJcjYDC
+KEY, 5, hZ4xeXJpY1pn1GtXwFhO
+KEY, 6, uUOGFeIWe3ZcfCw1KouD
+KEY, 7, ngzYnDSPszUeu3JQdzGg
+KEY, 8, VnQmGqqLxzB8BGjCOp3F
+KEY, 9, Gw12V47opiangNAda5F4
+KEY, 10, Qt4WwiWuf36uMdzvRB5a
+KEY, 11, Evg38xxhgvOSDJursJ8j
+KEY, 12, n1HadMCp6qVy90WcBATz
+KEY, 13, uXpNkNINeDgY1r26XfO8
+KEY, 14, pcxebSlDunSho3AfEzqD
+KEY, 15, UKlNPGsyVGL5AOfUZwWr
+KEY, 16, ZOswzB604vxrd2qvv6I3
+KEY, 17, naqxXZU4pP3EHgjW9w2e
+KEY, 18, eOxw3nefPnFTlfQL01H7
+KEY, 19, 1wsvQvAJjABSCEQzZqAV
+KEY, 20, OdYzMPcEOx5lKd0vuD7m
+KEY, 21, dzgrT3eEueakOWBsaql3
+KEY, 22, bTdFJGEeBSaqsyahDG1o
+KEY, 23, IqhYoJhdaY6Mu9MoOrE2
+KEY, 24, PeRqD7lpZrJOXuwT9tAq
+KEY, 25, jaMkPjNQpmXaAEK7Meoi
+KEY, 26, vajKviJozlmahUn3wwZV
+KEY, 27, 2enPIKRqKMryWXW1FrPv
+KEY, 28, gsb8iMM6ZW6wdAs4zqC9
+KEY, 29, ZCQD6T8KwOu3AJXyl9lj
+KEY, 30, Y330FJGZlXMgwFKSLNyq
+KEY, 31, Fcx3QrhfHIjVfmSJZICB
+KEY, 32, opFaWoyGre0woLfnIvyu
+KEY, 33, WVoTrUvwGYQFrrDugi8E
+KEY, 34, xTGoGVuPxBOO3QTf196z
+KEY, 35, gznUuWZXM9QmLDQFGxNx
+KEY, 36, Jk79Wk5KrkJ6QMM9b9Ow
+KEY, 37, TbLdoDvSXU5uH1peQgCs
+KEY, 38, hMiLUixbMg6DHgciXViv
+KEY, 39, VIGjfXUNU0fATR0UG3BA
+KEY, 40, 6V9JPMyM1gkvvo1sRObY
+KEY, 41, 8nMlumVD4juoFbsVd2vw
+KEY, 42, wP12otBxzlvYsNanpaaJ
+KEY, 43, GGXi2s2VweR7yAH5Gi2m
+KEY, 44, aWUFDJqD6hVm9Oki81J1
+KEY, 45, eiFxGJUSVCZCQRLdxVhP
+KEY, 46, 2Olzqr6B4TwUeDmQv1Fv
+KEY, 47, NTpKbm4q1syzc7gqlJ0P
+KEY, 48, d0rjmqD7vjMEUHyN2MSP
+KEY, 49, Aab2qLWrJziTDuK3MNDu
+KEY, 50, CY7ZxmnaqT0upNqpQ2az
+KEY, 51, T22rUVIoQpN51I2qMrRc
+KEY, 52, tr2mh9JQW2aV41rIXvwW
+KEY, 53, B1bgFidTpugKF3hoGtqE
+KEY, 54, yXSZ4XgS5hCJnsTLF67D
+KEY, 55, QMchzK2dcEHaxVqraCHS
+KEY, 56, MFmmzsIDs3HUO5XmvFeV
+KEY, 57, Z6ZY2Zk2UGrsaFFORUO2
+KEY, 58, lGXOJpMNriwmXWl8eKgi
+KEY, 59, gYbfpdYzxg0j7HpbwMWT
+KEY, 60, KSGCsFJW9TYU7Z3ZKoF2
+KEY, 61, Ju29GZHo9YL1Ib9eUD6B
+KEY, 62, 50fsCpiYvbAgJHFlRjQw
+KEY, 63, KVEVcGzw0XhJ5t8he7IZ
+KEY, 64, FiMpT38ciGR8AMOPGIi7
+KEY, 65, pwsKl17vcGPx9lJsKByR
+KEY, 66, nyLiM8vZaS0iAFYqmwOX
+KEY, 67, z0Vde109rwXesIVvuJho
+KEY, 68, XpjEtmLYKUE6CRvfJyca
+KEY, 69, aUKl8ztBhzO2vY2knd72
+KEY, 70, dAxa1AoU4DwW6iIwnhCz
+KEY, 71, 1IEm3ojpEsly522y3Th7
+KEY, 72, Zfhf6TBReQvxFJ1TGBoB
+KEY, 73, V2TXsNNGT2KRH5q1nO1T
+KEY, 74, HGXYnDLHiiMTSBNk4OOg
+KEY, 75, ogmTfmZ2Vi2TlaZnfZDm
+KEY, 76, E3kqyG0zM4F7edwA8xd1
+KEY, 77, 6hkWxLvO6u99nwqLQhpv
+KEY, 78, 00vf4YlxNsy3BNI48PK4
+KEY, 79, XHsusVa4IsiyI1EMKBfb
+KEY, 80, 4qtmpZKhYSi850y8QX6S
+KEY, 81, K8DISkDoB6zOHzsmY8UJ
+KEY, 82, oCBoJhuBWsb8U8uUSrCo
+KEY, 83, lVs48qWlMM1EhtDjKezx
+KEY, 84, iTLVWo9Vw8S3VzMKEYtm
+KEY, 85, ygJJQRgS0eB7upwj7oZI
+KEY, 86, hdMUAH6cN1UtS8tZAHqF
+KEY, 87, TXQ9GMWRbm201hDbQd4j
+KEY, 88, ldjN5WjJU343L5rd3x3r
+KEY, 89, IclafGMYpUgZnhaIFZ4L
+KEY, 90, uhDzM2Wy03f065FggnNb
+KEY, 91, oErfREiT55aMzmmiPoPu
+KEY, 92, h6iWXbKJ5xov8SbJPluy
+KEY, 93, Dp9NFYyNUtF6Y1EmoM6q
+KEY, 94, u6ybtFro1K5KQQ3Fv92L
+KEY, 95, pFfaCT5hSMMgASOR0r9b
+KEY, 96, V3hrm4LE8hwlZYtjhPfa
+KEY, 97, 0AIXr2fKGz3RES2cJ57B
+KEY, 98, R8QK9Lk9Ka9VEuLdm0lo
+KEY, 99, MT658zt1xspBCnwckRw4
 Command error: Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
-In content: Must be 2000 or fewer in length. (this too)
+In content: Must be 2000 or fewer in length.
+```
 
 L4N4U1997: Oh.
 ThePortalNinja: Uh oh
