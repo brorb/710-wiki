@@ -8540,7 +8540,7 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
     return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
       /* @__PURE__ */ jsxs17("div", { class: "graph__heading-row", children: [
         /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.graph.title }),
-        /* @__PURE__ */ jsx26("button", { class: "graph__show-full", type: "button", children: "Show full graph" })
+        /* @__PURE__ */ jsx26("button", { class: "graph__show-full", type: "button", children: "SHOW FULL GRAPH" })
       ] }),
       /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
         /* @__PURE__ */ jsx26("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),

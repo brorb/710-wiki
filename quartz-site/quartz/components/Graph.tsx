@@ -116,7 +116,7 @@ export default ((opts?: Partial<GraphOptions>) => {
         <div class="graph__heading-row">
           <h3>{i18n(cfg.locale).components.graph.title}</h3>
           <button class="graph__show-full" type="button">
-            Show full graph
+            SHOW FULL GRAPH
           </button>
         </div>
         <div class="graph-outer">
