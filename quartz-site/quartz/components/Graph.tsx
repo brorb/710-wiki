@@ -132,6 +132,12 @@ export default ((opts?: Partial<GraphOptions>) => {
   const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
+    const controlDefaults: Record<"repelForce" | "centerForce" | "linkDistance", number> = {
+      repelForce: globalGraph.repelForce ?? 0.5,
+      centerForce: globalGraph.centerForce ?? 0.2,
+      linkDistance: globalGraph.linkDistance ?? 30,
+    }
+
     return (
       <div class={classNames(displayClass, "graph")}>
         <div
@@ -172,8 +178,141 @@ export default ((opts?: Partial<GraphOptions>) => {
             </svg>
           </button>
         </div>
-        <div class="global-graph-outer">
-          <div class="global-graph-container" data-cfg={JSON.stringify(globalGraph)}></div>
+        <div
+          class="global-graph-outer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Full graph preview"
+        >
+          <div class="global-graph-content">
+            <aside class="global-graph-controls" data-graph-controls>
+              <div class="graph-controls__header">
+                <h4 class="graph-controls__title">Graph Controls</h4>
+                <button
+                  class="graph-controls__close"
+                  type="button"
+                  data-graph-close
+                  aria-label="Close full graph"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="graph-controls__body">
+                <label class="graph-control" for="graph-slider-repel">
+                  <span class="graph-control__label">Repel Force</span>
+                  <div class="graph-control__range">
+                    <input
+                      class="graph-control__slider"
+                      type="range"
+                      min="0.1"
+                      max="2"
+                      step="0.05"
+                      id="graph-slider-repel"
+                      value={controlDefaults.repelForce.toString()}
+                      data-graph-slider="repelForce"
+                      aria-label="Repel force"
+                    />
+                    <span class="graph-control__value" data-graph-value="repelForce">
+                      {controlDefaults.repelForce.toFixed(2)}
+                    </span>
+                  </div>
+                </label>
+                <label class="graph-control" for="graph-slider-center">
+                  <span class="graph-control__label">Center Force</span>
+                  <div class="graph-control__range">
+                    <input
+                      class="graph-control__slider"
+                      type="range"
+                      min="0"
+                      max="2"
+                      step="0.05"
+                      id="graph-slider-center"
+                      value={controlDefaults.centerForce.toString()}
+                      data-graph-slider="centerForce"
+                      aria-label="Center force"
+                    />
+                    <span class="graph-control__value" data-graph-value="centerForce">
+                      {controlDefaults.centerForce.toFixed(2)}
+                    </span>
+                  </div>
+                </label>
+                <label class="graph-control" for="graph-slider-distance">
+                  <span class="graph-control__label">Link Distance</span>
+                  <div class="graph-control__range">
+                    <input
+                      class="graph-control__slider"
+                      type="range"
+                      min="12"
+                      max="160"
+                      step="2"
+                      id="graph-slider-distance"
+                      value={controlDefaults.linkDistance.toString()}
+                      data-graph-slider="linkDistance"
+                      aria-label="Link distance"
+                    />
+                    <span class="graph-control__value" data-graph-value="linkDistance">
+                      {Math.round(controlDefaults.linkDistance)} px
+                    </span>
+                  </div>
+                </label>
+                <div class="graph-controls__toggles">
+                  <label class="graph-toggle">
+                    <input
+                      type="checkbox"
+                      class="graph-toggle__input"
+                      data-graph-toggle="showSinglets"
+                      defaultChecked
+                    />
+                    <span class="graph-toggle__label">Show singlets</span>
+                  </label>
+                  <label class="graph-toggle">
+                    <input
+                      type="checkbox"
+                      class="graph-toggle__input"
+                      data-graph-toggle="highlightVisited"
+                      defaultChecked
+                    />
+                    <span class="graph-toggle__label">Highlight visited notes</span>
+                  </label>
+                  <label class="graph-toggle">
+                    <input
+                      type="checkbox"
+                      class="graph-toggle__input"
+                      data-graph-toggle="focusOnHover"
+                      defaultChecked={globalGraph.focusOnHover !== false}
+                    />
+                    <span class="graph-toggle__label">Focus neighbors on hover</span>
+                  </label>
+                </div>
+                <div class="graph-controls__info">
+                  <p>
+                    Adjust the layout forces or toggle visibility to explore clusters. Boost the center force to
+                    pull everything inward, or crank up the repel force for a wider spread.
+                  </p>
+                </div>
+              </div>
+              <div class="graph-controls__footer">
+                <button class="graph-controls__reset" type="button" data-graph-reset>
+                  Reset Controls
+                </button>
+              </div>
+            </aside>
+            <div class="global-graph-stage">
+              <div
+                class="global-graph-container"
+                data-cfg={JSON.stringify(globalGraph)}
+                data-graph-mode="global"
+              ></div>
+              <div class="graph-zoom" data-graph-zoom-controls>
+                <button type="button" class="graph-zoom__button" data-graph-zoom="in" aria-label="Zoom in">
+                  +
+                </button>
+                <button type="button" class="graph-zoom__button" data-graph-zoom="out" aria-label="Zoom out">
+                  &minus;
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

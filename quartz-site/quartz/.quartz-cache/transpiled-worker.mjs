@@ -8650,6 +8650,11 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
   const Graph = /* @__PURE__ */ __name(({ displayClass, cfg }) => {
     const localGraph = { ...defaultOptions13.localGraph, ...opts?.localGraph };
     const globalGraph = { ...defaultOptions13.globalGraph, ...opts?.globalGraph };
+    const controlDefaults = {
+      repelForce: globalGraph.repelForce ?? 0.5,
+      centerForce: globalGraph.centerForce ?? 0.2,
+      linkDistance: globalGraph.linkDistance ?? 30
+    };
     return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
       /* @__PURE__ */ jsxs17(
         "div",
@@ -8684,7 +8689,151 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
           }
         ) })
       ] }),
-      /* @__PURE__ */ jsx26("div", { class: "global-graph-outer", children: /* @__PURE__ */ jsx26("div", { class: "global-graph-container", "data-cfg": JSON.stringify(globalGraph) }) })
+      /* @__PURE__ */ jsx26(
+        "div",
+        {
+          class: "global-graph-outer",
+          role: "dialog",
+          "aria-modal": "true",
+          "aria-label": "Full graph preview",
+          children: /* @__PURE__ */ jsxs17("div", { class: "global-graph-content", children: [
+            /* @__PURE__ */ jsxs17("aside", { class: "global-graph-controls", "data-graph-controls": true, children: [
+              /* @__PURE__ */ jsxs17("div", { class: "graph-controls__header", children: [
+                /* @__PURE__ */ jsx26("h4", { class: "graph-controls__title", children: "Graph Controls" }),
+                /* @__PURE__ */ jsx26(
+                  "button",
+                  {
+                    class: "graph-controls__close",
+                    type: "button",
+                    "data-graph-close": true,
+                    "aria-label": "Close full graph",
+                    children: /* @__PURE__ */ jsx26("span", { "aria-hidden": "true", children: "\xD7" })
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxs17("div", { class: "graph-controls__body", children: [
+                /* @__PURE__ */ jsxs17("label", { class: "graph-control", for: "graph-slider-repel", children: [
+                  /* @__PURE__ */ jsx26("span", { class: "graph-control__label", children: "Repel Force" }),
+                  /* @__PURE__ */ jsxs17("div", { class: "graph-control__range", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        class: "graph-control__slider",
+                        type: "range",
+                        min: "0.1",
+                        max: "2",
+                        step: "0.05",
+                        id: "graph-slider-repel",
+                        value: controlDefaults.repelForce.toString(),
+                        "data-graph-slider": "repelForce",
+                        "aria-label": "Repel force"
+                      }
+                    ),
+                    /* @__PURE__ */ jsx26("span", { class: "graph-control__value", "data-graph-value": "repelForce", children: controlDefaults.repelForce.toFixed(2) })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxs17("label", { class: "graph-control", for: "graph-slider-center", children: [
+                  /* @__PURE__ */ jsx26("span", { class: "graph-control__label", children: "Center Force" }),
+                  /* @__PURE__ */ jsxs17("div", { class: "graph-control__range", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        class: "graph-control__slider",
+                        type: "range",
+                        min: "0",
+                        max: "2",
+                        step: "0.05",
+                        id: "graph-slider-center",
+                        value: controlDefaults.centerForce.toString(),
+                        "data-graph-slider": "centerForce",
+                        "aria-label": "Center force"
+                      }
+                    ),
+                    /* @__PURE__ */ jsx26("span", { class: "graph-control__value", "data-graph-value": "centerForce", children: controlDefaults.centerForce.toFixed(2) })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxs17("label", { class: "graph-control", for: "graph-slider-distance", children: [
+                  /* @__PURE__ */ jsx26("span", { class: "graph-control__label", children: "Link Distance" }),
+                  /* @__PURE__ */ jsxs17("div", { class: "graph-control__range", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        class: "graph-control__slider",
+                        type: "range",
+                        min: "12",
+                        max: "160",
+                        step: "2",
+                        id: "graph-slider-distance",
+                        value: controlDefaults.linkDistance.toString(),
+                        "data-graph-slider": "linkDistance",
+                        "aria-label": "Link distance"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxs17("span", { class: "graph-control__value", "data-graph-value": "linkDistance", children: [
+                      Math.round(controlDefaults.linkDistance),
+                      " px"
+                    ] })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxs17("div", { class: "graph-controls__toggles", children: [
+                  /* @__PURE__ */ jsxs17("label", { class: "graph-toggle", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        type: "checkbox",
+                        class: "graph-toggle__input",
+                        "data-graph-toggle": "showSinglets",
+                        defaultChecked: true
+                      }
+                    ),
+                    /* @__PURE__ */ jsx26("span", { class: "graph-toggle__label", children: "Show singlets" })
+                  ] }),
+                  /* @__PURE__ */ jsxs17("label", { class: "graph-toggle", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        type: "checkbox",
+                        class: "graph-toggle__input",
+                        "data-graph-toggle": "highlightVisited",
+                        defaultChecked: true
+                      }
+                    ),
+                    /* @__PURE__ */ jsx26("span", { class: "graph-toggle__label", children: "Highlight visited notes" })
+                  ] }),
+                  /* @__PURE__ */ jsxs17("label", { class: "graph-toggle", children: [
+                    /* @__PURE__ */ jsx26(
+                      "input",
+                      {
+                        type: "checkbox",
+                        class: "graph-toggle__input",
+                        "data-graph-toggle": "focusOnHover",
+                        defaultChecked: globalGraph.focusOnHover !== false
+                      }
+                    ),
+                    /* @__PURE__ */ jsx26("span", { class: "graph-toggle__label", children: "Focus neighbors on hover" })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsx26("div", { class: "graph-controls__info", children: /* @__PURE__ */ jsx26("p", { children: "Adjust the layout forces or toggle visibility to explore clusters. Boost the center force to pull everything inward, or crank up the repel force for a wider spread." }) })
+              ] }),
+              /* @__PURE__ */ jsx26("div", { class: "graph-controls__footer", children: /* @__PURE__ */ jsx26("button", { class: "graph-controls__reset", type: "button", "data-graph-reset": true, children: "Reset Controls" }) })
+            ] }),
+            /* @__PURE__ */ jsxs17("div", { class: "global-graph-stage", children: [
+              /* @__PURE__ */ jsx26(
+                "div",
+                {
+                  class: "global-graph-container",
+                  "data-cfg": JSON.stringify(globalGraph),
+                  "data-graph-mode": "global"
+                }
+              ),
+              /* @__PURE__ */ jsxs17("div", { class: "graph-zoom", "data-graph-zoom-controls": true, children: [
+                /* @__PURE__ */ jsx26("button", { type: "button", class: "graph-zoom__button", "data-graph-zoom": "in", "aria-label": "Zoom in", children: "+" }),
+                /* @__PURE__ */ jsx26("button", { type: "button", class: "graph-zoom__button", "data-graph-zoom": "out", "aria-label": "Zoom out", children: "\u2212" })
+              ] })
+            ] })
+          ] })
+        }
+      )
     ] });
   }, "Graph");
   Graph.css = graph_default;
