@@ -301,7 +301,7 @@ _^The hex translates to:_
 ```
 u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D :   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
 ```
-:This references a hash code "768bbf1bbc182b06357d18298dbb4ae9", but its use has not been found._
+_This references a hash code "768bbf1bbc182b06357d18298dbb4ae9", but its use has not been found._
 
 ```community-post,3,0,January 2025,
 ;d!\$u784n&78Q9A;Cs+I0JYCD3Zpd`;BU%&EZeCK;H"\^82DG4,"5-K+FJPZ6VLB#Cia\@<^BV^+<jKtF>4s^,"uos2Bj8kHltdM;BU+$;BSA9FC?:H0et:&1FsY)/0HZ%1+XP'$<()+<(0M(;FNoJ:K/nj0JG7C+B)6*;H+c"3ZoV#0JG13+>>K#+>>K#+>>Jl9N32e+@T$n4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Ztqk4Z,Gg5<h@s5<h@s5<h@s5<g_H,Ur
@@ -368,7 +368,7 @@ _^This post was edited. The original content is lost_
 ```community-post,4,1,August 2024,
 00000000
 ```
-_^This post was edited. Original read:
+_^This post was edited. Original read:_
 ```
 **"Technician speaking"  
 "Hi, what's your number?"  
@@ -379,23 +379,25 @@ _^This post was edited. Original read:
 "How much worse?"  
 "Well now we are picking up random frequencies from the stations"  
 "well, I think we have to resort to the next plan"  
-"Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������**_
+"Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������**
 ```
-This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]].
+_This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]]._
 
 ```community-post,10,0,2024,
 00000000
 ```
-_^This post was edited. Original read:
+_^This post was edited. Original read:_
+```
 **"He only stared at me, and the last thing he tells me is to watch for the red star. I couldn't get that stupid logo out of my head ever since that day, like it had been burned into the gray matter."  
 "And did you see him again after that?"  
-"No, I l��ke� fo� ��� ��������������������������**_
+"No, I l��ke� fo� ��� ��������������������������_
+```
 
 ```community-post,3,0,2024,
 >>SYSTEM: UNEXPEXTED LOG COUNT  
 >>SYSTEM: RESTETING LOGS "LOG-98.PCV", "LOG-99.PCV"
 ```
-_^This post references [[LOG-99.mp4]], but has the wrong extension (.PCV vs .mp4). Also, LOG-98 does not exist. It is believed that this isa  remnant of old purged videos and logs, since it is known that older logs used to have the .PCV extension, whereas the new ones typically have .mp4._
+_^This post references [[LOG-99.mp4]], but has the wrong extension (.PCV vs .mp4). Also, LOG-98 does not exist. It is believed that this is a remnant of old purged videos and logs, since it is known that older logs used to have the .PCV extension, whereas the new ones typically have .mp4._
 ```community-post,5,3,2024,
 00000000
 ```

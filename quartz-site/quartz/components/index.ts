@@ -25,6 +25,7 @@ import LinksHeader from "./LinksHeader"
 import DiscordWidget from "./DiscordWidget"
 import InfoBox from "./InfoBox"
 import HomepageFeatures from "./HomepageFeatures"
+import MediaNormalizer from "./MediaNormalizer"
 
 export {
   ArticleHeader,
@@ -54,4 +55,5 @@ export {
   DiscordWidget,
   InfoBox,
   HomepageFeatures,
+  MediaNormalizer,
 }

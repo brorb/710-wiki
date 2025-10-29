@@ -311,40 +311,29 @@ const DISCORD_CSS = `
   border-radius: 8px;
   padding: 6px 8px 4px;
   color: var(--discord-text-primary);
-  align-items: flex-start;
   --discord-author-color: var(--discord-author);
   scroll-margin-top: 120px;
-}
-
-.discord-message__link {
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 12px;
   text-decoration: none;
-  color: inherit;
   align-items: flex-start;
   width: 100%;
   font: inherit;
   user-select: text;
-  border-radius: inherit;
-  padding: 0;
-  cursor: pointer;
+  cursor: default;
+  transition: background 0.18s ease;
 }
 
-.discord-message__link * {
+.discord-message * {
   font-weight: inherit;
 }
 
-.discord-message__link:visited,
-.discord-message__link:hover,
-.discord-message__link:active,
-.discord-message__link:focus {
-  color: inherit;
-  text-decoration: none;
-  background: transparent;
+.discord-message[data-discord-jump] {
+  cursor: pointer;
 }
 
-.discord-message__link:focus-visible {
+.discord-message[data-discord-jump]:focus-visible {
   outline: 2px solid var(--discord-accent);
   outline-offset: 2px;
 }
@@ -588,10 +577,28 @@ const DISCORD_CSS = `
   scroll-margin-top: 120px;
 }
 
-.discord-thread-share.article-share__button {
+.discord-thread-share-container.article-share {
   position: absolute;
   top: 12px;
   right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -6px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 4;
+}
+
+.discord-thread-share-container.article-share .article-share__feedback {
+  text-align: right;
+  min-height: 0.85rem;
+}
+
+.discord-thread-share.article-share__button {
   width: 34px;
   height: 34px;
   border-radius: 999px;
@@ -601,11 +608,7 @@ const DISCORD_CSS = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(0, -6px, 0);
-  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;
-  z-index: 4;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .discord-thread-share__icon {
@@ -623,13 +626,14 @@ const DISCORD_CSS = `
   -webkit-mask-size: contain;
 }
 
-.discord-thread-wrapper:hover .discord-thread-share.article-share__button,
-.discord-thread-wrapper:focus-within .discord-thread-share.article-share__button,
-.discord-thread-wrapper:target .discord-thread-share.article-share__button,
-.discord-thread-share.article-share__button:focus-visible {
-  opacity: 1;
+
+.discord-thread-wrapper:hover .discord-thread-share-container,
+.discord-thread-wrapper:focus-within .discord-thread-share-container,
+.discord-thread-wrapper:target .discord-thread-share-container,
+.discord-thread-share-container:focus-within {
   pointer-events: auto;
   transform: translate3d(0, 0, 0);
+  opacity: 1;
 }
 
 .discord-thread-share.article-share__button:hover {
@@ -668,9 +672,10 @@ const DISCORD_CSS = `
 }
 
 @media (hover: none) {
-  .discord-thread-share.article-share__button {
+  .discord-thread-share-container {
     opacity: 1;
     pointer-events: auto;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1291,7 +1296,7 @@ const renderAttachments = (attachments?: DiscordAttachment[]): string => {
     return ""
   }
 
-  return `<span class="discord-attachments" role="group">${items.join("\n")}</span>`
+  return `<span class="discord-attachments" role="group" data-discord-jump-skip="true">${items.join("\n")}</span>`
 }
 
 const renderMessage = (
@@ -1342,6 +1347,21 @@ const renderMessage = (
   if (authorColor) {
     articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`)
   }
+  const trimmedJumpUrl = jumpUrl.trim()
+  const hasJumpTarget = trimmedJumpUrl.length > 0 && trimmedJumpUrl !== "#"
+  if (hasJumpTarget) {
+    articleAttributes.push(`data-discord-jump="${escapeAttribute(trimmedJumpUrl)}"`)
+
+    const ariaLabelParts: string[] = [`Open Discord message from ${displayName}`]
+    if (timestamp) {
+      ariaLabelParts.push(`posted ${timestamp.readable}`)
+    }
+    const ariaLabel = ariaLabelParts.join(", ")
+
+    articleAttributes.push('role="link"')
+    articleAttributes.push('tabindex="0"')
+    articleAttributes.push(`aria-label="${escapeAttribute(ariaLabel)}"`)
+  }
 
   const avatarMarkup = showAvatar
     ? `<${avatarTag} class="discord-avatar">
@@ -1370,22 +1390,14 @@ const renderMessage = (
     : undefined
   const attachmentsMarkup = renderAttachments(attachmentsArray)
   const attributes = articleAttributes.join(" ")
-  const linkAttributes = [
-    'class="discord-message__link"',
-    `href="${escapeAttribute(jumpUrl)}"`,
-    'target="_blank"',
-    'rel="noopener noreferrer"',
-  ]
 
   return `<${wrapperTag} ${attributes}>
-    <a ${linkAttributes.join(" ")}>
       ${avatarMarkup}
       <${bodyTag} class="discord-body">
         ${headerMarkup}
         <${contentTag} class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</${contentTag}>
         ${attachmentsMarkup}
       </${bodyTag}>
-    </a>
   </${wrapperTag}>`
 }
 
@@ -1433,9 +1445,14 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
       shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`)
     }
 
-    shareMarkup = `<button ${shareAttributes.join(" ")}>
-      <span class="discord-thread-share__icon" aria-hidden="true"></span>
-    </button>`
+  shareAttributes.push('data-share-copied="url copied"')
+
+    shareMarkup = `<div class="discord-thread-share-container article-share">
+      <button ${shareAttributes.join(" ")}>
+        <span class="discord-thread-share__icon" aria-hidden="true"></span>
+      </button>
+      <span class="article-share__feedback" aria-live="polite"></span>
+    </div>`
   }
 
   const wrapperClasses = ["discord-thread-wrapper"]
@@ -2094,6 +2111,8 @@ const transformCitationMarkers = (
 
 // @ts-ignore
 import discordCollapseScript from "../../components/scripts/discordCollapse.inline"
+// @ts-ignore
+import discordMessageJumpScript from "../../components/scripts/discordMessageJump.inline"
 
 export const DiscordMessages: QuartzTransformerPlugin = () => {
   return {
@@ -2146,6 +2165,11 @@ export const DiscordMessages: QuartzTransformerPlugin = () => {
         js: [
           {
             script: discordCollapseScript,
+            loadTime: "afterDOMReady",
+            contentType: "inline",
+          },
+          {
+            script: discordMessageJumpScript,
             loadTime: "afterDOMReady",
             contentType: "inline",
           },

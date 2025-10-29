@@ -17,7 +17,7 @@ Mentioned in [[Private Room#Chat 7]]
     "attachments": [
       {
         "mtype": "attachment",
-        "attachment": "![[HIS-PERCEPTION-(reversed).mp3]]",
+        "attachment": "https://drive.google.com/file/d/1b2HYNyJZ9b8IYxeWvdVQQtBvKfBaVLva/view?usp=drive_link",
         "alt": "His perception reversed"
       }
     ],

@@ -420,9 +420,14 @@ const renderPost = (options: {
     shareAttributes.push(`data-share-text="${escapeAttribute(shareSnippet)}"`)
   }
 
-  const shareMarkup = `<button ${shareAttributes.join(" ")}>
-      <span class="yt-community-post__share-icon" aria-hidden="true"></span>
-    </button>`
+  shareAttributes.push('data-share-copied="url copied"')
+
+  const shareMarkup = `<div class="yt-community-post__share-container article-share">
+      <button ${shareAttributes.join(" ")}>
+        <span class="yt-community-post__share-icon" aria-hidden="true"></span>
+      </button>
+      <span class="article-share__feedback" aria-live="polite"></span>
+    </div>`
 
   const bodySection = bodyHtml.trim().length
     ? `<div class="yt-community-post__body">
@@ -537,6 +542,19 @@ const YT_COMMUNITY_CSS = `
   color: #a7a7a7;
   font-size: 0.78rem;
   line-height: 1;
+}
+
+.yt-community-post__share-container.article-share {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.yt-community-post__share-container.article-share .article-share__feedback {
+  min-height: 0.8rem;
+  text-align: right;
 }
 
 .yt-community-post__share.article-share__button {

@@ -5,6 +5,13 @@ import style from "./styles/graph.scss"
 import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
+export interface LabelVisibilityConfig {
+  minAlpha: number
+  maxAlpha: number
+  startZoom: number
+  endZoom: number
+}
+
 export interface D3Config {
   drag: boolean
   zoom: boolean
@@ -31,6 +38,7 @@ export interface D3Config {
   linkDistance: number
   fontSize: number
   opacityScale: number
+  labelVisibility?: LabelVisibilityConfig
   removeTags: string[]
   showTags: boolean
   focusOnHover?: boolean
@@ -42,6 +50,7 @@ interface GraphOptions {
   globalGraph: Partial<D3Config> | undefined
 }
 
+// Tweak these defaults to tune the graph label sizing/visibility and layout forces.
 const defaultOptions: GraphOptions = {
   localGraph: {
     drag: true,
@@ -67,8 +76,14 @@ const defaultOptions: GraphOptions = {
     repelForce: 0.5,
     centerForce: 0.3,
     linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
+    fontSize: 0.8,
+    opacityScale: 1.6,
+    labelVisibility: {
+      minAlpha: 0.25,
+      maxAlpha: 1,
+      startZoom: 0.8,
+      endZoom: 2.6,
+    },
     showTags: true,
     removeTags: [],
     focusOnHover: false,
@@ -98,8 +113,14 @@ const defaultOptions: GraphOptions = {
     repelForce: 0.5,
     centerForce: 0.2,
     linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
+    fontSize: 0.75,
+    opacityScale: 1.4,
+    labelVisibility: {
+      minAlpha: 0.2,
+      maxAlpha: 1,
+      startZoom: 0.9,
+      endZoom: 2.4,
+    },
     showTags: true,
     removeTags: [],
     focusOnHover: true,

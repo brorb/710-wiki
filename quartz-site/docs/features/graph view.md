@@ -20,6 +20,10 @@ Additionally, similar to how browsers highlight visited links a different colour
 
 Most configuration can be done by passing in options to `Component.Graph()`.
 
+- `fontSize` adjusts the base label size (in `rem`).
+- `opacityScale` determines how aggressively labels fade as you zoom out.
+- `labelVisibility` provides fine-grained control over label opacity at different zoom levels (`minAlpha`, `maxAlpha`, `startZoom`, `endZoom`).
+
 For example, here's what the default configuration looks like:
 
 ```typescript title="quartz.layout.ts"
@@ -32,8 +36,14 @@ Component.Graph({
     repelForce: 0.5, // how much nodes should repel each other
     centerForce: 0.3, // how much force to use when trying to center the nodes
     linkDistance: 30, // how long should the links be by default?
-    fontSize: 0.6, // what size should the node labels be?
-    opacityScale: 1, // how quickly do we fade out the labels when zooming out?
+    fontSize: 0.8, // what size should the node labels be?
+    opacityScale: 1.6, // how quickly do we fade out the labels when zooming out?
+    labelVisibility: {
+      minAlpha: 0.25,
+      maxAlpha: 1,
+      startZoom: 0.8,
+      endZoom: 2.6,
+    },
     removeTags: [], // what tags to remove from the graph
     showTags: true, // whether to show tags in the graph
     enableRadial: false, // whether to constrain the graph, similar to Obsidian
@@ -46,8 +56,14 @@ Component.Graph({
     repelForce: 0.5,
     centerForce: 0.3,
     linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
+    fontSize: 0.75,
+    opacityScale: 1.4,
+    labelVisibility: {
+      minAlpha: 0.2,
+      maxAlpha: 1,
+      startZoom: 0.9,
+      endZoom: 2.4,
+    },
     removeTags: [], // what tags to remove from the graph
     showTags: true, // whether to show tags in the graph
     enableRadial: true, // whether to constrain the graph, similar to Obsidian

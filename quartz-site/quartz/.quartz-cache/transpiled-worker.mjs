@@ -3934,6 +3934,9 @@ __name(getAssetVersion, "getAssetVersion");
 // quartz/components/scripts/discordCollapse.inline.ts
 var discordCollapse_inline_default = "";
 
+// quartz/components/scripts/discordMessageJump.inline.ts
+var discordMessageJump_inline_default = "";
+
 // quartz/plugins/transformers/discordMessages.ts
 var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
 var DISCORD_CITE_ICON_PATH = "M20.992 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.050 0.005 0.109 0.005 0.168 0 1.523-1.191 2.768-2.693 2.854l-0.008 0zM11.026 20.163c-1.511-0.099-2.699-1.349-2.699-2.877 0-0.051 0.001-0.102 0.004-0.153l-0 0.007c-0.003-0.048-0.005-0.104-0.005-0.161 0-1.525 1.19-2.771 2.692-2.862l0.008-0c1.509 0.082 2.701 1.325 2.701 2.847 0 0.062-0.002 0.123-0.006 0.184l0-0.008c0.003 0.048 0.005 0.104 0.005 0.161 0 1.525-1.19 2.771-2.692 2.862l-0.008 0zM26.393 6.465c-1.763-0.832-3.811-1.49-5.955-1.871l-0.149-0.022c-0.005-0.001-0.011-0.002-0.017-0.002-0.035 0-0.065 0.019-0.081 0.047l-0 0c-0.234 0.411-0.488 0.924-0.717 1.45l-0.043 0.111c-1.030-0.165-2.218-0.259-3.428-0.259s-2.398 0.094-3.557 0.275l0.129-0.017c-0.27-0.63-0.528-1.142-0.813-1.638l0.041 0.077c-0.017-0.029-0.048-0.047-0.083-0.047-0.005 0-0.011 0-0.016 0.001l0.001-0c-2.293 0.403-4.342 1.060-6.256 1.957l0.151-0.064c-0.017 0.007-0.031 0.019-0.040 0.034l-0 0c-2.854 4.041-4.562 9.069-4.562 14.496 0 0.907 0.048 1.802 0.141 2.684l-0.009-0.11c0.003 0.029 0.018 0.053 0.039 0.070l0 0c2.14 1.601 4.628 2.891 7.313 3.738l0.176 0.048c0.008 0.003 0.018 0.004 0.028 0.004 0.032 0 0.060-0.015 0.077-0.038l0-0c0.535-0.72 1.044-1.536 1.485-2.392l0.047-0.1c0.006-0.012 0.010-0.027 0.010-0.043 0-0.041-0.026-0.075-0.062-0.089l-0.001-0c-0.912-0.352-1.683-0.727-2.417-1.157l0.077 0.042c-0.029-0.017-0.048-0.048-0.048-0.083 0-0.031 0.015-0.059 0.038-0.076l0-0c0.157-0.118 0.315-0.24 0.465-0.364 0.016-0.013 0.037-0.021 0.059-0.021 0.014 0 0.027 0.003 0.038 0.008l-0.001-0c2.208 1.061 4.8 1.681 7.536 1.681s5.329-0.62 7.643-1.727l-0.107 0.046c0.012-0.006 0.025-0.009 0.040-0.009 0.022 0 0.043 0.008 0.059 0.021l-0-0c0.15 0.124 0.307 0.248 0.466 0.365 0.023 0.018 0.038 0.046 0.038 0.077 0 0.035-0.019 0.065-0.046 0.082l-0 0c-0.661 0.395-1.432 0.769-2.235 1.078l-0.105 0.036c-0.036 0.014-0.062 0.049-0.062 0.089 0 0.016 0.004 0.031 0.011 0.044l-0-0.001c0.501 0.96 1.009 1.775 1.571 2.548l-0.040-0.057c0.017 0.024 0.046 0.040 0.077 0.040 0.010 0 0.020-0.002 0.029-0.004l-0.001 0c2.865-0.892 5.358-2.182 7.566-3.832l-0.065 0.047c0.022-0.016 0.036-0.041 0.039-0.069l0-0c0.087-0.784 0.136-1.694 0.136-2.615 0-5.415-1.712-10.43-4.623-14.534l0.052 0.078c-0.008-0.016-0.022-0.029-0.038-0.036l-0-0z";
@@ -4162,40 +4165,29 @@ var DISCORD_CSS = `
   border-radius: 8px;
   padding: 6px 8px 4px;
   color: var(--discord-text-primary);
-  align-items: flex-start;
   --discord-author-color: var(--discord-author);
   scroll-margin-top: 120px;
-}
-
-.discord-message__link {
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 12px;
   text-decoration: none;
-  color: inherit;
   align-items: flex-start;
   width: 100%;
   font: inherit;
   user-select: text;
-  border-radius: inherit;
-  padding: 0;
-  cursor: pointer;
+  cursor: default;
+  transition: background 0.18s ease;
 }
 
-.discord-message__link * {
+.discord-message * {
   font-weight: inherit;
 }
 
-.discord-message__link:visited,
-.discord-message__link:hover,
-.discord-message__link:active,
-.discord-message__link:focus {
-  color: inherit;
-  text-decoration: none;
-  background: transparent;
+.discord-message[data-discord-jump] {
+  cursor: pointer;
 }
 
-.discord-message__link:focus-visible {
+.discord-message[data-discord-jump]:focus-visible {
   outline: 2px solid var(--discord-accent);
   outline-offset: 2px;
 }
@@ -4439,10 +4431,28 @@ var DISCORD_CSS = `
   scroll-margin-top: 120px;
 }
 
-.discord-thread-share.article-share__button {
+.discord-thread-share-container.article-share {
   position: absolute;
   top: 12px;
   right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -6px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 4;
+}
+
+.discord-thread-share-container.article-share .article-share__feedback {
+  text-align: right;
+  min-height: 0.85rem;
+}
+
+.discord-thread-share.article-share__button {
   width: 34px;
   height: 34px;
   border-radius: 999px;
@@ -4452,11 +4462,7 @@ var DISCORD_CSS = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(0, -6px, 0);
-  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;
-  z-index: 4;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
 .discord-thread-share__icon {
@@ -4474,13 +4480,14 @@ var DISCORD_CSS = `
   -webkit-mask-size: contain;
 }
 
-.discord-thread-wrapper:hover .discord-thread-share.article-share__button,
-.discord-thread-wrapper:focus-within .discord-thread-share.article-share__button,
-.discord-thread-wrapper:target .discord-thread-share.article-share__button,
-.discord-thread-share.article-share__button:focus-visible {
-  opacity: 1;
+
+.discord-thread-wrapper:hover .discord-thread-share-container,
+.discord-thread-wrapper:focus-within .discord-thread-share-container,
+.discord-thread-wrapper:target .discord-thread-share-container,
+.discord-thread-share-container:focus-within {
   pointer-events: auto;
   transform: translate3d(0, 0, 0);
+  opacity: 1;
 }
 
 .discord-thread-share.article-share__button:hover {
@@ -4519,9 +4526,10 @@ var DISCORD_CSS = `
 }
 
 @media (hover: none) {
-  .discord-thread-share.article-share__button {
+  .discord-thread-share-container {
     opacity: 1;
     pointer-events: auto;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -4987,7 +4995,7 @@ var renderAttachments = /* @__PURE__ */ __name((attachments) => {
   if (items.length === 0) {
     return "";
   }
-  return `<span class="discord-attachments" role="group">${items.join("\n")}</span>`;
+  return `<span class="discord-attachments" role="group" data-discord-jump-skip="true">${items.join("\n")}</span>`;
 }, "renderAttachments");
 var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}, context) => {
   const {
@@ -5026,6 +5034,19 @@ var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}, co
   if (authorColor) {
     articleAttributes.push(`style="--discord-author-color: ${escapeAttribute(authorColor)}"`);
   }
+  const trimmedJumpUrl = jumpUrl.trim();
+  const hasJumpTarget = trimmedJumpUrl.length > 0 && trimmedJumpUrl !== "#";
+  if (hasJumpTarget) {
+    articleAttributes.push(`data-discord-jump="${escapeAttribute(trimmedJumpUrl)}"`);
+    const ariaLabelParts = [`Open Discord message from ${displayName}`];
+    if (timestamp) {
+      ariaLabelParts.push(`posted ${timestamp.readable}`);
+    }
+    const ariaLabel = ariaLabelParts.join(", ");
+    articleAttributes.push('role="link"');
+    articleAttributes.push('tabindex="0"');
+    articleAttributes.push(`aria-label="${escapeAttribute(ariaLabel)}"`);
+  }
   const avatarMarkup = showAvatar ? `<${avatarTag} class="discord-avatar">
         <img src="${escapeAttribute(avatar)}" alt="${escapeAttribute(displayName)}'s avatar" loading="lazy" width="40" height="40" />
       </${avatarTag}>` : `<${avatarTag} class="discord-avatar-spacer" aria-hidden="true"></${avatarTag}>`;
@@ -5041,21 +5062,13 @@ var renderMessage = /* @__PURE__ */ __name((message, previous, options2 = {}, co
   const attachmentsArray = Array.isArray(message.attachments) ? message.attachments : void 0;
   const attachmentsMarkup = renderAttachments(attachmentsArray);
   const attributes = articleAttributes.join(" ");
-  const linkAttributes = [
-    'class="discord-message__link"',
-    `href="${escapeAttribute(jumpUrl)}"`,
-    'target="_blank"',
-    'rel="noopener noreferrer"'
-  ];
   return `<${wrapperTag} ${attributes}>
-    <a ${linkAttributes.join(" ")}>
       ${avatarMarkup}
       <${bodyTag} class="discord-body">
         ${headerMarkup}
         <${contentTag} class="${contentClasses.join(" ")}">${content}${accessibleTimestamp}</${contentTag}>
         ${attachmentsMarkup}
       </${bodyTag}>
-    </a>
   </${wrapperTag}>`;
 }, "renderMessage");
 var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
@@ -5094,9 +5107,13 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
     if (shareText) {
       shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`);
     }
-    shareMarkup = `<button ${shareAttributes.join(" ")}>
-      <span class="discord-thread-share__icon" aria-hidden="true"></span>
-    </button>`;
+    shareAttributes.push('data-share-copied="url copied"');
+    shareMarkup = `<div class="discord-thread-share-container article-share">
+      <button ${shareAttributes.join(" ")}>
+        <span class="discord-thread-share__icon" aria-hidden="true"></span>
+      </button>
+      <span class="article-share__feedback" aria-live="polite"></span>
+    </div>`;
   }
   const wrapperClasses = ["discord-thread-wrapper"];
   const contentClasses = ["discord-thread-content"];
@@ -5646,6 +5663,11 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
             script: discordCollapse_inline_default,
             loadTime: "afterDOMReady",
             contentType: "inline"
+          },
+          {
+            script: discordMessageJump_inline_default,
+            loadTime: "afterDOMReady",
+            contentType: "inline"
           }
         ]
       };
@@ -5924,9 +5946,13 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
   if (shareSnippet) {
     shareAttributes.push(`data-share-text="${escapeAttribute2(shareSnippet)}"`);
   }
-  const shareMarkup = `<button ${shareAttributes.join(" ")}>
-      <span class="yt-community-post__share-icon" aria-hidden="true"></span>
-    </button>`;
+  shareAttributes.push('data-share-copied="url copied"');
+  const shareMarkup = `<div class="yt-community-post__share-container article-share">
+      <button ${shareAttributes.join(" ")}>
+        <span class="yt-community-post__share-icon" aria-hidden="true"></span>
+      </button>
+      <span class="article-share__feedback" aria-live="polite"></span>
+    </div>`;
   const bodySection = bodyHtml.trim().length ? `<div class="yt-community-post__body">
       ${bodyHtml}
     </div>` : "";
@@ -6036,6 +6062,19 @@ var YT_COMMUNITY_CSS = `
   color: #a7a7a7;
   font-size: 0.78rem;
   line-height: 1;
+}
+
+.yt-community-post__share-container.article-share {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.yt-community-post__share-container.article-share .article-share__feedback {
+  min-height: 0.8rem;
+  text-align: right;
 }
 
 .yt-community-post__share.article-share__button {
@@ -8494,8 +8533,14 @@ var defaultOptions13 = {
     repelForce: 0.5,
     centerForce: 0.3,
     linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
+    fontSize: 0.8,
+    opacityScale: 1.6,
+    labelVisibility: {
+      minAlpha: 0.25,
+      maxAlpha: 1,
+      startZoom: 0.8,
+      endZoom: 2.6
+    },
     showTags: true,
     removeTags: [],
     focusOnHover: false,
@@ -8525,8 +8570,14 @@ var defaultOptions13 = {
     repelForce: 0.5,
     centerForce: 0.2,
     linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
+    fontSize: 0.75,
+    opacityScale: 1.4,
+    labelVisibility: {
+      minAlpha: 0.2,
+      maxAlpha: 1,
+      startZoom: 0.9,
+      endZoom: 2.4
+    },
     showTags: true,
     removeTags: [],
     focusOnHover: true,
@@ -9640,6 +9691,15 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   return HomepageFeatures;
 }), "default");
 
+// quartz/components/scripts/mediaNormalizer.inline.ts
+var mediaNormalizer_inline_default = "";
+
+// quartz/components/MediaNormalizer.tsx
+import { Fragment as Fragment8, jsx as jsx38 } from "preact/jsx-runtime";
+var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment8, {}), "MediaNormalizer");
+MediaNormalizer.afterDOMLoaded = mediaNormalizer_inline_default;
+var MediaNormalizer_default = /* @__PURE__ */ __name((() => MediaNormalizer), "default");
+
 // quartz/comments.config.ts
 var commentsConfig = {
   enabled: true,
@@ -9653,6 +9713,7 @@ var commentsConfig = {
 // quartz.layout.ts
 var graphHiddenTags = ["graph-exclude"];
 var sharedAfterBody = [
+  MediaNormalizer_default(),
   ConditionalRender_default({
     component: Canvas_default(),
     condition: /* @__PURE__ */ __name((props) => hasCanvasFrontmatter(props.fileData.frontmatter), "condition")
@@ -10161,7 +10222,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx38 } from "preact/jsx-runtime";
+import { jsx as jsx39 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
@@ -10278,7 +10339,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx38(
+            /* @__PURE__ */ jsx39(
               "link",
               {
                 rel: "alternate",

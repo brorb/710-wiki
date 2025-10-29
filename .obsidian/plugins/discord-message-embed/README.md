@@ -32,6 +32,34 @@ Convert highlighted Discord message links into Quartz-compatible blocks and inli
 
 Quartz will now turn that block into your stylised message card. Multiple highlighted URLs become a single array so they display as a stacked conversation.
 
+#### Adding attachments and file previews
+
+The renderer now supports rich attachments (images, audio, video, or arbitrary files) that sit inline with each Discord message card. To add one, append an `attachments` array to the relevant message object before you paste it into Quartz:
+
+```json
+{
+  "id": "...",
+  "content": "...",
+  "attachments": [
+    {
+      "target": "![[Example-Attachment.png]]",
+      "alt": "Optional caption",
+      "typeHint": "image"
+    },
+    {
+      "target": "https://cdn.example.com/audio/sample.ogg",
+      "title": "Sample clip",
+      "typeHint": "audio"
+    }
+  ]
+}
+```
+
+- `target` can be an Obsidian embed (`![[...]]`), a relative path, or an absolute URL. The transformer resolves it at build time and shows a thumbnail, audio bar, video player, or download card based on the file type.
+- Use `typeHint` when the file extension is missing or ambiguous (`image`, `audio`, `video`, or `file`).
+- Provide `alt` text (for images) or `title` (for non-image files) to control the label that appears next to the attachment card.
+- Legacy fields such as `image`, `images`, or `attachment` are still recognised; the transformer will lift them into the normalised `attachments` array automatically.
+
 ### Citations
 
 1. Place your cursor (or highlight placeholder text) where the inline citation marker should go.
