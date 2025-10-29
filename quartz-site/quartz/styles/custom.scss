@@ -196,12 +196,7 @@ a.wiki-download-link svg {
   isolation: isolate;
   border-radius: 18px;
   overflow: hidden;
-  background: linear-gradient(
-    120deg,
-    color-mix(in srgb, var(--accentTertiary) 55%, rgba(0, 0, 0, 0.75)) 0%,
-    color-mix(in srgb, var(--accentSecondary) 75%, rgba(0, 0, 0, 0.55)) 55%,
-    color-mix(in srgb, var(--accentPrimary) 85%, rgba(0, 0, 0, 0.4)) 100%
-  );
+  background: var(--color-panel-depth);
   box-shadow: 0 14px 44px -28px rgba(235, 28, 36, 0.55);
 
   iframe {
@@ -209,37 +204,7 @@ a.wiki-download-link svg {
     width: 100%;
     border: 0;
     border-radius: inherit;
-    filter: invert(11%) sepia(78%) saturate(2479%) hue-rotate(355deg) brightness(96%) contrast(88%);
     transform-origin: center;
-  }
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  &::before {
-    background: radial-gradient(
-        circle at 10% 20%,
-        color-mix(in srgb, var(--accentPrimary) 65%, transparent) 0,
-        transparent 65%
-      ),
-      radial-gradient(
-        circle at 80% 30%,
-        color-mix(in srgb, var(--accentSecondary) 45%, transparent) 0,
-        transparent 55%
-      );
-    opacity: 0.72;
-    mix-blend-mode: color-dodge;
-  }
-
-  &::after {
-    background: rgba(12, 0, 0, 0.35);
-    mix-blend-mode: multiply;
-    opacity: 0.85;
   }
 }
 

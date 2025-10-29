@@ -58,6 +58,11 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) 
                 let dest = node.properties.href as RelativeURL
                 const classes = (node.properties.className ?? []) as string[]
                 const isExternal = isAbsoluteUrl(dest)
+                const hasAlias =
+                  node.children.length === 1 &&
+                  node.children[0].type === "text" &&
+                  node.children[0].value !== dest
+
                 classes.push(isExternal ? "external" : "internal")
 
                 if (isExternal && opts.externalLinkIcon) {
@@ -84,11 +89,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) 
                 }
 
                 // Check if the link has alias text
-                if (
-                  node.children.length === 1 &&
-                  node.children[0].type === "text" &&
-                  node.children[0].value !== dest
-                ) {
+                if (hasAlias) {
                   // Add the 'alias' class if the text content is not the same as the href
                   classes.push("alias")
                 }
@@ -127,6 +128,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) 
                 if (
                   opts.prettyLinks &&
                   isInternal &&
+                  !hasAlias &&
                   node.children.length === 1 &&
                   node.children[0].type === "text" &&
                   !node.children[0].value.startsWith("#")

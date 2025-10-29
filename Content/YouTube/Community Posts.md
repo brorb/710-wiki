@@ -178,7 +178,7 @@ Mistakes were made, but I corrected them. Please, if you can, try not to be too 
 SORRY, IT'S NOTHING PERSONAL
 ![[message received hex1.webp]]![[hex.webp]]
 ```
-
+_^The Hexadecimal roughly translates to: "!SYSTEM ALERT!: DOWNED @ 2920 (subject(logsynprotcogut.exe, lngsynview.exe, logpublisher.exe)) HAS CRASHED"_
 
 ```6,1,June 2025,
 I LOVE HOW IT'S ALL BLEEDING THROUGH NOW. DON'T YOU AGREE TRAVIS?
@@ -214,6 +214,15 @@ ERROR: "BIG_SYNTAX.rollout -- 5_5op" <- Assigned syntax estimated OVERFLOW ERROR
 ```5,2,May 2025,
 0A 45 52 52 4F 52 3A 20 6F 70 2D 73 79 73 2E 66 69 6C 65 28 4A 49 44 38 38 37 29 3A 6D 69 73 73 69 6E 67 7C 7C 66 69 6C 65 28 65 6E 63 72 79 70 74 73 65 72 76 69 63 65 5F 6C 69 73 74 2E 63 70 70 29 09 35 39 0A 52 45 4D 4F 56 49 4E 47 20 46 49 4C 45 53 20 46 52 4F 4D 45 20 43 2D 53 2D 53 20 4D 4F 56 49 4E 47 20 54 4F 20 53 2D 53 5B 23 34 32 38 39 33 33 5D 20 55 53 49 4E 47 20 53 53 48 20 54 4F 20 53 53 47 48 09 34 45 0A 43 4C 49 45 4E 54 20 53 49 44 45 20 56 45 49 57 49 4E 47 20 09 09 28 46 41 4C 53 45 29 09 09 09 09 09 34 39 0A 43 4C 49 45 4E 54 20 53 49 44 45 20 45 44 49 54 49 4E 47 09 09 28 46 41 4C 53 45 29 09 09 09 09 09 34 33 0A 50 52 4F 43 45 53 53 49 4E 47 20 44 41 54 41 2E 2E 2E
 ```
+_^The hexadecimal in this post translates to:_
+```
+E R R O R :   o p - s y s . f i l e ( J I D 8 8 7 ) : m i s s i n g | | f i l e ( e n c r y p t s e r v i c e _ l i s t . c p p )          5 9 
+ R E M O V I N G   F I L E S   F R O M E   C - S - S   M O V I N G   T O   S - S [ # 4 2 8 9 3 3 ]   U S I N G   S S H   T O   S S G H          4 E 
+ C L I E N T   S I D E   V E I W I N G                     ( F A L S E )                                              4 9 
+ C L I E N T   S I D E   E D I T I N G                   ( F A L S E )                                              4 3 
+ P R O C E S S I N G   D A T A . . .
+```
+
 
 ```6,1,March 2025,
 SYSTEM: ["Protection Score 0/10 Infected by LONG_STRING.nmk"]: Purging_system.MAIN<10% complete
@@ -226,7 +235,11 @@ TARGETED ROOT(ROOT/12/12.iip)-------------------------------100% Compliance(Good
 ```3,5,February 2025,
 68 74 74 70 73 3A 2F 2F 64 72 69 76 65 2E 67 6F 6F 67 6C 65 2E 63 6F 6D 2F 66 69 6C 65 2F 64 2F 31 73 6E 39 33 72 6A 54 62 62 7A 50 53 4C 46 5F 78 45 52 5A 55 71 54 52 69 4D 39 76 54 4A 30 66 73 2F 76 69 65 77 3F 75 73 70 3D 73 68 61 72 69 6E 67
 ```
-
+_^The hex translates to_
+```
+h t t p s : / / d r i v e . g o o g l e . c o m / f i l e / d / 1 s n 9 3 r j T b b z P S L F _ x E R Z U q T R i M 9 v T J 0 f s / v i e w ? u s p = s h a r i n g
+```
+_which is a Google Drive link to a file called [vacsystemrestart.mp3](https://drive.google.com/file/d/1sn93rjTbbzPSLF_xERZUqTRiM9vTJ0fs/view). This would lead to a major breakthrough, since the uploader of the file was the email "terminal8sbc@gmail.com", which @brorb sent an email to, resulting in [[SYSTEM]] joining the Sleuths' Discord server._
 ```5,2,February 2025,
 ![[unnamed.webp|300]]
 ```

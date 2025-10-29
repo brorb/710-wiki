@@ -1,4 +1,4 @@
-import { JSX } from "preact"
+import { Fragment, JSX } from "preact"
 import { render } from "preact-render-to-string"
 import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
@@ -257,6 +257,7 @@ export function renderPage(
     )
 
   const mobileBacklinksNodes: JSX.Element[] = []
+  const commentNodes: JSX.Element[] = []
   const footerNodes: JSX.Element[] = []
 
   for (const node of renderedAfterBody) {
@@ -264,10 +265,23 @@ export function renderPage(
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean))
     if (classList.has("backlinks") && classList.has("mobile-only")) {
       mobileBacklinksNodes.push(node)
+    } else if (classList.has("comments-section")) {
+      commentNodes.push(node)
     } else {
       footerNodes.push(node)
     }
   }
+
+  const commentsFragment =
+    commentNodes.length > 0 ? (
+      <Fragment>
+        {commentNodes.map((node, index) => (
+          <Fragment key={`footer-comment-${index}`}>{node}</Fragment>
+        ))}
+      </Fragment>
+    ) : (
+      <Fragment />
+    )
 
   const LeftComponent = (
     <div class="left sidebar">
@@ -327,6 +341,7 @@ export function renderPage(
                 </div>
               ) : null}
             </div>
+            {commentsFragment}
             {RightComponent}
             <Footer {...componentData} />
           </Body>

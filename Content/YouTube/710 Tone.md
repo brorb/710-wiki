@@ -1,5 +1,5 @@
 ---
-title: 710 Tone
+title: 7/10 Tone
 tags:
   - YouTube
   - documentation

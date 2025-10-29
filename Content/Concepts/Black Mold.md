@@ -11,7 +11,7 @@ Appearances: [[710 Tone]] YouTube channel description
 ```
 
 
-A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded. Hello there.
+A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d-lkjdzm -->, mentioned in the [[710 Tone]] YouTube channel description before it was deleted after [[KEY]] and [[lm-1]] were uploaded.
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
