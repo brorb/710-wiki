@@ -537,6 +537,14 @@ const DISCORD_CSS = `
   outline: none;
 }
 
+.discord-attachment iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  background: #000;
+}
+
 .discord-attachment video {
   max-height: 360px;
   background: #000;
@@ -548,6 +556,16 @@ const DISCORD_CSS = `
   border: none;
   background: rgba(15, 17, 22, 0.85);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.discord-attachment__frame {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: rgba(15, 17, 22, 0.85);
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
 }
 
 .discord-attachment__control::-webkit-media-controls-panel {
@@ -1150,9 +1168,10 @@ interface RenderMessagesOptions {
 
 const ATTACHMENT_ICON_AUDIO = `
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
-    <path d="M14 3v4.5H19" />
-    <path d="M10.5 13.5v4a2 2 0 1 1-2-2" />
+    <path d="M16 3v11" />
+    <path d="M16 7.25 9.25 8.5V18" />
+    <circle cx="8" cy="19" r="2.5" />
+    <circle cx="18" cy="17" r="2.5" />
   </svg>
 `
 
@@ -1275,7 +1294,18 @@ const renderAttachments = (attachments?: DiscordAttachment[]): string => {
 
       if (type === "video") {
         const escapedLabel = escapeAttribute(displayName)
-        const card = renderCard(type, src, displayName, subtitle)
+        const previewSrc = resolveGoogleDrivePreview(src)
+        const cardHref = previewSrc ?? src
+        const card = renderCard(type, cardHref, displayName, subtitle)
+
+        if (previewSrc) {
+          const escapedPreview = escapeAttribute(previewSrc)
+          return `<span class="discord-attachment discord-attachment--video">
+        ${card}
+        <iframe class="discord-attachment__frame" src="${escapedPreview}" title="${escapedLabel}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+      </span>`
+        }
+
         const escapedSrc = escapeAttribute(src)
         return `<span class="discord-attachment discord-attachment--video">
         ${card}
@@ -1445,7 +1475,7 @@ const renderMessages = (messages: DiscordMessage[], options: RenderMessagesOptio
       shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`)
     }
 
-  shareAttributes.push('data-share-copied="url copied"')
+  shareAttributes.push('data-share-copied="URL copied"')
 
     shareMarkup = `<div class="discord-thread-share-container article-share">
       <button ${shareAttributes.join(" ")}>
@@ -1653,6 +1683,45 @@ const extractExtension = (source: string): string | undefined => {
   return withoutQuery.slice(lastDot + 1).toLowerCase()
 }
 
+const resolveGoogleDrivePreview = (source: string): string | undefined => {
+  if (typeof source !== "string" || source.length === 0) {
+    return undefined
+  }
+
+  if (!/^https?:\/\//i.test(source)) {
+    return undefined
+  }
+
+  let url: URL
+  try {
+    url = new URL(source)
+  } catch {
+    return undefined
+  }
+
+  const hostname = url.hostname.toLowerCase()
+  if (!hostname.endsWith("drive.google.com")) {
+    return undefined
+  }
+
+  const pathname = url.pathname
+  if (!pathname.includes("/file/")) {
+    return undefined
+  }
+
+  let adjustedPath = pathname
+  if (adjustedPath.includes("/view")) {
+    adjustedPath = adjustedPath.replace(/\/view(?=\/?$)/, "/preview")
+  }
+
+  if (!adjustedPath.endsWith("/preview")) {
+    adjustedPath = adjustedPath.replace(/\/+$/, "")
+    adjustedPath = `${adjustedPath}/preview`
+  }
+
+  return `${url.origin}${adjustedPath}${url.search}`
+}
+
 const determineAttachmentType = (src: string, hint?: string): DiscordAttachmentType => {
   const hintValue = toLowerSafe(hint)
 
@@ -1676,6 +1745,10 @@ const determineAttachmentType = (src: string, hint?: string): DiscordAttachmentT
   }
 
   const extension = extractExtension(src)
+
+  if (resolveGoogleDrivePreview(src)) {
+    return "video"
+  }
 
   if (extension) {
     if (IMAGE_EXTENSIONS.has(extension)) {

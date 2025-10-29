@@ -4391,6 +4391,14 @@ var DISCORD_CSS = `
   outline: none;
 }
 
+.discord-attachment iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  background: #000;
+}
+
 .discord-attachment video {
   max-height: 360px;
   background: #000;
@@ -4402,6 +4410,16 @@ var DISCORD_CSS = `
   border: none;
   background: rgba(15, 17, 22, 0.85);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.discord-attachment__frame {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: rgba(15, 17, 22, 0.85);
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
 }
 
 .discord-attachment__control::-webkit-media-controls-panel {
@@ -4881,9 +4899,10 @@ var getAuthorKey = /* @__PURE__ */ __name((message) => {
 }, "getAuthorKey");
 var ATTACHMENT_ICON_AUDIO = `
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M14.5 3.5L19 8v11a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 19V5.5A2.5 2.5 0 0 1 7.5 3h6z" />
-    <path d="M14 3v4.5H19" />
-    <path d="M10.5 13.5v4a2 2 0 1 1-2-2" />
+    <path d="M16 3v11" />
+    <path d="M16 7.25 9.25 8.5V18" />
+    <circle cx="8" cy="19" r="2.5" />
+    <circle cx="18" cy="17" r="2.5" />
   </svg>
 `;
 var ATTACHMENT_ICON_VIDEO = `
@@ -4978,7 +4997,16 @@ var renderAttachments = /* @__PURE__ */ __name((attachments) => {
     }
     if (type === "video") {
       const escapedLabel = escapeAttribute(displayName);
-      const card2 = renderCard(type, src, displayName, subtitle);
+      const previewSrc = resolveGoogleDrivePreview(src);
+      const cardHref = previewSrc ?? src;
+      const card2 = renderCard(type, cardHref, displayName, subtitle);
+      if (previewSrc) {
+        const escapedPreview = escapeAttribute(previewSrc);
+        return `<span class="discord-attachment discord-attachment--video">
+        ${card2}
+        <iframe class="discord-attachment__frame" src="${escapedPreview}" title="${escapedLabel}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+      </span>`;
+      }
       const escapedSrc = escapeAttribute(src);
       return `<span class="discord-attachment discord-attachment--video">
         ${card2}
@@ -5107,7 +5135,7 @@ var renderMessages = /* @__PURE__ */ __name((messages, options2 = {}) => {
     if (shareText) {
       shareAttributes.push(`data-share-text="${escapeAttribute(shareText)}"`);
     }
-    shareAttributes.push('data-share-copied="url copied"');
+    shareAttributes.push('data-share-copied="URL copied"');
     shareMarkup = `<div class="discord-thread-share-container article-share">
       <button ${shareAttributes.join(" ")}>
         <span class="discord-thread-share__icon" aria-hidden="true"></span>
@@ -5277,6 +5305,37 @@ var extractExtension = /* @__PURE__ */ __name((source) => {
   }
   return withoutQuery.slice(lastDot + 1).toLowerCase();
 }, "extractExtension");
+var resolveGoogleDrivePreview = /* @__PURE__ */ __name((source) => {
+  if (typeof source !== "string" || source.length === 0) {
+    return void 0;
+  }
+  if (!/^https?:\/\//i.test(source)) {
+    return void 0;
+  }
+  let url;
+  try {
+    url = new URL(source);
+  } catch {
+    return void 0;
+  }
+  const hostname = url.hostname.toLowerCase();
+  if (!hostname.endsWith("drive.google.com")) {
+    return void 0;
+  }
+  const pathname = url.pathname;
+  if (!pathname.includes("/file/")) {
+    return void 0;
+  }
+  let adjustedPath = pathname;
+  if (adjustedPath.includes("/view")) {
+    adjustedPath = adjustedPath.replace(/\/view(?=\/?$)/, "/preview");
+  }
+  if (!adjustedPath.endsWith("/preview")) {
+    adjustedPath = adjustedPath.replace(/\/+$/, "");
+    adjustedPath = `${adjustedPath}/preview`;
+  }
+  return `${url.origin}${adjustedPath}${url.search}`;
+}, "resolveGoogleDrivePreview");
 var determineAttachmentType = /* @__PURE__ */ __name((src, hint) => {
   const hintValue = toLowerSafe(hint);
   if (hintValue) {
@@ -5291,6 +5350,9 @@ var determineAttachmentType = /* @__PURE__ */ __name((src, hint) => {
     }
   }
   const extension = extractExtension(src);
+  if (resolveGoogleDrivePreview(src)) {
+    return "video";
+  }
   if (extension) {
     if (IMAGE_EXTENSIONS.has(extension)) {
       return "image";
@@ -5946,7 +6008,7 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
   if (shareSnippet) {
     shareAttributes.push(`data-share-text="${escapeAttribute2(shareSnippet)}"`);
   }
-  shareAttributes.push('data-share-copied="url copied"');
+  shareAttributes.push('data-share-copied="URL copied"');
   const shareMarkup = `<div class="yt-community-post__share-container article-share">
       <button ${shareAttributes.join(" ")}>
         <span class="yt-community-post__share-icon" aria-hidden="true"></span>
