@@ -31977,9 +31977,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "brorb",
       "username": "brorb",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "We need to find a GitHub repo",
     "timestamp": "2025-08-03T14:55:00.000000+00:00",
@@ -32467,9 +32467,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "Abe",
       "username": "abegirl2322",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "ight be indi s steam games",
     "timestamp": "2025-08-03T15:06:00.000000+00:00",
@@ -32481,9 +32481,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "@SYSTEM What are you using github for?",
     "timestamp": "2025-08-03T15:06:00.000000+00:00",
@@ -32509,9 +32509,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "I mean I don't expect a straight answer but I might as well try.",
     "timestamp": "2025-08-03T15:06:00.000000+00:00",
@@ -32523,9 +32523,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "Abe",
       "username": "abegirl2322",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "Or the other guys computer from leak",
     "timestamp": "2025-08-03T15:07:00.000000+00:00",
@@ -32551,9 +32551,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "It's none of that, it's a service search that scans for influence of 7/10",
     "timestamp": "2025-08-03T15:08:00.000000+00:00",
@@ -32565,9 +32565,9 @@ You can also type $help category for more info on a category.
     "author": {
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
-      "color": "#AF65DA",
-      "colour": "#AF65DA",
-      "colour_value": 11494874
+      "color": "#04E5E6",
+      "colour": "#04E5E6",
+      "colour_value": 321478
     },
     "content": "Expected response...",
     "timestamp": "2025-08-03T15:08:00.000000+00:00",
