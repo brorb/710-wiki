@@ -10,6 +10,7 @@ import {
   forceCollide,
   forceRadial,
   zoomIdentity,
+  ZoomTransform,
   select,
   drag,
   zoom,
@@ -78,6 +79,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     zoom: enableZoom,
     depth,
     scale,
+    autoZoom,
     repelForce,
     centerForce,
     linkDistance,
@@ -161,8 +163,62 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       })),
   }
 
+  if (autoZoom?.enabled) {
+    const levels = autoZoom.zoomLevels ?? {}
+    const nodeCount = graphData.nodes.length
+
+    const resolvedScale = (() => {
+      if (nodeCount <= 1 && levels.nodes1 !== undefined) return levels.nodes1
+      if (nodeCount <= 2 && levels.nodes2 !== undefined) return levels.nodes2
+      if (nodeCount <= 3 && levels.nodes3 !== undefined) return levels.nodes3
+      if (nodeCount <= 4 && levels.nodes4 !== undefined) return levels.nodes4
+      if (nodeCount <= 5 && levels.nodes5 !== undefined) return levels.nodes5
+      if (nodeCount <= 6 && levels.nodes6 !== undefined) return levels.nodes6
+      if (nodeCount <= 9 && levels.nodes7to9 !== undefined) return levels.nodes7to9
+      if (nodeCount <= 15 && levels.nodes10to15 !== undefined) return levels.nodes10to15
+      if (nodeCount <= 25 && levels.nodes15to25 !== undefined) return levels.nodes15to25
+      if (levels.nodesAbove25 !== undefined) return levels.nodesAbove25
+      return undefined
+    })()
+
+    if (resolvedScale !== undefined) {
+      scale = resolvedScale
+    }
+  }
+
   const width = graph.offsetWidth
   const height = Math.max(graph.offsetHeight, 250)
+
+  const computeCanvasCenterFromNodes = (nodes: NodeData[]) => {
+    const positions = nodes
+      .map((node) => {
+        if (typeof node.x !== "number" || typeof node.y !== "number") {
+          return undefined
+        }
+
+        return {
+          x: node.x + width / 2,
+          y: node.y + height / 2,
+        }
+      })
+      .filter((pos): pos is { x: number; y: number } => pos !== undefined)
+
+    if (positions.length === 0) {
+      return {
+        x: width / 2,
+        y: height / 2,
+      }
+    }
+
+    const minX = Math.min(...positions.map((p) => p.x))
+    const maxX = Math.max(...positions.map((p) => p.x))
+    const minY = Math.min(...positions.map((p) => p.y))
+    const maxY = Math.max(...positions.map((p) => p.y))
+    return {
+      x: (minX + maxX) / 2,
+      y: (minY + maxY) / 2,
+    }
+  }
 
   const linkCountMap = new Map<SimpleSlug, number>()
   for (const node of graphData.nodes) {
@@ -182,6 +238,14 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     .force("center", forceCenter().strength(centerForce))
     .force("link", forceLink(graphData.links).distance(linkDistance))
     .force("collide", forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
+
+  const warmupIterations = autoZoom?.enabled
+    ? Math.min(120, Math.max(24, graphData.nodes.length * 8))
+    : 24
+  for (let i = 0; i < warmupIterations; i++) {
+    simulation.tick()
+  }
+  simulation.alpha(0.8).restart()
 
   const radius = (Math.min(width, height) / 2) * 0.8
   if (enableRadial) simulation.force("radial", forceRadial(radius).strength(0.2))
@@ -268,6 +332,11 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
   let dragStartTime = 0
   let dragging = false
+  let remainingAutoRecenters = autoZoom?.enabled
+    ? graphData.nodes.length <= 6
+      ? 5
+      : 2
+    : 0
 
   function renderLinks() {
     tweens.get("link")?.stop()
@@ -392,14 +461,59 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   const linkContainer = new Container<Graphics>({ zIndex: 1, isRenderGroup: true })
   stage.addChild(nodesContainer, labelsContainer, linkContainer)
 
+  const updateLabelVisibility = (transform: ZoomTransform) => {
+    const scaleValue = transform.k * opacityScale
+    let scaleOpacity = Math.max((scaleValue - 1) / 3.75, 0)
+    const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
+
+    for (const label of labelsContainer.children) {
+      if (!activeNodes.includes(label)) {
+        label.alpha = scaleOpacity
+      }
+    }
+  }
+
   const baseZoom = Math.max(scale ?? 1, 0.1)
-  const initialZoom = baseZoom * 1.25
-  const initialTranslateX = (width * (1 - initialZoom)) / 2
-  const initialTranslateY = (height * (1 - initialZoom)) / 2
-  const initialTransform = zoomIdentity.translate(initialTranslateX, initialTranslateY).scale(initialZoom)
-  let currentTransform = initialTransform
-  stage.scale.set(initialTransform.k, initialTransform.k)
-  stage.position.set(initialTransform.x, initialTransform.y)
+  const zoomPadding = autoZoom?.enabled ? autoZoom.padding ?? 1.25 : 1.25
+  const initialZoom = baseZoom * zoomPadding
+  const createTransformForCenter = (scaleValue: number) => {
+    const center = computeCanvasCenterFromNodes(graphData.nodes)
+    return zoomIdentity
+      .translate(width / 2 - scaleValue * center.x, height / 2 - scaleValue * center.y)
+      .scale(scaleValue)
+  }
+
+  let currentTransform: ZoomTransform = createTransformForCenter(initialZoom)
+
+  const applyTransform = (transform: ZoomTransform) => {
+    currentTransform = transform
+    stage.scale.set(transform.k, transform.k)
+    stage.position.set(transform.x, transform.y)
+  }
+
+  applyTransform(currentTransform)
+
+  let zoomBehavior: ReturnType<typeof zoom<HTMLCanvasElement, NodeData>> | undefined
+  let canvasSelection: ReturnType<typeof select<HTMLCanvasElement, NodeData>> | undefined
+  let suppressZoomHandler = false
+  let pendingTransform: ZoomTransform | null = null
+
+  const syncTransform = (transform: ZoomTransform) => {
+    applyTransform(transform)
+    updateLabelVisibility(transform)
+    if (!enableZoom) {
+      return
+    }
+
+    if (!canvasSelection || !zoomBehavior) {
+      pendingTransform = transform
+      return
+    }
+
+    suppressZoomHandler = true
+    canvasSelection.call(zoomBehavior.transform, transform)
+    suppressZoomHandler = false
+  }
 
   for (const n of graphData.nodes) {
     const nodeId = n.id
@@ -526,33 +640,30 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   if (enableZoom) {
-    const zoomBehavior = zoom<HTMLCanvasElement, NodeData>()
+    zoomBehavior = zoom<HTMLCanvasElement, NodeData>()
       .extent([
         [0, 0],
         [width, height],
       ])
       .scaleExtent([0.25, 4])
       .on("zoom", ({ transform }) => {
-        currentTransform = transform
-        stage.scale.set(transform.k, transform.k)
-        stage.position.set(transform.x, transform.y)
-
-        // zoom adjusts opacity of labels too
-        const scaleValue = transform.k * opacityScale
-        let scaleOpacity = Math.max((scaleValue - 1) / 3.75, 0)
-        const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
-
-        for (const label of labelsContainer.children) {
-          if (!activeNodes.includes(label)) {
-            label.alpha = scaleOpacity
-          }
+        if (suppressZoomHandler) {
+          return
         }
+
+        applyTransform(transform)
+        updateLabelVisibility(transform)
+        remainingAutoRecenters = 0
       })
 
-    const canvasSelection = select<HTMLCanvasElement, NodeData>(app.canvas).call(zoomBehavior)
-    canvasSelection.call(zoomBehavior.transform, initialTransform)
+    canvasSelection = select<HTMLCanvasElement, NodeData>(app.canvas).call(zoomBehavior)
+
+    const startingTransform = pendingTransform ?? currentTransform
+    pendingTransform = null
+    syncTransform(startingTransform)
   } else {
-    currentTransform = initialTransform
+    applyTransform(currentTransform)
+    updateLabelVisibility(currentTransform)
   }
 
   let stopAnimation = false
@@ -574,6 +685,12 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
       l.gfx
         .lineTo(linkData.target.x! + width / 2, linkData.target.y! + height / 2)
         .stroke({ alpha: l.alpha, width: 1, color: l.color })
+    }
+
+    if (remainingAutoRecenters > 0) {
+      const centredTransform = createTransformForCenter(currentTransform.k)
+      syncTransform(centredTransform)
+      remainingAutoRecenters--
     }
 
     tweens.forEach((t) => t.update(time))
@@ -701,8 +818,10 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
   }
 
-  const triggerElements = document.getElementsByClassName("global-graph-icon")
-  Array.from(triggerElements).forEach((trigger) => {
+  const triggerElements = document.querySelectorAll(
+    ".global-graph-icon, .graph__show-full",
+  ) as NodeListOf<HTMLElement>
+  triggerElements.forEach((trigger) => {
     trigger.addEventListener("click", renderGlobalGraph)
     window.addCleanup(() => trigger.removeEventListener("click", renderGlobalGraph))
   })

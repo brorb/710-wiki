@@ -8447,6 +8447,22 @@ var defaultOptions13 = {
     zoom: true,
     depth: 1,
     scale: 1.1,
+    autoZoom: {
+      enabled: true,
+      padding: 1.2,
+      zoomLevels: {
+        nodes1: 6,
+        nodes2: 5,
+        nodes3: 3.5,
+        nodes4: 3,
+        nodes5: 2.7,
+        nodes6: 2.4,
+        nodes7to9: 1.85,
+        nodes10to15: 1.5,
+        nodes15to25: 1.15,
+        nodesAbove25: 1
+      }
+    },
     repelForce: 0.5,
     centerForce: 0.3,
     linkDistance: 30,
@@ -8462,6 +8478,22 @@ var defaultOptions13 = {
     zoom: true,
     depth: -1,
     scale: 0.9,
+    autoZoom: {
+      enabled: true,
+      padding: 1.15,
+      zoomLevels: {
+        nodes1: 2.4,
+        nodes2: 2.2,
+        nodes3: 2,
+        nodes4: 1.85,
+        nodes5: 1.75,
+        nodes6: 1.65,
+        nodes7to9: 1.5,
+        nodes10to15: 1.2,
+        nodes15to25: 1,
+        nodesAbove25: 0.85
+      }
+    },
     repelForce: 0.5,
     centerForce: 0.2,
     linkDistance: 30,
@@ -8478,7 +8510,10 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
     const localGraph = { ...defaultOptions13.localGraph, ...opts?.localGraph };
     const globalGraph = { ...defaultOptions13.globalGraph, ...opts?.globalGraph };
     return /* @__PURE__ */ jsxs17("div", { class: classNames(displayClass, "graph"), children: [
-      /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.graph.title }),
+      /* @__PURE__ */ jsxs17("div", { class: "graph__heading-row", children: [
+        /* @__PURE__ */ jsx26("h3", { children: i18n(cfg.locale).components.graph.title }),
+        /* @__PURE__ */ jsx26("button", { class: "graph__show-full", type: "button", children: "Show full graph" })
+      ] }),
       /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
         /* @__PURE__ */ jsx26("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
         /* @__PURE__ */ jsx26("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx26(
