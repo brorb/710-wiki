@@ -20,13 +20,13 @@ type FrontmatterLinks = {
 const DEFAULT_LINKS: Record<"archive" | "discord", LinkConfig> = {
   archive: {
     label: "Visit the Archive Channel",
-    href: "https://www.youtube.com/@SleuthMedia",
+    href: "https://www.youtube.com/@710ToneArchiveChannel",
     description: "Catch up on reuploads, VODs, and finds from across the community.",
     iconSlug: "youtube",
   },
   discord: {
     label: "Join the Sleuths Discord",
-    href: "https://discord.gg/cRFFHYye7t",
+    href: "https://discord.gg/fRvXBHmzef",
     description: "Coordinate puzzle solving, share theories, and keep watch on live drops.",
     iconSlug: "discord",
   },

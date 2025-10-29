@@ -79,10 +79,10 @@ const defaultOptions: GraphOptions = {
     fontSize: 0.8,
     opacityScale: 1.6,
     labelVisibility: {
-      minAlpha: 0.25,
+      minAlpha: 0.05,
       maxAlpha: 1,
-      startZoom: 0.8,
-      endZoom: 2.6,
+      startZoom: 1,
+      endZoom: 2.9,
     },
     showTags: true,
     removeTags: [],

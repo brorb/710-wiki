@@ -40,6 +40,6 @@ INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 
 
 
  
-[^1]: At first, the channel was though to be run by a human, but [[710 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat.
+[^1]: At first, the channel was though to be run by a human, but [[710 NPP|7/10 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat.
 
 [^2]: See [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]

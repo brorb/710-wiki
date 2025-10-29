@@ -8598,10 +8598,10 @@ var defaultOptions13 = {
     fontSize: 0.8,
     opacityScale: 1.6,
     labelVisibility: {
-      minAlpha: 0.25,
+      minAlpha: 0.05,
       maxAlpha: 1,
-      startZoom: 0.8,
-      endZoom: 2.6
+      startZoom: 1,
+      endZoom: 2.9
     },
     showTags: true,
     removeTags: [],
@@ -9612,13 +9612,13 @@ import { jsx as jsx37, jsxs as jsxs25 } from "preact/jsx-runtime";
 var DEFAULT_LINKS = {
   archive: {
     label: "Visit the Archive Channel",
-    href: "https://www.youtube.com/@SleuthMedia",
+    href: "https://www.youtube.com/@710ToneArchiveChannel",
     description: "Catch up on reuploads, VODs, and finds from across the community.",
     iconSlug: "youtube"
   },
   discord: {
     label: "Join the Sleuths Discord",
-    href: "https://discord.gg/cRFFHYye7t",
+    href: "https://discord.gg/fRvXBHmzef",
     description: "Coordinate puzzle solving, share theories, and keep watch on live drops.",
     iconSlug: "discord"
   }

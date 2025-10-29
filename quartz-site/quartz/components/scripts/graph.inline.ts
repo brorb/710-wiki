@@ -990,6 +990,11 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
         updateLabelVisibility(transform)
         remainingAutoRecenters = 0
       })
+      .on("end", ({ transform }) => {
+        updateHoverInfo(null)
+        updateLabelVisibility(transform)
+        renderPixiFromD3()
+      })
 
     canvasSelection = select<HTMLCanvasElement, NodeData>(app.canvas).call(zoomBehavior)
 

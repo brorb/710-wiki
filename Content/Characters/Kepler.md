@@ -13,7 +13,7 @@ Also known as: K3P13R
 ```
 
 
-*Kepler* is the alias of the entity running the YouTube channel [[710 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]].
+*Kepler* is the alias of the entity running the YouTube channel [[710 NPP|7/10 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]].
 
 # Relationships
 ## [[INDI]]
