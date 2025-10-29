@@ -14,9 +14,9 @@ Status: Dead
 ```
 
 
-_Travis_ was a scientist who previously had control over the [[710 Tone]] YouTube channel.
+_Travis_ was a scientist who previously had control over the [[710 Tone|7/10 Tone]] YouTube channel.
 
-In [[STATION_8 TRIM 5]], Travis (through [7/10 Tone](obsidian://open?vault=710-wiki&file=Content%2FYouTube%2F710%20Tone)) and [[INDI]] (through [[710 NPP]]) shared the following chat messages:
+In [[STATION_8 TRIM 5]], Travis (through [[710 Tone|7/10 Tone]] ) and [[INDI]] (through [[710 NPP]]) shared the following chat messages:
 ```
 7/10 NPP: WHAT HAPPENED?
 7/10 Tone: Live went out for a bit

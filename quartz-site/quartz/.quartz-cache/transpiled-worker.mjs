@@ -3067,6 +3067,7 @@ var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
                 let dest = node.properties.href;
                 const classes = node.properties.className ?? [];
                 const isExternal = isAbsoluteUrl(dest);
+                const hasAlias = node.children.length === 1 && node.children[0].type === "text" && node.children[0].value !== dest;
                 classes.push(isExternal ? "external" : "internal");
                 if (isExternal && opts.externalLinkIcon) {
                   node.children.push({
@@ -3090,7 +3091,7 @@ var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
                     ]
                   });
                 }
-                if (node.children.length === 1 && node.children[0].type === "text" && node.children[0].value !== dest) {
+                if (hasAlias) {
                   classes.push("alias");
                 }
                 node.properties.className = classes;
@@ -3115,7 +3116,7 @@ var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
                   outgoing.add(simple);
                   node.properties["data-slug"] = full;
                 }
-                if (opts.prettyLinks && isInternal && node.children.length === 1 && node.children[0].type === "text" && !node.children[0].value.startsWith("#")) {
+                if (opts.prettyLinks && isInternal && !hasAlias && node.children.length === 1 && node.children[0].type === "text" && !node.children[0].value.startsWith("#")) {
                   node.children[0].value = path2.basename(node.children[0].value);
                 }
               }
@@ -6408,6 +6409,7 @@ Body.css = clipboard_default;
 var Body_default = /* @__PURE__ */ __name((() => Body), "default");
 
 // quartz/components/renderPage.tsx
+import { Fragment } from "preact";
 import { render } from "preact-render-to-string";
 
 // quartz/util/resources.tsx
@@ -6645,16 +6647,20 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
     (BodyComponent) => resolveToArray(renderQuartzComponent(BodyComponent, { ...componentData }))
   );
   const mobileBacklinksNodes = [];
+  const commentNodes = [];
   const footerNodes = [];
   for (const node of renderedAfterBody) {
     const nodeClass = typeof node?.props?.class === "string" ? node.props.class : "";
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean));
     if (classList.has("backlinks") && classList.has("mobile-only")) {
       mobileBacklinksNodes.push(node);
+    } else if (classList.has("comments-section")) {
+      commentNodes.push(node);
     } else {
       footerNodes.push(node);
     }
   }
+  const commentsFragment = commentNodes.length > 0 ? /* @__PURE__ */ jsx4(Fragment, { children: commentNodes.map((node, index) => /* @__PURE__ */ jsx4(Fragment, { children: node }, `footer-comment-${index}`)) }) : /* @__PURE__ */ jsx4(Fragment, {});
   const LeftComponent = /* @__PURE__ */ jsx4("div", { class: "left sidebar", children: left.map((BodyComponent, index) => /* @__PURE__ */ createElement(
     BodyComponent,
     {
@@ -6696,6 +6702,7 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
         mobileBacklinksNodes,
         footerNodes.length > 0 ? /* @__PURE__ */ jsx4("div", { class: "page-footer", children: footerNodes }) : null
       ] }),
+      commentsFragment,
       RightComponent,
       /* @__PURE__ */ jsx4(Footer, { ...componentData })
     ] }) }) }),
@@ -6707,7 +6714,7 @@ __name(renderPage, "renderPage");
 
 // quartz/util/jsx.tsx
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { Fragment, jsx as jsx5, jsxs as jsxs2 } from "preact/jsx-runtime";
+import { Fragment as Fragment2, jsx as jsx5, jsxs as jsxs2 } from "preact/jsx-runtime";
 
 // quartz/util/trace.ts
 import { styleText as styleText2 } from "util";
@@ -6751,7 +6758,7 @@ var customComponents = {
 function htmlToJsx(fp, tree) {
   try {
     return toJsxRuntime(tree, {
-      Fragment,
+      Fragment: Fragment2,
       jsx: jsx5,
       jsxs: jsxs2,
       elementAttributeNameCase: "html",
@@ -6853,7 +6860,7 @@ PageList.css = `
 `;
 
 // quartz/components/pages/TagContent.tsx
-import { Fragment as Fragment2, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-runtime";
 var defaultOptions9 = {
   numPages: 10
 };
@@ -6902,7 +6909,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
             /* @__PURE__ */ jsxs4("div", { class: "page-listing", children: [
               /* @__PURE__ */ jsxs4("p", { children: [
                 i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length }),
-                pages.length > options2.numPages && /* @__PURE__ */ jsxs4(Fragment2, { children: [
+                pages.length > options2.numPages && /* @__PURE__ */ jsxs4(Fragment3, { children: [
                   " ",
                   /* @__PURE__ */ jsx10("span", { children: i18n(cfg.locale).pages.tagContent.showingFirst({
                     count: options2.numPages
@@ -7818,11 +7825,11 @@ var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
 }, "write");
 
 // quartz/plugins/emitters/ogImage.tsx
-import { Fragment as Fragment3, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
+import { Fragment as Fragment4, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
 var CustomOgImagesEmitterName = "CustomOgImages";
 
 // quartz/components/Head.tsx
-import { Fragment as Fragment4, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
 var Head_default = /* @__PURE__ */ __name((() => {
   const Head = /* @__PURE__ */ __name(({
     cfg,
@@ -7850,7 +7857,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     return /* @__PURE__ */ jsxs11("head", { children: [
       /* @__PURE__ */ jsx18("title", { children: title }),
       /* @__PURE__ */ jsx18("meta", { charSet: "utf-8" }),
-      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment4, { children: [
+      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment5, { children: [
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.gstatic.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "stylesheet", href: googleFontHref(cfg.theme) }),
@@ -7866,7 +7873,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
       /* @__PURE__ */ jsx18("meta", { name: "twitter:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:image:alt", content: description }),
-      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment4, { children: [
+      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment5, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "og:image", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { property: "og:image:url", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { name: "twitter:image", content: ogImageDefaultPath }),
@@ -7878,7 +7885,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
           }
         )
       ] }),
-      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment4, { children: [
+      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment5, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "twitter:domain", content: url.host }),
         /* @__PURE__ */ jsx18("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx18("meta", { property: "twitter:url", content: socialUrl })
@@ -8707,7 +8714,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment5, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -8717,7 +8724,7 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     const { displayClass, fileData, cfg } = props;
     const disableComment = typeof fileData.frontmatter?.comments !== "undefined" && (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false");
     if (disableComment) {
-      return /* @__PURE__ */ jsx32(Fragment5, {});
+      return /* @__PURE__ */ jsx32(Fragment6, {});
     }
     if (opts.provider === "giscus") {
       const options3 = opts.options;
@@ -8967,7 +8974,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 }), "default");
 
 // quartz/components/InfoBox.tsx
-import { Fragment as Fragment6 } from "preact";
+import { Fragment as Fragment7 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
 var isExternalUrl3 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
@@ -9057,7 +9064,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
     }
     const combinedKey = normalized.map((entry) => entry.key).join("|");
     const children = intersperse(normalized.map((entry) => entry.node), ", ");
-    return { node: /* @__PURE__ */ jsx36(Fragment6, { children }), key: combinedKey };
+    return { node: /* @__PURE__ */ jsx36(Fragment7, { children }), key: combinedKey };
   }
   const text = normalizeString(value);
   if (!text) {
