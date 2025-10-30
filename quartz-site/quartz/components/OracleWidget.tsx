@@ -1,0 +1,510 @@
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+
+const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzComponentProps) => {
+  const oracleConfig = cfg.oracleChat
+
+  if (!oracleConfig || oracleConfig.enabled === false) {
+    return null
+  }
+
+  const articleTitle = fileData.frontmatter?.title ?? fileData.slug ?? ""
+  const articleSlug = fileData.slug ?? ""
+
+  const {
+    apiBaseUrl = "",
+    endpointPath = "/api/oracle/query",
+    recaptchaSiteKey,
+    storageKey = "oracle-chat-history",
+    maxHistory = 24,
+    apiToken,
+  } = oracleConfig
+
+  const launcherLabelId = "oracle-widget-launcher-label"
+
+  return (
+    <div
+      class="oracle-widget"
+      data-oracle-api-base={apiBaseUrl || undefined}
+      data-oracle-endpoint={endpointPath || undefined}
+      data-oracle-storage-key={storageKey}
+      data-oracle-max-history={String(maxHistory)}
+      data-oracle-recaptcha-key={recaptchaSiteKey || undefined}
+      data-oracle-article-title={articleTitle || undefined}
+      data-oracle-article-slug={articleSlug || undefined}
+      data-oracle-api-token={apiToken || undefined}
+    >
+      <button
+        type="button"
+        class="oracle-widget__launcher"
+        aria-haspopup="dialog"
+        aria-controls="oracle-chat-panel"
+        aria-expanded="false"
+        aria-labelledby={launcherLabelId}
+      >
+        <span class="oracle-widget__copy" id={launcherLabelId}>
+          <span class="oracle-widget__title">Ask ORA_CLE</span>
+        </span>
+        <span class="oracle-widget__avatar-wrap" aria-hidden="true">
+          <img
+            src="/static/oracle-pfp.png"
+            alt=""
+            class="oracle-widget__avatar"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+      </button>
+      <div class="oracle-chat" id="oracle-chat-panel" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="oracle-chat__overlay" data-oracle-dismiss></div>
+        <div class="oracle-chat__surface" role="document">
+          <header class="oracle-chat__header">
+            <div class="oracle-chat__identity">
+              <img
+                src="/static/oracle-pfp.png"
+                alt=""
+                class="oracle-chat__avatar"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="oracle-chat__identity-text">
+                <span class="oracle-chat__name">The ORA_CLE</span>
+                <span class="oracle-chat__status">Ready to answer wiki questions.</span>
+              </div>
+            </div>
+            <div class="oracle-chat__header-actions">
+              <button type="button" class="oracle-chat__reset" data-oracle-action="reset">
+                Reset
+              </button>
+              <button
+                type="button"
+                class="oracle-chat__close"
+                aria-label="Close chat"
+                data-oracle-action="close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+          </header>
+          <section class="oracle-chat__history" data-oracle-history aria-live="polite" aria-label="Conversation history"></section>
+          <form class="oracle-chat__composer" data-oracle-form>
+            <label class="oracle-chat__label" for="oracle-chat-input">
+              Ask a question about the 7/10 Wiki
+            </label>
+            <div class="oracle-chat__input-row">
+              <textarea
+                id="oracle-chat-input"
+                class="oracle-chat__input"
+                name="oracle-chat-input"
+                placeholder="Ask ORA_CLE anything about this wiki..."
+                data-oracle-input
+                rows={1}
+                autoComplete="off"
+                autoCapitalize="sentences"
+                spellcheck={true}
+              ></textarea>
+              <button type="submit" class="oracle-chat__send" data-oracle-send disabled>
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const oracleWidgetStyles = `
+.oracle-widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.oracle-widget__launcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid color-mix(in srgb, var(--color-accent-bright) 75%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent-bright) 25%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 55%, transparent) 100%
+  );
+  color: var(--color-primary-background);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem 0.22rem 1.1rem;
+  min-height: 2.45rem;
+  cursor: pointer;
+  transition: background 160ms ease, transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 115, 125, 0.35),
+    inset 0 -2px 6px rgba(107, 0, 4, 0.4),
+    0 0 12px rgba(235, 28, 36, 0.4);
+}
+
+.oracle-widget__launcher:hover,
+.oracle-widget__launcher:focus-visible {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent-bright) 35%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 70%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, var(--color-accent-bright) 85%, transparent);
+  box-shadow:
+    inset 0 2px 8px rgba(255, 140, 150, 0.45),
+    inset 0 -2px 8px rgba(107, 0, 4, 0.5),
+    0 0 18px rgba(235, 28, 36, 0.55);
+}
+
+.oracle-widget__launcher:active {
+  transform: translateY(1px);
+}
+
+.oracle-widget__launcher:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+.oracle-widget__avatar-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  overflow: visible;
+  margin-left: 0.1rem;
+  margin-right: -0.75rem;
+}
+
+.oracle-widget__avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  transform: translateX(10px);
+}
+
+.oracle-widget__copy {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  line-height: 1.1;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  color: var(--color-tone-primary);
+}
+
+.oracle-widget__title {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-family: "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace;
+  color: var(--color-tone-primary);
+}
+
+.oracle-chat {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 999;
+}
+
+.oracle-chat.oracle-chat--open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.oracle-chat__overlay {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-panel-depth) 40%, rgba(0, 0, 0, 0.65));
+  backdrop-filter: blur(4px);
+}
+
+.oracle-chat__surface {
+  position: relative;
+  width: min(640px, calc(100vw - 2.5rem));
+  max-height: min(80vh, 720px);
+  background: var(--color-primary-background);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
+  box-shadow: 0 34px 68px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.oracle-chat[aria-hidden="true"] {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.oracle-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.35rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-shadow) 30%, transparent);
+}
+
+.oracle-chat__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.oracle-chat__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.oracle-chat__identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.oracle-chat__name {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__status {
+  font-size: 0.82rem;
+  color: var(--color-tone-muted);
+}
+
+.oracle-chat__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oracle-chat__reset {
+  border: none;
+  background: transparent;
+  color: var(--color-accent-bright);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.oracle-chat__reset:hover,
+.oracle-chat__reset:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__close {
+  border: none;
+  background: color-mix(in srgb, var(--color-accent-shadow) 30%, transparent);
+  color: var(--color-tone-contrast);
+  font-size: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oracle-chat__close:hover,
+.oracle-chat__close:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 35%, transparent);
+}
+
+.oracle-chat__history {
+  flex: 1 1 auto;
+  padding: 1.1rem 1.35rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+
+.oracle-chat__history:empty::before {
+  content: "Ask a question to start your conversation with the ORA_CLE.";
+  color: var(--color-tone-muted);
+  font-size: 0.9rem;
+}
+
+.oracle-chat__message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.oracle-chat__message--user {
+  align-items: flex-end;
+}
+
+.oracle-chat__bubble {
+  max-width: 85%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-accent-shadow-light) 45%, transparent);
+  color: var(--color-tone-contrast);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.oracle-chat__message--user .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  color: var(--color-primary-background);
+}
+
+.oracle-chat__message--assistant .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-accent-shadow) 18%, transparent);
+}
+
+.oracle-chat__message--error .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__timestamp {
+  font-size: 0.7rem;
+  color: var(--color-tone-muted);
+}
+
+.oracle-chat__composer {
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-shadow) 24%, transparent);
+  padding: 0.9rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.oracle-chat__label {
+  font-size: 0.78rem;
+  color: var(--color-tone-subtle);
+}
+
+.oracle-chat__input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+.oracle-chat__input {
+  flex: 1 1 auto;
+  resize: none;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 25%, transparent);
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  min-height: 2.35rem;
+  max-height: 8.5rem;
+  background: var(--color-primary-background);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__input:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.oracle-chat__send {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--color-accent-bright);
+  color: var(--color-primary-background);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.oracle-chat__send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.oracle-chat__send:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.oracle-chat__message--pending .oracle-chat__bubble::after {
+  content: "…";
+  margin-left: 0.35rem;
+  animation: oracle-chat-typing 1.2s infinite;
+}
+
+@keyframes oracle-chat-typing {
+  0% {
+    opacity: 0.2;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 720px) {
+  .oracle-widget {
+    width: 100%;
+  }
+
+  .oracle-widget__launcher {
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 1rem;
+  }
+
+  .oracle-chat__surface {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .oracle-chat__overlay {
+    backdrop-filter: none;
+  }
+}
+`
+
+OracleWidgetComponent.css = oracleWidgetStyles
+
+export const ORACLE_WIDGET_STYLES = oracleWidgetStyles
+
+// @ts-ignore - inline script loader provides this
+import oracleChatScript from "./scripts/oracleChat.inline"
+
+// @ts-ignore
+// @ts-ignore
+OracleWidgetComponent.afterDOMLoaded = oracleChatScript
+
+export const ORACLE_WIDGET_SCRIPT = oracleChatScript
+
+export const OracleWidget = OracleWidgetComponent
+
+export default (() => OracleWidgetComponent) satisfies QuartzComponentConstructor

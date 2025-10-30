@@ -94,6 +94,15 @@ const config: QuartzConfig = {
         },
       },
     },
+    oracleChat: {
+      enabled: true,
+      apiBaseUrl: "",
+      endpointPath: "/api/oracle/query",
+      recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
+      storageKey: "oracle-chat-history",
+      maxHistory: 24,
+      apiToken: process.env.ORACLE_WEB_API_TOKEN ?? "",
+    },
   },
   plugins: {
     transformers: [

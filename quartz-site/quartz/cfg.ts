@@ -4,6 +4,16 @@ import { ValidLocale } from "./i18n"
 import { PluginTypes } from "./plugins/types"
 import { Theme } from "./util/theme"
 
+export interface OracleChatConfiguration {
+  enabled?: boolean
+  apiBaseUrl?: string
+  endpointPath?: string
+  recaptchaSiteKey?: string
+  storageKey?: string
+  maxHistory?: number
+  apiToken?: string
+}
+
 export type Analytics =
   | null
   | {
@@ -78,6 +88,7 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  oracleChat?: OracleChatConfiguration
 }
 
 export interface QuartzConfig {

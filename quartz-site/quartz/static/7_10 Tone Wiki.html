@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html lang="en" dir="ltr" saved-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+    .utterances {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .utterances-frame {
+      color-scheme: light;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 1px;
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style><style>
+    .utterances {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .utterances-frame {
+      color-scheme: light;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 1px;
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style><title>7/10 Tone Wiki</title><link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://fonts.gstatic.com/"><link rel="stylesheet" href="./7_10 Tone Wiki_files/css2"><link rel="preconnect" href="https://cdnjs.cloudflare.com/" crossorigin="anonymous"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="og:site_name" content="710 Tone Sleuth Wiki"><meta property="og:title" content="7/10 Tone Wiki"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="7/10 Tone Wiki"><meta name="twitter:description" content="Welcome to the 7/10 Tone Sleuth Wiki! This is a community-driven wiki project driven by the The Sleuths and is not officially affiliated with the ARG known as 7/10 Tone."><meta property="og:description" content="Welcome to the 7/10 Tone Sleuth Wiki! This is a community-driven wiki project driven by the The Sleuths and is not officially affiliated with the ARG known as 7/10 Tone."><meta property="og:image:alt" content="Welcome to the 7/10 Tone Sleuth Wiki! This is a community-driven wiki project driven by the The Sleuths and is not officially affiliated with the ARG known as 7/10 Tone."><meta property="og:image" content="https://www.710tone.wiki/static/og-image.png"><meta property="og:image:url" content="https://www.710tone.wiki/static/og-image.png"><meta name="twitter:image" content="https://www.710tone.wiki/static/og-image.png"><meta property="og:image:type" content="image/.png"><meta property="twitter:domain" content="www.710tone.wiki"><meta property="og:url" content="https://www.710tone.wiki/index"><meta property="twitter:url" content="https://www.710tone.wiki/index"><link rel="icon" href="http://localhost:8080/static/icon.png?v=1761826034010"><meta name="description" content="Welcome to the 7/10 Tone Sleuth Wiki! This is a community-driven wiki project driven by the The Sleuths and is not officially affiliated with the ARG known as 7/10 Tone."><meta name="generator" content="Quartz"><link href="./7_10 Tone Wiki_files/index.css" rel="stylesheet" type="text/css" spa-preserve=""><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  padding: 2rem;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYnJvci9Eb2N1bWVudHMvNzEwLXdpa2kvcXVhcnR6LXNpdGUvcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBhZGRpbmc6IDJyZW07XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><style>
+.discord-thread {
+  --discord-bg: #2b2d31;
+  --discord-border: #1f2024;
+  --discord-hover: rgba(78, 80, 88, 0.6);
+  --discord-text-primary: #f2f3f5;
+  --discord-text-muted: #b5bac1;
+  --discord-author: #f2f3f5;
+  --discord-accent: #5865f2;
+  background: var(--discord-bg);
+  border: 1px solid var(--discord-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: min(720px, 100%);
+  font-family: &quot;gg sans&quot;, &quot;Noto Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+  position: relative;
+}
+
+.discord-thread-wrapper {
+  position: relative;
+  max-width: min(720px, 100%);
+  display: block;
+}
+
+.discord-thread-content {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.discord-thread-content.collapsed {
+  max-height: 420px;
+}
+
+.discord-thread-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 120px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 45, 49, 0) 0%,
+    rgba(43, 45, 49, 0.72) 52%,
+    color-mix(in srgb, rgba(43, 45, 49, 0.9) 30%, var(--color-primary-background) 70%) 78%,
+    var(--color-primary-background) 100%
+  );
+  transition: opacity 0.28s ease;
+  z-index: 2;
+}
+
+.discord-thread-wrapper.collapsed .discord-thread-fade,
+.discord-thread-content.collapsed .discord-thread-fade {
+  opacity: 1;
+}
+
+.discord-collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  margin: 0 auto;
+  margin-top: -3rem;
+  background: var(--color-surface-overlay);
+  border: 1px solid var(--color-accent-deep);
+  border-radius: 8px;
+  color: var(--color-tone-contrast);
+  font-family: var(--bodyFont);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 3;
+  width: fit-content;
+  min-width: 140px;
+}
+
+.discord-thread-content:not(.collapsed) + .discord-collapse-toggle {
+  margin-top: 0.75rem;
+}
+
+.discord-collapse-toggle:hover {
+  background: var(--color-highlight-overlay);
+  border-color: var(--color-accent-bright);
+  color: var(--color-tone-contrast);
+}
+
+.discord-collapse-toggle:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.discord-collapse-icon {
+  width: 16px;
+  height: 16px;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease;
+}
+
+.discord-collapse-toggle[aria-expanded=&quot;false&quot;] .discord-collapse-icon {
+  transform: rotate(0deg);
+}
+
+.discord-collapse-toggle[aria-expanded=&quot;true&quot;] .discord-collapse-icon,
+.discord-collapse-toggle.is-expanded .discord-collapse-icon {
+  transform: rotate(180deg);
+}
+
+.discord-message {
+  position: relative;
+  border-radius: 8px;
+  padding: 6px 8px 4px;
+  color: var(--discord-text-primary);
+  --discord-author-color: var(--discord-author);
+  scroll-margin-top: 120px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  text-decoration: none;
+  align-items: flex-start;
+  width: 100%;
+  font: inherit;
+  user-select: text;
+  cursor: default;
+  transition: background 0.18s ease;
+}
+
+.discord-message * {
+  font-weight: inherit;
+}
+
+.discord-message[data-discord-jump] {
+  cursor: pointer;
+}
+
+.discord-message[data-discord-jump]:focus-visible {
+  outline: 2px solid var(--discord-accent);
+  outline-offset: 2px;
+}
+
+.discord-message + .discord-message {
+  margin-top: 2px;
+}
+
+.discord-message:hover {
+  background: var(--discord-hover);
+}
+
+.discord-message--compact {
+  padding-top: 2px;
+}
+
+.discord-avatar {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1f2125;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.discord-avatar-spacer {
+  width: 40px;
+  min-width: 40px;
+  height: 10px;
+  display: block;
+  margin-top: 6px;
+}
+
+.discord-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.discord-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.discord-message--compact .discord-body {
+  gap: 0.18rem;
+}
+
+.discord-header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+  row-gap: 0.15rem;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  min-width: 0;
+}
+
+.discord-author {
+  font-weight: 600;
+  color: var(--discord-author-color, var(--discord-author));
+}
+
+.discord-header time {
+  font-size: 0.8125rem;
+  color: var(--discord-text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.discord-content {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.discord-content--compact {
+  margin-top: 2px;
+}
+
+.discord-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.discord-attachment {
+  display: block;
+  max-width: min(420px, 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1f2126;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);
+}
+
+.discord-attachment__card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--discord-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.discord-attachment__card:hover,
+.discord-attachment__card:focus-visible {
+  background: rgba(88, 101, 242, 0.16);
+  border-color: rgba(88, 101, 242, 0.32);
+  text-decoration: none;
+  outline: none;
+}
+
+.discord-attachment__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(88, 101, 242, 0.2);
+  color: #c7ccff;
+  flex-shrink: 0;
+}
+
+.discord-attachment__icon img,
+.discord-attachment__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.discord-attachment__icon img {
+  object-fit: contain;
+  display: block;
+}
+
+.discord-attachment__card--audio .discord-attachment__icon img {
+  filter: brightness(0) saturate(100%);
+}
+
+.discord-attachment__card--video .discord-attachment__icon {
+  background: rgba(89, 54, 255, 0.24);
+  color: #d7cbff;
+}
+
+.discord-attachment__card--file .discord-attachment__icon {
+  background: rgba(79, 84, 92, 0.35);
+  color: #d6dae3;
+}
+
+.discord-attachment__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.discord-attachment__name {
+  font-weight: 600;
+  color: var(--discord-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__subtitle {
+  font-size: 0.8rem;
+  color: var(--discord-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discord-attachment__image-link {
+  display: block;
+  color: inherit;
+}
+
+.discord-attachment__image-link:hover,
+.discord-attachment__image-link:focus-visible {
+  opacity: 0.94;
+  outline: none;
+}
+
+.discord-attachment img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.discord-attachment audio,
+.discord-attachment video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+}
+
+.discord-attachment iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  background: #000;
+}
+
+.discord-attachment video {
+  max-height: 360px;
+  background: #000;
+}
+
+.discord-attachment__control {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(15, 17, 22, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.discord-attachment__frame {
+  margin: 0.65rem 1rem 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: rgba(15, 17, 22, 0.85);
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
+}
+
+.discord-attachment__control::-webkit-media-controls-panel {
+  background-color: rgba(32, 34, 37, 0.95);
+}
+
+.discord-attachment__control::-webkit-media-controls-enclosure {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.discord-attachment--file {
+  padding: 0;
+}
+
+.discord-attachment--file a {
+  color: inherit;
+}
+
+.discord-message .external-icon {
+  display: none !important;
+}
+
+.discord-thread-wrapper {
+  position: relative;
+  max-width: min(720px, 100%);
+  scroll-margin-top: 120px;
+}
+
+.discord-thread-share-container.article-share {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -6px, 0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 4;
+}
+
+.discord-thread-share-container.article-share .article-share__feedback {
+  text-align: right;
+  min-height: 0.85rem;
+}
+
+.discord-thread-share.article-share__button {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #d6dae3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.discord-thread-share__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url(/static/icons/share_icon.svg);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+
+.discord-thread-wrapper:hover .discord-thread-share-container,
+.discord-thread-wrapper:focus-within .discord-thread-share-container,
+.discord-thread-wrapper:target .discord-thread-share-container,
+.discord-thread-share-container:focus-within {
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.discord-thread-share.article-share__button:hover {
+  color: var(--color-accent-deep);
+}
+
+.discord-thread-share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.discord-thread-wrapper:target,
+.discord-thread-wrapper:has(.discord-message:target) {
+  isolation: isolate;
+  z-index: 6;
+}
+
+.discord-thread-wrapper:target .discord-thread-content,
+.discord-thread-wrapper:has(.discord-message:target) .discord-thread-content {
+  overflow: visible;
+}
+
+.discord-thread-wrapper:target .discord-thread-fade,
+.discord-thread-wrapper:has(.discord-message:target) .discord-thread-fade {
+  opacity: 0;
+}
+
+.discord-thread-wrapper:target .discord-thread,
+.discord-message:target {
+  position: relative;
+  z-index: 2;
+}
+
+.discord-message:target {
+  isolation: isolate;
+}
+
+@media (hover: none) {
+  .discord-thread-share-container {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes discord-target-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.65), 0 0 0 rgba(235, 28, 36, 0.1);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.25), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.discord-message:target,
+.discord-thread-wrapper:target .discord-thread {
+  animation: discord-target-glow 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 24px rgba(235, 28, 36, 0.35);
+}
+
+.discord-timestamp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.discord-cite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+}
+
+.discord-cite__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 120ms ease;
+  color: var(--discord-cite-icon, #b71002);
+  position: relative;
+  top: -0.3em;
+}
+
+.discord-cite__trigger svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.discord-cite__trigger:hover {
+  background: rgba(88, 101, 242, 0.2);
+  color: var(--discord-cite-icon-hover, #eb1c24);
+}
+
+.discord-cite__trigger:focus-visible {
+  outline: 2px solid var(--discord-accent);
+  outline-offset: 2px;
+}
+
+.discord-cite__preview {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  max-width: min(480px, 85vw);
+}
+
+.discord-cite__preview::before {
+  content: &quot;&quot;;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-bottom-color: var(--discord-border);
+}
+
+.discord-cite:hover .discord-cite__preview,
+.discord-cite:focus-within .discord-cite__preview {
+  display: block;
+}
+
+.discord-cite__preview-content {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 24px 48px rgba(15, 15, 20, 0.45);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.discord-cite__preview .discord-thread {
+  max-width: min(520px, 85vw);
+  min-width: min(420px, 75vw);
+}
+
+.discord-cite__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.callout.discord-cite {
+  display: none !important;
+}
+</style><style>
+.yt-community-post {
+  background: #202020;
+  border: 1px solid #2f2f2f;
+  border-radius: 16px;
+  padding: 13px 18px 16px;
+  color: #f1f1f1;
+  max-width: min(640px, 100%);
+  font-family: &quot;Roboto&quot;, &quot;Source Sans Pro&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  scroll-margin-top: 120px;
+  transition: box-shadow 0.24s ease;
+}
+
+.yt-community-post + .yt-community-post {
+  margin-top: 20px;
+}
+
+.yt-community-post__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.yt-community-post__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.yt-community-post__content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.yt-community-post__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.yt-community-post__identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1;
+}
+
+.yt-community-post__channel {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.yt-community-post__timestamp {
+  color: #a7a7a7;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.yt-community-post__share-container.article-share {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.yt-community-post__share-container.article-share .article-share__feedback {
+  min-height: 0.8rem;
+  text-align: right;
+}
+
+.yt-community-post__share.article-share__button {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.yt-community-post:hover .yt-community-post__share.article-share__button,
+.yt-community-post__share.article-share__button:focus-visible {
+  opacity: 1;
+}
+
+.yt-community-post__share.article-share__button:hover {
+  color: var(--color-accent-deep);
+}
+
+.yt-community-post__share.article-share__button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.yt-community-post__share-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: currentColor;
+  mask-image: url(/static/icons/share_icon.svg);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url(/static/icons/share_icon.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.yt-community-post__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.93rem;
+}
+
+.yt-community-post__text {
+  line-height: 1.48;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.yt-community-post__text br {
+  content: &quot;&quot;;
+}
+
+.yt-community-post__embed {
+  margin: 0;
+  padding: 0;
+}
+
+.yt-community-post__embed img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.yt-community-post__footer {
+  margin-top: 4px;
+}
+
+.yt-community-post__actions {
+  display: flex;
+  gap: 16px;
+  color: #b0b0b0;
+  font-size: 0.82rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.yt-community-post__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+}
+
+.yt-community-post__action svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.yt-community-post__count {
+  font-size: 0.78rem;
+  color: #cecece;
+}
+
+@media (hover: none) {
+  .yt-community-post__share.article-share__button {
+    opacity: 1;
+  }
+}
+
+@keyframes yt-community-post-target {
+  0% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0.55), 0 0 0 rgba(235, 28, 36, 0.12);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(235, 28, 36, 0.3), 0 0 30px rgba(235, 28, 36, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 28, 36, 0);
+  }
+}
+
+.yt-community-post:target {
+  animation: yt-community-post-target 1.6s ease-out;
+  box-shadow: 0 0 0 2px rgba(235, 28, 36, 0.45), 0 0 28px rgba(235, 28, 36, 0.32);
+}
+
+.yt-community-post:target .yt-community-post__share.article-share__button {
+  opacity: 1;
+}
+</style><link href="./7_10 Tone Wiki_files/katex.min.css" rel="stylesheet" type="text/css" spa-preserve=""><script src="./7_10 Tone Wiki_files/prescript.js" type="application/javascript" spa-preserve=""></script><script type="application/javascript" spa-preserve="">const fetchData = fetch("./static/contentIndex.json?v=1761826034010").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://https//www.710tone.wiki/index.xml"></head><body data-slug="index"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><div class="page-title-container"><a class="page-title-link" href="http://localhost:8080/" aria-label="710 Tone Sleuth Wiki" data-no-popover="true"><img class="logo-desktop Logo site-logo" src="./7_10 Tone Wiki_files/wiki_logo.png" alt="710 Tone Sleuth Wiki" loading="lazy" decoding="async" data-no-zoom="true"><span class="banner-wrapper"><img class="banner-mobile" src="./7_10 Tone Wiki_files/banner.png" alt="710 Tone Sleuth Wiki" loading="lazy" decoding="async" data-no-zoom="true"></span></a></div><div class="search  desktop-only"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"><div class="search-layout" data-preview="true"><div class="results-container"></div><div class="preview-container"></div></div></div></div></div><div class="explorer collapsed mobile-only" data-behavior="link" data-collapsed="collapsed" data-savestate="false" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=&gt;!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=&gt;{let segment=typeof node.slugSegment==\&quot;string\&quot;?node.slugSegment.toLowerCase():\&quot;\&quot;;return segment!==\&quot;templates\&quot;&amp;&amp;segment!==\&quot;canvases\&quot;}&quot;,&quot;mapFn&quot;:&quot;node=&gt;node&quot;}" data-scroll-proxy-bound="true"><div class="explorer-header"><button type="button" class="explorer-toggle mobile-explorer" data-mobile="true" aria-controls="explorer-430" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="explorer-header-slot"><div class="search search-inline mobile-only"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"><div class="search-layout" data-preview="true"><div class="results-container"></div><div class="preview-container"></div></div></div></div></div></div></div><div id="explorer-430" class="explorer-content" aria-expanded="false" role="group" data-scroll-proxy-bound="true"><ul class="explorer-ul overflow gradient-active" id="list-2"><li><div class="folder-container" data-folderpath="Characters/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Characters/" data-for="Characters/index" class="folder-title">Characters</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Characters/Aliases/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Characters/Aliases/" data-for="Characters/Aliases/index" class="folder-title">Aliases</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Characters/Aliases/A992144" data-for="Characters/Aliases/A992144">A992144</a></li><li><a href="http://localhost:8080/Characters/Aliases/F2617" data-for="Characters/Aliases/F2617">F2617</a></li><li><a href="http://localhost:8080/Characters/Aliases/F2930" data-for="Characters/Aliases/F2930">F2930</a></li><li><a href="http://localhost:8080/Characters/Aliases/F8887" data-for="Characters/Aliases/F8887">F8887</a></li><li><a href="http://localhost:8080/Characters/Aliases/F82991" data-for="Characters/Aliases/F82991">F82991</a></li><li><a href="http://localhost:8080/Characters/Aliases/TTHA0002" data-for="Characters/Aliases/TTHA0002">TTHA0002</a></li><li><a href="http://localhost:8080/Characters/Aliases/X331239" data-for="Characters/Aliases/X331239">X331239</a></li></ul></div></li><li><a href="http://localhost:8080/Characters/APP-TRUSTED-02" data-for="Characters/APP-TRUSTED-02">APP TRUSTED 02</a></li><li><a href="http://localhost:8080/Characters/Bob" data-for="Characters/Bob">Bob</a></li><li><a href="http://localhost:8080/Characters/D4V1NC1" data-for="Characters/D4V1NC1">D4V1NC1</a></li><li><a href="http://localhost:8080/Characters/He" data-for="Characters/He">He</a></li><li><a href="http://localhost:8080/Characters/INDI" data-for="Characters/INDI">INDI</a></li><li><a href="http://localhost:8080/Characters/Kepler" data-for="Characters/Kepler">Kepler</a></li><li><a href="http://localhost:8080/Characters/Mr.-Forest" data-for="Characters/Mr.-Forest">Mr. Forest</a></li><li><a href="http://localhost:8080/Characters/REN" data-for="Characters/REN">REN</a></li><li><a href="http://localhost:8080/Characters/SYSTEM" data-for="Characters/SYSTEM">SYSTEM</a></li><li><a href="http://localhost:8080/Characters/Travis" data-for="Characters/Travis">Travis</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Concepts/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Concepts/" data-for="Concepts/index" class="folder-title">Concepts</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Concepts/Black-Mold" data-for="Concepts/Black-Mold">Black Mold</a></li><li><a href="http://localhost:8080/Concepts/Caper-Waves" data-for="Concepts/Caper-Waves">Caper Waves</a></li><li><a href="http://localhost:8080/Concepts/Channel-14" data-for="Concepts/Channel-14">Channel 14</a></li><li><a href="http://localhost:8080/Concepts/CIN-Centers" data-for="Concepts/CIN-Centers">CIN Centers</a></li><li><a href="http://localhost:8080/Concepts/Ferkland-County" data-for="Concepts/Ferkland-County">Ferkland County</a></li><li><a href="http://localhost:8080/Concepts/Ferkland-Institute" data-for="Concepts/Ferkland-Institute">Ferkland Institute</a></li><li><a href="http://localhost:8080/Concepts/Long-String" data-for="Concepts/Long-String">Long String</a></li><li><a href="http://localhost:8080/Concepts/Private-Room" data-for="Concepts/Private-Room">Private Room</a></li><li><a href="http://localhost:8080/Concepts/prj_Home.exe" data-for="Concepts/prj_Home.exe">prj_Home.exe</a></li><li><a href="http://localhost:8080/Concepts/SERVER-01" data-for="Concepts/SERVER-01">SERVER 01</a></li><li><a href="http://localhost:8080/Concepts/Station-Interruption" data-for="Concepts/Station-Interruption">Station Interruption</a></li><li><a href="http://localhost:8080/Concepts/Station-Timer" data-for="Concepts/Station-Timer">Station Timer</a></li><li><a href="http://localhost:8080/Concepts/The-Eyes" data-for="Concepts/The-Eyes">The Eyes</a></li><li><a href="http://localhost:8080/Concepts/The-Logs" data-for="Concepts/The-Logs">The Logs</a></li><li><a href="http://localhost:8080/Concepts/The-Transmitter" data-for="Concepts/The-Transmitter">The Transmitter</a></li><li><a href="http://localhost:8080/Concepts/TRUTH.zip" data-for="Concepts/TRUTH.zip">TRUTH.zip</a></li><li><a href="http://localhost:8080/Concepts/TTH" data-for="Concepts/TTH">TTH</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Discord/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Discord/" data-for="Discord/index" class="folder-title">Discord</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Discord/System-Chats" data-for="Discord/System-Chats">System Chats</a></li><li><a href="http://localhost:8080/Discord/The-Oracle" data-for="Discord/The-Oracle">The Oracle</a></li><li><a href="http://localhost:8080/Discord/The-Sleuths" data-for="Discord/The-Sleuths">The Sleuths</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Guides/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Guides/" data-for="Guides/index" class="folder-title">Guides</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Guides/Infobox-Reference" data-for="Guides/Infobox-Reference">Infobox Reference</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Media/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/" data-for="Media/index" class="folder-title">Media</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Media/710-Media/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/710-Media/" data-for="Media/710-Media/index" class="folder-title">710 Media</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Media/710-Media/Audio/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/710-Media/Audio/" data-for="Media/710-Media/Audio/index" class="folder-title">Audio</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Media/710-Media/Audio/vacsystemrestart.mp3" data-for="Media/710-Media/Audio/vacsystemrestart.mp3">vacsystemrestart.mp3</a></li></ul></div></li></ul></div></li></ul></div></li><li><div class="folder-container" data-folderpath="Puzzles/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Puzzles/" data-for="Puzzles/index" class="folder-title">Puzzles</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Puzzles/Parting-Gifts-Puzzle" data-for="Puzzles/Parting-Gifts-Puzzle">Parting Gifts Puzzle</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Timelines/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Timelines/" data-for="Timelines/index" class="folder-title">Timelines</a></div></div><div class="folder-outer"><ul class="content"></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/" data-for="YouTube/index" class="folder-title">YouTube</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Livestreams/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/" data-for="YouTube/Livestreams/index" class="folder-title">Livestreams</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Livestreams/ES-ETA-(November-2024)/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/index" class="folder-title">ES-ETA (November 2024)</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/ES-ETA-(November-2024)" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/ES-ETA-(November-2024)">ES-ETA (November 2024)</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/Transcript" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TERMINAL-8/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/index" class="folder-title">STATION_8 TERMINAL 8</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/STATION_8-TERMINAL-8" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/STATION_8-TERMINAL-8">STATION_8 TERMINAL 8</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/Transcript" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TRIM-5/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/" data-for="YouTube/Livestreams/STATION_8-TRIM-5/index" class="folder-title">STATION_8 TRIM 5</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/STATION_8-TRIM-5" data-for="YouTube/Livestreams/STATION_8-TRIM-5/STATION_8-TRIM-5">STATION_8 TRIM 5</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/Transcript" data-for="YouTube/Livestreams/STATION_8-TRIM-5/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TRIM-90/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/" data-for="YouTube/Livestreams/STATION_8-TRIM-90/index" class="folder-title">STATION_8 TRIM 90</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/STATION_8-TRIM-90" data-for="YouTube/Livestreams/STATION_8-TRIM-90/STATION_8-TRIM-90">STATION_8 TRIM 90</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/Transcript" data-for="YouTube/Livestreams/STATION_8-TRIM-90/Transcript">Transcript</a></li></ul></div></li><li><a href="http://localhost:8080/YouTube/Livestreams/ECAA(TEST)-CL5672" data-for="YouTube/Livestreams/ECAA(TEST)-CL5672">ECAA(TEST) CL5672</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ECAA(TEST)-CL5909" data-for="YouTube/Livestreams/ECAA(TEST)-CL5909">ECAA(TEST) CL5909</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(June-2025)" data-for="YouTube/Livestreams/ES-ETA-(June-2025)">ES-ETA (June 2025)</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-5-5" data-for="YouTube/Livestreams/ES-ETA-5-5">ES-ETA 5-5</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/Livestreams" data-for="YouTube/Livestreams/Livestreams">Livestreams</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Videos/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/" data-for="YouTube/Videos/index" class="folder-title">Videos</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Videos/7-10-Tone/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/" data-for="YouTube/Videos/7-10-Tone/index" class="folder-title">7-10 Tone</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/%7B_-_-_-_-_._-_-_%7Dre" data-for="YouTube/Videos/7-10-Tone/{_-_-_-_-_._-_-_}re">{_ _ _-_ _._ _ _}re</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/000001" data-for="YouTube/Videos/7-10-Tone/000001">000001</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/12_capturedRecall" data-for="YouTube/Videos/7-10-Tone/12_capturedRecall">12_capturedRecall</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/30" data-for="YouTube/Videos/7-10-Tone/30">30</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/33LOG-13" data-for="YouTube/Videos/7-10-Tone/33LOG-13">33LOG-13</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/0034" data-for="YouTube/Videos/7-10-Tone/0034">0034</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/20240NA@" data-for="YouTube/Videos/7-10-Tone/20240NA@">20240NA@</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/BACKTONE-COMPLETED%7BKPJV,-ETSN,-YMUK,-WWEV%7D" data-for="YouTube/Videos/7-10-Tone/BACKTONE-COMPLETED{KPJV,-ETSN,-YMUK,-WWEV}">BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/backtone.extend-5_f&#39;&#39;5.5&#39;&#39;" data-for="YouTube/Videos/7-10-Tone/backtone.extend-5_f&#39;&#39;5.5&#39;&#39;">backtone.extend 5_f''5.5''</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/DEAD_TERMINAL" data-for="YouTube/Videos/7-10-Tone/DEAD_TERMINAL">DEAD_TERMINAL</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/garbage_sgl.mp4" data-for="YouTube/Videos/7-10-Tone/garbage_sgl.mp4">garbage_sgl.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/hd_map01" data-for="YouTube/Videos/7-10-Tone/hd_map01">hd_map01</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/Hello" data-for="YouTube/Videos/7-10-Tone/Hello">Hello</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/HIS-PERCEPTION" data-for="YouTube/Videos/7-10-Tone/HIS-PERCEPTION">HIS PERCEPTION</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/KEY" data-for="YouTube/Videos/7-10-Tone/KEY">KEY</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/L---p-%7BI---5" data-for="YouTube/Videos/7-10-Tone/L---p-{I---5">L - p {I-- 5</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LEAKED_1.mp4" data-for="YouTube/Videos/7-10-Tone/LEAKED_1.mp4">LEAKED_1.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LLOOGG--2211..mmpp44" data-for="YouTube/Videos/7-10-Tone/LLOOGG--2211..mmpp44">LLOOGG--2211..mmpp44</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/lm-1" data-for="YouTube/Videos/7-10-Tone/lm-1">lm-1</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG--_-_-_-._-_-_-+-+-+" data-for="YouTube/Videos/7-10-Tone/LOG--_-_-_-._-_-_-+-+-+">LOG- _ _ _ ._ _ _ + + +</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG--.mp4" data-for="YouTube/Videos/7-10-Tone/LOG--.mp4">LOG--.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-002.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-002.mp4">LOG-002.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-003.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-003.mp4">LOG-003.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-004.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-004.mp4">LOG-004.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-005.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-005.mp4">LOG-005.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-006.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-006.mp4">LOG-006.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-007.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-007.mp4">LOG-007.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-008.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-008.mp4">LOG-008.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-9.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-9.mp4">LOG-9.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-10.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-10.mp4">LOG-10.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-11.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-11.mp4">LOG-11.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-12.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-12.mp4">LOG-12.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-13.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-13.mp4">LOG-13.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-14.mp4-..0" data-for="YouTube/Videos/7-10-Tone/LOG-14.mp4-..0">LOG-14.mp4 ..0</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-15.mmp44" data-for="YouTube/Videos/7-10-Tone/LOG-15.mmp44">LOG-15.mmp44</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-17.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-17.mp4">LOG-17.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-20..." data-for="YouTube/Videos/7-10-Tone/LOG-20...">LOG-20...</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-25.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-25.mp4">LOG-25.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-26.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-26.mp4">LOG-26.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-27.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-27.mp4">LOG-27.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-28.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-28.mp4">LOG-28.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-29.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-29.mp4">LOG-29.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-31.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-31.mp4">LOG-31.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-32.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-32.mp4">LOG-32.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-33.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-33.mp4">LOG-33.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-34.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-34.mp4">LOG-34.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-35.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-35.mp4">LOG-35.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-36.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-36.mp4">LOG-36.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-37.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-37.mp4">LOG-37.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-38.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-38.mp4">LOG-38.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-39..mp4" data-for="YouTube/Videos/7-10-Tone/LOG-39..mp4">LOG-39..mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-39.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-39.mp4">LOG-39.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-40.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-40.mp4">LOG-40.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-41.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-41.mp4">LOG-41.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-42.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-42.mp4">LOG-42.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-43.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-43.mp4">LOG-43.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-44.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-44.mp4">LOG-44.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-46.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-46.mp4">LOG-46.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-47.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-47.mp4">LOG-47.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-48.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-48.mp4">LOG-48.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-62.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-62.mp4">LOG-62.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-63.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-63.mp4">LOG-63.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-64.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-64.mp4">LOG-64.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-65.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-65.mp4">LOG-65.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-66.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-66.mp4">LOG-66.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-67.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-67.mp4">LOG-67.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-68.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-68.mp4">LOG-68.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-69.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-69.mp4">LOG-69.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-70.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-70.mp4">LOG-70.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-71.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-71.mp4">LOG-71.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-72.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-72.mp4">LOG-72.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-73.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-73.mp4">LOG-73.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-74.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-74.mp4">LOG-74.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-76.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-76.mp4">LOG-76.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-77.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-77.mp4">LOG-77.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-78.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-78.mp4">LOG-78.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-83.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-83.mp4">LOG-83.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-84.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-84.mp4">LOG-84.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-85.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-85.mp4">LOG-85.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-86.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-86.mp4">LOG-86.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-87.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-87.mp4">LOG-87.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-88.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-88.mp4">LOG-88.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-89.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-89.mp4">LOG-89.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-90.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-90.mp4">LOG-90.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-92.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-92.mp4">LOG-92.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-93.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-93.mp4">LOG-93.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-95.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-95.mp4">LOG-95.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-96.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-96.mp4">LOG-96.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-99.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-99.mp4">LOG-99.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-100.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-100.mp4">LOG-100.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-102.mp3" data-for="YouTube/Videos/7-10-Tone/LOG-102.mp3">LOG-102.mp3</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-103.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-103.mp4">LOG-103.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-109.MP" data-for="YouTube/Videos/7-10-Tone/LOG-109.MP">LOG-109.MP</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-110.mp3" data-for="YouTube/Videos/7-10-Tone/LOG-110.mp3">LOG-110.mp3</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-111.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-111.mp4">LOG-111.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-112.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-112.mp4">LOG-112.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-113.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-113.mp4">LOG-113.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-116.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-116.mp4">LOG-116.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-123.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-123.mp4">LOG-123.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-124.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-124.mp4">LOG-124.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-125.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-125.mp4">LOG-125.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-126.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-126.mp4">LOG-126.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-127.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-127.mp4">LOG-127.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-128.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-128.mp4">LOG-128.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-129.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-129.mp4">LOG-129.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/log-131.mp4" data-for="YouTube/Videos/7-10-Tone/log-131.mp4">log-131.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-132" data-for="YouTube/Videos/7-10-Tone/LOG-132">LOG-132</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-134.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-134.mp4">LOG-134.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-135.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-135.mp4">LOG-135.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-136.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-136.mp4">LOG-136.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-137.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-137.mp4">LOG-137.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-141.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-141.mp4">LOG-141.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-142.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-142.mp4">LOG-142.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-147" data-for="YouTube/Videos/7-10-Tone/LOG-147">LOG-147</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-154.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-154.mp4">LOG-154.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-155.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-155.mp4">LOG-155.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-156.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-156.mp4">LOG-156.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-10444444444444444444444" data-for="YouTube/Videos/7-10-Tone/LOG-10444444444444444444444">LOG-10444444444444444444444</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG.138.mp4" data-for="YouTube/Videos/7-10-Tone/LOG.138.mp4">LOG.138.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LONG_STR.mp4" data-for="YouTube/Videos/7-10-Tone/LONG_STR.mp4">LONG_STR.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/machina_ad_mortem.mp4" data-for="YouTube/Videos/7-10-Tone/machina_ad_mortem.mp4">machina_ad_mortem.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/Parting-Gifts" data-for="YouTube/Videos/7-10-Tone/Parting-Gifts">Parting Gifts</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/RIGfunctionobservationTEST028.mp4" data-for="YouTube/Videos/7-10-Tone/RIGfunctionobservationTEST028.mp4">RIGfunctionobservationTEST028.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/tmp-5664" data-for="YouTube/Videos/7-10-Tone/tmp-5664">tmp 5664</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/TRANSLATED-DD.PCV" data-for="YouTube/Videos/7-10-Tone/TRANSLATED-DD.PCV">TRANSLATED-DD.PCV</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/uBBNS" data-for="YouTube/Videos/7-10-Tone/uBBNS">uBBNS</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/update-log-001" data-for="YouTube/Videos/7-10-Tone/update-log-001">update log 001</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Videos/710NPP/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/710NPP/" data-for="YouTube/Videos/710NPP/index" class="folder-title">710NPP</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Videos/710NPP/0001-Bin" data-for="YouTube/Videos/710NPP/0001-Bin">0001 Bin</a></li><li><a href="http://localhost:8080/YouTube/Videos/710NPP/12_capturedRecall-011" data-for="YouTube/Videos/710NPP/12_capturedRecall-011">12_capturedRecall 011</a></li><li><a href="http://localhost:8080/YouTube/Videos/710NPP/20240NA@-25109" data-for="YouTube/Videos/710NPP/20240NA@-25109">20240NA@ 25109</a></li></ul></div></li></ul></div></li><li><a href="http://localhost:8080/YouTube/710-NPP" data-for="YouTube/710-NPP">7/10 NPP</a></li><li><a href="http://localhost:8080/YouTube/710-Tone" data-for="YouTube/710-Tone">7/10 Tone</a></li><li><a href="http://localhost:8080/YouTube/Community-Posts" data-for="YouTube/Community-Posts">Community Posts</a></li></ul></div></li><li class="overflow-end"></li></ul></div><template id="template-file"></template><template id="template-folder"></template></div><div class="explorer  desktop-only" data-behavior="link" data-collapsed="collapsed" data-savestate="false" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=&gt;!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=&gt;{let segment=typeof node.slugSegment==\&quot;string\&quot;?node.slugSegment.toLowerCase():\&quot;\&quot;;return segment!==\&quot;templates\&quot;&amp;&amp;segment!==\&quot;canvases\&quot;}&quot;,&quot;mapFn&quot;:&quot;node=&gt;node&quot;}" data-scroll-proxy-bound="true"><div class="explorer-header"><button type="button" class="explorer-toggle mobile-explorer" data-mobile="true" aria-controls="explorer-431" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="false"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button></div><div id="explorer-431" class="explorer-content" aria-expanded="false" role="group" data-scroll-proxy-bound="true"><ul class="explorer-ul overflow" id="list-3"><li><div class="folder-container" data-folderpath="Characters/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Characters/" data-for="Characters/index" class="folder-title">Characters</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Characters/Aliases/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Characters/Aliases/" data-for="Characters/Aliases/index" class="folder-title">Aliases</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Characters/Aliases/A992144" data-for="Characters/Aliases/A992144">A992144</a></li><li><a href="http://localhost:8080/Characters/Aliases/F2617" data-for="Characters/Aliases/F2617">F2617</a></li><li><a href="http://localhost:8080/Characters/Aliases/F2930" data-for="Characters/Aliases/F2930">F2930</a></li><li><a href="http://localhost:8080/Characters/Aliases/F8887" data-for="Characters/Aliases/F8887">F8887</a></li><li><a href="http://localhost:8080/Characters/Aliases/F82991" data-for="Characters/Aliases/F82991">F82991</a></li><li><a href="http://localhost:8080/Characters/Aliases/TTHA0002" data-for="Characters/Aliases/TTHA0002">TTHA0002</a></li><li><a href="http://localhost:8080/Characters/Aliases/X331239" data-for="Characters/Aliases/X331239">X331239</a></li></ul></div></li><li><a href="http://localhost:8080/Characters/APP-TRUSTED-02" data-for="Characters/APP-TRUSTED-02">APP TRUSTED 02</a></li><li><a href="http://localhost:8080/Characters/Bob" data-for="Characters/Bob">Bob</a></li><li><a href="http://localhost:8080/Characters/D4V1NC1" data-for="Characters/D4V1NC1">D4V1NC1</a></li><li><a href="http://localhost:8080/Characters/He" data-for="Characters/He">He</a></li><li><a href="http://localhost:8080/Characters/INDI" data-for="Characters/INDI">INDI</a></li><li><a href="http://localhost:8080/Characters/Kepler" data-for="Characters/Kepler">Kepler</a></li><li><a href="http://localhost:8080/Characters/Mr.-Forest" data-for="Characters/Mr.-Forest">Mr. Forest</a></li><li><a href="http://localhost:8080/Characters/REN" data-for="Characters/REN">REN</a></li><li><a href="http://localhost:8080/Characters/SYSTEM" data-for="Characters/SYSTEM">SYSTEM</a></li><li><a href="http://localhost:8080/Characters/Travis" data-for="Characters/Travis">Travis</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Concepts/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Concepts/" data-for="Concepts/index" class="folder-title">Concepts</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Concepts/Black-Mold" data-for="Concepts/Black-Mold">Black Mold</a></li><li><a href="http://localhost:8080/Concepts/Caper-Waves" data-for="Concepts/Caper-Waves">Caper Waves</a></li><li><a href="http://localhost:8080/Concepts/Channel-14" data-for="Concepts/Channel-14">Channel 14</a></li><li><a href="http://localhost:8080/Concepts/CIN-Centers" data-for="Concepts/CIN-Centers">CIN Centers</a></li><li><a href="http://localhost:8080/Concepts/Ferkland-County" data-for="Concepts/Ferkland-County">Ferkland County</a></li><li><a href="http://localhost:8080/Concepts/Ferkland-Institute" data-for="Concepts/Ferkland-Institute">Ferkland Institute</a></li><li><a href="http://localhost:8080/Concepts/Long-String" data-for="Concepts/Long-String">Long String</a></li><li><a href="http://localhost:8080/Concepts/Private-Room" data-for="Concepts/Private-Room">Private Room</a></li><li><a href="http://localhost:8080/Concepts/prj_Home.exe" data-for="Concepts/prj_Home.exe">prj_Home.exe</a></li><li><a href="http://localhost:8080/Concepts/SERVER-01" data-for="Concepts/SERVER-01">SERVER 01</a></li><li><a href="http://localhost:8080/Concepts/Station-Interruption" data-for="Concepts/Station-Interruption">Station Interruption</a></li><li><a href="http://localhost:8080/Concepts/Station-Timer" data-for="Concepts/Station-Timer">Station Timer</a></li><li><a href="http://localhost:8080/Concepts/The-Eyes" data-for="Concepts/The-Eyes">The Eyes</a></li><li><a href="http://localhost:8080/Concepts/The-Logs" data-for="Concepts/The-Logs">The Logs</a></li><li><a href="http://localhost:8080/Concepts/The-Transmitter" data-for="Concepts/The-Transmitter">The Transmitter</a></li><li><a href="http://localhost:8080/Concepts/TRUTH.zip" data-for="Concepts/TRUTH.zip">TRUTH.zip</a></li><li><a href="http://localhost:8080/Concepts/TTH" data-for="Concepts/TTH">TTH</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Discord/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Discord/" data-for="Discord/index" class="folder-title">Discord</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Discord/System-Chats" data-for="Discord/System-Chats">System Chats</a></li><li><a href="http://localhost:8080/Discord/The-Oracle" data-for="Discord/The-Oracle">The Oracle</a></li><li><a href="http://localhost:8080/Discord/The-Sleuths" data-for="Discord/The-Sleuths">The Sleuths</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Guides/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Guides/" data-for="Guides/index" class="folder-title">Guides</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Guides/Infobox-Reference" data-for="Guides/Infobox-Reference">Infobox Reference</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Media/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/" data-for="Media/index" class="folder-title">Media</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Media/710-Media/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/710-Media/" data-for="Media/710-Media/index" class="folder-title">710 Media</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="Media/710-Media/Audio/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Media/710-Media/Audio/" data-for="Media/710-Media/Audio/index" class="folder-title">Audio</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Media/710-Media/Audio/vacsystemrestart.mp3" data-for="Media/710-Media/Audio/vacsystemrestart.mp3">vacsystemrestart.mp3</a></li></ul></div></li></ul></div></li></ul></div></li><li><div class="folder-container" data-folderpath="Puzzles/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Puzzles/" data-for="Puzzles/index" class="folder-title">Puzzles</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/Puzzles/Parting-Gifts-Puzzle" data-for="Puzzles/Parting-Gifts-Puzzle">Parting Gifts Puzzle</a></li></ul></div></li><li><div class="folder-container" data-folderpath="Timelines/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/Timelines/" data-for="Timelines/index" class="folder-title">Timelines</a></div></div><div class="folder-outer"><ul class="content"></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/" data-for="YouTube/index" class="folder-title">YouTube</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Livestreams/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/" data-for="YouTube/Livestreams/index" class="folder-title">Livestreams</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Livestreams/ES-ETA-(November-2024)/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/index" class="folder-title">ES-ETA (November 2024)</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/ES-ETA-(November-2024)" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/ES-ETA-(November-2024)">ES-ETA (November 2024)</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(November-2024)/Transcript" data-for="YouTube/Livestreams/ES-ETA-(November-2024)/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TERMINAL-8/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/index" class="folder-title">STATION_8 TERMINAL 8</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/STATION_8-TERMINAL-8" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/STATION_8-TERMINAL-8">STATION_8 TERMINAL 8</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TERMINAL-8/Transcript" data-for="YouTube/Livestreams/STATION_8-TERMINAL-8/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TRIM-5/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/" data-for="YouTube/Livestreams/STATION_8-TRIM-5/index" class="folder-title">STATION_8 TRIM 5</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/STATION_8-TRIM-5" data-for="YouTube/Livestreams/STATION_8-TRIM-5/STATION_8-TRIM-5">STATION_8 TRIM 5</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-5/Transcript" data-for="YouTube/Livestreams/STATION_8-TRIM-5/Transcript">Transcript</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Livestreams/STATION_8-TRIM-90/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/" data-for="YouTube/Livestreams/STATION_8-TRIM-90/index" class="folder-title">STATION_8 TRIM 90</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/STATION_8-TRIM-90" data-for="YouTube/Livestreams/STATION_8-TRIM-90/STATION_8-TRIM-90">STATION_8 TRIM 90</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/STATION_8-TRIM-90/Transcript" data-for="YouTube/Livestreams/STATION_8-TRIM-90/Transcript">Transcript</a></li></ul></div></li><li><a href="http://localhost:8080/YouTube/Livestreams/ECAA(TEST)-CL5672" data-for="YouTube/Livestreams/ECAA(TEST)-CL5672">ECAA(TEST) CL5672</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ECAA(TEST)-CL5909" data-for="YouTube/Livestreams/ECAA(TEST)-CL5909">ECAA(TEST) CL5909</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-(June-2025)" data-for="YouTube/Livestreams/ES-ETA-(June-2025)">ES-ETA (June 2025)</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/ES-ETA-5-5" data-for="YouTube/Livestreams/ES-ETA-5-5">ES-ETA 5-5</a></li><li><a href="http://localhost:8080/YouTube/Livestreams/Livestreams" data-for="YouTube/Livestreams/Livestreams">Livestreams</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Videos/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/" data-for="YouTube/Videos/index" class="folder-title">Videos</a></div></div><div class="folder-outer"><ul class="content"><li><div class="folder-container" data-folderpath="YouTube/Videos/7-10-Tone/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/" data-for="YouTube/Videos/7-10-Tone/index" class="folder-title">7-10 Tone</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/%7B_-_-_-_-_._-_-_%7Dre" data-for="YouTube/Videos/7-10-Tone/{_-_-_-_-_._-_-_}re">{_ _ _-_ _._ _ _}re</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/000001" data-for="YouTube/Videos/7-10-Tone/000001">000001</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/12_capturedRecall" data-for="YouTube/Videos/7-10-Tone/12_capturedRecall">12_capturedRecall</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/30" data-for="YouTube/Videos/7-10-Tone/30">30</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/33LOG-13" data-for="YouTube/Videos/7-10-Tone/33LOG-13">33LOG-13</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/0034" data-for="YouTube/Videos/7-10-Tone/0034">0034</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/20240NA@" data-for="YouTube/Videos/7-10-Tone/20240NA@">20240NA@</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/BACKTONE-COMPLETED%7BKPJV,-ETSN,-YMUK,-WWEV%7D" data-for="YouTube/Videos/7-10-Tone/BACKTONE-COMPLETED{KPJV,-ETSN,-YMUK,-WWEV}">BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/backtone.extend-5_f&#39;&#39;5.5&#39;&#39;" data-for="YouTube/Videos/7-10-Tone/backtone.extend-5_f&#39;&#39;5.5&#39;&#39;">backtone.extend 5_f''5.5''</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/DEAD_TERMINAL" data-for="YouTube/Videos/7-10-Tone/DEAD_TERMINAL">DEAD_TERMINAL</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/garbage_sgl.mp4" data-for="YouTube/Videos/7-10-Tone/garbage_sgl.mp4">garbage_sgl.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/hd_map01" data-for="YouTube/Videos/7-10-Tone/hd_map01">hd_map01</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/Hello" data-for="YouTube/Videos/7-10-Tone/Hello">Hello</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/HIS-PERCEPTION" data-for="YouTube/Videos/7-10-Tone/HIS-PERCEPTION">HIS PERCEPTION</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/KEY" data-for="YouTube/Videos/7-10-Tone/KEY">KEY</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/L---p-%7BI---5" data-for="YouTube/Videos/7-10-Tone/L---p-{I---5">L - p {I-- 5</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LEAKED_1.mp4" data-for="YouTube/Videos/7-10-Tone/LEAKED_1.mp4">LEAKED_1.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LLOOGG--2211..mmpp44" data-for="YouTube/Videos/7-10-Tone/LLOOGG--2211..mmpp44">LLOOGG--2211..mmpp44</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/lm-1" data-for="YouTube/Videos/7-10-Tone/lm-1">lm-1</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG--_-_-_-._-_-_-+-+-+" data-for="YouTube/Videos/7-10-Tone/LOG--_-_-_-._-_-_-+-+-+">LOG- _ _ _ ._ _ _ + + +</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG--.mp4" data-for="YouTube/Videos/7-10-Tone/LOG--.mp4">LOG--.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-002.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-002.mp4">LOG-002.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-003.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-003.mp4">LOG-003.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-004.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-004.mp4">LOG-004.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-005.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-005.mp4">LOG-005.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-006.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-006.mp4">LOG-006.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-007.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-007.mp4">LOG-007.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-008.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-008.mp4">LOG-008.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-9.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-9.mp4">LOG-9.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-10.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-10.mp4">LOG-10.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-11.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-11.mp4">LOG-11.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-12.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-12.mp4">LOG-12.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-13.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-13.mp4">LOG-13.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-14.mp4-..0" data-for="YouTube/Videos/7-10-Tone/LOG-14.mp4-..0">LOG-14.mp4 ..0</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-15.mmp44" data-for="YouTube/Videos/7-10-Tone/LOG-15.mmp44">LOG-15.mmp44</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-17.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-17.mp4">LOG-17.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-20..." data-for="YouTube/Videos/7-10-Tone/LOG-20...">LOG-20...</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-25.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-25.mp4">LOG-25.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-26.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-26.mp4">LOG-26.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-27.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-27.mp4">LOG-27.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-28.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-28.mp4">LOG-28.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-29.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-29.mp4">LOG-29.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-31.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-31.mp4">LOG-31.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-32.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-32.mp4">LOG-32.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-33.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-33.mp4">LOG-33.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-34.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-34.mp4">LOG-34.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-35.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-35.mp4">LOG-35.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-36.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-36.mp4">LOG-36.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-37.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-37.mp4">LOG-37.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-38.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-38.mp4">LOG-38.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-39..mp4" data-for="YouTube/Videos/7-10-Tone/LOG-39..mp4">LOG-39..mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-39.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-39.mp4">LOG-39.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-40.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-40.mp4">LOG-40.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-41.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-41.mp4">LOG-41.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-42.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-42.mp4">LOG-42.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-43.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-43.mp4">LOG-43.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-44.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-44.mp4">LOG-44.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-46.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-46.mp4">LOG-46.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-47.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-47.mp4">LOG-47.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-48.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-48.mp4">LOG-48.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-62.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-62.mp4">LOG-62.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-63.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-63.mp4">LOG-63.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-64.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-64.mp4">LOG-64.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-65.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-65.mp4">LOG-65.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-66.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-66.mp4">LOG-66.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-67.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-67.mp4">LOG-67.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-68.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-68.mp4">LOG-68.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-69.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-69.mp4">LOG-69.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-70.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-70.mp4">LOG-70.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-71.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-71.mp4">LOG-71.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-72.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-72.mp4">LOG-72.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-73.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-73.mp4">LOG-73.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-74.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-74.mp4">LOG-74.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-76.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-76.mp4">LOG-76.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-77.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-77.mp4">LOG-77.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-78.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-78.mp4">LOG-78.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-83.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-83.mp4">LOG-83.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-84.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-84.mp4">LOG-84.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-85.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-85.mp4">LOG-85.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-86.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-86.mp4">LOG-86.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-87.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-87.mp4">LOG-87.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-88.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-88.mp4">LOG-88.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-89.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-89.mp4">LOG-89.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-90.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-90.mp4">LOG-90.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-92.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-92.mp4">LOG-92.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-93.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-93.mp4">LOG-93.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-95.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-95.mp4">LOG-95.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-96.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-96.mp4">LOG-96.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-99.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-99.mp4">LOG-99.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-100.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-100.mp4">LOG-100.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-102.mp3" data-for="YouTube/Videos/7-10-Tone/LOG-102.mp3">LOG-102.mp3</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-103.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-103.mp4">LOG-103.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-109.MP" data-for="YouTube/Videos/7-10-Tone/LOG-109.MP">LOG-109.MP</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-110.mp3" data-for="YouTube/Videos/7-10-Tone/LOG-110.mp3">LOG-110.mp3</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-111.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-111.mp4">LOG-111.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-112.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-112.mp4">LOG-112.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-113.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-113.mp4">LOG-113.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-116.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-116.mp4">LOG-116.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-123.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-123.mp4">LOG-123.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-124.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-124.mp4">LOG-124.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-125.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-125.mp4">LOG-125.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-126.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-126.mp4">LOG-126.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-127.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-127.mp4">LOG-127.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-128.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-128.mp4">LOG-128.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-129.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-129.mp4">LOG-129.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/log-131.mp4" data-for="YouTube/Videos/7-10-Tone/log-131.mp4">log-131.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-132" data-for="YouTube/Videos/7-10-Tone/LOG-132">LOG-132</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-134.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-134.mp4">LOG-134.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-135.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-135.mp4">LOG-135.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-136.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-136.mp4">LOG-136.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-137.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-137.mp4">LOG-137.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-141.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-141.mp4">LOG-141.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-142.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-142.mp4">LOG-142.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-147" data-for="YouTube/Videos/7-10-Tone/LOG-147">LOG-147</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-154.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-154.mp4">LOG-154.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-155.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-155.mp4">LOG-155.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-156.mp4" data-for="YouTube/Videos/7-10-Tone/LOG-156.mp4">LOG-156.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG-10444444444444444444444" data-for="YouTube/Videos/7-10-Tone/LOG-10444444444444444444444">LOG-10444444444444444444444</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LOG.138.mp4" data-for="YouTube/Videos/7-10-Tone/LOG.138.mp4">LOG.138.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/LONG_STR.mp4" data-for="YouTube/Videos/7-10-Tone/LONG_STR.mp4">LONG_STR.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/machina_ad_mortem.mp4" data-for="YouTube/Videos/7-10-Tone/machina_ad_mortem.mp4">machina_ad_mortem.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/Parting-Gifts" data-for="YouTube/Videos/7-10-Tone/Parting-Gifts">Parting Gifts</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/RIGfunctionobservationTEST028.mp4" data-for="YouTube/Videos/7-10-Tone/RIGfunctionobservationTEST028.mp4">RIGfunctionobservationTEST028.mp4</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/tmp-5664" data-for="YouTube/Videos/7-10-Tone/tmp-5664">tmp 5664</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/TRANSLATED-DD.PCV" data-for="YouTube/Videos/7-10-Tone/TRANSLATED-DD.PCV">TRANSLATED-DD.PCV</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/uBBNS" data-for="YouTube/Videos/7-10-Tone/uBBNS">uBBNS</a></li><li><a href="http://localhost:8080/YouTube/Videos/7-10-Tone/update-log-001" data-for="YouTube/Videos/7-10-Tone/update-log-001">update log 001</a></li></ul></div></li><li><div class="folder-container" data-folderpath="YouTube/Videos/710NPP/index"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><a href="http://localhost:8080/YouTube/Videos/710NPP/" data-for="YouTube/Videos/710NPP/index" class="folder-title">710NPP</a></div></div><div class="folder-outer"><ul class="content"><li><a href="http://localhost:8080/YouTube/Videos/710NPP/0001-Bin" data-for="YouTube/Videos/710NPP/0001-Bin">0001 Bin</a></li><li><a href="http://localhost:8080/YouTube/Videos/710NPP/12_capturedRecall-011" data-for="YouTube/Videos/710NPP/12_capturedRecall-011">12_capturedRecall 011</a></li><li><a href="http://localhost:8080/YouTube/Videos/710NPP/20240NA@-25109" data-for="YouTube/Videos/710NPP/20240NA@-25109">20240NA@ 25109</a></li></ul></div></li></ul></div></li><li><a href="http://localhost:8080/YouTube/710-NPP" data-for="YouTube/710-NPP">7/10 NPP</a></li><li><a href="http://localhost:8080/YouTube/710-Tone" data-for="YouTube/710-Tone">7/10 Tone</a></li><li><a href="http://localhost:8080/YouTube/Community-Posts" data-for="YouTube/Community-Posts">Community Posts</a></li></ul></div></li><li class="overflow-end"></li></ul></div><template id="template-file"></template><template id="template-folder"></template></div></div><div class="center"><div class="page-header"><header><div id="links-header-container"><nav id="links-header"><a class="links-header-item" href="http://localhost:8080/"><span class="links-header-icon links-header-icon--home" aria-hidden="true"></span><span>Home</span></a><a class="links-header-item" href="http://localhost:8080/Characters/"><span class="links-header-icon links-header-icon--characters" aria-hidden="true"></span><span>Characters</span></a><a class="links-header-item" href="http://localhost:8080/Concepts/"><span class="links-header-icon links-header-icon--concepts" aria-hidden="true"></span><span>Concepts</span></a><a class="links-header-item" href="http://localhost:8080/Media/"><span class="links-header-icon links-header-icon--media" aria-hidden="true"></span><span>Media</span></a><a class="links-header-item" href="http://localhost:8080/Timelines/"><span class="links-header-icon links-header-icon--timeline" aria-hidden="true"></span><span>Timelines</span></a><a class="links-header-item" href="http://localhost:8080/Puzzles/"><span class="links-header-icon links-header-icon--puzzles" aria-hidden="true"></span><span>Puzzles</span></a><a class="links-header-item" href="http://localhost:8080/Discord/"><span class="links-header-icon links-header-icon--discord" aria-hidden="true"></span><span>Discord</span></a><a class="links-header-item" href="http://localhost:8080/YouTube/"><span class="links-header-icon links-header-icon--youtube" aria-hidden="true"></span><span>YouTube</span></a></nav></div></header><div class="popover-hint"><header class="article-header"><div class="article-header__content"><h1 class="article-title">HOME</h1><div class="article-header__meta"><span class="article-header__meta-label">Updated</span><time datetime="2025-10-29T20:33:14.000Z">Oct 29, 2025</time></div></div><div class="article-header__actions"><div class="oracle-widget" data-oracle-endpoint="/api/oracle/query" data-oracle-storage-key="oracle-chat-history" data-oracle-max-history="24"><button type="button" class="oracle-widget__launcher" aria-haspopup="dialog" aria-controls="oracle-chat-panel" aria-expanded="false" aria-labelledby="oracle-widget-launcher-label"><span class="oracle-widget__copy" id="oracle-widget-launcher-label"><span class="oracle-widget__title">Ask the ORA_CLE</span></span><img src="./7_10 Tone Wiki_files/oracle-pfp.png" alt="" class="oracle-widget__avatar" loading="lazy" decoding="async"></button><div class="oracle-chat" id="oracle-chat-panel" role="dialog" aria-modal="true" aria-hidden="true"><div class="oracle-chat__overlay" data-oracle-dismiss="true"></div><div class="oracle-chat__surface" role="document"><header class="oracle-chat__header"><div class="oracle-chat__identity"><img src="./7_10 Tone Wiki_files/oracle-pfp.png" alt="" class="oracle-chat__avatar" loading="lazy" decoding="async"><div class="oracle-chat__identity-text"><span class="oracle-chat__name">The ORA_CLE</span><span class="oracle-chat__status">Ready to answer wiki questions.</span></div></div><div class="oracle-chat__header-actions"><button type="button" class="oracle-chat__reset" data-oracle-action="reset">Reset</button><button type="button" class="oracle-chat__close" aria-label="Close chat" data-oracle-action="close"><span aria-hidden="true">×</span></button></div></header><section class="oracle-chat__history" data-oracle-history="true" aria-live="polite" aria-label="Conversation history"></section><form class="oracle-chat__composer" data-oracle-form="true"><label class="oracle-chat__label" for="oracle-chat-input">Ask a question about the 7/10 Wiki</label><div class="oracle-chat__input-row"><textarea id="oracle-chat-input" class="oracle-chat__input" name="oracle-chat-input" placeholder="Ask ORA_CLE anything about this wiki..." data-oracle-input="true" rows="1" autocomplete="off" autocapitalize="sentences" spellcheck="true"></textarea><button type="submit" class="oracle-chat__send" data-oracle-send="true" disabled="">Send</button></div></form><footer class="oracle-chat__footer"><p class="oracle-chat__note">Conversations are stored in your browser so the ORA_CLE can pick up where you left off.</p></footer></div></div></div><div class="article-share"><button type="button" class="article-share__button" aria-label="Share HOME" data-share-url="https://www.710tone.wiki/" data-share-title="HOME" data-share-text="Welcome to the 7/10 Tone Sleuth Wiki! This is a community-driven wiki project driven by the The Sleuths and is not officially affiliated with the ARG known as 7/10 Tone." data-share-copied="Link copied!" data-share-shared="Share dialog opened." data-share-error="Sharing not available." data-share-cancel="Share cancelled." data-share-bound="true"><span class="article-share__icon" aria-hidden="true"></span></button><span class="article-share__feedback" aria-live="polite"></span></div></div></header><div class="toc mobile-only"><div class="toc-container" data-scroll-proxy-bound="true"><button type="button" class="collapsed toc-header" aria-controls="toc-25" aria-expanded="false"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><span class="toc-scroll-indicator" aria-hidden="true" style="opacity: 0;"></span><ul id="list-1" class="collapsed toc-content overflow gradient-active" aria-expanded="false" data-scroll-proxy-bound="true"><li class="depth-0"><a href="http://localhost:8080/#welcome-to-the-710-tone-sleuth-wiki" data-for="welcome-to-the-710-tone-sleuth-wiki">Welcome to the 7/10 Tone Sleuth Wiki!</a></li><li class="depth-1"><a href="http://localhost:8080/#keep-exploring" data-for="keep-exploring">Keep exploring</a></li><li class="overflow-end"></li></ul></div></div></div></div><article class="popover-hint"><h1 id="welcome-to-the-710-tone-sleuth-wiki">Welcome to the 7/10 Tone Sleuth Wiki!<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="http://localhost:8080/#welcome-to-the-710-tone-sleuth-wiki" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p>This is a community-driven wiki project driven by the <a href="http://localhost:8080/Discord/The-Sleuths" class="internal alias" data-slug="Discord/The-Sleuths">The Sleuths</a> and is not officially affiliated with the ARG known as  <a href="http://localhost:8080/YouTube/710-Tone" class="internal alias" data-slug="YouTube/710-Tone">7/10 Tone</a>.<br>
+This wiki exists as a tool for young and old sleuths alike, in order to quickly navigate the (sometimes overwhelming) lore of the 7/10 universe. Here, you will find:</p>
+<ul>
+<li>Summaries of characters, factions, channels, and major events.</li>
+<li>Puzzles and canvases tracked by the community.</li>
+<li>Timelines and transcripts for livestreams, videos, and community findings.</li>
+</ul>
+<h2 id="keep-exploring">Keep exploring<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="http://localhost:8080/#keep-exploring" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Browse the navigation on the left to dive into specific topics, or use the search bar to look up names, timestamps, and clues. If you have new information to add, check the contribution guidelines in the repository and submit a pull request.</p></article><div class="page-footer"><section class="home-features" data-home-root="true"><section class="home-recent"><h2 class="home-recent__title">Recently updated</h2><ol class="home-recent__list" data-home-recent-list="true"><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/Discord/System-Chats">System Chats</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T23:48:30.000Z">Oct 29, 2025</time> · yesterday</div></li><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/YouTube/710-NPP">7/10 NPP</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T23:48:30.000Z">Oct 29, 2025</time> · yesterday</div></li><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/YouTube/710-Tone">7/10 Tone</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T23:48:30.000Z">Oct 29, 2025</time> · yesterday</div></li><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/Concepts/CIN-Centers">CIN Centers</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T21:26:31.000Z">Oct 29, 2025</time> · yesterday</div></li><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/Characters/INDI">INDI</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T21:25:00.000Z">Oct 29, 2025</time> · yesterday</div></li><li class="home-recent__item"><a class="home-recent__link" href="http://localhost:8080/Characters/Kepler">Kepler</a><div class="home-recent__meta">Updated <time class="home-recent__time" datetime="2025-10-29T21:25:00.000Z">Oct 29, 2025</time> · yesterday</div></li></ol></section><div class="home-actions"><div class="home-card home-random"><h3 class="home-card__title">Jump to a random article</h3><p class="home-card__body">Feeling adventurous? Head straight to a random page pulled from the archive.</p><button type="button" class="home-random__button" data-home-random-button="true">Take me there</button><p class="home-random__empty" data-home-random-empty="true" hidden="">No eligible pages yet.</p></div><div class="home-card home-links"><h3 class="home-card__title">Stay connected</h3><div class="home-links__stack"><a class="home-link-card" href="https://www.youtube.com/@710ToneArchiveChannel" target="_blank" rel="noopener noreferrer"><span class="home-link-card__icon home-link-card__icon--youtube" aria-hidden="true"></span><span class="home-link-card__copy"><span class="home-link-card__label">Visit the Archive Channel</span><span class="home-link-card__description">Catch up on reuploads, VODs, and finds from across the community.</span></span></a><a class="home-link-card" href="https://discord.gg/fRvXBHmzef" target="_blank" rel="noopener noreferrer"><span class="home-link-card__icon home-link-card__icon--discord" aria-hidden="true"></span><span class="home-link-card__copy"><span class="home-link-card__label">Join the Sleuths Discord</span><span class="home-link-card__description">Coordinate puzzle solving, share theories, and keep watch on live drops.</span></span></a></div></div></div></section></div></div><div class="comments-section"><hr class="comments-separator" aria-hidden="true"><div class="comments-wrapper" data-provider="utterances"><div class="comments utterances" data-provider="utterances" data-repo="brorb/710-wiki" data-issue-term="pathname" data-label="💬 comment" data-theme="github-dark"><div class="utterances" style="height: 541px;">
+    <iframe class="utterances-frame" title="Comments" scrolling="no" src="./7_10 Tone Wiki_files/utterances.html" loading="lazy"></iframe>
+  </div></div><div class="comments-mobile-append"><div class="discord-widget discord-widget--banner mobile-only"><svg class="discord-widget__filters" aria-hidden="true" focusable="false" width="0" height="0"><filter id="discord-widget-redify" color-interpolation-filters="sRGB" filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" x="0" y="0" width="1" height="1"><fecolormatrix in="SourceGraphic" type="matrix" values="0.6813 -0.3187 0.6373 0 0  0.2743 1.2743 -0.5486 0 0  0.8047 0.8047 -0.6094 0 0  0 0 0 1 0" result="tinted"></fecolormatrix><feimage x="0" y="0" width="1" height="1" preserveAspectRatio="none" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; xmlns:xlink=&#39;http://www.w3.org/1999/xlink&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3ClinearGradient id=&#39;g&#39; x1=&#39;0&#39; y1=&#39;0&#39; x2=&#39;0&#39; y2=&#39;1&#39;%3E%3Cstop offset=&#39;0&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.098&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.166&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3Cstop offset=&#39;1&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3C/linearGradient%3E%3Crect width=&#39;1&#39; height=&#39;1&#39; fill=&#39;url(%23g)&#39;/%3E%3C/svg%3E" xlink:href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; xmlns:xlink=&#39;http://www.w3.org/1999/xlink&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3ClinearGradient id=&#39;g&#39; x1=&#39;0&#39; y1=&#39;0&#39; x2=&#39;0&#39; y2=&#39;1&#39;%3E%3Cstop offset=&#39;0&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.098&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.166&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3Cstop offset=&#39;1&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3C/linearGradient%3E%3Crect width=&#39;1&#39; height=&#39;1&#39; fill=&#39;url(%23g)&#39;/%3E%3C/svg%3E" result="topGradient"></feimage><fecolormatrix in="topGradient" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 1 1 0 0" result="topMask"></fecolormatrix><fecomposite in="tinted" in2="topMask" operator="in" result="tintedTop"></fecomposite><fecomposite in="SourceGraphic" in2="topMask" operator="out" result="originalBottom"></fecomposite><femerge><femergenode in="tintedTop"></femergenode><femergenode in="originalBottom"></femergenode></femerge></filter></svg><iframe class="discord-widget__iframe" src="./7_10 Tone Wiki_files/widget.html" title="710 Discord" loading="lazy" allowtransparency="" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></div></div></div></div><div class="right sidebar"><div class="graph desktop-only"><div class="graph__heading-row" style="display:flex;justify-content:space-between;align-items:center;"><h3>Graph View</h3><button class="graph__show-full" type="button">SHOW FULL GRAPH</button></div><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;autoZoom&quot;:{&quot;enabled&quot;:true,&quot;padding&quot;:1.2,&quot;zoomLevels&quot;:{&quot;nodes1&quot;:6,&quot;nodes2&quot;:5,&quot;nodes3&quot;:3.5,&quot;nodes4&quot;:3,&quot;nodes5&quot;:2.7,&quot;nodes6&quot;:2.4,&quot;nodes7to9&quot;:2.1,&quot;nodes10to15&quot;:1.7,&quot;nodes15to25&quot;:1.2,&quot;nodesAbove25&quot;:1}},&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.8,&quot;opacityScale&quot;:1.6,&quot;labelVisibility&quot;:{&quot;minAlpha&quot;:0.05,&quot;maxAlpha&quot;:1,&quot;startZoom&quot;:1,&quot;endZoom&quot;:2.9},&quot;showTags&quot;:true,&quot;removeTags&quot;:[&quot;graph-exclude&quot;],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"><canvas width="169" height="167" style="width: 253.5px; height: 250.5px; touch-action: none; cursor: inherit;"></canvas></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer" role="dialog" aria-modal="true" aria-label="Full graph preview"><div class="global-graph-content"><aside class="global-graph-controls" data-graph-controls="true"><div class="graph-controls__header"><h4 class="graph-controls__title">Graph Controls</h4><button class="graph-controls__close" type="button" data-graph-close="true" aria-label="Close full graph"><span aria-hidden="true">×</span></button></div><div class="graph-controls__body"><label class="graph-control" for="graph-slider-repel"><span class="graph-control__label">Repel Force</span><div class="graph-control__range"><input class="graph-control__slider" type="range" min="0.1" max="2" step="0.05" id="graph-slider-repel" value="0.5" data-graph-slider="repelForce" aria-label="Repel force"><span class="graph-control__value" data-graph-value="repelForce">0.50</span></div></label><label class="graph-control" for="graph-slider-center"><span class="graph-control__label">Center Force</span><div class="graph-control__range"><input class="graph-control__slider" type="range" min="0" max="2" step="0.05" id="graph-slider-center" value="0.2" data-graph-slider="centerForce" aria-label="Center force"><span class="graph-control__value" data-graph-value="centerForce">0.20</span></div></label><label class="graph-control" for="graph-slider-distance"><span class="graph-control__label">Link Distance</span><div class="graph-control__range"><input class="graph-control__slider" type="range" min="12" max="160" step="2" id="graph-slider-distance" value="30" data-graph-slider="linkDistance" aria-label="Link distance"><span class="graph-control__value" data-graph-value="linkDistance">30 px</span></div></label><div class="graph-controls__toggles"><label class="graph-toggle"><input type="checkbox" class="graph-toggle__input" data-graph-toggle="showSinglets" checked=""><span class="graph-toggle__label">Show singlets</span></label><label class="graph-toggle"><input type="checkbox" class="graph-toggle__input" data-graph-toggle="highlightVisited" checked=""><span class="graph-toggle__label">Highlight visited notes</span></label><label class="graph-toggle"><input type="checkbox" class="graph-toggle__input" data-graph-toggle="focusOnHover" checked=""><span class="graph-toggle__label">Focus neighbors on hover</span></label></div><div class="graph-controls__info"><p>Adjust the layout forces or toggle visibility to explore clusters. Boost the center force to pull everything inward, or crank up the repel force for a wider spread.</p></div></div><div class="graph-controls__footer"><button class="graph-controls__reset" type="button" data-graph-reset="true">Reset Controls</button></div></aside><div class="global-graph-stage"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;autoZoom&quot;:{&quot;enabled&quot;:true,&quot;padding&quot;:1.15,&quot;zoomLevels&quot;:{&quot;nodes1&quot;:2.4,&quot;nodes2&quot;:2.2,&quot;nodes3&quot;:2,&quot;nodes4&quot;:1.85,&quot;nodes5&quot;:1.75,&quot;nodes6&quot;:1.65,&quot;nodes7to9&quot;:1.5,&quot;nodes10to15&quot;:1.2,&quot;nodes15to25&quot;:1,&quot;nodesAbove25&quot;:0.85}},&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.75,&quot;opacityScale&quot;:1.4,&quot;labelVisibility&quot;:{&quot;minAlpha&quot;:0.2,&quot;maxAlpha&quot;:1,&quot;startZoom&quot;:0.9,&quot;endZoom&quot;:2.4},&quot;showTags&quot;:true,&quot;removeTags&quot;:[&quot;graph-exclude&quot;],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}" data-graph-mode="global"></div><div class="graph-zoom" data-graph-zoom-controls="true"><button type="button" class="graph-zoom__button" data-graph-zoom="in" aria-label="Zoom in">+</button><button type="button" class="graph-zoom__button" data-graph-zoom="out" aria-label="Zoom out">−</button></div></div></div></div></div><div class="toc desktop-only"><div class="toc-container" data-scroll-proxy-bound="true"><button type="button" class="collapsed toc-header" aria-controls="toc-26" aria-expanded="false"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><span class="toc-scroll-indicator" aria-hidden="true" style="opacity: 0;"></span><ul id="list-4" class="collapsed toc-content overflow gradient-active" aria-expanded="false" data-scroll-proxy-bound="true"><li class="depth-0"><a href="http://localhost:8080/#welcome-to-the-710-tone-sleuth-wiki" data-for="welcome-to-the-710-tone-sleuth-wiki">Welcome to the 7/10 Tone Sleuth Wiki!</a></li><li class="depth-1"><a href="http://localhost:8080/#keep-exploring" data-for="keep-exploring">Keep exploring</a></li><li class="overflow-end"></li></ul></div></div><div class="discord-widget discord-widget--sidebar desktop-only"><svg class="discord-widget__filters" aria-hidden="true" focusable="false" width="0" height="0"><filter id="discord-widget-redify" color-interpolation-filters="sRGB" filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" x="0" y="0" width="1" height="1"><fecolormatrix in="SourceGraphic" type="matrix" values="0.6813 -0.3187 0.6373 0 0  0.2743 1.2743 -0.5486 0 0  0.8047 0.8047 -0.6094 0 0  0 0 0 1 0" result="tinted"></fecolormatrix><feimage x="0" y="0" width="1" height="1" preserveAspectRatio="none" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; xmlns:xlink=&#39;http://www.w3.org/1999/xlink&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3ClinearGradient id=&#39;g&#39; x1=&#39;0&#39; y1=&#39;0&#39; x2=&#39;0&#39; y2=&#39;1&#39;%3E%3Cstop offset=&#39;0&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.098&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.166&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3Cstop offset=&#39;1&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3C/linearGradient%3E%3Crect width=&#39;1&#39; height=&#39;1&#39; fill=&#39;url(%23g)&#39;/%3E%3C/svg%3E" xlink:href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; xmlns:xlink=&#39;http://www.w3.org/1999/xlink&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3ClinearGradient id=&#39;g&#39; x1=&#39;0&#39; y1=&#39;0&#39; x2=&#39;0&#39; y2=&#39;1&#39;%3E%3Cstop offset=&#39;0&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.098&#39; stop-color=&#39;white&#39; stop-opacity=&#39;1&#39;/%3E%3Cstop offset=&#39;0.166&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3Cstop offset=&#39;1&#39; stop-color=&#39;black&#39; stop-opacity=&#39;0&#39;/%3E%3C/linearGradient%3E%3Crect width=&#39;1&#39; height=&#39;1&#39; fill=&#39;url(%23g)&#39;/%3E%3C/svg%3E" result="topGradient"></feimage><fecolormatrix in="topGradient" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 1 1 0 0" result="topMask"></fecolormatrix><fecomposite in="tinted" in2="topMask" operator="in" result="tintedTop"></fecomposite><fecomposite in="SourceGraphic" in2="topMask" operator="out" result="originalBottom"></fecomposite><femerge><femergenode in="tintedTop"></femergenode><femergenode in="originalBottom"></femergenode></femerge></filter></svg><iframe class="discord-widget__iframe" src="./7_10 Tone Wiki_files/widget(1).html" title="710 Discord" loading="lazy" allowtransparency="" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></div></div></div></div><script type="application/javascript">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module">function f(i,e){if(!i)return;function r(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function t(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}i?.addEventListener("click",r),window.addCleanup(()=>i?.removeEventListener("click",r)),document.addEventListener("keydown",t),window.addCleanup(()=>document.removeEventListener("keydown",t))}function y(i){for(;i.firstChild;)i.removeChild(i.firstChild)}var h=class{constructor(e,r){this.container=e;this.content=r;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),r=this.onMouseMove.bind(this),t=this.onMouseUp.bind(this),o=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",r),document.addEventListener("mouseup",t),window.addEventListener("resize",o),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",r),()=>document.removeEventListener("mouseup",t),()=>window.removeEventListener("resize",o))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let r=this.createButton("+",()=>this.zoom(.1)),t=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(t),e.appendChild(o),e.appendChild(r),this.container.appendChild(e)}createButton(e,r){let t=document.createElement("button");return t.textContent=e,t.className="mermaid-control-button",t.addEventListener("click",r),window.addCleanup(()=>t.removeEventListener("click",r)),t}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}zoom(e){let r=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),t=this.content.getBoundingClientRect(),o=t.width/2,n=t.height/2,c=r-this.scale;this.currentPan.x-=o*c,this.currentPan.y-=n*c,this.scale=r,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){this.scale=1;let e=this.content.querySelector("svg");this.currentPan={x:e.getBoundingClientRect().width/2,y:e.getBoundingClientRect().height/2},this.updateTransform()}},C=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],E;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;E||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let r=E.default,t=new WeakMap;for(let n of e)t.set(n,n.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let a=t.get(s);a&&(s.innerHTML=a)}let n=C.reduce((s,a)=>(s[a]=window.getComputedStyle(document.documentElement).getPropertyValue(a),s),{}),c=document.documentElement.getAttribute("saved-theme")==="dark";r.initialize({startOnLoad:!1,securityLevel:"loose",theme:c?"dark":"base",themeVariables:{fontFamily:n["--codeFont"],primaryColor:n["--light"],primaryTextColor:n["--darkgray"],primaryBorderColor:n["--tertiary"],lineColor:n["--darkgray"],secondaryColor:n["--secondary"],tertiaryColor:n["--tertiary"],clusterBkg:n["--light"],edgeLabelBackground:n["--highlight"]}}),await r.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let n=0;n<e.length;n++){let v=function(){let g=l.querySelector("#mermaid-space"),m=l.querySelector(".mermaid-content");if(!m)return;y(m);let w=c.querySelector("svg").cloneNode(!0);m.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new h(g,m)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},c=e[n],s=c.parentElement,a=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(a),L=a.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),f(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script type="application/javascript">var y=()=>{document.querySelectorAll(".discord-collapse-toggle").forEach(s=>{if(s.hasAttribute("data-discord-initialized"))return;s.setAttribute("data-discord-initialized","true");let p=s.getAttribute("data-discord-toggle");if(!p)return;let h=`${p}-content`,l=document.getElementById(h);if(!l)return;let n=l.querySelector(".discord-thread");if(!n)return;let u=l.closest(".discord-thread-wrapper"),o=s,e=l,i=252,L=80,a=t=>{u&&u.classList.toggle("collapsed",t)},c=t=>{o.setAttribute("aria-expanded",t?"true":"false"),o.classList.toggle("is-expanded",t);let d=o.querySelector("span");d&&(d.textContent=t?"Show Less":"Show More")},f=()=>{let t=n.scrollHeight,d=t-i;if(!(t>i&&d>=L))o.style.display="none",e.classList.remove("collapsed"),e.style.maxHeight="none",a(!1),c(!0);else{o.style.display="flex";let r=e.classList.contains("collapsed");a(r),c(!r),r?e.style.maxHeight=`${i}px`:e.style.maxHeight="none"}};f(),s.addEventListener("click",()=>{e.classList.contains("collapsed")?(e.classList.remove("collapsed"),e.style.maxHeight=`${n.scrollHeight}px`,a(!1),c(!0),e.offsetHeight,window.setTimeout(()=>{e.classList.contains("collapsed")||(e.style.maxHeight="none")},400)):(e.classList.add("collapsed"),e.style.maxHeight=`${i}px`,a(!0),c(!1))});let m=new ResizeObserver(()=>{f()});m.observe(n),window.addCleanup?.(()=>{m.disconnect()})})},g=()=>{y()};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",g,{once:!0}):g();document.addEventListener("nav",g);
+</script><script type="application/javascript">var d="a[href], button, input, textarea, select, label, audio, video, svg[focusable='true'], [contenteditable='true']",a=()=>{let e=window.getSelection();return!!e&&e.toString().trim().length>0},c=(e,n)=>!(e instanceof Element)||!n.contains(e)?!1:!!(e.closest("[data-discord-jump-skip]")||e.closest(d)),i=e=>{window.open(e,"_blank","noopener,noreferrer")},l=e=>{if(e.dataset.discordJumpBound==="true")return;let n=e.dataset.discordJump?.trim();if(!n)return;e.dataset.discordJumpBound="true";let r=t=>{t.defaultPrevented||t.button===0&&(c(t.target,e)||a()||(t.preventDefault(),i(n)))},o=t=>{t.defaultPrevented||t.key!=="Enter"&&t.key!==" "&&t.key!=="Spacebar"&&t.key!=="Space"||t.target instanceof Element&&t.target!==e||t.repeat||(t.preventDefault(),i(n))};e.addEventListener("click",r),e.addEventListener("keydown",o),window.addCleanup(()=>{e.removeEventListener("click",r),e.removeEventListener("keydown",o)})},u=()=>{document.querySelectorAll("[data-discord-jump]").forEach(n=>l(n))};u();document.addEventListener("nav",u);
+</script><script src="./7_10 Tone Wiki_files/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="./7_10 Tone Wiki_files/postscript.js" type="module"></script></body></html>

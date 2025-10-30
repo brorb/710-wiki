@@ -1209,7 +1209,7 @@ li.section-li > .section .meta {
   margin: 0;
 }
 `;import{Fragment as Fragment3,jsx as jsx10,jsxs as jsxs4}from"preact/jsx-runtime";var defaultOptions9={numPages:10},TagContent_default=__name((opts=>{let options2={...defaultOptions9,...opts},TagContent=__name(props=>{let{tree,fileData,allFiles,cfg}=props,slug=fileData.slug;if(!(slug?.startsWith("tags/")||slug==="tags"))throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`);let tag=simplifySlug(slug.slice(5)),allPagesWithTag=__name(tag2=>allFiles.filter(file=>(file.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes).includes(tag2)),"allPagesWithTag"),content=tree.children.length===0?fileData.description:htmlToJsx(fileData.filePath,tree),classes=(fileData.frontmatter?.cssclasses??[]).join(" ");if(tag==="/"){let tags=[...new Set(allFiles.flatMap(data=>data.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes))].sort((a,b)=>a.localeCompare(b)),tagItemMap=new Map;for(let tag2 of tags)tagItemMap.set(tag2,allPagesWithTag(tag2));return jsxs4("div",{class:"popover-hint",children:[jsx10("article",{class:classes,children:jsx10("p",{children:content})}),jsx10("p",{children:i18n(cfg.locale).pages.tagContent.totalTags({count:tags.length})}),jsx10("div",{children:tags.map(tag2=>{let pages=tagItemMap.get(tag2),listProps={...props,allFiles:pages},contentPage=allFiles.filter(file=>file.slug===`tags/${tag2}`).at(0),root=contentPage?.htmlAst,content2=!root||root?.children.length===0?contentPage?.description:htmlToJsx(contentPage.filePath,root),tagListingPage=`/tags/${tag2}`,href=resolveRelative(fileData.slug,tagListingPage);return jsxs4("div",{children:[jsx10("h2",{children:jsx10("a",{class:"internal tag-link",href,children:tag2})}),content2&&jsx10("p",{children:content2}),jsxs4("div",{class:"page-listing",children:[jsxs4("p",{children:[i18n(cfg.locale).pages.tagContent.itemsUnderTag({count:pages.length}),pages.length>options2.numPages&&jsxs4(Fragment3,{children:[" ",jsx10("span",{children:i18n(cfg.locale).pages.tagContent.showingFirst({count:options2.numPages})})]})]}),jsx10(PageList,{limit:options2.numPages,...listProps,sort:options2?.sort})]})]})})})]})}else{let pages=allPagesWithTag(tag),listProps={...props,allFiles:pages};return jsxs4("div",{class:"popover-hint",children:[jsx10("article",{class:classes,children:content}),jsxs4("div",{class:"page-listing",children:[jsx10("p",{children:i18n(cfg.locale).pages.tagContent.itemsUnderTag({count:pages.length})}),jsx10("div",{children:jsx10(PageList,{...listProps,sort:options2?.sort})})]})]})}},"TagContent");return TagContent.css=concatenateResources(listPage_default,PageList.css),TagContent}),"default");var FileTrieNode=class _FileTrieNode{static{__name(this,"FileTrieNode")}isFolder;children;slugSegments;fileSegmentHint;displayNameOverride;data;constructor(segments,data){this.children=[],this.slugSegments=segments,this.data=data??null,this.isFolder=!1,this.displayNameOverride=void 0}get displayName(){let nonIndexTitle=this.data?.title==="index"?void 0:this.data?.title;return this.displayNameOverride??nonIndexTitle??this.fileSegmentHint??this.slugSegment??""}set displayName(name){this.displayNameOverride=name}get slug(){let path14=joinSegments(...this.slugSegments);return this.isFolder?joinSegments(path14,"index"):path14}get slugSegment(){return this.slugSegments[this.slugSegments.length-1]}makeChild(path14,file){let fullPath=[...this.slugSegments,path14[0]],child=new _FileTrieNode(fullPath,file);return this.children.push(child),child}insert(path14,file){if(path14.length===0)throw new Error("path is empty");this.isFolder=!0;let segment=path14[0];if(path14.length===1)segment==="index"?this.data??=file:this.makeChild(path14,file);else if(path14.length>1){let child=this.children.find(c=>c.slugSegment===segment)??this.makeChild(path14,void 0),fileParts=file.filePath.split("/");child.fileSegmentHint=fileParts.at(-path14.length),child.insert(path14.slice(1),file)}}add(file){this.insert(file.slug.split("/"),file)}findNode(path14){return path14.length===0||path14.length===1&&path14[0]==="index"?this:this.children.find(c=>c.slugSegment===path14[0])?.findNode(path14.slice(1))}ancestryChain(path14){if(path14.length===0||path14.length===1&&path14[0]==="index")return[this];let child=this.children.find(c=>c.slugSegment===path14[0]);if(!child)return;let childPath=child.ancestryChain(path14.slice(1));if(childPath)return[this,...childPath]}filter(filterFn){this.children=this.children.filter(filterFn),this.children.forEach(child=>child.filter(filterFn))}map(mapFn){mapFn(this),this.children.forEach(child=>child.map(mapFn))}sort(sortFn){this.children=this.children.sort(sortFn),this.children.forEach(e=>e.sort(sortFn))}static fromEntries(entries){let trie=new _FileTrieNode([]);return entries.forEach(([,entry])=>trie.add(entry)),trie}entries(){let traverse=__name(node=>[[node.slug,node]].concat(...node.children.map(traverse)),"traverse");return traverse(this)}getFolderPaths(){return this.entries().filter(([_,node])=>node.isFolder).map(([path14,_])=>path14)}};function trieFromAllFiles(allFiles){let trie=new FileTrieNode([]);return allFiles.forEach(file=>{file.frontmatter&&trie.add({...file,slug:file.slug,title:file.frontmatter.title,filePath:file.filePath})}),trie}__name(trieFromAllFiles,"trieFromAllFiles");import{jsx as jsx11,jsxs as jsxs5}from"preact/jsx-runtime";var defaultOptions10={showFolderCount:!0,showSubfolders:!0},FolderContent_default=__name((opts=>{let options2={...defaultOptions10,...opts},FolderContent=__name(props=>{let{tree,fileData,allFiles,cfg}=props,folder=(props.ctx.trie??=trieFromAllFiles(allFiles)).findNode(fileData.slug.split("/"));if(!folder)return null;let allPagesInFolder=folder.children.map(node=>{if(node.data)return node.data;if(node.isFolder&&options2.showSubfolders){let getMostRecentDates=__name(()=>{let maybeDates;for(let child of node.children)child.data?.dates&&(maybeDates?(child.data.dates.created>maybeDates.created&&(maybeDates.created=child.data.dates.created),child.data.dates.modified>maybeDates.modified&&(maybeDates.modified=child.data.dates.modified),child.data.dates.published>maybeDates.published&&(maybeDates.published=child.data.dates.published)):maybeDates={...child.data.dates});return maybeDates??{created:new Date,modified:new Date,published:new Date}},"getMostRecentDates");return{slug:node.slug,dates:getMostRecentDates(),frontmatter:{title:node.displayName,tags:[]}}}}).filter(page=>page!==void 0)??[],classes=(fileData.frontmatter?.cssclasses??[]).join(" "),listProps={...props,sort:options2.sort,allFiles:allPagesInFolder},content=tree.children.length===0?fileData.description:htmlToJsx(fileData.filePath,tree);return jsxs5("div",{class:"popover-hint",children:[jsx11("article",{class:classes,children:content}),jsxs5("div",{class:"page-listing",children:[options2.showFolderCount&&jsx11("p",{children:i18n(cfg.locale).pages.folderContent.itemsUnderFolder({count:allPagesInFolder.length})}),jsx11("div",{children:jsx11(PageList,{...listProps})})]})]})},"FolderContent");return FolderContent.css=concatenateResources(listPage_default,PageList.css),FolderContent}),"default");import{jsx as jsx12,jsxs as jsxs6}from"preact/jsx-runtime";var NotFound=__name(({cfg})=>{let baseDir=new URL(`https://${cfg.baseUrl??"example.com"}`).pathname;return jsxs6("article",{class:"popover-hint",children:[jsx12("h1",{children:"404"}),jsx12("p",{children:i18n(cfg.locale).pages.error.notFound}),jsx12("a",{href:baseDir,children:i18n(cfg.locale).pages.error.home})]})},"NotFound"),__default=__name((()=>NotFound),"default");var shareButton_inline_default=`var u="success",f="error";var r=e=>{let t=e?.trim();return t&&t.length>0?t:void 0},p=e=>{if(e.dataset.shareBound==="true")return;let t=r(e.dataset.shareUrl);if(!t){e.disabled=!0;return}e.dataset.shareBound="true";let E=r(e.dataset.shareTitle)??document.title,S=r(e.dataset.shareText),T=r(e.dataset.shareCopied)??"Link copied!",m=r(e.dataset.shareShared)??"Share dialog opened.",d=r(e.dataset.shareError)??"Sharing not available.",c=r(e.dataset.shareCancel),a=e.parentElement?.querySelector(".article-share__feedback"),i,s=(o,n)=>{a&&(i&&(window.clearTimeout(i),i=void 0),n?a.dataset.state=n:delete a.dataset.state,a.textContent=o??"",o&&(i=window.setTimeout(()=>{n&&delete a.dataset.state,a.textContent="",i=void 0},2800)))},L=()=>{try{return new URL(t,window.location.href).toString()}catch{return t}},l=async()=>{let o=L();try{if(navigator.share&&typeof navigator.share=="function"){await navigator.share({title:E,text:S,url:o}),s(m,u);return}if(navigator.clipboard&&typeof navigator.clipboard.writeText=="function"){await navigator.clipboard.writeText(o),s(T,u);return}s(d,f)}catch(n){if(n instanceof DOMException&&n.name==="AbortError"){c&&s(c);return}s(d,f)}};e.addEventListener("click",l),window.addCleanup(()=>e.removeEventListener("click",l))},h=()=>{document.querySelectorAll(".article-share__button").forEach(t=>p(t))};h();document.addEventListener("nav",h);
-`;import{jsx as jsx13,jsxs as jsxs7}from"preact/jsx-runtime";var resolveShareUrl=__name((cfg,slug)=>{if(!slug)return;let relativePath=slug==="index"?"/":`/${slug}`,normalizedPath=relativePath.endsWith("/")?relativePath:`${relativePath}/`,rawBase=cfg.baseUrl?.trim();if(!rawBase)return normalizedPath;let normalizedBase=rawBase.startsWith("http")?rawBase:`https://${rawBase}`;try{return new URL(normalizedPath,normalizedBase).toString()}catch{return normalizedPath}},"resolveShareUrl"),ArticleHeader=__name(({cfg,fileData,displayClass})=>{let title=fileData.frontmatter?.title??fileData.slug??"",updatedDate=fileData.dates?getDate(cfg,fileData):void 0,shareUrl=resolveShareUrl(cfg,fileData.slug),shareText=fileData.description??fileData.frontmatter?.description??"";return!title&&!updatedDate?null:jsxs7("header",{class:classNames(displayClass,"article-header"),children:[jsxs7("div",{class:"article-header__content",children:[title&&jsx13("h1",{class:"article-title",children:title}),updatedDate&&jsxs7("div",{class:"article-header__meta",children:[jsx13("span",{class:"article-header__meta-label",children:"Updated"}),jsx13(Date2,{date:updatedDate,locale:cfg.locale})]})]}),shareUrl&&jsxs7("div",{class:"article-share",children:[jsx13("button",{type:"button",class:"article-share__button","aria-label":`Share ${title}`,"data-share-url":shareUrl,"data-share-title":title,"data-share-text":shareText||void 0,"data-share-copied":"Link copied!","data-share-shared":"Share dialog opened.","data-share-error":"Sharing not available.","data-share-cancel":"Share cancelled.",children:jsx13("span",{class:"article-share__icon","aria-hidden":"true"})}),jsx13("span",{class:"article-share__feedback","aria-live":"polite"})]})]})},"ArticleHeader");ArticleHeader.css=`
+`;import{jsx as jsx13,jsxs as jsxs7}from"preact/jsx-runtime";var resolveShareUrl=__name((cfg,slug)=>{if(!slug)return;let relativePath=slug==="index"?"/":`/${slug}`,normalizedPath=relativePath.endsWith("/")?relativePath:`${relativePath}/`,rawBase=cfg.baseUrl?.trim();if(!rawBase)return normalizedPath;let normalizedBase=rawBase.startsWith("http")?rawBase:`https://${rawBase}`;try{return new URL(normalizedPath,normalizedBase).toString()}catch{return normalizedPath}},"resolveShareUrl"),ArticleHeader=__name(props=>{let{cfg,fileData,displayClass}=props,title=fileData.frontmatter?.title??fileData.slug??"",updatedDate=fileData.dates?getDate(cfg,fileData):void 0,shareUrl=resolveShareUrl(cfg,fileData.slug),shareText=fileData.description??fileData.frontmatter?.description??"";return!title&&!updatedDate?null:jsxs7("header",{class:classNames(displayClass,"article-header"),children:[jsxs7("div",{class:"article-header__content",children:[title&&jsx13("h1",{class:"article-title",children:title}),updatedDate&&jsxs7("div",{class:"article-header__meta",children:[jsx13("span",{class:"article-header__meta-label",children:"Updated"}),jsx13(Date2,{date:updatedDate,locale:cfg.locale})]})]}),shareUrl&&jsx13("div",{class:"article-header__actions",children:jsxs7("div",{class:"article-share",children:[jsx13("button",{type:"button",class:"article-share__button","aria-label":`Share ${title}`,"data-share-url":shareUrl,"data-share-title":title,"data-share-text":shareText||void 0,"data-share-copied":"Link copied!","data-share-shared":"Share dialog opened.","data-share-error":"Sharing not available.","data-share-cancel":"Share cancelled.",children:jsx13("span",{class:"article-share__icon","aria-hidden":"true"})}),jsx13("span",{class:"article-share__feedback","aria-live":"polite"})]})})]})},"ArticleHeader"),articleHeaderStyles=`
 .article-header {
   margin: 2rem 0 1.85rem;
   padding-bottom: 0.85rem;
@@ -1223,6 +1223,13 @@ li.section-li > .section .meta {
 .article-header__content {
   flex: 1 1 auto;
   min-width: 0;
+}
+
+.article-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex: 0 0 auto;
 }
 
 .article-header .article-title {
@@ -1336,11 +1343,16 @@ li.section-li > .section .meta {
     align-items: stretch;
   }
 
+  .article-header__actions {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .article-share {
     align-items: flex-start;
   }
 }
-`;ArticleHeader.afterDOMLoaded=shareButton_inline_default;var ArticleHeader_default=__name((()=>ArticleHeader),"default");import{jsx as jsx14}from"preact/jsx-runtime";var ArticleTitle=__name(({fileData,displayClass})=>{let title=fileData.frontmatter?.title;return title?jsx14("h1",{class:classNames(displayClass,"article-title"),children:title}):null},"ArticleTitle");ArticleTitle.css=`
+`;ArticleHeader.css=articleHeaderStyles;ArticleHeader.afterDOMLoaded=shareButton_inline_default;var ArticleHeader_default=__name((()=>ArticleHeader),"default");import{jsx as jsx14}from"preact/jsx-runtime";var ArticleTitle=__name(({fileData,displayClass})=>{let title=fileData.frontmatter?.title;return title?jsx14("h1",{class:classNames(displayClass,"article-title"),children:title}):null},"ArticleTitle");ArticleTitle.css=`
 .article-title {
   margin: 2rem 0 0 0;
 }
@@ -4506,8 +4518,385 @@ header {
   }
 }
 `,HomepageFeatures.afterDOMLoaded=homepage_inline_default,HomepageFeatures}),"default");var mediaNormalizer_inline_default=`var M="audio, video";var s={threshold:-26,knee:22,ratio:12,attack:.003,release:.25},h=e=>Number.isFinite(e)?Math.min(Math.max(e,0),1):.38,d=e=>{let t=document.documentElement.getAttribute(e);if(!t)return;let n=Number.parseFloat(t);return Number.isFinite(n)?n:void 0},i=(e,t)=>{let n=e.getAttribute(t)??e.dataset[t];if(!n)return;let o=Number.parseFloat(n);return Number.isFinite(o)?o:void 0},b=(()=>{let e=null;return()=>{if(e&&e.state!=="closed")return e;let t=window.AudioContext??window.webkitAudioContext;return typeof t!="function"?null:(e=new t,e)}})(),u={threshold:d("data-media-normalize-threshold")??s.threshold,knee:d("data-media-normalize-knee")??s.knee,ratio:d("data-media-normalize-ratio")??s.ratio,attack:d("data-media-normalize-attack")??s.attack,release:d("data-media-normalize-release")??s.release},f=e=>{if(e.dataset.mediaNormalizeBound==="true")return;e.dataset.mediaNormalizeBound="true";let t=i(e,"mediaNormalizeVolume"),n=d("data-media-normalize-volume"),o=h(t??n??.38);e.volume=o;let a=b();if(!a)return;let l;try{l=a.createMediaElementSource(e)}catch(m){console.warn("Media normalizer: unable to attach audio source",m);return}let r=a.createDynamicsCompressor();r.threshold.value=i(e,"mediaNormalizeThreshold")??u.threshold,r.knee.value=i(e,"mediaNormalizeKnee")??u.knee,r.ratio.value=i(e,"mediaNormalizeRatio")??u.ratio,r.attack.value=i(e,"mediaNormalizeAttack")??u.attack,r.release.value=i(e,"mediaNormalizeRelease")??u.release;let c=a.createGain(),A=i(e,"mediaNormalizeGain"),N=d("data-media-normalize-gain");c.gain.value=h(A??N??.82),l.connect(r),r.connect(c),c.connect(a.destination);let E=()=>{a.state==="suspended"&&a.resume().catch(()=>{})};e.addEventListener("play",E,{once:!0}),window.addCleanup(()=>{e.removeEventListener("play",E);try{l?.disconnect(),r.disconnect(),c.disconnect()}catch(m){console.warn("Media normalizer: cleanup error",m)}})},v=()=>{document.querySelectorAll(M).forEach(e=>f(e))},L=()=>{let e=new MutationObserver(t=>{for(let n of t)n.addedNodes.forEach(o=>{o instanceof HTMLMediaElement?f(o):o instanceof HTMLElement&&o.querySelectorAll(M).forEach(a=>f(a))})});e.observe(document.body,{childList:!0,subtree:!0}),window.addCleanup(()=>e.disconnect())};v();L();document.addEventListener("nav",v);
-`;import{Fragment as Fragment8,jsx as jsx38}from"preact/jsx-runtime";var MediaNormalizer=__name(()=>jsx38(Fragment8,{}),"MediaNormalizer");MediaNormalizer.afterDOMLoaded=mediaNormalizer_inline_default;var MediaNormalizer_default=__name((()=>MediaNormalizer),"default");var commentsConfig={enabled:!0,provider:"utterances",repo:"brorb/710-wiki",issueTerm:"pathname",label:"\u{1F4AC} comment",theme:"github-dark"};var graphHiddenTags=["graph-exclude"],sharedAfterBody=[MediaNormalizer_default(),ConditionalRender_default({component:Canvas_default(),condition:__name(props=>hasCanvasFrontmatter(props.fileData.frontmatter),"condition")}),MobileOnly_default(Backlinks_default()),ConditionalRender_default({component:HomepageFeatures_default(),condition:__name(page=>page.fileData.slug==="index","condition")})],mobileDiscordWidget=MobileOnly_default(DiscordWidget_default({variant:"banner"}));if(commentsConfig.enabled){if(commentsConfig.provider==="giscus"){let{repo,repoId,category,categoryId,mapping,strict,reactionsEnabled,inputPosition,lang,lightTheme,darkTheme,themeUrl}=commentsConfig;sharedAfterBody.push(Comments_default({provider:"giscus",options:{repo,repoId,category,categoryId,mapping,strict,reactionsEnabled,inputPosition,lang,lightTheme,darkTheme,themeUrl},mobileAppend:mobileDiscordWidget}))}else if(commentsConfig.provider==="utterances"){let{repo,issueTerm,label,theme}=commentsConfig;sharedAfterBody.push(Comments_default({provider:"utterances",options:{repo,issueTerm,label,theme},mobileAppend:mobileDiscordWidget}))}}var sharedPageComponents={head:Head_default(),header:[LinksHeader_default()],afterBody:sharedAfterBody,footer:Footer_default()},defaultContentPageLayout={beforeBody:[ConditionalRender_default({component:Breadcrumbs_default(),condition:__name(page=>page.fileData.slug!=="index","condition")}),ArticleHeader_default(),InfoBox_default(),TagList_default(),MobileOnly_default(TableOfContents_default({defaultCollapsed:!0}))],left:[PageTitle_default(),DesktopOnly_default(Search_default()),MobileOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",headerSlot:Search_default({variant:"inline"}),useSavedState:!1,startCollapsed:!0,filterFn:__name(node=>{let segment=typeof node.slugSegment=="string"?node.slugSegment.toLowerCase():"";return segment!=="templates"&&segment!=="canvases"},"filterFn")})),DesktopOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",useSavedState:!1,startCollapsed:!1,filterFn:__name(node=>{let segment=typeof node.slugSegment=="string"?node.slugSegment.toLowerCase():"";return segment!=="templates"&&segment!=="canvases"},"filterFn")}))],right:[DesktopOnly_default(Graph_default({localGraph:{removeTags:graphHiddenTags},globalGraph:{removeTags:graphHiddenTags}})),DesktopOnly_default(TableOfContents_default({defaultCollapsed:!0})),DesktopOnly_default(Backlinks_default()),DesktopOnly_default(DiscordWidget_default({variant:"sidebar"}))]},defaultListPageLayout={beforeBody:[Breadcrumbs_default(),ArticleTitle_default(),ContentMeta_default(),MobileOnly_default(TableOfContents_default({defaultCollapsed:!0}))],left:[PageTitle_default(),DesktopOnly_default(Search_default()),MobileOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",useSavedState:!1,headerSlot:Search_default({variant:"inline"}),filterFn:__name(node=>node.slugSegment!=="templates","filterFn")})),DesktopOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"open",filterFn:__name(node=>node.slugSegment!=="templates","filterFn")}))],right:[]};import{styleText as styleText5}from"util";async function processContent(ctx,tree,fileData,allFiles,opts,resources){let slug=fileData.slug,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),content=renderPage(cfg,slug,{ctx,fileData,externalResources,cfg,children:[],tree,allFiles},opts,externalResources);return write({ctx,content,slug,ext:".html"})}__name(processContent,"processContent");var ContentPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultContentPageLayout,pageBody:Content_default(),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"ContentPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),containsIndex=!1;for(let[tree,file]of content){let slug=file.data.slug;slug==="index"&&(containsIndex=!0),!(slug.endsWith("/index")||slug.startsWith("tags/"))&&(yield processContent(ctx,tree,file.data,allFiles,opts,resources))}containsIndex||console.log(styleText5("yellow",`
-Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path8.join(ctx.argv.directory,"index.md")} does not exist\`). This may cause errors when deploying.`))},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),changedSlugs=new Set;for(let changeEvent of changeEvents)changeEvent.file&&(changeEvent.type==="add"||changeEvent.type==="change")&&changedSlugs.add(changeEvent.file.data.slug);for(let[tree,file]of content){let slug=file.data.slug;changedSlugs.has(slug)&&(slug.endsWith("/index")||slug.startsWith("tags/")||(yield processContent(ctx,tree,file.data,allFiles,opts,resources)))}}}},"ContentPage");import{VFile}from"vfile";function defaultProcessedContent(vfileData){let root={type:"root",children:[]},vfile=new VFile("");return vfile.data=vfileData,[root,vfile]}__name(defaultProcessedContent,"defaultProcessedContent");function computeTagInfo(allFiles,content,locale){let tags=new Set(allFiles.flatMap(data=>data.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes));tags.add("index");let tagDescriptions=Object.fromEntries([...tags].map(tag=>{let title=tag==="index"?i18n(locale).pages.tagContent.tagIndex:`${i18n(locale).pages.tagContent.tag}: ${tag}`;return[tag,defaultProcessedContent({slug:joinSegments("tags",tag),frontmatter:{title,tags:[]}})]}));for(let[tree,file]of content){let slug=file.data.slug;if(slug.startsWith("tags/")){let tag=slug.slice(5);tags.has(tag)&&(tagDescriptions[tag]=[tree,file],file.data.frontmatter?.title===tag&&(file.data.frontmatter.title=`${i18n(locale).pages.tagContent.tag}: ${tag}`))}}return[tags,tagDescriptions]}__name(computeTagInfo,"computeTagInfo");async function processTagPage(ctx,tag,tagContent,allFiles,opts,resources){let slug=joinSegments("tags",tag),[tree,file]=tagContent,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),componentData={ctx,fileData:file.data,externalResources,cfg,children:[],tree,allFiles},content=renderPage(cfg,slug,componentData,opts,externalResources);return write({ctx,content,slug:file.data.slug,ext:".html"})}__name(processTagPage,"processTagPage");var TagPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultListPageLayout,pageBody:TagContent_default({sort:userOpts?.sort}),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"TagPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,[tags,tagDescriptions]=computeTagInfo(allFiles,content,cfg.locale);for(let tag of tags)yield processTagPage(ctx,tag,tagDescriptions[tag],allFiles,opts,resources)},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,affectedTags=new Set;for(let changeEvent of changeEvents){if(!changeEvent.file)continue;let slug=changeEvent.file.data.slug;if(slug.startsWith("tags/")){let tag=slug.slice(5);affectedTags.add(tag)}(changeEvent.file.data.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes).forEach(tag=>affectedTags.add(tag)),affectedTags.add("index")}if(affectedTags.size>0){let[_tags,tagDescriptions]=computeTagInfo(allFiles,content,cfg.locale);for(let tag of affectedTags)tagDescriptions[tag]&&(yield processTagPage(ctx,tag,tagDescriptions[tag],allFiles,opts,resources))}}}},"TagPage");import path9 from"path";async function*processFolderInfo(ctx,folderInfo,allFiles,opts,resources){for(let[folder,folderContent]of Object.entries(folderInfo)){let slug=joinSegments(folder,"index"),[tree,file]=folderContent,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),componentData={ctx,fileData:file.data,externalResources,cfg,children:[],tree,allFiles},content=renderPage(cfg,slug,componentData,opts,externalResources);yield write({ctx,content,slug,ext:".html"})}}__name(processFolderInfo,"processFolderInfo");function computeFolderInfo(folders,content,locale){let folderInfo=Object.fromEntries([...folders].map(folder=>[folder,defaultProcessedContent({slug:joinSegments(folder,"index"),frontmatter:{title:`${i18n(locale).pages.folderContent.folder}: ${folder}`,tags:[]}})]));for(let[tree,file]of content){let slug=stripSlashes(simplifySlug(file.data.slug));folders.has(slug)&&(folderInfo[slug]=[tree,file])}return folderInfo}__name(computeFolderInfo,"computeFolderInfo");function _getFolders(slug){var folderName=path9.dirname(slug??"");let parentFolderNames=[folderName];for(;folderName!==".";)folderName=path9.dirname(folderName??""),parentFolderNames.push(folderName);return parentFolderNames.filter(folder=>folder!=="canvases")}__name(_getFolders,"_getFolders");var FolderPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultListPageLayout,pageBody:FolderContent_default({sort:userOpts?.sort}),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"FolderPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,folders=new Set(allFiles.flatMap(data=>data.slug?_getFolders(data.slug).filter(folderName=>folderName!=="."&&folderName!=="tags"):[])),folderInfo=computeFolderInfo(folders,content,cfg.locale);yield*processFolderInfo(ctx,folderInfo,allFiles,opts,resources)},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,affectedFolders=new Set;for(let changeEvent of changeEvents){if(!changeEvent.file)continue;let slug=changeEvent.file.data.slug;_getFolders(slug).filter(folderName=>folderName!=="."&&folderName!=="tags").forEach(folder=>affectedFolders.add(folder))}if(affectedFolders.size>0){let folderInfo=computeFolderInfo(affectedFolders,content,cfg.locale);yield*processFolderInfo(ctx,folderInfo,allFiles,opts,resources)}}}},"FolderPage");import{toHtml as toHtml2}from"hast-util-to-html";import{jsx as jsx39}from"preact/jsx-runtime";var defaultOptions17={enableSiteMap:!0,enableRSS:!0,rssLimit:10,rssFullHtml:!1,rssSlug:"index",includeEmptyFiles:!0};function generateSiteMap(cfg,idx){let base=cfg.baseUrl??"",createURLEntry=__name((slug,content)=>`<url>
+`;import{Fragment as Fragment8,jsx as jsx38}from"preact/jsx-runtime";var MediaNormalizer=__name(()=>jsx38(Fragment8,{}),"MediaNormalizer");MediaNormalizer.afterDOMLoaded=mediaNormalizer_inline_default;var MediaNormalizer_default=__name((()=>MediaNormalizer),"default");var oracleChat_inline_default='var j="oracle-chat-history",U="/api/oracle/query";var ee="oracle_chat",te=a=>{let{oracleApiBase:e="",oracleEndpoint:t=U,oracleStorageKey:n,oracleMaxHistory:i,oracleRecaptchaKey:s,oracleArticleTitle:y,oracleArticleSlug:m,oracleApiToken:d}=a.dataset,w=n?.trim()||j,c=Number.parseInt(i??"",10),g=Number.isFinite(c)&&c>0?c:24;return{apiBaseUrl:e?.trim()||"",endpointPath:t?.trim()||U,storageKey:w,maxHistory:g,recaptchaSiteKey:s?.trim()||void 0,apiToken:d?.trim()||void 0,article:{title:y?.trim()||void 0,slug:m?.trim()||void 0}}},ne=a=>{let{apiBaseUrl:e,endpointPath:t}=a,n=t.startsWith("/")||t.startsWith("http")?t:`/${t}`;if(!e)return n.startsWith("http")?n:`${window.location.origin}${n}`;if(e.startsWith("http")){let s=e.endsWith("/")?e.slice(0,-1):e;return n.startsWith("/")?`${s}${n}`:`${s}/${n}`}let i=e.startsWith("/")?e:`/${e}`;return`${window.location.origin}${i.endsWith("/")?i.slice(0,-1):i}${n.startsWith("/")?n:`/${n}`}`},ae=a=>{try{let e=window.localStorage.getItem(a);if(!e)return{messages:[]};let t=JSON.parse(e);return Array.isArray(t.messages)?{conversationId:t.conversationId,lastOpenedAt:t.lastOpenedAt,messages:t.messages.filter(n=>typeof n?.content=="string"&&n.content.length>0)}:{messages:[]}}catch(e){return console.warn("ORA_CLE chat: unable to read stored state",e),{messages:[]}}},A=(a,e,t)=>{try{let n=e.messages.slice(-t),i={conversationId:e.conversationId,lastOpenedAt:e.lastOpenedAt??Date.now(),messages:n.map(s=>({id:s.id,role:s.role,content:s.content,createdAt:s.createdAt}))};window.localStorage.setItem(a,JSON.stringify(i))}catch(n){console.warn("ORA_CLE chat: unable to persist chat state",n)}},z=a=>{let e=document.createElement("div");e.className="oracle-chat__message",e.dataset.role=a.role,a.role==="user"?e.classList.add("oracle-chat__message--user"):a.role==="assistant"||a.role==="system"?e.classList.add("oracle-chat__message--assistant"):a.role==="error"&&e.classList.add("oracle-chat__message--error"),a.pending&&e.classList.add("oracle-chat__message--pending");let t=document.createElement("div");t.className="oracle-chat__bubble",t.textContent=a.content,e.appendChild(t);let n=document.createElement("time");return n.className="oracle-chat__timestamp",n.setAttribute("datetime",new Date(a.createdAt).toISOString()),n.textContent=new Date(a.createdAt).toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}),e.appendChild(n),e};var _=a=>{window.requestAnimationFrame(()=>{a.scrollTop=a.scrollHeight})},se=a=>a.replace(/[\\u0000-\\u001f\\u007f]/g," "),b=()=>Math.random().toString(36).slice(2,12),re=async a=>{if(!a)return;let e=window.grecaptcha;if(e)return await new Promise(n=>e.ready(n)),e;await new Promise((n,i)=>{let s=document.createElement("script");s.src=`https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(a)}`,s.async=!0,s.defer=!0,s.onload=()=>n(),s.onerror=()=>i(new Error("Failed to load reCAPTCHA")),document.head.appendChild(s)});let t=window.grecaptcha;if(t)return await new Promise(n=>t.ready(n)),t},oe=(a,e,t,n)=>{let i=e.messages.filter(g=>g.role==="user"||g.role==="assistant").slice(-t.maxHistory).map(g=>({role:g.role,content:g.content})),s=[...i,{role:"user",content:a}],y=t.article?.title||document.title||void 0,m=t.article?.slug||void 0,d=window.location.pathname,w=window.location.href,c=i.length;return{conversationId:e.conversationId??null,messages:s,metadata:{origin:"710-wiki",path:d,url:w,article:{title:y,slug:m},history:{includedMessages:c,windowSize:t.maxHistory,totalMessages:e.messages.length},timestamp:new Date().toISOString()},captchaToken:n??void 0}},ie=async(a,e,t)=>{let n=await fetch(a,{method:"POST",headers:{"Content-Type":"application/json",...t?{Authorization:`Bearer ${t}`}:{}},body:JSON.stringify(e)});if(!n.ok)throw new Error(`Request failed with status ${n.status}`);return await n.json()},O=(a,e)=>{a.innerHTML="",e.messages.forEach(t=>{a.appendChild(z(t))}),e.messages.length>0&&_(a)},ce=()=>{let a=Array.from(document.querySelectorAll(".oracle-widget"));a.length!==0&&a.forEach(e=>{if(e.hasAttribute("data-oracle-ready"))return;e.setAttribute("data-oracle-ready","true");let t=te(e),n=ne(t),i=t.storageKey||j,s=e.querySelector(".oracle-widget__launcher"),y=e.querySelector(".oracle-chat__overlay"),m=e.querySelector(".oracle-chat"),d=e.querySelector("[data-oracle-history]"),w=e.querySelector("[data-oracle-form]"),c=e.querySelector("[data-oracle-input]"),g=e.querySelector("[data-oracle-send]"),H=e.querySelector("[data-oracle-action=\'close\']"),h=e.querySelector("[data-oracle-action=\'reset\']");if(!s||!y||!m||!d||!w||!c||!g){console.warn("ORA_CLE chat: widget markup missing expected elements");return}let o=ae(i);O(d,o),h&&(h.disabled=o.messages.length===0);let p=()=>{let r=c.value.trim().length>0,l=o.messages.some(E=>E.pending);g.disabled=!r||l},L=()=>{c.style.height="auto",c.style.height=`${Math.min(c.scrollHeight,240)}px`};L(),p();let R=0,v,C,S=()=>{m.classList.remove("oracle-chat--open"),m.setAttribute("aria-hidden","true"),s.setAttribute("aria-expanded","false"),s.focus()},J=async()=>{if(m.classList.add("oracle-chat--open"),m.setAttribute("aria-hidden","false"),s.setAttribute("aria-expanded","true"),o.lastOpenedAt=Date.now(),A(i,o,t.maxHistory),t.recaptchaSiteKey&&!v)try{v=await re(t.recaptchaSiteKey)}catch(r){console.warn("ORA_CLE chat: unable to load reCAPTCHA",r)}window.requestAnimationFrame(()=>{c.focus(),_(d)})},Y=()=>{o={messages:[]},A(i,o,t.maxHistory),O(d,o),h&&(h.disabled=!0),p(),L()},T=r=>{o.messages=[...o.messages,r],d.appendChild(z(r)),_(d),A(i,o,t.maxHistory),h&&(h.disabled=o.messages.length===0)},X=r=>{o.messages=o.messages.map(l=>l.pending?r:l),O(d,o),A(i,o,t.maxHistory),h&&(h.disabled=o.messages.length===0)},G=r=>{let l=r instanceof Error?r.message:"Something went wrong. Please try again.",E={id:b(),role:"error",content:l,createdAt:Date.now()};T(E),p()},k=async()=>{let r=se(c.value.trim());if(!r)return;let l=Date.now();if(l-R<1200)return;R=l;let E={id:b(),role:"user",content:r,createdAt:l};T(E),c.value="",L();let N={id:b(),role:"assistant",content:"The ORA_CLE is thinking",createdAt:Date.now(),pending:!0};T(N),p(),C&&C.abort();let F=new AbortController;C=F;let W;if(t.recaptchaSiteKey&&v)try{W=await v.execute(t.recaptchaSiteKey,{action:ee})}catch(u){console.warn("ORA_CLE chat: reCAPTCHA execution failed",u)}let Q=oe(r,o,t,W);try{let u=await ie(n,Q,t.apiToken);if(F.signal.aborted)return;u.conversationId&&(o.conversationId=u.conversationId);let f=u.reply?.trim();!f&&Array.isArray(u.messages)&&u.messages.length>0&&(f=u.messages.reverse().find(Z=>Z.role==="assistant")?.content?.trim()),f||(f="I do not have an answer right now, please try another question.");let V={id:N.id,role:"assistant",content:f,createdAt:Date.now()};X(V),p()}catch(u){console.warn("ORA_CLE chat: request failed",u),o.messages=o.messages.filter(f=>!f.pending),O(d,o),A(i,o,t.maxHistory),G(u)}},x=()=>{J().catch(r=>{console.warn("ORA_CLE chat: unable to open",r)})},I=()=>{S()},D=()=>{S()},q=()=>{Y()},P=r=>{r.preventDefault(),k().catch(l=>{console.warn("ORA_CLE chat: send failed",l),p()})},K=()=>{L(),p()},B=r=>{r.key==="Enter"&&!r.shiftKey&&(r.preventDefault(),k().catch(l=>{console.warn("ORA_CLE chat: send failed",l),p()}))},$=r=>{r.key==="Escape"&&m.classList.contains("oracle-chat--open")&&S()};s.addEventListener("click",x),y.addEventListener("click",I),H?.addEventListener("click",D),h?.addEventListener("click",q),w.addEventListener("submit",P),c.addEventListener("input",K),c.addEventListener("keydown",B),window.addEventListener("keydown",$),window.addCleanup?.(()=>{s.removeEventListener("click",x),y.removeEventListener("click",I),H?.removeEventListener("click",D),h?.removeEventListener("click",q),w.removeEventListener("submit",P),c.removeEventListener("input",K),c.removeEventListener("keydown",B),window.removeEventListener("keydown",$),C?.abort()})})},M=()=>{ce()};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",M,{once:!0}):M();document.addEventListener("nav",M);\n';import{jsx as jsx39,jsxs as jsxs26}from"preact/jsx-runtime";var OracleWidgetComponent=__name(({cfg,fileData})=>{let oracleConfig=cfg.oracleChat;if(!oracleConfig||oracleConfig.enabled===!1)return null;let articleTitle=fileData.frontmatter?.title??fileData.slug??"",articleSlug=fileData.slug??"",{apiBaseUrl="",endpointPath="/api/oracle/query",recaptchaSiteKey,storageKey="oracle-chat-history",maxHistory=24,apiToken}=oracleConfig,launcherLabelId="oracle-widget-launcher-label";return jsxs26("div",{class:"oracle-widget","data-oracle-api-base":apiBaseUrl||void 0,"data-oracle-endpoint":endpointPath||void 0,"data-oracle-storage-key":storageKey,"data-oracle-max-history":String(maxHistory),"data-oracle-recaptcha-key":recaptchaSiteKey||void 0,"data-oracle-article-title":articleTitle||void 0,"data-oracle-article-slug":articleSlug||void 0,"data-oracle-api-token":apiToken||void 0,children:[jsxs26("button",{type:"button",class:"oracle-widget__launcher","aria-haspopup":"dialog","aria-controls":"oracle-chat-panel","aria-expanded":"false","aria-labelledby":launcherLabelId,children:[jsx39("span",{class:"oracle-widget__copy",id:launcherLabelId,children:jsx39("span",{class:"oracle-widget__title",children:"Ask ORA_CLE"})}),jsx39("span",{class:"oracle-widget__avatar-wrap","aria-hidden":"true",children:jsx39("img",{src:"/static/oracle-pfp.png",alt:"",class:"oracle-widget__avatar",loading:"lazy",decoding:"async"})})]}),jsxs26("div",{class:"oracle-chat",id:"oracle-chat-panel",role:"dialog","aria-modal":"true","aria-hidden":"true",children:[jsx39("div",{class:"oracle-chat__overlay","data-oracle-dismiss":!0}),jsxs26("div",{class:"oracle-chat__surface",role:"document",children:[jsxs26("header",{class:"oracle-chat__header",children:[jsxs26("div",{class:"oracle-chat__identity",children:[jsx39("img",{src:"/static/oracle-pfp.png",alt:"",class:"oracle-chat__avatar",loading:"lazy",decoding:"async"}),jsxs26("div",{class:"oracle-chat__identity-text",children:[jsx39("span",{class:"oracle-chat__name",children:"The ORA_CLE"}),jsx39("span",{class:"oracle-chat__status",children:"Ready to answer wiki questions."})]})]}),jsxs26("div",{class:"oracle-chat__header-actions",children:[jsx39("button",{type:"button",class:"oracle-chat__reset","data-oracle-action":"reset",children:"Reset"}),jsx39("button",{type:"button",class:"oracle-chat__close","aria-label":"Close chat","data-oracle-action":"close",children:jsx39("span",{"aria-hidden":"true",children:"\xD7"})})]})]}),jsx39("section",{class:"oracle-chat__history","data-oracle-history":!0,"aria-live":"polite","aria-label":"Conversation history"}),jsxs26("form",{class:"oracle-chat__composer","data-oracle-form":!0,children:[jsx39("label",{class:"oracle-chat__label",for:"oracle-chat-input",children:"Ask a question about the 7/10 Wiki"}),jsxs26("div",{class:"oracle-chat__input-row",children:[jsx39("textarea",{id:"oracle-chat-input",class:"oracle-chat__input",name:"oracle-chat-input",placeholder:"Ask ORA_CLE anything about this wiki...","data-oracle-input":!0,rows:1,autoComplete:"off",autoCapitalize:"sentences",spellcheck:!0}),jsx39("button",{type:"submit",class:"oracle-chat__send","data-oracle-send":!0,disabled:!0,children:"Send"})]})]})]})]})]})},"OracleWidgetComponent"),oracleWidgetStyles=`
+.oracle-widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.oracle-widget__launcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid color-mix(in srgb, var(--color-accent-bright) 75%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent-bright) 25%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 55%, transparent) 100%
+  );
+  color: var(--color-primary-background);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem 0.22rem 1.1rem;
+  min-height: 2.45rem;
+  cursor: pointer;
+  transition: background 160ms ease, transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 115, 125, 0.35),
+    inset 0 -2px 6px rgba(107, 0, 4, 0.4),
+    0 0 12px rgba(235, 28, 36, 0.4);
+}
+
+.oracle-widget__launcher:hover,
+.oracle-widget__launcher:focus-visible {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent-bright) 35%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 70%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, var(--color-accent-bright) 85%, transparent);
+  box-shadow:
+    inset 0 2px 8px rgba(255, 140, 150, 0.45),
+    inset 0 -2px 8px rgba(107, 0, 4, 0.5),
+    0 0 18px rgba(235, 28, 36, 0.55);
+}
+
+.oracle-widget__launcher:active {
+  transform: translateY(1px);
+}
+
+.oracle-widget__launcher:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+.oracle-widget__avatar-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  overflow: visible;
+  margin-left: 0.1rem;
+  margin-right: -0.75rem;
+}
+
+.oracle-widget__avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  transform: translateX(10px);
+}
+
+.oracle-widget__copy {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  line-height: 1.1;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  color: var(--color-tone-primary);
+}
+
+.oracle-widget__title {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-family: "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace;
+  color: var(--color-tone-primary);
+}
+
+.oracle-chat {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 999;
+}
+
+.oracle-chat.oracle-chat--open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.oracle-chat__overlay {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-panel-depth) 40%, rgba(0, 0, 0, 0.65));
+  backdrop-filter: blur(4px);
+}
+
+.oracle-chat__surface {
+  position: relative;
+  width: min(640px, calc(100vw - 2.5rem));
+  max-height: min(80vh, 720px);
+  background: var(--color-primary-background);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
+  box-shadow: 0 34px 68px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.oracle-chat[aria-hidden="true"] {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.oracle-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.35rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-shadow) 30%, transparent);
+}
+
+.oracle-chat__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.oracle-chat__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.oracle-chat__identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.oracle-chat__name {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__status {
+  font-size: 0.82rem;
+  color: var(--color-tone-muted);
+}
+
+.oracle-chat__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oracle-chat__reset {
+  border: none;
+  background: transparent;
+  color: var(--color-accent-bright);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.oracle-chat__reset:hover,
+.oracle-chat__reset:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__close {
+  border: none;
+  background: color-mix(in srgb, var(--color-accent-shadow) 30%, transparent);
+  color: var(--color-tone-contrast);
+  font-size: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oracle-chat__close:hover,
+.oracle-chat__close:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 35%, transparent);
+}
+
+.oracle-chat__history {
+  flex: 1 1 auto;
+  padding: 1.1rem 1.35rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+
+.oracle-chat__history:empty::before {
+  content: "Ask a question to start your conversation with the ORA_CLE.";
+  color: var(--color-tone-muted);
+  font-size: 0.9rem;
+}
+
+.oracle-chat__message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.oracle-chat__message--user {
+  align-items: flex-end;
+}
+
+.oracle-chat__bubble {
+  max-width: 85%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-accent-shadow-light) 45%, transparent);
+  color: var(--color-tone-contrast);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.oracle-chat__message--user .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  color: var(--color-primary-background);
+}
+
+.oracle-chat__message--assistant .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-accent-shadow) 18%, transparent);
+}
+
+.oracle-chat__message--error .oracle-chat__bubble {
+  background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__timestamp {
+  font-size: 0.7rem;
+  color: var(--color-tone-muted);
+}
+
+.oracle-chat__composer {
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-shadow) 24%, transparent);
+  padding: 0.9rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.oracle-chat__label {
+  font-size: 0.78rem;
+  color: var(--color-tone-subtle);
+}
+
+.oracle-chat__input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+.oracle-chat__input {
+  flex: 1 1 auto;
+  resize: none;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 25%, transparent);
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  min-height: 2.35rem;
+  max-height: 8.5rem;
+  background: var(--color-primary-background);
+  color: var(--color-tone-contrast);
+}
+
+.oracle-chat__input:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.oracle-chat__send {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--color-accent-bright);
+  color: var(--color-primary-background);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.oracle-chat__send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.oracle-chat__send:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.oracle-chat__message--pending .oracle-chat__bubble::after {
+  content: "\u2026";
+  margin-left: 0.35rem;
+  animation: oracle-chat-typing 1.2s infinite;
+}
+
+@keyframes oracle-chat-typing {
+  0% {
+    opacity: 0.2;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 720px) {
+  .oracle-widget {
+    width: 100%;
+  }
+
+  .oracle-widget__launcher {
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 1rem;
+  }
+
+  .oracle-chat__surface {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .oracle-chat__overlay {
+    backdrop-filter: none;
+  }
+}
+`;OracleWidgetComponent.css=oracleWidgetStyles;OracleWidgetComponent.afterDOMLoaded=oracleChat_inline_default;var OracleWidget_default=__name((()=>OracleWidgetComponent),"default");var commentsConfig={enabled:!0,provider:"utterances",repo:"brorb/710-wiki",issueTerm:"pathname",label:"\u{1F4AC} comment",theme:"github-dark"};var graphHiddenTags=["graph-exclude"],sharedAfterBody=[MediaNormalizer_default(),ConditionalRender_default({component:Canvas_default(),condition:__name(props=>hasCanvasFrontmatter(props.fileData.frontmatter),"condition")}),MobileOnly_default(Backlinks_default()),ConditionalRender_default({component:HomepageFeatures_default(),condition:__name(page=>page.fileData.slug==="index","condition")})],mobileDiscordWidget=MobileOnly_default(DiscordWidget_default({variant:"banner"}));if(commentsConfig.enabled){if(commentsConfig.provider==="giscus"){let{repo,repoId,category,categoryId,mapping,strict,reactionsEnabled,inputPosition,lang,lightTheme,darkTheme,themeUrl}=commentsConfig;sharedAfterBody.push(Comments_default({provider:"giscus",options:{repo,repoId,category,categoryId,mapping,strict,reactionsEnabled,inputPosition,lang,lightTheme,darkTheme,themeUrl},mobileAppend:mobileDiscordWidget}))}else if(commentsConfig.provider==="utterances"){let{repo,issueTerm,label,theme}=commentsConfig;sharedAfterBody.push(Comments_default({provider:"utterances",options:{repo,issueTerm,label,theme},mobileAppend:mobileDiscordWidget}))}}var sharedPageComponents={head:Head_default(),header:[LinksHeader_default()],afterBody:sharedAfterBody,footer:Footer_default()},defaultContentPageLayout={beforeBody:[ConditionalRender_default({component:Breadcrumbs_default(),condition:__name(page=>page.fileData.slug!=="index","condition")}),ArticleHeader_default(),InfoBox_default(),TagList_default(),MobileOnly_default(TableOfContents_default({defaultCollapsed:!0}))],left:[PageTitle_default(),DesktopOnly_default(Search_default()),MobileOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",headerSlot:Search_default({variant:"inline"}),useSavedState:!1,startCollapsed:!0,filterFn:__name(node=>{let segment=typeof node.slugSegment=="string"?node.slugSegment.toLowerCase():"";return segment!=="templates"&&segment!=="canvases"},"filterFn")})),DesktopOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",useSavedState:!1,startCollapsed:!1,filterFn:__name(node=>{let segment=typeof node.slugSegment=="string"?node.slugSegment.toLowerCase():"";return segment!=="templates"&&segment!=="canvases"},"filterFn")}))],right:[DesktopOnly_default(Graph_default({localGraph:{removeTags:graphHiddenTags},globalGraph:{removeTags:graphHiddenTags}})),DesktopOnly_default(OracleWidget_default()),DesktopOnly_default(TableOfContents_default({defaultCollapsed:!0})),DesktopOnly_default(Backlinks_default()),DesktopOnly_default(DiscordWidget_default({variant:"sidebar"}))]},defaultListPageLayout={beforeBody:[Breadcrumbs_default(),ArticleTitle_default(),ContentMeta_default(),MobileOnly_default(TableOfContents_default({defaultCollapsed:!0}))],left:[PageTitle_default(),DesktopOnly_default(Search_default()),MobileOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"collapsed",useSavedState:!1,headerSlot:Search_default({variant:"inline"}),filterFn:__name(node=>node.slugSegment!=="templates","filterFn")})),DesktopOnly_default(Explorer_default({folderClickBehavior:"link",folderDefaultState:"open",filterFn:__name(node=>node.slugSegment!=="templates","filterFn")}))],right:[]};import{styleText as styleText5}from"util";async function processContent(ctx,tree,fileData,allFiles,opts,resources){let slug=fileData.slug,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),content=renderPage(cfg,slug,{ctx,fileData,externalResources,cfg,children:[],tree,allFiles},opts,externalResources);return write({ctx,content,slug,ext:".html"})}__name(processContent,"processContent");var ContentPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultContentPageLayout,pageBody:Content_default(),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"ContentPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),containsIndex=!1;for(let[tree,file]of content){let slug=file.data.slug;slug==="index"&&(containsIndex=!0),!(slug.endsWith("/index")||slug.startsWith("tags/"))&&(yield processContent(ctx,tree,file.data,allFiles,opts,resources))}containsIndex||console.log(styleText5("yellow",`
+Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path8.join(ctx.argv.directory,"index.md")} does not exist\`). This may cause errors when deploying.`))},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),changedSlugs=new Set;for(let changeEvent of changeEvents)changeEvent.file&&(changeEvent.type==="add"||changeEvent.type==="change")&&changedSlugs.add(changeEvent.file.data.slug);for(let[tree,file]of content){let slug=file.data.slug;changedSlugs.has(slug)&&(slug.endsWith("/index")||slug.startsWith("tags/")||(yield processContent(ctx,tree,file.data,allFiles,opts,resources)))}}}},"ContentPage");import{VFile}from"vfile";function defaultProcessedContent(vfileData){let root={type:"root",children:[]},vfile=new VFile("");return vfile.data=vfileData,[root,vfile]}__name(defaultProcessedContent,"defaultProcessedContent");function computeTagInfo(allFiles,content,locale){let tags=new Set(allFiles.flatMap(data=>data.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes));tags.add("index");let tagDescriptions=Object.fromEntries([...tags].map(tag=>{let title=tag==="index"?i18n(locale).pages.tagContent.tagIndex:`${i18n(locale).pages.tagContent.tag}: ${tag}`;return[tag,defaultProcessedContent({slug:joinSegments("tags",tag),frontmatter:{title,tags:[]}})]}));for(let[tree,file]of content){let slug=file.data.slug;if(slug.startsWith("tags/")){let tag=slug.slice(5);tags.has(tag)&&(tagDescriptions[tag]=[tree,file],file.data.frontmatter?.title===tag&&(file.data.frontmatter.title=`${i18n(locale).pages.tagContent.tag}: ${tag}`))}}return[tags,tagDescriptions]}__name(computeTagInfo,"computeTagInfo");async function processTagPage(ctx,tag,tagContent,allFiles,opts,resources){let slug=joinSegments("tags",tag),[tree,file]=tagContent,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),componentData={ctx,fileData:file.data,externalResources,cfg,children:[],tree,allFiles},content=renderPage(cfg,slug,componentData,opts,externalResources);return write({ctx,content,slug:file.data.slug,ext:".html"})}__name(processTagPage,"processTagPage");var TagPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultListPageLayout,pageBody:TagContent_default({sort:userOpts?.sort}),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"TagPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,[tags,tagDescriptions]=computeTagInfo(allFiles,content,cfg.locale);for(let tag of tags)yield processTagPage(ctx,tag,tagDescriptions[tag],allFiles,opts,resources)},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,affectedTags=new Set;for(let changeEvent of changeEvents){if(!changeEvent.file)continue;let slug=changeEvent.file.data.slug;if(slug.startsWith("tags/")){let tag=slug.slice(5);affectedTags.add(tag)}(changeEvent.file.data.frontmatter?.tags??[]).flatMap(getAllSegmentPrefixes).forEach(tag=>affectedTags.add(tag)),affectedTags.add("index")}if(affectedTags.size>0){let[_tags,tagDescriptions]=computeTagInfo(allFiles,content,cfg.locale);for(let tag of affectedTags)tagDescriptions[tag]&&(yield processTagPage(ctx,tag,tagDescriptions[tag],allFiles,opts,resources))}}}},"TagPage");import path9 from"path";async function*processFolderInfo(ctx,folderInfo,allFiles,opts,resources){for(let[folder,folderContent]of Object.entries(folderInfo)){let slug=joinSegments(folder,"index"),[tree,file]=folderContent,cfg=ctx.cfg.configuration,externalResources=pageResources(pathToRoot(slug),resources),componentData={ctx,fileData:file.data,externalResources,cfg,children:[],tree,allFiles},content=renderPage(cfg,slug,componentData,opts,externalResources);yield write({ctx,content,slug,ext:".html"})}}__name(processFolderInfo,"processFolderInfo");function computeFolderInfo(folders,content,locale){let folderInfo=Object.fromEntries([...folders].map(folder=>[folder,defaultProcessedContent({slug:joinSegments(folder,"index"),frontmatter:{title:`${i18n(locale).pages.folderContent.folder}: ${folder}`,tags:[]}})]));for(let[tree,file]of content){let slug=stripSlashes(simplifySlug(file.data.slug));folders.has(slug)&&(folderInfo[slug]=[tree,file])}return folderInfo}__name(computeFolderInfo,"computeFolderInfo");function _getFolders(slug){var folderName=path9.dirname(slug??"");let parentFolderNames=[folderName];for(;folderName!==".";)folderName=path9.dirname(folderName??""),parentFolderNames.push(folderName);return parentFolderNames.filter(folder=>folder!=="canvases")}__name(_getFolders,"_getFolders");var FolderPage=__name(userOpts=>{let opts={...sharedPageComponents,...defaultListPageLayout,pageBody:FolderContent_default({sort:userOpts?.sort}),...userOpts},{head:Head,header,beforeBody,pageBody,afterBody,left,right,footer:Footer}=opts,Header2=Header_default(),Body2=Body_default();return{name:"FolderPage",getQuartzComponents(){return[Head,Header2,Body2,...header,...beforeBody,pageBody,...afterBody,...left,...right,Footer]},async*emit(ctx,content,resources){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,folders=new Set(allFiles.flatMap(data=>data.slug?_getFolders(data.slug).filter(folderName=>folderName!=="."&&folderName!=="tags"):[])),folderInfo=computeFolderInfo(folders,content,cfg.locale);yield*processFolderInfo(ctx,folderInfo,allFiles,opts,resources)},async*partialEmit(ctx,content,resources,changeEvents){let allFiles=content.map(c=>c[1].data),cfg=ctx.cfg.configuration,affectedFolders=new Set;for(let changeEvent of changeEvents){if(!changeEvent.file)continue;let slug=changeEvent.file.data.slug;_getFolders(slug).filter(folderName=>folderName!=="."&&folderName!=="tags").forEach(folder=>affectedFolders.add(folder))}if(affectedFolders.size>0){let folderInfo=computeFolderInfo(affectedFolders,content,cfg.locale);yield*processFolderInfo(ctx,folderInfo,allFiles,opts,resources)}}}},"FolderPage");import{toHtml as toHtml2}from"hast-util-to-html";import{jsx as jsx40}from"preact/jsx-runtime";var defaultOptions17={enableSiteMap:!0,enableRSS:!0,rssLimit:10,rssFullHtml:!1,rssSlug:"index",includeEmptyFiles:!0};function generateSiteMap(cfg,idx){let base=cfg.baseUrl??"",createURLEntry=__name((slug,content)=>`<url>
     <loc>https://${joinSegments(base,encodeURI(slug))}</loc>
     ${content.date&&`<lastmod>${content.date.toISOString()}</lastmod>`}
   </url>`,"createURLEntry");return`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${Array.from(idx).map(([slug,content])=>createURLEntry(simplifySlug(slug),content)).join("")}</urlset>`}__name(generateSiteMap,"generateSiteMap");function generateRSSFeed(cfg,idx,limit){let base=cfg.baseUrl??"",createURLEntry=__name((slug,content)=>`<item>
@@ -4525,7 +4914,7 @@ Warning: you seem to be missing an \`index.md\` home page file at the root of yo
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       ${items}
     </channel>
-  </rss>`}__name(generateRSSFeed,"generateRSSFeed");var ContentIndex=__name(opts=>(opts={...defaultOptions17,...opts},{name:"ContentIndex",async*emit(ctx,content){let cfg=ctx.cfg.configuration,linkIndex=new Map;for(let[tree,file]of content){let slug=file.data.slug,date=getDate(ctx.cfg.configuration,file.data)??new Date;(opts?.includeEmptyFiles||file.data.text&&file.data.text!=="")&&linkIndex.set(slug,{slug,filePath:file.data.relativePath,title:file.data.frontmatter?.title,links:file.data.links??[],tags:file.data.frontmatter?.tags??[],content:file.data.text??"",richContent:opts?.rssFullHtml?escapeHTML(toHtml2(tree,{allowDangerousHtml:!0})):void 0,date,description:file.data.description??""})}opts?.enableSiteMap&&(yield write({ctx,content:generateSiteMap(cfg,linkIndex),slug:"sitemap",ext:".xml"})),opts?.enableRSS&&(yield write({ctx,content:generateRSSFeed(cfg,linkIndex,opts.rssLimit),slug:opts?.rssSlug??"index",ext:".xml"}));let fp=joinSegments("static","contentIndex"),simplifiedEntries=Array.from(linkIndex).map(([slug,content2])=>{let{date,description:_description,...rest}=content2;return[slug,{...rest,updated:date?.toISOString()}]}),simplifiedIndex=Object.fromEntries(simplifiedEntries);yield write({ctx,content:JSON.stringify(simplifiedIndex),slug:fp,ext:".json"})},externalResources:__name(ctx=>{if(opts?.enableRSS)return{additionalHead:[jsx39("link",{rel:"alternate",type:"application/rss+xml",title:"RSS Feed",href:`https://${ctx.cfg.configuration.baseUrl}/index.xml`})]}},"externalResources")}),"ContentIndex");import path10 from"path";async function*processFile(ctx,file){let ogSlug=simplifySlug(file.data.slug);for(let aliasTarget of file.data.aliases??[]){let aliasTargetSlug=isRelativeURL(aliasTarget)?path10.normalize(path10.join(ogSlug,"..",aliasTarget)):aliasTarget,redirUrl=resolveRelative(aliasTargetSlug,ogSlug);yield write({ctx,content:`
+  </rss>`}__name(generateRSSFeed,"generateRSSFeed");var ContentIndex=__name(opts=>(opts={...defaultOptions17,...opts},{name:"ContentIndex",async*emit(ctx,content){let cfg=ctx.cfg.configuration,linkIndex=new Map;for(let[tree,file]of content){let slug=file.data.slug,date=getDate(ctx.cfg.configuration,file.data)??new Date;(opts?.includeEmptyFiles||file.data.text&&file.data.text!=="")&&linkIndex.set(slug,{slug,filePath:file.data.relativePath,title:file.data.frontmatter?.title,links:file.data.links??[],tags:file.data.frontmatter?.tags??[],content:file.data.text??"",richContent:opts?.rssFullHtml?escapeHTML(toHtml2(tree,{allowDangerousHtml:!0})):void 0,date,description:file.data.description??""})}opts?.enableSiteMap&&(yield write({ctx,content:generateSiteMap(cfg,linkIndex),slug:"sitemap",ext:".xml"})),opts?.enableRSS&&(yield write({ctx,content:generateRSSFeed(cfg,linkIndex,opts.rssLimit),slug:opts?.rssSlug??"index",ext:".xml"}));let fp=joinSegments("static","contentIndex"),simplifiedEntries=Array.from(linkIndex).map(([slug,content2])=>{let{date,description:_description,...rest}=content2;return[slug,{...rest,updated:date?.toISOString()}]}),simplifiedIndex=Object.fromEntries(simplifiedEntries);yield write({ctx,content:JSON.stringify(simplifiedIndex),slug:fp,ext:".json"})},externalResources:__name(ctx=>{if(opts?.enableRSS)return{additionalHead:[jsx40("link",{rel:"alternate",type:"application/rss+xml",title:"RSS Feed",href:`https://${ctx.cfg.configuration.baseUrl}/index.xml`})]}},"externalResources")}),"ContentIndex");import path10 from"path";async function*processFile(ctx,file){let ogSlug=simplifySlug(file.data.slug);for(let aliasTarget of file.data.aliases??[]){let aliasTargetSlug=isRelativeURL(aliasTarget)?path10.normalize(path10.join(ogSlug,"..",aliasTarget)):aliasTarget,redirUrl=resolveRelative(aliasTargetSlug,ogSlug);yield write({ctx,content:`
         <!DOCTYPE html>
         <html lang="en-us">
         <head>
@@ -6060,6 +6449,6 @@ ${await response2.text()}`}if(!cfg.baseUrl)throw new Error("baseUrl must be defi
         const socket = new WebSocket('${wsUrl}')
         // reload(true) ensures resources like images and scripts are fetched again in firefox
         socket.addEventListener('message', () => document.location.reload(true))
-      `})}return staticResources}__name(getStaticResourcesFromPlugins,"getStaticResourcesFromPlugins");import{styleText as styleText6}from"util";async function emitContent(ctx,content){let{argv,cfg}=ctx,perf=new PerfTimer,log=new QuartzLogger(ctx.argv.verbose);log.start("Emitting files");let emittedFiles=0,staticResources=getStaticResourcesFromPlugins(ctx);await Promise.all(cfg.plugins.emitters.map(async emitter=>{try{let emitted=await emitter.emit(ctx,content,staticResources);if(Symbol.asyncIterator in emitted)for await(let file of emitted)emittedFiles++,ctx.argv.verbose?console.log(`[emit:${emitter.name}] ${file}`):log.updateText(`${emitter.name} -> ${styleText6("gray",file)}`);else{emittedFiles+=emitted.length;for(let file of emitted)ctx.argv.verbose?console.log(`[emit:${emitter.name}] ${file}`):log.updateText(`${emitter.name} -> ${styleText6("gray",file)}`)}}catch(err){trace(`Failed to emit from plugin \`${emitter.name}\``,err)}})),log.end(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince()}`)}__name(emitContent,"emitContent");var theme_colors_default={primaryBackground:"#080001",surfaceOverlay:"#1a0507",panelDepth:"#240709",tonePrimary:"#c48a91",toneContrast:"#fbe2e6",toneSubtle:"#8c4c52",toneMuted:"#b09598",accentBright:"#eb1c24",accentDeep:"#b71000",accentShadow:"#610700",accentShadowLight:"#7a0600",highlightOverlay:"rgba(235, 28, 36, 0.18)",link:"#ff5860",buttonText:"#fff7f8",textHighlight:"#ff3a4066",feedbackSuccess:"#7de49a",feedbackError:"#ff8a8a"};var palette=theme_colors_default,sharedCssVars={"color-primary-background":palette.primaryBackground,"color-surface-overlay":palette.surfaceOverlay,"color-panel-depth":palette.panelDepth,"color-tone-primary":palette.tonePrimary,"color-tone-contrast":palette.toneContrast,"color-tone-subtle":palette.toneSubtle,"color-tone-muted":palette.toneMuted,"color-accent-bright":palette.accentBright,"color-accent-deep":palette.accentDeep,"color-accent-shadow":palette.accentShadow,"color-accent-shadow-light":palette.accentShadowLight,"color-highlight-overlay":palette.highlightOverlay,"color-link":palette.link,"color-button-text":palette.buttonText,"color-button-background":palette.accentDeep,"color-button-hover":palette.accentBright,"color-scrollbar-thumb":palette.accentBright,"color-scrollbar-track":palette.surfaceOverlay,"color-feedback-success":palette.feedbackSuccess,"color-feedback-error":palette.feedbackError},sharedColorScheme={light:palette.primaryBackground,lightgray:palette.surfaceOverlay,gray:palette.panelDepth,darkgray:palette.toneContrast,dark:palette.tonePrimary,secondary:palette.accentBright,tertiary:palette.accentDeep,highlight:palette.highlightOverlay,textHighlight:palette.textHighlight},config={configuration:{pageTitle:"710 Tone Sleuth Wiki",pageTitleSuffix:" - 7/10 Wiki",enableSPA:!0,enablePopovers:!0,analytics:null,locale:"en-US",baseUrl:"https://www.710tone.wiki",ignorePatterns:["private","templates",".obsidian","Content/.obsidian","Content/.obsidian/**","quartz-site","quartz-site/**","node_modules","node_modules/**","public","public/**",".git",".git/**",".github",".github/**"],defaultDateType:"modified",theme:{fontOrigin:"googleFonts",cdnCaching:!0,typography:{header:"Schibsted Grotesk",body:"Source Sans Pro",code:"IBM Plex Mono"},colors:{lightMode:{...sharedColorScheme,cssVars:{...sharedCssVars}},darkMode:{...sharedColorScheme,cssVars:{...sharedCssVars}}}}},plugins:{transformers:[FrontMatter(),CreatedModifiedDate({priority:["frontmatter","git","filesystem"]}),SyntaxHighlighting({theme:{light:"github-light",dark:"github-dark"},keepBackground:!1}),ObsidianFlavoredMarkdown({enableInHtmlEmbed:!1}),GitHubFlavoredMarkdown(),InfoboxBlock(),DiscordMessages(),YouTubeCommunityPosts(),TableOfContents({collapseByDefault:!0}),CrawlLinks({markdownLinkResolution:"shortest"}),Description(),Latex({renderEngine:"katex"}),HardLineBreaks()],filters:[RemoveDrafts()],emitters:[AliasRedirects(),ComponentResources(),ContentPage(),FolderPage(),TagPage(),ContentIndex({enableSiteMap:!0,enableRSS:!0}),Assets(),Static(),Favicon(),NotFoundPage()]}},quartz_config_default=config;import chokidar from"chokidar";import fs5 from"fs";import{fileURLToPath}from"url";var options={retrieveSourceMap(source){if(source.includes(".quartz-cache")){let realSource=fileURLToPath(source.split("?",2)[0]+".map");return{map:fs5.readFileSync(realSource,"utf8")}}else return null}};function randomIdNonSecure(){return Math.random().toString(36).substring(2,8)}__name(randomIdNonSecure,"randomIdNonSecure");import{minimatch}from"minimatch";sourceMapSupport.install(options);async function buildQuartz(argv,mut,clientRefresh){let ctx={buildId:randomIdNonSecure(),argv,cfg:quartz_config_default,allSlugs:[],allFiles:[],incremental:!1},perf=new PerfTimer,output=argv.output,parsedFiles=[],pluginCount=Object.values(quartz_config_default.plugins).flat().length,pluginNames=__name(key=>quartz_config_default.plugins[key].map(plugin=>plugin.name),"pluginNames");argv.verbose&&(console.log(`Loaded ${pluginCount} plugins`),console.log(`  Transformers: ${pluginNames("transformers").join(", ")}`),console.log(`  Filters: ${pluginNames("filters").join(", ")}`),console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`));let release=await mut.acquire();try{perf.addEvent("clean"),await rm(output,{recursive:!0,force:!0}),console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`),perf.addEvent("glob");let allFiles=await glob("**/*.*",argv.directory,quartz_config_default.configuration.ignorePatterns),markdownPaths=allFiles.filter(fp=>fp.endsWith(".md")).sort();console.log(`Found ${markdownPaths.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`);let filePaths=markdownPaths.map(fp=>joinSegments(argv.directory,fp));ctx.allFiles=allFiles,ctx.allSlugs=allFiles.map(fp=>slugifyFilePath(fp)),parsedFiles=await parseMarkdown(ctx,filePaths);let filteredContent=filterContent(ctx,parsedFiles);await emitContent(ctx,filteredContent),console.log(styleText7("green",`Done processing ${markdownPaths.length} files in ${perf.timeSince()}`))}finally{release()}if(argv.watch)return ctx.incremental=!0,startWatching(ctx,mut,parsedFiles,clientRefresh)}__name(buildQuartz,"buildQuartz");async function startWatching(ctx,mut,initialContent,clientRefresh){let{argv,allFiles}=ctx,contentMap=new Map;for(let filePath of allFiles)contentMap.set(filePath,{type:"other"});for(let content of initialContent){let[_tree,vfile]=content;contentMap.set(vfile.data.relativePath,{type:"markdown",content})}let gitIgnoredMatcher=await isGitIgnored(),buildData={ctx,mut,contentMap,ignored:__name(fp=>{let pathStr=toPosixPath(fp.toString());if(pathStr.startsWith(".git/")||gitIgnoredMatcher(pathStr))return!0;for(let pattern of quartz_config_default.configuration.ignorePatterns)if(minimatch(pathStr,pattern))return!0;return!1},"ignored"),changesSinceLastBuild:{}},watcher=chokidar.watch(".",{persistent:!0,cwd:argv.directory,ignoreInitial:!0}),changes=[];return watcher.on("add",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"add"}),rebuild(changes,clientRefresh,buildData))}).on("change",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"change"}),rebuild(changes,clientRefresh,buildData))}).on("unlink",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"delete"}),rebuild(changes,clientRefresh,buildData))}),async()=>{await watcher.close()}}__name(startWatching,"startWatching");async function rebuild(changes,clientRefresh,buildData){let{ctx,contentMap,mut,changesSinceLastBuild}=buildData,{argv,cfg}=ctx,buildId=randomIdNonSecure();ctx.buildId=buildId;let numChangesInBuild=changes.length,release=await mut.acquire();try{if(ctx.buildId!==buildId)return;let perf=new PerfTimer;perf.addEvent("rebuild"),console.log(styleText7("yellow","Detected change, rebuilding..."));for(let change of changes)changesSinceLastBuild[change.path]=change.type;let staticResources=getStaticResourcesFromPlugins(ctx),pathsToParse=[];for(let[fp,type]of Object.entries(changesSinceLastBuild)){if(type==="delete"||path13.extname(fp)!==".md")continue;let fullPath=joinSegments(argv.directory,toPosixPath(fp));pathsToParse.push(fullPath)}let parsed=await parseMarkdown(ctx,pathsToParse);for(let content of parsed)contentMap.set(content[1].data.relativePath,{type:"markdown",content});for(let[file,change]of Object.entries(changesSinceLastBuild))change==="delete"&&contentMap.delete(file),change==="add"&&path13.extname(file)!==".md"&&contentMap.set(file,{type:"other"});let changeEntries=Object.entries(changesSinceLastBuild),changeEvents=changeEntries.map(([fp,type])=>{let path14=fp,processedContent=contentMap.get(path14);if(processedContent?.type==="markdown"){let[_tree,file]=processedContent.content;return{type,path:path14,file}}return{type,path:path14}});ctx.allFiles=Array.from(contentMap.keys()),ctx.allSlugs=ctx.allFiles.map(fp=>slugifyFilePath(fp));let processedFiles=filterContent(ctx,Array.from(contentMap.values()).filter(file=>file.type==="markdown").map(file=>file.content)),emittedFiles=0;for(let emitter of cfg.plugins.emitters){let emitted=await(emitter.partialEmit??emitter.emit)(ctx,processedFiles,staticResources,changeEvents);if(emitted!==null){if(Symbol.asyncIterator in emitted)for await(let file of emitted)emittedFiles++,ctx.argv.verbose&&console.log(`[emit:${emitter.name}] ${file}`);else if(emittedFiles+=emitted.length,ctx.argv.verbose)for(let file of emitted)console.log(`[emit:${emitter.name}] ${file}`)}}console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`),console.log(styleText7("green",`Done rebuilding in ${perf.timeSince()}`)),changes.splice(0,numChangesInBuild);for(let[fp]of changeEntries)delete changesSinceLastBuild[fp];clientRefresh()}finally{release()}}__name(rebuild,"rebuild");var build_default=__name(async(argv,mut,clientRefresh)=>{try{return await buildQuartz(argv,mut,clientRefresh)}catch(err){trace(`
+      `})}return staticResources}__name(getStaticResourcesFromPlugins,"getStaticResourcesFromPlugins");import{styleText as styleText6}from"util";async function emitContent(ctx,content){let{argv,cfg}=ctx,perf=new PerfTimer,log=new QuartzLogger(ctx.argv.verbose);log.start("Emitting files");let emittedFiles=0,staticResources=getStaticResourcesFromPlugins(ctx);await Promise.all(cfg.plugins.emitters.map(async emitter=>{try{let emitted=await emitter.emit(ctx,content,staticResources);if(Symbol.asyncIterator in emitted)for await(let file of emitted)emittedFiles++,ctx.argv.verbose?console.log(`[emit:${emitter.name}] ${file}`):log.updateText(`${emitter.name} -> ${styleText6("gray",file)}`);else{emittedFiles+=emitted.length;for(let file of emitted)ctx.argv.verbose?console.log(`[emit:${emitter.name}] ${file}`):log.updateText(`${emitter.name} -> ${styleText6("gray",file)}`)}}catch(err){trace(`Failed to emit from plugin \`${emitter.name}\``,err)}})),log.end(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince()}`)}__name(emitContent,"emitContent");var theme_colors_default={primaryBackground:"#080001",surfaceOverlay:"#1a0507",panelDepth:"#240709",tonePrimary:"#c48a91",toneContrast:"#fbe2e6",toneSubtle:"#8c4c52",toneMuted:"#b09598",accentBright:"#eb1c24",accentDeep:"#b71000",accentShadow:"#610700",accentShadowLight:"#7a0600",highlightOverlay:"rgba(235, 28, 36, 0.18)",link:"#ff5860",buttonText:"#fff7f8",textHighlight:"#ff3a4066",feedbackSuccess:"#7de49a",feedbackError:"#ff8a8a",fonts:{oracleLabel:"VCR OSD Mono"}};var palette=theme_colors_default,sharedCssVars={"color-primary-background":palette.primaryBackground,"color-surface-overlay":palette.surfaceOverlay,"color-panel-depth":palette.panelDepth,"color-tone-primary":palette.tonePrimary,"color-tone-contrast":palette.toneContrast,"color-tone-subtle":palette.toneSubtle,"color-tone-muted":palette.toneMuted,"color-accent-bright":palette.accentBright,"color-accent-deep":palette.accentDeep,"color-accent-shadow":palette.accentShadow,"color-accent-shadow-light":palette.accentShadowLight,"color-highlight-overlay":palette.highlightOverlay,"color-link":palette.link,"color-button-text":palette.buttonText,"color-button-background":palette.accentDeep,"color-button-hover":palette.accentBright,"color-scrollbar-thumb":palette.accentBright,"color-scrollbar-track":palette.surfaceOverlay,"color-feedback-success":palette.feedbackSuccess,"color-feedback-error":palette.feedbackError},sharedColorScheme={light:palette.primaryBackground,lightgray:palette.surfaceOverlay,gray:palette.panelDepth,darkgray:palette.toneContrast,dark:palette.tonePrimary,secondary:palette.accentBright,tertiary:palette.accentDeep,highlight:palette.highlightOverlay,textHighlight:palette.textHighlight},config={configuration:{pageTitle:"710 Tone Sleuth Wiki",pageTitleSuffix:" - 7/10 Wiki",enableSPA:!0,enablePopovers:!0,analytics:null,locale:"en-US",baseUrl:"https://www.710tone.wiki",ignorePatterns:["private","templates",".obsidian","Content/.obsidian","Content/.obsidian/**","quartz-site","quartz-site/**","node_modules","node_modules/**","public","public/**",".git",".git/**",".github",".github/**"],defaultDateType:"modified",theme:{fontOrigin:"googleFonts",cdnCaching:!0,typography:{header:"Schibsted Grotesk",body:"Source Sans Pro",code:"IBM Plex Mono"},colors:{lightMode:{...sharedColorScheme,cssVars:{...sharedCssVars}},darkMode:{...sharedColorScheme,cssVars:{...sharedCssVars}}}},oracleChat:{enabled:!0,apiBaseUrl:"",endpointPath:"/api/oracle/query",recaptchaSiteKey:process.env.ORACLE_RECAPTCHA_SITE_KEY??"",storageKey:"oracle-chat-history",maxHistory:24,apiToken:process.env.ORACLE_WEB_API_TOKEN??""}},plugins:{transformers:[FrontMatter(),CreatedModifiedDate({priority:["frontmatter","git","filesystem"]}),SyntaxHighlighting({theme:{light:"github-light",dark:"github-dark"},keepBackground:!1}),ObsidianFlavoredMarkdown({enableInHtmlEmbed:!1}),GitHubFlavoredMarkdown(),InfoboxBlock(),DiscordMessages(),YouTubeCommunityPosts(),TableOfContents({collapseByDefault:!0}),CrawlLinks({markdownLinkResolution:"shortest"}),Description(),Latex({renderEngine:"katex"}),HardLineBreaks()],filters:[RemoveDrafts()],emitters:[AliasRedirects(),ComponentResources(),ContentPage(),FolderPage(),TagPage(),ContentIndex({enableSiteMap:!0,enableRSS:!0}),Assets(),Static(),Favicon(),NotFoundPage()]}},quartz_config_default=config;import chokidar from"chokidar";import fs5 from"fs";import{fileURLToPath}from"url";var options={retrieveSourceMap(source){if(source.includes(".quartz-cache")){let realSource=fileURLToPath(source.split("?",2)[0]+".map");return{map:fs5.readFileSync(realSource,"utf8")}}else return null}};function randomIdNonSecure(){return Math.random().toString(36).substring(2,8)}__name(randomIdNonSecure,"randomIdNonSecure");import{minimatch}from"minimatch";sourceMapSupport.install(options);async function buildQuartz(argv,mut,clientRefresh){let ctx={buildId:randomIdNonSecure(),argv,cfg:quartz_config_default,allSlugs:[],allFiles:[],incremental:!1},perf=new PerfTimer,output=argv.output,parsedFiles=[],pluginCount=Object.values(quartz_config_default.plugins).flat().length,pluginNames=__name(key=>quartz_config_default.plugins[key].map(plugin=>plugin.name),"pluginNames");argv.verbose&&(console.log(`Loaded ${pluginCount} plugins`),console.log(`  Transformers: ${pluginNames("transformers").join(", ")}`),console.log(`  Filters: ${pluginNames("filters").join(", ")}`),console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`));let release=await mut.acquire();try{perf.addEvent("clean"),await rm(output,{recursive:!0,force:!0}),console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`),perf.addEvent("glob");let allFiles=await glob("**/*.*",argv.directory,quartz_config_default.configuration.ignorePatterns),markdownPaths=allFiles.filter(fp=>fp.endsWith(".md")).sort();console.log(`Found ${markdownPaths.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`);let filePaths=markdownPaths.map(fp=>joinSegments(argv.directory,fp));ctx.allFiles=allFiles,ctx.allSlugs=allFiles.map(fp=>slugifyFilePath(fp)),parsedFiles=await parseMarkdown(ctx,filePaths);let filteredContent=filterContent(ctx,parsedFiles);await emitContent(ctx,filteredContent),console.log(styleText7("green",`Done processing ${markdownPaths.length} files in ${perf.timeSince()}`))}finally{release()}if(argv.watch)return ctx.incremental=!0,startWatching(ctx,mut,parsedFiles,clientRefresh)}__name(buildQuartz,"buildQuartz");async function startWatching(ctx,mut,initialContent,clientRefresh){let{argv,allFiles}=ctx,contentMap=new Map;for(let filePath of allFiles)contentMap.set(filePath,{type:"other"});for(let content of initialContent){let[_tree,vfile]=content;contentMap.set(vfile.data.relativePath,{type:"markdown",content})}let gitIgnoredMatcher=await isGitIgnored(),buildData={ctx,mut,contentMap,ignored:__name(fp=>{let pathStr=toPosixPath(fp.toString());if(pathStr.startsWith(".git/")||gitIgnoredMatcher(pathStr))return!0;for(let pattern of quartz_config_default.configuration.ignorePatterns)if(minimatch(pathStr,pattern))return!0;return!1},"ignored"),changesSinceLastBuild:{}},watcher=chokidar.watch(".",{persistent:!0,cwd:argv.directory,ignoreInitial:!0}),changes=[];return watcher.on("add",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"add"}),rebuild(changes,clientRefresh,buildData))}).on("change",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"change"}),rebuild(changes,clientRefresh,buildData))}).on("unlink",fp=>{fp=toPosixPath(fp),!buildData.ignored(fp)&&(changes.push({path:fp,type:"delete"}),rebuild(changes,clientRefresh,buildData))}),async()=>{await watcher.close()}}__name(startWatching,"startWatching");async function rebuild(changes,clientRefresh,buildData){let{ctx,contentMap,mut,changesSinceLastBuild}=buildData,{argv,cfg}=ctx,buildId=randomIdNonSecure();ctx.buildId=buildId;let numChangesInBuild=changes.length,release=await mut.acquire();try{if(ctx.buildId!==buildId)return;let perf=new PerfTimer;perf.addEvent("rebuild"),console.log(styleText7("yellow","Detected change, rebuilding..."));for(let change of changes)changesSinceLastBuild[change.path]=change.type;let staticResources=getStaticResourcesFromPlugins(ctx),pathsToParse=[];for(let[fp,type]of Object.entries(changesSinceLastBuild)){if(type==="delete"||path13.extname(fp)!==".md")continue;let fullPath=joinSegments(argv.directory,toPosixPath(fp));pathsToParse.push(fullPath)}let parsed=await parseMarkdown(ctx,pathsToParse);for(let content of parsed)contentMap.set(content[1].data.relativePath,{type:"markdown",content});for(let[file,change]of Object.entries(changesSinceLastBuild))change==="delete"&&contentMap.delete(file),change==="add"&&path13.extname(file)!==".md"&&contentMap.set(file,{type:"other"});let changeEntries=Object.entries(changesSinceLastBuild),changeEvents=changeEntries.map(([fp,type])=>{let path14=fp,processedContent=contentMap.get(path14);if(processedContent?.type==="markdown"){let[_tree,file]=processedContent.content;return{type,path:path14,file}}return{type,path:path14}});ctx.allFiles=Array.from(contentMap.keys()),ctx.allSlugs=ctx.allFiles.map(fp=>slugifyFilePath(fp));let processedFiles=filterContent(ctx,Array.from(contentMap.values()).filter(file=>file.type==="markdown").map(file=>file.content)),emittedFiles=0;for(let emitter of cfg.plugins.emitters){let emitted=await(emitter.partialEmit??emitter.emit)(ctx,processedFiles,staticResources,changeEvents);if(emitted!==null){if(Symbol.asyncIterator in emitted)for await(let file of emitted)emittedFiles++,ctx.argv.verbose&&console.log(`[emit:${emitter.name}] ${file}`);else if(emittedFiles+=emitted.length,ctx.argv.verbose)for(let file of emitted)console.log(`[emit:${emitter.name}] ${file}`)}}console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`),console.log(styleText7("green",`Done rebuilding in ${perf.timeSince()}`)),changes.splice(0,numChangesInBuild);for(let[fp]of changeEntries)delete changesSinceLastBuild[fp];clientRefresh()}finally{release()}}__name(rebuild,"rebuild");var build_default=__name(async(argv,mut,clientRefresh)=>{try{return await buildQuartz(argv,mut,clientRefresh)}catch(err){trace(`
 Exiting Quartz due to a fatal error`,err)}},"default");export{build_default as default};
 //# sourceMappingURL=transpiled-build.mjs.map

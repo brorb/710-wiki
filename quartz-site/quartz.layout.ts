@@ -138,6 +138,7 @@ export const defaultContentPageLayout: PageLayout = {
         globalGraph: { removeTags: graphHiddenTags },
       })
     ),
+    Component.DesktopOnly(Component.OracleWidget()),
     Component.DesktopOnly(
       Component.TableOfContents({
         defaultCollapsed: true,

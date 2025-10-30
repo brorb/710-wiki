@@ -15,5 +15,8 @@
   "buttonText": "#fff7f8",
   "textHighlight": "#ff3a4066",
   "feedbackSuccess": "#7de49a",
-  "feedbackError": "#ff8a8a"
+  "feedbackError": "#ff8a8a",
+  "fonts": {
+    "oracleLabel": "VCR OSD Mono"
+  }
 }
