@@ -37328,7 +37328,8 @@ COMMAND MESSAGE STOPPED FOR T-500
 
 ```
  █     █
-Command error: Command raised an exception: HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
+Command error: Command raised an exception: 
+HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
 ```
 
 ```discord
