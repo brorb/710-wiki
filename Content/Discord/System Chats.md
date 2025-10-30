@@ -39081,7 +39081,21 @@ You can also type $help category for more info on a category.
       "colour": "#234DD1",
       "colour_value": 2247297
     },
-    "content": "Note: /nCOMMAND MESSAGE STOPPED FOR T-500",
+    "content": "Note: ",
+    "timestamp": "2025-08-08T22:04:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
+  },
+  {
+    "id": "1433280016380071976",
+    "author": {
+      "display_name": "APP TRUSTED 02",
+      "username": "APP TRUSTED 02#8507",
+      "color": "#234DD1",
+      "colour": "#234DD1",
+      "colour_value": 2247297
+    },
+    "content": "COMMAND MESSAGE STOPPED FOR T-500",
     "timestamp": "2025-08-08T22:04:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -40573,7 +40587,8 @@ KEY, 96, V3hrm4LE8hwlZYtjhPfa
 KEY, 97, 0AIXr2fKGz3RES2cJ57B
 KEY, 98, R8QK9Lk9Ka9VEuLdm0lo
 KEY, 99, MT658zt1xspBCnwckRw4
-Command error: Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+Command error: Command raised an exception: 
+HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
 In content: Must be 2000 or fewer in length.
 ```
 
