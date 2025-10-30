@@ -60,10 +60,11 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 	- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
 	- `storageKey`: override the browser key if you need to migrate existing conversations.
 	- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
-	- `webApiKey`: **required**. Populated via `ORACLE_WEB_API_KEY`; becomes the `X-Web-Api-Key` header.
+	- `webApiKey`: **required**. Populated via `ORACLE_WEB_API_TOKEN`; becomes the `X-Web-Api-Key` header.
 	- `oracleKeyId`: **required** identifier for the signing key (e.g. `wiki-widget`). Set via `ORACLE_SIGNING_KEY_ID`; surfaces as `X-Oracle-Key`.
 	- `oracleSigningSecret`: **required** shared secret used to HMAC sign each payload. Populate via `ORACLE_SIGNING_SECRET`. The static site ships this value to the browser so treat it as a scoped credential.
 - The widget avatar lives at `quartz-site/quartz/static/oracle-pfp.png`; swap the file to update the branding.
+- For local development, create a `.env` file at the repository root with `ORACLE_WEB_API_TOKEN=<token>` so the Quartz CLI can pick it up while building or serving the site.
 
 ### Request lifecycle
 

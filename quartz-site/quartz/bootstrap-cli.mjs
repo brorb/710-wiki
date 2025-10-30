@@ -1,4 +1,5 @@
 #!/usr/bin/env -S node --no-deprecation
+import "dotenv/config"
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 import {
