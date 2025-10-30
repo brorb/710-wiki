@@ -3942,6 +3942,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[01.wav]]",
+        "alt": "01.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:49:31.902000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368408689377380"
@@ -3984,6 +3991,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[02.wav]]",
+        "alt": "02.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:49:52.757000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368496161591308"
@@ -3998,6 +4012,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[03.wav]]",
+        "alt": "03.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:50:11.046000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368572871081985"
@@ -4026,6 +4047,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[04.wav]]",
+        "alt": "04.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:50:37.433000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368683546312756"
@@ -4054,6 +4082,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[05.wav]]",
+        "alt": "05.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:50:46.909000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368723291410452"
@@ -4068,6 +4103,13 @@
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[06.wav]]",
+        "alt": "06.wav"
+      }
+    ],
     "timestamp": "2025-07-20T05:50:57.793000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396368768942215180"
@@ -18264,7 +18306,14 @@
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "",
+    "content": " ",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[556839 (from main Discord).ogg]]",
+        "alt": "556839.ogg"
+      }
+    ],
     "timestamp": "2025-08-17T00:21:05.564000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1406432614553747508"
@@ -22959,7 +23008,14 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#AF65DA",
       "colour_value": 11494874
     },
-    "content": "[[https://cdn.discordapp.com/attachments/1392537805254557817/1427759858169413814/image.png?ex=6900833c&is=68ff31bc&hm=d11706a8c55ba8064da653feb53b3dbef12405a0e0bc303e6745c39f5d8ca2a6&]]",
+    "content": " ",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[cosmo ai tth logo reccreation.png]]",
+        "alt": "Cosmo's recreation of TTH logo using AI"
+      }
+    ],
     "timestamp": "2025-10-14T20:47:56.716000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1103093970449473536/c1566232f48be7d5c9ddf9708e742495.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427759858307829951"
@@ -22987,7 +23043,14 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#FF00AA",
       "colour_value": 16711850
     },
-    "content": "(fixed with GIMP in five secs) [[https://cdn.discordapp.com/attachments/1392537805254557817/1427768443553185852/TTH_logo_enhanced_fixed.png?ex=69008b3b&is=68ff39bb&hm=fb12de20b81508b190e15d9c5a9654f0ffaca3d352e7e970638c8bac60816d7a&]]",
+    "content": "(fixed with GIMP in five secs)",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[Cam TTH logo enhanced fixed.png]]",
+        "alt": "Camera's improvement of Cosmo's image"
+      }
+    ],
     "timestamp": "2025-10-14T21:22:03.689000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
@@ -29098,7 +29161,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "[https://en.wikipedia.org/wiki/Streisand_effect]",
+    "content": "https://en.wikipedia.org/wiki/Streisand_effect",
     "timestamp": "2025-07-31T15:55:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -29495,7 +29558,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "/"ghost error/"?",
+    "content": ""ghost error"?",
     "timestamp": "2025-08-02T08:13:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -29761,7 +29824,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": ":cry:",
+    "content": "😭",
     "timestamp": "2025-08-02T08:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -30172,7 +30235,7 @@ _(@brorb rejoins the server after getting kicked out)_
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": ":sweat_smile:",
+    "content": "😅",
     "timestamp": "2025-08-02T08:29:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -30632,7 +30695,7 @@ You can also type $help category for more info on a category.
       "colour": "#234DD1",
       "colour_value": 2247297
     },
-    "content": "```$roaming_program```",
+    "content": "$roaming_program",
     "timestamp": "2025-08-02T19:04:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -32165,7 +32228,7 @@ You can also type $help category for more info on a category.
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "It listed those as /"infected/"",
+    "content": "It listed those as "infected"",
     "timestamp": "2025-08-03T14:58:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -32193,7 +32256,7 @@ You can also type $help category for more info on a category.
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(I don't /"play/" anything. This is a old roaming program I made.)",
+    "content": "<OUTPRINT>!:(I don't "play" anything. This is a old roaming program I made.)",
     "timestamp": "2025-08-03T14:59:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -32968,7 +33031,7 @@ You can also type $help category for more info on a category.
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "causie its /"leftover/"",
+    "content": "causie its "leftover"",
     "timestamp": "2025-08-03T22:45:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -33297,7 +33360,7 @@ You can also type $help category for more info on a category.
       "colour": "#234DD1",
       "colour_value": 2247297
     },
-    "content": "```$app_log_ore```",
+    "content": "$app_log_ore",
     "timestamp": "2025-08-04T19:01:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -33538,7 +33601,7 @@ Note: non-updated SYSTEMS will cause probelms in serverware
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "System, what /"gift/" has travis given recently?",
+    "content": "System, what "gift" has travis given recently?",
     "timestamp": "2025-08-05T10:29:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -33608,7 +33671,7 @@ Note: non-updated SYSTEMS will cause probelms in serverware
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "Would you consider Travis one of the /"good guys/"?",
+    "content": "Would you consider Travis one of the "good guys"?",
     "timestamp": "2025-08-05T10:30:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -36030,7 +36093,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(Note: ""OBSERVING. RECORDING LAN AND OTHER OUTPUTS. DUE TO THE NATURE OF PIVOT PILOT. I CANNOT ACCESS THEM"" 232011.)",
+    "content": "<OUTPRINT>!:(Note: "OBSERVING. RECORDING LAN AND OTHER OUTPUTS. DUE TO THE NATURE OF PIVOT PILOT. I CANNOT ACCESS THEM" 232011.)",
     "timestamp": "2025-08-07T20:22:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -36597,7 +36660,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "yeah /"it/" is a pretty open term",
+    "content": "yeah "it" is a pretty open term",
     "timestamp": "2025-08-07T20:35:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -36975,7 +37038,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#04E5E6",
       "colour_value": 321478
     },
-    "content": "Is it a literal /"can't/"?",
+    "content": "Is it a literal "can't"?",
     "timestamp": "2025-08-07T20:41:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -36989,7 +37052,7 @@ COMMAND MESSAGE STOPPED FOR T-500
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(As much as I like the idea, I honestly think you won't understand any of this either. Travis and IN_DI made it almost impossible for anyone to "90-29-17-28-94-26-38" [ERROR: ])[   ]/n[]",
+    "content": "<OUTPRINT>!:(As much as I like the idea, I honestly think you won't understand any of this either. Travis and IN_DI made it almost impossible for anyone to "90-29-17-28-94-26-38" [ERROR: ])[   ][]",
     "timestamp": "2025-08-07T20:43:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
