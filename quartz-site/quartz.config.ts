@@ -102,9 +102,9 @@ const config: QuartzConfig = {
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
       maxHistory: 24,
-      webApiKey: process.env.ORACLE_WEB_API_TOKEN ?? "",
-      oracleKeyId: process.env.ORACLE_SIGNING_KEY_ID ?? "",
-      oracleSigningSecret: process.env.ORACLE_SIGNING_SECRET ?? "",
+  webApiKey: process.env.ORACLE_WEB_API_TOKEN ?? "",
+  oracleKeyId: process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID ?? "",
+  oracleSigningSecret: process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET ?? "",
     },
   },
   plugins: {

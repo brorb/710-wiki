@@ -11821,8 +11821,8 @@ var config = {
       storageKey: "oracle-chat-history",
       maxHistory: 24,
       webApiKey: process.env.ORACLE_WEB_API_TOKEN ?? "",
-      oracleKeyId: process.env.ORACLE_SIGNING_KEY_ID ?? "",
-      oracleSigningSecret: process.env.ORACLE_SIGNING_SECRET ?? ""
+      oracleKeyId: process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID ?? "",
+      oracleSigningSecret: process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET ?? ""
     }
   },
   plugins: {
