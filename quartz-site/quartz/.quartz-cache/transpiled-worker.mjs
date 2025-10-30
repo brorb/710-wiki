@@ -4,6 +4,11 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 // quartz/worker.ts
 import sourceMapSupport from "source-map-support";
 
+// quartz.config.ts
+import * as path12 from "node:path";
+import { fileURLToPath } from "node:url";
+import * as dotenv from "dotenv";
+
 // quartz/plugins/transformers/frontmatter.ts
 import matter from "gray-matter";
 import remarkFrontmatter from "remark-frontmatter";
@@ -6592,7 +6597,7 @@ import { createElement } from "preact";
 var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
-  const versioned = /* @__PURE__ */ __name((path13) => `${path13}?v=${assetVersion}`, "versioned");
+  const versioned = /* @__PURE__ */ __name((path14) => `${path14}?v=${assetVersion}`, "versioned");
   const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
@@ -7097,59 +7102,59 @@ var FileTrieNode = class _FileTrieNode {
     this.displayNameOverride = name;
   }
   get slug() {
-    const path13 = joinSegments(...this.slugSegments);
+    const path14 = joinSegments(...this.slugSegments);
     if (this.isFolder) {
-      return joinSegments(path13, "index");
+      return joinSegments(path14, "index");
     }
-    return path13;
+    return path14;
   }
   get slugSegment() {
     return this.slugSegments[this.slugSegments.length - 1];
   }
-  makeChild(path13, file) {
-    const fullPath = [...this.slugSegments, path13[0]];
+  makeChild(path14, file) {
+    const fullPath = [...this.slugSegments, path14[0]];
     const child = new _FileTrieNode(fullPath, file);
     this.children.push(child);
     return child;
   }
-  insert(path13, file) {
-    if (path13.length === 0) {
+  insert(path14, file) {
+    if (path14.length === 0) {
       throw new Error("path is empty");
     }
     this.isFolder = true;
-    const segment = path13[0];
-    if (path13.length === 1) {
+    const segment = path14[0];
+    if (path14.length === 1) {
       if (segment === "index") {
         this.data ??= file;
       } else {
-        this.makeChild(path13, file);
+        this.makeChild(path14, file);
       }
-    } else if (path13.length > 1) {
-      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path13, void 0);
+    } else if (path14.length > 1) {
+      const child = this.children.find((c) => c.slugSegment === segment) ?? this.makeChild(path14, void 0);
       const fileParts = file.filePath.split("/");
-      child.fileSegmentHint = fileParts.at(-path13.length);
-      child.insert(path13.slice(1), file);
+      child.fileSegmentHint = fileParts.at(-path14.length);
+      child.insert(path14.slice(1), file);
     }
   }
   // Add new file to trie
   add(file) {
     this.insert(file.slug.split("/"), file);
   }
-  findNode(path13) {
-    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
+  findNode(path14) {
+    if (path14.length === 0 || path14.length === 1 && path14[0] === "index") {
       return this;
     }
-    return this.children.find((c) => c.slugSegment === path13[0])?.findNode(path13.slice(1));
+    return this.children.find((c) => c.slugSegment === path14[0])?.findNode(path14.slice(1));
   }
-  ancestryChain(path13) {
-    if (path13.length === 0 || path13.length === 1 && path13[0] === "index") {
+  ancestryChain(path14) {
+    if (path14.length === 0 || path14.length === 1 && path14[0] === "index") {
       return [this];
     }
-    const child = this.children.find((c) => c.slugSegment === path13[0]);
+    const child = this.children.find((c) => c.slugSegment === path14[0]);
     if (!child) {
       return void 0;
     }
-    const childPath = child.ancestryChain(path13.slice(1));
+    const childPath = child.ancestryChain(path14.slice(1));
     if (!childPath) {
       return void 0;
     }
@@ -7197,7 +7202,7 @@ var FileTrieNode = class _FileTrieNode {
    * @returns array containing folder state for trie
    */
   getFolderPaths() {
-    return this.entries().filter(([_, node]) => node.isFolder).map(([path13, _]) => path13);
+    return this.entries().filter(([_, node]) => node.isFolder).map(([path14, _]) => path14);
   }
 };
 
@@ -7536,11 +7541,11 @@ var ArticleTitle_default = /* @__PURE__ */ __name((() => ArticleTitle), "default
 // quartz/components/Canvas.tsx
 import { jsx as jsx15, jsxs as jsxs8 } from "preact/jsx-runtime";
 var DEFAULT_CANVAS_PATH = "static/canvas/html";
-var normalizeCanvasPath = /* @__PURE__ */ __name((path13) => {
-  if (!path13) {
+var normalizeCanvasPath = /* @__PURE__ */ __name((path14) => {
+  if (!path14) {
     return null;
   }
-  const trimmed = path13.trim();
+  const trimmed = path14.trim();
   if (trimmed.length === 0) {
     return null;
   }
@@ -7987,8 +7992,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const rawBaseUrl = cfg.baseUrl ?? "example.com";
     const normalizedBaseUrl = rawBaseUrl.startsWith("http") ? rawBaseUrl : `https://${rawBaseUrl}`;
     const url = new URL(normalizedBaseUrl);
-    const path13 = url.pathname;
-    const baseDir = fileData.slug === "404" ? path13 : pathToRoot(fileData.slug);
+    const path14 = url.pathname;
+    const baseDir = fileData.slug === "404" ? path14 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
     const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
@@ -9133,16 +9138,16 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
 
 // quartz/components/ConditionalRender.tsx
 import { jsx as jsx33 } from "preact/jsx-runtime";
-var ConditionalRender_default = /* @__PURE__ */ __name(((config2) => {
+var ConditionalRender_default = /* @__PURE__ */ __name(((config3) => {
   const ConditionalRender = /* @__PURE__ */ __name((props) => {
-    if (config2.condition(props)) {
-      return /* @__PURE__ */ jsx33(config2.component, { ...props });
+    if (config3.condition(props)) {
+      return /* @__PURE__ */ jsx33(config3.component, { ...props });
     }
     return null;
   }, "ConditionalRender");
-  ConditionalRender.afterDOMLoaded = config2.component.afterDOMLoaded;
-  ConditionalRender.beforeDOMLoaded = config2.component.beforeDOMLoaded;
-  ConditionalRender.css = config2.component.css;
+  ConditionalRender.afterDOMLoaded = config3.component.afterDOMLoaded;
+  ConditionalRender.beforeDOMLoaded = config3.component.beforeDOMLoaded;
+  ConditionalRender.css = config3.component.css;
   return ConditionalRender;
 }), "default");
 
@@ -11200,9 +11205,9 @@ function toPosixPath(fp) {
   return fp.split(path10.sep).join("/");
 }
 __name(toPosixPath, "toPosixPath");
-async function glob(pattern, cwd, ignorePatterns) {
+async function glob(pattern, cwd2, ignorePatterns) {
   const fps = (await globby(pattern, {
-    cwd,
+    cwd: cwd2,
     ignore: ignorePatterns,
     gitignore: true
   })).map(toPosixPath);
@@ -11674,7 +11679,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
       const cfg = ctx.cfg.configuration;
       const slug = "404";
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`);
-      const path13 = url.pathname;
+      const path14 = url.pathname;
       const notFound = i18n(cfg.locale).pages.error.title;
       const [tree, vfile] = defaultProcessedContent({
         slug,
@@ -11682,7 +11687,7 @@ var NotFoundPage = /* @__PURE__ */ __name(() => {
         description: notFound,
         frontmatter: { title: notFound, tags: [] }
       });
-      const externalResources = pageResources(path13, resources);
+      const externalResources = pageResources(path14, resources);
       const componentData = {
         ctx,
         fileData: vfile.data,
@@ -11729,6 +11734,39 @@ var theme_colors_default = {
 };
 
 // quartz.config.ts
+var moduleDirectory = path12.dirname(fileURLToPath(import.meta.url));
+var cwd = process.cwd();
+var envCandidates = [
+  path12.resolve(moduleDirectory, "../.env"),
+  path12.resolve(moduleDirectory, ".env"),
+  path12.resolve(cwd, "../.env"),
+  path12.resolve(cwd, ".env")
+];
+for (const candidate of envCandidates) {
+  dotenv.config({ path: candidate, override: false });
+}
+var previewSecret = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return null;
+  }
+  if (value.length <= 8) {
+    return `${value.slice(0, 2)}...${value.slice(-2)}`;
+  }
+  return `${value.slice(0, 4)}...${value.slice(-4)}`;
+}, "previewSecret");
+if (process.env.NODE_ENV !== "production") {
+  console.info("[quartz] Oracle env", {
+    cwd,
+    moduleDirectory,
+    candidates: envCandidates,
+    hasWebApiToken: Boolean(process.env.ORACLE_WEB_API_TOKEN),
+    webApiTokenPreview: previewSecret(process.env.ORACLE_WEB_API_TOKEN),
+    hasOracleKeyId: Boolean(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
+    oracleKeyIdPreview: previewSecret(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
+    hasOracleSecret: Boolean(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
+    oracleSecretPreview: previewSecret(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET)
+  });
+}
 var palette = theme_colors_default;
 var sharedCssVars = {
   "color-primary-background": palette.primaryBackground,
@@ -11763,7 +11801,7 @@ var sharedColorScheme = {
   highlight: palette.highlightOverlay,
   textHighlight: palette.textHighlight
 };
-var config = {
+var config2 = {
   configuration: {
     pageTitle: "710 Tone Sleuth Wiki",
     pageTitleSuffix: " - 7/10 Wiki",
@@ -11871,7 +11909,7 @@ var config = {
     ]
   }
 };
-var quartz_config_default = config;
+var quartz_config_default = config2;
 
 // quartz/processors/parse.ts
 import esbuild from "esbuild";
@@ -11901,7 +11939,7 @@ var PerfTimer = class {
 
 // quartz/processors/parse.ts
 import { read } from "to-vfile";
-import path12 from "path";
+import path13 from "path";
 import workerpool from "workerpool";
 
 // quartz/util/log.ts
@@ -11933,7 +11971,7 @@ function createFileParser(ctx, fps) {
           file.value = plugin.textTransform(ctx, file.value.toString());
         }
         file.data.filePath = file.path;
-        file.data.relativePath = path12.posix.relative(argv.directory, file.path);
+        file.data.relativePath = path13.posix.relative(argv.directory, file.path);
         file.data.slug = slugifyFilePath(file.data.relativePath);
         const ast = processor.parse(file);
         const newAst = await processor.run(ast, file);
@@ -11973,13 +12011,13 @@ __name(createMarkdownParser, "createMarkdownParser");
 
 // quartz/util/sourcemap.ts
 import fs5 from "fs";
-import { fileURLToPath } from "url";
+import { fileURLToPath as fileURLToPath2 } from "url";
 var options = {
   // source map hack to get around query param
   // import cache busting
   retrieveSourceMap(source) {
     if (source.includes(".quartz-cache")) {
-      let realSource = fileURLToPath(source.split("?", 2)[0] + ".map");
+      let realSource = fileURLToPath2(source.split("?", 2)[0] + ".map");
       return {
         map: fs5.readFileSync(realSource, "utf8")
       };

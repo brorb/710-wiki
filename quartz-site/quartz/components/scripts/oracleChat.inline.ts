@@ -142,6 +142,37 @@ const debugLog = (...args: Array<unknown>) => {
   console.info("ORA_CLE chat debug:", ...args)
 }
 
+const redactToken = (value?: string) => {
+  if (!value) {
+    return null
+  }
+
+  if (value.length <= 8) {
+    return `${value.slice(0, 2)}...${value.slice(-2)}`
+  }
+
+  return `${value.slice(0, 4)}...${value.slice(-4)}`
+}
+
+const snapshotConfig = (config: OracleConfig) => ({
+  apiBaseUrl: config.apiBaseUrl || null,
+  endpointPath: config.endpointPath,
+  storageKey: config.storageKey,
+  maxHistory: config.maxHistory,
+  hasRecaptcha: Boolean(config.recaptchaSiteKey),
+  webApiKeyPreview: redactToken(config.webApiKey),
+  oracleKeyIdPreview: redactToken(config.oracleKeyId),
+  oracleSigningSecretPreview: redactToken(config.oracleSigningSecret),
+})
+
+const summariseRequest = (payload: OracleRequestPayload) => ({
+  conversationId: payload.conversationId,
+  questionPreview: payload.question.slice(0, 80),
+  messageRoles: payload.messages.map((message) => message.role),
+  metadataKeys: Object.keys(payload.metadata || {}),
+  hasCaptcha: Boolean(payload.captchaToken),
+})
+
 const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
     oracleApiBase = "",
@@ -399,6 +430,9 @@ const tryFetch = async (
       hasWebApiKey: Boolean(config.webApiKey),
       hasOracleKeyId: Boolean(config.oracleKeyId),
       hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
+      webApiKeyPreview: redactToken(config.webApiKey),
+      oracleKeyIdPreview: redactToken(config.oracleKeyId),
+      oracleSigningSecretPreview: redactToken(config.oracleSigningSecret),
     })
     throw new Error("ORA_CLE chat: missing API credentials")
   }
@@ -416,17 +450,27 @@ const tryFetch = async (
     timestamp,
   })
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Web-Api-Key": config.webApiKey,
-      "X-Oracle-Key": config.oracleKeyId,
-      "X-Oracle-Timestamp": timestamp,
-      "X-Oracle-Signature": signature,
-    },
-    body: serializedBody,
-  })
+  let response: Response
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Web-Api-Key": config.webApiKey,
+        "X-Oracle-Key": config.oracleKeyId,
+        "X-Oracle-Timestamp": timestamp,
+        "X-Oracle-Signature": signature,
+      },
+      body: serializedBody,
+    })
+  } catch (error) {
+    debugLog("Network request failed", {
+      error: error instanceof Error ? error.message : String(error),
+      request: summariseRequest(body),
+      config: snapshotConfig(config),
+    })
+    throw new Error("ORA_CLE chat: network request failed")
+  }
 
   debugLog("Received response", { status: response.status, ok: response.ok })
 
@@ -443,7 +487,17 @@ const tryFetch = async (
       console.warn("ORA_CLE chat: unable to parse error payload", error)
     }
 
-    debugLog("Response error details", { errorMessage })
+    const errorHeaders: Record<string, string> = {}
+    response.headers.forEach((value, key) => {
+      errorHeaders[key] = value
+    })
+
+    debugLog("Response error details", {
+      errorMessage,
+      headers: errorHeaders,
+      request: summariseRequest(body),
+      config: snapshotConfig(config),
+    })
 
     throw new Error(errorMessage)
   }
@@ -695,6 +749,11 @@ const setupOracleWidget = () => {
       updateSendButtonState()
     } catch (error) {
       console.warn("ORA_CLE chat: request failed", error)
+      debugLog("Send message error", {
+        error: error instanceof Error ? error.message : String(error),
+        request: summariseRequest(body),
+        config: snapshotConfig(config),
+      })
       state.messages = state.messages.filter((entry) => !entry.pending)
       renderState(historyContainer, state)
       persistState(storageKey, state, config.maxHistory)

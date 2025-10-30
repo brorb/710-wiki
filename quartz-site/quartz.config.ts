@@ -1,6 +1,48 @@
+import * as path from "node:path"
+import { fileURLToPath } from "node:url"
+import * as dotenv from "dotenv"
+
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 import themeColors from "./theme.colors.json"
+
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url))
+const cwd = process.cwd()
+
+const envCandidates = [
+  path.resolve(moduleDirectory, "../.env"),
+  path.resolve(moduleDirectory, ".env"),
+  path.resolve(cwd, "../.env"),
+  path.resolve(cwd, ".env"),
+]
+
+for (const candidate of envCandidates) {
+  dotenv.config({ path: candidate, override: false })
+}
+
+const previewSecret = (value?: string) => {
+  if (!value) {
+    return null
+  }
+  if (value.length <= 8) {
+    return `${value.slice(0, 2)}...${value.slice(-2)}`
+  }
+  return `${value.slice(0, 4)}...${value.slice(-4)}`
+}
+
+if (process.env.NODE_ENV !== "production") {
+  console.info("[quartz] Oracle env", {
+    cwd,
+    moduleDirectory,
+    candidates: envCandidates,
+    hasWebApiToken: Boolean(process.env.ORACLE_WEB_API_TOKEN),
+    webApiTokenPreview: previewSecret(process.env.ORACLE_WEB_API_TOKEN),
+    hasOracleKeyId: Boolean(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
+    oracleKeyIdPreview: previewSecret(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
+    hasOracleSecret: Boolean(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
+    oracleSecretPreview: previewSecret(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
+  })
+}
 
 const palette = themeColors
 
