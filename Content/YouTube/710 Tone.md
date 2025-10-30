@@ -55,7 +55,8 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 ![[710 Tone Channel profile picture in April 11th.png|500]]
 _7/10 Tone's profile picture in April 11th, 2025._
 
-(insert info here)
+![[artist interpretation of old avatar.png|300]]
+_Artist intrepretation of what the old avatar looked like before was edited (provided by The Camera Eye)._
 
 ## 2025 Gradual Removal and Eventual Purge
 
