@@ -265,7 +265,7 @@ export function renderPage(
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean))
     if (classList.has("backlinks") && classList.has("mobile-only")) {
       mobileBacklinksNodes.push(node)
-    } else if (classList.has("comments-section")) {
+  } else if (classList.has("community-hub")) {
       commentNodes.push(node)
     } else {
       footerNodes.push(node)

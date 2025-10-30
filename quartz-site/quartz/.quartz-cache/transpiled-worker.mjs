@@ -6782,7 +6782,7 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean));
     if (classList.has("backlinks") && classList.has("mobile-only")) {
       mobileBacklinksNodes.push(node);
-    } else if (classList.has("comments-section")) {
+    } else if (classList.has("community-hub")) {
       commentNodes.push(node);
     } else {
       footerNodes.push(node);
@@ -9071,11 +9071,20 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     if (disableComment) {
       return /* @__PURE__ */ jsx32(Fragment6, {});
     }
+    const MobileAppend = opts.mobileAppend;
+    const DesktopCompanion = opts.desktopCompanion;
+    const renderMobileAppend = /* @__PURE__ */ __name(() => MobileAppend ? /* @__PURE__ */ jsx32("div", { class: "community-hub__mobile-append", children: /* @__PURE__ */ jsx32(MobileAppend, { ...props, displayClass: "mobile-only" }) }) : null, "renderMobileAppend");
+    const companionNode = DesktopCompanion ? /* @__PURE__ */ jsx32("div", { class: "community-hub__companion", children: /* @__PURE__ */ jsx32("div", { class: "community-companion", children: /* @__PURE__ */ jsx32(DesktopCompanion, { ...props }) }) }) : null;
+    const communityShell = /* @__PURE__ */ __name((content) => /* @__PURE__ */ jsxs21("section", { class: classNames(displayClass, "community-hub"), children: [
+      /* @__PURE__ */ jsx32("hr", { class: "community-hub__divider", "aria-hidden": "true" }),
+      /* @__PURE__ */ jsxs21("div", { class: "community-hub__columns", children: [
+        /* @__PURE__ */ jsx32("div", { class: "community-hub__comments", children: content }),
+        companionNode
+      ] })
+    ] }), "communityShell");
     if (opts.provider === "giscus") {
       const options3 = opts.options;
-      const MobileAppend2 = opts.mobileAppend;
-      return /* @__PURE__ */ jsxs21("div", { class: classNames(displayClass, "comments-section"), children: [
-        /* @__PURE__ */ jsx32("hr", { class: "comments-separator", "aria-hidden": "true" }),
+      return communityShell(
         /* @__PURE__ */ jsxs21("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
           /* @__PURE__ */ jsx32(
             "div",
@@ -9096,14 +9105,12 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
               "data-lang": options3.lang ?? "en"
             }
           ),
-          MobileAppend2 ? /* @__PURE__ */ jsx32("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx32(MobileAppend2, { ...props, displayClass: "mobile-only" }) }) : null
+          renderMobileAppend()
         ] })
-      ] });
+      );
     }
     const options2 = opts.options;
-    const MobileAppend = opts.mobileAppend;
-    return /* @__PURE__ */ jsxs21("div", { class: classNames(displayClass, "comments-section"), children: [
-      /* @__PURE__ */ jsx32("hr", { class: "comments-separator", "aria-hidden": "true" }),
+    return communityShell(
       /* @__PURE__ */ jsxs21("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
         /* @__PURE__ */ jsx32(
           "div",
@@ -9116,9 +9123,9 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
             "data-theme": options2.theme ?? "github-dark"
           }
         ),
-        MobileAppend ? /* @__PURE__ */ jsx32("div", { class: "comments-mobile-append", children: /* @__PURE__ */ jsx32(MobileAppend, { ...props, displayClass: "mobile-only" }) }) : null
+        renderMobileAppend()
       ] })
-    ] });
+    );
   }, "Comments");
   Comments.afterDOMLoaded = comments_inline_default;
   return Comments;
@@ -9197,15 +9204,39 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
   return LinksHeader;
 }), "default");
 
+// quartz/components/scripts/discordWidget.inline.ts
+var discordWidget_inline_default = "";
+
 // quartz/components/DiscordWidget.tsx
 import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
 var WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark";
 var FILTER_ID = "discord-widget-redify";
-var TOP_BAND_GRADIENT_DATA = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.098' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.166' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E";
-var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx35("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs23(
+var TOP_BAND_HOLD_STOP = 0.098;
+var TOP_BAND_TRANSITION_STOP = 0.271;
+var DEFAULT_WIDGET_HEIGHT = 500;
+var TOP_BAND_TARGET_PX = TOP_BAND_TRANSITION_STOP * DEFAULT_WIDGET_HEIGHT;
+var widgetInstanceCounter = 0;
+var buildTopBandGradientData = /* @__PURE__ */ __name((holdStop, transitionStop) => {
+  const svg = `
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'>
+  <linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0' stop-color='white' stop-opacity='1'/>
+    <stop offset='${holdStop}' stop-color='white' stop-opacity='1'/>
+    <stop offset='${transitionStop}' stop-color='black' stop-opacity='0'/>
+    <stop offset='1' stop-color='black' stop-opacity='0'/>
+  </linearGradient>
+  <rect width='1' height='1' fill='url(#g)'/>
+</svg>`.trim();
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}, "buildTopBandGradientData");
+var buildFilterId = /* @__PURE__ */ __name(() => `${FILTER_ID}-${++widgetInstanceCounter}`, "buildFilterId");
+var FilterDefinition = /* @__PURE__ */ __name(({
+  filterId,
+  gradientData
+}) => /* @__PURE__ */ jsx35("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs23(
   "filter",
   {
-    id: FILTER_ID,
+    id: filterId,
     "color-interpolation-filters": "sRGB",
     filterUnits: "objectBoundingBox",
     primitiveUnits: "objectBoundingBox",
@@ -9231,8 +9262,8 @@ var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx35("svg",
           width: "1",
           height: "1",
           preserveAspectRatio: "none",
-          href: TOP_BAND_GRADIENT_DATA,
-          xlinkHref: TOP_BAND_GRADIENT_DATA,
+          href: gradientData,
+          xlinkHref: gradientData,
           result: "topGradient"
         }
       ),
@@ -9257,21 +9288,34 @@ var FilterDefinition = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx35("svg",
 var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   const variant = options2?.variant ?? "sidebar";
   const DiscordWidget = /* @__PURE__ */ __name(({ displayClass }) => {
-    return /* @__PURE__ */ jsxs23("div", { class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`), children: [
-      /* @__PURE__ */ jsx35(FilterDefinition, {}),
-      /* @__PURE__ */ jsx35(
-        "iframe",
-        {
-          class: "discord-widget__iframe",
-          src: WIDGET_SRC,
-          title: "710 Discord",
-          loading: "lazy",
-          allowTransparency: true,
-          frameBorder: "0",
-          sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        }
-      )
-    ] });
+    const filterId = buildFilterId();
+    const initialGradient = buildTopBandGradientData(TOP_BAND_HOLD_STOP, TOP_BAND_TRANSITION_STOP);
+    return /* @__PURE__ */ jsxs23(
+      "div",
+      {
+        class: classNames(displayClass, "discord-widget", `discord-widget--${variant}`),
+        "data-filter-id": filterId,
+        "data-top-band-hold-stop": String(TOP_BAND_HOLD_STOP),
+        "data-top-band-transition-stop": String(TOP_BAND_TRANSITION_STOP),
+        "data-top-band-target-px": String(TOP_BAND_TARGET_PX),
+        children: [
+          /* @__PURE__ */ jsx35(FilterDefinition, { filterId, gradientData: initialGradient }),
+          /* @__PURE__ */ jsx35(
+            "iframe",
+            {
+              class: "discord-widget__iframe",
+              src: WIDGET_SRC,
+              title: "710 Discord",
+              loading: "lazy",
+              allowTransparency: true,
+              frameBorder: "0",
+              sandbox: "allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts",
+              style: { filter: `url(#${filterId})` }
+            }
+          )
+        ]
+      }
+    );
   }, "DiscordWidget");
   DiscordWidget.css = `
 .discord-widget {
@@ -9292,7 +9336,6 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   border: none;
   border-radius: 12px;
   background-color: var(--color-panel-depth);
-  filter: url(#${FILTER_ID});
 }
 
 .discord-widget--banner {
@@ -9305,6 +9348,15 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   --discord-widget-height: 420px;
 }
 
+.discord-widget--sidebar {
+  width: min(100%, var(--discord-widget-max-width, 350px));
+  display: inline-flex;
+}
+
+.discord-widget--sidebar .discord-widget__iframe {
+  width: 100%;
+}
+
 @media (max-width: 480px) {
   .discord-widget__iframe {
     --discord-widget-height: 420px;
@@ -9315,6 +9367,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
   }
 }
 `;
+  DiscordWidget.afterDOMLoaded = discordWidget_inline_default;
   return DiscordWidget;
 }), "default");
 
@@ -9942,7 +9995,9 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
     maxHistory = 24,
-    apiToken
+    webApiKey,
+    oracleKeyId,
+    oracleSigningSecret
   } = oracleConfig;
   const launcherLabelId = "oracle-widget-launcher-label";
   return /* @__PURE__ */ jsxs26(
@@ -9956,7 +10011,9 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
       "data-oracle-recaptcha-key": recaptchaSiteKey || void 0,
       "data-oracle-article-title": articleTitle || void 0,
       "data-oracle-article-slug": articleSlug || void 0,
-      "data-oracle-api-token": apiToken || void 0,
+      "data-oracle-web-key": webApiKey || void 0,
+      "data-oracle-signing-key": oracleKeyId || void 0,
+      "data-oracle-signing-secret": oracleSigningSecret || void 0,
       children: [
         /* @__PURE__ */ jsxs26(
           "button",
@@ -10105,21 +10162,22 @@ var oracleWidgetStyles = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 999px;
-  overflow: visible;
-  margin-left: 0.1rem;
-  margin-right: -0.75rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 0.35rem;
+  margin-right: -0.25rem;
+  flex: 0 0 auto;
 }
 
 .oracle-widget__avatar {
-  width: 62px;
-  height: 62px;
-  border-radius: 999px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
-  transform: translateX(10px);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  flex-shrink: 0;
 }
 
 .oracle-widget__copy {
@@ -10129,7 +10187,7 @@ var oracleWidgetStyles = `
   justify-content: center;
   gap: 0.45rem;
   line-height: 1.1;
-  font-size: 0.92rem;
+  font-size: 1.24rem;
   white-space: nowrap;
   color: var(--color-tone-primary);
 }
@@ -10139,6 +10197,7 @@ var oracleWidgetStyles = `
   letter-spacing: 0.08em;
   font-family: "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace;
   color: var(--color-tone-primary);
+  font-size: 1.05em;
 }
 
 .oracle-chat {
@@ -10150,7 +10209,7 @@ var oracleWidgetStyles = `
   pointer-events: none;
   opacity: 0;
   transition: opacity 200ms ease;
-  z-index: 999;
+  z-index: 1600;
 }
 
 .oracle-chat.oracle-chat--open {
@@ -10487,7 +10546,12 @@ if (commentsConfig.enabled) {
           darkTheme,
           themeUrl
         },
-        mobileAppend: mobileDiscordWidget
+        mobileAppend: mobileDiscordWidget,
+        desktopCompanion: DesktopOnly_default(
+          DiscordWidget_default({
+            variant: "sidebar"
+          })
+        )
       })
     );
   } else if (commentsConfig.provider === "utterances") {
@@ -10501,7 +10565,12 @@ if (commentsConfig.enabled) {
           label,
           theme
         },
-        mobileAppend: mobileDiscordWidget
+        mobileAppend: mobileDiscordWidget,
+        desktopCompanion: DesktopOnly_default(
+          DiscordWidget_default({
+            variant: "sidebar"
+          })
+        )
       })
     );
   }
@@ -10557,24 +10626,19 @@ var defaultContentPageLayout = {
     )
   ],
   right: [
+    DesktopOnly_default(OracleWidget_default()),
     DesktopOnly_default(
       Graph_default({
         localGraph: { removeTags: graphHiddenTags },
         globalGraph: { removeTags: graphHiddenTags }
       })
     ),
-    DesktopOnly_default(OracleWidget_default()),
     DesktopOnly_default(
       TableOfContents_default({
         defaultCollapsed: true
       })
     ),
-    DesktopOnly_default(Backlinks_default()),
-    DesktopOnly_default(
-      DiscordWidget_default({
-        variant: "sidebar"
-      })
-    )
+    DesktopOnly_default(Backlinks_default())
   ]
 };
 var defaultListPageLayout = {
@@ -11751,12 +11815,14 @@ var config = {
     },
     oracleChat: {
       enabled: true,
-      apiBaseUrl: "",
+      apiBaseUrl: process.env.ORACLE_WEB_API_BASE_URL ?? "https://discord-system-firebase-bot-production.up.railway.app",
       endpointPath: "/api/oracle/query",
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
       maxHistory: 24,
-      apiToken: process.env.ORACLE_WEB_API_TOKEN ?? ""
+      webApiKey: process.env.ORACLE_WEB_API_KEY ?? "",
+      oracleKeyId: process.env.ORACLE_SIGNING_KEY_ID ?? "",
+      oracleSigningSecret: process.env.ORACLE_SIGNING_SECRET ?? ""
     }
   },
   plugins: {

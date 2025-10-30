@@ -49,18 +49,20 @@ Per-player overrides are available with matching `data-media-normalize-*` attrib
 
 ## ORA_CLE chat widget
 
-The wiki header includes an “Ask ORA_CLE” launcher that opens a persistent chat window. The widget stores the conversation in `localStorage`, so readers keep their transcript across page loads and SPA navigations.
+The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the full-screen dialog. The widget stores the conversation in `localStorage`, so readers keep their transcript across page loads and SPA navigations.
 
 ### Configuration hooks
 
 - Update `quartz-site/quartz.config.ts` under `configuration.oracleChat`:
 	- `enabled`: set to `false` to hide the UI without touching templates.
-	- `apiBaseUrl`: optional absolute base for the hosted inference service (for example `"https://ora-cle.fly.dev"`). Leave empty to send same-origin requests.
+	- `apiBaseUrl`: absolute base for the hosted inference service. Defaults to the Railway production URL.
 	- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
 	- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
 	- `storageKey`: override the browser key if you need to migrate existing conversations.
 	- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
-	- `apiToken`: **required** secret string. Populate it via `ORACLE_WEB_API_TOKEN` so every request carries `Authorization: Bearer <token>`.
+	- `webApiKey`: **required**. Populated via `ORACLE_WEB_API_KEY`; becomes the `X-Web-Api-Key` header.
+	- `oracleKeyId`: **required** identifier for the signing key (e.g. `wiki-widget`). Set via `ORACLE_SIGNING_KEY_ID`; surfaces as `X-Oracle-Key`.
+	- `oracleSigningSecret`: **required** shared secret used to HMAC sign each payload. Populate via `ORACLE_SIGNING_SECRET`. The static site ships this value to the browser so treat it as a scoped credential.
 - The widget avatar lives at `quartz-site/quartz/static/oracle-pfp.png`; swap the file to update the branding.
 
 ### Request lifecycle
@@ -71,23 +73,24 @@ The wiki header includes an “Ask ORA_CLE” launcher that opens a persistent c
 	- Trims the stored `user`/`assistant` turns down to the most recent `maxHistory` entries.
 	- Appends the new `user` message, generating a stable payload.
 	- Requests a reCAPTCHA token if a site key is configured.
-	- Aborts any in-flight fetch, then POSTs JSON to the configured endpoint.
+	- Aborts any in-flight fetch, HMAC-signs `timestamp.body` using `oracleSigningSecret`, and POSTs JSON to the configured endpoint with the `X-Web-Api-Key`, `X-Oracle-Key`, `X-Oracle-Timestamp`, and `X-Oracle-Signature` headers.
 3. Responses update the local transcript, persist the conversation (still capped to `maxHistory`), and refresh the chat window. Errors append an `oracle-chat__message--error` bubble with the message returned by the rejected promise.
 
 ### Request payload
 
-Every submission POSTs a body shaped like (the client also adds an `Authorization: Bearer <token>` header when `apiToken` is configured):
+Every submission POSTs a body shaped like (headers listed above are always present when the widget is enabled):
 
 ```json
 {
 	"conversationId": "optional-stable-id-or-null",
+	"question": "Current user question",
 	"messages": [
 		{ "role": "assistant", "content": "The previous answer" },
 		{ "role": "user", "content": "The previous question" },
 		{ "role": "user", "content": "Current question" }
 	],
 	"metadata": {
-		"origin": "710-wiki",
+		"origin": "710tone.wiki",
 		"path": "/Characters/SYSTEM",
 		"url": "https://www.710tone.wiki/Characters/SYSTEM",
 		"article": {
@@ -101,15 +104,20 @@ Every submission POSTs a body shaped like (the client also adds an `Authorizatio
 		},
 		"timestamp": "2025-10-30T18:22:11.000Z"
 	},
+	"priority": "medium",
+	"sections": 18,
+	"creativeMode": false,
 	"captchaToken": "optional-recaptcha-token"
 }
 ```
 
 - `conversationId` echoes whatever the server last returned. The client sends `null` until the service supplies a stable ID, letting the backend resume threads.
+- `question` always mirrors the latest user turn. The backend can ignore it when `messages` ends with a user role, but the field is present for explicit validation.
 - `messages` contains only `user` and `assistant` roles. The list is truncated to the newest `maxHistory` turns _before_ appending the fresh user prompt, so the backend sees at most `maxHistory + 1` entries.
-- `metadata.origin` identifies this frontend. `metadata.path` and `metadata.url` capture the current page; `metadata.article` repeats the article title/slug taken from Quartz frontmatter.
+- `metadata.origin` derives from `window.location.hostname`. `metadata.path` and `metadata.url` capture the current page; `metadata.article` repeats the article title/slug taken from Quartz frontmatter, and `metadata.history` mirrors the snapshot of the local transcript. We do not collect the client IP on the frontend; supply it at the edge if needed.
 - `metadata.history` exposes the snapshot of the local transcript: how many turns are included (`includedMessages`), the configured window (`windowSize`), and how many total messages exist client-side (`totalMessages`, including system/error entries).
 - `metadata.timestamp` is generated in UTC ISO-8601 format for logging and rate limiting.
+- `priority` defaults to `"medium"`, `sections` reflects the number of headings detected on the page (or is omitted when none are found), and `creativeMode` is `false`. Adjust these before POSTing if business logic changes.
 - `captchaToken` appears only when reCAPTCHA is active; validate it server-side via Google’s `siteverify` endpoint.
 
 ### Expected response
@@ -132,6 +140,7 @@ The UI accepts any JSON superset of this shape:
 - `reply` populates the rendered assistant bubble. When omitted, the client falls back to the last `assistant` message in the optional `messages` array.
 - `messages` is useful for out-of-band machine instructions. Entries with the `assistant` role will display if `reply` is missing; `system` entries are stored but not rendered.
 - The client ignores unknown top-level properties, so you can include diagnostics (latency, tokens, etc.) without breaking compatibility.
+- Additional response metadata such as `success`, `reason`, `usage`, or `guardFlags` are preserved but currently only `reply` and `messages` influence the UI.
 
 ### Error handling and rate limits
 
@@ -141,7 +150,7 @@ The UI accepts any JSON superset of this shape:
 
 ### Client behaviour recap
 
-- The chat window opens inline beneath the article header; it is not a floating overlay.
+- The chat window teleports to the document `<body>` on open so its overlay sits above the info box and sidebars. `document.body` receives the `oracle-chat-active` class while the dialog is visible.
 - `Enter` submits; `Shift+Enter` inserts a newline. The textarea auto-grows to `240px`.
 - Local transcripts never exceed `maxHistory` persisted entries, even though `metadata.history.totalMessages` tracks the uncapped count for observability.
 - The widget eagerly focuses the textarea and scrolls to the latest message whenever it opens or the history updates.

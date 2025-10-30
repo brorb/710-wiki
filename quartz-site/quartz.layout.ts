@@ -59,6 +59,11 @@ if (commentsConfig.enabled) {
           themeUrl,
         },
         mobileAppend: mobileDiscordWidget,
+        desktopCompanion: Component.DesktopOnly(
+          Component.DiscordWidget({
+            variant: "sidebar",
+          }),
+        ),
       })
     )
   } else if (commentsConfig.provider === "utterances") {
@@ -73,6 +78,11 @@ if (commentsConfig.enabled) {
           theme,
         },
         mobileAppend: mobileDiscordWidget,
+        desktopCompanion: Component.DesktopOnly(
+          Component.DiscordWidget({
+            variant: "sidebar",
+          }),
+        ),
       })
     )
   }
@@ -132,24 +142,19 @@ export const defaultContentPageLayout: PageLayout = {
     ),
   ],
   right: [
+    Component.DesktopOnly(Component.OracleWidget()),
     Component.DesktopOnly(
       Component.Graph({
         localGraph: { removeTags: graphHiddenTags },
         globalGraph: { removeTags: graphHiddenTags },
       })
     ),
-    Component.DesktopOnly(Component.OracleWidget()),
     Component.DesktopOnly(
       Component.TableOfContents({
         defaultCollapsed: true,
       }),
     ),
     Component.DesktopOnly(Component.Backlinks()),
-    Component.DesktopOnly(
-      Component.DiscordWidget({
-        variant: "sidebar",
-      }),
-    ),
   ],
 }
 

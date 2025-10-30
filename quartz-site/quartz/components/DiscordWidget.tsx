@@ -1,5 +1,6 @@
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import discordWidgetScript from "./scripts/discordWidget.inline"
 
 type DiscordWidgetVariant = "sidebar" | "banner"
 
@@ -9,14 +10,42 @@ interface DiscordWidgetOptions {
 
 const WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark"
 const FILTER_ID = "discord-widget-redify"
-const TOP_BAND_GRADIENT_DATA =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.098' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='0.166' stop-color='black' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='black' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E"
+const TOP_BAND_HOLD_STOP = 0.098
+// Raise this value to push the tinted header deeper into the widget, lower it to shrink the band.
+const TOP_BAND_TRANSITION_STOP = 0.271
+const DEFAULT_WIDGET_HEIGHT = 500
+const TOP_BAND_TARGET_PX = TOP_BAND_TRANSITION_STOP * DEFAULT_WIDGET_HEIGHT
 
-const FilterDefinition = () => (
+let widgetInstanceCounter = 0
+
+const buildTopBandGradientData = (holdStop: number, transitionStop: number) => {
+  const svg = `
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1' height='1'>
+  <linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>
+    <stop offset='0' stop-color='white' stop-opacity='1'/>
+    <stop offset='${holdStop}' stop-color='white' stop-opacity='1'/>
+    <stop offset='${transitionStop}' stop-color='black' stop-opacity='0'/>
+    <stop offset='1' stop-color='black' stop-opacity='0'/>
+  </linearGradient>
+  <rect width='1' height='1' fill='url(#g)'/>
+</svg>`.trim()
+
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+}
+
+const buildFilterId = () => `${FILTER_ID}-${++widgetInstanceCounter}`
+
+const FilterDefinition = ({
+  filterId,
+  gradientData,
+}: {
+  filterId: string
+  gradientData: string
+}) => (
   <svg class="discord-widget__filters" aria-hidden="true" focusable="false" width="0" height="0">
     {/* Color matrix tints saturated blues, blended back so only the header band is affected */}
     <filter
-      id={FILTER_ID}
+      id={filterId}
       color-interpolation-filters="sRGB"
       filterUnits="objectBoundingBox"
       primitiveUnits="objectBoundingBox"
@@ -37,8 +66,8 @@ const FilterDefinition = () => (
         width="1"
         height="1"
         preserveAspectRatio="none"
-  href={TOP_BAND_GRADIENT_DATA}
-  xlinkHref={TOP_BAND_GRADIENT_DATA}
+        href={gradientData}
+        xlinkHref={gradientData}
         result="topGradient"
       />
       <feColorMatrix
@@ -61,9 +90,17 @@ export default ((options?: DiscordWidgetOptions) => {
   const variant: DiscordWidgetVariant = options?.variant ?? "sidebar"
 
   const DiscordWidget: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
+    const filterId = buildFilterId()
+    const initialGradient = buildTopBandGradientData(TOP_BAND_HOLD_STOP, TOP_BAND_TRANSITION_STOP)
     return (
-      <div class={classNames(displayClass, "discord-widget", `discord-widget--${variant}`)}>
-        <FilterDefinition />
+      <div
+        class={classNames(displayClass, "discord-widget", `discord-widget--${variant}`)}
+        data-filter-id={filterId}
+        data-top-band-hold-stop={String(TOP_BAND_HOLD_STOP)}
+        data-top-band-transition-stop={String(TOP_BAND_TRANSITION_STOP)}
+        data-top-band-target-px={String(TOP_BAND_TARGET_PX)}
+      >
+        <FilterDefinition filterId={filterId} gradientData={initialGradient} />
         <iframe
           class="discord-widget__iframe"
           src={WIDGET_SRC}
@@ -72,6 +109,7 @@ export default ((options?: DiscordWidgetOptions) => {
           allowTransparency={true}
           frameBorder="0"
           sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          style={{ filter: `url(#${filterId})` }}
         ></iframe>
       </div>
     )
@@ -96,7 +134,6 @@ export default ((options?: DiscordWidgetOptions) => {
   border: none;
   border-radius: 12px;
   background-color: var(--color-panel-depth);
-  filter: url(#${FILTER_ID});
 }
 
 .discord-widget--banner {
@@ -109,6 +146,15 @@ export default ((options?: DiscordWidgetOptions) => {
   --discord-widget-height: 420px;
 }
 
+.discord-widget--sidebar {
+  width: min(100%, var(--discord-widget-max-width, 350px));
+  display: inline-flex;
+}
+
+.discord-widget--sidebar .discord-widget__iframe {
+  width: 100%;
+}
+
 @media (max-width: 480px) {
   .discord-widget__iframe {
     --discord-widget-height: 420px;
@@ -119,6 +165,8 @@ export default ((options?: DiscordWidgetOptions) => {
   }
 }
 `
+
+  DiscordWidget.afterDOMLoaded = discordWidgetScript
 
   return DiscordWidget
 }) satisfies QuartzComponentConstructor<DiscordWidgetOptions>

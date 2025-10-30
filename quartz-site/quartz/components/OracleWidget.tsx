@@ -16,7 +16,9 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
     maxHistory = 24,
-    apiToken,
+    webApiKey,
+    oracleKeyId,
+    oracleSigningSecret,
   } = oracleConfig
 
   const launcherLabelId = "oracle-widget-launcher-label"
@@ -31,7 +33,9 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
       data-oracle-recaptcha-key={recaptchaSiteKey || undefined}
       data-oracle-article-title={articleTitle || undefined}
       data-oracle-article-slug={articleSlug || undefined}
-      data-oracle-api-token={apiToken || undefined}
+      data-oracle-web-key={webApiKey || undefined}
+      data-oracle-signing-key={oracleKeyId || undefined}
+      data-oracle-signing-secret={oracleSigningSecret || undefined}
     >
       <button
         type="button"
@@ -175,21 +179,22 @@ const oracleWidgetStyles = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 999px;
-  overflow: visible;
-  margin-left: 0.1rem;
-  margin-right: -0.75rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 0.35rem;
+  margin-right: -0.25rem;
+  flex: 0 0 auto;
 }
 
 .oracle-widget__avatar {
-  width: 62px;
-  height: 62px;
-  border-radius: 999px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
-  transform: translateX(10px);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  flex-shrink: 0;
 }
 
 .oracle-widget__copy {
@@ -199,7 +204,7 @@ const oracleWidgetStyles = `
   justify-content: center;
   gap: 0.45rem;
   line-height: 1.1;
-  font-size: 0.92rem;
+  font-size: 1.24rem;
   white-space: nowrap;
   color: var(--color-tone-primary);
 }
@@ -209,6 +214,7 @@ const oracleWidgetStyles = `
   letter-spacing: 0.08em;
   font-family: "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace;
   color: var(--color-tone-primary);
+  font-size: 1.05em;
 }
 
 .oracle-chat {
@@ -220,7 +226,7 @@ const oracleWidgetStyles = `
   pointer-events: none;
   opacity: 0;
   transition: opacity 200ms ease;
-  z-index: 999;
+  z-index: 1600;
 }
 
 .oracle-chat.oracle-chat--open {

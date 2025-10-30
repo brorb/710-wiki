@@ -96,12 +96,15 @@ const config: QuartzConfig = {
     },
     oracleChat: {
       enabled: true,
-      apiBaseUrl: "",
+      apiBaseUrl:
+        process.env.ORACLE_WEB_API_BASE_URL ?? "https://discord-system-firebase-bot-production.up.railway.app",
       endpointPath: "/api/oracle/query",
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
       maxHistory: 24,
-      apiToken: process.env.ORACLE_WEB_API_TOKEN ?? "",
+      webApiKey: process.env.ORACLE_WEB_API_KEY ?? "",
+      oracleKeyId: process.env.ORACLE_SIGNING_KEY_ID ?? "",
+      oracleSigningSecret: process.env.ORACLE_SIGNING_SECRET ?? "",
     },
   },
   plugins: {

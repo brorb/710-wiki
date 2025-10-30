@@ -20,11 +20,24 @@ type OracleConfig = {
   storageKey: string
   maxHistory: number
   recaptchaSiteKey?: string
-  apiToken?: string
+  webApiKey?: string
+  oracleKeyId?: string
+  oracleSigningSecret?: string
   article?: {
     title?: string
     slug?: string
   }
+}
+
+type OracleRequestPayload = {
+  conversationId: string | null
+  question: string
+  messages: Array<{ role: "user" | "assistant"; content: string }>
+  metadata: Record<string, unknown>
+  priority?: "low" | "medium" | "high"
+  sections?: number
+  creativeMode?: boolean
+  captchaToken?: string
 }
 
 type RecaptchaClient = {
@@ -33,10 +46,85 @@ type RecaptchaClient = {
 }
 
 type FetchResult = {
-  conversationId?: string
-  reply?: string
+  conversationId?: string | null
+  reply?: string | null
   messages?: Array<{ role: "assistant" | "system"; content: string }>
+  success?: boolean
+  reason?: string
   metadata?: Record<string, unknown>
+}
+
+const isDialogueRole = (role: OracleRole): role is "user" | "assistant" => role === "user" || role === "assistant"
+
+const textEncoder = new TextEncoder()
+const hmacKeyCache = new Map<string, Promise<CryptoKey>>()
+
+const ensureSubtleCrypto = () => {
+  const subtle = window.crypto?.subtle
+  if (!subtle) {
+    throw new Error("ORA_CLE chat: secure context unavailable for request signing")
+  }
+  return subtle
+}
+
+const getHmacKey = (secret: string) => {
+  let cached = hmacKeyCache.get(secret)
+  if (!cached) {
+    const subtle = ensureSubtleCrypto()
+    const keyData = textEncoder.encode(secret)
+    cached = subtle.importKey("raw", keyData, { name: "HMAC", hash: "SHA-256" }, false, ["sign"])
+    hmacKeyCache.set(secret, cached)
+  }
+  return cached
+}
+
+const createSignature = async (secret: string, payload: string) => {
+  const subtle = ensureSubtleCrypto()
+  const cryptoKey = await getHmacKey(secret)
+  const signature = await subtle.sign("HMAC", cryptoKey, textEncoder.encode(payload))
+  const bytes = new Uint8Array(signature)
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("")
+}
+
+const chatTeleportState = new WeakMap<
+  HTMLElement,
+  {
+    parent: Node
+    placeholder: Comment
+  }
+>()
+
+const moveChatToBody = (dialog: HTMLElement) => {
+  if (dialog.parentElement === document.body) {
+    return
+  }
+
+  const parent = dialog.parentNode
+  if (!parent) {
+    return
+  }
+
+  const placeholder = document.createComment("oracle-chat-home")
+  parent.insertBefore(placeholder, dialog)
+  chatTeleportState.set(dialog, { parent, placeholder })
+  document.body.appendChild(dialog)
+}
+
+const restoreChat = (dialog: HTMLElement) => {
+  const state = chatTeleportState.get(dialog)
+  if (!state) {
+    return
+  }
+
+  const { parent, placeholder } = state
+  if (parent.isConnected) {
+    parent.insertBefore(dialog, placeholder)
+  }
+
+  placeholder.remove()
+  chatTeleportState.delete(dialog)
 }
 
 const DEFAULT_STORAGE_KEY = "oracle-chat-history"
@@ -44,6 +132,15 @@ const DEFAULT_ENDPOINT = "/api/oracle/query"
 const DEFAULT_MAX_HISTORY = 24
 const SEND_COOLDOWN_MS = 1200
 const RECAPTCHA_ACTION = "oracle_chat"
+const DEBUG_ENABLED = true
+
+const debugLog = (...args: Array<unknown>) => {
+  if (!DEBUG_ENABLED) {
+    return
+  }
+
+  console.info("ORA_CLE chat debug:", ...args)
+}
 
 const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
@@ -54,7 +151,9 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     oracleRecaptchaKey,
     oracleArticleTitle,
     oracleArticleSlug,
-    oracleApiToken,
+    oracleWebKey,
+    oracleSigningKey,
+    oracleSigningSecret,
   } = root.dataset
 
   const storageKey = oracleStorageKey?.trim() || DEFAULT_STORAGE_KEY
@@ -67,7 +166,9 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
-    apiToken: oracleApiToken?.trim() || undefined,
+    webApiKey: oracleWebKey?.trim() || undefined,
+    oracleKeyId: oracleSigningKey?.trim() || undefined,
+    oracleSigningSecret: oracleSigningSecret?.trim() || undefined,
     article: {
       title: oracleArticleTitle?.trim() || undefined,
       slug: oracleArticleSlug?.trim() || undefined,
@@ -229,7 +330,9 @@ const buildRequestBody = (
   captchaToken?: string,
 ) => {
   const history = state.messages
-    .filter((message) => message.role === "user" || message.role === "assistant")
+    .filter((message): message is OracleMessage & { role: "user" | "assistant" } =>
+      isDialogueRole(message.role),
+    )
     .slice(-config.maxHistory)
     .map((message) => ({ role: message.role, content: message.content }))
 
@@ -240,41 +343,109 @@ const buildRequestBody = (
   const pagePath = window.location.pathname
   const pageUrl = window.location.href
   const historyCount = history.length
+  const sectionCount = (() => {
+    try {
+      const headings = document.querySelectorAll(".center h2, .center h3, .center h4")
+      return headings.length > 0 ? headings.length : undefined
+    } catch (error) {
+      console.warn("ORA_CLE chat: unable to derive section count", error)
+      return undefined
+    }
+  })()
 
-  return {
-    conversationId: state.conversationId ?? null,
-    messages,
-    metadata: {
-      origin: "710-wiki",
-      path: pagePath,
-      url: pageUrl,
-      article: {
-        title: articleTitle,
-        slug: articleSlug,
-      },
-      history: {
-        includedMessages: historyCount,
-        windowSize: config.maxHistory,
-        totalMessages: state.messages.length,
-      },
-      timestamp: new Date().toISOString(),
+  const metadata: Record<string, unknown> = {
+    origin: window.location.hostname || "710tone.wiki",
+    path: pagePath,
+    url: pageUrl,
+    article: {
+      title: articleTitle,
+      slug: articleSlug,
     },
-    captchaToken: captchaToken ?? undefined,
+    history: {
+      includedMessages: historyCount,
+      windowSize: config.maxHistory,
+      totalMessages: state.messages.length,
+    },
+    timestamp: new Date().toISOString(),
   }
+
+  const payload: OracleRequestPayload = {
+    conversationId: state.conversationId ?? null,
+    question: userContent,
+    messages,
+    metadata,
+    priority: "medium",
+    creativeMode: false,
+  }
+
+  if (typeof sectionCount === "number") {
+    payload.sections = sectionCount
+  }
+
+  if (captchaToken) {
+    payload.captchaToken = captchaToken
+  }
+
+  return payload
 }
 
-const tryFetch = async (url: string, body: unknown, token?: string): Promise<FetchResult> => {
+const tryFetch = async (
+  url: string,
+  body: OracleRequestPayload,
+  config: OracleConfig,
+): Promise<FetchResult> => {
+  if (!config.webApiKey || !config.oracleKeyId || !config.oracleSigningSecret) {
+    debugLog("Missing credentials", {
+      hasWebApiKey: Boolean(config.webApiKey),
+      hasOracleKeyId: Boolean(config.oracleKeyId),
+      hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
+    })
+    throw new Error("ORA_CLE chat: missing API credentials")
+  }
+
+  const timestamp = Math.floor(Date.now() / 1000).toString()
+  const serializedBody = JSON.stringify(body)
+  const signaturePayload = `${timestamp}.${serializedBody}`
+  const signature = await createSignature(config.oracleSigningSecret, signaturePayload)
+
+  debugLog("Sending request", {
+    url,
+    conversationId: body.conversationId,
+    messageCount: body.messages.length,
+    hasCaptcha: Boolean(body.captchaToken),
+    timestamp,
+  })
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      "X-Web-Api-Key": config.webApiKey,
+      "X-Oracle-Key": config.oracleKeyId,
+      "X-Oracle-Timestamp": timestamp,
+      "X-Oracle-Signature": signature,
     },
-    body: JSON.stringify(body),
+    body: serializedBody,
   })
 
+  debugLog("Received response", { status: response.status, ok: response.ok })
+
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`)
+    let errorMessage = `Request failed with status ${response.status}`
+    try {
+      const errorPayload = await response.json()
+      if (typeof errorPayload?.reply === "string" && errorPayload.reply.trim().length > 0) {
+        errorMessage = errorPayload.reply.trim()
+      } else if (typeof errorPayload?.reason === "string") {
+        errorMessage = `${errorMessage}: ${errorPayload.reason}`
+      }
+    } catch (error) {
+      console.warn("ORA_CLE chat: unable to parse error payload", error)
+    }
+
+    debugLog("Response error details", { errorMessage })
+
+    throw new Error(errorMessage)
   }
 
   const payload = (await response.json()) as FetchResult
@@ -305,6 +476,14 @@ const setupOracleWidget = () => {
     root.setAttribute("data-oracle-ready", "true")
 
   const config = getDatasetConfig(root)
+  debugLog("Initialised widget", {
+    rootId: root.id || null,
+    hasWebApiKey: Boolean(config.webApiKey),
+    hasOracleKeyId: Boolean(config.oracleKeyId),
+    hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
+    endpoint: config.endpointPath,
+    apiBase: config.apiBaseUrl,
+  })
   const requestUrl = buildRequestUrl(config)
   const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
 
@@ -348,17 +527,31 @@ const setupOracleWidget = () => {
   let recaptchaClient: RecaptchaClient | undefined
   let activeController: AbortController | undefined
 
+  let chatOpen = false
+
   const closeChat = () => {
+    if (!chatOpen) {
+      return
+    }
+
+    chatOpen = false
     dialog.classList.remove("oracle-chat--open")
     dialog.setAttribute("aria-hidden", "true")
     launcher.setAttribute("aria-expanded", "false")
-    launcher.focus()
+    document.body.classList.remove("oracle-chat-active")
+    restoreChat(dialog)
+    if (document.body.contains(launcher)) {
+      launcher.focus()
+    }
   }
 
   const openChat = async () => {
+    moveChatToBody(dialog)
     dialog.classList.add("oracle-chat--open")
     dialog.setAttribute("aria-hidden", "false")
     launcher.setAttribute("aria-expanded", "true")
+    document.body.classList.add("oracle-chat-active")
+    chatOpen = true
     state.lastOpenedAt = Date.now()
     persistState(storageKey, state, config.maxHistory)
 
@@ -472,7 +665,7 @@ const setupOracleWidget = () => {
     const body = buildRequestBody(trimmed, state, config, captchaToken)
 
     try {
-      const result = await tryFetch(requestUrl, body, config.apiToken)
+      const result = await tryFetch(requestUrl, body, config)
       if (controller.signal.aborted) {
         return
       }
@@ -575,6 +768,12 @@ const setupOracleWidget = () => {
     textArea.removeEventListener("keydown", handleTextareaKeydown)
     window.removeEventListener("keydown", handleEscapeKey)
     activeController?.abort()
+    if (chatOpen) {
+      dialog.classList.remove("oracle-chat--open")
+      dialog.setAttribute("aria-hidden", "true")
+    }
+    document.body.classList.remove("oracle-chat-active")
+    restoreChat(dialog)
   })
   })
 }

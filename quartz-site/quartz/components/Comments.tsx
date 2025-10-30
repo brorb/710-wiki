@@ -1,3 +1,4 @@
+import type { VNode } from "preact"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 // @ts-ignore
@@ -29,6 +30,7 @@ type UtterancesOptions = {
 
 interface BaseExtras {
   mobileAppend?: QuartzComponent
+  desktopCompanion?: QuartzComponent
 }
 
 type Options =
@@ -56,59 +58,71 @@ export default ((opts: Options) => {
       return <></>
     }
 
+    const MobileAppend = opts.mobileAppend
+    const DesktopCompanion = opts.desktopCompanion
+
+    const renderMobileAppend = () =>
+      MobileAppend ? (
+        <div class="community-hub__mobile-append">
+          <MobileAppend {...props} displayClass="mobile-only" />
+        </div>
+      ) : null
+
+    const companionNode = DesktopCompanion ? (
+      <div class="community-hub__companion">
+        <div class="community-companion">
+          <DesktopCompanion {...props} />
+        </div>
+      </div>
+    ) : null
+
+    const communityShell = (content: VNode) => (
+      <section class={classNames(displayClass, "community-hub")}>
+        <hr class="community-hub__divider" aria-hidden="true" />
+        <div class="community-hub__columns">
+          <div class="community-hub__comments">{content}</div>
+          {companionNode}
+        </div>
+      </section>
+    )
+
     if (opts.provider === "giscus") {
       const options = opts.options
-      const MobileAppend = opts.mobileAppend
-      return (
-        <div class={classNames(displayClass, "comments-section")}>
-          <hr class="comments-separator" aria-hidden="true" />
-          <div class="comments-wrapper" data-provider="giscus">
-            <div
-              class="comments giscus"
-              data-provider="giscus"
-              data-repo={options.repo}
-              data-repo-id={options.repoId}
-              data-category={options.category}
-              data-category-id={options.categoryId}
-              data-mapping={options.mapping ?? "url"}
-              data-strict={boolToStringBool(options.strict ?? true)}
-              data-reactions-enabled={boolToStringBool(options.reactionsEnabled ?? true)}
-              data-input-position={options.inputPosition ?? "bottom"}
-              data-light-theme={options.lightTheme ?? "light"}
-              data-dark-theme={options.darkTheme ?? "dark"}
-              data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
-              data-lang={options.lang ?? "en"}
-            ></div>
-            {MobileAppend ? (
-              <div class="comments-mobile-append">
-                <MobileAppend {...props} displayClass="mobile-only" />
-              </div>
-            ) : null}
-          </div>
+      return communityShell(
+        <div class="comments-wrapper" data-provider="giscus">
+          <div
+            class="comments giscus"
+            data-provider="giscus"
+            data-repo={options.repo}
+            data-repo-id={options.repoId}
+            data-category={options.category}
+            data-category-id={options.categoryId}
+            data-mapping={options.mapping ?? "url"}
+            data-strict={boolToStringBool(options.strict ?? true)}
+            data-reactions-enabled={boolToStringBool(options.reactionsEnabled ?? true)}
+            data-input-position={options.inputPosition ?? "bottom"}
+            data-light-theme={options.lightTheme ?? "light"}
+            data-dark-theme={options.darkTheme ?? "dark"}
+            data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
+            data-lang={options.lang ?? "en"}
+          ></div>
+          {renderMobileAppend()}
         </div>
       )
     }
 
     const options = opts.options
-    const MobileAppend = opts.mobileAppend
-    return (
-      <div class={classNames(displayClass, "comments-section")}>
-        <hr class="comments-separator" aria-hidden="true" />
-        <div class="comments-wrapper" data-provider="utterances">
-          <div
-            class="comments utterances"
-            data-provider="utterances"
-            data-repo={options.repo}
-            data-issue-term={options.issueTerm ?? "pathname"}
-            data-label={options.label ?? ""}
-            data-theme={options.theme ?? "github-dark"}
-          ></div>
-          {MobileAppend ? (
-            <div class="comments-mobile-append">
-              <MobileAppend {...props} displayClass="mobile-only" />
-            </div>
-          ) : null}
-        </div>
+    return communityShell(
+      <div class="comments-wrapper" data-provider="utterances">
+        <div
+          class="comments utterances"
+          data-provider="utterances"
+          data-repo={options.repo}
+          data-issue-term={options.issueTerm ?? "pathname"}
+          data-label={options.label ?? ""}
+          data-theme={options.theme ?? "github-dark"}
+        ></div>
+        {renderMobileAppend()}
       </div>
     )
   }

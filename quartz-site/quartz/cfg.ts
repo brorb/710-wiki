@@ -11,7 +11,9 @@ export interface OracleChatConfiguration {
   recaptchaSiteKey?: string
   storageKey?: string
   maxHistory?: number
-  apiToken?: string
+  webApiKey?: string
+  oracleKeyId?: string
+  oracleSigningSecret?: string
 }
 
 export type Analytics =
