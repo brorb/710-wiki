@@ -12,6 +12,7 @@ Content/.obsidian/
 # Node.js dependencies
 node_modules/
 .venv/
+.env
 
 # Build / deploy folders
 dist/
