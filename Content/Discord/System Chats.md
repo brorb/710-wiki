@@ -17453,7 +17453,7 @@
 ]
 ```
 
-==(insert Live Sleuthing recording here)==
+<iframe title="SYSTEM talks to The Sleuths (Live Sleuthing Event)" src="https://www.youtube.com/embed/x7rbwYQP9ks?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>
 
 **After exiting Live Sleuthing Stage, 710-hub**
 ```discord
