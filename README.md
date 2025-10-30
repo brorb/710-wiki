@@ -46,3 +46,103 @@ You can adjust the behaviour globally by adding attributes to `<html>` (or by ed
 | `data-media-normalize-release` | Release time (seconds) | `0.25` |
 
 Per-player overrides are available with matching `data-media-normalize-*` attributes on the individual `<audio>`/`<video>` tag.
+
+## ORA_CLE chat widget
+
+The wiki header includes an “Ask ORA_CLE” launcher that opens a persistent chat window. The widget stores the conversation in `localStorage`, so readers keep their transcript across page loads and SPA navigations.
+
+### Configuration hooks
+
+- Update `quartz-site/quartz.config.ts` under `configuration.oracleChat`:
+	- `enabled`: set to `false` to hide the UI without touching templates.
+	- `apiBaseUrl`: optional absolute base for the hosted inference service (for example `"https://ora-cle.fly.dev"`). Leave empty to send same-origin requests.
+	- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
+	- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
+	- `storageKey`: override the browser key if you need to migrate existing conversations.
+	- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
+	- `apiToken`: **required** secret string. Populate it via `ORACLE_WEB_API_TOKEN` so every request carries `Authorization: Bearer <token>`.
+- The widget avatar lives at `quartz-site/quartz/static/oracle-pfp.png`; swap the file to update the branding.
+
+### Request lifecycle
+
+1. The inline script locates every `.oracle-widget` element, reads its `data-*` attributes, and builds the target URL from `apiBaseUrl` + `endpointPath`.
+2. Whenever the user submits a prompt the script:
+	- Pulls stored state from `localStorage` using `configuration.oracleChat.storageKey` (default `"oracle-chat-history"`).
+	- Trims the stored `user`/`assistant` turns down to the most recent `maxHistory` entries.
+	- Appends the new `user` message, generating a stable payload.
+	- Requests a reCAPTCHA token if a site key is configured.
+	- Aborts any in-flight fetch, then POSTs JSON to the configured endpoint.
+3. Responses update the local transcript, persist the conversation (still capped to `maxHistory`), and refresh the chat window. Errors append an `oracle-chat__message--error` bubble with the message returned by the rejected promise.
+
+### Request payload
+
+Every submission POSTs a body shaped like (the client also adds an `Authorization: Bearer <token>` header when `apiToken` is configured):
+
+```json
+{
+	"conversationId": "optional-stable-id-or-null",
+	"messages": [
+		{ "role": "assistant", "content": "The previous answer" },
+		{ "role": "user", "content": "The previous question" },
+		{ "role": "user", "content": "Current question" }
+	],
+	"metadata": {
+		"origin": "710-wiki",
+		"path": "/Characters/SYSTEM",
+		"url": "https://www.710tone.wiki/Characters/SYSTEM",
+		"article": {
+			"title": "SYSTEM",
+			"slug": "Characters/SYSTEM"
+		},
+		"history": {
+			"includedMessages": 2,
+			"windowSize": 24,
+			"totalMessages": 5
+		},
+		"timestamp": "2025-10-30T18:22:11.000Z"
+	},
+	"captchaToken": "optional-recaptcha-token"
+}
+```
+
+- `conversationId` echoes whatever the server last returned. The client sends `null` until the service supplies a stable ID, letting the backend resume threads.
+- `messages` contains only `user` and `assistant` roles. The list is truncated to the newest `maxHistory` turns _before_ appending the fresh user prompt, so the backend sees at most `maxHistory + 1` entries.
+- `metadata.origin` identifies this frontend. `metadata.path` and `metadata.url` capture the current page; `metadata.article` repeats the article title/slug taken from Quartz frontmatter.
+- `metadata.history` exposes the snapshot of the local transcript: how many turns are included (`includedMessages`), the configured window (`windowSize`), and how many total messages exist client-side (`totalMessages`, including system/error entries).
+- `metadata.timestamp` is generated in UTC ISO-8601 format for logging and rate limiting.
+- `captchaToken` appears only when reCAPTCHA is active; validate it server-side via Google’s `siteverify` endpoint.
+
+### Expected response
+
+The UI accepts any JSON superset of this shape:
+
+```json
+{
+	"conversationId": "uuid-or-stable-id",
+	"reply": "Markdown-safe text for the assistant bubble.",
+	"messages": [
+		{ "role": "assistant", "content": "(optional) last answer" },
+		{ "role": "system", "content": "(optional) follow-up notice" }
+	]
+}
+```
+
+- Always respond with `200 OK` and `application/json` when the prompt succeeds. Non-2xx codes surface a generic error bubble whose text includes the thrown error message.
+- `conversationId` can be anything JSON-serialisable. Returning `null` clears the stored ID; otherwise it is persisted for the next request.
+- `reply` populates the rendered assistant bubble. When omitted, the client falls back to the last `assistant` message in the optional `messages` array.
+- `messages` is useful for out-of-band machine instructions. Entries with the `assistant` role will display if `reply` is missing; `system` entries are stored but not rendered.
+- The client ignores unknown top-level properties, so you can include diagnostics (latency, tokens, etc.) without breaking compatibility.
+
+### Error handling and rate limits
+
+- Timeouts or network failures raise an error that the UI renders inside an `oracle-chat__message--error` bubble. The user can immediately retry.
+- The client throttles submissions to once every `1.2 s` (`SEND_COOLDOWN_MS`). Backends can safely return HTTP `429` with a message; the text will show in the same error bubble.
+- The Reset button clears `conversationId` and the stored transcript, forcing the next API call to look like a fresh session.
+
+### Client behaviour recap
+
+- The chat window opens inline beneath the article header; it is not a floating overlay.
+- `Enter` submits; `Shift+Enter` inserts a newline. The textarea auto-grows to `240px`.
+- Local transcripts never exceed `maxHistory` persisted entries, even though `metadata.history.totalMessages` tracks the uncapped count for observability.
+- The widget eagerly focuses the textarea and scrolls to the latest message whenever it opens or the history updates.
+- When reCAPTCHA is configured, the script loads Google’s client the first time the dialog opens and reuses it for later submissions.

@@ -6,7 +6,7 @@ tags:
   - component
 ---
 ```infobox
-Title: 710 Tone
+Title: 7/10 Tone
 Image: ![[Content/Media/710 Media/Images/710 Tone pfp.jpg]]
 Caption: 7/10 Tone channel profile picture
 Associates:

@@ -25,7 +25,8 @@ const resolveShareUrl = (cfg: QuartzComponentProps["cfg"], slug?: string | null)
   }
 }
 
-const ArticleHeader: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzComponentProps) => {
+const ArticleHeader: QuartzComponent = (props: QuartzComponentProps) => {
+  const { cfg, fileData, displayClass } = props
   const title = fileData.frontmatter?.title ?? fileData.slug ?? ""
   const updatedDate = fileData.dates ? getDate(cfg, fileData) : undefined
   const shareUrl = resolveShareUrl(cfg, fileData.slug)
@@ -47,29 +48,31 @@ const ArticleHeader: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzC
         )}
       </div>
       {shareUrl && (
-        <div class="article-share">
-          <button
-            type="button"
-            class="article-share__button"
-            aria-label={`Share ${title}`}
-            data-share-url={shareUrl}
-            data-share-title={title}
-            data-share-text={shareText || undefined}
-            data-share-copied="Link copied!"
-            data-share-shared="Share dialog opened."
-            data-share-error="Sharing not available."
-            data-share-cancel="Share cancelled."
-          >
-            <span class="article-share__icon" aria-hidden="true"></span>
-          </button>
-          <span class="article-share__feedback" aria-live="polite"></span>
+        <div class="article-header__actions">
+          <div class="article-share">
+            <button
+              type="button"
+              class="article-share__button"
+              aria-label={`Share ${title}`}
+              data-share-url={shareUrl}
+              data-share-title={title}
+              data-share-text={shareText || undefined}
+              data-share-copied="Link copied!"
+              data-share-shared="Share dialog opened."
+              data-share-error="Sharing not available."
+              data-share-cancel="Share cancelled."
+            >
+              <span class="article-share__icon" aria-hidden="true"></span>
+            </button>
+            <span class="article-share__feedback" aria-live="polite"></span>
+          </div>
         </div>
       )}
     </header>
   )
 }
 
-ArticleHeader.css = `
+const articleHeaderStyles = `
 .article-header {
   margin: 2rem 0 1.85rem;
   padding-bottom: 0.85rem;
@@ -83,6 +86,13 @@ ArticleHeader.css = `
 .article-header__content {
   flex: 1 1 auto;
   min-width: 0;
+}
+
+.article-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex: 0 0 auto;
 }
 
 .article-header .article-title {
@@ -196,11 +206,18 @@ ArticleHeader.css = `
     align-items: stretch;
   }
 
+  .article-header__actions {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .article-share {
     align-items: flex-start;
   }
 }
 `
+
+ArticleHeader.css = articleHeaderStyles
 
 // @ts-ignore - provided by inline script loader at build time
 ArticleHeader.afterDOMLoaded = script

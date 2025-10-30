@@ -26,6 +26,7 @@ import DiscordWidget from "./DiscordWidget"
 import InfoBox from "./InfoBox"
 import HomepageFeatures from "./HomepageFeatures"
 import MediaNormalizer from "./MediaNormalizer"
+import OracleWidget from "./OracleWidget"
 
 export {
   ArticleHeader,
@@ -56,4 +57,5 @@ export {
   InfoBox,
   HomepageFeatures,
   MediaNormalizer,
+  OracleWidget,
 }

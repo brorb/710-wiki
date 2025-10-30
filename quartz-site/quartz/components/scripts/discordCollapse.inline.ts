@@ -18,10 +18,11 @@ const setupDiscordToggles = () => {
     const threadElement = content.querySelector(".discord-thread")
     if (!threadElement) return
 
-    const wrapper = content.closest(".discord-thread-wrapper") as HTMLElement | null
-    const toggleButton = toggle as HTMLElement
-    const contentElement = content as HTMLElement
-    const collapsedHeight = 420
+  const wrapper = content.closest(".discord-thread-wrapper") as HTMLElement | null
+  const toggleButton = toggle as HTMLElement
+  const contentElement = content as HTMLElement
+  const COLLAPSED_HEIGHT = 252
+  const MINIMUM_EXCESS = 80
 
     const applyWrapperState = (isCollapsed: boolean) => {
       if (!wrapper) return
@@ -40,8 +41,10 @@ const setupDiscordToggles = () => {
     // Check if content is taller than collapsed height
     const checkHeight = () => {
       const fullHeight = threadElement.scrollHeight
+      const excess = fullHeight - COLLAPSED_HEIGHT
+      const collapseNeeded = fullHeight > COLLAPSED_HEIGHT && excess >= MINIMUM_EXCESS
 
-      if (fullHeight <= collapsedHeight) {
+      if (!collapseNeeded) {
         toggleButton.style.display = "none"
         contentElement.classList.remove("collapsed")
         contentElement.style.maxHeight = "none"
@@ -52,6 +55,11 @@ const setupDiscordToggles = () => {
         const isCollapsed = contentElement.classList.contains("collapsed")
         applyWrapperState(isCollapsed)
         setToggleState(!isCollapsed)
+        if (isCollapsed) {
+          contentElement.style.maxHeight = `${COLLAPSED_HEIGHT}px`
+        } else {
+          contentElement.style.maxHeight = "none"
+        }
       }
     }
 
@@ -64,7 +72,7 @@ const setupDiscordToggles = () => {
 
       if (isCollapsed) {
         contentElement.classList.remove("collapsed")
-        contentElement.style.maxHeight = `${threadElement.scrollHeight}px`
+  contentElement.style.maxHeight = `${threadElement.scrollHeight}px`
         applyWrapperState(false)
         setToggleState(true)
 
@@ -77,7 +85,7 @@ const setupDiscordToggles = () => {
         }, 400)
       } else {
         contentElement.classList.add("collapsed")
-        contentElement.style.maxHeight = `${collapsedHeight}px`
+        contentElement.style.maxHeight = `${COLLAPSED_HEIGHT}px`
         applyWrapperState(true)
         setToggleState(false)
       }
