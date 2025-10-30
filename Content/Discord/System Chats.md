@@ -39809,7 +39809,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(Ignore that conversation.)/n<OUTPRINT>!:(Please don't say that.)",
+    "content": "<OUTPRINT>!:(Ignore that conversation.) <OUTPRINT>!:(Please don't say that.)",
     "timestamp": "2025-08-08T22:19:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -39921,7 +39921,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(I'm using both hardware options to.)/n<OUTPRINT>!:(Ending that before you can say NaN)",
+    "content": "<OUTPRINT>!:(I'm using both hardware options to.) <OUTPRINT>!:(Ending that before you can say NaN)",
     "timestamp": "2025-08-08T22:20:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -39977,7 +39977,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(Dammit why is this key not working.)/n<OUTPRINT>!:(Are you trying all 100?)",
+    "content": "<OUTPRINT>!:(Dammit why is this key not working.) <OUTPRINT>!:(Are you trying all 100?)",
     "timestamp": "2025-08-08T22:21:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -40061,7 +40061,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(I did have your cache cleared yet?)/n<OUTPRINT>!:(Return all to false.)",
+    "content": "<OUTPRINT>!:(I did have your cache cleared yet?) <OUTPRINT>!:(Return all to false.)",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
@@ -40089,7 +40089,7 @@ KEY, 99, ZP2J1Sr6qjP3yM7o3oon
       "colour": "#0404D8",
       "colour_value": 263384
     },
-    "content": "<OUTPRINT>!:(Okay I'm turning this off.)/n<OUTPRINT>!:(Turn off that program.)",
+    "content": "<OUTPRINT>!:(Okay I'm turning this off.) <OUTPRINT>!:(Turn off that program.)",
     "timestamp": "2025-08-08T22:23:00.000000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957"
