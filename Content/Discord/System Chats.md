@@ -22242,6 +22242,13 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour_value": 16711680
     },
     "content": "<CALL>!:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[HOW DO YOU KNOW.ogg]]",
+        "alt": "Audio that sounds similar to the bells at the end of HIS PERCEPTION"
+      }
+    ],
     "timestamp": "2025-09-17T00:32:36.184000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1417669535057576029"
@@ -22672,7 +22679,14 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "",
+    "content": " ",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[walking.mp3]]",
+        "alt": "MP3 file with strange glitchy sounds"
+      }
+    ],
     "timestamp": "2025-10-06T13:05:17.758000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424744325874585661"
@@ -26739,7 +26753,7 @@ _(SYSTEM creates APP TRUSTED on 27th July 2025, 07:30)
 ##### 29th July 2025
 
 _(@Noel HLF enters the server on 29th July 2025, 01:21)
-(@brorb enters the serveron 29th July 2025, 01:22)
+(@brorb enters the server on 29th July 2025, 01:22)
 (@Swordian enters the server on 29th July 2025, 01:25)
 (@Abe enters the server on 29th July 2025, 01:26)_
 
@@ -27063,6 +27077,8 @@ _(@kayxsu joins the server on 29th July 2025, 01:50)_
 ]
 ```
 
+_(@Carlos joins the server on 29th July 2025, 02:00)_
+_(@Rick joins the server on 29th July 2025, 02:14)_
 _(@Yuri joins the server on 29th July 2025, 08:17)
 (@ThePortalNinja joins in the server on 29th July 2025)_
 
