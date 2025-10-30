@@ -22734,7 +22734,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
       {
         "mtype": "attachment",
         "attachment": "![[walking.mp3]]",
-        "alt": "MP3 file with strange glitchy sounds"
+        "alt": "walking.mp3"
       }
     ],
     "timestamp": "2025-10-06T13:05:17.758000+00:00",
