@@ -341,6 +341,41 @@ const parseMediaBoxBlock = (raw: string): RawMediaBox | null => {
 }
 
 const buildMediaMarkup = (config: ParsedMediaBox): string => {
+  const buildSourceTag = (src: string, mediaType: MediaType): string => {
+    const escapedSrc = escapeAttribute(src)
+    const withoutQuery = src.split("?")[0]?.split("#")[0]?.toLowerCase() ?? ""
+
+    const lookup: Record<MediaType, Record<string, string>> = {
+      image: {},
+      video: {
+        ".mp4": "video/mp4",
+        ".m4v": "video/x-m4v",
+        ".mov": "video/quicktime",
+        ".webm": "video/webm",
+        ".ogv": "video/ogg",
+      },
+      audio: {
+        ".mp3": "audio/mpeg",
+        ".ogg": "audio/ogg",
+        ".oga": "audio/ogg",
+        ".wav": "audio/wav",
+        ".m4a": "audio/mp4",
+        ".aac": "audio/aac",
+        ".flac": "audio/flac",
+      },
+    }
+
+    let typeAttr = ""
+    for (const [extension, mime] of Object.entries(lookup[mediaType])) {
+      if (withoutQuery.endsWith(extension)) {
+        typeAttr = ` type="${mime}"`
+        break
+      }
+    }
+
+    return `<source src="${escapedSrc}"${typeAttr} />`
+  }
+
   if (config.mediaType === "image") {
     const imageTag = `<img src="${escapeAttribute(config.src)}" alt="${escapeAttribute(
       config.alt || "Media illustration",
@@ -380,7 +415,8 @@ const buildMediaMarkup = (config: ParsedMediaBox): string => {
       attrs.push("loop")
     }
 
-    return `<video ${attrs.join(" ")}></video>`
+    const fallback = escapeHtml(config.alt || config.title || "Your browser cannot play this video.")
+    return `<video ${attrs.join(" ")}>${buildSourceTag(config.src, "video")}${fallback}</video>`
   }
 
   const audioAttrs = [
@@ -403,7 +439,7 @@ const buildMediaMarkup = (config: ParsedMediaBox): string => {
   }
 
   const fallback = escapeHtml(config.alt || config.title || "Your browser cannot play this audio clip.")
-  return `<audio ${audioAttrs.join(" ")}>${fallback}</audio>`
+  return `<audio ${audioAttrs.join(" ")}>${buildSourceTag(config.src, "audio")}${fallback}</audio>`
 }
 
 const buildMediaBoxHtml = (config: ParsedMediaBox): string => {

@@ -6730,6 +6730,37 @@ var parseMediaBoxBlock = /* @__PURE__ */ __name((raw) => {
   return result;
 }, "parseMediaBoxBlock");
 var buildMediaMarkup = /* @__PURE__ */ __name((config3) => {
+  const buildSourceTag = /* @__PURE__ */ __name((src, mediaType) => {
+    const escapedSrc = escapeAttribute3(src);
+    const withoutQuery = src.split("?")[0]?.split("#")[0]?.toLowerCase() ?? "";
+    const lookup = {
+      image: {},
+      video: {
+        ".mp4": "video/mp4",
+        ".m4v": "video/x-m4v",
+        ".mov": "video/quicktime",
+        ".webm": "video/webm",
+        ".ogv": "video/ogg"
+      },
+      audio: {
+        ".mp3": "audio/mpeg",
+        ".ogg": "audio/ogg",
+        ".oga": "audio/ogg",
+        ".wav": "audio/wav",
+        ".m4a": "audio/mp4",
+        ".aac": "audio/aac",
+        ".flac": "audio/flac"
+      }
+    };
+    let typeAttr = "";
+    for (const [extension, mime] of Object.entries(lookup[mediaType])) {
+      if (withoutQuery.endsWith(extension)) {
+        typeAttr = ` type="${mime}"`;
+        break;
+      }
+    }
+    return `<source src="${escapedSrc}"${typeAttr} />`;
+  }, "buildSourceTag");
   if (config3.mediaType === "image") {
     const imageTag = `<img src="${escapeAttribute3(config3.src)}" alt="${escapeAttribute3(
       config3.alt || "Media illustration"
@@ -6759,7 +6790,8 @@ var buildMediaMarkup = /* @__PURE__ */ __name((config3) => {
     if (config3.loop) {
       attrs.push("loop");
     }
-    return `<video ${attrs.join(" ")}></video>`;
+    const fallback2 = escapeHtml3(config3.alt || config3.title || "Your browser cannot play this video.");
+    return `<video ${attrs.join(" ")}>${buildSourceTag(config3.src, "video")}${fallback2}</video>`;
   }
   const audioAttrs = [
     `src="${escapeAttribute3(config3.src)}"`,
@@ -6777,7 +6809,7 @@ var buildMediaMarkup = /* @__PURE__ */ __name((config3) => {
     audioAttrs.push("muted");
   }
   const fallback = escapeHtml3(config3.alt || config3.title || "Your browser cannot play this audio clip.");
-  return `<audio ${audioAttrs.join(" ")}>${fallback}</audio>`;
+  return `<audio ${audioAttrs.join(" ")}>${buildSourceTag(config3.src, "audio")}${fallback}</audio>`;
 }, "buildMediaMarkup");
 var buildMediaBoxHtml = /* @__PURE__ */ __name((config3) => {
   const classes = [
