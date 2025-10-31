@@ -38,8 +38,22 @@ During the STATION_8 livestreams, the timer would be occasionally interrupted by
 
 However, not all interferences disrupt the timer completely, there are some instances where other anomalies, such as strange noises or visual glitches, occur while it is still counting down.
 
-![[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]
-_INDI was found. Top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"_
+```media-box
+Title: Image example
+Media: [[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]
+Alt: Top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"
+Caption: INDI was found at the end of STATION_8 TERMINAL 8
+Align: right
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```
 
-![[blue timer.png|300]]
-_Example of a visual anomaly from the timer, the numbers are blue instead of white._
+```media-box
+Title: Image example
+Media: [[blue timer.png]]
+Alt: Station Timer shows blue text instead of white
+Caption: Example of a visual anomaly from the timer, the numbers are blue instead of white.
+Align: right
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```
