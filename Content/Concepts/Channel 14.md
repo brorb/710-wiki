@@ -112,7 +112,7 @@ Media: [[LOG-40 Channel 14 schedule.png]]
 Alt: 
 Caption: 
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -121,7 +121,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Weather from LOG-154 (channel 14).png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
@@ -154,7 +154,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Weather and Morning Chats this Lyoce J.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
@@ -182,7 +182,7 @@ Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual received by SYSTEM
 Caption: 
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box

@@ -136,7 +136,7 @@ The video [[LONG_STR.mp4]] briefly flashes a wall of Long String's code:
 > '-83489-1794930210957403712904217854835187'070723985749832759079435643
 > 7965784265786432596259678383838363643765
 
-When shown this transcript from [[The Sleuths]] Discord server, [[SYSTEM]] responded with the following:
+When shown this transcript in [[The Sleuths]] Discord server, [[SYSTEM]] responded with the following:
 
 ```discord
 [
