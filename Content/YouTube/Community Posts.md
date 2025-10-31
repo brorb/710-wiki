@@ -179,7 +179,6 @@ SORRY, IT'S NOTHING PERSONAL
 ![[message received hex1.webp]]![[hex.webp]]
 ```
 _^The hex in the images translate to:_
-
 ```
 !SYSTEM ALERT!: DOWNED @ 2920 (subject(logsynprotcogut.exe, lngsynview.exe, logpublisher.exe)) HAS CRASHED
 ```
@@ -244,6 +243,7 @@ _^The hex translates to_
 h t t p s : / / d r i v e . g o o g l e . c o m / f i l e / d / 1 s n 9 3 r j T b b z P S L F _ x E R Z U q T R i M 9 v T J 0 f s / v i e w ? u s p = s h a r i n g
 ```
 _which is a Google Drive link to a file called [vacsystemrestart.mp3](https://drive.google.com/file/d/1sn93rjTbbzPSLF_xERZUqTRiM9vTJ0fs/view). This would lead to a major breakthrough, since the uploader of the file was the email "terminal8sbc@gmail.com", which @brorb sent an email to, resulting in [[SYSTEM]] joining the Sleuths' Discord server._
+
 ```community-post,5,2,February 2025,
 ![[unnamed.webp|300]]
 ```
