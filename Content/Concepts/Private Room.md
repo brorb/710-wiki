@@ -34,6 +34,7 @@ There are 10 known private room chats, of which 7 have been from community posts
 
 
 ## Chat #1
+
 ```
 "He only stared at me, and the last thing he tells me is to watch for the red star. I couldn't get that stupid logo out of my head ever since that day, like it had been burned into the gray matter."
 "And did you see him again after that?"
@@ -46,6 +47,7 @@ The last message gets cut off and corrupted, likely meant to start with "No, I l
 It is unknown who the two chatters were.
  
 ## Chat #2 
+
 ```
 "Technician speaking"
 "Hi, what's your number?"
@@ -117,6 +119,7 @@ INFECTED BY LONG STRING ;-)
 This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-) "
 
 ## Chat #6
+
 The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2025.07.02 - 2025.07.04:
 
 ```
@@ -125,6 +128,7 @@ TTH: F2930 We see your signal, transferring in a bit. Hold tight.
 ```
 This chat features yet another unknown [[TTH]] worker, [[F2930]], chatting with [[TTH]].
 ## Chat #7
+
 ```
 TRANSCRIPT 002:
 TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200
@@ -133,6 +137,7 @@ TTH: Difficulties with some Datacores and CIN Centers, but it that will be resol
 ```
 Here we see that it takes 10 hours for[[F2930]] to receive the signal sent from [[TTH]].  They blame the "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
 ## Chat #8
+
 ```
 TRANSCRIP 003:
 TTH: F2930, we encountered some anomalous interference with your signal
@@ -146,6 +151,7 @@ TTH: The code from the signal generation key.
 This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is possible that it is [[INDI]] talking here, but this is not confirmed.
 
 ## Chat #9
+
 ```
 TRANSCRIPT 004:
 TTH: F2930, We're getting some REN signals. Do you have anything to explain that?
@@ -157,6 +163,7 @@ TTH: Don't worry F2930. If we find nothing then you can pass through, but if you
 Here, the mysterious [[REN]] signals are mentioned. [[F2930]] is suspected of having something nefarious in their terminal -- perhaps [[Long String]]?
 
 ## Chat #10
+
 ```
 TRANSCRIPT 005:
 TTH: Okay, we went through everything and found nothing. It is suspicious however, that your terminal is completely clean of anything, but it's whatever. We just have to monitor your signals for 3 - 6 days and we will conclude whether or not we'll allow your signals to continue being private.
