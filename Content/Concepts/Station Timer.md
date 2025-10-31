@@ -44,7 +44,7 @@ Media: [[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]
 Alt: Top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"
 Caption: INDI was found at the end of STATION_8 TERMINAL 8
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -54,6 +54,6 @@ Media: [[blue timer.png]]
 Alt: Station Timer shows blue text instead of white
 Caption: Example of a visual anomaly from the timer, the numbers are blue instead of white.
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```

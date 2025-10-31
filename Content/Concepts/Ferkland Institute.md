@@ -18,7 +18,7 @@ Media: [[FUNDEDDEATH_guess-min.png]]
 Alt: Ferkland Institute logo guess
 Caption: Logo deduction by The Sleuths
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
