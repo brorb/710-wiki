@@ -6492,9 +6492,44 @@ var InfoboxBlock = /* @__PURE__ */ __name(() => {
   };
 }, "InfoboxBlock");
 
-// quartz/plugins/transformers/imageBox.ts
-import { SKIP as SKIP3, visit as visit7 } from "unist-util-visit";
+// quartz/plugins/transformers/mediaBox.ts
 var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var MEDIA_LANG_ALIASES = /* @__PURE__ */ new Set(["media-box", "image-box"]);
+var keyMap = {
+  title: "title",
+  heading: "title",
+  label: "title",
+  media: "src",
+  source: "src",
+  image: "src",
+  src: "src",
+  file: "src",
+  path: "src",
+  alt: "alt",
+  description: "caption",
+  caption: "caption",
+  credit: "credit",
+  photographer: "credit",
+  author: "credit",
+  align: "align",
+  alignment: "align",
+  position: "align",
+  wrap: "wrap",
+  float: "wrap",
+  width: "width",
+  size: "width",
+  link: "link",
+  href: "link",
+  type: "type",
+  kind: "type",
+  media_type: "type",
+  poster: "poster",
+  thumbnail: "poster",
+  cover: "poster",
+  autoplay: "autoplay",
+  loop: "loop",
+  muted: "muted"
+};
 var isExternalUrl3 = /* @__PURE__ */ __name((value) => /^(https?:)?\/\//i.test(value) || value.startsWith("data:"), "isExternalUrl");
 var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var escapeHtml3 = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
@@ -6526,7 +6561,7 @@ var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
     return cleaned;
   }
 }, "resolveObsidianTarget");
-var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+var resolveMediaSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
@@ -6546,7 +6581,7 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   }
   const target = stripContentPrefix3(cleaned);
   return appendAssetVersion2(joinSegments(pathToRoot(slug), target), getAssetVersion());
-}, "resolveImageSource");
+}, "resolveMediaSource");
 var resolveLinkTarget = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
@@ -6578,30 +6613,6 @@ var sanitizeCssValue = /* @__PURE__ */ __name((value) => {
   }
   return trimmed;
 }, "sanitizeCssValue");
-var keyMap = {
-  title: "title",
-  heading: "title",
-  label: "title",
-  image: "src",
-  src: "src",
-  file: "src",
-  path: "src",
-  alt: "alt",
-  description: "caption",
-  caption: "caption",
-  credit: "credit",
-  photographer: "credit",
-  author: "credit",
-  align: "align",
-  alignment: "align",
-  position: "align",
-  wrap: "wrap",
-  float: "wrap",
-  width: "width",
-  size: "width",
-  link: "link",
-  href: "link"
-};
 var parseBoolean = /* @__PURE__ */ __name((value, defaultValue) => {
   if (!value) {
     return defaultValue;
@@ -6631,7 +6642,29 @@ var normaliseAlign = /* @__PURE__ */ __name((value) => {
   }
   return "center";
 }, "normaliseAlign");
-var parseImageBoxBlock = /* @__PURE__ */ __name((raw) => {
+var inferMediaType = /* @__PURE__ */ __name((rawType, src) => {
+  if (rawType) {
+    const normalised = rawType.trim().toLowerCase();
+    if (normalised === "video" || normalised === "audio" || normalised === "image") {
+      return normalised;
+    }
+  }
+  if (src.startsWith("data:") && src.includes("video")) {
+    return "video";
+  }
+  if (src.startsWith("data:") && src.includes("audio")) {
+    return "audio";
+  }
+  const withoutQuery = src.split("?")[0]?.split("#")[0]?.toLowerCase() ?? "";
+  if (/\.(mp4|webm|mov|m4v|ogv)$/.test(withoutQuery)) {
+    return "video";
+  }
+  if (/\.(mp3|ogg|wav|m4a|flac|aac)$/.test(withoutQuery)) {
+    return "audio";
+  }
+  return "image";
+}, "inferMediaType");
+var parseMediaBoxBlock = /* @__PURE__ */ __name((raw) => {
   const result = {};
   const lines = raw.split(/\r?\n/);
   let currentKey = null;
@@ -6670,6 +6703,16 @@ var parseImageBoxBlock = /* @__PURE__ */ __name((raw) => {
     }
     flushBuffer();
     const keyRaw = trimmed.slice(0, colonIndex).trim().toLowerCase();
+    if (keyRaw === "video" || keyRaw === "audio") {
+      const value2 = trimmed.slice(colonIndex + 1).trim();
+      if (value2.length > 0) {
+        result.src = value2;
+      }
+      result.type = keyRaw;
+      currentKey = "src";
+      buffer = value2 ? [value2] : [];
+      continue;
+    }
     const mapped = keyMap[keyRaw];
     if (!mapped) {
       currentKey = null;
@@ -6685,40 +6728,91 @@ var parseImageBoxBlock = /* @__PURE__ */ __name((raw) => {
     return null;
   }
   return result;
-}, "parseImageBoxBlock");
-var buildImageBoxHtml = /* @__PURE__ */ __name((config3) => {
-  const classes = ["image-box", `image-box--align-${config3.align}`];
+}, "parseMediaBoxBlock");
+var buildMediaMarkup = /* @__PURE__ */ __name((config3) => {
+  if (config3.mediaType === "image") {
+    const imageTag = `<img src="${escapeAttribute3(config3.src)}" alt="${escapeAttribute3(
+      config3.alt || "Media illustration"
+    )}" loading="lazy" decoding="async" />`;
+    if (config3.link) {
+      return `<a class="media-box__link" href="${escapeAttribute3(config3.link)}"${isExternalUrl3(config3.link) ? ' target="_blank" rel="noopener"' : ""}>${imageTag}</a>`;
+    }
+    return imageTag;
+  }
+  if (config3.mediaType === "video") {
+    const attrs = [
+      `src="${escapeAttribute3(config3.src)}"`,
+      "controls",
+      "playsinline",
+      'preload="metadata"',
+      `aria-label="${escapeAttribute3(config3.alt || config3.title || "Embedded video")}"`
+    ];
+    if (config3.poster) {
+      attrs.push(`poster="${escapeAttribute3(config3.poster)}"`);
+    }
+    if (config3.autoplay) {
+      attrs.push("autoplay");
+    }
+    if (config3.muted || config3.autoplay) {
+      attrs.push("muted");
+    }
+    if (config3.loop) {
+      attrs.push("loop");
+    }
+    return `<video ${attrs.join(" ")}></video>`;
+  }
+  const audioAttrs = [
+    `src="${escapeAttribute3(config3.src)}"`,
+    "controls",
+    'preload="metadata"',
+    `aria-label="${escapeAttribute3(config3.alt || config3.title || "Embedded audio")}"`
+  ];
+  if (config3.autoplay) {
+    audioAttrs.push("autoplay");
+  }
+  if (config3.loop) {
+    audioAttrs.push("loop");
+  }
+  if (config3.muted) {
+    audioAttrs.push("muted");
+  }
+  const fallback = escapeHtml3(config3.alt || config3.title || "Your browser cannot play this audio clip.");
+  return `<audio ${audioAttrs.join(" ")}>${fallback}</audio>`;
+}, "buildMediaMarkup");
+var buildMediaBoxHtml = /* @__PURE__ */ __name((config3) => {
+  const classes = [
+    "media-box",
+    `media-box--align-${config3.align}`,
+    `media-box--type-${config3.mediaType}`
+  ];
   if (config3.wrap) {
-    classes.push("image-box--wrap");
+    classes.push("media-box--wrap");
   } else {
-    classes.push("image-box--no-wrap");
+    classes.push("media-box--no-wrap");
   }
   const styleParts = [];
   if (config3.width) {
     styleParts.push(`max-width: ${config3.width}`);
   }
   const styleAttr = styleParts.length > 0 ? ` style="${escapeAttribute3(styleParts.join("; "))}"` : "";
-  const titleMarkup = config3.title ? `<header class="image-box__title">${escapeHtml3(config3.title)}</header>` : "";
-  const imageTag = `<img src="${escapeAttribute3(config3.src)}" alt="${escapeAttribute3(
-    config3.alt || "Image illustration"
-  )}" loading="lazy" decoding="async" />`;
-  const mediaMarkup = config3.link ? `<a class="image-box__link" href="${escapeAttribute3(config3.link)}"${isExternalUrl3(config3.link) ? ' target="_blank" rel="noopener"' : ""}>${imageTag}</a>` : imageTag;
+  const titleMarkup = config3.title ? `<header class="media-box__title">${escapeHtml3(config3.title)}</header>` : "";
+  const mediaMarkup = buildMediaMarkup(config3);
   const captionParts = [];
   if (config3.caption) {
     const captionHtml = escapeHtml3(config3.caption).replace(/\r?\n/g, "<br />");
-    captionParts.push(`<span class="image-box__caption-text">${captionHtml}</span>`);
+    captionParts.push(`<span class="media-box__caption-text">${captionHtml}</span>`);
   }
   if (config3.credit) {
     const creditHtml = escapeHtml3(config3.credit).replace(/\r?\n/g, "<br />");
-    captionParts.push(`<span class="image-box__credit">${creditHtml}</span>`);
+    captionParts.push(`<span class="media-box__credit">${creditHtml}</span>`);
   }
-  const captionMarkup = captionParts.length > 0 ? `<figcaption class="image-box__caption">${captionParts.join("")}</figcaption>` : "";
-  return `<figure class="${classes.join(" ")}"${styleAttr}>${titleMarkup}<div class="image-box__media">${mediaMarkup}</div>${captionMarkup}</figure>`;
-}, "buildImageBoxHtml");
-var IMAGE_BOX_CSS = `
-.image-box {
-  --image-box-background: color-mix(in srgb, var(--color-surface-overlay) 92%, transparent);
-  background: var(--image-box-background);
+  const captionMarkup = captionParts.length > 0 ? `<figcaption class="media-box__caption">${captionParts.join("")}</figcaption>` : "";
+  return `<figure class="${classes.join(" ")}"${styleAttr}>${titleMarkup}<div class="media-box__media">${mediaMarkup}</div>${captionMarkup}</figure>`;
+}, "buildMediaBoxHtml");
+var MEDIA_BOX_CSS = `
+.media-box {
+  --media-box-background: color-mix(in srgb, var(--color-surface-overlay) 92%, transparent);
+  background: var(--media-box-background);
   border: 1px solid color-mix(in srgb, var(--color-tone-muted) 35%, transparent);
   border-radius: 14px;
   padding: 0.9rem 0.95rem 1.05rem;
@@ -6726,11 +6820,11 @@ var IMAGE_BOX_CSS = `
   gap: 0.65rem;
   box-shadow: 0 1.15rem 2.1rem rgba(0, 0, 0, 0.14);
   margin: 1.75rem auto;
-  max-width: min(100%, 380px);
+  max-width: min(100%, 420px);
   color: var(--color-tone-contrast);
 }
 
-.image-box__title {
+.media-box__title {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -6740,11 +6834,13 @@ var IMAGE_BOX_CSS = `
   color: var(--color-tone-primary);
 }
 
-.image-box__media {
+.media-box__media {
   display: block;
 }
 
-.image-box__media img {
+.media-box__media img,
+.media-box__media video,
+.media-box__media audio {
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -6752,22 +6848,27 @@ var IMAGE_BOX_CSS = `
   display: block;
 }
 
-.image-box__link {
+.media-box__media audio {
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+.media-box__link {
   display: block;
 }
 
-.image-box__caption {
+.media-box__caption {
   margin: 0;
   font-size: 0.85rem;
   line-height: 1.45;
   color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
 }
 
-.image-box__caption-text {
+.media-box__caption-text {
   display: block;
 }
 
-.image-box__credit {
+.media-box__credit {
   display: block;
   margin-top: 0.4rem;
   font-size: 0.72rem;
@@ -6776,103 +6877,178 @@ var IMAGE_BOX_CSS = `
   color: color-mix(in srgb, var(--color-tone-muted) 85%, var(--color-tone-primary) 15%);
 }
 
-.image-box--align-left.image-box--wrap {
+.media-box--align-left.media-box--wrap {
   float: left;
   margin: 0 1.5rem 1.25rem 0;
 }
 
-.image-box--align-right.image-box--wrap {
+.media-box--align-right.media-box--wrap {
   float: right;
   margin: 0 0 1.25rem 1.5rem;
 }
 
-.image-box--align-center {
+.media-box--align-center {
   margin-left: auto;
   margin-right: auto;
 }
 
-.image-box--align-left.image-box--no-wrap {
+.media-box--align-left.media-box--no-wrap {
   margin-left: 0;
   margin-right: auto;
 }
 
-.image-box--align-right.image-box--no-wrap {
+.media-box--align-right.media-box--no-wrap {
   margin-left: auto;
   margin-right: 0;
 }
 
-.image-box--wrap {
-  max-width: min(100%, 320px);
+.media-box--wrap {
+  max-width: min(100%, 340px);
+}
+
+.media-box--type-audio .media-box__media {
+  padding-inline: clamp(0.4rem, 2vw, 1rem);
+}
+
+.media-box-cluster {
+  margin: 1.75rem auto;
+}
+
+.media-box-cluster--inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.media-box-cluster--inline .media-box {
+  margin: 0;
+  flex: 0 1 auto;
+  float: none;
 }
 
 @media (max-width: 900px) {
-  .image-box--wrap {
+  .media-box--wrap {
     float: none !important;
     margin: 1.5rem auto !important;
   }
+
+  .media-box-cluster--inline {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .media-box-cluster--inline .media-box {
+    flex: 1 1 auto;
+    max-width: min(100%, 420px);
+  }
 }
 `;
-var transformImageBoxes = /* @__PURE__ */ __name((tree, slug) => {
-  visit7(tree, "code", (node, index, parent) => {
-    const lang = typeof node.lang === "string" ? node.lang.toLowerCase() : "";
-    if (lang !== "image-box") {
-      return;
-    }
-    const raw = typeof node.value === "string" ? node.value : "";
-    const parsed = parseImageBoxBlock(raw);
-    if (!parsed) {
-      if (parent && typeof index === "number") {
-        ;
-        parent.children.splice(index, 1);
-        return [SKIP3, index];
-      }
-      return;
-    }
-    const srcResolved = resolveImageSource(parsed.src ?? "", slug);
-    if (!srcResolved) {
-      if (parent && typeof index === "number") {
-        ;
-        parent.children.splice(index, 1);
-        return [SKIP3, index];
-      }
-      return;
-    }
-    const align = normaliseAlign(parsed.align);
-    const wrap = parseBoolean(parsed.wrap, align !== "center");
-    const width = sanitizeCssValue(parsed.width);
-    const linkRaw = parsed.link ? parsed.link.trim() : void 0;
-    const linkResolved = linkRaw ? resolveLinkTarget(linkRaw, slug) : void 0;
-    const config3 = {
-      title: parsed.title?.trim() || void 0,
-      src: srcResolved,
-      alt: parsed.alt?.trim() || void 0,
-      caption: parsed.caption?.trim() || void 0,
-      credit: parsed.credit?.trim() || void 0,
-      align,
-      wrap,
-      width,
-      link: linkResolved && linkResolved.length > 0 ? linkResolved : void 0
-    };
-    const html = buildImageBoxHtml(config3);
-    if (parent && typeof index === "number") {
-      ;
-      parent.children.splice(index, 1, {
-        type: "html",
-        value: html
-      });
-      return [SKIP3, index];
-    }
-    return;
-  });
-}, "transformImageBoxes");
-var ImageBox = /* @__PURE__ */ __name(() => {
+var isMediaBoxCodeNode = /* @__PURE__ */ __name((node) => {
+  if (!node || typeof node !== "object") {
+    return false;
+  }
+  const maybe = node;
+  if (maybe.type !== "code") {
+    return false;
+  }
+  const lang = typeof maybe.lang === "string" ? maybe.lang.toLowerCase() : "";
+  return MEDIA_LANG_ALIASES.has(lang);
+}, "isMediaBoxCodeNode");
+var createHtmlNode = /* @__PURE__ */ __name((value) => ({
+  type: "html",
+  value
+}), "createHtmlNode");
+var toMediaBoxConfig = /* @__PURE__ */ __name((node, slug) => {
+  const raw = typeof node.value === "string" ? node.value : "";
+  const parsed = parseMediaBoxBlock(raw);
+  if (!parsed) {
+    return null;
+  }
+  const srcResolved = resolveMediaSource(parsed.src ?? "", slug);
+  if (!srcResolved) {
+    return null;
+  }
+  const posterResolved = parsed.poster ? resolveMediaSource(parsed.poster, slug) : void 0;
+  const mediaType = inferMediaType(parsed.type, srcResolved);
+  const align = normaliseAlign(parsed.align);
+  const wrap = parseBoolean(parsed.wrap, align !== "center");
+  const width = sanitizeCssValue(parsed.width);
+  const linkRaw = parsed.link ? parsed.link.trim() : void 0;
+  const linkResolved = linkRaw ? resolveLinkTarget(linkRaw, slug) : void 0;
   return {
-    name: "ImageBox",
+    title: parsed.title?.trim() || void 0,
+    src: srcResolved,
+    alt: parsed.alt?.trim() || void 0,
+    caption: parsed.caption?.trim() || void 0,
+    credit: parsed.credit?.trim() || void 0,
+    align,
+    wrap,
+    width,
+    link: mediaType === "image" && linkResolved && linkResolved.length > 0 ? linkResolved : void 0,
+    mediaType,
+    poster: posterResolved,
+    autoplay: parseBoolean(parsed.autoplay, false),
+    loop: parseBoolean(parsed.loop, false),
+    muted: parseBoolean(parsed.muted, false)
+  };
+}, "toMediaBoxConfig");
+var transformMediaBoxes = /* @__PURE__ */ __name((tree, slug) => {
+  const process3 = /* @__PURE__ */ __name((node) => {
+    if (!node || typeof node !== "object" || !Array.isArray(node.children)) {
+      return;
+    }
+    const children = node.children;
+    for (let index = 0; index < children.length; ) {
+      const child = children[index];
+      if (!isMediaBoxCodeNode(child)) {
+        process3(child);
+        index += 1;
+        continue;
+      }
+      const group = [];
+      let cursor = index;
+      while (cursor < children.length) {
+        const candidate = children[cursor];
+        if (!isMediaBoxCodeNode(candidate)) {
+          break;
+        }
+        group.push(candidate);
+        cursor += 1;
+      }
+      const configs = group.map((code) => toMediaBoxConfig(code, slug));
+      const validEntries = configs.filter((config3) => config3 !== null);
+      if (validEntries.length === 0) {
+        children.splice(index, group.length);
+        continue;
+      }
+      const htmlFigures = validEntries.map((config3) => buildMediaBoxHtml(config3));
+      const allNoWrap = validEntries.every((config3) => !config3.wrap);
+      let replacements;
+      if (validEntries.length > 1 && allNoWrap) {
+        replacements = [
+          createHtmlNode(
+            `<div class="media-box-cluster media-box-cluster--inline">${htmlFigures.join("")}</div>`
+          )
+        ];
+      } else {
+        replacements = htmlFigures.map((value) => createHtmlNode(value));
+      }
+      children.splice(index, group.length, ...replacements);
+      index += replacements.length;
+    }
+  }, "process");
+  process3(tree);
+}, "transformMediaBoxes");
+var MediaBox = /* @__PURE__ */ __name(() => {
+  return {
+    name: "MediaBox",
     markdownPlugins() {
       return [
         () => (tree, file) => {
           const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
-          transformImageBoxes(tree, slug);
+          transformMediaBoxes(tree, slug);
         }
       ];
     },
@@ -6881,13 +7057,13 @@ var ImageBox = /* @__PURE__ */ __name(() => {
         css: [
           {
             inline: true,
-            content: IMAGE_BOX_CSS
+            content: MEDIA_BOX_CSS
           }
         ]
       };
     }
   };
-}, "ImageBox");
+}, "MediaBox");
 
 // quartz/plugins/filters/draft.ts
 var RemoveDrafts = /* @__PURE__ */ __name(() => ({
@@ -6988,7 +7164,7 @@ function concatenateResources(...resources) {
 __name(concatenateResources, "concatenateResources");
 
 // quartz/components/renderPage.tsx
-import { visit as visit8 } from "unist-util-visit";
+import { visit as visit7 } from "unist-util-visit";
 import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 import { createElement } from "preact";
 var headerRegex = new RegExp(/h[1-6]/);
@@ -7030,7 +7206,7 @@ function pageResources(baseDir, staticResources) {
 }
 __name(pageResources, "pageResources");
 function renderTranscludes(root, cfg, slug, componentData) {
-  visit8(root, "element", (node, _index, _parent) => {
+  visit7(root, "element", (node, _index, _parent) => {
     if (node.tagName === "blockquote") {
       const classNames2 = node.properties?.className ?? [];
       if (classNames2.includes("transclude")) {
@@ -9888,7 +10064,7 @@ var resolveObsidianTarget4 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const baseDir = pathToRoot(slug);
   return appendAssetVersion3(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
-var resolveImageSource2 = /* @__PURE__ */ __name((raw, slug) => {
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
@@ -9935,7 +10111,7 @@ var parseInfoBox = /* @__PURE__ */ __name((fileData, slug, ctx) => {
   const title = normalizeString(raw.title);
   const items = parseItems(raw.items, slug, ctx);
   const imageSrcRaw = normalizeString(raw.image?.src);
-  const imageSrc = imageSrcRaw ? resolveImageSource2(imageSrcRaw, slug) : void 0;
+  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
   const imageCaption = normalizeString(raw.image?.caption);
   const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : void 0;
@@ -12276,7 +12452,7 @@ var config2 = {
       ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       GitHubFlavoredMarkdown(),
       InfoboxBlock(),
-      ImageBox(),
+      MediaBox(),
       DiscordMessages(),
       YouTubeCommunityPosts(),
       TableOfContents({

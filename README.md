@@ -181,22 +181,22 @@ The UI accepts any JSON superset of this shape:
 	3. `ORACLE_WEB_API_BASE_URL=http://localhost:8787` when building/serving locally so the widget targets the proxy. For one-off runs you can export the variable inline: `ORACLE_WEB_API_BASE_URL=http://localhost:8787 npm run build -w quartz-site`.
 - The proxy reads `ORACLE_WEB_API_TOKEN` / `ORACLE_KEY_ID` from your `.env` and logs every forward along with the byte size and HTTP status. Health check: `curl http://localhost:8787/health`.
 
-## Inline image boxes
+## Inline media boxes
 
-- Drop a fenced code block with the language `image-box` anywhere in a note to render a framed figure with optional title, caption, credit, alignment, and wrapping rules. The transformer understands plain URLs, repo-relative paths, and Obsidian embeds for the `Image:` field.
-- Supported fields: `Title`, `Image`/`Src`, `Alt`, `Caption`, `Credit`, `Align` (`left`/`center`/`right`), `Wrap` (`true`/`false`), `Width` (e.g. `260px`, `clamp(220px, 32vw, 360px)`), and `Link` (wraps the image in an anchor). Additional indented lines continue the previous field, which makes multiline captions easy.
+- Drop a fenced code block with the language `media-box` anywhere in a note to render a framed figure that can host images, video, or audio alongside optional title, caption, credit, alignment, and wrapping rules. The transformer understands plain URLs, repo-relative paths, and Obsidian embeds for the `Media:` field.
+- Supported fields: `Title`, `Media`/`Src`/`Image`, `Alt`, `Caption`, `Credit`, `Align` (`left`/`center`/`right`), `Wrap` (`true`/`false`), `Width` (e.g. `260px`, `clamp(220px, 32vw, 360px)`), `Link` (image-only anchor), `Type` (`image`/`video`/`audio`), `Poster` (video poster frame), and playback flags (`Autoplay`, `Loop`, `Muted`). Additional indented lines continue the previous field, which makes multiline captions easy.
 - Example:
 
-	
-	```image-box
+	```media-box
 	Title: Station Array Blueprint
-	Image: /static/oracle-pfp.png
+	Media: /static/oracle-pfp.png
 	Alt: Placeholder blueprint artwork
 	Caption: Use `Wrap: false` when you want the figure to stand alone.
 	Align: center
 	Wrap: false
 	Width: clamp(220px, 32vw, 360px)
 	```
-	
 
-- See `Content/Guides/Image Box Reference.md` for a full walkthrough and live examples (including floating left/right variants and credit lines). On mobile (<900 px) wrapped boxes automatically drop into the normal flow so text remains readable.
+- Drop two or more `media-box` fences back-to-back to form a single flex row; Quartz will line them up on wide screens and fall back to a column on mobile.
+
+- See `Content/Guides/Custom Formatting Reference.md` for comprehensive examples (floating variants, audio/video embeds, credits, and more). On mobile (<900 px) wrapped boxes automatically drop into the normal flow so text remains readable.
