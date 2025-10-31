@@ -24,6 +24,14 @@ Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+```media-box
+Media: [[Da Vinci original image found.jpg]]
+Alt: DaVinci engraving by Raffaello Sanzio Morghen
+Caption: Original image that is the closest thing to the one featured in the video
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 The image of DaVinci fills the screen for a couple of seconds, before the camera pans away to more red room. The text "QUANDO NATUS EST" appears along with a heavily distorted voice reading it aloud. The phrase is classical Latin and means "When was he born", likely referring to Leonardo DaVinci, who was born April 15, 1452.
 
