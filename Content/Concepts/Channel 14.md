@@ -177,7 +177,7 @@ Width: clamp(220px, 32vw, 360px)
 ```
 
 ```media-box
-Title: Gift from [[SYSTEM]]
+Title: Gift from SYSTEM
 Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual
 Caption: This is a recreation, see [[gift-full.png|gift-full.png]] for the original
