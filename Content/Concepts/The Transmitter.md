@@ -1,7 +1,15 @@
 ---
+title: The Transmitter
 tags:
   - component
 ---
+```infobox
+Title: The Transmitter
+Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
+Associates: [[Travis]]
+Appearances: [[SERVER 01]] (mentioned by [[SYSTEM]])
+```
+
 ![[TRANSMITTERopensignal.ogg]]
 _What the transmitter sounds like, according to [[SYSTEM]]._
 
