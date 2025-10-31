@@ -6492,6 +6492,403 @@ var InfoboxBlock = /* @__PURE__ */ __name(() => {
   };
 }, "InfoboxBlock");
 
+// quartz/plugins/transformers/imageBox.ts
+import { SKIP as SKIP3, visit as visit7 } from "unist-util-visit";
+var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl3 = /* @__PURE__ */ __name((value) => /^(https?:)?\/\//i.test(value) || value.startsWith("data:"), "isExternalUrl");
+var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var escapeHtml3 = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
+var escapeAttribute3 = /* @__PURE__ */ __name((value) => escapeHtml3(value), "escapeAttribute");
+var sanitizeMultiline = /* @__PURE__ */ __name((lines) => lines.map((line) => line.trimEnd()).join("\n").trim(), "sanitizeMultiline");
+var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
+  if (!version) {
+    return url;
+  }
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+}, "appendAssetVersion");
+var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
+  const cleaned = rawTarget.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  if (isExternalUrl3(cleaned)) {
+    return cleaned;
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  try {
+    const target = stripContentPrefix3(cleaned);
+    const targetSlug = slugifyFilePath(target);
+    const baseDir = pathToRoot(slug);
+    return appendAssetVersion2(joinSegments(baseDir, targetSlug), getAssetVersion());
+  } catch {
+    return cleaned;
+  }
+}, "resolveObsidianTarget");
+var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const match = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  if (match?.groups?.target) {
+    return resolveObsidianTarget3(match.groups.target, slug);
+  }
+  if (isExternalUrl3(cleaned)) {
+    return cleaned;
+  }
+  if (cleaned.startsWith("/")) {
+    return appendAssetVersion2(cleaned, getAssetVersion());
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  const target = stripContentPrefix3(cleaned);
+  return appendAssetVersion2(joinSegments(pathToRoot(slug), target), getAssetVersion());
+}, "resolveImageSource");
+var resolveLinkTarget = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const match = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  if (match?.groups?.target) {
+    return resolveObsidianTarget3(match.groups.target, slug) ?? cleaned;
+  }
+  if (isExternalUrl3(cleaned) || cleaned.startsWith("/")) {
+    return cleaned;
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  const target = stripContentPrefix3(cleaned);
+  return joinSegments(pathToRoot(slug), target);
+}, "resolveLinkTarget");
+var sanitizeCssValue = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return void 0;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return void 0;
+  }
+  if (!/^[0-9a-zA-Z%.,()\s_-]+$/.test(trimmed)) {
+    return void 0;
+  }
+  return trimmed;
+}, "sanitizeCssValue");
+var keyMap = {
+  title: "title",
+  heading: "title",
+  label: "title",
+  image: "src",
+  src: "src",
+  file: "src",
+  path: "src",
+  alt: "alt",
+  description: "caption",
+  caption: "caption",
+  credit: "credit",
+  photographer: "credit",
+  author: "credit",
+  align: "align",
+  alignment: "align",
+  position: "align",
+  wrap: "wrap",
+  float: "wrap",
+  width: "width",
+  size: "width",
+  link: "link",
+  href: "link"
+};
+var parseBoolean = /* @__PURE__ */ __name((value, defaultValue) => {
+  if (!value) {
+    return defaultValue;
+  }
+  const normalised = value.trim().toLowerCase();
+  if (["true", "yes", "y", "1", "wrap", "on"].includes(normalised)) {
+    return true;
+  }
+  if (["false", "no", "n", "0", "none", "off"].includes(normalised)) {
+    return false;
+  }
+  return defaultValue;
+}, "parseBoolean");
+var normaliseAlign = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return "center";
+  }
+  const trimmed = value.trim().toLowerCase();
+  if (trimmed === "left" || trimmed === "start") {
+    return "left";
+  }
+  if (trimmed === "right" || trimmed === "end") {
+    return "right";
+  }
+  if (trimmed === "centre") {
+    return "center";
+  }
+  return "center";
+}, "normaliseAlign");
+var parseImageBoxBlock = /* @__PURE__ */ __name((raw) => {
+  const result = {};
+  const lines = raw.split(/\r?\n/);
+  let currentKey = null;
+  let buffer = [];
+  const flushBuffer = /* @__PURE__ */ __name(() => {
+    if (!currentKey) {
+      buffer = [];
+      return;
+    }
+    const combined = sanitizeMultiline(buffer);
+    if (combined.length > 0) {
+      result[currentKey] = combined;
+    }
+    buffer = [];
+  }, "flushBuffer");
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushBuffer();
+      currentKey = null;
+      continue;
+    }
+    if (trimmed.startsWith("#")) {
+      continue;
+    }
+    const indent = line.length - line.trimStart().length;
+    if (indent > 0 && currentKey) {
+      buffer.push(trimmed);
+      continue;
+    }
+    const colonIndex = trimmed.indexOf(":");
+    if (colonIndex === -1) {
+      flushBuffer();
+      currentKey = null;
+      continue;
+    }
+    flushBuffer();
+    const keyRaw = trimmed.slice(0, colonIndex).trim().toLowerCase();
+    const mapped = keyMap[keyRaw];
+    if (!mapped) {
+      currentKey = null;
+      continue;
+    }
+    const value = trimmed.slice(colonIndex + 1).trim();
+    result[mapped] = value;
+    currentKey = mapped;
+    buffer = value ? [value] : [];
+  }
+  flushBuffer();
+  if (!result.src || !result.src.trim()) {
+    return null;
+  }
+  return result;
+}, "parseImageBoxBlock");
+var buildImageBoxHtml = /* @__PURE__ */ __name((config3) => {
+  const classes = ["image-box", `image-box--align-${config3.align}`];
+  if (config3.wrap) {
+    classes.push("image-box--wrap");
+  } else {
+    classes.push("image-box--no-wrap");
+  }
+  const styleParts = [];
+  if (config3.width) {
+    styleParts.push(`max-width: ${config3.width}`);
+  }
+  const styleAttr = styleParts.length > 0 ? ` style="${escapeAttribute3(styleParts.join("; "))}"` : "";
+  const titleMarkup = config3.title ? `<header class="image-box__title">${escapeHtml3(config3.title)}</header>` : "";
+  const imageTag = `<img src="${escapeAttribute3(config3.src)}" alt="${escapeAttribute3(
+    config3.alt || "Image illustration"
+  )}" loading="lazy" decoding="async" />`;
+  const mediaMarkup = config3.link ? `<a class="image-box__link" href="${escapeAttribute3(config3.link)}"${isExternalUrl3(config3.link) ? ' target="_blank" rel="noopener"' : ""}>${imageTag}</a>` : imageTag;
+  const captionParts = [];
+  if (config3.caption) {
+    const captionHtml = escapeHtml3(config3.caption).replace(/\r?\n/g, "<br />");
+    captionParts.push(`<span class="image-box__caption-text">${captionHtml}</span>`);
+  }
+  if (config3.credit) {
+    const creditHtml = escapeHtml3(config3.credit).replace(/\r?\n/g, "<br />");
+    captionParts.push(`<span class="image-box__credit">${creditHtml}</span>`);
+  }
+  const captionMarkup = captionParts.length > 0 ? `<figcaption class="image-box__caption">${captionParts.join("")}</figcaption>` : "";
+  return `<figure class="${classes.join(" ")}"${styleAttr}>${titleMarkup}<div class="image-box__media">${mediaMarkup}</div>${captionMarkup}</figure>`;
+}, "buildImageBoxHtml");
+var IMAGE_BOX_CSS = `
+.image-box {
+  --image-box-background: color-mix(in srgb, var(--color-surface-overlay) 92%, transparent);
+  background: var(--image-box-background);
+  border: 1px solid color-mix(in srgb, var(--color-tone-muted) 35%, transparent);
+  border-radius: 14px;
+  padding: 0.9rem 0.95rem 1.05rem;
+  display: grid;
+  gap: 0.65rem;
+  box-shadow: 0 1.15rem 2.1rem rgba(0, 0, 0, 0.14);
+  margin: 1.75rem auto;
+  max-width: min(100%, 380px);
+  color: var(--color-tone-contrast);
+}
+
+.image-box__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  color: var(--color-tone-primary);
+}
+
+.image-box__media {
+  display: block;
+}
+
+.image-box__media img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.45rem rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.image-box__link {
+  display: block;
+}
+
+.image-box__caption {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
+}
+
+.image-box__caption-text {
+  display: block;
+}
+
+.image-box__credit {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-muted) 85%, var(--color-tone-primary) 15%);
+}
+
+.image-box--align-left.image-box--wrap {
+  float: left;
+  margin: 0 1.5rem 1.25rem 0;
+}
+
+.image-box--align-right.image-box--wrap {
+  float: right;
+  margin: 0 0 1.25rem 1.5rem;
+}
+
+.image-box--align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-box--align-left.image-box--no-wrap {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.image-box--align-right.image-box--no-wrap {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.image-box--wrap {
+  max-width: min(100%, 320px);
+}
+
+@media (max-width: 900px) {
+  .image-box--wrap {
+    float: none !important;
+    margin: 1.5rem auto !important;
+  }
+}
+`;
+var transformImageBoxes = /* @__PURE__ */ __name((tree, slug) => {
+  visit7(tree, "code", (node, index, parent) => {
+    const lang = typeof node.lang === "string" ? node.lang.toLowerCase() : "";
+    if (lang !== "image-box") {
+      return;
+    }
+    const raw = typeof node.value === "string" ? node.value : "";
+    const parsed = parseImageBoxBlock(raw);
+    if (!parsed) {
+      if (parent && typeof index === "number") {
+        ;
+        parent.children.splice(index, 1);
+        return [SKIP3, index];
+      }
+      return;
+    }
+    const srcResolved = resolveImageSource(parsed.src ?? "", slug);
+    if (!srcResolved) {
+      if (parent && typeof index === "number") {
+        ;
+        parent.children.splice(index, 1);
+        return [SKIP3, index];
+      }
+      return;
+    }
+    const align = normaliseAlign(parsed.align);
+    const wrap = parseBoolean(parsed.wrap, align !== "center");
+    const width = sanitizeCssValue(parsed.width);
+    const linkRaw = parsed.link ? parsed.link.trim() : void 0;
+    const linkResolved = linkRaw ? resolveLinkTarget(linkRaw, slug) : void 0;
+    const config3 = {
+      title: parsed.title?.trim() || void 0,
+      src: srcResolved,
+      alt: parsed.alt?.trim() || void 0,
+      caption: parsed.caption?.trim() || void 0,
+      credit: parsed.credit?.trim() || void 0,
+      align,
+      wrap,
+      width,
+      link: linkResolved && linkResolved.length > 0 ? linkResolved : void 0
+    };
+    const html = buildImageBoxHtml(config3);
+    if (parent && typeof index === "number") {
+      ;
+      parent.children.splice(index, 1, {
+        type: "html",
+        value: html
+      });
+      return [SKIP3, index];
+    }
+    return;
+  });
+}, "transformImageBoxes");
+var ImageBox = /* @__PURE__ */ __name(() => {
+  return {
+    name: "ImageBox",
+    markdownPlugins() {
+      return [
+        () => (tree, file) => {
+          const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
+          transformImageBoxes(tree, slug);
+        }
+      ];
+    },
+    externalResources() {
+      return {
+        css: [
+          {
+            inline: true,
+            content: IMAGE_BOX_CSS
+          }
+        ]
+      };
+    }
+  };
+}, "ImageBox");
+
 // quartz/plugins/filters/draft.ts
 var RemoveDrafts = /* @__PURE__ */ __name(() => ({
   name: "RemoveDrafts",
@@ -6591,7 +6988,7 @@ function concatenateResources(...resources) {
 __name(concatenateResources, "concatenateResources");
 
 // quartz/components/renderPage.tsx
-import { visit as visit7 } from "unist-util-visit";
+import { visit as visit8 } from "unist-util-visit";
 import { jsx as jsx4, jsxs } from "preact/jsx-runtime";
 import { createElement } from "preact";
 var headerRegex = new RegExp(/h[1-6]/);
@@ -6633,7 +7030,7 @@ function pageResources(baseDir, staticResources) {
 }
 __name(pageResources, "pageResources");
 function renderTranscludes(root, cfg, slug, componentData) {
-  visit7(root, "element", (node, _index, _parent) => {
+  visit8(root, "element", (node, _index, _parent) => {
     if (node.tagName === "blockquote") {
       const classNames2 = node.properties?.className ?? [];
       if (classNames2.includes("transclude")) {
@@ -9379,10 +9776,10 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment7 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
-var isExternalUrl3 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -9398,7 +9795,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix3(target);
+  const sanitized = stripContentPrefix4(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -9475,37 +9872,37 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   }
   return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
 }, "normalizeValue");
-var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
+var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
-var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
+var resolveObsidianTarget4 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl3(rawTarget)) {
+  if (isExternalUrl4(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix3(rawTarget);
+  const targetWithoutExt = stripContentPrefix4(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion2(joinSegments(baseDir, targetSlug), version);
+  return appendAssetVersion3(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
-var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
+var resolveImageSource2 = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
   if (obsidianMatch?.groups?.target) {
-    return resolveObsidianTarget3(obsidianMatch.groups.target, slug);
+    return resolveObsidianTarget4(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl3(cleaned)) {
+  if (isExternalUrl4(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix3(cleaned);
-  return appendAssetVersion2(joinSegments(pathToRoot(slug), target), version);
+  const target = stripContentPrefix4(cleaned);
+  return appendAssetVersion3(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {
@@ -9538,7 +9935,7 @@ var parseInfoBox = /* @__PURE__ */ __name((fileData, slug, ctx) => {
   const title = normalizeString(raw.title);
   const items = parseItems(raw.items, slug, ctx);
   const imageSrcRaw = normalizeString(raw.image?.src);
-  const imageSrc = imageSrcRaw ? resolveImageSource(imageSrcRaw, slug) : void 0;
+  const imageSrc = imageSrcRaw ? resolveImageSource2(imageSrcRaw, slug) : void 0;
   const imageAlt = normalizeString(raw.image?.alt);
   const imageCaption = normalizeString(raw.image?.caption);
   const imageCaptionNode = imageCaption ? renderTextWithWikilinks(imageCaption, slug, ctx) : void 0;
@@ -11879,6 +12276,7 @@ var config2 = {
       ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       GitHubFlavoredMarkdown(),
       InfoboxBlock(),
+      ImageBox(),
       DiscordMessages(),
       YouTubeCommunityPosts(),
       TableOfContents({

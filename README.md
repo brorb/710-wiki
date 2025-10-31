@@ -160,3 +160,43 @@ The UI accepts any JSON superset of this shape:
 - Local transcripts never exceed `maxHistory` persisted entries, even though `metadata.history.totalMessages` tracks the uncapped count for observability.
 - The widget eagerly focuses the textarea and scrolls to the latest message whenever it opens or the history updates.
 - When reCAPTCHA is configured, the script loads Google’s client the first time the dialog opens and reuses it for later submissions.
+
+### CORS troubleshooting & proxy shim
+
+- The Railway endpoint at `https://discord-system-firebase-bot-production.up.railway.app/api/oracle/query` does **not** return `Access-Control-Allow-Origin`, so browsers block preflight requests from both `http://localhost:*` and `https://710tone.wiki`. Verify with:
+
+	```bash
+	curl -i -X OPTIONS https://discord-system-firebase-bot-production.up.railway.app/api/oracle/query \
+		-H "Origin: https://710tone.wiki" \
+		-H "Access-Control-Request-Method: POST" \
+		-H "Access-Control-Request-Headers: content-type,x-web-api-key,x-oracle-key,x-oracle-timestamp,x-oracle-signature"
+	```
+
+	The response reports `200 OK` but lacks any `Access-Control-Allow-*` headers, so the real POST never fires in the browser.
+- Update the hosted service to emit the appropriate headers (`Access-Control-Allow-Origin`, `Access-Control-Allow-Headers`, `Access-Control-Allow-Methods`) for `https://710tone.wiki` and local origins when possible. Until that’s in place, local development can rely on the lightweight proxy below.
+- `node scripts/oracle-proxy.mjs` starts a CORS-aware relay that forwards `/api/oracle/query` requests to the Railway API using the same headers the widget already computes. It responds to preflight with the permissive headers Chrome expects and mirrors the upstream JSON payload.
+- Usage:
+	1. `npm run build -w quartz-site`
+	2. `npm run oracle:proxy` (default port `8787` — override with `ORACLE_PROXY_PORT`)
+	3. `ORACLE_WEB_API_BASE_URL=http://localhost:8787` when building/serving locally so the widget targets the proxy. For one-off runs you can export the variable inline: `ORACLE_WEB_API_BASE_URL=http://localhost:8787 npm run build -w quartz-site`.
+- The proxy reads `ORACLE_WEB_API_TOKEN` / `ORACLE_KEY_ID` from your `.env` and logs every forward along with the byte size and HTTP status. Health check: `curl http://localhost:8787/health`.
+
+## Inline image boxes
+
+- Drop a fenced code block with the language `image-box` anywhere in a note to render a framed figure with optional title, caption, credit, alignment, and wrapping rules. The transformer understands plain URLs, repo-relative paths, and Obsidian embeds for the `Image:` field.
+- Supported fields: `Title`, `Image`/`Src`, `Alt`, `Caption`, `Credit`, `Align` (`left`/`center`/`right`), `Wrap` (`true`/`false`), `Width` (e.g. `260px`, `clamp(220px, 32vw, 360px)`), and `Link` (wraps the image in an anchor). Additional indented lines continue the previous field, which makes multiline captions easy.
+- Example:
+
+	
+	```image-box
+	Title: Station Array Blueprint
+	Image: /static/oracle-pfp.png
+	Alt: Placeholder blueprint artwork
+	Caption: Use `Wrap: false` when you want the figure to stand alone.
+	Align: center
+	Wrap: false
+	Width: clamp(220px, 32vw, 360px)
+	```
+	
+
+- See `Content/Guides/Image Box Reference.md` for a full walkthrough and live examples (including floating left/right variants and credit lines). On mobile (<900 px) wrapped boxes automatically drop into the normal flow so text remains readable.
