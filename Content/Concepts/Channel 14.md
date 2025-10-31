@@ -194,8 +194,22 @@ Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+```media-box
+Title: 
+Media: [[LowLock5 Channel 14.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
-[[LowLock5 Channel 14.png]]
-
-**Gift from [[SYSTEM]]** _(this is a recreation, see [[gift-full.png|gift-full.png]] for the original)
-![[gift_fixed.png|500]]
+```media-box
+Title: Gift from [[SYSTEM]]
+Media: [[gift_fixed.png]]
+Alt: 
+Caption: This is a recreation, see [[gift-full.png|gift-full.png]] for the original
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
