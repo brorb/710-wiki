@@ -65,7 +65,7 @@ Media: [[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r02
 Alt: "Ghost error image" from SERVER 01
 Caption: <OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})\<!OUTPRINT=False>)
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
