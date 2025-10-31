@@ -15,6 +15,8 @@ In the 7/10 Universe, Ferkland County is a location in Nebraska, USA. This is wh
 
 It was briefly mentioned in one of the [[Channel 14]] schedules shown in [[garbage_sgl.mp4]] as censored text, which was accidentally revealed for a split second as the text faded out.
 
+This county might hold some significance in the 7/10 lore, especially since [[INDI]] has said that "for some reason it hurts whenever I talk about that county." [^1]
+
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
 Alt: Ferkland
@@ -23,7 +25,5 @@ Align: right
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
-
-This county might hold some significance in the 7/10 lore, especially since [[INDI]] has said that "for some reason it hurts whenever I talk about that county." [^1]
 
 [^1]: [[STATION_8 TRIM 90]]
