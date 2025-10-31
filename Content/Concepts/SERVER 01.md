@@ -63,9 +63,8 @@ However, SYSTEM would post media attachments into the server, such as the follow
 ```media-box
 Media: [[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
 Alt: "Ghost error image" from SERVER 01
-Caption: <OUTPRINT>!:((CIN, condition -= : "(True)", 
-ANS="SNDJ' ANS="SNDH"{RECALL})\<!OUTPRINT=False>)
-Align: right
+Caption: <OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})\<!OUTPRINT=False>)
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
