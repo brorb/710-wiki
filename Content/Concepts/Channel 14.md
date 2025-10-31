@@ -167,10 +167,35 @@ Width: clamp(220px, 32vw, 360px)
 
 **From [[garbage_sgl.mp4]]:**
 
-![[Weather and Morning Chats this Lyoce J.png|500]]
-![[(blank)'s Mighty Construction.png|500]]
-![[Ferkland Channel 14 reveal better.png|500]]
-![[LowLock5 Channel 14.png|500]]
+```media-box
+Title: 
+Media: [[Weather and Morning Chats this Lyoce J.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[(blank)'s Mighty Construction.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[Ferkland Channel 14 reveal better.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
-**Gift from [[SYSTEM]]** _(this is a recreation, see [gift-full.png](Content/Media/710 Media/Images/GIFT/gift-full.png) for the original)
+[[LowLock5 Channel 14.png]]
+
+**Gift from [[SYSTEM]]** _(this is a recreation, see [[gift-full.png|gift-full.png]] for the original)
 ![[gift_fixed.png|500]]
