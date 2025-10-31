@@ -106,7 +106,16 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 Channel 14's schedule is often subject to change.
 
 **From [[LOG-40.mp4]]:**
-![[LOG-40 Channel 14 schedule.png|500]]
+
+```media-box
+Title: LOG-40 Channel 14 schedule
+Media: [[LOG-40 Channel 14 schedule.png]]
+Alt: 
+Caption: This is the image!
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 **From [[LOG-154.mp4]]:**
 ![[Weather from LOG-154 (channel 14).png|500]]
