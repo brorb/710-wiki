@@ -4,7 +4,7 @@ tags:
   - characters
 ---
 ```infobox
-Title: He
+Title: Rod Formak
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Associates:
 [[SYSTEM]]
