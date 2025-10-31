@@ -59,11 +59,17 @@ Its purpose for creation was "to understand and collect data", but for what reas
 When [[The Sleuths]] first joined, they were all assigned the "STANDARD TRUST" server role, which was limited to posting messages and not media attachments. In order to be unlocked from those limitations, you had to be within the "TRUSTED-05" role, which [[SYSTEM]] would later grant [[The Sleuths]] on 8th August 2025.
 
 However, SYSTEM would post media attachments into the server, such as the following below:
-```
-<OUTPRINT>!:((CIN, condition -= : "(True)", 
+
+```media-box
+Media: [[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
+Alt: "Ghost error image" from SERVER 01
+Caption: <OUTPRINT>!:((CIN, condition -= : "(True)", 
 ANS="SNDJ' ANS="SNDH"{RECALL})\<!OUTPRINT=False>)
+Align: right
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
 ```
-![[d8d9hfa93hnnrire9934hnrkw8d9a00w9ehh3ui4jfuds93rneiwds98e3094jj3toe9r023nebwmd8cowlfj83h4neksguepqi-min.png]]
+
 _Ghost error image according to [[SYSTEM]], which was accompanied by the message above._ 
 
 ![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
@@ -78,3 +84,4 @@ _What [[The Transmitter]] sounds like, according to [[SYSTEM]]._
 
 On 5th August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]] and was trying to gain access it, but it was locked behind a cargo container stored in an undisclosed location. [[SYSTEM]] was trying to retrieve it before 10 August, when the [[710 Tone|7/10 Tone]] channel would remove the "unmarked labels" (see [[Community Posts]]) and everything (including [[SYSTEM]] itself) would be shut down.
 
+[[The Sleuths]] helped [[SYSTEM]] gain access to [[The Transmitter]] by generating random keys with [[APP TRUSTED 02]] as a brute force method.
