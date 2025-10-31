@@ -95,7 +95,7 @@ Here is a list of the removed LOGs in order:
 **27th July 2025:** [[LOG-102.mp3]] [[LOG-87.mp4]] [[LOG-47.mp4]] [[LOG-002.mp4]] [[LOG-005.mp4]] ([[LOG-46.mp4]] was added to the channel at this time)
 **28th July 2025:** [[LOG-84.mp4]] [[{ - . }re]] [[LOG-44.mp4]] [[LOG-003.mp4]] [[LOG-12.mp4]]
 **29th July 2025:** [[LOG-39..mp4]] [[LOG-10.mp4]] [[machina_ad_mortem.mp4]] [[LOG-006.mp4]] [[LONG_STR.mp4]]
-**1st August 2025:** [[LLOOGG--2211..mmpp44]] [[LOG- _ _ _ ._ _ _ + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
+**1st August 2025:** [[LLOOGG--2211..mmpp44]] [[LOG-  .  + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
 
 Finally, as 10th August come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
 
