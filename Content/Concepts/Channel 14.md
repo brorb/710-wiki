@@ -145,7 +145,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -160,19 +160,19 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[(blank)'s Mighty Construction.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[LowLock5 Channel 14.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
