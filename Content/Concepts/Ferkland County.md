@@ -22,7 +22,7 @@ Media: [[Ferkland Channel 14 reveal better.png]]
 Alt: Ferkland
 Caption: This is the image!
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
