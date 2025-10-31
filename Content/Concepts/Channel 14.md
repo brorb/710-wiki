@@ -108,7 +108,6 @@ Channel 14's schedule is often subject to change.
 **From [[LOG-40.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[LOG-40 Channel 14 schedule.png]]
 Alt: 
 Caption: 
@@ -120,46 +119,31 @@ Width: clamp(220px, 32vw, 360px)
 **From [[LOG-154.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[Weather from LOG-154 (channel 14).png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[(blank) Against Russia Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Atomic Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Atomic glitch Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
@@ -168,37 +152,25 @@ Width: clamp(220px, 32vw, 360px)
 **From [[garbage_sgl.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[Weather and Morning Chats this Lyoce J.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[(blank)'s Mighty Construction.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Ferkland Channel 14 reveal better.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[LowLock5 Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
@@ -207,7 +179,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Title: Gift from [[SYSTEM]]
 Media: [[gift_fixed.png]]
-Alt: 
+Alt: Channel 14 Schedual
 Caption: This is a recreation, see [[gift-full.png|gift-full.png]] for the original
 Align: left
 Wrap: false
