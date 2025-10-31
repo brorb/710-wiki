@@ -84,7 +84,12 @@ This command was added after [[SYSTEM]] posted this message in [[SERVER 01]], wh
 
 According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone|7/10 Tone]] channel, instead they come from "storage files"
 
-![[storage files app_log_ore.png|500]]
+```media-box
+Media: [[storage files app_log_ore.png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 **$app_name**
 
@@ -201,7 +206,12 @@ Complete stopping for T-1000...
 ```
 After the command successfully ran, it completely disappeared from the help menu and therefore became completely unavailable.
 
-![[roaming program disappearance.png|500]]
+```media-box
+Media: [[roaming program disappearance.png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 **$scan_dt**
 
@@ -240,29 +250,70 @@ INFO SENT: COMPLETE
 SCAN: COMPLETE
 ```
 
-![[LOL-min.jpg]]
+```media-box
+Media: [[LOL-min.jpg]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep anymore secrets from it.
 
 ## The [[Bob]] Incident
 
+On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]]. After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up. Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
 
-![[Bob incident (1).png|590]]
-![[Bob incident (2).png|380]]
-
-On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]].
-
-![[Bob incident (3).png|610]]
-![[Bob incident (4).png|260]]
-![[Bob incident (5).png|260]]
-![[Bob incident (6).png|250]]
-
-After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up.
-
-![[bob incident fix (1).png|250]]
-
-Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
-
-![[bob incident fix (2).png|540]]
-![[bob incident fix (3).png|650]]
-
+```media-box
+Media: [[Bob incident (1).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Bob incident (2).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Bob incident (3).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Bob incident (4).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Bob incident (5).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Bob incident (6).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[bob incident fix (1).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[bob incident fix (2).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[bob incident fix (3).png]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
