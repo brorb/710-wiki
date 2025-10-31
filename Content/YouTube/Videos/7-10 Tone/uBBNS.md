@@ -4,12 +4,11 @@
   allowfullscreen>
 </iframe>
 
-
 _Uploaded 28 Oct 2025._
 
 **Description reads:** TEST cycle 001
 
-**Video Summary:** Sawtooth audio noise with text in sawtooth pattern on screen. transcribed by Noel as:  
+**Video Summary:** Sawtooth audio noise with text in sawtooth pattern on screen. Transcribed by Noel as:  
 ```
 WC=
 p?7Z
@@ -45,3 +44,9 @@ cV0pDq!sxa &MX
 ```
 
 A test screen then appears, followed by the Channel 14 background music heard in [[garbage_sgl.mp4]]
+
+**Clues:** In the metadata for the video, there is a Wikipedia article link to "Video Game Culture" under the "Topic Details" section.
+
+![[uBBNS metadata.png|500]]
+
+Link here: https://en.wikipedia.org/wiki/Video_game_culture

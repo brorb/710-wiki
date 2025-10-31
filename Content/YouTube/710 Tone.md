@@ -18,7 +18,7 @@ Associates:
 ```
 
 
-The channel 7/10 Tone was created on 26th Jun 2021. There exists records of them uploading videos since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [TRANSLATED-DD.PCV](https://www.youtube.com/watch?v=ex-OvfDoEYM&ab_channel=7%2F10Tone) (24th July 2023), which was went private sometime around August 2025, most likely after the 2025 "purge" (see below).
+The channel 7/10 Tone was created on 26th Jun 2021. There exists records of them uploading videos since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [TRANSLATED-DD.PCV](https://www.youtube.com/watch?v=ex-OvfDoEYM&ab_channel=7%2F10Tone) (24th July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
 
 The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format. This corresponds to the date which the countdowns from the [[Station Timer]] were counting down to, and also to the profile picture of the 7/10 Tone YouTube channel (see image to the right). We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
 
@@ -54,8 +54,6 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 
 ![[710 Tone Channel profile picture in April 11th.png|500]]
 _7/10 Tone's profile picture in April 11th, 2025._
-
-(insert info here)
 
 ## 2025 Gradual Removal and Eventual Purge
 
