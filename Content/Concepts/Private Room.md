@@ -76,7 +76,7 @@ A992144 ARE YOU SAYING THAT IT'S OUT FAULT FOR THAT INCIDENT?
 X331239: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE ARE TERMINATING THE MISSION
 A992144: WE'LL TRY
 ```
-This chat comes from the video [[{_ _ _-_ _._ _ _}re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats. Interestingly, this private chat has also been posted as a [[Community Posts#]]
+This chat comes from the video [[{ - . }re]], posted 2025.01.24. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats. Interestingly, this private chat has also been posted as a [[Community Posts#]]
 
 In this chat, [[A992144]] and [[X331239]] discuss an "incident" and a "mission" -- both of which are unknown. [[X331239]] is an autoreactive figure relative to [[A992144]] who seemingly has a crew working alongside them ("YOU AND YOUR BOYS").
 [[A992144]] is reprimanded for carelessly broadcasting on undesirable frequencies.  

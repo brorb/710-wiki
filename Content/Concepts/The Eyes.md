@@ -13,7 +13,7 @@ Appearances:
 - [[30]]
 - [[LOG-27.mp4]]
 - [[{_ _ _-_ _._ _ _}re]]
-- Community post from February 2025
+- Community post from February 2025 (see [[Community Posts]])
 ```
 
 
