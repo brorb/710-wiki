@@ -106,14 +106,64 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 Channel 14's schedule is often subject to change.
 
 **From [[LOG-40.mp4]]:**
-![[LOG-40 Channel 14 schedule.png|500]]
+
+```media-box
+Title: 
+Media: [[LOG-40 Channel 14 schedule.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 **From [[LOG-154.mp4]]:**
-![[Weather from LOG-154 (channel 14).png|500]]
-![[(blank) Against Russia Channel 14.png|500]]
-![[Atomic Channel 14.png|500]]
-![[Atomic glitch Channel 14.png|500]]
-![[Wonders of Nationol Park Channel 14.png|500]]
+
+```media-box
+Title: 
+Media: [[Weather from LOG-154 (channel 14).png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[(blank) Against Russia Channel 14.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[Atomic Channel 14.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[Atomic glitch Channel 14.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Title: 
+Media: [[Wonders of Nationol Park Channel 14.png]]
+Alt: 
+Caption: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 **From [[garbage_sgl.mp4]]:**
 
