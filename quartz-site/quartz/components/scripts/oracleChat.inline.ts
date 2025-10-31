@@ -1,11 +1,52 @@
 type OracleRole = "user" | "assistant" | "system" | "error"
 
+type OracleWebSnippet = {
+  title?: string
+  summary?: string
+  url?: string
+  section?: string
+  strength?: string
+  alias?: string
+}
+
+type OracleWebSource = {
+  title?: string
+  description?: string
+  url?: string
+  section?: string
+  strength?: string
+}
+
+type OracleWebPayload = {
+  lead?: string
+  answer?: string
+  contextSnippets?: OracleWebSnippet[]
+  sources?: OracleWebSource[]
+  followUpQuestions?: string[]
+  callToAction?: string
+  disclaimers?: string[]
+}
+
+type FollowUpContext = {
+  source: "suggestion" | "fallback"
+  index: number
+}
+
+type MessageRenderOptions = {
+  onFollowUpSelect?: (question: string, context: FollowUpContext) => void
+  getConversationId?: () => string | null
+}
+
 type OracleMessage = {
   id: string
   role: OracleRole
   content: string
   createdAt: number
   pending?: boolean
+  webPayload?: OracleWebPayload
+  disclaimers?: string[]
+  rawReply?: string
+  promptContext?: string
 }
 
 type OracleState = {
@@ -52,6 +93,8 @@ type FetchResult = {
   success?: boolean
   reason?: string
   metadata?: Record<string, unknown>
+  webPayload?: unknown
+  disclaimers?: unknown
 }
 
 const isDialogueRole = (role: OracleRole): role is "user" | "assistant" => role === "user" || role === "assistant"
@@ -140,6 +183,254 @@ const debugLog = (...args: Array<unknown>) => {
   }
 
   console.info("ORA_CLE chat debug:", ...args)
+}
+
+const emitAnalytics = (eventName: string, detail: Record<string, unknown> = {}) => {
+  const payload = {
+    event: eventName,
+    detail,
+    timestamp: Date.now(),
+  }
+
+  try {
+    window.dispatchEvent(new CustomEvent("oracle-analytics", { detail: payload }))
+  } catch (error) {
+    debugLog("Analytics dispatch (window) failed", error)
+  }
+
+  try {
+    document.dispatchEvent(new CustomEvent("oracle-analytics", { detail: payload }))
+  } catch (error) {
+    debugLog("Analytics dispatch (document) failed", error)
+  }
+
+  debugLog("Analytics event", payload)
+}
+
+const toTrimmedString = (value: unknown): string | undefined => {
+  if (typeof value !== "string") {
+    return undefined
+  }
+
+  const trimmed = value.trim()
+  return trimmed.length > 0 ? trimmed : undefined
+}
+
+const pickString = (...values: unknown[]): string | undefined => {
+  for (const value of values) {
+    const candidate = toTrimmedString(value)
+    if (candidate) {
+      return candidate
+    }
+  }
+  return undefined
+}
+
+const toTrimmedStringArray = (value: unknown): string[] | undefined => {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+
+  const normalised = value
+    .map((entry) => toTrimmedString(entry))
+    .filter((entry): entry is string => typeof entry === "string" && entry.length > 0)
+
+  return normalised.length > 0 ? Array.from(new Set(normalised)) : undefined
+}
+
+const isOracleRole = (value: unknown): value is OracleRole =>
+  value === "user" || value === "assistant" || value === "system" || value === "error"
+
+const parseWebSnippet = (value: unknown): OracleWebSnippet | undefined => {
+  if (!value || typeof value !== "object") {
+    return undefined
+  }
+
+  const raw = value as Record<string, unknown>
+  const snippet: OracleWebSnippet = {}
+
+  snippet.title = pickString(raw.title, raw.heading, raw.label)
+  snippet.summary = pickString(raw.summary, raw.excerpt, raw.note, raw.body)
+  snippet.url = pickString(raw.url, raw.href, raw.link)
+  snippet.section = pickString(raw.section, raw.sectionLabel, raw.category)
+  snippet.strength = pickString(raw.strength, raw.confidence, raw.score)
+  snippet.alias = pickString(raw.alias, raw.sourceTitle, raw.display, raw.origin)
+
+  return Object.values(snippet).some((entry) => typeof entry === "string" && entry.length > 0)
+    ? snippet
+    : undefined
+}
+
+const parseWebSource = (value: unknown): OracleWebSource | undefined => {
+  if (!value || typeof value !== "object") {
+    return undefined
+  }
+
+  const raw = value as Record<string, unknown>
+  const source: OracleWebSource = {}
+
+  source.title = pickString(raw.title, raw.label, raw.name)
+  source.description = pickString(raw.description, raw.summary, raw.note)
+  source.url = pickString(raw.url, raw.href, raw.link)
+  source.section = pickString(raw.section, raw.sectionLabel)
+  source.strength = pickString(raw.strength, raw.confidence)
+
+  return Object.values(source).some((entry) => typeof entry === "string" && entry.length > 0)
+    ? source
+    : undefined
+}
+
+const parseWebPayload = (value: unknown): OracleWebPayload | undefined => {
+  if (!value || typeof value !== "object") {
+    return undefined
+  }
+
+  const raw = value as Record<string, unknown>
+  const payload: OracleWebPayload = {}
+
+  payload.lead = pickString(raw.lead, raw.preview, raw.heading)
+  payload.answer = pickString(raw.answer, raw.body, raw.summary)
+  payload.callToAction = pickString(raw.callToAction, raw.cta)
+
+  const followUps = toTrimmedStringArray(raw.followUpQuestions ?? raw.followUps)
+  if (followUps) {
+    payload.followUpQuestions = followUps
+  }
+
+  const snippetSource = Array.isArray(raw.contextSnippets) ? raw.contextSnippets : raw.snippets
+  if (Array.isArray(snippetSource)) {
+    const snippets = snippetSource
+      .map((entry) => parseWebSnippet(entry))
+      .filter((entry): entry is OracleWebSnippet => Boolean(entry))
+    if (snippets.length > 0) {
+      payload.contextSnippets = snippets
+    }
+  }
+
+  if (Array.isArray(raw.sources)) {
+    const sources = raw.sources
+      .map((entry) => parseWebSource(entry))
+      .filter((entry): entry is OracleWebSource => Boolean(entry))
+    if (sources.length > 0) {
+      payload.sources = sources
+    }
+  }
+
+  const disclaimers = toTrimmedStringArray(raw.disclaimers)
+  if (disclaimers) {
+    payload.disclaimers = disclaimers
+  }
+
+  return Object.values(payload).some((entry) => {
+    if (Array.isArray(entry)) {
+      return entry.length > 0
+    }
+    return typeof entry === "string" && entry.length > 0
+  })
+    ? payload
+    : undefined
+}
+
+const serialiseWebSnippet = (snippet: OracleWebSnippet | undefined): OracleWebSnippet | undefined => {
+  if (!snippet) {
+    return undefined
+  }
+
+  const copy: OracleWebSnippet = {}
+  if (snippet.title) {
+    copy.title = snippet.title
+  }
+  if (snippet.summary) {
+    copy.summary = snippet.summary
+  }
+  if (snippet.url) {
+    copy.url = snippet.url
+  }
+  if (snippet.section) {
+    copy.section = snippet.section
+  }
+  if (snippet.strength) {
+    copy.strength = snippet.strength
+  }
+  if (snippet.alias) {
+    copy.alias = snippet.alias
+  }
+
+  return Object.values(copy).some((entry) => typeof entry === "string" && entry.length > 0) ? copy : undefined
+}
+
+const serialiseWebSource = (source: OracleWebSource | undefined): OracleWebSource | undefined => {
+  if (!source) {
+    return undefined
+  }
+
+  const copy: OracleWebSource = {}
+  if (source.title) {
+    copy.title = source.title
+  }
+  if (source.description) {
+    copy.description = source.description
+  }
+  if (source.url) {
+    copy.url = source.url
+  }
+  if (source.section) {
+    copy.section = source.section
+  }
+  if (source.strength) {
+    copy.strength = source.strength
+  }
+
+  return Object.values(copy).some((entry) => typeof entry === "string" && entry.length > 0) ? copy : undefined
+}
+
+const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPayload | undefined => {
+  if (!payload) {
+    return undefined
+  }
+
+  const copy: OracleWebPayload = {}
+
+  if (payload.lead) {
+    copy.lead = payload.lead
+  }
+  if (payload.answer) {
+    copy.answer = payload.answer
+  }
+  if (payload.callToAction) {
+    copy.callToAction = payload.callToAction
+  }
+  if (payload.followUpQuestions?.length) {
+    copy.followUpQuestions = [...payload.followUpQuestions]
+  }
+  if (payload.disclaimers?.length) {
+    copy.disclaimers = [...payload.disclaimers]
+  }
+  if (payload.contextSnippets?.length) {
+    const snippets = payload.contextSnippets
+      .map((snippet) => serialiseWebSnippet(snippet))
+      .filter((entry): entry is OracleWebSnippet => Boolean(entry))
+    if (snippets.length > 0) {
+      copy.contextSnippets = snippets
+    }
+  }
+  if (payload.sources?.length) {
+    const sources = payload.sources
+      .map((source) => serialiseWebSource(source))
+      .filter((entry): entry is OracleWebSource => Boolean(entry))
+    if (sources.length > 0) {
+      copy.sources = sources
+    }
+  }
+
+  return Object.values(copy).some((entry) => {
+    if (Array.isArray(entry)) {
+      return entry.length > 0
+    }
+    return typeof entry === "string" && entry.length > 0
+  })
+    ? copy
+    : undefined
 }
 
 const redactToken = (value?: string) => {
@@ -239,15 +530,64 @@ const loadState = (storageKey: string): OracleState => {
       return { messages: [] }
     }
 
-    const parsed = JSON.parse(raw) as OracleState
-    if (!Array.isArray(parsed.messages)) {
-      return { messages: [] }
-    }
+    const parsed = JSON.parse(raw) as Partial<OracleState>
+    const restoredMessages: OracleMessage[] = Array.isArray(parsed.messages)
+      ? parsed.messages
+          .map((entry) => {
+            if (!entry || typeof entry !== "object") {
+              return null
+            }
+
+            const candidate = entry as Partial<OracleMessage> & Record<string, unknown>
+            if (!isOracleRole(candidate.role)) {
+              return null
+            }
+
+            const content = toTrimmedString(candidate.content)
+            if (!content) {
+              return null
+            }
+
+            const restored: OracleMessage = {
+              id: toTrimmedString(candidate.id) ?? generateId(),
+              role: candidate.role,
+              content,
+              createdAt: typeof candidate.createdAt === "number" ? candidate.createdAt : Date.now(),
+            }
+
+            if (candidate.pending) {
+              restored.pending = Boolean(candidate.pending)
+            }
+
+            const payload = parseWebPayload((candidate as { webPayload?: unknown }).webPayload)
+            if (payload) {
+              restored.webPayload = payload
+            }
+
+            const disclaimers = toTrimmedStringArray((candidate as { disclaimers?: unknown }).disclaimers)
+            if (disclaimers) {
+              restored.disclaimers = disclaimers
+            }
+
+            const rawReply = toTrimmedString((candidate as { rawReply?: unknown }).rawReply)
+            if (rawReply) {
+              restored.rawReply = rawReply
+            }
+
+            const promptContext = toTrimmedString((candidate as { promptContext?: unknown }).promptContext)
+            if (promptContext) {
+              restored.promptContext = promptContext
+            }
+
+            return restored
+          })
+          .filter((entry): entry is OracleMessage => Boolean(entry))
+      : []
 
     return {
-      conversationId: parsed.conversationId,
-      lastOpenedAt: parsed.lastOpenedAt,
-      messages: parsed.messages.filter((entry) => typeof entry?.content === "string" && entry.content.length > 0),
+      conversationId: toTrimmedString(parsed.conversationId) ?? undefined,
+      lastOpenedAt: typeof parsed.lastOpenedAt === "number" ? parsed.lastOpenedAt : undefined,
+      messages: restoredMessages,
     }
   } catch (error) {
     console.warn("ORA_CLE chat: unable to read stored state", error)
@@ -266,6 +606,11 @@ const persistState = (storageKey: string, state: OracleState, maxHistory: number
         role: message.role,
         content: message.content,
         createdAt: message.createdAt,
+        pending: message.pending,
+        webPayload: serialiseWebPayload(message.webPayload),
+        disclaimers: message.disclaimers ? [...message.disclaimers] : undefined,
+        rawReply: message.rawReply,
+        promptContext: message.promptContext,
       })),
     }
     window.localStorage.setItem(storageKey, JSON.stringify(payload))
@@ -274,7 +619,261 @@ const persistState = (storageKey: string, state: OracleState, maxHistory: number
   }
 }
 
-const createMessageElement = (message: OracleMessage): HTMLElement => {
+const createHelperElement = (tag: string, className: string, text?: string): HTMLElement => {
+  const element = document.createElement(tag)
+  element.className = className
+  if (typeof text === "string") {
+    element.textContent = text
+  }
+  return element
+}
+
+const renderAssistantMessage = (
+  bubble: HTMLElement,
+  message: OracleMessage,
+  options?: MessageRenderOptions,
+) => {
+  const payload = message.webPayload
+  const leadText = payload?.lead ?? payload?.answer ?? message.content
+  const secondaryText = payload?.answer && payload.answer !== leadText ? payload.answer : undefined
+  const fallbackText = !payload ? message.content : undefined
+  const allDisclaimers = new Set<string>()
+
+  if (Array.isArray(payload?.disclaimers)) {
+    payload?.disclaimers?.forEach((entry) => {
+      const normalised = toTrimmedString(entry)
+      if (normalised) {
+        allDisclaimers.add(normalised)
+      }
+    })
+  }
+
+  if (Array.isArray(message.disclaimers)) {
+    message.disclaimers.forEach((entry) => {
+      const normalised = toTrimmedString(entry)
+      if (normalised) {
+        allDisclaimers.add(normalised)
+      }
+    })
+  }
+
+  bubble.innerHTML = ""
+
+  if (leadText) {
+    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-lead", leadText))
+  }
+
+  if (secondaryText) {
+    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", secondaryText))
+  } else if (!payload && fallbackText) {
+    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", fallbackText))
+  }
+
+  const addLinkAnalytics = (kind: "snippet" | "source", url?: string, index?: number) => {
+    if (!url) {
+      return
+    }
+    emitAnalytics("oracle:link-clicked", {
+      kind,
+      url,
+      index: typeof index === "number" ? index : null,
+      conversationId: options?.getConversationId?.() ?? null,
+      messageId: message.id,
+    })
+  }
+
+  if (payload?.contextSnippets?.length) {
+    const snippetList = document.createElement("div")
+    snippetList.className = "oracle-chat__snippet-list"
+
+    payload.contextSnippets.forEach((snippet, index) => {
+      const card = document.createElement("article")
+      card.className = "oracle-chat__snippet"
+
+      const headingText = snippet.title ?? snippet.alias
+      if (headingText) {
+        const heading = createHelperElement("h3", "oracle-chat__snippet-title", headingText)
+        card.appendChild(heading)
+      }
+
+      if (snippet.summary) {
+        card.appendChild(createHelperElement("p", "oracle-chat__snippet-summary", snippet.summary))
+      }
+
+      if (snippet.url) {
+        const link = document.createElement("a")
+        const linkLabel = snippet.url && snippet.title ? snippet.title : snippet.url
+        link.className = "oracle-chat__snippet-link"
+        link.href = snippet.url
+        link.rel = "noopener noreferrer"
+        link.target = "_blank"
+        link.textContent = linkLabel
+        link.addEventListener("click", () => addLinkAnalytics("snippet", snippet.url, index))
+        card.appendChild(link)
+      }
+
+      const metaParts: string[] = []
+      if (snippet.section) {
+        metaParts.push(snippet.section)
+      }
+      if (snippet.strength) {
+        metaParts.push(snippet.strength)
+      }
+      if (snippet.alias && snippet.alias !== snippet.title) {
+        metaParts.push(snippet.alias)
+      }
+
+      if (metaParts.length > 0) {
+        card.appendChild(createHelperElement("p", "oracle-chat__snippet-meta", metaParts.join(" • ")))
+      }
+
+      snippetList.appendChild(card)
+    })
+
+    bubble.appendChild(snippetList)
+  }
+
+  if (payload?.sources?.length) {
+    const sourcesSection = document.createElement("section")
+    sourcesSection.className = "oracle-chat__sources"
+    sourcesSection.appendChild(createHelperElement("h3", "oracle-chat__sources-heading", "Sources"))
+
+    const list = document.createElement("ul")
+    list.className = "oracle-chat__source-list"
+
+    payload.sources.forEach((source, index) => {
+      if (!source.url && !source.title && !source.description) {
+        return
+      }
+
+      const item = document.createElement("li")
+      item.className = "oracle-chat__source-item"
+
+      const linkText = source.title ?? source.url ?? "View source"
+
+      if (source.url) {
+        const anchor = document.createElement("a")
+        anchor.className = "oracle-chat__source-link"
+        anchor.href = source.url
+        anchor.target = "_blank"
+        anchor.rel = "noopener noreferrer"
+        anchor.textContent = linkText
+        anchor.addEventListener("click", () => addLinkAnalytics("source", source.url ?? undefined, index))
+        item.appendChild(anchor)
+      } else {
+        item.appendChild(createHelperElement("span", "oracle-chat__source-label", linkText))
+      }
+
+      const detailParts: string[] = []
+      if (source.description) {
+        detailParts.push(source.description)
+      }
+      if (source.section) {
+        detailParts.push(source.section)
+      }
+      if (source.strength) {
+        detailParts.push(source.strength)
+      }
+
+      if (detailParts.length > 0) {
+        item.appendChild(createHelperElement("p", "oracle-chat__source-meta", detailParts.join(" • ")))
+      }
+
+      list.appendChild(item)
+    })
+
+    if (list.children.length > 0) {
+      sourcesSection.appendChild(list)
+      bubble.appendChild(sourcesSection)
+    }
+  }
+
+  if (payload?.callToAction) {
+    bubble.appendChild(createHelperElement("p", "oracle-chat__cta", payload.callToAction))
+  }
+
+  if (payload?.followUpQuestions?.length) {
+    const followUpsWrapper = document.createElement("div")
+    followUpsWrapper.className = "oracle-chat__followups"
+    followUpsWrapper.appendChild(createHelperElement("p", "oracle-chat__followups-label", "Suggested follow-ups"))
+
+    const buttons = document.createElement("div")
+    buttons.className = "oracle-chat__followup-buttons"
+
+    payload.followUpQuestions.forEach((question, index) => {
+      const trimmed = toTrimmedString(question)
+      if (!trimmed) {
+        return
+      }
+      const button = document.createElement("button")
+      button.type = "button"
+      button.className = "oracle-chat__followup-button"
+      button.textContent = trimmed
+      button.addEventListener("click", () => {
+        options?.onFollowUpSelect?.(trimmed, { source: "suggestion", index })
+      })
+      buttons.appendChild(button)
+    })
+
+    if (buttons.children.length > 0) {
+      followUpsWrapper.appendChild(buttons)
+      bubble.appendChild(followUpsWrapper)
+    }
+  }
+
+  const lacksLinks = !(payload?.sources?.length || payload?.contextSnippets?.length)
+  if (lacksLinks) {
+    const fallbackBlock = document.createElement("div")
+    fallbackBlock.className = "oracle-chat__fallback"
+    fallbackBlock.appendChild(
+      createHelperElement(
+        "p",
+        "oracle-chat__fallback-text",
+        "I couldn’t surface specific links for this answer. Consider asking for more detail or exploring related pages.",
+      ),
+    )
+
+    const suggestionQuestion = message.promptContext
+      ? `Can you point me to sources for "${message.promptContext}"?`
+      : "Can you point me to sources for this topic?"
+    const exploreQuestion = "Suggest another topic I should investigate next."
+
+    const fallbackButtons = document.createElement("div")
+    fallbackButtons.className = "oracle-chat__fallback-buttons"
+
+    const addFallbackButton = (label: string, question: string, index: number) => {
+      const button = document.createElement("button")
+      button.type = "button"
+      button.className = "oracle-chat__fallback-button"
+      button.textContent = label
+      button.addEventListener("click", () => {
+        options?.onFollowUpSelect?.(question, { source: "fallback", index })
+      })
+      fallbackButtons.appendChild(button)
+    }
+
+    addFallbackButton("Ask for sources", suggestionQuestion, 0)
+    addFallbackButton("Explore another topic", exploreQuestion, 1)
+
+    fallbackBlock.appendChild(fallbackButtons)
+    bubble.appendChild(fallbackBlock)
+  }
+
+  const disclaimersList = Array.from(allDisclaimers)
+  if (disclaimersList.length > 0) {
+    const list = document.createElement("ul")
+    list.className = "oracle-chat__disclaimers"
+    disclaimersList.forEach((entry) => {
+      const item = document.createElement("li")
+      item.className = "oracle-chat__disclaimer-item"
+      item.textContent = entry
+      list.appendChild(item)
+    })
+    bubble.appendChild(list)
+  }
+}
+
+const createMessageElement = (message: OracleMessage, options?: MessageRenderOptions): HTMLElement => {
   const wrapper = document.createElement("div")
   wrapper.className = "oracle-chat__message"
   wrapper.dataset.role = message.role
@@ -293,7 +892,11 @@ const createMessageElement = (message: OracleMessage): HTMLElement => {
 
   const bubble = document.createElement("div")
   bubble.className = "oracle-chat__bubble"
-  bubble.textContent = message.content
+  if (message.role === "assistant") {
+    renderAssistantMessage(bubble, message, options)
+  } else {
+    bubble.textContent = message.content
+  }
   wrapper.appendChild(bubble)
 
   const time = document.createElement("time")
@@ -322,7 +925,9 @@ const scrollHistoryToBottom = (container: HTMLElement) => {
 
 const sanitiseContent = (value: string): string => value.replace(/[\u0000-\u001f\u007f]/g, " ")
 
-const generateId = (): string => Math.random().toString(36).slice(2, 12)
+function generateId(): string {
+  return Math.random().toString(36).slice(2, 12)
+}
 
 const loadRecaptcha = async (siteKey: string): Promise<RecaptchaClient | undefined> => {
   if (!siteKey) {
@@ -506,10 +1111,10 @@ const tryFetch = async (
   return payload
 }
 
-const renderState = (container: HTMLElement, state: OracleState) => {
+const renderState = (container: HTMLElement, state: OracleState, options?: MessageRenderOptions) => {
   container.innerHTML = ""
   state.messages.forEach((message) => {
-    container.appendChild(createMessageElement(message))
+    container.appendChild(createMessageElement(message, options))
   })
   if (state.messages.length > 0) {
     scrollHistoryToBottom(container)
@@ -529,59 +1134,84 @@ const setupOracleWidget = () => {
 
     root.setAttribute("data-oracle-ready", "true")
 
-  const config = getDatasetConfig(root)
-  debugLog("Initialised widget", {
-    rootId: root.id || null,
-    hasWebApiKey: Boolean(config.webApiKey),
-    hasOracleKeyId: Boolean(config.oracleKeyId),
-    hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
-    endpoint: config.endpointPath,
-    apiBase: config.apiBaseUrl,
-  })
-  const requestUrl = buildRequestUrl(config)
-  const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
+    const config = getDatasetConfig(root)
+    debugLog("Initialised widget", {
+      rootId: root.id || null,
+      hasWebApiKey: Boolean(config.webApiKey),
+      hasOracleKeyId: Boolean(config.oracleKeyId),
+      hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
+      endpoint: config.endpointPath,
+      apiBase: config.apiBaseUrl,
+    })
+    const requestUrl = buildRequestUrl(config)
+    const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
 
-  const launcher = root.querySelector<HTMLButtonElement>(".oracle-widget__launcher")
-  const overlay = root.querySelector<HTMLElement>(".oracle-chat__overlay")
-  const dialog = root.querySelector<HTMLElement>(".oracle-chat")
-  const historyContainer = root.querySelector<HTMLElement>("[data-oracle-history]")
-  const form = root.querySelector<HTMLFormElement>("[data-oracle-form]")
-  const textArea = root.querySelector<HTMLTextAreaElement>("[data-oracle-input]")
-  const sendButton = root.querySelector<HTMLButtonElement>("[data-oracle-send]")
-  const closeButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='close']")
-  const resetButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='reset']")
+    const launcher = root.querySelector<HTMLButtonElement>(".oracle-widget__launcher")
+    const overlay = root.querySelector<HTMLElement>(".oracle-chat__overlay")
+    const dialog = root.querySelector<HTMLElement>(".oracle-chat")
+    const historyContainer = root.querySelector<HTMLElement>("[data-oracle-history]")
+    const form = root.querySelector<HTMLFormElement>("[data-oracle-form]")
+    const textArea = root.querySelector<HTMLTextAreaElement>("[data-oracle-input]")
+    const sendButton = root.querySelector<HTMLButtonElement>("[data-oracle-send]")
+    const closeButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='close']")
+    const resetButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='reset']")
 
-  if (!launcher || !overlay || !dialog || !historyContainer || !form || !textArea || !sendButton) {
-    console.warn("ORA_CLE chat: widget markup missing expected elements")
-    return
-  }
+    if (!launcher || !overlay || !dialog || !historyContainer || !form || !textArea || !sendButton) {
+      console.warn("ORA_CLE chat: widget markup missing expected elements")
+      return
+    }
 
-  let state = loadState(storageKey)
-  renderState(historyContainer, state)
+    let state = loadState(storageKey)
+    let lastUserQuestion = [...state.messages]
+      .reverse()
+      .find((entry) => entry.role === "user")?.content ?? ""
 
-  if (resetButton) {
-    resetButton.disabled = state.messages.length === 0
-  }
+    const updateSendButtonState = () => {
+      const hasContent = textArea.value.trim().length > 0
+      const isPending = state.messages.some((message) => message.pending)
+      sendButton.disabled = !hasContent || isPending
+    }
 
-  const updateSendButtonState = () => {
-    const hasContent = textArea.value.trim().length > 0
-    const isPending = state.messages.some((message) => message.pending)
-    sendButton.disabled = !hasContent || isPending
-  }
+    const autoResize = () => {
+      textArea.style.height = "auto"
+      textArea.style.height = `${Math.min(textArea.scrollHeight, 240)}px`
+    }
 
-  const autoResize = () => {
-    textArea.style.height = "auto"
-    textArea.style.height = `${Math.min(textArea.scrollHeight, 240)}px`
-  }
+    const updateResetButton = () => {
+      if (resetButton) {
+        resetButton.disabled = state.messages.length === 0
+      }
+    }
 
-  autoResize()
-  updateSendButtonState()
+    autoResize()
 
-  let lastSendTimestamp = 0
-  let recaptchaClient: RecaptchaClient | undefined
-  let activeController: AbortController | undefined
+    let lastSendTimestamp = 0
+    let recaptchaClient: RecaptchaClient | undefined
+    let activeController: AbortController | undefined
 
-  let chatOpen = false
+    let chatOpen = false
+
+    const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
+      textArea.value = question
+      autoResize()
+      updateSendButtonState()
+      textArea.focus()
+      emitAnalytics("oracle:followup-selected", {
+        question,
+        source: context.source,
+        index: context.index,
+        conversationId: state.conversationId ?? null,
+      })
+    }
+
+    const renderOptions: MessageRenderOptions = {
+      onFollowUpSelect: handleFollowUpSelect,
+      getConversationId: () => state.conversationId ?? null,
+    }
+
+    renderState(historyContainer, state, renderOptions)
+    updateResetButton()
+    updateSendButtonState()
 
   const closeChat = () => {
     if (!chatOpen) {
