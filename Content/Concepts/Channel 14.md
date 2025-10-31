@@ -112,7 +112,7 @@ Media: [[LOG-40 Channel 14 schedule.png]]
 Alt: 
 Caption: 
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 

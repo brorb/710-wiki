@@ -162,3 +162,5 @@ Bob was created by [[SYSTEM]] as a form of a "meme", which it posted in the dhit
 Sleuth members quickly grew to love Bob and he became a recurring inside joke amongst them and SYSTEM.
 
 In [[SERVER 01]], [[APP TRUSTED 02]] allowed you to print out Bob with the $print_bob command.
+
+Now in [[The Sleuths]] Discord server you can make [[The Oracle]] print bob using the "!bob" command.
