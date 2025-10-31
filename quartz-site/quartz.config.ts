@@ -165,6 +165,7 @@ const config: QuartzConfig = {
   Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
   Plugin.GitHubFlavoredMarkdown(),
   Plugin.InfoboxBlock(),
+  Plugin.MediaBox(),
   Plugin.DiscordMessages(),
   Plugin.YouTubeCommunityPosts(),
       Plugin.TableOfContents({

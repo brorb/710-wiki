@@ -6492,6 +6492,611 @@ var InfoboxBlock = /* @__PURE__ */ __name(() => {
   };
 }, "InfoboxBlock");
 
+// quartz/plugins/transformers/mediaBox.ts
+var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var MEDIA_LANG_ALIASES = /* @__PURE__ */ new Set(["media-box", "image-box"]);
+var keyMap = {
+  title: "title",
+  heading: "title",
+  label: "title",
+  media: "src",
+  source: "src",
+  image: "src",
+  src: "src",
+  file: "src",
+  path: "src",
+  alt: "alt",
+  description: "caption",
+  caption: "caption",
+  credit: "credit",
+  photographer: "credit",
+  author: "credit",
+  align: "align",
+  alignment: "align",
+  position: "align",
+  wrap: "wrap",
+  float: "wrap",
+  width: "width",
+  size: "width",
+  link: "link",
+  href: "link",
+  type: "type",
+  kind: "type",
+  media_type: "type",
+  poster: "poster",
+  thumbnail: "poster",
+  cover: "poster",
+  autoplay: "autoplay",
+  loop: "loop",
+  muted: "muted"
+};
+var isExternalUrl3 = /* @__PURE__ */ __name((value) => /^(https?:)?\/\//i.test(value) || value.startsWith("data:"), "isExternalUrl");
+var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var escapeHtml3 = /* @__PURE__ */ __name((value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;"), "escapeHtml");
+var escapeAttribute3 = /* @__PURE__ */ __name((value) => escapeHtml3(value), "escapeAttribute");
+var sanitizeMultiline = /* @__PURE__ */ __name((lines) => lines.map((line) => line.trimEnd()).join("\n").trim(), "sanitizeMultiline");
+var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
+  if (!version) {
+    return url;
+  }
+  return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+}, "appendAssetVersion");
+var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
+  const cleaned = rawTarget.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  if (isExternalUrl3(cleaned)) {
+    return cleaned;
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  try {
+    const target = stripContentPrefix3(cleaned);
+    const targetSlug = slugifyFilePath(target);
+    const baseDir = pathToRoot(slug);
+    return appendAssetVersion2(joinSegments(baseDir, targetSlug), getAssetVersion());
+  } catch {
+    return cleaned;
+  }
+}, "resolveObsidianTarget");
+var resolveMediaSource = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const match = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  if (match?.groups?.target) {
+    return resolveObsidianTarget3(match.groups.target, slug);
+  }
+  if (isExternalUrl3(cleaned)) {
+    return cleaned;
+  }
+  if (cleaned.startsWith("/")) {
+    return appendAssetVersion2(cleaned, getAssetVersion());
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  const target = stripContentPrefix3(cleaned);
+  return appendAssetVersion2(joinSegments(pathToRoot(slug), target), getAssetVersion());
+}, "resolveMediaSource");
+var resolveLinkTarget = /* @__PURE__ */ __name((raw, slug) => {
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const match = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  if (match?.groups?.target) {
+    return resolveObsidianTarget3(match.groups.target, slug) ?? cleaned;
+  }
+  if (isExternalUrl3(cleaned) || cleaned.startsWith("/")) {
+    return cleaned;
+  }
+  if (!slug) {
+    return cleaned;
+  }
+  const target = stripContentPrefix3(cleaned);
+  return joinSegments(pathToRoot(slug), target);
+}, "resolveLinkTarget");
+var sanitizeCssValue = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return void 0;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return void 0;
+  }
+  if (!/^[0-9a-zA-Z%.,()\s_-]+$/.test(trimmed)) {
+    return void 0;
+  }
+  return trimmed;
+}, "sanitizeCssValue");
+var parseBoolean = /* @__PURE__ */ __name((value, defaultValue) => {
+  if (!value) {
+    return defaultValue;
+  }
+  const normalised = value.trim().toLowerCase();
+  if (["true", "yes", "y", "1", "wrap", "on"].includes(normalised)) {
+    return true;
+  }
+  if (["false", "no", "n", "0", "none", "off"].includes(normalised)) {
+    return false;
+  }
+  return defaultValue;
+}, "parseBoolean");
+var normaliseAlign = /* @__PURE__ */ __name((value) => {
+  if (!value) {
+    return "center";
+  }
+  const trimmed = value.trim().toLowerCase();
+  if (trimmed === "left" || trimmed === "start") {
+    return "left";
+  }
+  if (trimmed === "right" || trimmed === "end") {
+    return "right";
+  }
+  if (trimmed === "centre") {
+    return "center";
+  }
+  return "center";
+}, "normaliseAlign");
+var inferMediaType = /* @__PURE__ */ __name((rawType, src) => {
+  if (rawType) {
+    const normalised = rawType.trim().toLowerCase();
+    if (normalised === "video" || normalised === "audio" || normalised === "image") {
+      return normalised;
+    }
+  }
+  if (src.startsWith("data:") && src.includes("video")) {
+    return "video";
+  }
+  if (src.startsWith("data:") && src.includes("audio")) {
+    return "audio";
+  }
+  const withoutQuery = src.split("?")[0]?.split("#")[0]?.toLowerCase() ?? "";
+  if (/\.(mp4|webm|mov|m4v|ogv)$/.test(withoutQuery)) {
+    return "video";
+  }
+  if (/\.(mp3|ogg|wav|m4a|flac|aac)$/.test(withoutQuery)) {
+    return "audio";
+  }
+  return "image";
+}, "inferMediaType");
+var parseMediaBoxBlock = /* @__PURE__ */ __name((raw) => {
+  const result = {};
+  const lines = raw.split(/\r?\n/);
+  let currentKey = null;
+  let buffer = [];
+  const flushBuffer = /* @__PURE__ */ __name(() => {
+    if (!currentKey) {
+      buffer = [];
+      return;
+    }
+    const combined = sanitizeMultiline(buffer);
+    if (combined.length > 0) {
+      result[currentKey] = combined;
+    }
+    buffer = [];
+  }, "flushBuffer");
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushBuffer();
+      currentKey = null;
+      continue;
+    }
+    if (trimmed.startsWith("#")) {
+      continue;
+    }
+    const indent = line.length - line.trimStart().length;
+    if (indent > 0 && currentKey) {
+      buffer.push(trimmed);
+      continue;
+    }
+    const colonIndex = trimmed.indexOf(":");
+    if (colonIndex === -1) {
+      flushBuffer();
+      currentKey = null;
+      continue;
+    }
+    flushBuffer();
+    const keyRaw = trimmed.slice(0, colonIndex).trim().toLowerCase();
+    if (keyRaw === "video" || keyRaw === "audio") {
+      const value2 = trimmed.slice(colonIndex + 1).trim();
+      if (value2.length > 0) {
+        result.src = value2;
+      }
+      result.type = keyRaw;
+      currentKey = "src";
+      buffer = value2 ? [value2] : [];
+      continue;
+    }
+    const mapped = keyMap[keyRaw];
+    if (!mapped) {
+      currentKey = null;
+      continue;
+    }
+    const value = trimmed.slice(colonIndex + 1).trim();
+    result[mapped] = value;
+    currentKey = mapped;
+    buffer = value ? [value] : [];
+  }
+  flushBuffer();
+  if (!result.src || !result.src.trim()) {
+    return null;
+  }
+  return result;
+}, "parseMediaBoxBlock");
+var buildMediaMarkup = /* @__PURE__ */ __name((config3) => {
+  const buildSourceTag = /* @__PURE__ */ __name((src, mediaType) => {
+    const escapedSrc = escapeAttribute3(src);
+    const withoutQuery = src.split("?")[0]?.split("#")[0]?.toLowerCase() ?? "";
+    const lookup = {
+      image: {},
+      video: {
+        ".mp4": "video/mp4",
+        ".m4v": "video/x-m4v",
+        ".mov": "video/quicktime",
+        ".webm": "video/webm",
+        ".ogv": "video/ogg"
+      },
+      audio: {
+        ".mp3": "audio/mpeg",
+        ".ogg": "audio/ogg",
+        ".oga": "audio/ogg",
+        ".wav": "audio/wav",
+        ".m4a": "audio/mp4",
+        ".aac": "audio/aac",
+        ".flac": "audio/flac"
+      }
+    };
+    let typeAttr = "";
+    for (const [extension, mime] of Object.entries(lookup[mediaType])) {
+      if (withoutQuery.endsWith(extension)) {
+        typeAttr = ` type="${mime}"`;
+        break;
+      }
+    }
+    return `<source src="${escapedSrc}"${typeAttr} />`;
+  }, "buildSourceTag");
+  if (config3.mediaType === "image") {
+    const imageTag = `<img src="${escapeAttribute3(config3.src)}" alt="${escapeAttribute3(
+      config3.alt || "Media illustration"
+    )}" loading="lazy" decoding="async" />`;
+    if (config3.link) {
+      return `<a class="media-box__link" href="${escapeAttribute3(config3.link)}"${isExternalUrl3(config3.link) ? ' target="_blank" rel="noopener"' : ""}>${imageTag}</a>`;
+    }
+    return imageTag;
+  }
+  if (config3.mediaType === "video") {
+    const attrs = [
+      `src="${escapeAttribute3(config3.src)}"`,
+      "controls",
+      "playsinline",
+      'preload="metadata"',
+      `aria-label="${escapeAttribute3(config3.alt || config3.title || "Embedded video")}"`
+    ];
+    if (config3.poster) {
+      attrs.push(`poster="${escapeAttribute3(config3.poster)}"`);
+    }
+    if (config3.autoplay) {
+      attrs.push("autoplay");
+    }
+    if (config3.muted || config3.autoplay) {
+      attrs.push("muted");
+    }
+    if (config3.loop) {
+      attrs.push("loop");
+    }
+    const fallback2 = escapeHtml3(config3.alt || config3.title || "Your browser cannot play this video.");
+    return `<video ${attrs.join(" ")}>${buildSourceTag(config3.src, "video")}${fallback2}</video>`;
+  }
+  const audioAttrs = [
+    `src="${escapeAttribute3(config3.src)}"`,
+    "controls",
+    'preload="metadata"',
+    `aria-label="${escapeAttribute3(config3.alt || config3.title || "Embedded audio")}"`
+  ];
+  if (config3.autoplay) {
+    audioAttrs.push("autoplay");
+  }
+  if (config3.loop) {
+    audioAttrs.push("loop");
+  }
+  if (config3.muted) {
+    audioAttrs.push("muted");
+  }
+  const fallback = escapeHtml3(config3.alt || config3.title || "Your browser cannot play this audio clip.");
+  return `<audio ${audioAttrs.join(" ")}>${buildSourceTag(config3.src, "audio")}${fallback}</audio>`;
+}, "buildMediaMarkup");
+var buildMediaBoxHtml = /* @__PURE__ */ __name((config3) => {
+  const classes = [
+    "media-box",
+    `media-box--align-${config3.align}`,
+    `media-box--type-${config3.mediaType}`
+  ];
+  if (config3.wrap) {
+    classes.push("media-box--wrap");
+  } else {
+    classes.push("media-box--no-wrap");
+  }
+  const styleParts = [];
+  if (config3.width) {
+    styleParts.push(`max-width: ${config3.width}`);
+  }
+  const styleAttr = styleParts.length > 0 ? ` style="${escapeAttribute3(styleParts.join("; "))}"` : "";
+  const titleMarkup = config3.title ? `<header class="media-box__title">${escapeHtml3(config3.title)}</header>` : "";
+  const mediaMarkup = buildMediaMarkup(config3);
+  const captionParts = [];
+  if (config3.caption) {
+    const captionHtml = escapeHtml3(config3.caption).replace(/\r?\n/g, "<br />");
+    captionParts.push(`<span class="media-box__caption-text">${captionHtml}</span>`);
+  }
+  if (config3.credit) {
+    const creditHtml = escapeHtml3(config3.credit).replace(/\r?\n/g, "<br />");
+    captionParts.push(`<span class="media-box__credit">${creditHtml}</span>`);
+  }
+  const captionMarkup = captionParts.length > 0 ? `<figcaption class="media-box__caption">${captionParts.join("")}</figcaption>` : "";
+  return `<figure class="${classes.join(" ")}"${styleAttr}>${titleMarkup}<div class="media-box__media">${mediaMarkup}</div>${captionMarkup}</figure>`;
+}, "buildMediaBoxHtml");
+var MEDIA_BOX_CSS = `
+.media-box {
+  --media-box-background: color-mix(in srgb, var(--color-surface-overlay) 92%, transparent);
+  background: var(--media-box-background);
+  border: 1px solid color-mix(in srgb, var(--color-tone-muted) 35%, transparent);
+  border-radius: 14px;
+  padding: 0.9rem 0.95rem 1.05rem;
+  display: grid;
+  gap: 0.65rem;
+  box-shadow: 0 1.15rem 2.1rem rgba(0, 0, 0, 0.14);
+  margin: 1.75rem auto;
+  max-width: min(100%, 420px);
+  color: var(--color-tone-contrast);
+}
+
+.media-box__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  color: var(--color-tone-primary);
+}
+
+.media-box__media {
+  display: block;
+}
+
+.media-box__media img,
+.media-box__media video,
+.media-box__media audio {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.45rem rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.media-box__media audio {
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+.media-box__link {
+  display: block;
+}
+
+.media-box__caption {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
+}
+
+.media-box__caption-text {
+  display: block;
+}
+
+.media-box__credit {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-muted) 85%, var(--color-tone-primary) 15%);
+}
+
+.media-box--align-left.media-box--wrap {
+  float: left;
+  margin: 0 1.5rem 1.25rem 0;
+}
+
+.media-box--align-right.media-box--wrap {
+  float: right;
+  margin: 0 0 1.25rem 1.5rem;
+}
+
+.media-box--align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.media-box--align-left.media-box--no-wrap {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.media-box--align-right.media-box--no-wrap {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.media-box--wrap {
+  max-width: min(100%, 340px);
+}
+
+.media-box--type-audio .media-box__media {
+  padding-inline: clamp(0.4rem, 2vw, 1rem);
+}
+
+.media-box-cluster {
+  margin: 1.75rem auto;
+}
+
+.media-box-cluster--inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.media-box-cluster--inline .media-box {
+  margin: 0;
+  flex: 0 1 auto;
+  float: none;
+}
+
+@media (max-width: 900px) {
+  .media-box--wrap {
+    float: none !important;
+    margin: 1.5rem auto !important;
+  }
+
+  .media-box-cluster--inline {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .media-box-cluster--inline .media-box {
+    flex: 1 1 auto;
+    max-width: min(100%, 420px);
+  }
+}
+`;
+var isMediaBoxCodeNode = /* @__PURE__ */ __name((node) => {
+  if (!node || typeof node !== "object") {
+    return false;
+  }
+  const maybe = node;
+  if (maybe.type !== "code") {
+    return false;
+  }
+  const lang = typeof maybe.lang === "string" ? maybe.lang.toLowerCase() : "";
+  return MEDIA_LANG_ALIASES.has(lang);
+}, "isMediaBoxCodeNode");
+var createHtmlNode = /* @__PURE__ */ __name((value) => ({
+  type: "html",
+  value
+}), "createHtmlNode");
+var toMediaBoxConfig = /* @__PURE__ */ __name((node, slug) => {
+  const raw = typeof node.value === "string" ? node.value : "";
+  const parsed = parseMediaBoxBlock(raw);
+  if (!parsed) {
+    return null;
+  }
+  const srcResolved = resolveMediaSource(parsed.src ?? "", slug);
+  if (!srcResolved) {
+    return null;
+  }
+  const posterResolved = parsed.poster ? resolveMediaSource(parsed.poster, slug) : void 0;
+  const mediaType = inferMediaType(parsed.type, srcResolved);
+  const align = normaliseAlign(parsed.align);
+  const wrap = parseBoolean(parsed.wrap, align !== "center");
+  const width = sanitizeCssValue(parsed.width);
+  const linkRaw = parsed.link ? parsed.link.trim() : void 0;
+  const linkResolved = linkRaw ? resolveLinkTarget(linkRaw, slug) : void 0;
+  return {
+    title: parsed.title?.trim() || void 0,
+    src: srcResolved,
+    alt: parsed.alt?.trim() || void 0,
+    caption: parsed.caption?.trim() || void 0,
+    credit: parsed.credit?.trim() || void 0,
+    align,
+    wrap,
+    width,
+    link: mediaType === "image" && linkResolved && linkResolved.length > 0 ? linkResolved : void 0,
+    mediaType,
+    poster: posterResolved,
+    autoplay: parseBoolean(parsed.autoplay, false),
+    loop: parseBoolean(parsed.loop, false),
+    muted: parseBoolean(parsed.muted, false)
+  };
+}, "toMediaBoxConfig");
+var transformMediaBoxes = /* @__PURE__ */ __name((tree, slug) => {
+  const process3 = /* @__PURE__ */ __name((node) => {
+    if (!node || typeof node !== "object" || !Array.isArray(node.children)) {
+      return;
+    }
+    const children = node.children;
+    for (let index = 0; index < children.length; ) {
+      const child = children[index];
+      if (!isMediaBoxCodeNode(child)) {
+        process3(child);
+        index += 1;
+        continue;
+      }
+      const group = [];
+      let cursor = index;
+      while (cursor < children.length) {
+        const candidate = children[cursor];
+        if (!isMediaBoxCodeNode(candidate)) {
+          break;
+        }
+        group.push(candidate);
+        cursor += 1;
+      }
+      const configs = group.map((code) => toMediaBoxConfig(code, slug));
+      const validEntries = configs.filter((config3) => config3 !== null);
+      if (validEntries.length === 0) {
+        children.splice(index, group.length);
+        continue;
+      }
+      const htmlFigures = validEntries.map((config3) => buildMediaBoxHtml(config3));
+      const allNoWrap = validEntries.every((config3) => !config3.wrap);
+      let replacements;
+      if (validEntries.length > 1 && allNoWrap) {
+        replacements = [
+          createHtmlNode(
+            `<div class="media-box-cluster media-box-cluster--inline">${htmlFigures.join("")}</div>`
+          )
+        ];
+      } else {
+        replacements = htmlFigures.map((value) => createHtmlNode(value));
+      }
+      children.splice(index, group.length, ...replacements);
+      index += replacements.length;
+    }
+  }, "process");
+  process3(tree);
+}, "transformMediaBoxes");
+var MediaBox = /* @__PURE__ */ __name(() => {
+  return {
+    name: "MediaBox",
+    markdownPlugins() {
+      return [
+        () => (tree, file) => {
+          const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
+          transformMediaBoxes(tree, slug);
+        }
+      ];
+    },
+    externalResources() {
+      return {
+        css: [
+          {
+            inline: true,
+            content: MEDIA_BOX_CSS
+          }
+        ]
+      };
+    }
+  };
+}, "MediaBox");
+
 // quartz/plugins/filters/draft.ts
 var RemoveDrafts = /* @__PURE__ */ __name(() => ({
   name: "RemoveDrafts",
@@ -9379,10 +9984,10 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment7 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
-var isExternalUrl3 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN2 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix3 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -9398,7 +10003,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix3(target);
+  const sanitized = stripContentPrefix4(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -9475,37 +10080,37 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   }
   return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
 }, "normalizeValue");
-var appendAssetVersion2 = /* @__PURE__ */ __name((url, version) => {
+var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
   }
   return url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
 }, "appendAssetVersion");
-var resolveObsidianTarget3 = /* @__PURE__ */ __name((rawTarget, slug) => {
+var resolveObsidianTarget4 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl3(rawTarget)) {
+  if (isExternalUrl4(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix3(rawTarget);
+  const targetWithoutExt = stripContentPrefix4(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion2(joinSegments(baseDir, targetSlug), version);
+  return appendAssetVersion3(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
 var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN2);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
   if (obsidianMatch?.groups?.target) {
-    return resolveObsidianTarget3(obsidianMatch.groups.target, slug);
+    return resolveObsidianTarget4(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl3(cleaned)) {
+  if (isExternalUrl4(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix3(cleaned);
-  return appendAssetVersion2(joinSegments(pathToRoot(slug), target), version);
+  const target = stripContentPrefix4(cleaned);
+  return appendAssetVersion3(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {
@@ -11879,6 +12484,7 @@ var config2 = {
       ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       GitHubFlavoredMarkdown(),
       InfoboxBlock(),
+      MediaBox(),
       DiscordMessages(),
       YouTubeCommunityPosts(),
       TableOfContents({
