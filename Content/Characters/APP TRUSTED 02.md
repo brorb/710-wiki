@@ -7,7 +7,7 @@ A discord app bot created by [[SYSTEM]] for [[SERVER 01]].
 
 According to [[SYSTEM]], the name came from a different software program.
 
-![[Different software named APP TRUSTED 02 (SERVER 01).png|350]]
+[[Different software named APP TRUSTED 02 (SERVER 01).png]]
 
 It had a list of commands that you could input, which would change with various updates made by [[SYSTEM]]. Below is the most recent bot command help menu:
 ```
