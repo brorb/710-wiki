@@ -19,8 +19,7 @@ This county might hold some significance in the 7/10 lore, especially since [[IN
 
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
-Alt: Ferkland
-Caption: This is the image!
+Alt: Ferkland County reveal in garbage_sgl.mp4
 Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)

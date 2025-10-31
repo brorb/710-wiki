@@ -34,7 +34,7 @@ Width: clamp(220px, 32vw, 360px)
 Title: SERVER 01
 Media: SERVER 01 cannot read or write The Eyes statemen-min.jpg
 Alt: SYSTEM crash whenever someone mentions The Eyes
-Caption: SYSTEM crashes from The Eyes
+Caption: SYSTEM cannot read the statement associated with "The Eyes"
 Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
