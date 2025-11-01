@@ -10604,10 +10604,7 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
     endpointPath = "/api/oracle/query",
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
-    maxHistory = 24,
-    webApiKey,
-    oracleKeyId,
-    oracleSigningSecret
+    maxHistory = 24
   } = oracleConfig;
   const launcherLabelId = "oracle-widget-launcher-label";
   return /* @__PURE__ */ jsxs26(
@@ -10621,9 +10618,6 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
       "data-oracle-recaptcha-key": recaptchaSiteKey || void 0,
       "data-oracle-article-title": articleTitle || void 0,
       "data-oracle-article-slug": articleSlug || void 0,
-      "data-oracle-web-key": webApiKey || void 0,
-      "data-oracle-signing-key": oracleKeyId || void 0,
-      "data-oracle-signing-secret": oracleSigningSecret || void 0,
       children: [
         /* @__PURE__ */ jsxs26(
           "button",
@@ -12581,12 +12575,9 @@ if (process.env.NODE_ENV !== "production") {
     cwd,
     moduleDirectory,
     candidates: envCandidates,
-    hasWebApiToken: Boolean(process.env.ORACLE_WEB_API_TOKEN),
-    webApiTokenPreview: previewSecret(process.env.ORACLE_WEB_API_TOKEN),
-    hasOracleKeyId: Boolean(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
-    oracleKeyIdPreview: previewSecret(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
-    hasOracleSecret: Boolean(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
-    oracleSecretPreview: previewSecret(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET)
+    proxyBaseUrl: process.env.ORACLE_PROXY_BASE_URL ?? null,
+    hasRecaptchaSiteKey: Boolean(process.env.ORACLE_RECAPTCHA_SITE_KEY),
+    recaptchaSiteKeyPreview: previewSecret(process.env.ORACLE_RECAPTCHA_SITE_KEY)
   });
 }
 var palette = theme_colors_default;
@@ -12675,14 +12666,11 @@ var config2 = {
     },
     oracleChat: {
       enabled: true,
-      apiBaseUrl: process.env.ORACLE_WEB_API_BASE_URL ?? "https://discord-system-firebase-bot-production.up.railway.app",
+      apiBaseUrl: process.env.ORACLE_PROXY_BASE_URL ?? "",
       endpointPath: "/api/oracle/query",
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
-      maxHistory: 24,
-      webApiKey: process.env.ORACLE_WEB_API_TOKEN ?? "",
-      oracleKeyId: process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID ?? "",
-      oracleSigningSecret: process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET ?? ""
+      maxHistory: 24
     }
   },
   plugins: {

@@ -35,12 +35,9 @@ if (process.env.NODE_ENV !== "production") {
     cwd,
     moduleDirectory,
     candidates: envCandidates,
-    hasWebApiToken: Boolean(process.env.ORACLE_WEB_API_TOKEN),
-    webApiTokenPreview: previewSecret(process.env.ORACLE_WEB_API_TOKEN),
-    hasOracleKeyId: Boolean(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
-    oracleKeyIdPreview: previewSecret(process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID),
-    hasOracleSecret: Boolean(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
-    oracleSecretPreview: previewSecret(process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET),
+    proxyBaseUrl: process.env.ORACLE_PROXY_BASE_URL ?? null,
+    hasRecaptchaSiteKey: Boolean(process.env.ORACLE_RECAPTCHA_SITE_KEY),
+    recaptchaSiteKeyPreview: previewSecret(process.env.ORACLE_RECAPTCHA_SITE_KEY),
   })
 }
 
@@ -138,15 +135,11 @@ const config: QuartzConfig = {
     },
     oracleChat: {
       enabled: true,
-      apiBaseUrl:
-        process.env.ORACLE_WEB_API_BASE_URL ?? "https://discord-system-firebase-bot-production.up.railway.app",
+      apiBaseUrl: process.env.ORACLE_PROXY_BASE_URL ?? "",
       endpointPath: "/api/oracle/query",
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
       maxHistory: 24,
-  webApiKey: process.env.ORACLE_WEB_API_TOKEN ?? "",
-  oracleKeyId: process.env.ORACLE_KEY_ID ?? process.env.ORACLE_SIGNING_KEY_ID ?? "",
-  oracleSigningSecret: process.env.ORACLE_KEY_SECRET ?? process.env.ORACLE_SIGNING_SECRET ?? "",
     },
   },
   plugins: {

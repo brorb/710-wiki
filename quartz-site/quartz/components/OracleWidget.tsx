@@ -16,9 +16,6 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
     maxHistory = 24,
-    webApiKey,
-    oracleKeyId,
-    oracleSigningSecret,
   } = oracleConfig
 
   const launcherLabelId = "oracle-widget-launcher-label"
@@ -33,9 +30,6 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
       data-oracle-recaptcha-key={recaptchaSiteKey || undefined}
       data-oracle-article-title={articleTitle || undefined}
       data-oracle-article-slug={articleSlug || undefined}
-      data-oracle-web-key={webApiKey || undefined}
-      data-oracle-signing-key={oracleKeyId || undefined}
-      data-oracle-signing-secret={oracleSigningSecret || undefined}
     >
       <button
         type="button"

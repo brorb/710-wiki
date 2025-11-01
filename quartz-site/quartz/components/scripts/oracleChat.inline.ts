@@ -61,12 +61,6 @@ type OracleConfig = {
   storageKey: string
   maxHistory: number
   recaptchaSiteKey?: string
-  webApiKey?: string
-  oracleKeyId?: string
-  oracleSigningSecret?: string
-  webApiKeyPlaceholder?: boolean
-  oracleKeyIdPlaceholder?: boolean
-  oracleSigningSecretPlaceholder?: boolean
   article?: {
     title?: string
     slug?: string
@@ -102,38 +96,6 @@ type FetchResult = {
 }
 
 const isDialogueRole = (role: OracleRole): role is "user" | "assistant" => role === "user" || role === "assistant"
-
-const textEncoder = new TextEncoder()
-const hmacKeyCache = new Map<string, Promise<CryptoKey>>()
-
-const ensureSubtleCrypto = () => {
-  const subtle = window.crypto?.subtle
-  if (!subtle) {
-    throw new Error("ORA_CLE chat: secure context unavailable for request signing")
-  }
-  return subtle
-}
-
-const getHmacKey = (secret: string) => {
-  let cached = hmacKeyCache.get(secret)
-  if (!cached) {
-    const subtle = ensureSubtleCrypto()
-    const keyData = textEncoder.encode(secret)
-    cached = subtle.importKey("raw", keyData, { name: "HMAC", hash: "SHA-256" }, false, ["sign"])
-    hmacKeyCache.set(secret, cached)
-  }
-  return cached
-}
-
-const createSignature = async (secret: string, payload: string) => {
-  const subtle = ensureSubtleCrypto()
-  const cryptoKey = await getHmacKey(secret)
-  const signature = await subtle.sign("HMAC", cryptoKey, textEncoder.encode(payload))
-  const bytes = new Uint8Array(signature)
-  return Array.from(bytes)
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("")
-}
 
 const chatTeleportState = new WeakMap<
   HTMLElement,
@@ -437,30 +399,12 @@ const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPa
     : undefined
 }
 
-const redactToken = (value?: string) => {
-  if (!value) {
-    return null
-  }
-
-  if (value.length <= 8) {
-    return `${value.slice(0, 2)}...${value.slice(-2)}`
-  }
-
-  return `${value.slice(0, 4)}...${value.slice(-4)}`
-}
-
 const snapshotConfig = (config: OracleConfig) => ({
   apiBaseUrl: config.apiBaseUrl || null,
   endpointPath: config.endpointPath,
   storageKey: config.storageKey,
   maxHistory: config.maxHistory,
   hasRecaptcha: Boolean(config.recaptchaSiteKey),
-  webApiKeyPlaceholder: Boolean(config.webApiKeyPlaceholder),
-  oracleKeyIdPlaceholder: Boolean(config.oracleKeyIdPlaceholder),
-  oracleSigningSecretPlaceholder: Boolean(config.oracleSigningSecretPlaceholder),
-  webApiKeyPreview: redactToken(config.webApiKey),
-  oracleKeyIdPreview: redactToken(config.oracleKeyId),
-  oracleSigningSecretPreview: redactToken(config.oracleSigningSecret),
 })
 
 const summariseRequest = (payload: OracleRequestPayload) => ({
@@ -471,40 +415,6 @@ const summariseRequest = (payload: OracleRequestPayload) => ({
   hasCaptcha: Boolean(payload.captchaToken),
 })
 
-const isPlaceholderValue = (value?: string) => {
-  if (!value) {
-    return false
-  }
-
-  const trimmed = value.trim()
-  if (trimmed.length === 0) {
-    return false
-  }
-
-  if (trimmed.startsWith("${{") && trimmed.endsWith("}}")) {
-    return true
-  }
-
-  if (trimmed.startsWith("${") && trimmed.endsWith("}")) {
-    return true
-  }
-
-  return false
-}
-
-const normaliseCredential = (raw?: string) => {
-  const trimmed = raw?.trim()
-  if (!trimmed) {
-    return { value: undefined as string | undefined, placeholder: false }
-  }
-
-  if (isPlaceholderValue(trimmed)) {
-    return { value: undefined, placeholder: true }
-  }
-
-  return { value: trimmed, placeholder: false }
-}
-
 const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
     oracleApiBase = "",
@@ -514,14 +424,7 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     oracleRecaptchaKey,
     oracleArticleTitle,
     oracleArticleSlug,
-    oracleWebKey,
-    oracleSigningKey,
-    oracleSigningSecret,
   } = root.dataset
-
-  const webKey = normaliseCredential(oracleWebKey)
-  const signingKey = normaliseCredential(oracleSigningKey)
-  const signingSecret = normaliseCredential(oracleSigningSecret)
 
   const storageKey = oracleStorageKey?.trim() || DEFAULT_STORAGE_KEY
   const maxHistory = Number.parseInt(oracleMaxHistory ?? "", 10)
@@ -533,12 +436,6 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
-    webApiKey: webKey.value,
-    oracleKeyId: signingKey.value,
-    oracleSigningSecret: signingSecret.value,
-    webApiKeyPlaceholder: webKey.placeholder,
-    oracleKeyIdPlaceholder: signingKey.placeholder,
-    oracleSigningSecretPlaceholder: signingSecret.placeholder,
     article: {
       title: oracleArticleTitle?.trim() || undefined,
       slug: oracleArticleSlug?.trim() || undefined,
@@ -1080,38 +977,13 @@ const tryFetch = async (
   body: OracleRequestPayload,
   config: OracleConfig,
 ): Promise<FetchResult> => {
-  if (config.webApiKeyPlaceholder || config.oracleKeyIdPlaceholder || config.oracleSigningSecretPlaceholder) {
-    debugLog("Credentials unresolved placeholder", {
-      config: snapshotConfig(config),
-    })
-    throw new Error(
-      "ORA_CLE chat: API credentials unresolved placeholder; replace ${{...}} with the actual secret in your .env",
-    )
-  }
-
-  if (!config.webApiKey || !config.oracleKeyId || !config.oracleSigningSecret) {
-    debugLog("Missing credentials", {
-      hasWebApiKey: Boolean(config.webApiKey),
-      hasOracleKeyId: Boolean(config.oracleKeyId),
-      hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
-      webApiKeyPreview: redactToken(config.webApiKey),
-      oracleKeyIdPreview: redactToken(config.oracleKeyId),
-      oracleSigningSecretPreview: redactToken(config.oracleSigningSecret),
-    })
-    throw new Error("ORA_CLE chat: missing API credentials")
-  }
-
-  const timestamp = Math.floor(Date.now() / 1000).toString()
   const serializedBody = JSON.stringify(body)
-  const signaturePayload = `${timestamp}.${serializedBody}`
-  const signature = await createSignature(config.oracleSigningSecret, signaturePayload)
 
   debugLog("Sending request", {
     url,
     conversationId: body.conversationId,
     messageCount: body.messages.length,
     hasCaptcha: Boolean(body.captchaToken),
-    timestamp,
   })
 
   let response: Response
@@ -1120,12 +992,8 @@ const tryFetch = async (
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Web-Api-Key": config.webApiKey,
-        "X-Oracle-Key": config.oracleKeyId,
-        "X-Oracle-Timestamp": timestamp,
-        "X-Oracle-Signature": signature,
-        "X-Oracle-Channel": "web",
       },
+      credentials: "include",
       body: serializedBody,
     })
   } catch (error) {
@@ -1197,14 +1065,9 @@ const setupOracleWidget = () => {
     const config = getDatasetConfig(root)
     debugLog("Initialised widget", {
       rootId: root.id || null,
-      hasWebApiKey: Boolean(config.webApiKey),
-      hasOracleKeyId: Boolean(config.oracleKeyId),
-      hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
-      webApiKeyPlaceholder: Boolean(config.webApiKeyPlaceholder),
-      oracleKeyIdPlaceholder: Boolean(config.oracleKeyIdPlaceholder),
-      oracleSigningSecretPlaceholder: Boolean(config.oracleSigningSecretPlaceholder),
       endpoint: config.endpointPath,
       apiBase: config.apiBaseUrl,
+      hasRecaptchaKey: Boolean(config.recaptchaSiteKey),
     })
     const requestUrl = buildRequestUrl(config)
     const storageKey = config.storageKey || DEFAULT_STORAGE_KEY

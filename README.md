@@ -54,19 +54,12 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 ### Configuration hooks
 
 	- `enabled`: set to `false` to hide the UI without touching templates.
-	- `apiBaseUrl`: absolute base for the hosted inference service. Defaults to the Railway production URL.
+	- `apiBaseUrl`: absolute base for the secure proxy (for production set `ORACLE_PROXY_BASE_URL`). Empty string falls back to the current origin.
 	- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
 	- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
 	- `storageKey`: override the browser key if you need to migrate existing conversations.
 	- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
-	- `webApiKey`: **required**. Populated via `ORACLE_WEB_API_TOKEN`; becomes the `X-Web-Api-Key` header.
-	- `oracleKeyId`: **required** identifier for the signing key (e.g. `wiki-widget`). Set via `ORACLE_KEY_ID` (falls back to the legacy `ORACLE_SIGNING_KEY_ID`); surfaces as `X-Oracle-Key`.
-	- `oracleSigningSecret`: **required** shared secret used to HMAC sign each payload. Populate via `ORACLE_KEY_SECRET` (falls back to `ORACLE_SIGNING_SECRET`). The static site ships this value to the browser so treat it as a scoped credential.
-	- Railway often displays widget variables as `${{shared.*}}` indirections—copy the resolved string (for example `t6FZ…`) from the Oracle hosting app, not the literal `${{...}}` placeholder.
-	- `ORACLE_WEB_API_TOKEN=<token>`
-	- `ORACLE_KEY_ID=<signing key id>`
-	- `ORACLE_KEY_SECRET=<signing secret>`
-  so the Quartz CLI can pick them up while building or serving the site.
+	- The chat widget no longer requires `ORACLE_WEB_API_TOKEN`, `ORACLE_KEY_ID`, or `ORACLE_KEY_SECRET`; those secrets live exclusively on the proxy service. Set `ORACLE_PROXY_BASE_URL` so Quartz emits the correct target URL during builds.
 
 ### Request lifecycle
 
@@ -76,12 +69,12 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 	- Trims the stored `user`/`assistant` turns down to the most recent `maxHistory` entries.
 	- Appends the new `user` message, generating a stable payload.
 	- Requests a reCAPTCHA token if a site key is configured.
-	- Aborts any in-flight fetch, HMAC-signs `timestamp.body` using `oracleSigningSecret`, and POSTs JSON to the configured endpoint with the `X-Web-Api-Key`, `X-Oracle-Key`, `X-Oracle-Timestamp`, `X-Oracle-Signature`, and `X-Oracle-Channel: web` headers.
+	- Aborts any in-flight fetch and POSTs JSON to the proxy using `Content-Type: application/json`. The proxy injects the necessary Oracle credentials and HMAC signature before forwarding the request upstream.
 3. Responses update the local transcript, persist the conversation (still capped to `maxHistory`), and refresh the chat window. Errors append an `oracle-chat__message--error` bubble with the message returned by the rejected promise.
 
 ### Request payload
 
-Every submission POSTs a body shaped like (headers listed above are always present when the widget is enabled):
+Every submission POSTs a body shaped like (headers shown are those sent by the browser; the proxy enriches them before reaching the Oracle backend):
 
 ```json
 {
