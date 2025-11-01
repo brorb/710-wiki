@@ -96,19 +96,20 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 > ```
 
 You can find a more comprehensive catalogue of the Discord messages from SYSTEM in the [[System Chats]] article.
+
+---
 ## Discord Messages
 
 On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
-Server members were confused as to how interpret the messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called SYSTEMterminal8) to type commands in order to navigate a rudimentary file hierarchy:
+Server members were confused as to how interpret its messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called "SYSTEMterminal8") to type commands in order to navigate a rudimentary file hierarchy:
 
 	\<HELP>!:=============[help menu]=============
 	<HELP>!:help = 0-
 	<HELP>!:TERMINAL_Storage4u = 1-
 	<HELP>!:Back = 2-
 
-Users would then reply with "0-", "1-", "2-", etc., to navigate the file system. New commands would sometimes be added as it updated itself, giving you access to more features in both the main help menu and the TERMINALStorage4u menu.
-
+Users would reply with "0-", "1-", "2-" (etc.) to navigate the file system. New commands would sometimes be added as it updated itself, giving you access to more features in both the main help menu and the TERMINALStorage4u menu.
 ### IN_DI Message
 
 ```discord
@@ -136,6 +137,7 @@ Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received 
 > HELLO, IF YOU GOT THIS, IT'S BECAUSE OF A FAIL SAFE I INSTALLED ONTO THE MOD BEFORE THE SYSTEM WAS TERMINATED. IT IS CAPABLE OF DOING ONLY ONE THING, AND THAT IS TO GIVE YOU THIS MESSAGE IF IT WAS PINGED BY SOMEONE. I DON'T KNOW HOW YOU CAN PING THE MOD, BUT IT HAS JUST ENOUGH DATA FROM ME TO KNOW THAT IT'S YOU. HOWEVER, I DON'T KNOW HOW TO MAKE IT SO THAT IT DELETES ITSELF AFTER. OH WELL, HERE'S A CLUE IF YOU'RE STUCK. IT'S NOT A NUMBER, BUT A SEQUENCE THAT'S USING SOMETHING BACKWARDS. I HOPE THIS HELPS.
 
 This message gave [[The Sleuths]] two key insights:
+
 1. A clue to the [[Parting Gifts Puzzle]] was that it involved a "backwards sequence" of some kind
 2. The SYSTEM Discord user was created by [[INDI]] to interact with [[The Sleuths]]
 
@@ -1343,7 +1345,7 @@ On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SY
 ]
 ```
 
-Then after it downloaded it and read through the document, SYSTEM thanks them for the data and says that INDI would be proud:
+After downloading and reading through the document, SYSTEM thanks [[The Sleuths]] for the data and says that [[INDI]] would be proud:
 
 ```discord
 [
@@ -1406,7 +1408,7 @@ Then after it downloaded it and read through the document, SYSTEM thanks them fo
 ]
 ```
 
-Then it leaves the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
+Then it left the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
 
 > [!discord-cite]- Discord citation (6 messages)
 > 
@@ -1516,7 +1518,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
+Sometime after SYSTEM left the Discord server, some of [[The Sleuths]] friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
 
 From @brorb's DMs:
 ```
@@ -1756,7 +1758,7 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for
 (random, random, random, random), [unpingstatus=true]
 ```
 
-Finding "lm-2" was INDI's ultimate goal for [[The Sleuths]] according to SYSTEM.
+Finding "lm-2" was [[INDI]]'s ultimate goal for [[The Sleuths]] according to SYSTEM.
 
 ---
 ## SERVER 01
