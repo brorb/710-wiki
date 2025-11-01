@@ -2,6 +2,7 @@
 title: Rod Formak
 tags:
   - characters
+  - lore
 ---
 ```infobox
 Title: Rod Formak

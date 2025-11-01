@@ -1,6 +1,8 @@
 ---
 title: Caper Waves
 tags:
+  - lore
+  - YouTube
 ---
 ```infobox
 Title: Caper Waves

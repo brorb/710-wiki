@@ -1,6 +1,7 @@
 ---
 title: Channel 14
 tags:
+  - lore
 ---
 ```infobox
 Title: Channel 14

@@ -1,6 +1,8 @@
 ---
 title: Long String
 tags:
+  - lore
+  - virus
 ---
 ```infobox
 Title: Long String

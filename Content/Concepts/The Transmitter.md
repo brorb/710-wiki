@@ -1,6 +1,9 @@
 ---
 title: The Transmitter
 tags:
+  - lore
+  - YouTube
+  - Discord
 ---
 ```infobox
 Title: The Transmitter

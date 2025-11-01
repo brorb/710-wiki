@@ -1,6 +1,8 @@
 ---
 title: SERVER 01
 tags:
+  - Discord
+  - lore
 ---
 
 ```infobox

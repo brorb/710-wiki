@@ -1,5 +1,7 @@
 ---
 title: The Oracle
+tags:
+  - Discord
 ---
 ```infobox
 Title: The Oracle

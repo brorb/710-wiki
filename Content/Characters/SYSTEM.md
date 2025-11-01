@@ -2,6 +2,9 @@
 title: SYSTEM
 tags:
   - characters
+  - lore
+  - YouTube
+  - Discord
 ---
 ```infobox
 Title: SYSTEM

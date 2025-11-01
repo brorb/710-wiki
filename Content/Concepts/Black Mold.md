@@ -1,6 +1,7 @@
 ---
 title: Black Mold
 tags:
+  - lore
 ---
 ```infobox
 Title: Black Mold

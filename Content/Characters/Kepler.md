@@ -2,6 +2,8 @@
 title: Kepler
 tags:
   - characters
+  - alias
+  - lore
 ---
 ```infobox
 Title: Kepler

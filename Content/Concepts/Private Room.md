@@ -1,6 +1,7 @@
 ---
 title: Private Room
 tags:
+  - lore
 ---
 ```infobox
 Title: Private Room

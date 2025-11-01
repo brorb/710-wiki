@@ -2,6 +2,7 @@
 title: CIN Centers
 tags:
   - location
+  - lore
 ---
 ```infobox
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]

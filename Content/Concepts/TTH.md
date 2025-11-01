@@ -2,6 +2,8 @@
 title: TTH
 tags:
   - characters
+  - alias
+  - lore
 ---
 ```infobox
 Title: TTH

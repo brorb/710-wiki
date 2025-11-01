@@ -1,6 +1,7 @@
 ---
 title: Station Interruption
 tags:
+  - YouTube
 ---
 ```infobox
 Title: Station Interruption

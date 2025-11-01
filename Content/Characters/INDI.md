@@ -2,6 +2,7 @@
 title: INDI
 tags:
   - characters
+  - lore
 ---
 ```infobox
 Title: INDI

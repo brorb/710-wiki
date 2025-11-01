@@ -1,6 +1,7 @@
 ---
 title: The Eyes
 tags:
+  - lore
 ---
 ```infobox
 Title: The Eyes

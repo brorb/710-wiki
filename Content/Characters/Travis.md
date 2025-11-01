@@ -2,6 +2,7 @@
 title: Travis
 tags:
   - characters
+  - lore
 ---
 ```infobox
 Title: Travis
