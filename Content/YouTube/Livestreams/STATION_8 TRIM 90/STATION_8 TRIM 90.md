@@ -4,7 +4,7 @@
 
 ---
 
-This is the summary of the livestream "STATION_8 TRIM 90", from July 4th 2025
+This is the summary of the livestream "STATION_8 TRIM 90" from 4th July 2025 to 7th July 2025.
 
 ## Summary
 
@@ -12,7 +12,7 @@ Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestr
 
 Stream proceeds as normal until another interference ([[Station Interruption]]) comes on, which eventually gets fixed. Then[[INDI]] says that he can now talk and answers a question made by a chat member about who [[Mr. Forest]] was; the name was an alias for someone who is "now gone". Another chat member asks if [[Mr. Forest]] is dead, to which [[INDI]] says that he is fine, just somewhere very far away (which seems to suggest that he is possibly in hiding).
 
-Stream proceeds again as normal until another interference comes on, which is then proceeded by the [[Channel 14]] Demo channel. [[INDI]] curses to himself for this happening, saying that "he did not make this easy" (most likely referring to [[Travis]]). He tries to fix the problem, but it doesn't work at first. Eventually, he gets rid of the [[Channel 14]] Demo screen from the stream and pulls back up the [[Station Timer]]. When viewers started pointing out that [[Channel 14]] was being broadcast from "Ferkland, Nabraska", INDI clarifies that Ferkland is a county in Nabraska (see [[Ferkland County]]) and that the channel's broadcasting is located there. [[INDI]] also says that he doesn't know if the person making the title even knows that is not how you spell Nebraska, and adds that it physically hurts INDI whenever they talk about [[Ferkland County]].
+Stream proceeds again as normal until another interference comes on, which is then proceeded by the [[Channel 14]] Demo channel. [[INDI]] curses to himself for this happening, saying that "he did not make this easy" (most likely referring to [[Travis]]). He tries to fix the problem, but it doesn't work at first. Eventually, he gets rid of the [[Channel 14]] Demo screen from the stream and pulls back up the [[Station Timer]]. When viewers started pointing out that [[Channel 14]] was being broadcast from "Ferkland, Nabraska", INDI clarifies that Ferkland is a county in Nabraska (see [[Ferkland County]]) and that the channel's broadcasting is located there. [[INDI]] also says that he doesn't know if the person making the title even knows that is not how you spell Nebraska, and adds that it physically hurts him whenever he talks about [[Ferkland County]].
 
 Streams proceeds as normal once again before another interruption appears and the [[Channel 14]] Demo channel comes back on, then [[INDI]] quips that signal management isn't his specialty, which could suggest that he is new to this job. A chat member if [[TTH]] is causing problems with the stream (or if they are sabotaging him), to which INDI says that [[Kepler]] solved the problem with [[TTH]] and that [[INDI]]'s job is to keep the signal running. Suddenly, [[710 NPP|7/10 NPP]] appears in the livestream chat, asking [[INDI]] why he is talking to the viewers, saying that he is not supposed to talk to anyone on it. [[INDI]] says that he knows that already, and [[710 NPP|7/10 NPP]] tells him to keep quiet or else "[[He]]" will find out about them.
 

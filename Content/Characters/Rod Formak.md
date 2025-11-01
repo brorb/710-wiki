@@ -135,4 +135,4 @@ A technician engineer who gained access to [[SYSTEM]] on 1st October 2025.<!-- d
 > }
 > ```
 
-Not much is known about this person yet, but it is possible that they work for [[TTH]].
+Not much is known about this person yet, but it is likely possible that they work for [[TTH]].
