@@ -27,7 +27,8 @@ There are two ways in which the chats have become available to the public:
 
 
 ## Content
-There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without alias. The topics are usually about 
+
+There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without aliases. The topics are usually about 
 
 There are 10 known private room chats, of which 7 have been from community posts, and 3 from videos. Below they appear in chronological order
 
@@ -116,7 +117,7 @@ The screen is then filled with the repeating text:
 INFECTED BY LONG STRING ;-) 
 ```
 
-This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-) "
+This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-)"
 
 ## Chat #6
 
@@ -135,7 +136,7 @@ TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200
 F2930: Why is there a wait time?
 TTH: Difficulties with some Datacores and CIN Centers, but it that will be resolved soon.
 ```
-Here we see that it takes 10 hours for[[F2930]] to receive the signal sent from [[TTH]].  They blame the "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
+Here we see that it takes 10 hours for [[F2930]] to receive the signal sent from [[TTH]].  The [[TTH]] supervisor blames this issue on problems with "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
 ## Chat #8
 
 ```
@@ -148,8 +149,7 @@ TTH: Then just send the serial code back and we'll get you back on it.
 F2930: YEAH, WHAT'S A SERIAL CODE?
 TTH: The code from the signal generation key.
 ```
-This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is possible that it is [[INDI]] talking here, but this is not confirmed.
-
+This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is very likely that it is [[INDI]] talking here, since him and [[Kepler]] switched places during the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]).
 ## Chat #9
 
 ```
