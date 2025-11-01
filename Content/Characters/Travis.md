@@ -4,6 +4,7 @@ tags:
   - characters
   - lore
   - important
+  - human
 ---
 ```infobox
 Title: Travis
