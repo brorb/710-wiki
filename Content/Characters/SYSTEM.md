@@ -141,7 +141,20 @@ This message gave [[The Sleuths]] two key insights:
 ### Gift
 
 Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files:
-[[01.wav]], [[02.wav]], [[03.wav]], [[04.wav]], [[05.wav]], [[06.wav]]. These .wav files were SSTV audio files that gave out the [[Channel 14]] Schedual when decoded. When asked about what the Schedual is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
+
+![[01.wav]]
+
+![[02.wav]]
+
+![[03.wav]]
+
+![[04.wav]]
+
+![[05.wav]]
+
+![[06.wav]]
+
+These .wav files were SSTV audio files that gave out the [[Channel 14]] Schedual when decoded. When asked about what the Schedual is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 

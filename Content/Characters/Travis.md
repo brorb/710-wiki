@@ -4,6 +4,7 @@ tags:
   - characters
   - lore
   - important
+  - human
 ---
 ```infobox
 Title: Travis
@@ -37,6 +38,7 @@ In [[STATION_8 TRIM 5]], Travis (through [[710 Tone|7/10 Tone]] ) and [[INDI]] (
 
 Most likely, Travis died after this conversation, as [[INDI]] later would go on to say "Travis _was_ a scientist"[^1]. It is likely that the "it" which spread its way into Travis' lungs was [[Black Mold]].
 
+---
 ## Travis' Parting Gift
 
 The [[Parting Gifts Puzzle|Parting Gifts]] puzzle gave a lot more insight into Travis, resulting in this final "gift":

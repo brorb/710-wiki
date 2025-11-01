@@ -4,6 +4,7 @@ tags:
   - characters
   - lore
   - important
+  - REN
 ---
 ```infobox
 Title: REN

@@ -4,6 +4,7 @@ tags:
   - characters
   - alias
   - lore
+  - human
 ---
 ```infobox
 Title: Mr. Forest

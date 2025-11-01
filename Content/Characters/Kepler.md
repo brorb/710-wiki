@@ -5,6 +5,9 @@ tags:
   - alias
   - lore
   - important
+  - REN
+  - TTH
+  - human
 ---
 ```infobox
 Title: Kepler
