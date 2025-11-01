@@ -24,13 +24,13 @@ IWeUswantwillgiftgrantyouthemsomethingaanobject
 2. Hide 10       (10%)
 3. Remove 10     (5%)
 ```
-_^This was originally a YouTube poll. At the time of posting,[[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server and then promptly crashed._
+_^This was originally a YouTube poll. At the time of posting, [[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server and then promptly crashed._
 
 ```community-post,6,0,10 September 2025,
 "?/////////:canceled message  
 "
 ```
-_^This post was also sent as DMs to the [[The Sleuths]] by  [[SYSTEM]]._
+_^This post was also sent as DMs to the [[The Sleuths]] by [[SYSTEM]]._
 
 ```community-post,7,0,5 September 2025,
 SESSION LOGGED OUTPUT #2322:  
