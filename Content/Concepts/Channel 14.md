@@ -173,7 +173,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-
+#### Gift from [[SYSTEM]]
 
 ```media-box
 Title: Gift from SYSTEM original
