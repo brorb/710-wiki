@@ -1,3 +1,7 @@
+---
+tags:
+  - lore
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1RCjws2JZUVuq1mm3ZylsbL2Yf4dJaO-m/preview"  
