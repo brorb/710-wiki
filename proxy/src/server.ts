@@ -158,6 +158,13 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
     })
 
     const responseText = await upstreamResponse.text()
+    if (!upstreamResponse.ok) {
+      console.error("⚠️ [Proxy] Upstream error", {
+        status: upstreamResponse.status,
+        statusText: upstreamResponse.statusText,
+        bodyPreview: responseText.length > 500 ? `${responseText.slice(0, 500)}…` : responseText,
+      })
+    }
     const responseHeaders: Record<string, string> = {}
     upstreamResponse.headers.forEach((value, key) => {
       if (key.toLowerCase().startsWith("x-oracle-")) {
