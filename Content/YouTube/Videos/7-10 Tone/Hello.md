@@ -1,3 +1,8 @@
+---
+tags:
+  - lore
+  - important
+---
 
 <iframe 
   src="https://drive.google.com/file/d/10oKxiJ6uY4IQMC7gN0pVU1dX6Vhvvtbf/preview"  

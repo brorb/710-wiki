@@ -2,6 +2,8 @@
 title: He
 tags:
   - characters
+  - lore
+  - important
 ---
 ```infobox
 Title: He

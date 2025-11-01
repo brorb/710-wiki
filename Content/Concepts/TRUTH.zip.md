@@ -1,6 +1,6 @@
 ---
 tags:
-  - component
+  - lore
 ---
 A .zip file created by [[INDI]] that was featured in [[LEAKED_1.mp4]] and is supposedly a "weapon against older technology", or in other words, most likely a type of dangerous computer virus or some kind of top secret information.
 

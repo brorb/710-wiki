@@ -1,9 +1,8 @@
 ---
 title: SERVER 01
 tags:
-  - component
-  - Meta
-  - documentation
+  - Discord
+  - lore
 ---
 
 ```infobox

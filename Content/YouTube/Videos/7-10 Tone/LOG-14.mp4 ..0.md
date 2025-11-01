@@ -1,3 +1,7 @@
+---
+tags:
+  - anomalies
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1ZpEdZnRahiLjHQXSh8bYG27P0bbaqm8_/preview" 

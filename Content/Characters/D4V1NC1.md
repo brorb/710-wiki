@@ -2,6 +2,8 @@
 title: D4V1NC1
 tags:
   - characters
+  - alias
+  - lore
 ---
 ```infobox
 Title: D4V1NC1

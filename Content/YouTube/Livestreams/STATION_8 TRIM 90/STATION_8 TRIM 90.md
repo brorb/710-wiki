@@ -10,7 +10,7 @@ This is the summary of the livestream "STATION_8 TRIM 90" from 4th July 2025 to 
 
 Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestream restarted due to [[REN]], to which [[INDI]] confirms that it is true and adds that they are not supposed to be known about them.
 
-Stream proceeds as normal until another interference ([[Station Interruption]]) comes on, which eventually gets fixed. Then[[INDI]] says that he can now talk and answers a question made by a chat member about who [[Mr. Forest]] was; the name was an alias for someone who is "now gone". Another chat member asks if [[Mr. Forest]] is dead, to which [[INDI]] says that he is fine, just somewhere very far away (which seems to suggest that he is possibly in hiding).
+Stream proceeds as normal until another interference ([[Station Interruption]]) comes on, which eventually gets fixed. Then [[INDI]] says that he can now talk and answers a question made by a chat member about who [[Mr. Forest]] was; the name was an alias for someone who is "now gone". Another chat member asks if [[Mr. Forest]] is dead, to which [[INDI]] says that he is fine, just somewhere very far away (which seems to suggest that he is possibly in hiding).
 
 Stream proceeds again as normal until another interference comes on, which is then proceeded by the [[Channel 14]] Demo channel. [[INDI]] curses to himself for this happening, saying that "he did not make this easy" (most likely referring to [[Travis]]). He tries to fix the problem, but it doesn't work at first. Eventually, he gets rid of the [[Channel 14]] Demo screen from the stream and pulls back up the [[Station Timer]]. When viewers started pointing out that [[Channel 14]] was being broadcast from "Ferkland, Nabraska", INDI clarifies that Ferkland is a county in Nabraska (see [[Ferkland County]]) and that the channel's broadcasting is located there. [[INDI]] also says that he doesn't know if the person making the title even knows that is not how you spell Nebraska, and adds that it physically hurts him whenever he talks about [[Ferkland County]].
 
@@ -29,7 +29,7 @@ After the [[Station Timer]] pops back up as normal from the interference, [[INDI
 - Stream restarts due to [[REN]]
 - Entity identifies themselves as [[INDI]], rejecting "7/10 Tone" designation
 - [[Mr. Forest]] confirmed as alias for someone relocated far away (not dead/killed)
-- [[Ferkland County]] revealed as channel location in "Nabraska" [misspelled]
+- [[Ferkland County]] revealed as channel location in "Nabraska" (misspelled)
 - Discussion of Ferkland causes [[INDI]] physical pain
 - [[INDI]] experiences ongoing signal management difficulties
 - [[Kepler]]'s involvement with [[TTH]] solution confirmed

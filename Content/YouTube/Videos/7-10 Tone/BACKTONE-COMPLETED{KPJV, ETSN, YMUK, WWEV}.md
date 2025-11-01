@@ -1,3 +1,9 @@
+---
+tags:
+  - lore
+  - important
+  - puzzle
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1Ox0pFIFAj3EHBQuu9x8kktDS5hqIinLE/preview" 

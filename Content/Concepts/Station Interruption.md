@@ -1,7 +1,7 @@
 ---
 title: Station Interruption
 tags:
-  - component
+  - YouTube
 ---
 ```infobox
 Title: Station Interruption

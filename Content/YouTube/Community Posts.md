@@ -24,13 +24,13 @@ IWeUswantwillgiftgrantyouthemsomethingaanobject
 2. Hide 10       (10%)
 3. Remove 10     (5%)
 ```
-_^This was originally a YouTube poll. At the time of posting,[[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server and then promptly crashed._
+_^This was originally a YouTube poll. At the time of posting, [[SYSTEM]] briefly updated its terminal in [[The Sleuths]] Discord server and then promptly crashed._
 
 ```community-post,6,0,10 September 2025,
 "?/////////:canceled message  
 "
 ```
-_^This post was also sent as DMs to the [[The Sleuths]] by  [[SYSTEM]]._
+_^This post was also sent as DMs to the [[The Sleuths]] by [[SYSTEM]]._
 
 ```community-post,7,0,5 September 2025,
 SESSION LOGGED OUTPUT #2322:  
@@ -242,7 +242,7 @@ _^The hex translates to_
 ```
 h t t p s : / / d r i v e . g o o g l e . c o m / f i l e / d / 1 s n 9 3 r j T b b z P S L F _ x E R Z U q T R i M 9 v T J 0 f s / v i e w ? u s p = s h a r i n g
 ```
-_which is a Google Drive link to a file called [vacsystemrestart.mp3](https://drive.google.com/file/d/1sn93rjTbbzPSLF_xERZUqTRiM9vTJ0fs/view). This would lead to a major breakthrough, since the uploader of the file was the email "terminal8sbc@gmail.com", which @brorb sent an email to, resulting in [[SYSTEM]] joining the Sleuths' Discord server._
+_This is a Google Drive link to a file called [vacsystemrestart.mp3](https://drive.google.com/file/d/1sn93rjTbbzPSLF_xERZUqTRiM9vTJ0fs/view). This would lead to a major breakthrough, since the uploader of the file was the email "terminal8sbc@gmail.com", which @brorb sent an email to, resulting in [[SYSTEM]] joining the Sleuths' Discord server._
 
 ```community-post,5,2,February 2025,
 ![[unnamed.webp|300]]

@@ -1,3 +1,9 @@
+---
+tags:
+  - lore
+  - important
+  - virus
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1hRpr3qZPbSjuSYFR4UkE2CP2ClTBirMX/preview"  

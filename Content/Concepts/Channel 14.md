@@ -1,7 +1,7 @@
 ---
 title: Channel 14
 tags:
-  - component
+  - lore
 ---
 ```infobox
 Title: Channel 14
@@ -18,9 +18,7 @@ Appearances:
 ```
 
 
-Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]].
-
-Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix it", then the [[Station Interruption]] would proceed after it.
+Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much the [[Station Interruption]], which [[INDI]] would have to fix.
 
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->.
 
@@ -104,8 +102,7 @@ Whenever this appeared in the STATION_8 livestreams, [[INDI]] would have to "fix
 ## Schedule Gallery
 
 Channel 14's schedule is often subject to change.
-
-**From [[LOG-40.mp4]]:**
+##### From [[LOG-40.mp4]]:
 
 ```media-box
 Media: [[LOG-40 Channel 14 schedule.png]]
@@ -116,7 +113,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-**From [[LOG-154.mp4]]:**
+##### From [[LOG-154.mp4]]:
 
 ```media-box
 Media: [[Weather from LOG-154 (channel 14).png]]
@@ -149,7 +146,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-**From [[garbage_sgl.mp4]]:**
+##### From [[garbage_sgl.mp4]]:
 
 ```media-box
 Media: [[Weather and Morning Chats this Lyoce J.png]]
@@ -175,6 +172,8 @@ Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+
+
 
 ```media-box
 Title: Gift from SYSTEM original

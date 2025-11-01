@@ -2,9 +2,10 @@
 title: SYSTEM
 tags:
   - characters
-  - component
-  - documentation
-  - Meta
+  - lore
+  - YouTube
+  - Discord
+  - important
 ---
 ```infobox
 Title: SYSTEM
@@ -13,7 +14,7 @@ Caption: SYSTEM's Discord profile
 Appearances: [[STATION_8 TERMINAL 8]] (in chat)
 ```
 
-_SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
+_SYSTEM_ (also known as _SYSTEMterminal8_ on YouTube) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
 
 However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone|7/10 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone|7/10 Tone]].
 
@@ -96,7 +97,7 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 
 ## Discord Messages
 
-On the 19th July 2025, SYSTEM joined the [Discord server](710 Tone Sleuths) after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
+On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
 Server members were confused as to how interpret the messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called SYSTEMterminal8) to type commands in order to navigate a rudimentary file hierarchy:
 
@@ -1492,7 +1493,14 @@ However, this wasn't the last time that SYSTEM was heard from, as you can see be
 ---
 ## Friend Requests from The Sleuths
 
-![[Friend request acceptance SYSTEM.png|400]]
+```media-box
+Media: [[Friend request acceptance SYSTEM.png]]
+Alt: A Discord notification saying that SYSTEM accepted a friend request 
+Caption: SYSTEM accepting a friend request on Discord
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
 
@@ -5606,5 +5614,11 @@ Then it appeared to have mounted some hard drives (C to I) and attempted to impo
 
 SYSTEM sometimes has the ability to speak in two different instances (as seen from [[SERVER 01]]), which it refers as a "brainstorming program"
 
-![[Brainstorming program SYSTEM.png|700]]
+```media-box
+Media: [[Brainstorming program SYSTEM.png]]
+Alt: SYSTEM brainstorming program comment
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 

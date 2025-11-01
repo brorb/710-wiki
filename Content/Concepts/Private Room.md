@@ -1,8 +1,7 @@
 ---
 title: Private Room
 tags:
-  - component
-  - Meta
+  - lore
 ---
 ```infobox
 Title: Private Room

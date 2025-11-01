@@ -1,3 +1,4 @@
+
 <iframe 
   src="https://drive.google.com/file/d/1b2HYNyJZ9b8IYxeWvdVQQtBvKfBaVLva/preview" 
   style="width:100%; aspect-ratio:16/9; border:0;"
@@ -47,6 +48,12 @@ A test screen then appears, followed by the Channel 14 background music heard in
 
 **Clues:** In the metadata for the video, there is a Wikipedia article link to "Video Game Culture" under the "Topic Details" section.
 
-![[uBBNS metadata.png|500]]
+```media-box
+Media: [[uBBNS metadata.png]]
+Alt: uBBNS video metadata
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 Link here: https://en.wikipedia.org/wiki/Video_game_culture

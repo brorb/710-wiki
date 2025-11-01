@@ -1,7 +1,7 @@
 ---
 title: Station Timer
 tags:
-  - component
+  - YouTube
 ---
 ```infobox
 Title: Station Timer

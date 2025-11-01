@@ -1,7 +1,8 @@
 ---
 title: Ferkland Institute
 tags:
-  - documentation
+  - location
+  - lore
 ---
 ```infobox
 Title: Ferkland Institute
