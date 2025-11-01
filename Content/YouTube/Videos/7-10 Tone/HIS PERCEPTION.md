@@ -1,3 +1,10 @@
+---
+tags:
+  - YouTube
+  - lore
+  - puzzle
+  - important
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1Q0bdiXabvuLnxysOPseOwOvN-NUipg_h/preview" 

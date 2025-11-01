@@ -1,3 +1,9 @@
+---
+tags:
+  - YouTube
+  - puzzle
+  - lore
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1vsLEpvRGL2Onx14z81NIPbuh7m-wrY72/preview" 

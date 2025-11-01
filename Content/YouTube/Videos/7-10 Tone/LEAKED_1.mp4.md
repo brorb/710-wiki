@@ -1,3 +1,10 @@
+---
+tags:
+  - YouTube
+  - important
+  - lore
+  - virus
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1BM3vhW4kZ5Gj31fuowvBEvnE8vl2_Kuv/preview"  

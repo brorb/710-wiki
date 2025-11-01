@@ -1,3 +1,11 @@
+---
+tags:
+  - YouTube
+  - important
+  - lore
+  - puzzle
+  - solved
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1i8WMOpvfEGzb6WZJIvuZLM6BH0BvGbtr/preview" 
