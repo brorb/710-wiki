@@ -4,6 +4,9 @@ import cors, { type CorsOptions } from "cors"
 import express, { NextFunction, Request, Response } from "express"
 import helmet from "helmet"
 import crypto from "node:crypto"
+import fs from "node:fs"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
 
 import { config } from "./config.js"
 import { oracleRequestSchema } from "./schema.js"
@@ -183,6 +186,68 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
     console.error("Oracle proxy request failed", error)
     return res.status(502).json({ success: false, reason: "Upstream request failed" })
   }
+})
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+const defaultStaticRoot = path.resolve(currentDir, "..", "..", "quartz-site", "public")
+const staticRoot = (process.env.STATIC_ROOT && process.env.STATIC_ROOT.trim()) || defaultStaticRoot
+const hasStaticAssets = fs.existsSync(staticRoot)
+
+if (!hasStaticAssets) {
+  console.warn(`⚠️ [Proxy] Static root not found at ${staticRoot}`)
+} else {
+  console.log(`ℹ️ [Proxy] Serving static assets from ${staticRoot}`)
+  app.use(
+    express.static(staticRoot, {
+      extensions: ["html"],
+      maxAge: "1h",
+      index: ["index.html"],
+    }),
+  )
+}
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.path.startsWith("/api/")) {
+    return next()
+  }
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    return next()
+  }
+  if (!hasStaticAssets) {
+    return res.status(404).send("Not Found")
+  }
+
+  const resolved = path.resolve(staticRoot, `.${req.path}`)
+  if (!resolved.startsWith(staticRoot)) {
+    return res.status(403).send("Forbidden")
+  }
+
+  try {
+    const stats = fs.statSync(resolved)
+    if (stats.isFile()) {
+      return res.sendFile(resolved)
+    }
+    if (stats.isDirectory()) {
+      const indexFile = path.join(resolved, "index.html")
+      if (fs.existsSync(indexFile)) {
+        return res.sendFile(indexFile)
+      }
+    }
+  } catch (error) {
+    // fall through to send fallback index
+  }
+
+  const notFoundFile = path.join(staticRoot, "404.html")
+  if (fs.existsSync(notFoundFile)) {
+    return res.status(404).sendFile(notFoundFile)
+  }
+
+  const fallbackFile = path.join(staticRoot, "index.html")
+  if (fs.existsSync(fallbackFile)) {
+    return res.sendFile(fallbackFile)
+  }
+
+  return res.status(404).send("Not Found")
 })
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
