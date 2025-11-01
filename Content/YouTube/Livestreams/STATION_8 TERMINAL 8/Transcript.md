@@ -307,35 +307,35 @@ AnonymousUser: is this code to turn off the timer?
 
 ==**7/10NPP**==: Indi  
 ==**7/10 Tone**==: YES?  
-AnonymousUser: \*Hyperventalating*  
+**AnonymousUser**: \*Hyperventalating*  
 ==**7/10NPP**==: The moderator you had.  
-AnonymousUser: It told me your username, NPP  
+**AnonymousUser**: It told me your username, NPP  
 ==**7/10 Tone**==: WHAT ABOUT IT?  
-AnonymousUser: K3P13R  
+**AnonymousUser**: K3P13R  
 ==**7/10NPP**==: WHAT? INDI!  
-AnonymousUser: data_messagesystem05  
+**AnonymousUser**: data_messagesystem05  
 **The Camera Eye**: WAIT WHAT ARE YOU DOING ANONYMOUS  
-Mecha Dragon2: oh no  
+**Mecha Dragon2**: oh no  
 ==**7/10 Tone**==: WHAT IS IT? HOW DID THEY GET THAT?  
-AnonymousUser: eheheheh  
+**AnonymousUser**: eheheheh  
 **The Camera Eye**: OMG  
-AnonymousUser: don't ask  
-AnonymousUser: I'll tell you for 200Qt Credits, INDI  
-Mecha Dragon2: devious  
+**AnonymousUser**: don't ask  
+**AnonymousUser**: I'll tell you for 200Qt Credits, INDI  
+**Mecha Dragon2**: devious  
 **The Camera Eye**: You're evil Anonymous
 
 ==**7/10NPP**==: THE MODERATOR LOGGED INTO THE PR AND DISCONNECTED!  
-Mecha Dragon2: Or else!  
-AnonymousUser: INDI I have ur username too  
+**Mecha Dragon2**: Or else!  
+**AnonymousUser**: INDI I have ur username too  
 **The Camera Eye**: STOP  
 **The Camera Eye**: PLEASE  
 ==**7/10 Tone**==: HOW DID IT DO THAT?  
 **The Camera Eye**: It reconnected...  
 ==**7/10NPP**==: I TOLD YOU IT WAS A BAD IDEA!  
-AnonymousUser: It was a great idea  
+**AnonymousUser**: It was a great idea  
 ==**7/10 Tone**==: DAMIN IT.  
-Mecha Dragon2: We're not playing games, INDI!  
-Mecha Dragon2: HAND IT OVER
+**Mecha Dragon2**: We're not playing games, INDI!  
+**Mecha Dragon2**: HAND IT OVER
 
 ---
 
@@ -360,204 +360,204 @@ Mecha Dragon2: HAND IT OVER
 
 # [[SYSTEM|SYSTEMterminal8]] gets taken over by "[[He]]"
 
-SYSTEMterminal8: RECONNECTING  
-Mecha Dragon2: Not the mod again  
-SYSTEMterminal8: SYSTEM_8902 CALLSIGN 5  
-SYSTEMterminal8: pinged  
-SYSTEMterminal8: <>"  
-SYSTEMterminal8: H  
-SYSTEMterminal8: E  
-SYSTEMterminal8: L  
-SYSTEMterminal8: L  
-SYSTEMterminal8: O  
-Mecha Dragon2: HELLO  
+==**SYSTEMterminal8**==: RECONNECTING  
+**Mecha Dragon2**: Not the mod again  
+==**SYSTEMterminal8**==: SYSTEM_8902 CALLSIGN 5  
+==**SYSTEMterminal8**==: pinged  
+==**SYSTEMterminal8**==: <>"  
+==**SYSTEMterminal8**==: H  
+==**SYSTEMterminal8**==: E  
+==**SYSTEMterminal8**==: L  
+==**SYSTEMterminal8**==: L  
+==**SYSTEMterminal8**==: O  
+**Mecha Dragon2**: HELLO  
 **The Camera Eye**: HELLO SYSTEMTERMINAL8  
-SYSTEMterminal8: :INFECT:>\  
-7/10 Tone: WHAT? WHO ARE YOU?  
-SYSTEMterminal8: Yu know xactly Wh I am.  
-Mecha Dragon2: Gotta keep control of the mod Indi  
+==**SYSTEMterminal8**==: :INFECT:>\  
+==**7/10 Tone**==: WHAT? WHO ARE YOU?  
+==**SYSTEMterminal8**==: Yu know xactly Wh I am.  
+**Mecha Dragon2**: Gotta keep control of the mod Indi  
 **The Camera Eye**: Uh oh the mod has gone rogue again  
 **The Camera Eye**: I think it got hacked?  
-~~ZONE: RECORDED.~~  
-7/10 Tone: I DON'T I ONLY KNOW THAT I HAVE TO DELETE YOU.
+~~**ZONE**: RECORDED.~~
+==**7/10 Tone**==: I DON'T I ONLY KNOW THAT I HAVE TO DELETE YOU.
 SYSTEMterminal8: You're not going to do that.  
-7/10 Tone: HOW AND WHY?  
-SYSTEMterminal8: What signal terminal are you? I love this little thing you have going.  
-~~ZONE: RECORDED.~~  
-7/10 Tone: WAIT, YOUR NOT HIM ARE YOU?
+==**7/10 Tone**==: HOW AND WHY?  
+==**SYSTEMterminal8**==: What signal terminal are you? I love this little thing you have going.  
+~~**ZONE**: RECORDED.~~  
+==**7/10 Tone**==: WAIT, YOUR NOT HIM ARE YOU?
 **The Camera Eye**: OH SHIT  
 **The Camera Eye**: Is he the bad guy INDI?  
-ZONE: RECORDED.  
-abe: oooo coupels drama  
+**ZONE**: RECORDED.  
+**abe**: oooo coupels drama  
 **The Camera Eye**: What are you recording ZONE?  
-ZONE: LIVESTREAM INFORMATION  
+**ZONE**: LIVESTREAM INFORMATION  
 **The Camera Eye**: Is it important?  
-ZONE: KNOWN INFORMATION IS THE GOAL  
+**ZONE**: KNOWN INFORMATION IS THE GOAL  
 **The Camera Eye**: What known information? What's publicly available?  
 **The Camera Eye**: or is it private?  
-ZONE: WHAT WE RECEIVE
-7/10NPP: Indi  
+**ZONE**: WHAT WE RECEIVE
+==**7/10NPP**==: Indi  
 **The Camera Eye**: 7/10NPP DO SOMETHING  
-Mecha Dragon2: This is too much  
-7/10 Tone: I KNOW WHAT THAT WAS.  
-7/10 Tone: IT WAS HIM.  
+**Mecha Dragon2**: This is too much  
+==**7/10 Tone**==: I KNOW WHAT THAT WAS.  
+==**7/10 Tone**==: IT WAS HIM.  
 **The Camera Eye**: OH GOD NO
 **The Camera Eye**: ZONE PLEASE DON'T KILL INDI HE'S MY FAVORITE CHARACTER  
-7/10NPP: Did he hijack the moderator?  
+==**7/10NPP**==: Did he hijack the moderator?  
 **The Camera Eye**: YES  
-7/10 Tone: MOST LIKELY.  
+==**7/10 Tone**==: MOST LIKELY.  
 **The Camera Eye**: Who is He INDI? Who does he work for?  
-ZONE: RECORDED.  
+**ZONE**: RECORDED.  
 **The Camera Eye**: Actually don't type that.  
 **The Camera Eye**: He's watching now...  
-Mecha Dragon2: Do you work for anyone ZONE?  
+**Mecha Dragon2**: Do you work for anyone ZONE?  
 **The Camera Eye**: @ZONE what do you want from INDI?  
 **The Camera Eye**: What is your goal ZONE?  
-ZONE: RECENTLY DESIGNED TO KEEP TRACK OF THIS PROJECT  
+**ZONE**: RECENTLY DESIGNED TO KEEP TRACK OF THIS PROJECT  
 **The Camera Eye**: Recently? Yeah like July 7th recently  
 **The Camera Eye**: I saw your profile  
-ZONE: NO AFFILIATION TO PROGRAM  
+**ZONE**: NO AFFILIATION TO PROGRAM  
 **The Camera Eye**: Liar.  
 **The Camera Eye**: You're a terrible liar ZONE  
-ZONE: OUTSIDE CREATION
-ZONE: CANNOT LIE  
+**ZONE**: OUTSIDE CREATION
+**ZONE**: CANNOT LIE  
 **The Camera Eye**: Oh really? Then why did INDI recognize you?  
-ZONE: COINCIDENCE  
+**ZONE**: COINCIDENCE  
 **The Camera Eye**: Naaah man.  
 **The Camera Eye**: That's a hell of conincidence  
-ZONE: NO ACCESS TO SIGNALS  
+**ZONE**: NO ACCESS TO SIGNALS  
 **The Camera Eye**: I'm going to keep quiet now, I don't trust you.  
-7/10 Tone: okay, this is a lot of different stuff.  
-Mecha Dragon2: Yeah  
+==**7/10 Tone**==: okay, this is a lot of different stuff.  
+**Mecha Dragon2**: Yeah  
 **The Camera Eye**: Wait, no all caps this time.  
-Mecha Dragon2: What's going on  
+**Mecha Dragon2**: What's going on  
 **The Camera Eye**: You're not INDI anymore are you?  
 **The Camera Eye**: Where's INDI?  
-ZONE: WAIT AND SEE  
+**ZONE**: WAIT AND SEE  
 **The Camera Eye**: Okay.  
-7/10 Tone: Yeah, this is Kepler.  
+==**7/10 Tone**==: Yeah, this is Kepler.  
 **The Camera Eye**: Oh, figured.  
-ZONE: ANOTHER COINCIDENCE  
+**ZONE**: ANOTHER COINCIDENCE  
 **The Camera Eye**: Can you get rid of ZONE please? He's giving me bad vibes
-7/10 Tone: Indi is going to go kill the bot.  
+==**7/10 Tone**==: Indi is going to go kill the bot.  
 **The Camera Eye**: Thanks.  
-Mecha Dragon2: I don't know, I feel like we could get something from it  
+**Mecha Dragon2**: I don't know, I feel like we could get something from it  
 **The Camera Eye**: I dunno, he tends to lie a lot.  
-Mecha Dragon2: Yeah true  
+**Mecha Dragon2**: Yeah true  
 **The Camera Eye**: And he's being vague too  
-7/10 Tone: Maybe? I don't have a lot of control on this side. Travis locked a lot of stuff so indi couldn't do anything stupid.  
+==**7/10 Tone**==: Maybe? I don't have a lot of control on this side. Travis locked a lot of stuff so indi couldn't do anything stupid.  
 **The Camera Eye**: Wait what...  
 **The Camera Eye**: ZONE is in the channel?  
-Mecha Dragon2: It said it was an outside program  
-Mecha Dragon2: I kinda believe it  
+**Mecha Dragon2**: It said it was an outside program  
+**Mecha Dragon2**: I kinda believe it  
 **The Camera Eye**: Oh wait nevermind I understand what he means now  
 **The Camera Eye**: He might not be able to kill the bot  
 **The Camera Eye**: Travis is gone and I dunno if Kepler has access to the controls  
 **The Camera Eye**: Alerta?  
-Mecha Dragon2: It does seem to respond at least  
-Mecha Dragon2: ZONE what does AM mean  
+**Mecha Dragon2**: It does seem to respond at least  
+**Mecha Dragon2**: ZONE what does AM mean  
 **The Camera Eye**: Don't ask.
 **The Camera Eye**: It's most likely a person named AmeraM  
-ZONE: AM IS THE GOAL  
-7/10 Tone: Shit. How did indi manage all of this?  
+**ZONE**: AM IS THE GOAL  
+==**7/10 Tone**==: Shit. How did indi manage all of this?  
 **The Camera Eye**: Oh boy....  
-Mecha Dragon2: Huh  
+**Mecha Dragon2**: Huh  
 **The Camera Eye**: Kepler where's INDI? When will he be back?  
-ZONE: OUTCOME IS UNKNOWN  
-7/10 Tone: Almost got it  
-Mecha Dragon2: Getting there  
+**ZONE**: OUTCOME IS UNKNOWN  
+==**7/10 Tone**==: Almost got it  
+**Mecha Dragon2**: Getting there  
 **The Camera Eye**: Good.  
-7/10 Tone: Got it. Damn, that's weird.  
-Mecha Dragon2: Yeah, it's crazy  
-Mecha Dragon2: Nice to have someone responsive here
+==**7/10 Tone**==: Got it. Damn, that's weird.  
+**Mecha Dragon2**: Yeah, it's crazy  
+**Mecha Dragon2**: Nice to have someone responsive here
 
 ---
 
-7/10NPP: I GOT RID OF THE BOT.  
+==**7/10NPP**==: I GOT RID OF THE BOT.  
 AnonymousUser: ok keppy  
 AnonymousUser: wait  
 AnonymousUser: INDI?  
-7/10 Tone: Thank you Indi.
-7/10NPP: CAN I HAVE THE ACCOUNT BACK?  
+==**7/10 Tone**==: Thank you Indi.
+==**7/10NPP**==: CAN I HAVE THE ACCOUNT BACK?  
 AnonymousUser: Indi  
 Mecha Dragon2: no  
-7/10 Tone: No  
+==**7/10 Tone**==: No  
 AnonymousUser: you're a little...naughty  
 AnonymousUser: you gotta be careful;  
-7/10NPP: WHY?  
-The Camera Eye: Yeah why?  
+==**7/10NPP**==: WHY?  
+**The Camera Eye**: Yeah why?  
 Mecha Dragon2: untrustworthy  
-7/10 Tone: You almost made the mistake of leading him to us. We can't have that happen.  
+==**7/10 Tone**==: You almost made the mistake of leading him to us. We can't have that happen.  
 The Camera Eye: Oh...I see, makes sense  
-7/10 Tone: We can discuss more about this in the PR. For now, let's keep the silence.  
-7/10NPP: FINE  
-The Camera Eye: Good idea, it's a safe bet...
+==**7/10 Tone**==: We can discuss more about this in the PR. For now, let's keep the silence.  
+==**7/10NPP**==: FINE  
+**The Camera Eye**: Good idea, it's a safe bet...
 
 ---
 
 AnonymousUser: @7/10 Tone  
 AnonymousUser: yeah  
 AnonymousUser: I was trying to do a summoning spell  
-The Camera Eye: \[attempt failed] LOL  
+**The Camera Eye**: \[attempt failed] LOL  
 AnonymousUser: @ZONE @7/10 Tone @710NPP  
 AnonymousUser: I summon thee  
-The Camera Eye: I think that's going to annoy them more than anything...  
+**The Camera Eye**: I think that's going to annoy them more than anything...  
 AnonymousUser: At least I have their attention  
 AnonymousUser: which =  
 AnonymousUser: more clues  
 AnonymousUser: = more answer  
-7/10 Tone: Why am I getting pinged?  
-The Camera Eye: Oh no...  
+==**7/10 Tone**==: Why am I getting pinged?  
+**The Camera Eye**: Oh no...  
 AnonymousUser: bwahaha it worked  
 AnonymousUser: the triple summoning spell!  
 AnonymousUser: Kepler
-The Camera Eye: Wait did actually work?  
+**The Camera Eye**: Wait did actually work?  
 AnonymousUser: What happens when the timer reaches 0  
-7/10 Tone: This should not be pinging me.  
-The Camera Eye: Wait no...he's talking about something else  
+==**7/10 Tone**==: This should not be pinging me.  
+**The Camera Eye**: Wait no...he's talking about something else  
 AnonymousUser: ah your the person who created the livestream  
 AnonymousUser: What, you don't like my summoning spell?  
-7/10 Tone: What do you want?  
+==**7/10 Tone**==: What do you want?  
 AnonymousUser: What happens when the timer reaches 0  
 AnonymousUser: do bombs explode?  
-The Camera Eye: He's not going to tell you  
-7/10 Tone: I can't tell you.  
+**The Camera Eye**: He's not going to tell you  
+==**7/10 Tone**==: I can't tell you.  
 AnonymousUser: damnit  
 AnonymousUser: uh quick  
 AnonymousUser: while hes here  
-The Camera Eye: Yeah.  
+**The Camera Eye**: Yeah.  
 AnonymousUser: camera think up of stuff  
-7/10 Tone: No, there are no bombs.
-The Camera Eye: Thanks
-The Camera Eye: Aww man I wanted to something explosions
+==**7/10 Tone**==: No, there are no bombs.
+**The Camera Eye**: Thanks
+**The Camera Eye**: Aww man I wanted to something explosions
 Anonymous User: 7/10 tone uh what is the graph of two cones on a 3d Place using Cylander-type Coordinates
-The Camera Eye: Is that important?
+**The Camera Eye**: Is that important?
 AnonymousUser: im trying to get him to stay on longer
-The Camera Eye: Oh...
-The Camera Eye: Kepler who is ZONE and what does he want from me?
+**The Camera Eye**: Oh...
+**The Camera Eye**: Kepler who is ZONE and what does he want from me?
 AnonymousUser: Kepler, is ZONE working for TTH or REN
 AnonymousUser: Who is Amera?
-7/10 Tone: I don't know who that is.
+==**7/10 Tone**==: I don't know who that is.
 AnonymousUser: Amera?
-The Camera Eye: Which one?
+**The Camera Eye**: Which one?
 AnonymousUser: You don't know who Amera is?
 AnonymousUser: jno way amera is a rper
-The Camera Eye: That doesn't make any sense tho?
-The Camera Eye: Why would she do that?
-7/10 Tone: I don't know who both of those people are, all who are working under REN right now is me and INDI  
-The Camera Eye: WAIT A MINUTE  
-The Camera Eye: IS ZONE PART OF THE REBELS??????  
-The Camera Eye: We haven't seen them before  
-The Camera Eye: Kepler do you know who the rebels are?  
+**The Camera Eye**: That doesn't make any sense tho?
+**The Camera Eye**: Why would she do that?
+==**7/10 Tone**==: I don't know who both of those people are, all who are working under REN right now is me and INDI  
+**The Camera Eye**: WAIT A MINUTE  
+**The Camera Eye**: IS ZONE PART OF THE REBELS??????  
+**The Camera Eye**: We haven't seen them before  
+**The Camera Eye**: Kepler do you know who the rebels are?  
 AnonymousUser: are REN rebels  
-7/10 Tone: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.  
+==**7/10 Tone**==: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.  
 AnonymousUser: why was INDI scared of REN and TTH?  
 AnonymousUser: and, of course  
 AnonymousUser: what is TTH and why do they hate each other  
-7/10 Tone: Sorry, but I have more important things to deal with now.  
-The Camera Eye: Okay, teaser  
-The Camera Eye: Go enjoy live.  
-The Camera Eye: \*life
+==**7/10 Tone**==: Sorry, but I have more important things to deal with now.  
+**The Camera Eye**: Okay, teaser  
+**The Camera Eye**: Go enjoy live.  
+**The Camera Eye**: \*life
 
 ---
 
