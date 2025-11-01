@@ -1,9 +1,6 @@
 ---
 title: SERVER 01
 tags:
-  - component
-  - Meta
-  - documentation
 ---
 
 ```infobox

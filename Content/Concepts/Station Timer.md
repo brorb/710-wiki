@@ -1,7 +1,6 @@
 ---
 title: Station Timer
 tags:
-  - component
 ---
 ```infobox
 Title: Station Timer

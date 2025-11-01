@@ -1,7 +1,6 @@
 ---
 title: The Transmitter
 tags:
-  - component
 ---
 ```infobox
 Title: The Transmitter

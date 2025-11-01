@@ -2,7 +2,6 @@
 title: INDI
 tags:
   - characters
-  - component
 ---
 ```infobox
 Title: INDI

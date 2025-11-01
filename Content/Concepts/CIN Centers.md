@@ -1,9 +1,7 @@
 ---
 title: CIN Centers
 tags:
-  - component
   - location
-  - documentation
 ---
 ```infobox
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]

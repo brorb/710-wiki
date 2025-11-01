@@ -1,7 +1,6 @@
 ---
 title: The Eyes
 tags:
-  - component
 ---
 ```infobox
 Title: The Eyes

@@ -2,8 +2,6 @@
 title: 7/10 Tone
 tags:
   - YouTube
-  - documentation
-  - component
 ---
 ```infobox
 Title: 7/10 Tone

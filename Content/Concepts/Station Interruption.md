@@ -1,7 +1,6 @@
 ---
 title: Station Interruption
 tags:
-  - component
 ---
 ```infobox
 Title: Station Interruption

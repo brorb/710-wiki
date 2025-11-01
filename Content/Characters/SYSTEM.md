@@ -2,9 +2,6 @@
 title: SYSTEM
 tags:
   - characters
-  - component
-  - documentation
-  - Meta
 ---
 ```infobox
 Title: SYSTEM
