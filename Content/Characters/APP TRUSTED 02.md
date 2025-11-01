@@ -9,8 +9,7 @@ According to [[SYSTEM]], the name came from a different software program.
 
 ```media-box
 Media: [[Different software named APP TRUSTED 02 (SERVER 01).png]]
-Alt: Placeholder blueprint artwork
-Caption: Use Wrap: false when you want the figure to stand alone.
+Alt: Different software named APP TRUSTED 02
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
