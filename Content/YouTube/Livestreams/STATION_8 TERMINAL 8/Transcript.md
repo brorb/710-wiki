@@ -106,258 +106,255 @@
 
 **The Camera Eye**: What is BTT?  
 **The Camera Eye**: I'm very much calm  
-AmeraM: |||
+**AmeraM**: |||
 ==**7/10 Tone**==: I FIXED THE MODERATOR.  
 ==**7/10NPP**==: indi  
 ==**7/10 Tone**==: I REALLY DID. IT'S NOT GOING TO PULL FROM ANYWHERE IMPORTANT.  
 ==**7/10NPP**==: Fine.  
-SYSTEMterminal8: RECONNECTED  
-SYSTEMterminal8: SYSTEM_TERMINAL_8  
-SYSTEMterminal8: STATUS: ACTIVE  
-SYSTEMterminal8: SYSTEM ID: 478829  
-SYSTEMterminal8: RETURNING LIVE VALUES AS <FALSE\>  
+==**SYSTEMterminal8**==: RECONNECTED  
+==**SYSTEMterminal8**==: SYSTEM_TERMINAL_8  
+==**SYSTEMterminal8**==: STATUS: ACTIVE  
+==**SYSTEMterminal8**==: SYSTEM ID: 478829  
+==**SYSTEMterminal8**==: RETURNING LIVE VALUES AS <FALSE\>  
 ==**7/10NPP**==: Good.  
-AmeraM: |30|
+**AmeraM**: |30|
 
-AnonymousUser: @SYSTEMterminal8 you have connection with INDI right  
-AnonymousUser: Can you give me access to your code  
-AnonymousUser: Don't worry  
-AnonymousUser: I won't do anything  
-AnonymousUser: too bad  
-BRORBIT: INDI, its all falling apart, you may have to abort the project. your team will be fine, don't worry. you dont have to purge. just give over control  
-~~AmeraM: Quiet~~
-AnonymousUser: Amera, that's not nice!
-
-BRORBIT: INDI, its all falling apart, you may have to abort the project. your team will be fine, don't worry. you dont have to purge. just give over control  
-AnonymousUser: Amera, that's not nice!  
-AnonymousUser: OH and btw can you give me access to INDI's code  
+**AnonymousUser**: @SYSTEMterminal8 you have connection with INDI right  
+**AnonymousUser**: Can you give me access to your code  
+**AnonymousUser**: Don't worry  
+**AnonymousUser**: I won't do anything  
+**AnonymousUser**: too bad  
+**BRORBIT**: INDI, its all falling apart, you may have to abort the project. your team will be fine, don't worry. you dont have to purge. just give over control  
+~~**AmeraM**: Quiet~~
+**AnonymousUser**: Amera, that's not nice!
+**AnonymousUser**: OH and btw can you give me access to INDI's code  
 AmeraM: |27|  
-AnonymousUser: I'll give you 50k credits  
-BRORBIT: AmeraM, you do not have Indis best wishes in mind. I am on their side. stay away or we'll involve TTH and REN at the same time  
+**AnonymousUser**: I'll give you 50k credits  
+**BRORBIT**: AmeraM, you do not have Indis best wishes in mind. I am on their side. stay away or we'll involve TTH and REN at the same time  
 ==**SYSTEMterminal8**==: WARNING: MALICIOUS COMMENTS DETECTED SENDING R5-REQUEST  
-AnonymousUser: Hey to me or brorbit  
-AnonymousUser: I'm innocent  
-AnonymousUser: trust me  
-The Camera Eye: I think it's talking about AmeraM  
+**AnonymousUser**: Hey to me or brorbit  
+**AnonymousUser**: I'm innocent  
+**AnonymousUser**: trust me  
+**The Camera Eye**: I think it's talking about AmeraM  
 ==**SYSTEMterminal8**==: R5-REQUEST DENIED RESUMING STANDARD
 
-7/10NPP: What is an R5 request indi?  
-AnonymousUser: yeah INDI  
-The Camera Eye: Wait you don't know 710NPP?  
-AnonymousUser: Uh this terminal thing is indi's idea  
-AnonymousUser: Not NPP  
-AnonymousUser: @7/10 Tone Tell us  
-The Camera Eye: I know, but ... oh nevermind  
-AnonymousUser: what's a R5 Request  
-The Camera Eye: Google it?  
-AnonymousUser: INDI just casually made a AI to moderate a livestream chat  
+==**7/10NPP**==: What is an R5 request indi?  
+**AnonymousUser**: yeah INDI  
+**The Camera Eye**: Wait you don't know 710NPP?  
+**AnonymousUser**: Uh this terminal thing is indi's idea  
+**AnonymousUser**: Not NPP  
+**AnonymousUser**: @7/10 Tone Tell us  
+**The Camera Eye**: I know, but ... oh nevermind  
+**AnonymousUser**: what's a R5 Request  
+**The Camera Eye**: Google it?  
+**AnonymousUser**: INDI just casually made a AI to moderate a livestream chat  
 ==**7/10 Tone**==: R5 IS A PROTOCAL TO INFORM DELETION OF THE WHOLE LIVE. I DENIDE IT TO DO THAT.  
-AnonymousUser: Indi  
-AnonymousUser: why is your spelling so bad  
-Terrarium: This is still going on?  
-The Camera Eye: You mean this live?  
-AnonymousUser: IT's Denied  
-AnonymousUser: What kinda AI can't spell Denied  
-AnonymousUser: I'm getting ChatGPT
+**AnonymousUser**: Indi  
+**AnonymousUser**: why is your spelling so bad  
+**Terrarium**: This is still going on?  
+**The Camera Eye**: You mean this live?  
+**AnonymousUser**: IT's Denied  
+**AnonymousUser**: What kinda AI can't spell Denied  
+**AnonymousUser**: I'm getting ChatGPT
 
-AmeraM: keep track  
+**AmeraM**: keep track  
 ==**7/10NPP**==: indi, why don't you turn off the moderator for a bit.  
 ==**7/10 Tone**==: FINE.
 
-AnonymousUser: I will give you 100M credits  
-The Camera Eye: Oh now you're just bluffing  
-AnonymousUser: Yes, 100 Million Credits  
-SYSTEMterminal8: Disconnected  
+**AnonymousUser**: I will give you 100M credits  
+**The Camera Eye**: Oh now you're just bluffing  
+**AnonymousUser**: Yes, 100 Million Credits  
+==**SYSTEMterminal8**==: Disconnected  
 ~~AmeraM: offer~~
-AnonymousUser: oh shoot  
-AnonymousUser: wdid Amera just say Offer  
-The Camera Eye: You caught that?  
-AmeraM: |20|
+**AnonymousUser**: oh shoot  
+**AnonymousUser**: wdid Amera just say Offer  
+**The Camera Eye**: You caught that?  
+**AmeraM**: |20|
 
-AmeraM: keep track  
-AnonymousUser: @7/10 Tone What happens when the tmer hits 0  
-AnonymousUser: will the silos go boom  
-AnonymousUser: 100 Billion Credits on the Line, INDI  
-The Camera Eye: Stream dead  
-The Camera Eye: Things got out of hand...  
-AmeraM: deficit  
-AnonymousUser: hey Amera  
-AnonymousUser: 2Trillon Creds if you tell me what happens when the timer hit's 0  
-AmeraM: |17|  
-AnonymousUser: Also when I searched up your prof pick why is it a NSFW image  
-The Camera Eye: An image of WHAT?  
-The Camera Eye: Actually don't type that...I think  
-~~Terrarium: What are you doing here Amera~~  
-~~Terrarium: Leave~~  
-AnonymousUser: if Mod doesn't delete it it's fine  
-The Camera Eye: This is getting insane...  
-AmeraM: stratus
+**AmeraM**: keep track  
+**AnonymousUser**: @7/10 Tone What happens when the tmer hits 0  
+**AnonymousUser**: will the silos go boom  
+**AnonymousUser**: 100 Billion Credits on the Line, INDI  
+**The Camera Eye**: Stream dead  
+**The Camera Eye**: Things got out of hand...  
+**AmeraM**: deficit  
+**AnonymousUser**: hey Amera  
+**AnonymousUser**: 2Trillon Creds if you tell me what happens when the timer hit's 0  
+**AmeraM**: |17|  
+**AnonymousUser**: Also when I searched up your prof pick why is it a NSFW image  
+**The Camera Eye**: An image of WHAT?  
+**The Camera Eye**: Actually don't type that...I think  
+~~**Terrarium**: What are you doing here Amera~~  
+~~**Terrarium**: Leave~~  
+**AnonymousUser**: if Mod doesn't delete it it's fine  
+**The Camera Eye**: This is getting insane...  
+**AmeraM**: stratus
 
-Terrarium: I don't know how you find this, I'm getting out of here  
-Terrarium: It scares me  
-AnonymousUser: @Terrarium coward  
-AnonymousUser: The world will end when the timer reaches 0 right  
-AnonymousUser: so we should stop it  
-~~AmeraM: sit~~  
-~~AmeraM: stay calm~~  
-The Camera Eye: What are we dogs?  
+**Terrarium**: I don't know how you find this, I'm getting out of here  
+**Terrarium**: It scares me  
+**AnonymousUser**: @Terrarium coward  
+**AnonymousUser**: The world will end when the timer reaches 0 right  
+**AnonymousUser**: so we should stop it  
+~~**AmeraM**: sit~~  
+~~**AmeraM**: stay calm~~  
+**The Camera Eye**: What are we dogs?  
 ~~AmeraM: watch the screen~~  
-The Camera Eye: You're not the boss of me.
-AmeraM: |8|  
-~~AmeraM: Apology~~
-The Camera Eye: I'm keeping track  
-The Camera Eye: Thanks, I accept your apology AmeraM  
-AmeraM: Stand-by
-7/10NPP: Why does that keep happening? indi, stop putting our entries in there.  
-7/10 Tone: WHY?  
-7/10NPP: It's not working for that.  
-7/10 Tone: OKAY, I'LL TRY TO FIND A DIFFERENT METHOD.  
-AmeraM: |57|  
-AnonymousUser: ooh technical issue my favorite  
-AmeraM: deactive  
-AnonymousUser: Tone tur nff the timer  
-AmeraM: |56|  
-AnonymousUser: Amera what numbers are you putting in  
+**The Camera Eye**: You're not the boss of me.
+**AmeraM**: |8|  
+~~**AmeraM**: Apology~~
+**The Camera Eye**: I'm keeping track  
+**The Camera Eye**: Thanks, I accept your apology AmeraM  
+**AmeraM**: Stand-by
+==**7/10NPP**==: Why does that keep happening? indi, stop putting our entries in there.  
+==**7/10 Tone**==: WHY?  
+==**7/10NPP**==: It's not working for that.  
+==**7/10 Tone**==: OKAY, I'LL TRY TO FIND A DIFFERENT METHOD.  
+**AmeraM**: |57|  
+**AnonymousUser**: ooh technical issue my favorite  
+**AmeraM**: deactive  
+**AnonymousUser**: Tone tur nff the timer  
+**AmeraM**: |56|  
+**AnonymousUser**: Amera what numbers are you putting in  
 AnonymousUser: is this code to turn off the timer?  
-The Camera Eye: We're supposed to keep track of them I think  
-AmeraM: good night  
-AnonymousUser: @7/10 Tone What is your end-game goal, INDI?
-AnonymousUser: You working with Russia, right?  
-AnonymousUser: Russia or America?  
-AnonymousUser: Both Sides?  
-AnonymousUser: Or one?  
-AnonymousUser: Or none?  
-The Camera Eye: I think this is the scariest ARG ever.  
-~~AmeraM: You~~
-~~AmeraM: Retired, effective immediately~~
-The Camera Eye: Is AmeraM mad at me?  
-AmeraM: good night  
-The Camera Eye: For real this time?
+**The Camera Eye**: We're supposed to keep track of them I think  
+**AmeraM**: good night  
+**AnonymousUser**: @7/10 Tone What is your end-game goal, INDI?
+**AnonymousUser**: You working with Russia, right?  
+**AnonymousUser**: Russia or America?  
+**AnonymousUser**: Both Sides?  
+**AnonymousUser**: Or one?  
+**AnonymousUser**: Or none?  
+**The Camera Eye**: I think this is the scariest ARG ever.  
+~~**AmeraM**: You~~
+~~**AmeraM**: Retired, effective immediately~~
+**The Camera Eye**: Is AmeraM mad at me?  
+**AmeraM**: good night  
+**The Camera Eye**: For real this time?
 
 ---
 
-AnonymousUser: Lunar, you'll never get my Number One Title
-The Camera Eye: Who's Lunar?
+**AnonymousUser**: Lunar, you'll never get my Number One Title
+**The Camera Eye**: Who's Lunar?
 ~~AmeraM: |35|~~
-The Camera Eye: Oh God here's AmeraM again
-The Camera Eye: Aaand she's gone
+**The Camera Eye**: Oh God here's AmeraM again
+**The Camera Eye**: Aaand she's gone
 ~~AmeraM: \[|1|]~~
 
 ---
 
-AnonymousUser: Read the posts  
-The Camera Eye: Oh okay...I'm still um *ahem* "monitoring" the stream by the way  
-The Camera Eye: Smile you're on camera ;)  
-AnonymousUser: My camera has slider that's closed  
-The Camera Eye: I mean screen recording.  
-The Camera Eye: I don't want INDI or NPP to know  
-AnonymousUser: shoot  
-AnonymousUser: ...  
-AnonymousUser: So uh  
-~~The Camera Eye: Nah, I won't worry about it LOL~~
-^==(chat error, didn't go through)==^
+**AnonymousUser**: Read the posts  
+**The Camera Eye**: Oh okay...I'm still um *ahem* "monitoring" the stream by the way  
+**The Camera Eye**: Smile you're on camera ;)  
+**AnonymousUser**: My camera has slider that's closed  
+**The Camera Eye**: I mean screen recording.  
+**The Camera Eye**: I don't want INDI or NPP to know  
+**AnonymousUser**: shoot  
+**AnonymousUser**: ...  
+**AnonymousUser**: So uh  
+~~**The Camera Eye**: Nah, I won't worry about it LOL~~
+^*(chat error, didn't go through)*^
 
 ---
 # [[SYSTEM|SYSTEMterminal8]] reconnects and leaks PR logged into accounts
 
-SYSTEMterminal8: RECONNECTING
-AnonymousUser: System  
-AnonymousUser: welcome back  
-SYSTEMterminal8: SYSTEM_TERMINAL_8  
-The Camera Eye: Uh oh it's the mod again...  
-AnonymousUser: Can you tell me aabout the Private Room?  
-The Camera Eye: The mod is an AI it won't talk  
-AnonymousUser: ok  
-AnonymousUser: @SYSTEMterminal8 it happens  
-ZONE: AM  
-AnonymousUser: new guy  
-The Camera Eye: AM like from I have no mouth and I must scream?  
-Mecha Dragon2: Could be the time, or it could be Amera, idk
+==**SYSTEMterminal8**==: RECONNECTING
+**AnonymousUser**: System  
+**AnonymousUser**: welcome back  
+==**SYSTEMterminal8**==: SYSTEM_TERMINAL_8  
+**The Camera Eye**: Uh oh it's the mod again...  
+**AnonymousUser**: Can you tell me aabout the Private Room?  
+**The Camera Eye**: The mod is an AI it won't talk  
+**AnonymousUser**: ok  
+**AnonymousUser**: @SYSTEMterminal8 it happens  
+**ZONE**: AM  
+**AnonymousUser**: new guy  
+**The Camera Eye**: AM like from I have no mouth and I must scream?  
+**Mecha Dragon2**: Could be the time, or it could be Amera, idk
 
-SYSTEMterminal8: RETURNING LOGGED-INTO-ACCOUNTS  
-SYSTEMterminal8: >>IN_DI.SERVERTYPE  
-AnonymousUser: INDI!!!  
-SYSTEMterminal8: >>K3P13R  
-The Camera Eye: LOL LEAKED  
-SYSTEMterminal8: >>SYSTEMterminal8  
-AnonymousUser: nooooooooooo  
-AnonymousUser: uh oh  
-AnonymousUser: Kepler?  
-AnonymousUser: NPP  
-The Camera Eye: WAIT DON'T SAY THAT ANONYMOUS  
-SYSTEMterminal8: >>data_messagesystem05  
-AnonymousUser: yeah  
-AnonymousUser: we got a message?  
-The Camera Eye: From where? Who?  
-SYSTEMterminal8: DISCONNECTING  
-AnonymousUser: noooo  
-Mecha Dragon2: sad  
-The Camera Eye: Shows up, refusing to elaborate  
-The Camera Eye: \*refuses
+==**SYSTEMterminal8**==: RETURNING LOGGED-INTO-ACCOUNTS  
+==**SYSTEMterminal8**==: >>IN_DI.SERVERTYPE  
+**AnonymousUser**: INDI!!!  
+==**SYSTEMterminal8**==: >>K3P13R  
+**The Camera Eye**: LOL LEAKED  
+==**SYSTEMterminal8**==: >>SYSTEMterminal8  
+**AnonymousUser**: nooooooooooo  
+**AnonymousUser**: uh oh  
+**AnonymousUser**: Kepler?  
+**AnonymousUser**: NPP  
+**The Camera Eye**: WAIT DON'T SAY THAT ANONYMOUS  
+==**SYSTEMterminal8**==: >>data_messagesystem05  
+**AnonymousUser**: yeah  
+**AnonymousUser**: we got a message?  
+**The Camera Eye**: From where? Who?  
+==**SYSTEMterminal8**==: DISCONNECTING  
+**AnonymousUser**: noooo  
+**Mecha Dragon2**: sad  
+**The Camera Eye**: Shows up, refusing to elaborate  
+**The Camera Eye**: \*refuses
 
-The Camera Eye: Wait a minute... I think it just revealed the private room.  
-The Camera Eye: The logged into accounts could be that.  
-AnonymousUser: ohhhhh  
-AnonymousUser: no wait  
-AnonymousUser: I getit  
-AnonymousUser: It just said all the accounts that are logged into the private room  
-AnonymousUser: INDI  
-AnonymousUser: NPP  
-AnonymousUser: the Mod  
-AnonymousUser: and a message  
-The Camera Eye: Uh oh exploitable.  
-The Camera Eye: Keep an eye out for the mod LOL
+**The Camera Eye**: Wait a minute... I think it just revealed the private room.  
+**The Camera Eye**: The logged into accounts could be that.  
+**AnonymousUser**: ohhhhh  
+**AnonymousUser**: no wait  
+**AnonymousUser**: I getit  
+**AnonymousUser**: It just said all the accounts that are logged into the private room  
+**AnonymousUser**: INDI  
+**AnonymousUser**: NPP  
+**AnonymousUser**: the Mod  
+**AnonymousUser**: and a message  
+**The Camera Eye**: Uh oh exploitable.  
+**The Camera Eye**: Keep an eye out for the mod LOL
 
-7/10NPP: Indi  
-7/10 Tone: YES?  
+==**7/10NPP**==: Indi  
+==**7/10 Tone**==: YES?  
 AnonymousUser: \*Hyperventalating*  
-7/10NPP: The moderator you had.  
+==**7/10NPP**==: The moderator you had.  
 AnonymousUser: It told me your username, NPP  
-7/10 Tone: WHAT ABOUT IT?  
+==**7/10 Tone**==: WHAT ABOUT IT?  
 AnonymousUser: K3P13R  
-7/10NPP: WHAT? INDI!  
+==**7/10NPP**==: WHAT? INDI!  
 AnonymousUser: data_messagesystem05  
-The Camera Eye: WAIT WHAT ARE YOU DOING ANONYMOUS  
+**The Camera Eye**: WAIT WHAT ARE YOU DOING ANONYMOUS  
 Mecha Dragon2: oh no  
-7/10 Tone: WHAT IS IT? HOW DID THEY GET THAT?  
+==**7/10 Tone**==: WHAT IS IT? HOW DID THEY GET THAT?  
 AnonymousUser: eheheheh  
-The Camera Eye: OMG  
+**The Camera Eye**: OMG  
 AnonymousUser: don't ask  
 AnonymousUser: I'll tell you for 200Qt Credits, INDI  
 Mecha Dragon2: devious  
-The Camera Eye: You're evil Anonymous
+**The Camera Eye**: You're evil Anonymous
 
-7/10NPP: THE MODERATOR LOGGED INTO THE PR AND DISCONNECTED!  
+==**7/10NPP**==: THE MODERATOR LOGGED INTO THE PR AND DISCONNECTED!  
 Mecha Dragon2: Or else!  
 AnonymousUser: INDI I have ur username too  
-The Camera Eye: STOP  
-The Camera Eye: PLEASE  
-7/10 Tone: HOW DID IT DO THAT?  
-The Camera Eye: It reconnected...  
-7/10NPP: I TOLD YOU IT WAS A BAD IDEA!  
+**The Camera Eye**: STOP  
+**The Camera Eye**: PLEASE  
+==**7/10 Tone**==: HOW DID IT DO THAT?  
+**The Camera Eye**: It reconnected...  
+==**7/10NPP**==: I TOLD YOU IT WAS A BAD IDEA!  
 AnonymousUser: It was a great idea  
-7/10 Tone: DAMIN IT.  
+==**7/10 Tone**==: DAMIN IT.  
 Mecha Dragon2: We're not playing games, INDI!  
 Mecha Dragon2: HAND IT OVER
 
 ---
 
-7/10 Tone: IF ANYONE ARCHIVES THIS, JUST KNOW THAT ME AND KEPLER ARE THE ONLY TWO WORKING WITH THE SIGNALS. NOBODY ELSE.  
-7/10 Tone: AND MAYBE ONE OF THE MODERATORS MIGHT ALSO HAVE ACCESS.  
-The Camera Eye: I've been found out...  
-The Camera Eye: INDI how did you know? LOL  
-The Camera Eye: Don't tell me you're in the Discord.  
-7/10 Tone: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
-The Camera Eye: Analytics Tab? You mean the Studio?  
-7/10 Tone: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.  
-The Camera Eye: Is Travis dead by now?  
-The Camera Eye: Was he infected with the mold?  
-7/10 Tone: I DON'T KNOW.  
-The Camera Eye: Okay.  
-The Camera Eye: So there's a possibility he COULD be alive still?  
-7/10 Tone: SORRY, I CAN'T CONTINUE THIS TOPIC.  
-The Camera Eye: Okay, that's fine INDI.  
-The Camera Eye: Good luck on your signal transfer :)
+==**7/10 Tone**==: IF ANYONE ARCHIVES THIS, JUST KNOW THAT ME AND KEPLER ARE THE ONLY TWO WORKING WITH THE SIGNALS. NOBODY ELSE.  
+==**7/10 Tone**==: AND MAYBE ONE OF THE MODERATORS MIGHT ALSO HAVE ACCESS.  
+**The Camera Eye**: I've been found out...  
+**The Camera Eye**: INDI how did you know? LOL  
+**The Camera Eye**: Don't tell me you're in the Discord.  
+==**7/10 Tone**==: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
+**The Camera Eye**: Analytics Tab? You mean the Studio?  
+==**7/10 Tone**==: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.  
+**The Camera Eye**: Is Travis dead by now?  
+**The Camera Eye**: Was he infected with the mold?  
+==**7/10 Tone**==: I DON'T KNOW.  
+**The Camera Eye**: Okay.  
+**The Camera Eye**: So there's a possibility he COULD be alive still?  
+==**7/10 Tone**==: SORRY, I CAN'T CONTINUE THIS TOPIC.  
+**The Camera Eye**: Okay, that's fine INDI.  
+**The Camera Eye**: Good luck on your signal transfer :)
 
 ---
 
@@ -374,13 +371,13 @@ SYSTEMterminal8: L
 SYSTEMterminal8: L  
 SYSTEMterminal8: O  
 Mecha Dragon2: HELLO  
-The Camera Eye: HELLO SYSTEMTERMINAL8  
+**The Camera Eye**: HELLO SYSTEMTERMINAL8  
 SYSTEMterminal8: :INFECT:>\  
 7/10 Tone: WHAT? WHO ARE YOU?  
 SYSTEMterminal8: Yu know xactly Wh I am.  
 Mecha Dragon2: Gotta keep control of the mod Indi  
-The Camera Eye: Uh oh the mod has gone rogue again  
-The Camera Eye: I think it got hacked?  
+**The Camera Eye**: Uh oh the mod has gone rogue again  
+**The Camera Eye**: I think it got hacked?  
 ~~ZONE: RECORDED.~~  
 7/10 Tone: I DON'T I ONLY KNOW THAT I HAVE TO DELETE YOU.
 SYSTEMterminal8: You're not going to do that.  
@@ -388,88 +385,88 @@ SYSTEMterminal8: You're not going to do that.
 SYSTEMterminal8: What signal terminal are you? I love this little thing you have going.  
 ~~ZONE: RECORDED.~~  
 7/10 Tone: WAIT, YOUR NOT HIM ARE YOU?
-The Camera Eye: OH SHIT  
-The Camera Eye: Is he the bad guy INDI?  
+**The Camera Eye**: OH SHIT  
+**The Camera Eye**: Is he the bad guy INDI?  
 ZONE: RECORDED.  
 abe: oooo coupels drama  
-The Camera Eye: What are you recording ZONE?  
+**The Camera Eye**: What are you recording ZONE?  
 ZONE: LIVESTREAM INFORMATION  
-The Camera Eye: Is it important?  
+**The Camera Eye**: Is it important?  
 ZONE: KNOWN INFORMATION IS THE GOAL  
-The Camera Eye: What known information? What's publicly available?  
-The Camera Eye: or is it private?  
+**The Camera Eye**: What known information? What's publicly available?  
+**The Camera Eye**: or is it private?  
 ZONE: WHAT WE RECEIVE
 7/10NPP: Indi  
-The Camera Eye: 7/10NPP DO SOMETHING  
+**The Camera Eye**: 7/10NPP DO SOMETHING  
 Mecha Dragon2: This is too much  
 7/10 Tone: I KNOW WHAT THAT WAS.  
 7/10 Tone: IT WAS HIM.  
-The Camera Eye: OH GOD NO
-The Camera Eye: ZONE PLEASE DON'T KILL INDI HE'S MY FAVORITE CHARACTER  
+**The Camera Eye**: OH GOD NO
+**The Camera Eye**: ZONE PLEASE DON'T KILL INDI HE'S MY FAVORITE CHARACTER  
 7/10NPP: Did he hijack the moderator?  
-The Camera Eye: YES  
+**The Camera Eye**: YES  
 7/10 Tone: MOST LIKELY.  
-The Camera Eye: Who is He INDI? Who does he work for?  
+**The Camera Eye**: Who is He INDI? Who does he work for?  
 ZONE: RECORDED.  
-The Camera Eye: Actually don't type that.  
-The Camera Eye: He's watching now...  
+**The Camera Eye**: Actually don't type that.  
+**The Camera Eye**: He's watching now...  
 Mecha Dragon2: Do you work for anyone ZONE?  
-The Camera Eye: @ZONE what do you want from INDI?  
-The Camera Eye: What is your goal ZONE?  
+**The Camera Eye**: @ZONE what do you want from INDI?  
+**The Camera Eye**: What is your goal ZONE?  
 ZONE: RECENTLY DESIGNED TO KEEP TRACK OF THIS PROJECT  
-The Camera Eye: Recently? Yeah like July 7th recently  
-The Camera Eye: I saw your profile  
+**The Camera Eye**: Recently? Yeah like July 7th recently  
+**The Camera Eye**: I saw your profile  
 ZONE: NO AFFILIATION TO PROGRAM  
-The Camera Eye: Liar.  
-The Camera Eye: You're a terrible liar ZONE  
+**The Camera Eye**: Liar.  
+**The Camera Eye**: You're a terrible liar ZONE  
 ZONE: OUTSIDE CREATION
 ZONE: CANNOT LIE  
-The Camera Eye: Oh really? Then why did INDI recognize you?  
+**The Camera Eye**: Oh really? Then why did INDI recognize you?  
 ZONE: COINCIDENCE  
-The Camera Eye: Naaah man.  
-The Camera Eye: That's a hell of conincidence  
+**The Camera Eye**: Naaah man.  
+**The Camera Eye**: That's a hell of conincidence  
 ZONE: NO ACCESS TO SIGNALS  
-The Camera Eye: I'm going to keep quiet now, I don't trust you.  
+**The Camera Eye**: I'm going to keep quiet now, I don't trust you.  
 7/10 Tone: okay, this is a lot of different stuff.  
 Mecha Dragon2: Yeah  
-The Camera Eye: Wait, no all caps this time.  
+**The Camera Eye**: Wait, no all caps this time.  
 Mecha Dragon2: What's going on  
-The Camera Eye: You're not INDI anymore are you?  
-The Camera Eye: Where's INDI?  
+**The Camera Eye**: You're not INDI anymore are you?  
+**The Camera Eye**: Where's INDI?  
 ZONE: WAIT AND SEE  
-The Camera Eye: Okay.  
+**The Camera Eye**: Okay.  
 7/10 Tone: Yeah, this is Kepler.  
-The Camera Eye: Oh, figured.  
+**The Camera Eye**: Oh, figured.  
 ZONE: ANOTHER COINCIDENCE  
-The Camera Eye: Can you get rid of ZONE please? He's giving me bad vibes
+**The Camera Eye**: Can you get rid of ZONE please? He's giving me bad vibes
 7/10 Tone: Indi is going to go kill the bot.  
-The Camera Eye: Thanks.  
+**The Camera Eye**: Thanks.  
 Mecha Dragon2: I don't know, I feel like we could get something from it  
-The Camera Eye: I dunno, he tends to lie a lot.  
+**The Camera Eye**: I dunno, he tends to lie a lot.  
 Mecha Dragon2: Yeah true  
-The Camera Eye: And he's being vague too  
+**The Camera Eye**: And he's being vague too  
 7/10 Tone: Maybe? I don't have a lot of control on this side. Travis locked a lot of stuff so indi couldn't do anything stupid.  
-The Camera Eye: Wait what...  
-The Camera Eye: ZONE is in the channel?  
+**The Camera Eye**: Wait what...  
+**The Camera Eye**: ZONE is in the channel?  
 Mecha Dragon2: It said it was an outside program  
 Mecha Dragon2: I kinda believe it  
-The Camera Eye: Oh wait nevermind I understand what he means now  
-The Camera Eye: He might not be able to kill the bot  
-The Camera Eye: Travis is gone and I dunno if Kepler has access to the controls  
-The Camera Eye: Alerta?  
+**The Camera Eye**: Oh wait nevermind I understand what he means now  
+**The Camera Eye**: He might not be able to kill the bot  
+**The Camera Eye**: Travis is gone and I dunno if Kepler has access to the controls  
+**The Camera Eye**: Alerta?  
 Mecha Dragon2: It does seem to respond at least  
 Mecha Dragon2: ZONE what does AM mean  
-The Camera Eye: Don't ask.
-The Camera Eye: It's most likely a person named AmeraM  
+**The Camera Eye**: Don't ask.
+**The Camera Eye**: It's most likely a person named AmeraM  
 ZONE: AM IS THE GOAL  
 7/10 Tone: Shit. How did indi manage all of this?  
-The Camera Eye: Oh boy....  
+**The Camera Eye**: Oh boy....  
 Mecha Dragon2: Huh  
-The Camera Eye: Kepler where's INDI? When will he be back?  
+**The Camera Eye**: Kepler where's INDI? When will he be back?  
 ZONE: OUTCOME IS UNKNOWN  
 7/10 Tone: Almost got it  
 Mecha Dragon2: Getting there  
-The Camera Eye: Good.  
+**The Camera Eye**: Good.  
 7/10 Tone: Got it. Damn, that's weird.  
 Mecha Dragon2: Yeah, it's crazy  
 Mecha Dragon2: Nice to have someone responsive here
