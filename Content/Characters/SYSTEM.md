@@ -13,7 +13,7 @@ Caption: SYSTEM's Discord profile
 Appearances: [[STATION_8 TERMINAL 8]] (in chat)
 ```
 
-_SYSTEM_ (also known as _SYSTEMterminal8_) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
+_SYSTEM_ (also known as _SYSTEMterminal8_ on YouTube) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y -->
 
 However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended. It is a crucial character within the [[710 Tone|7/10 Tone]] universe, since it interacts with [[The Sleuths]] directly through their [Discord server](710 Tone Sleuths) and answers question about the lore surrounding [[710 Tone|7/10 Tone]].
 
