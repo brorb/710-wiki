@@ -14,6 +14,8 @@ A Godot game possibly created by [[Travis]], a version of which was featured in 
 
 Within the game's files, there is a .gdc script named "CONVERSATION" that was referenced in "lm-2". Unfortunately, it is empty when it should have contained a conversation between [[Travis]] and a redacted character. According to [[SYSTEM]], the conversation itself was destroyed <!-- discord-cite:cite-mgvl8knp-m5mntx -->, but by whom remains unclear.
 
+According to the game's metadata, it was created on August 14th, 2024.
+
 > [!discord-cite]- Discord citation (4 messages)
 >
 > ```json

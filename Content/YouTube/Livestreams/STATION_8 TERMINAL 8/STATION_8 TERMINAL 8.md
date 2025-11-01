@@ -8,7 +8,7 @@
 
 ## Chat Summary
 
-Livestream proceeds from [[STATION_8 TRIM 90]]. Technical difficulties ([[Station Interruption]]) immediately as it starts, which get fixed by [[INDI]]. Stream resumes as normal into the next following day, viewers point out that there is only two more days left until the [[Station Timer]] ends, to which [[INDI]] says "ONLY 2 DAYS LEFT? WHY DOES IT ALWAYS HAVE TO END LIKE THIS?" in response.
+Livestream proceeds [[STATION_8 TRIM 90]]. Technical difficulties ([[Station Interruption]]) immediately as it starts, which get fixed by [[INDI]]. Stream resumes as normal into the next following day (8th July), viewers point out that there is only two more days left until the [[Station Timer]] ends, to which [[INDI]] says "ONLY 2 DAYS LEFT? WHY DOES IT ALWAYS HAVE TO END LIKE THIS?" in response.
 
 As the stream continues normally with the [[Station Timer]] counting down, a couple of viewers try to get [[Long String]] to work in the chat to no avail. [[INDI]] tells them to stop, saying that it's not going to work, then one of the viewers asks what [[Long String]] is, to which [[INDI]] simply replies with "A TOOL." Viewer asks what [[Long String]]'s use is for, but [[Kepler]] ([[710 NPP|7/10 NPP]]) quickly steps in to stop the conversation from progressing any further, saying "It's a tool used by us now quit talking about it."
 
