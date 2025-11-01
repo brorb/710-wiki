@@ -5,6 +5,7 @@ tags:
   - lore
   - YouTube
   - Discord
+  - important
 ---
 ```infobox
 Title: SYSTEM

@@ -3,6 +3,7 @@ title: REN
 tags:
   - characters
   - lore
+  - important
 ---
 ```infobox
 Title: REN

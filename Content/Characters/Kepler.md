@@ -4,6 +4,7 @@ tags:
   - characters
   - alias
   - lore
+  - important
 ---
 ```infobox
 Title: Kepler

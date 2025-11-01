@@ -3,6 +3,7 @@ tags:
   - lore
   - characters
   - Discord
+  - important
 ---
 A discord app bot created by [[SYSTEM]] for [[SERVER 01]].
 

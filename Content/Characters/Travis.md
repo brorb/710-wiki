@@ -3,6 +3,7 @@ title: Travis
 tags:
   - characters
   - lore
+  - important
 ---
 ```infobox
 Title: Travis
