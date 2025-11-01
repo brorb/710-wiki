@@ -1,6 +1,5 @@
 ---
 tags:
-  - YouTube
   - important
   - lore
   - virus

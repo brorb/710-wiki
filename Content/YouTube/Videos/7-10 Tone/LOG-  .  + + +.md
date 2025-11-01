@@ -1,7 +1,3 @@
----
-tags:
-  - YouTube
----
 
 <iframe 
   src="https://drive.google.com/file/d/1WkPDShInWEOz9KVp93ankdnv2IVLeBZi/preview"  
