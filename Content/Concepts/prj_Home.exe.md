@@ -8,7 +8,7 @@ tags:
 
 **Appearances:**
 [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]
-Community post from 25 June, 2025 (see [[Community Posts]])
+Community post from 25th June 2025 (see [[Community Posts]])
 
 A Godot game possibly created by [[Travis]], a version of which was featured in [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]. This version, which was received from the [[Parting Gifts Puzzle.canvas|Parting Gifts Puzzle]], has a 3D enviroment with a house that the player can enter inside. The house contains a blue room with an IBM computer that plays an SSTV audio file when interacted with, which gives out the mega link for "lm-2" when decoded.
 
