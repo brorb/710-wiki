@@ -96,7 +96,7 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 
 ## Discord Messages
 
-On the 19th July 2025, SYSTEM joined the [Discord server](710 Tone Sleuths) after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
+On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
 Server members were confused as to how interpret the messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called SYSTEMterminal8) to type commands in order to navigate a rudimentary file hierarchy:
 
