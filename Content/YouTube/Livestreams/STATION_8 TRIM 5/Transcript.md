@@ -84,3 +84,5 @@
 **BRORIGIN**: ah connection lost
 ==**7/10 Tone**==: FORBID ANYTHING TO MAKE THIS EASY FOR ME.
 ==**7/10 Tone**==: RESTARTING LIVE
+
+(END OF TRANSCRIPT)
