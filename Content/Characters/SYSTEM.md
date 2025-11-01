@@ -1492,7 +1492,14 @@ However, this wasn't the last time that SYSTEM was heard from, as you can see be
 ---
 ## Friend Requests from The Sleuths
 
-![[Friend request acceptance SYSTEM.png|400]]
+```media-box
+Media: [[Friend request acceptance SYSTEM.png]]
+Alt: A Discord notification saying that SYSTEM accepted a friend request 
+Caption: SYSTEM accepting a friend request on Discord
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
 
