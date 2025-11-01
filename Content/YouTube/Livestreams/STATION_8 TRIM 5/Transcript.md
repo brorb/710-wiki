@@ -1,21 +1,21 @@
 # Before Travis perished
 
-7/10NPP: ARE YOU STILL THERE?
-7/10 Tone: barely
-7/10NPP: YOU STILL HAVE ONE LAST JOB
-7/10 Tone: I know
-7/10 Tone: Will you see tell the others that I had fun with this.
-7/10NPP: I WILL
-7/10NPP: WHEN DID YOU ESCAPE?
-7/10 Tone: What?
-7/10NPP: NOT NEEDING TO PRY BUT THIS IS AN IMPORTANT QUESTION
-7/10 Tone: I was never apart of the complex
-7/10NPP: YOU'RE VERY LUCKY
-7/10NPP: SORRY THAT I LEFT.
-7/10 Tone: It's okay Indi.
-7/10NPP: TESTING CONFIRMS THAT THIS ONE WILL DESTROY ANOTHER
-7/10 Tone: Why does it always end like this?
-7/10NPP: I ALREADY TOLD YOU WHY.
+==**7/10NPP**==: ARE YOU STILL THERE?
+==**7/10 Tone**==: barely
+==**7/10NPP**==: YOU STILL HAVE ONE LAST JOB
+==**7/10 Tone**==: I know
+==**7/10 Tone**==: Will you see tell the others that I had fun with this.
+==**7/10NPP**==: I WILL
+==**7/10NPP**==: WHEN DID YOU ESCAPE?
+==**7/10 Tone**==: What?
+==**7/10NPP**==: NOT NEEDING TO PRY BUT THIS IS AN IMPORTANT QUESTION
+==**7/10 Tone**==: I was never apart of the complex
+==**7/10NPP**==: YOU'RE VERY LUCKY
+==**7/10NPP**==: SORRY THAT I LEFT.
+==**7/10 Tone**==: It's okay Indi.
+==**7/10NPP**==: TESTING CONFIRMS THAT THIS ONE WILL DESTROY ANOTHER
+==**7/10 Tone**==: Why does it always end like this?
+==**7/10NPP**==: I ALREADY TOLD YOU WHY.
 
 ---
 # From restart after technical difficulties
