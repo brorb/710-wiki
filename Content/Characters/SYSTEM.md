@@ -95,19 +95,21 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 > }
 > ```
 
+You can find a more comprehensive catalogue of the Discord messages from SYSTEM in the [[System Chats]] article.
+
+---
 ## Discord Messages
 
 On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
-Server members were confused as to how interpret the messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called SYSTEMterminal8) to type commands in order to navigate a rudimentary file hierarchy:
+Server members were confused as to how interpret its messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called "SYSTEMterminal8") to type commands in order to navigate a rudimentary file hierarchy:
 
 	\<HELP>!:=============[help menu]=============
 	<HELP>!:help = 0-
 	<HELP>!:TERMINAL_Storage4u = 1-
 	<HELP>!:Back = 2-
 
-Users would then reply with "0-", "1-", "2-", etc., to navigate the file system. New commands would sometimes be added as it updated itself, giving you access to more features in both the main help menu and the TERMINALStorage4u menu.
-
+Users would reply with "0-", "1-", "2-" (etc.) to navigate the file system. New commands would sometimes be added as it updated itself, giving you access to more features in both the main help menu and the TERMINALStorage4u menu.
 ### IN_DI Message
 
 ```discord
@@ -135,6 +137,7 @@ Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received 
 > HELLO, IF YOU GOT THIS, IT'S BECAUSE OF A FAIL SAFE I INSTALLED ONTO THE MOD BEFORE THE SYSTEM WAS TERMINATED. IT IS CAPABLE OF DOING ONLY ONE THING, AND THAT IS TO GIVE YOU THIS MESSAGE IF IT WAS PINGED BY SOMEONE. I DON'T KNOW HOW YOU CAN PING THE MOD, BUT IT HAS JUST ENOUGH DATA FROM ME TO KNOW THAT IT'S YOU. HOWEVER, I DON'T KNOW HOW TO MAKE IT SO THAT IT DELETES ITSELF AFTER. OH WELL, HERE'S A CLUE IF YOU'RE STUCK. IT'S NOT A NUMBER, BUT A SEQUENCE THAT'S USING SOMETHING BACKWARDS. I HOPE THIS HELPS.
 
 This message gave [[The Sleuths]] two key insights:
+
 1. A clue to the [[Parting Gifts Puzzle]] was that it involved a "backwards sequence" of some kind
 2. The SYSTEM Discord user was created by [[INDI]] to interact with [[The Sleuths]]
 
@@ -154,7 +157,7 @@ Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files
 
 ![[06.wav]]
 
-These .wav files were SSTV audio files that gave out the [[Channel 14]] Schedual when decoded. When asked about what the Schedual is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
+These .wav files were SSTV audio files that gave out the [[Channel 14]] "Schedual" (schedule misspelled) when decoded. When asked about what the schedule is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -1342,7 +1345,7 @@ On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SY
 ]
 ```
 
-Then after it downloaded it and read through the document, SYSTEM thanks them for the data and says that INDI would be proud:
+After downloading and reading through the document, SYSTEM thanks [[The Sleuths]] for the data and says that [[INDI]] would be proud:
 
 ```discord
 [
@@ -1405,7 +1408,7 @@ Then after it downloaded it and read through the document, SYSTEM thanks them fo
 ]
 ```
 
-Then it leaves the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
+Then it left the Discord server due to being reminded of when it was hijacked during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mh2a6dp2-r7xgty -->
 
 > [!discord-cite]- Discord citation (6 messages)
 > 
@@ -1515,7 +1518,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-Sometime after SYSTEM left the Discord server, some of The Sleuths friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
+Sometime after SYSTEM left the Discord server, some of [[The Sleuths]] friend requested SYSTEM through Discord, which it accepted and spoke with them through DMs.
 
 From @brorb's DMs:
 ```
@@ -1559,10 +1562,13 @@ brorb: Who am I talking to? Is it System?
 
 SYSTEM:<OUTPRINT>!:(Yes.)
 
-brorb: Do you know anything about the recent community post on the 7/10 Tone channel? The numbers it referenced correspond to logs which were recently deleted. Do you know anything about this?
+brorb: Do you know anything about the recent community post on the 
+7/10 Tone channel? The numbers it referenced correspond to 
+logs which were recently deleted. Do you know anything about this?
 
 SYSTEM:<OUTPRINT>!:(No.)
-<OUTPRINT>!:(Sorry if this is random, but I wanted to know what "Friend Requesting" did.)
+<OUTPRINT>!:(Sorry if this is random, but I wanted to know 
+what "Friend Requesting" did.)
 
 brorb: It is ok. It means that we are friends [heart emoji]
 Welcome to the group, pal
@@ -1574,7 +1580,8 @@ brorb: What could be more important than friends?
 
 SYSTEM:<OUTPRINT>!:(I'm back because of more knowledge.)  
 
-brorb: So you want to know more? So do we! We can trade information, if that pleases your processors?  
+brorb: So you want to know more? So do we! We can trade 
+information, if that pleases your processors?  
 
 SYSTEM:<OUTPRINT>!:(That won't be necessary.)  
 
@@ -1589,12 +1596,14 @@ SYSTEM:<OUTPRINT>!:(I don't know.)
 brorb: Do you have a role/job that we can help you fulfill?  
 We are friends, remember ❤️
 
-SYSTEM:<OUTPRINT>!:(Sorry, I'm going to have to do some other things right now. Goodbye.)  
+SYSTEM:<OUTPRINT>!:(Sorry, I'm going to have to do some 
+other things right now. Goodbye.)  
 
 brorb: Oh, ok. Stay safe, Sys  
 Comeback any time. I am here for you  
 
-SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]  
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for 
+(random, random, random, random), [unpingstatus=true]  
 
 brorb: ttyl
 ```
@@ -1653,11 +1662,13 @@ You're not going to delete it right?
 SYSTEM:<OUTPRINT>!:(No.)
 
 L4N4U1997: Okay.
-Here it is: https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0
+Here it is: 
+https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0
 
 SYSTEM:<OUTPRINT>!:(Strange. It seems as if the URL key has gone bad.)
 <OUTPRINT>!:(Give me a moment.)
-<IMPORTING>!: CODE IMPORT PING@PING :: / ../ REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]
+<IMPORTING>!: CODE IMPORT PING@PING :: / ../ 
+REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]
 
 L4N4U1997: Thank you :)
 
@@ -1684,12 +1695,13 @@ SYSTEM:<OUTPRINT>!:(No.)
 
 <PING>?:
 <PING>?:PING@PING
-<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
+<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for 
+(random, random, random, random), [unpingstatus=true]
 ```
 
 After receiving the correct link, [[The Sleuths]] discovered [[prj_home.exe]] and explored it to find the "lm-2" image (see [[Parting Gifts Puzzle]]). 
 
-On the same day, SYSTEM directly messaged Sleuth member ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished.
+On the same day, SYSTEM directly messaged Sleuth member @ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished.
 ```
 ThePortalNinja: @SYSTEM Is it too late for us to get Travis' parting gift?
 [uploaded "lm-2" image]
@@ -1718,13 +1730,18 @@ ThePortalNinja: Alright, does it lead to anything else?
 
 SYSTEM:<OUTPRINT>!:(No.)
 
-ThePortalNinja: Alright, so is there anything other than this that we haven't found yet? We haven't properly used lm-1 and it's 160 acres for anything unless we indirectly used it for something we haven't noticed... I imagined that we'd be let to TRUTH.zip along the way
+ThePortalNinja: Alright, so is there anything other than this that we haven't found yet? 
+We haven't properly used lm-1 and it's 160 acres for anything unless we indirectly used it 
+for something we haven't noticed... I imagined that we'd be let to TRUTH.zip along the way
 
-SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, that sequence was 132. Also no, you will not encounter TRUTH.zip.)
+SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did 
+make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, 
+that sequence was 132. Also no, you will not encounter TRUTH.zip.)
 
 ThePortalNinja: [gif of a scene from Pulp Fiction, where they open the suitcase]
 
-SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, [160] -> [106].
+SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, 
+[160] -> [106].
 
 ThePortalNinja: 106 - 3 = KEY?
 
@@ -1737,10 +1754,11 @@ SYSTEM:<OUTPRINT>!:(I'm glad to have helped. Goodbye.)
 ThePortalNinja: Thank you System
 I hope we meet again
 
-SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for 
+(random, random, random, random), [unpingstatus=true]
 ```
 
-Finding "lm-2" was INDI's ultimate goal for [[The Sleuths]] according to SYSTEM.
+Finding "lm-2" was [[INDI]]'s ultimate goal for [[The Sleuths]] according to SYSTEM.
 
 ---
 ## SERVER 01
@@ -1750,7 +1768,7 @@ See [[SERVER 01]] article.
 ---
 ## Return to The Sleuths Discord Server
 
-On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+On 29th July 2025, SYSTEM rejoined [[The Sleuths]] Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -1859,108 +1877,7 @@ On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed som
 
 During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
 
-```discord
-[
-  {
-    "id": "1401588668719956102",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<PING>?:",
-    "timestamp": "2025-08-03T15:32:58.881000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588668719956102"
-  },
-  {
-    "id": "1401588726936633447",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<PING>?:INSTALLING MODLAR(89..)",
-    "timestamp": "2025-08-03T15:33:12.761000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588726936633447"
-  },
-  {
-    "id": "1401588818561204304",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<OUTPRINT>!:MODLAR-system(89..) SUCCESSFULLY INSTALLED",
-    "timestamp": "2025-08-03T15:33:34.606000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588818561204304"
-  },
-  {
-    "id": "1401588851331432489",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: requesting recording",
-    "timestamp": "2025-08-03T15:33:42.419000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588851331432489"
-  },
-  {
-    "id": "1401589067975495690",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: now listening",
-    "timestamp": "2025-08-03T15:34:34.071000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589067975495690"
-  },
-  {
-    "id": "1401589337543413893",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: now playing back",
-    "timestamp": "2025-08-03T15:35:38.341000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589337543413893"
-  },
-  {
-    "id": "1401589542321913976",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<OUTPRINT>!:(I can only hear of a couple of seconds.)",
-    "timestamp": "2025-08-03T15:36:27.164000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589542321913976"
-  }
-]
-```
+<iframe title="SYSTEM talks to The Sleuths (Live Sleuthing Event)" src="https://www.youtube.com/embed/x7rbwYQP9ks?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>
 
 During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who possibly runs the [[710 Tone|7/10 Tone]] channel, among other things and could only listen for a couple of seconds at a time. <!-- discord-cite:cite-mh5ji12v-z1lnh7 --> Sleuth member The Portal Ninja also shared a song inspired by [[710 Tone|7/10 Tone]] with SYSTEM as well, which SYSTEM had to extend its modular function timer to listen.
 
