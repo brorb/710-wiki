@@ -4,6 +4,8 @@ tags:
   - characters
   - lore
   - important
+  - REN
+  - TTH
 ---
 ```infobox
 Title: INDI

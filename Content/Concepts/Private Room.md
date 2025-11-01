@@ -2,6 +2,9 @@
 title: Private Room
 tags:
   - lore
+  - important
+  - TTH
+  - REN
 ---
 ```infobox
 Title: Private Room
@@ -23,16 +26,14 @@ There are two ways in which the chats have become available to the public:
 1. Via [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
 2. Via videos on the [[710 Tone|7/10 Tone]] channel
 
-
-
+---
 ## Content
 
 There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without aliases. The topics are usually about 
 
 There are 10 known private room chats, of which 7 have been from community posts, and 3 from videos. Below they appear in chronological order
 
-
-
+---
 ## Chat #1
 
 ```
