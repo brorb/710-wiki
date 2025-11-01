@@ -95,6 +95,7 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 > }
 > ```
 
+You can find a more comprehensive catalogue of the Discord messages from SYSTEM in the [[System Chats]] article.
 ## Discord Messages
 
 On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
@@ -154,7 +155,7 @@ Upon querying "2-" within the TERMINAL_Storage4u menu, SYSTEM sent 6 audio files
 
 ![[06.wav]]
 
-These .wav files were SSTV audio files that gave out the [[Channel 14]] Schedual when decoded. When asked about what the Schedual is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
+These .wav files were SSTV audio files that gave out the [[Channel 14]] "Schedual" (schedule misspelled) when decoded. When asked about what the schedule is for, SYSTEM said that "it is used to keep up when NaN"<!-- discord-cite:cite-mh12lbkx-lqzxce -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -1559,10 +1560,13 @@ brorb: Who am I talking to? Is it System?
 
 SYSTEM:<OUTPRINT>!:(Yes.)
 
-brorb: Do you know anything about the recent community post on the 7/10 Tone channel? The numbers it referenced correspond to logs which were recently deleted. Do you know anything about this?
+brorb: Do you know anything about the recent community post on the 
+7/10 Tone channel? The numbers it referenced correspond to 
+logs which were recently deleted. Do you know anything about this?
 
 SYSTEM:<OUTPRINT>!:(No.)
-<OUTPRINT>!:(Sorry if this is random, but I wanted to know what "Friend Requesting" did.)
+<OUTPRINT>!:(Sorry if this is random, but I wanted to know 
+what "Friend Requesting" did.)
 
 brorb: It is ok. It means that we are friends [heart emoji]
 Welcome to the group, pal
@@ -1574,7 +1578,8 @@ brorb: What could be more important than friends?
 
 SYSTEM:<OUTPRINT>!:(I'm back because of more knowledge.)  
 
-brorb: So you want to know more? So do we! We can trade information, if that pleases your processors?  
+brorb: So you want to know more? So do we! We can trade 
+information, if that pleases your processors?  
 
 SYSTEM:<OUTPRINT>!:(That won't be necessary.)  
 
@@ -1589,12 +1594,14 @@ SYSTEM:<OUTPRINT>!:(I don't know.)
 brorb: Do you have a role/job that we can help you fulfill?  
 We are friends, remember ❤️
 
-SYSTEM:<OUTPRINT>!:(Sorry, I'm going to have to do some other things right now. Goodbye.)  
+SYSTEM:<OUTPRINT>!:(Sorry, I'm going to have to do some 
+other things right now. Goodbye.)  
 
 brorb: Oh, ok. Stay safe, Sys  
 Comeback any time. I am here for you  
 
-SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]  
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for 
+(random, random, random, random), [unpingstatus=true]  
 
 brorb: ttyl
 ```
@@ -1653,11 +1660,13 @@ You're not going to delete it right?
 SYSTEM:<OUTPRINT>!:(No.)
 
 L4N4U1997: Okay.
-Here it is: https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0
+Here it is: 
+https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOcPTACZFcQbNJkB1cPT0ivany-fAEbbdRd0
 
 SYSTEM:<OUTPRINT>!:(Strange. It seems as if the URL key has gone bad.)
 <OUTPRINT>!:(Give me a moment.)
-<IMPORTING>!: CODE IMPORT PING@PING :: / ../ REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]
+<IMPORTING>!: CODE IMPORT PING@PING :: / ../ 
+REFRESH[4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0]
 
 L4N4U1997: Thank you :)
 
@@ -1684,12 +1693,13 @@ SYSTEM:<OUTPRINT>!:(No.)
 
 <PING>?:
 <PING>?:PING@PING
-<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]
+<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for 
+(random, random, random, random), [unpingstatus=true]
 ```
 
 After receiving the correct link, [[The Sleuths]] discovered [[prj_home.exe]] and explored it to find the "lm-2" image (see [[Parting Gifts Puzzle]]). 
 
-On the same day, SYSTEM directly messaged Sleuth member ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished.
+On the same day, SYSTEM directly messaged Sleuth member @ThePortalNinja to confirm that "lm-2" was [[Travis]]' parting gift before he perished.
 ```
 ThePortalNinja: @SYSTEM Is it too late for us to get Travis' parting gift?
 [uploaded "lm-2" image]
@@ -1718,13 +1728,18 @@ ThePortalNinja: Alright, does it lead to anything else?
 
 SYSTEM:<OUTPRINT>!:(No.)
 
-ThePortalNinja: Alright, so is there anything other than this that we haven't found yet? We haven't properly used lm-1 and it's 160 acres for anything unless we indirectly used it for something we haven't noticed... I imagined that we'd be let to TRUTH.zip along the way
+ThePortalNinja: Alright, so is there anything other than this that we haven't found yet? 
+We haven't properly used lm-1 and it's 160 acres for anything unless we indirectly used it 
+for something we haven't noticed... I imagined that we'd be let to TRUTH.zip along the way
 
-SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, that sequence was 132. Also no, you will not encounter TRUTH.zip.)
+SYSTEM:<OUTPRINT>!:(IN_DI had made it so that I could break a part of me incase you did 
+make it to lm-2. In lm-1, you had to use the provided song, "160 acres" with a sequence, 
+that sequence was 132. Also no, you will not encounter TRUTH.zip.)
 
 ThePortalNinja: [gif of a scene from Pulp Fiction, where they open the suitcase]
 
-SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, [160] -> [106].
+SYSTEM:<OUTPRINT>!:(If you had used the sequence it would've translated the numbers as so, 
+[160] -> [106].
 
 ThePortalNinja: 106 - 3 = KEY?
 
@@ -1737,7 +1752,8 @@ SYSTEM:<OUTPRINT>!:(I'm glad to have helped. Goodbye.)
 ThePortalNinja: Thank you System
 I hope we meet again
 
-SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for (random, random, random, random), [unpingstatus=true]
+SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for 
+(random, random, random, random), [unpingstatus=true]
 ```
 
 Finding "lm-2" was INDI's ultimate goal for [[The Sleuths]] according to SYSTEM.
