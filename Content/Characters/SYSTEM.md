@@ -1768,7 +1768,7 @@ See [[SERVER 01]] article.
 ---
 ## Return to The Sleuths Discord Server
 
-On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+On 29th July 2025, SYSTEM rejoined [[The Sleuths]] Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -1877,108 +1877,7 @@ On 29th July 2025, SYSTEM rejoined The Sleuths Discord server after it fixed som
 
 During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
 
-```discord
-[
-  {
-    "id": "1401588668719956102",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<PING>?:",
-    "timestamp": "2025-08-03T15:32:58.881000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588668719956102"
-  },
-  {
-    "id": "1401588726936633447",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<PING>?:INSTALLING MODLAR(89..)",
-    "timestamp": "2025-08-03T15:33:12.761000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588726936633447"
-  },
-  {
-    "id": "1401588818561204304",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<OUTPRINT>!:MODLAR-system(89..) SUCCESSFULLY INSTALLED",
-    "timestamp": "2025-08-03T15:33:34.606000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588818561204304"
-  },
-  {
-    "id": "1401588851331432489",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: requesting recording",
-    "timestamp": "2025-08-03T15:33:42.419000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401588851331432489"
-  },
-  {
-    "id": "1401589067975495690",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: now listening",
-    "timestamp": "2025-08-03T15:34:34.071000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589067975495690"
-  },
-  {
-    "id": "1401589337543413893",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<MODLAR>!: now playing back",
-    "timestamp": "2025-08-03T15:35:38.341000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589337543413893"
-  },
-  {
-    "id": "1401589542321913976",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<OUTPRINT>!:(I can only hear of a couple of seconds.)",
-    "timestamp": "2025-08-03T15:36:27.164000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589542321913976"
-  }
-]
-```
+<iframe title="SYSTEM talks to The Sleuths (Live Sleuthing Event)" src="https://www.youtube.com/embed/x7rbwYQP9ks?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>
 
 During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who possibly runs the [[710 Tone|7/10 Tone]] channel, among other things and could only listen for a couple of seconds at a time. <!-- discord-cite:cite-mh5ji12v-z1lnh7 --> Sleuth member The Portal Ninja also shared a song inspired by [[710 Tone|7/10 Tone]] with SYSTEM as well, which SYSTEM had to extend its modular function timer to listen.
 
