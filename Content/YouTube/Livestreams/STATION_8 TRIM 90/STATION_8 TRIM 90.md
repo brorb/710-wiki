@@ -8,7 +8,7 @@ This is the summary of the livestream "STATION_8 TRIM 90", from July 4th 2025
 
 ## Summary
 
-Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestream restarted due to [[REN]], to which [[INDI]] confirms that they did and adds that they are not supposed to be known about.
+Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestream restarted due to [[REN]], to which [[INDI]] confirms that it is true and adds that they are not supposed to be known about them.
 
 Stream proceeds as normal until another interference ([[Station Interruption]]) comes on, which eventually gets fixed then [[INDI]] says that he can now talk. He answers a question a chat member made about who [[Mr. Forest]] was, saying that the name was an alias for someone who is "now gone". Another chat member asks if [[Mr. Forest]] is dead, to which [[INDI]] says that he is fine, just somewhere very far away (which seems to suggest that he is possibly in hiding).
 
