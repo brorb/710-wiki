@@ -1,6 +1,6 @@
 ### From 2024
 
-The below file was received from the "BACKBONE" rabbit hole (see [[Content/Timelines/index|index]])
+The below file was received from the "BACKBONE" rabbit hole.
 
 ![[SIGNAL849 (1).mp3]]
 _Titled SIGNAL849_
