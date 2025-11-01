@@ -21,21 +21,30 @@ Possibly a program that manages data and creates [[The Logs]], can be seen in th
 
 It is a forbidden topic of discussion around [[SYSTEM]] because it tends to output strange statements and crash whenever it is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves the phrase "The Eyes" and therefore its functions don't know how to handle it.
 
+---
+### Gallery
+
 ```media-box
-Title: SERVER 01
 Media: [[SERVER 01 The Eyes statement-min.png]]
 Alt: SYSTEM crash whenever someone mentions The Eyes
-Caption: SYSTEM crashes from The Eyes
-Align: right
+Caption: SYSTEM crashes from "The Eyes" being mentioned in SERVER 01
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: SERVER 01
-Media: SERVER 01 cannot read or write The Eyes statemen-min.jpg
+Media: [[SERVER 01 cannot read or write The Eyes statemen-min.jpg]]
 Alt: SYSTEM crash whenever someone mentions The Eyes
 Caption: SYSTEM cannot read the statement associated with "The Eyes"
-Align: right
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[The Eyes as they appear in the SPR chat.png]]
+Alt: The Eyes in {_ _ _-_ _._ _ _}re
+Caption: The Eyes as they appear in the SPR chat
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
