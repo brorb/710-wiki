@@ -1,3 +1,8 @@
+---
+tags:
+  - puzzle
+  - solved
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1Q-7LOAu_ZNI5CZ9A3RaWcbNffZG68x7H/preview" 

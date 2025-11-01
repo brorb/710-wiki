@@ -1,3 +1,7 @@
+---
+tags:
+  - puzzle
+---
 
 <iframe 
   src="https://drive.google.com/file/d/18yXN83jpRDya99OJbzx9uK35qrq_jTM4/preview" 

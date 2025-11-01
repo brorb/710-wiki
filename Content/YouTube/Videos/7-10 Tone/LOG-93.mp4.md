@@ -1,3 +1,8 @@
+---
+tags:
+  - lore
+  - anomalies
+---
 
 <iframe 
   src="https://drive.google.com/file/d/16QL6khLwZY2Gg0GW_20H9eVtI7TGIzv5/preview"  

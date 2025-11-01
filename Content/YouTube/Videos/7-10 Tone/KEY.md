@@ -1,6 +1,5 @@
 ---
 tags:
-  - YouTube
   - important
   - puzzle
   - solved

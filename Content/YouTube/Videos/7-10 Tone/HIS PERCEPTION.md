@@ -1,6 +1,5 @@
 ---
 tags:
-  - YouTube
   - lore
   - puzzle
   - important
