@@ -26,7 +26,7 @@ Notable appearances:
 ```
 
 
-INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone|7/10 Tone]] Youtube channel. His job is to run signals for [[REN]], according to implications from [[Kepler]].[^2]
+INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone|7/10 Tone]] Youtube channel. His job is to run [[REN]] signals, according to implications from [[Kepler]].[^2]
 
 During the STATION_8 livestreams, INDI would respond to viewers through the chat, even though he wasn't really supposed to do so.
 ## Name
@@ -36,9 +36,26 @@ His official name is "IN_DI" as confirmed by [Kepler/710 NPP](Kepler.md) in the 
 Sparsely, INDI has been named "IN_DI.SERVERTYPE" (or something adjacent), as seen in the description of [[LOG-109.MP]], in the livestream chats of [[STATION_8 TERMINAL 8]], and in [[LOG-132]].
 
 ## Personality
-INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor. 
+INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor.
 
+## Gallery
 
+```media-box
+Media: [[INDI Uppercase typing.png]]
+Alt: INDI usually types in all caps
+Caption: INDI types with all uppercase letters
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[FOUND YOU INDI (2)-min.png]]
+Alt: INDI distributing data through a transmission
+Caption: INDI after the op code was initiated at the end of the Station Timer
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
  
 [^1]: At first, the channel was though to be run by a human, but [[710 NPP|7/10 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat.
 

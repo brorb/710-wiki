@@ -179,7 +179,6 @@ SORRY, IT'S NOTHING PERSONAL
 ![[message received hex1.webp]]![[hex.webp]]
 ```
 _^The hex in the images translate to:_
-
 ```
 !SYSTEM ALERT!: DOWNED @ 2920 (subject(logsynprotcogut.exe, lngsynview.exe, logpublisher.exe)) HAS CRASHED
 ```
@@ -244,6 +243,7 @@ _^The hex translates to_
 h t t p s : / / d r i v e . g o o g l e . c o m / f i l e / d / 1 s n 9 3 r j T b b z P S L F _ x E R Z U q T R i M 9 v T J 0 f s / v i e w ? u s p = s h a r i n g
 ```
 _which is a Google Drive link to a file called [vacsystemrestart.mp3](https://drive.google.com/file/d/1sn93rjTbbzPSLF_xERZUqTRiM9vTJ0fs/view). This would lead to a major breakthrough, since the uploader of the file was the email "terminal8sbc@gmail.com", which @brorb sent an email to, resulting in [[SYSTEM]] joining the Sleuths' Discord server._
+
 ```community-post,5,2,February 2025,
 ![[unnamed.webp|300]]
 ```
@@ -266,7 +266,7 @@ _^The hex translates to:_
  C O N T R O L   O R   W E   A R E   T E R M I N A T I N G   T H E   M I S S I O N . 
  # A 9 9 2 1 4 :   W E ' L L   T R Y .
 ```
-This is an example of a [[Private Room]] chat, and its content matches that of [[Private Room#Chat 3|chat #3]], also appearing in [[{_ _ _-_ _._ _ _}re]]. 
+This is an example of a [[Private Room]] chat, and its content matches that of [[Private Room#Chat 3|chat #3]], also appearing in [[{ - . }re]]. 
 
 ```community-post,4,1,February 2025,
 53 59 53 54 45 4D 5F 55 50 44 41 54 45 28 66 69 6C 65 2E 33 33 6C 30 29 3A 3A 44 45 54 45 43 54 45 44 3D 2D 35 20 65 72 72 6F 72 73 20 26 26 20 31 20 6D 69 73 63 2D 20 55 50 44 41 54 49 4E 47 3D 3D 3D 3D 3D 30 30 30 30 31 2D 30 30 30 30 34 2F 73 77 61 77 73 7C 65 78 63 6C 75 73 69 6F 6E 2F

@@ -108,7 +108,6 @@ Channel 14's schedule is often subject to change.
 **From [[LOG-40.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[LOG-40 Channel 14 schedule.png]]
 Alt: 
 Caption: 
@@ -120,46 +119,31 @@ Width: clamp(220px, 32vw, 360px)
 **From [[LOG-154.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[Weather from LOG-154 (channel 14).png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[(blank) Against Russia Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Atomic Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Atomic glitch Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
@@ -168,34 +152,45 @@ Width: clamp(220px, 32vw, 360px)
 **From [[garbage_sgl.mp4]]:**
 
 ```media-box
-Title: 
 Media: [[Weather and Morning Chats this Lyoce J.png]]
-Alt: 
-Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
 Media: [[(blank)'s Mighty Construction.png]]
-Alt: 
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Ferkland Channel 14 reveal better.png]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[LowLock5 Channel 14.png]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Title: Gift from SYSTEM original
+Media: [[gift_fixed.png]]
+Alt: Channel 14 Schedual received by SYSTEM
 Caption: 
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Title: 
-Media: [[Ferkland Channel 14 reveal better.png]]
-Alt: 
-Caption: 
+Title: Gift from SYSTEM Recreation
+Media: [[gift_fixed.png]]
+Alt: Channel 14 Schedual recrreation by one of The Sleuths
+Caption: Made by The Camera Eye
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
-
-[[LowLock5 Channel 14.png]]
-
-**Gift from [[SYSTEM]]** _(this is a recreation, see [[gift-full.png|gift-full.png]] for the original)
-![[gift_fixed.png|500]]

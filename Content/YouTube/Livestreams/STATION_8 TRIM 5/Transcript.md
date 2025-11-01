@@ -1,3 +1,25 @@
+# Before Travis perished
+
+7/10NPP: ARE YOU STILL THERE?
+7/10 Tone: barely
+7/10NPP: YOU STILL HAVE ONE LAST JOB
+7/10 Tone: I know
+7/10 Tone: Will you see tell the others that I had fun with this.
+7/10NPP: I WILL
+7/10NPP: WHEN DID YOU ESCAPE?
+7/10 Tone: What?
+7/10NPP: NOT NEEDING TO PRY BUT THIS IS AN IMPORTANT QUESTION
+7/10 Tone: I was never apart of the complex
+7/10NPP: YOU'RE VERY LUCKY
+7/10NPP: SORRY THAT I LEFT.
+7/10 Tone: It's okay Indi.
+7/10NPP: TESTING CONFIRMS THAT THIS ONE WILL DESTROY ANOTHER
+7/10 Tone: Why does it always end like this?
+7/10NPP: I ALREADY TOLD YOU WHY.
+
+---
+# From restart after technical difficulties
+
 7/10NPP: WHAT HAPPENED?
 7/10 Tone: Live went out for a bit
 7/10NPP: OKAY HOW ARE YOU FEELING?
@@ -11,12 +33,21 @@
 7/10 Tone: I'm tired
 7/10 Tone: I'm going to leave the controls to you indi
 7/10NPP: SLEEP WELL TRAVIS
+
+---
+
 PHT: uh station_7 ended and station_8 started after like 2h? not sure (why did previous message get an error, idk)
 The Camera Eye: Maybe there was an error in the system? Dunno.
 PHT: well there was the text that theres an error but it was in the middle of the stream, and at the beginning of this one
 The Camera Eye: Right, so there are multiple stations...in the middle of God knows where, and it error out for some reason, either by some event that probably happened? That's just my theory I guess-?
+
+---
+
 AmeraM: love this channel
 AmeraM: peak
+
+---
+
 7/10 Tone: I FIXED IT TRAVIS
 7/10 Tone: WAIT, RIGHT.
 BRORIGIN: HI
@@ -37,13 +68,19 @@ BRORIGIN: was Travis good?
 7/10 Tone: I HAVE TO STOP TALKING NOW, SORRY.
 The Camera Eye: Okay, good luck.
 BRORIGIN: thank you and be safe
+
+---
+
 AmeraM: I really like the beeps
 AmeraM: I use this as an alarm clock
 AmeraM: 6 days, can't wait
 AmeraM: It's very beautiful
 AmeraM: I hope the program is intact
 AmeraM: I can't wait to see what happens
-AmeraM: 50s 
+AmeraM: 50s
+
+---
+
 BRORIGIN: ah connection lost
 7/10 Tone: FORBID ANYTHING TO MAKE THIS EASY FOR ME.
 7/10 Tone: RESTARTING LIVE

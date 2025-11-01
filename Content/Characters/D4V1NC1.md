@@ -16,7 +16,23 @@ An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4
 
 ## Leonardo da Vinci
 "D4V1NC1" is clearly a rewrite of "da Vinci", likely referring to the renaissance scientist [Leonardo da Vinci](https://en.wikipedia.org/wiki/Leonardo_da_Vinci). This follows the trope of characters with aliases of famous scientists, like [[Kepler]]. Da Vinci has also appeared in the video [[backtone.extend 5_f''5.5'']]: 
-![[daVinci_from_backtone.png]]
+
+```media-box
+Media: [[daVinci_from_backtone.png]]
+Alt: DaVinci painting from the first "backtone" video
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Da Vinci original image found.jpg]]
+Alt: DaVinci engraving by Raffaello Sanzio Morghen
+Caption: Original image that is the closest thing to the one featured in the video
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
 The image of DaVinci fills the screen for a couple of seconds, before the camera pans away to more red room. The text "QUANDO NATUS EST" appears along with a heavily distorted voice reading it aloud. The phrase is classical Latin and means "When was he born", likely referring to Leonardo DaVinci, who was born April 15, 1452.
 
 
