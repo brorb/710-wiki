@@ -53,7 +53,6 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 
 ### Configuration hooks
 
-- Update `quartz-site/quartz.config.ts` under `configuration.oracleChat`:
 	- `enabled`: set to `false` to hide the UI without touching templates.
 	- `apiBaseUrl`: absolute base for the hosted inference service. Defaults to the Railway production URL.
 	- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
@@ -63,8 +62,7 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 	- `webApiKey`: **required**. Populated via `ORACLE_WEB_API_TOKEN`; becomes the `X-Web-Api-Key` header.
 	- `oracleKeyId`: **required** identifier for the signing key (e.g. `wiki-widget`). Set via `ORACLE_KEY_ID` (falls back to the legacy `ORACLE_SIGNING_KEY_ID`); surfaces as `X-Oracle-Key`.
 	- `oracleSigningSecret`: **required** shared secret used to HMAC sign each payload. Populate via `ORACLE_KEY_SECRET` (falls back to `ORACLE_SIGNING_SECRET`). The static site ships this value to the browser so treat it as a scoped credential.
-- The widget avatar lives at `quartz-site/quartz/static/oracle-pfp.png`; swap the file to update the branding.
-- For local development, create a `.env` file at the repository root with:
+	- Railway often displays widget variables as `${{shared.*}}` indirections—copy the resolved string (for example `t6FZ…`) from the Oracle hosting app, not the literal `${{...}}` placeholder.
 	- `ORACLE_WEB_API_TOKEN=<token>`
 	- `ORACLE_KEY_ID=<signing key id>`
 	- `ORACLE_KEY_SECRET=<signing secret>`
@@ -78,7 +76,7 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 	- Trims the stored `user`/`assistant` turns down to the most recent `maxHistory` entries.
 	- Appends the new `user` message, generating a stable payload.
 	- Requests a reCAPTCHA token if a site key is configured.
-	- Aborts any in-flight fetch, HMAC-signs `timestamp.body` using `oracleSigningSecret`, and POSTs JSON to the configured endpoint with the `X-Web-Api-Key`, `X-Oracle-Key`, `X-Oracle-Timestamp`, and `X-Oracle-Signature` headers.
+	- Aborts any in-flight fetch, HMAC-signs `timestamp.body` using `oracleSigningSecret`, and POSTs JSON to the configured endpoint with the `X-Web-Api-Key`, `X-Oracle-Key`, `X-Oracle-Timestamp`, `X-Oracle-Signature`, and `X-Oracle-Channel: web` headers.
 3. Responses update the local transcript, persist the conversation (still capped to `maxHistory`), and refresh the chat window. Errors append an `oracle-chat__message--error` bubble with the message returned by the rejected promise.
 
 ### Request payload
@@ -107,18 +105,20 @@ Every submission POSTs a body shaped like (headers listed above are always prese
 			"windowSize": 24,
 			"totalMessages": 5
 		},
-		"timestamp": "2025-10-30T18:22:11.000Z"
+		"timestamp": "2025-10-30T18:22:11.000Z",
+		"channel": "web"
 	},
 	"priority": "medium",
 	"sections": 18,
 	"creativeMode": false,
-	"captchaToken": "optional-recaptcha-token"
+	"captchaToken": "optional-recaptcha-token",
+	"channel": "web"
 }
 ```
 
 - `conversationId` echoes whatever the server last returned. The client sends `null` until the service supplies a stable ID, letting the backend resume threads.
 - `question` always mirrors the latest user turn. The backend can ignore it when `messages` ends with a user role, but the field is present for explicit validation.
-- `messages` contains only `user` and `assistant` roles. The list is truncated to the newest `maxHistory` turns _before_ appending the fresh user prompt, so the backend sees at most `maxHistory + 1` entries.
+- `messages` contains only `user` and `assistant` roles. Pending placeholders are stripped before the request payload is assembled. The list is truncated to the newest `maxHistory` turns _before_ appending the fresh user prompt, so the backend sees at most `maxHistory + 1` entries.
 - `metadata.origin` derives from `window.location.hostname`. `metadata.path` and `metadata.url` capture the current page; `metadata.article` repeats the article title/slug taken from Quartz frontmatter, and `metadata.history` mirrors the snapshot of the local transcript. We do not collect the client IP on the frontend; supply it at the edge if needed.
 - `metadata.history` exposes the snapshot of the local transcript: how many turns are included (`includedMessages`), the configured window (`windowSize`), and how many total messages exist client-side (`totalMessages`, including system/error entries).
 - `metadata.timestamp` is generated in UTC ISO-8601 format for logging and rate limiting.
@@ -132,20 +132,52 @@ The UI accepts any JSON superset of this shape:
 ```json
 {
 	"conversationId": "uuid-or-stable-id",
-	"reply": "Markdown-safe text for the assistant bubble.",
+	"reply": "Plain-text fallback for browsers that do not support the structured payload.",
+	"webPayload": {
+		"lead": "High-signal answer that opens the response",
+		"answer": "Optional secondary paragraph with additional framing",
+		"contextSnippets": [
+			{
+				"title": "SYSTEM",
+				"summary": "Key takeaway pulled from the indexed chunk",
+				"url": "https://www.710tone.wiki/Characters/SYSTEM",
+				"section": "Transmission Log",
+				"strength": "Canonical",
+				"alias": "SYSTEM"
+			}
+		],
+		"sources": [
+			{
+				"title": "TTH: Signal 849",
+				"description": "Audio log recovered from CIN Center archive",
+				"url": "https://www.710tone.wiki/Media/710-Media/Audio/SIGNAL849-(1).mp3",
+				"strength": "Primary"
+			}
+		],
+		"followUpQuestions": [
+			"What other CIN Center transmissions mention SYSTEM?",
+			"Where should I look next if I want footage instead of audio?"
+		],
+		"callToAction": "Skim the CIN Centers concept note for the full patrol roster.",
+		"disclaimers": ["Citations reference the latest nightly Quartz build (UTC)."]
+	},
 	"messages": [
 		{ "role": "assistant", "content": "(optional) last answer" },
 		{ "role": "system", "content": "(optional) follow-up notice" }
-	]
+	],
+	"disclaimers": ["Audio clips may take a moment to buffer when fetched from the CDN."],
+	"success": true
 }
 ```
 
 - Always respond with `200 OK` and `application/json` when the prompt succeeds. Non-2xx codes surface a generic error bubble whose text includes the thrown error message.
 - `conversationId` can be anything JSON-serialisable. Returning `null` clears the stored ID; otherwise it is persisted for the next request.
-- `reply` populates the rendered assistant bubble. When omitted, the client falls back to the last `assistant` message in the optional `messages` array.
+- `reply` populates the rendered assistant bubble when the richer `webPayload` field is absent. When both are present, the lead section of `webPayload` is shown first and `reply` becomes a plain-text fallback.
+- `webPayload` unlocks the web persona experience: the widget renders `lead`, `answer`, context `snippets`, structured `sources`, suggested follow-ups, an optional call to action, and any channel-specific `disclaimers` in dedicated UI sections.
 - `messages` is useful for out-of-band machine instructions. Entries with the `assistant` role will display if `reply` is missing; `system` entries are stored but not rendered.
+- `disclaimers` (top-level) supplement the structured payload with extra notices. They are merged with `webPayload.disclaimers` and rendered near the footer of each assistant turn.
 - The client ignores unknown top-level properties, so you can include diagnostics (latency, tokens, etc.) without breaking compatibility.
-- Additional response metadata such as `success`, `reason`, `usage`, or `guardFlags` are preserved but currently only `reply` and `messages` influence the UI.
+- Additional response metadata such as `success`, `reason`, `usage`, or `guardFlags` are preserved for logs; the UI highlights `webPayload`, `reply`, and `messages` when present.
 
 ### Error handling and rate limits
 
@@ -156,10 +188,26 @@ The UI accepts any JSON superset of this shape:
 ### Client behaviour recap
 
 - The chat window teleports to the document `<body>` on open so its overlay sits above the info box and sidebars. `document.body` receives the `oracle-chat-active` class while the dialog is visible.
+- Assistant replies render a structured layout when `webPayload` is present: lead summary, supporting paragraphs, inline context cards, curated sources, CTA copy, and suggested follow-ups.
+- When the backend withholds links, the widget shows a fallback notice along with ready-to-send follow-up prompts so readers can ask for citations or pivot topics quickly.
 - `Enter` submits; `Shift+Enter` inserts a newline. The textarea auto-grows to `240px`.
 - Local transcripts never exceed `maxHistory` persisted entries, even though `metadata.history.totalMessages` tracks the uncapped count for observability.
 - The widget eagerly focuses the textarea and scrolls to the latest message whenever it opens or the history updates.
 - When reCAPTCHA is configured, the script loads Google’s client the first time the dialog opens and reuses it for later submissions.
+- Each assistant turn and user action emits an `oracle-analytics` `CustomEvent` on both `window` and `document`. Consumers can listen for `detail.event` values such as `oracle:question-submitted`, `oracle:response-received`, `oracle:link-clicked`, `oracle:followups-presented`, `oracle:followup-selected`, and `oracle:fallback-presented` to wire telemetry.
+
+### Analytics hooks
+
+Listen for the `oracle-analytics` event to pipe metrics into your preferred sink:
+
+```ts
+window.addEventListener("oracle-analytics", (event) => {
+	const { event: name, detail, timestamp } = event.detail
+	// Forward to your analytics service
+})
+```
+
+Each `detail` payload includes the conversation ID when available plus context-specific fields (e.g., `sourceCount` for `oracle:response-received`, `url`/`kind` for `oracle:link-clicked`).
 
 ### CORS troubleshooting & proxy shim
 

@@ -375,13 +375,18 @@ const oracleWidgetStyles = `
   border-radius: 12px;
   background: color-mix(in srgb, var(--color-accent-shadow-light) 45%, transparent);
   color: var(--color-tone-contrast);
-  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  white-space: normal;
   word-break: break-word;
 }
 
 .oracle-chat__message--user .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
   color: var(--color-primary-background);
+  display: block;
+  white-space: pre-wrap;
 }
 
 .oracle-chat__message--assistant .oracle-chat__bubble {
@@ -391,6 +396,218 @@ const oracleWidgetStyles = `
 .oracle-chat__message--error .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
   color: var(--color-tone-contrast);
+}
+
+.oracle-chat__answer-lead {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.oracle-chat__answer-body {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-tone-contrast) 92%, var(--color-tone-muted) 8%);
+}
+
+.oracle-chat__snippet-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.oracle-chat__snippet {
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 28%, transparent);
+  background: color-mix(in srgb, var(--color-accent-shadow-light) 18%, transparent);
+  padding: 0.6rem 0.75rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.oracle-chat__snippet-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
+}
+
+.oracle-chat__snippet-summary {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-tone-contrast) 75%, var(--color-tone-muted) 25%);
+}
+
+.oracle-chat__snippet-link {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--color-accent-bright);
+  text-decoration: none;
+}
+
+.oracle-chat__snippet-link:hover,
+.oracle-chat__snippet-link:focus-visible {
+  text-decoration: underline;
+}
+
+.oracle-chat__snippet-meta {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-muted) 75%, var(--color-tone-contrast) 25%);
+}
+
+.oracle-chat__sources {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.oracle-chat__sources-heading {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-contrast) 95%, var(--color-tone-muted) 5%);
+}
+
+.oracle-chat__source-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.oracle-chat__source-item {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.oracle-chat__source-link {
+  font-weight: 600;
+  color: var(--color-accent-bright);
+  text-decoration: none;
+}
+
+.oracle-chat__source-link:hover,
+.oracle-chat__source-link:focus-visible {
+  text-decoration: underline;
+}
+
+.oracle-chat__source-label {
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-tone-contrast) 90%, var(--color-tone-muted) 10%);
+}
+
+.oracle-chat__source-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
+}
+
+.oracle-chat__cta {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-accent-bright) 75%, var(--color-tone-contrast) 25%);
+}
+
+.oracle-chat__followups {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.oracle-chat__followups-label {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-muted) 70%, var(--color-tone-contrast) 30%);
+}
+
+.oracle-chat__followup-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.oracle-chat__followup-button {
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
+  color: var(--color-accent-bright);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.oracle-chat__followup-button:hover,
+.oracle-chat__followup-button:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 35%, transparent);
+  color: var(--color-primary-background);
+}
+
+.oracle-chat__followup-button:active {
+  transform: translateY(1px);
+}
+
+.oracle-chat__fallback {
+  display: grid;
+  gap: 0.45rem;
+  border-radius: 10px;
+  border: 1px dashed color-mix(in srgb, var(--color-tone-muted) 45%, transparent);
+  padding: 0.65rem 0.75rem;
+  background: color-mix(in srgb, var(--color-tone-muted) 12%, transparent);
+}
+
+.oracle-chat__fallback-text {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-tone-contrast) 90%, var(--color-tone-muted) 10%);
+}
+
+.oracle-chat__fallback-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.oracle-chat__fallback-button {
+  border: 1px solid color-mix(in srgb, var(--color-tone-muted) 55%, transparent);
+  background: color-mix(in srgb, var(--color-tone-muted) 28%, transparent);
+  color: color-mix(in srgb, var(--color-tone-contrast) 88%, var(--color-tone-muted) 12%);
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.oracle-chat__fallback-button:hover,
+.oracle-chat__fallback-button:focus-visible {
+  background: color-mix(in srgb, var(--color-tone-muted) 12%, var(--color-tone-contrast) 20%);
+  color: var(--color-primary-background);
+}
+
+.oracle-chat__disclaimers {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.72rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 82%, var(--color-tone-contrast) 18%);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.oracle-chat__disclaimer-item {
+  line-height: 1.4;
 }
 
 .oracle-chat__timestamp {

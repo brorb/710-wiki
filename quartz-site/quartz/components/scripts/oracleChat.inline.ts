@@ -64,6 +64,9 @@ type OracleConfig = {
   webApiKey?: string
   oracleKeyId?: string
   oracleSigningSecret?: string
+  webApiKeyPlaceholder?: boolean
+  oracleKeyIdPlaceholder?: boolean
+  oracleSigningSecretPlaceholder?: boolean
   article?: {
     title?: string
     slug?: string
@@ -79,6 +82,7 @@ type OracleRequestPayload = {
   sections?: number
   creativeMode?: boolean
   captchaToken?: string
+  channel?: string
 }
 
 type RecaptchaClient = {
@@ -451,6 +455,9 @@ const snapshotConfig = (config: OracleConfig) => ({
   storageKey: config.storageKey,
   maxHistory: config.maxHistory,
   hasRecaptcha: Boolean(config.recaptchaSiteKey),
+  webApiKeyPlaceholder: Boolean(config.webApiKeyPlaceholder),
+  oracleKeyIdPlaceholder: Boolean(config.oracleKeyIdPlaceholder),
+  oracleSigningSecretPlaceholder: Boolean(config.oracleSigningSecretPlaceholder),
   webApiKeyPreview: redactToken(config.webApiKey),
   oracleKeyIdPreview: redactToken(config.oracleKeyId),
   oracleSigningSecretPreview: redactToken(config.oracleSigningSecret),
@@ -463,6 +470,40 @@ const summariseRequest = (payload: OracleRequestPayload) => ({
   metadataKeys: Object.keys(payload.metadata || {}),
   hasCaptcha: Boolean(payload.captchaToken),
 })
+
+const isPlaceholderValue = (value?: string) => {
+  if (!value) {
+    return false
+  }
+
+  const trimmed = value.trim()
+  if (trimmed.length === 0) {
+    return false
+  }
+
+  if (trimmed.startsWith("${{") && trimmed.endsWith("}}")) {
+    return true
+  }
+
+  if (trimmed.startsWith("${") && trimmed.endsWith("}")) {
+    return true
+  }
+
+  return false
+}
+
+const normaliseCredential = (raw?: string) => {
+  const trimmed = raw?.trim()
+  if (!trimmed) {
+    return { value: undefined as string | undefined, placeholder: false }
+  }
+
+  if (isPlaceholderValue(trimmed)) {
+    return { value: undefined, placeholder: true }
+  }
+
+  return { value: trimmed, placeholder: false }
+}
 
 const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
@@ -478,6 +519,10 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     oracleSigningSecret,
   } = root.dataset
 
+  const webKey = normaliseCredential(oracleWebKey)
+  const signingKey = normaliseCredential(oracleSigningKey)
+  const signingSecret = normaliseCredential(oracleSigningSecret)
+
   const storageKey = oracleStorageKey?.trim() || DEFAULT_STORAGE_KEY
   const maxHistory = Number.parseInt(oracleMaxHistory ?? "", 10)
   const safeMaxHistory = Number.isFinite(maxHistory) && maxHistory > 0 ? maxHistory : DEFAULT_MAX_HISTORY
@@ -488,9 +533,12 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
-    webApiKey: oracleWebKey?.trim() || undefined,
-    oracleKeyId: oracleSigningKey?.trim() || undefined,
-    oracleSigningSecret: oracleSigningSecret?.trim() || undefined,
+    webApiKey: webKey.value,
+    oracleKeyId: signingKey.value,
+    oracleSigningSecret: signingSecret.value,
+    webApiKeyPlaceholder: webKey.placeholder,
+    oracleKeyIdPlaceholder: signingKey.placeholder,
+    oracleSigningSecretPlaceholder: signingSecret.placeholder,
     article: {
       title: oracleArticleTitle?.trim() || undefined,
       slug: oracleArticleSlug?.trim() || undefined,
@@ -967,7 +1015,7 @@ const buildRequestBody = (
 ) => {
   const history = state.messages
     .filter((message): message is OracleMessage & { role: "user" | "assistant" } =>
-      isDialogueRole(message.role),
+      isDialogueRole(message.role) && !message.pending,
     )
     .slice(-config.maxHistory)
     .map((message) => ({ role: message.role, content: message.content }))
@@ -1003,6 +1051,7 @@ const buildRequestBody = (
       totalMessages: state.messages.length,
     },
     timestamp: new Date().toISOString(),
+    channel: "web",
   }
 
   const payload: OracleRequestPayload = {
@@ -1012,6 +1061,7 @@ const buildRequestBody = (
     metadata,
     priority: "medium",
     creativeMode: false,
+    channel: "web",
   }
 
   if (typeof sectionCount === "number") {
@@ -1030,6 +1080,15 @@ const tryFetch = async (
   body: OracleRequestPayload,
   config: OracleConfig,
 ): Promise<FetchResult> => {
+  if (config.webApiKeyPlaceholder || config.oracleKeyIdPlaceholder || config.oracleSigningSecretPlaceholder) {
+    debugLog("Credentials unresolved placeholder", {
+      config: snapshotConfig(config),
+    })
+    throw new Error(
+      "ORA_CLE chat: API credentials unresolved placeholder; replace ${{...}} with the actual secret in your .env",
+    )
+  }
+
   if (!config.webApiKey || !config.oracleKeyId || !config.oracleSigningSecret) {
     debugLog("Missing credentials", {
       hasWebApiKey: Boolean(config.webApiKey),
@@ -1065,6 +1124,7 @@ const tryFetch = async (
         "X-Oracle-Key": config.oracleKeyId,
         "X-Oracle-Timestamp": timestamp,
         "X-Oracle-Signature": signature,
+        "X-Oracle-Channel": "web",
       },
       body: serializedBody,
     })
@@ -1140,6 +1200,9 @@ const setupOracleWidget = () => {
       hasWebApiKey: Boolean(config.webApiKey),
       hasOracleKeyId: Boolean(config.oracleKeyId),
       hasOracleSigningSecret: Boolean(config.oracleSigningSecret),
+      webApiKeyPlaceholder: Boolean(config.webApiKeyPlaceholder),
+      oracleKeyIdPlaceholder: Boolean(config.oracleKeyIdPlaceholder),
+      oracleSigningSecretPlaceholder: Boolean(config.oracleSigningSecretPlaceholder),
       endpoint: config.endpointPath,
       apiBase: config.apiBaseUrl,
     })
@@ -1213,7 +1276,7 @@ const setupOracleWidget = () => {
     updateResetButton()
     updateSendButtonState()
 
-  const closeChat = () => {
+    const closeChat = () => {
     if (!chatOpen) {
       return
     }
@@ -1227,9 +1290,9 @@ const setupOracleWidget = () => {
     if (document.body.contains(launcher)) {
       launcher.focus()
     }
-  }
+    }
 
-  const openChat = async () => {
+    const openChat = async () => {
     moveChatToBody(dialog)
     dialog.classList.add("oracle-chat--open")
     dialog.setAttribute("aria-hidden", "false")
@@ -1247,43 +1310,38 @@ const setupOracleWidget = () => {
       }
     }
 
-    window.requestAnimationFrame(() => {
-      textArea.focus()
+      window.requestAnimationFrame(() => {
+        textArea.focus()
+        scrollHistoryToBottom(historyContainer)
+      })
+    }
+
+    const resetChat = () => {
+      state = { messages: [] }
+      lastUserQuestion = ""
+      persistState(storageKey, state, config.maxHistory)
+      renderState(historyContainer, state, renderOptions)
+      updateResetButton()
+      updateSendButtonState()
+      autoResize()
+    }
+
+    const appendMessage = (message: OracleMessage) => {
+      state.messages = [...state.messages, message]
+      historyContainer.appendChild(createMessageElement(message, renderOptions))
       scrollHistoryToBottom(historyContainer)
-    })
-  }
-
-  const resetChat = () => {
-    state = { messages: [] }
-    persistState(storageKey, state, config.maxHistory)
-    renderState(historyContainer, state)
-    if (resetButton) {
-      resetButton.disabled = true
+      persistState(storageKey, state, config.maxHistory)
+      updateResetButton()
     }
-    updateSendButtonState()
-    autoResize()
-  }
 
-  const appendMessage = (message: OracleMessage) => {
-    state.messages = [...state.messages, message]
-    historyContainer.appendChild(createMessageElement(message))
-    scrollHistoryToBottom(historyContainer)
-    persistState(storageKey, state, config.maxHistory)
-    if (resetButton) {
-      resetButton.disabled = state.messages.length === 0
+    const replacePendingWith = (message: OracleMessage) => {
+      state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
+      renderState(historyContainer, state, renderOptions)
+      persistState(storageKey, state, config.maxHistory)
+      updateResetButton()
     }
-  }
 
-  const replacePendingWith = (message: OracleMessage) => {
-    state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
-    renderState(historyContainer, state)
-    persistState(storageKey, state, config.maxHistory)
-    if (resetButton) {
-      resetButton.disabled = state.messages.length === 0
-    }
-  }
-
-  const showError = (error: unknown) => {
+    const showError = (error: unknown) => {
     const content = error instanceof Error ? error.message : "Something went wrong. Please try again."
     const errorMessage: OracleMessage = {
       id: generateId(),
@@ -1293,9 +1351,9 @@ const setupOracleWidget = () => {
     }
     appendMessage(errorMessage)
     updateSendButtonState()
-  }
+    }
 
-  const sendMessage = async () => {
+    const sendMessage = async () => {
     const trimmed = sanitiseContent(textArea.value.trim())
     if (!trimmed) {
       return
@@ -1305,21 +1363,27 @@ const setupOracleWidget = () => {
     if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
       return
     }
+      lastSendTimestamp = now
+      lastUserQuestion = trimmed
 
-    lastSendTimestamp = now
-
-    const userMessage: OracleMessage = {
+      const userMessage: OracleMessage = {
       id: generateId(),
       role: "user",
       content: trimmed,
       createdAt: now,
     }
 
-    appendMessage(userMessage)
-    textArea.value = ""
-    autoResize()
+      appendMessage(userMessage)
+      emitAnalytics("oracle:question-submitted", {
+        conversationId: state.conversationId ?? null,
+        questionLength: trimmed.length,
+        articleSlug: config.article?.slug ?? null,
+      })
 
-    const pendingReply: OracleMessage = {
+      textArea.value = ""
+      autoResize()
+
+      const pendingReply: OracleMessage = {
       id: generateId(),
       role: "assistant",
       content: "The ORA_CLE is thinking",
@@ -1327,143 +1391,177 @@ const setupOracleWidget = () => {
       pending: true,
     }
 
-    appendMessage(pendingReply)
-    updateSendButtonState()
+      pendingReply.promptContext = trimmed
 
-    if (activeController) {
-      activeController.abort()
-    }
-
-    const controller = new AbortController()
-    activeController = controller
-
-    let captchaToken: string | undefined
-    if (config.recaptchaSiteKey && recaptchaClient) {
-      try {
-        captchaToken = await recaptchaClient.execute(config.recaptchaSiteKey, { action: RECAPTCHA_ACTION })
-      } catch (error) {
-        console.warn("ORA_CLE chat: reCAPTCHA execution failed", error)
-      }
-    }
-
-    const body = buildRequestBody(trimmed, state, config, captchaToken)
-
-    try {
-      const result = await tryFetch(requestUrl, body, config)
-      if (controller.signal.aborted) {
-        return
-      }
-
-      if (result.conversationId) {
-        state.conversationId = result.conversationId
-      }
-
-      let replyText = result.reply?.trim()
-      if (!replyText && Array.isArray(result.messages) && result.messages.length > 0) {
-        const lastAssistant = result.messages.reverse().find((message) => message.role === "assistant")
-        replyText = lastAssistant?.content?.trim()
-      }
-
-      if (!replyText) {
-        replyText = "I do not have an answer right now, please try another question."
-      }
-
-      const assistantMessage: OracleMessage = {
-        id: pendingReply.id,
-        role: "assistant",
-        content: replyText,
-        createdAt: Date.now(),
-      }
-
-      replacePendingWith(assistantMessage)
+      appendMessage(pendingReply)
       updateSendButtonState()
-    } catch (error) {
-      console.warn("ORA_CLE chat: request failed", error)
-      debugLog("Send message error", {
-        error: error instanceof Error ? error.message : String(error),
-        request: summariseRequest(body),
-        config: snapshotConfig(config),
-      })
-      state.messages = state.messages.filter((entry) => !entry.pending)
-      renderState(historyContainer, state)
-      persistState(storageKey, state, config.maxHistory)
-      showError(error)
-    }
-  }
 
-  const handleLauncherClick = () => {
+      if (activeController) {
+        activeController.abort()
+      }
+
+      const controller = new AbortController()
+      activeController = controller
+
+      let captchaToken: string | undefined
+      if (config.recaptchaSiteKey && recaptchaClient) {
+        try {
+          captchaToken = await recaptchaClient.execute(config.recaptchaSiteKey, { action: RECAPTCHA_ACTION })
+        } catch (error) {
+          console.warn("ORA_CLE chat: reCAPTCHA execution failed", error)
+        }
+      }
+
+      const body = buildRequestBody(trimmed, state, config, captchaToken)
+
+      try {
+        const result = await tryFetch(requestUrl, body, config)
+        if (controller.signal.aborted) {
+          return
+        }
+
+        if (result.conversationId) {
+          state.conversationId = result.conversationId
+        }
+
+        let replyText = result.reply?.trim()
+        if (!replyText && Array.isArray(result.messages) && result.messages.length > 0) {
+          const lastAssistant = result.messages.reverse().find((message) => message.role === "assistant")
+          replyText = lastAssistant?.content?.trim()
+        }
+
+        if (!replyText) {
+          replyText = "I do not have an answer right now, please try another question."
+        }
+
+        const webPayload = parseWebPayload(result.webPayload)
+        const disclaimers = toTrimmedStringArray(result.disclaimers)
+
+        const assistantMessage: OracleMessage = {
+          id: pendingReply.id,
+          role: "assistant",
+          content: replyText,
+          createdAt: Date.now(),
+          webPayload: webPayload,
+          disclaimers: disclaimers,
+          rawReply: replyText,
+          promptContext: pendingReply.promptContext ?? lastUserQuestion,
+        }
+
+        replacePendingWith(assistantMessage)
+        updateSendButtonState()
+
+        const sourcesCount = webPayload?.sources?.length ?? 0
+        const snippetCount = webPayload?.contextSnippets?.length ?? 0
+        const followUpCount = webPayload?.followUpQuestions?.length ?? 0
+
+        emitAnalytics("oracle:response-received", {
+          conversationId: state.conversationId ?? null,
+          hasWebPayload: Boolean(webPayload),
+          sourceCount: sourcesCount,
+          snippetCount,
+          followUpCount,
+        })
+
+        if (followUpCount > 0) {
+          emitAnalytics("oracle:followups-presented", {
+            conversationId: state.conversationId ?? null,
+            followUpCount,
+          })
+        }
+
+        if (sourcesCount === 0 && snippetCount === 0) {
+          emitAnalytics("oracle:fallback-presented", {
+            conversationId: state.conversationId ?? null,
+          })
+        }
+      } catch (error) {
+        console.warn("ORA_CLE chat: request failed", error)
+        debugLog("Send message error", {
+          error: error instanceof Error ? error.message : String(error),
+          request: summariseRequest(body),
+          config: snapshotConfig(config),
+        })
+        state.messages = state.messages.filter((entry) => !entry.pending)
+        renderState(historyContainer, state, renderOptions)
+        persistState(storageKey, state, config.maxHistory)
+        showError(error)
+      }
+    }
+
+    const handleLauncherClick = () => {
     openChat().catch((error) => {
       console.warn("ORA_CLE chat: unable to open", error)
     })
-  }
+    }
 
-  const handleOverlayClick = () => {
+    const handleOverlayClick = () => {
     closeChat()
-  }
+    }
 
-  const handleCloseClick = () => {
+    const handleCloseClick = () => {
     closeChat()
-  }
+    }
 
-  const handleResetClick = () => {
+    const handleResetClick = () => {
     resetChat()
-  }
+    }
 
-  const handleFormSubmit = (event: Event) => {
-    event.preventDefault()
-    sendMessage().catch((error) => {
-      console.warn("ORA_CLE chat: send failed", error)
-      updateSendButtonState()
-    })
-  }
-
-  const handleInput = () => {
-    autoResize()
-    updateSendButtonState()
-  }
-
-  const handleTextareaKeydown = (event: KeyboardEvent) => {
-    if (event.key === "Enter" && !event.shiftKey) {
+    const handleFormSubmit = (event: Event) => {
       event.preventDefault()
       sendMessage().catch((error) => {
         console.warn("ORA_CLE chat: send failed", error)
         updateSendButtonState()
       })
     }
-  }
 
-  const handleEscapeKey = (event: KeyboardEvent) => {
-    if (event.key === "Escape" && dialog.classList.contains("oracle-chat--open")) {
-      closeChat()
+    const handleInput = () => {
+      autoResize()
+      updateSendButtonState()
     }
-  }
 
-  launcher.addEventListener("click", handleLauncherClick)
-  overlay.addEventListener("click", handleOverlayClick)
-  closeButton?.addEventListener("click", handleCloseClick)
-  resetButton?.addEventListener("click", handleResetClick)
-  form.addEventListener("submit", handleFormSubmit)
-  textArea.addEventListener("input", handleInput)
-  textArea.addEventListener("keydown", handleTextareaKeydown)
-  window.addEventListener("keydown", handleEscapeKey)
-
-  window.addCleanup?.(() => {
-    launcher.removeEventListener("click", handleLauncherClick)
-    overlay.removeEventListener("click", handleOverlayClick)
-    closeButton?.removeEventListener("click", handleCloseClick)
-    resetButton?.removeEventListener("click", handleResetClick)
-    form.removeEventListener("submit", handleFormSubmit)
-    textArea.removeEventListener("input", handleInput)
-    textArea.removeEventListener("keydown", handleTextareaKeydown)
-    window.removeEventListener("keydown", handleEscapeKey)
-    activeController?.abort()
-    if (chatOpen) {
-      dialog.classList.remove("oracle-chat--open")
-      dialog.setAttribute("aria-hidden", "true")
+    const handleTextareaKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault()
+        sendMessage().catch((error) => {
+          console.warn("ORA_CLE chat: send failed", error)
+          updateSendButtonState()
+        })
+      }
     }
-    document.body.classList.remove("oracle-chat-active")
-    restoreChat(dialog)
-  })
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && dialog.classList.contains("oracle-chat--open")) {
+        closeChat()
+      }
+    }
+
+    launcher.addEventListener("click", handleLauncherClick)
+    overlay.addEventListener("click", handleOverlayClick)
+    closeButton?.addEventListener("click", handleCloseClick)
+    resetButton?.addEventListener("click", handleResetClick)
+    form.addEventListener("submit", handleFormSubmit)
+    textArea.addEventListener("input", handleInput)
+    textArea.addEventListener("keydown", handleTextareaKeydown)
+    window.addEventListener("keydown", handleEscapeKey)
+
+    window.addCleanup?.(() => {
+      launcher.removeEventListener("click", handleLauncherClick)
+      overlay.removeEventListener("click", handleOverlayClick)
+      closeButton?.removeEventListener("click", handleCloseClick)
+      resetButton?.removeEventListener("click", handleResetClick)
+      form.removeEventListener("submit", handleFormSubmit)
+      textArea.removeEventListener("input", handleInput)
+      textArea.removeEventListener("keydown", handleTextareaKeydown)
+      window.removeEventListener("keydown", handleEscapeKey)
+      activeController?.abort()
+      if (chatOpen) {
+        dialog.classList.remove("oracle-chat--open")
+        dialog.setAttribute("aria-hidden", "true")
+      }
+      document.body.classList.remove("oracle-chat-active")
+      restoreChat(dialog)
+    })
   })
 }
 

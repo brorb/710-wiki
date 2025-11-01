@@ -27,6 +27,7 @@ const allowedHeaders = [
   "X-Oracle-Key",
   "X-Oracle-Timestamp",
   "X-Oracle-Signature",
+  "X-Oracle-Channel",
 ]
 const allowHeadersHeader = [...allowedHeaders, "Accept", "Origin"].join(", ")
 
@@ -104,6 +105,7 @@ const server = createServer(async (request, response) => {
   const oracleKeyId = copyHeader("X-Oracle-Key") || process.env.ORACLE_KEY_ID || process.env.ORACLE_SIGNING_KEY_ID
   const oracleTimestamp = copyHeader("X-Oracle-Timestamp")
   const oracleSignature = copyHeader("X-Oracle-Signature")
+  const oracleChannel = copyHeader("X-Oracle-Channel")
 
   if (webApiKey) {
     outboundHeaders["X-Web-Api-Key"] = webApiKey
@@ -117,6 +119,9 @@ const server = createServer(async (request, response) => {
   if (oracleSignature) {
     outboundHeaders["X-Oracle-Signature"] = oracleSignature
   }
+  if (oracleChannel) {
+    outboundHeaders["X-Oracle-Channel"] = oracleChannel
+  }
 
   log("Forwarding request", {
     origin: origin || null,
@@ -124,6 +129,7 @@ const server = createServer(async (request, response) => {
     bodyBytes: bodyBuffer.byteLength,
     hasWebApiKey: Boolean(outboundHeaders["X-Web-Api-Key"]),
     hasOracleKey: Boolean(outboundHeaders["X-Oracle-Key"]),
+    channel: outboundHeaders["X-Oracle-Channel"] || null,
   })
 
   try {

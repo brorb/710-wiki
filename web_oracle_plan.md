@@ -22,7 +22,7 @@ Deliver a web-specific Oracle experience that feels intentional for browser user
 
 ### Phase 0 — Preconditions & Hardening
 - [x] **CORS Support**: `infra/keep_alive.py` now serves `Access-Control-Allow-*` headers driven by `config.json > oracle_api.allowed_origins` with wildcard localhost support and preflight short-circuiting.
-- [ ] **Client Credential Injection**: Update the web widget to attach `X-Oracle-Signature` (legacy `X-Oraculum-Signature`) + `X-Web-Api-Key` consistently; add config guardrails so missing headers surface developer-friendly errors.
+- [x] **Client Credential Injection**: Update the web widget to attach `X-Oracle-Signature` (legacy `X-Oraculum-Signature`) + `X-Web-Api-Key` consistently; add config guardrails so missing headers surface developer-friendly errors.
 - [ ] **Logging Parity**: Confirm Firebase web collection (`FIREBASE_WEB_CONVERSATION_LOG_URL`) is populated; add error logging for header validation failures.
 - [x] **Environment Checklist**: `README.md` documents `ORACLE_WEB_API_TOKEN`, `ORACLE_ALLOWED_ORIGINS`, `ORACLE_ALLOW_LOCALHOST_ORIGINS`, and `ORACLE_CORS_MAX_AGE` overrides for deployment.
 
@@ -46,9 +46,9 @@ Deliver a web-specific Oracle experience that feels intentional for browser user
 
 ### Phase 4 — UI Integration & Instrumentation
 - [x] **Integration Doc**: `docs/web_frontend_integration.md` defines rendering, instrumentation, fallback, and accessibility expectations for the web client.
-- [ ] **Frontend Consumption**: Update web UI components to parse the richer response (headings, tables, follow-ups).
-- [ ] **Analytics Hooks**: Emit events for question asked, link clicked, follow-up selected; ensure metrics pipe into existing analytics stack.
-- [ ] **Fallback UX**: Define degraded behavior if response lacks links (clear messaging + ask for rephrase buttons).
+- [x] **Frontend Consumption**: Update web UI components to parse the richer response (headings, tables, follow-ups).
+- [x] **Analytics Hooks**: Emit events for question asked, link clicked, follow-up selected; ensure metrics pipe into existing analytics stack.
+- [x] **Fallback UX**: Define degraded behavior if response lacks links (clear messaging + ask for rephrase buttons).
 - [ ] **Accessibility Review**: Check typography, ARIA labels, and keyboard navigation for the new layout.
 
 ### Phase 5 — QA, Launch, and Maintenance
