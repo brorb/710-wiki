@@ -12,6 +12,8 @@ import { config } from "./config.js"
 import { oracleRequestSchema } from "./schema.js"
 import { isRecaptchaEnabled, verifyRecaptcha } from "./recaptcha.js"
 
+const UPSTREAM_TIMEOUT_MS = Number.parseInt(process.env.UPSTREAM_TIMEOUT_MS ?? "", 10) || 65_000
+
 const app = express()
 
 if (config.trustProxy) {
@@ -66,10 +68,114 @@ const getClientIp = (req: Request): string | undefined => {
 }
 
 app.use(
-  helmet({
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy: false,
-  }),
+  (() => {
+    const connectSrc = new Set<string>([
+      "'self'",
+      "https://www.google.com",
+      "https://www.gstatic.com",
+      "https://www.recaptcha.net",
+      "https://www.googletagmanager.com",
+    ])
+    const scriptSrc = new Set<string>([
+      "'self'",
+      "'unsafe-inline'",
+      "https://cdn.jsdelivr.net",
+      "https://cdnjs.cloudflare.com",
+      "https://www.google.com",
+      "https://www.gstatic.com",
+      "https://www.recaptcha.net",
+      "https://utteranc.es",
+      "https://www.googletagmanager.com",
+    ])
+    const styleSrc = new Set<string>([
+      "'self'",
+      "'unsafe-inline'",
+      "https://fonts.googleapis.com",
+      "https://cdn.jsdelivr.net",
+      "https://cdnjs.cloudflare.com",
+    ])
+    const fontSrc = new Set<string>(["'self'", "data:", "https://fonts.gstatic.com"])
+    const frameSrc = new Set<string>([
+      "'self'",
+      "https:",
+      "https://discord.com",
+      "https://utteranc.es",
+      "https://giscus.app",
+      "https://www.youtube.com",
+      "https://www.google.com",
+    ])
+    const imgSrc = new Set<string>([
+      "'self'",
+      "data:",
+      "https:",
+      "https://cdn.discordapp.com",
+      "https://media.discordapp.net",
+      "https://images.unsplash.com",
+      "https://i.imgur.com",
+      "https://yt3.ggpht.com",
+      "https://i.ytimg.com",
+      "https://img.youtube.com",
+      "https://www.google.com",
+      "https://avatars.githubusercontent.com",
+      "https://static-cdn.jtvnw.net",
+      "https://www.recaptcha.net",
+    ])
+  const mediaSrc = new Set<string>(["'self'", "https:", "data:"])
+    const manifestSrc = new Set<string>(["'self'"])
+    const workerSrc = new Set<string>(["'self'", "blob:"])
+
+    if (config.oracleApiBaseUrl) {
+      try {
+        const apiOrigin = new URL(config.oracleApiBaseUrl).origin
+        connectSrc.add(apiOrigin)
+      } catch (error) {
+        console.warn("⚠️ [Proxy] Unable to parse ORACLE_API_BASE_URL for CSP", error)
+      }
+    }
+
+    for (const origin of config.allowedOrigins) {
+      if (origin === "*") {
+        connectSrc.add("*")
+        continue
+      }
+      try {
+        const parsed = new URL(origin)
+        connectSrc.add(parsed.origin)
+      } catch (error) {
+        connectSrc.add(origin)
+      }
+    }
+
+    const cspDirectives = {
+      "default-src": ["'self'"],
+      "base-uri": ["'self'"],
+      "form-action": ["'self'"],
+      "frame-ancestors": ["'self'"],
+      "object-src": ["'none'"],
+      "font-src": Array.from(fontSrc),
+      "style-src": Array.from(styleSrc),
+      "script-src": Array.from(scriptSrc),
+      "img-src": Array.from(imgSrc),
+      "connect-src": Array.from(connectSrc),
+      "frame-src": Array.from(frameSrc),
+      "manifest-src": Array.from(manifestSrc),
+      "media-src": Array.from(mediaSrc),
+      "worker-src": Array.from(workerSrc),
+      "prefetch-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"],
+      "child-src": ["'self'"],
+    } as const
+
+    const cspOptions = {
+      useDefaults: false,
+      directives: cspDirectives,
+    } as const
+
+    return helmet({
+      crossOriginEmbedderPolicy: false,
+      crossOriginResourcePolicy: false,
+      contentSecurityPolicy: cspOptions,
+    })
+  })(),
 )
 
 const corsOptions: CorsOptions = {
@@ -85,7 +191,16 @@ const corsOptions: CorsOptions = {
     return callback(new Error("Not allowed by CORS"))
   },
   methods: ["POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "X-Requested-With"],
+  allowedHeaders: [
+    "Content-Type",
+    "X-Requested-With",
+    "X-Web-Api-Key",
+    "X-Oracle-Key",
+    "X-Oracle-Signature",
+    "X-Oracle-Timestamp",
+    "X-Oracle-Channel",
+    "Authorization",
+  ],
   maxAge: 300,
   credentials: true,
 }
@@ -143,6 +258,9 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
   const signaturePayload = `${timestamp}.${serializedBody}`
   const signature = crypto.createHmac("sha256", config.oracleSigningSecret).update(signaturePayload).digest("hex")
 
+  const controller = new AbortController()
+  const timeoutHandle = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS)
+
   try {
     const upstreamResponse = await fetch(upstreamUrl, {
       method: "POST",
@@ -155,6 +273,7 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
         "X-Oracle-Channel": "web-proxy",
       },
       body: serializedBody,
+      signal: controller.signal,
     })
 
     const responseText = await upstreamResponse.text()
@@ -190,8 +309,17 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
 
     return res.status(upstreamResponse.status).set(responseHeaders).send()
   } catch (error) {
+    if (error instanceof Error && error.name === "AbortError") {
+      console.error("⚠️ [Proxy] Upstream request timed out", {
+        timeoutMs: UPSTREAM_TIMEOUT_MS,
+        endpoint: upstreamUrl,
+      })
+      return res.status(504).json({ success: false, reason: "Upstream request timed out" })
+    }
     console.error("Oracle proxy request failed", error)
     return res.status(502).json({ success: false, reason: "Upstream request failed" })
+  } finally {
+    clearTimeout(timeoutHandle)
   }
 })
 
