@@ -29,7 +29,7 @@ There are two ways in which the chats have become available to the public:
 ---
 ## Content
 
-There are only two parties chatting at a time, often under aliases, although [[TTH]] has been known to chat without aliases. The topics are usually about 
+There are only two parties chatting at a time, often under aliases (such as [[F2930]] or [[A992144]]), although [[TTH]] has been known to chat without aliases. The topics are usually about 
 
 There are 10 known private room chats, of which 7 have been from community posts, and 3 from videos. Below they appear in chronological order
 

@@ -22,7 +22,7 @@ The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[71
 
 ## Owners
 
-The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] (during the STATION_8 livestreams, before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and possibly [[SYSTEM]] (since it was a moderator during the STATION_8 livestreams), however [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]].
+The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]].
 
 > [!discord-cite]- Discord citation (1 message)
 > 
