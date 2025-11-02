@@ -2,6 +2,7 @@
 title: The Eyes
 tags:
   - lore
+  - anomalies
 ---
 ```infobox
 Title: The Eyes
@@ -17,9 +18,9 @@ Appearances:
 ```
 
 
-Possibly a program that manages data and creates [[The Logs]], can be seen in the [[Private Room]] scanning through data before the chatroom fully connects.
+Possibly a program that manages data, as it appears in the [[Private Room]] (named "SPR chatroom") scanning through data before the chatroom fully connects.
 
-It is a forbidden topic of discussion around [[SYSTEM]] because it tends to output strange statements and crash whenever it is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves the phrase "The Eyes" and therefore its functions don't know how to handle it.
+It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them.
 
 ---
 ### Gallery
@@ -44,6 +45,14 @@ Width: clamp(220px, 32vw, 360px)
 Media: [[The Eyes as they appear in the SPR chat.png]]
 Alt: The Eyes in {_ _ _-_ _._ _ _}re
 Caption: The Eyes as they appear in the SPR chat
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: ![[The Eyes in LOG-27.png]]
+Alt: A wall of The Eyes in LOG-27
+Caption: The Eyes as they appear in LOG-27.mp4
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
