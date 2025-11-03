@@ -18,19 +18,14 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "concepts",
   },
   {
-    href: "/Media/",
-    label: "Media",
-    iconSlug: "media",
-  },
-  {
     href: "/Timelines/",
-    label: "Timelines",
-    iconSlug: "timeline",
+    label: "Chronology",
+    iconSlug: "chronology",
   },
   {
     href: "/Puzzles/",
-    label: "Puzzles",
-    iconSlug: "puzzles",
+    label: "Mysteries",
+    iconSlug: "mysteries",
   },
   {
     href: "/Contribute/",

@@ -9010,7 +9010,7 @@ var defaultOptions12 = {
   }, "sortFn"),
   filterFn: /* @__PURE__ */ __name((node) => {
     const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-    return segment !== "tags" && segment !== "canvases";
+    return segment !== "tags" && segment !== "canvases" && segment !== "guides";
   }, "filterFn"),
   order: ["filter", "map", "sort"]
 };
@@ -9778,19 +9778,14 @@ var navLinks = [
     iconSlug: "concepts"
   },
   {
-    href: "/Media/",
-    label: "Media",
-    iconSlug: "media"
-  },
-  {
     href: "/Timelines/",
-    label: "Timelines",
-    iconSlug: "timeline"
+    label: "Chronology",
+    iconSlug: "chronology"
   },
   {
     href: "/Puzzles/",
-    label: "Puzzles",
-    iconSlug: "puzzles"
+    label: "Mysteries",
+    iconSlug: "mysteries"
   },
   {
     href: "/Contribute/",

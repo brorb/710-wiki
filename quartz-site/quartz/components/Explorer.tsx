@@ -51,7 +51,7 @@ const defaultOptions: Options = {
   },
   filterFn: (node) => {
     const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-    return segment !== "tags" && segment !== "canvases"
+    return segment !== "tags" && segment !== "canvases" && segment !== "guides"
   },
   order: ["filter", "map", "sort"],
 }

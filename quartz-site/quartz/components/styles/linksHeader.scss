@@ -77,17 +77,12 @@ header {
     -webkit-mask-image: url("/static/icons/concepts_icon.svg");
   }
 
-  .links-header-icon--media {
-    mask-image: url("/static/icons/media_icon.svg");
-    -webkit-mask-image: url("/static/icons/media_icon.svg");
-  }
-
-  .links-header-icon--timeline {
+  .links-header-icon--chronology {
     mask-image: url("/static/icons/timeline_icon.svg");
     -webkit-mask-image: url("/static/icons/timeline_icon.svg");
   }
 
-  .links-header-icon--puzzles {
+  .links-header-icon--mysteries {
     mask-image: url("/static/icons/puzzles_icon.svg");
     -webkit-mask-image: url("/static/icons/puzzles_icon.svg");
   }
