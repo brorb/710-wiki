@@ -11,6 +11,9 @@ Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Appearances:
 - [[RIGfunctionobservationTEST028.mp4]] (description)
 - [[HIS PERCEPTION]] (hidden audio clues)
+Aliases:
+- DaVinci
+- Da Vinci
 ```
 
 
