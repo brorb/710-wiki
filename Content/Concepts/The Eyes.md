@@ -58,9 +58,17 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
+Media: [[The Eyes skulls.png]]
+Alt: Brightened image of a wall of The Eyes with two skulls side-by-side
+Caption: Enhanced image from LOG-27.mp4, note the two skulls on the sides 
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
 Media: [[The Eyes Hello.png]]
-Alt: A wall of The Eyes in LOG-27
-Caption: The Eyes as they appear in LOG-27.mp4
+Alt: The Eyes in the corner of the screen of "Hello" video
+Caption: The Eyes as they appear in the Hello video, note the reversed words, which translate to "YOUR NOT IN CONTROL HERE"
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
