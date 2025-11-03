@@ -38,13 +38,13 @@ His official name is "IN_DI" as confirmed by [[Kepler]]/[[710 NPP|7/10 NPP]] in 
 
 ## Personality
 
-INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, often quickly followed by a reprimand by [[Kepler]]. Their relationship with Kepler seems to be that of an employee to a supervisor.
+INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, alongside [[SYSTEM]].
 
 ## Relationships
 
 ### [[Kepler]]
 
-During the STATION_8 livestreams, [[Kepler]] would often supervise INDI as a way to try to not let him give away too much as to what was happening during the broadcast. Their tone towards him also seems to be somewhat distant, as if they didn't really want to be responsible for "that thing". They also seem to view INDI was an untrustworthy character yet necessary for whatever purpose they were trying to accomplish.
+His relationship with Kepler seems to be that of an employee to a supervisor. During the STATION_8 livestreams, [[Kepler]] would often supervise INDI as a way to try to not let him give away too much as to what was happening during the broadcast. Their tone towards him also seems to be somewhat distant, as if they didn't really want to be responsible for "that thing". They also seem to view INDI was an untrustworthy character yet necessary for whatever purpose they were trying to accomplish.
 ### [[Travis]]
 
 Not much is known about the relationship between [[Travis]] and INDI, but from what little information is available, they seem to have a sort of professional relationship with each other, which seems to be friendlier than the relationship with [[Kepler]].
@@ -67,6 +67,49 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 7/10 Tone (Travis): Why does it always end like this?
 7/10NPP (INDI): I ALREADY TOLD YOU WHY.
 ```
+
+### [[SYSTEM]]
+
+[[SYSTEM]] was originally created by INDI as a PCV package to be sent to [[REN]] servers ("as a way to get back at them"), until he forgot and made it a moderator for the channel during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mhji29fj-8cqtzh --> 
+
+> [!discord-cite]- Discord citation (2 messages)
+>
+> ```json
+> {
+>   "id": "cite-mhji29fj-8cqtzh",
+>   "messages": [
+>     {
+>       "id": "1396761011138068511",
+>       "author": {
+>         "display_name": "brorb",
+>         "username": "brorb",
+>         "color": "#FFDA43",
+>         "colour": "#FFDA43",
+>         "colour_value": 16767555
+>       },
+>       "content": "@SYSTEM why were you created?",
+>       "timestamp": "2025-07-21T07:49:35.620000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761011138068511"
+>     },
+>     {
+>       "id": "1396761370963214429",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "<OUTPRINT>!:(At first, it was a way for IN_DI to get back at REN, but IN_DI forgot and made me a mod for a livestream.)",
+>       "timestamp": "2025-07-21T07:51:01.409000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761370963214429"
+>     }
+>   ]
+> }
+> ```
+
 ## Gallery
 
 ```media-box
