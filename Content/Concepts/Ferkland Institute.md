@@ -9,6 +9,7 @@ Title: Ferkland Institute
 Image: ![[Ferkland Institute.png|400]]
 Caption: The obfuscated logo of the Ferkland Institute from [[LOG-10444444444444444444444]]
 Region: [[Ferkland County]]
+Appearances: [[LOG-10444444444444444444444]]
 ```
 
 
@@ -23,4 +24,4 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-Their logo has only appeared once, in [[LOG-10444444444444444444444]], with the text "FUNDED DEATH" branded on top. The meaning of this is not understood.
+Their logo has only appeared once, in [[LOG-10444444444444444444444]], with the text "FUNDED DEATH" branded on top. The meaning of this is not fully understood but it can be inferred that The Institute might have been involved in some shady business.

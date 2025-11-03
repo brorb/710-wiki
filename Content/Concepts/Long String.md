@@ -3,6 +3,8 @@ title: Long String
 tags:
   - lore
   - virus
+  - important
+  - REN
 ---
 ```infobox
 Title: Long String
@@ -18,7 +20,7 @@ Appearances:
 ```
 
 
-Long String (also known as "long_string", "long_str" ) is the name of a computer program. It has been referred to as a "tool" used by [[REN]]^[[[STATION_8 TERMINAL 8]]] and acts as a computer virus (as seen in all of it appearances).  The first (known) appearance of Long String is in [[LONG_STR.mp4]] from 23rd Feb 2025, which demonstrates a system getting infected with the virus.
+Long String (also known as "long_string", "long_str" ) is the name of a computer virus. It has been referred to as a "tool" used by [[REN]]^[[[STATION_8 TERMINAL 8]]] and acts as a computer virus (as seen in all of it appearances).  The first (known) appearance of Long String is in [[LONG_STR.mp4]] from 23rd Feb 2025, which demonstrates a system getting infected with the virus.
 
 It is also likely related to INDI's [[TRUTH.zip]] file, since it has associations with the command to run Long String, {V83mak8.exe}.<!-- discord-cite:cite-mh40eu7g-1vvn6o -->
 
