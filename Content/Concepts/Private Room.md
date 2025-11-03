@@ -117,7 +117,7 @@ The screen is then filled with the repeating text:
 INFECTED BY LONG STRING ;-) 
 ```
 
-This chat comes from the video [[LOG-123.mp4]], posted on 2025.05.04. In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-)"
+This chat comes from the video [[LOG-123.mp4]], posted on . In it, the maintenance worker [[F82991]] (under the screen name "SS") communicates with "RECEIVER #439 ON FPIDI 9" (screen name "CLS"). It is very possible that CLS is [[A992144]] since CLS is recognized as being "the guy who purged his terminal", and we know from [[Private Room#Chat 4|chat #4]] that [[A992144]] purged their terminal. CLS goes on to ask for help on how to get rid of [[Long String]], but before they can get help, the system gets infected, as indicated by the message "INFECTED BY LONG STRING ;-)"
 
 ## Chat #6
 
