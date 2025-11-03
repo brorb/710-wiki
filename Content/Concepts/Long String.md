@@ -17,6 +17,7 @@ Appearances:
 - [[LOG-123.mp4]]
 - [[{_ _ _-_ _._ _ _}re]]
 - [[Parting Gifts]]
+- [[System Chats]]
 ```
 
 
@@ -264,11 +265,6 @@ At one point, [[SYSTEM]] crashed after being asked who made Long String:
 ]
 ```
 
-## Appearances:
-
-- [[LONG_STR.mp4]], first appearance
-- In [[Parting Gifts]], Long String can be seen infecting a system, following the message "AND I WILL DO IT AGAIN". This video was uploaded a few days after the livestream [[STATION_8 TERMINAL 8]] ended.
-- [[LOG-123.mp4]]
-- [[System Chats]]
+---
 
 [^1]: [[STATION_8 TERMINAL 8]]
