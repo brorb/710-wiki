@@ -13,6 +13,21 @@ import { oracleRequestSchema } from "./schema.js"
 import { isRecaptchaEnabled, verifyRecaptcha } from "./recaptcha.js"
 
 const UPSTREAM_TIMEOUT_MS = Number.parseInt(process.env.UPSTREAM_TIMEOUT_MS ?? "", 10) || 65_000
+const DEBUG_PROXY = (process.env.DEBUG_PROXY ?? "").trim().toLowerCase()
+const DEBUG_PROXY_ENABLED = ["1", "true", "yes", "debug"].includes(DEBUG_PROXY)
+
+const debugLog = (...args: unknown[]) => {
+  if (DEBUG_PROXY_ENABLED) {
+    console.log("🔍 [Proxy]", ...args)
+  }
+}
+
+const createRequestId = () => {
+  if (typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID()
+  }
+  return crypto.randomBytes(12).toString("hex")
+}
 
 const app = express()
 
@@ -216,26 +231,51 @@ app.get("/healthz", (_req: Request, res: Response) => {
 })
 
 app.post("/api/oracle/query", async (req: Request, res: Response) => {
+  const requestId = createRequestId()
+  const startedAt = Date.now()
+  res.setHeader("X-Request-Id", requestId)
+  res.once("finish", () => {
+    const durationMs = Date.now() - startedAt
+    debugLog(`req ${requestId} completed`, { status: res.statusCode, durationMs })
+  })
+
   const origin = normaliseOrigin(req.get("origin") ?? req.get("referer"))
 
   if (!isOriginAllowed(origin)) {
+    debugLog(`req ${requestId} blocked`, { reason: "origin", origin })
     return res.status(403).json({ success: false, reason: "Origin not allowed" })
   }
 
   const parseResult = oracleRequestSchema.safeParse(req.body)
   if (!parseResult.success) {
+    debugLog(`req ${requestId} invalid`, { reason: "payload", issues: parseResult.error.issues.slice(0, 3) })
     return res.status(400).json({ success: false, reason: "Invalid request payload", issues: parseResult.error.issues })
   }
 
   const data = parseResult.data
 
+  if (DEBUG_PROXY_ENABLED) {
+    const messageRoles = Array.isArray(data.messages) ? data.messages.map((message) => message.role) : []
+    const metadataKeys = data.metadata ? Object.keys(data.metadata) : []
+    debugLog(`req ${requestId} payload`, {
+      conversationId: data.conversationId ?? null,
+      priority: data.priority ?? null,
+      messageRoles,
+      metadataKeys,
+      hasCaptcha: Boolean(data.captchaToken),
+      origin,
+    })
+  }
+
   if (isRecaptchaEnabled()) {
     if (!data.captchaToken) {
+      debugLog(`req ${requestId} blocked`, { reason: "missing_captcha" })
       return res.status(400).json({ success: false, reason: "captchaToken is required" })
     }
 
     const captchaOk = await verifyRecaptcha(data.captchaToken, getClientIp(req))
     if (!captchaOk) {
+      debugLog(`req ${requestId} blocked`, { reason: "captcha_failed" })
       return res.status(400).json({ success: false, reason: "Captcha verification failed" })
     }
   }
@@ -273,14 +313,26 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
         "X-Oracle-Timestamp": timestamp,
         "X-Oracle-Signature": signature,
         "X-Oracle-Channel": "web-proxy",
+        "X-Oracle-Request-Id": requestId,
       },
       body: serializedBody,
       signal: controller.signal,
     })
 
     const responseText = await upstreamResponse.text()
+    if (DEBUG_PROXY_ENABLED) {
+      debugLog(`req ${requestId} upstream`, {
+        status: upstreamResponse.status,
+        requestDurationMs: Date.now() - startedAt,
+        headers: {
+          cached: upstreamResponse.headers.get("x-oracle-cached") ?? null,
+          contextHash: upstreamResponse.headers.get("x-oracle-context-hash") ?? null,
+        },
+      })
+    }
     if (!upstreamResponse.ok) {
       console.error("⚠️ [Proxy] Upstream error", {
+        requestId,
         status: upstreamResponse.status,
         statusText: upstreamResponse.statusText,
         bodyPreview: responseText.length > 500 ? `${responseText.slice(0, 500)}…` : responseText,
@@ -313,12 +365,13 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
       console.error("⚠️ [Proxy] Upstream request timed out", {
+        requestId,
         timeoutMs: UPSTREAM_TIMEOUT_MS,
         endpoint: upstreamUrl,
       })
       return res.status(504).json({ success: false, reason: "Upstream request timed out" })
     }
-    console.error("Oracle proxy request failed", error)
+    console.error("Oracle proxy request failed", { requestId, error })
     return res.status(502).json({ success: false, reason: "Upstream request failed" })
   } finally {
     clearTimeout(timeoutHandle)

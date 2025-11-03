@@ -10,6 +10,36 @@ A lightweight Express proxy that keeps the Oracle API credentials on the server 
 - Restricts access to approved origins via CORS and per-request checks.
 - Adds request context metadata (origin, IP, user agent) before relaying to the Oracle API.
 
+## Request Lifecycle Overview
+
+```mermaid
+flowchart TD
+   A[Browser request] --> B{Origin allowed?}
+   B -- No --> X[403 Forbidden]
+   B -- Yes --> C[Size & schema validation]
+   C -- Fail --> Y[400 Bad Request]
+   C -- Pass --> D{reCAPTCHA enabled?}
+   D -- Yes --> E[Verify token]
+   D -- No --> F[Assemble Oracle headers]
+   E -- Fail --> Z[403 reCAPTCHA failed]
+   E -- Pass --> F
+   F --> G[Sign payload (timestamp.body)]
+   G --> H[Forward to Oracle API]
+   H --> I{Response OK?}
+   I -- No --> J[Bubble upstream error]
+   I -- Yes --> K[Return JSON to client]
+
+```
+
+| Stage | Implementation | Notes |
+| --- | --- | --- |
+| Origin gate | `isOriginAllowed` helper in `server.ts` | Compares parsed origin against `ALLOWED_ORIGINS`; rejects mismatches with `403`. |
+| Payload validation | `oracleRequestSchema.safeParse` | Enforces JSON limit (`REQUEST_BODY_LIMIT`) and required fields before forwarding. |
+| reCAPTCHA | `verifyRecaptcha` helper | Skips when `RECAPTCHA_SECRET` is empty; logs latency + score when present. |
+| Signing | Inline `crypto.createHmac` call | Produces `X-Oracle-Timestamp`, `X-Oracle-Key`, and `X-Oracle-Signature`. |
+| Forwarding | Native `fetch` with `AbortController` | Targets `ORACLE_API_BASE_URL` + `ORACLE_API_ENDPOINT`; enforces `UPSTREAM_TIMEOUT_MS`. |
+| Response shaping | Route handler response mapping | Copies upstream `X-Oracle-*` headers and echoes status/body for the browser. |
+
 ## Getting Started
 
 1. **Install dependencies**

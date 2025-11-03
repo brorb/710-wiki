@@ -53,13 +53,39 @@ The desktop right sidebar surfaces an “Ask ORA_CLE” launcher that opens the 
 
 ### Configuration hooks
 
-	- `enabled`: set to `false` to hide the UI without touching templates.
-	- `apiBaseUrl`: absolute base for the secure proxy (for production set `ORACLE_PROXY_BASE_URL`). Empty string falls back to the current origin.
-	- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
-	- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
-	- `storageKey`: override the browser key if you need to migrate existing conversations.
-	- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
-	- The chat widget no longer requires `ORACLE_WEB_API_TOKEN`, `ORACLE_KEY_ID`, or `ORACLE_KEY_SECRET`; those secrets live exclusively on the proxy service. Set `ORACLE_PROXY_BASE_URL` so Quartz emits the correct target URL during builds.
+- `enabled`: set to `false` to hide the UI without touching templates.
+- `apiBaseUrl`: absolute base for the secure proxy (for production set `ORACLE_PROXY_BASE_URL`). Empty string falls back to the current origin.
+- `endpointPath`: path (or absolute URL) that receives chat POSTs. Defaults to `/api/oracle/query`.
+- `recaptchaSiteKey`: reCAPTCHA v3 site key. When present the client lazily loads Google’s script and attaches a `captchaToken` per request.
+- `storageKey`: override the browser key if you need to migrate existing conversations.
+- `maxHistory`: maximum number of user/assistant turns that travel with each API call. Defaults to 24.
+- The chat widget no longer requires `ORACLE_WEB_API_TOKEN`, `ORACLE_KEY_ID`, or `ORACLE_KEY_SECRET`; those secrets live exclusively on the proxy service. Set `ORACLE_PROXY_BASE_URL` so Quartz emits the correct target URL during builds.
+
+#### Widget Configuration Matrix
+
+| Setting | Config Location | Default | Notes |
+| --- | --- | --- | --- |
+| `enabled` | `quartz.layout.ts` or frontmatter override | `true` | Toggle visibility without code removal. |
+| `apiBaseUrl` | Build-time env `ORACLE_PROXY_BASE_URL` | `""` | Empty string keeps requests on the current origin. |
+| `endpointPath` | Inline widget config | `/api/oracle/query` | Use a full URL when bypassing the proxy for testing. |
+| `recaptchaSiteKey` | Frontmatter `oracleChat.recaptchaSiteKey` | `null` | When set, the widget injects reCAPTCHA v3 and sends `captchaToken`. |
+| `storageKey` | `quartz.layout.ts` | `oracle-chat-history` | Rename when migrating transcripts or running multiple widgets. |
+| `maxHistory` | `quartz/components/scripts/oracleWidget.inline.ts` | `24` | Hard limit of turns persisted + sent with each request. |
+
+```mermaid
+flowchart LR
+	Reader[Site visitor] --> Widget[Quartz Oracle widget]
+	Widget -->|Fetch config & history| Storage[(localStorage)]
+	Widget -->|POST question| Proxy[Oracle proxy]
+	Proxy -->|Inject gateway token + HMAC| Oracle[Oracle API]
+	Oracle -->|Retrieval + Claude| Oracle
+	Oracle -->|Reply JSON| Proxy
+	Proxy -->|Pass response| Widget
+	Widget -->|Render answer + citations| Reader
+
+```
+
+The data flow diagram is a quick reference when diagnosing cross-repo issues: if a user reports failures, start where their arrows stop (e.g. proxy logs for 502s, Oracle logs for guard-rail rejections) before chasing deeper stack layers.
 
 ### Request lifecycle
 
