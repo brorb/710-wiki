@@ -492,7 +492,8 @@ app.get("/api/oracle/context-stream", async (req: Request, res: Response) => {
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const defaultStaticRoot = path.resolve(currentDir, "..", "..", "quartz-site", "public")
-const staticRoot = (process.env.STATIC_ROOT && process.env.STATIC_ROOT.trim()) || defaultStaticRoot
+const envStaticRoot = process.env.STATIC_ROOT?.trim()
+const staticRoot = envStaticRoot && envStaticRoot.length > 0 ? path.resolve(envStaticRoot) : defaultStaticRoot
 const hasStaticAssets = fs.existsSync(staticRoot)
 
 if (!hasStaticAssets) {
@@ -520,7 +521,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   }
 
   const resolved = path.resolve(staticRoot, `.${req.path}`)
-  if (!resolved.startsWith(staticRoot)) {
+  const relative = path.relative(staticRoot, resolved)
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
     return res.status(403).send("Forbidden")
   }
 

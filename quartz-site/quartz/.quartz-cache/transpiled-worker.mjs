@@ -12631,7 +12631,7 @@ var config2 = {
     enablePopovers: true,
     analytics: null,
     locale: "en-US",
-    baseUrl: "https://www.710tone.wiki",
+    baseUrl: "710tone.wiki",
     ignorePatterns: [
       "private",
       "templates",
@@ -12652,7 +12652,7 @@ var config2 = {
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
-      cdnCaching: true,
+      cdnCaching: false,
       typography: {
         header: "Schibsted Grotesk",
         body: "Source Sans Pro",
