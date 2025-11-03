@@ -388,6 +388,17 @@ const oracleWidgetStyles = `
   background: color-mix(in srgb, var(--color-accent-shadow) 18%, transparent);
 }
 
+.oracle-chat__bubble--pending {
+  gap: 0.4rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 82%, var(--color-tone-contrast) 18%);
+  font-style: italic;
+}
+
+.oracle-chat__pending-text {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
 .oracle-chat__message--error .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
   color: var(--color-tone-contrast);
