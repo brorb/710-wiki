@@ -22,7 +22,7 @@ SYSTEM ID: 472914741**
 ![[LOG-27 reversed audio2.mp3]]![[LOG-27 reversed audio2 (longer).mp3]]
 _Audio files provided by Sleuth member The Camera Eye._
 
-If you brighten up the section where the wall of [[The Eyes]] appear, you'll see two skulls on the side corners of the screen, with one of them being upside down.
+If you brighten up the section where the wall of [[The Eyes]] appear, you'll see two skulls on the side corners of the screen, with one of them being upside down. These are the same type of skull that appears in [[20240NA@]] (both [[710 Tone|7/10 Tone]] and [[710 NPP|7/10 NPP]] versions).
 
 ```media-box
 Media: [[The Eyes skulls.png]]
