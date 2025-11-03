@@ -25,9 +25,9 @@ _Audio files provided by Sleuth member The Camera Eye._
 If you brighten up the section where the wall of [[The Eyes]] appear, you'll see two skulls on the side corners of the screen, with one of them being upside down.
 
 ```media-box
-Media: [[Different software named APP TRUSTED 02 (SERVER 01).png]]
-Alt: Different software named APP TRUSTED 02
-Align: left
+Media: [[The Eyes skulls.png]]
+Alt: Brightened image of a wall of The Eyes with two skulls side-by-side
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
