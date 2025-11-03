@@ -90,8 +90,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
-    locale: "en-US",
-  baseUrl: "https://www.710tone.wiki",
+  locale: "en-US",
+  baseUrl: "710tone.wiki",
     ignorePatterns: [
       "private",
       "templates",
@@ -111,8 +111,8 @@ const config: QuartzConfig = {
     ],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
-      cdnCaching: true,
+  fontOrigin: "googleFonts",
+  cdnCaching: false,
       typography: {
         header: "Schibsted Grotesk",
         body: "Source Sans Pro",
