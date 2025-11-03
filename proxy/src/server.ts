@@ -75,10 +75,13 @@ app.use(
       "https://www.gstatic.com",
       "https://www.recaptcha.net",
       "https://www.googletagmanager.com",
+      "https://fonts.googleapis.com",
+      "https://fonts.gstatic.com",
     ])
     const scriptSrc = new Set<string>([
       "'self'",
       "'unsafe-inline'",
+      "'unsafe-eval'",
       "https://cdn.jsdelivr.net",
       "https://cdnjs.cloudflare.com",
       "https://www.google.com",
@@ -94,7 +97,7 @@ app.use(
       "https://cdn.jsdelivr.net",
       "https://cdnjs.cloudflare.com",
     ])
-    const fontSrc = new Set<string>(["'self'", "data:", "https://fonts.gstatic.com"])
+  const fontSrc = new Set<string>(["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com"])
     const frameSrc = new Set<string>([
       "'self'",
       "https:",
@@ -120,7 +123,7 @@ app.use(
       "https://static-cdn.jtvnw.net",
       "https://www.recaptcha.net",
     ])
-  const mediaSrc = new Set<string>(["'self'", "https:", "data:"])
+    const mediaSrc = new Set<string>(["'self'", "https:", "data:"])
     const manifestSrc = new Set<string>(["'self'"])
     const workerSrc = new Set<string>(["'self'", "blob:"])
 
@@ -160,9 +163,8 @@ app.use(
       "frame-src": Array.from(frameSrc),
       "manifest-src": Array.from(manifestSrc),
       "media-src": Array.from(mediaSrc),
-      "worker-src": Array.from(workerSrc),
-      "prefetch-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"],
-      "child-src": ["'self'"],
+  "worker-src": Array.from(workerSrc),
+  "child-src": ["'self'"],
     } as const
 
     const cspOptions = {
