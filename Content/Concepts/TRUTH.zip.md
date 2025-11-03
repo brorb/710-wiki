@@ -2,7 +2,7 @@
 tags:
   - lore
 ---
-A .zip file created by [[INDI]] that was featured in [[LEAKED_1.mp4]] and is supposedly a "weapon against older technology", or in other words, most likely a type of dangerous computer virus or some kind of top secret information.
+A .zip file created by [[INDI]] that was featured in [[LEAKED_1.mp4]] and a "weapon against older technology" according to the video, in other words, it is most likely a type of dangerous computer virus or some kind of top secret information.
 
 It might have some relationship to [[Long String]] judging by it being associated with a .PCV package for V83mak8.exe (a command program known to launch [[Long String]]).<!-- discord-cite:cite-mh3rns5y-rhk5vm -->
 
