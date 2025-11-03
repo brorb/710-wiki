@@ -50,7 +50,15 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Media: ![[The Eyes in LOG-27.png]]
+Media: [[The Eyes in LOG-27.png]]
+Alt: A wall of The Eyes in LOG-27
+Caption: The Eyes as they appear in LOG-27.mp4
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[The Eyes Hello.png]]
 Alt: A wall of The Eyes in LOG-27
 Caption: The Eyes as they appear in LOG-27.mp4
 Align: center
