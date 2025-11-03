@@ -27,15 +27,8 @@ type OracleWebPayload = {
   disclaimers?: string[]
 }
 
-type OracleProgressEntry = {
-  stage: string
-  label: string
-  timestamp: number
-  details?: Record<string, unknown>
-}
-
 type FollowUpContext = {
-  source: "suggestion" | "fallback"
+  source: "suggestion"
   index: number
 }
 
@@ -54,8 +47,18 @@ type OracleMessage = {
   disclaimers?: string[]
   rawReply?: string
   promptContext?: string
-  clientMessageId?: string
-  progress?: OracleProgressEntry[]
+}
+
+type LinkEntry = {
+  label: string
+  url?: string
+  meta?: string
+}
+
+type PendingContextState = {
+  titles: string[]
+  empty: boolean
+  lastUpdated: number
 }
 
 type OracleState = {
@@ -67,10 +70,10 @@ type OracleState = {
 type OracleConfig = {
   apiBaseUrl: string
   endpointPath: string
+  contextStreamPath: string
   storageKey: string
   maxHistory: number
   recaptchaSiteKey?: string
-  contextStreamPath?: string
   article?: {
     title?: string
     slug?: string
@@ -79,6 +82,7 @@ type OracleConfig = {
 
 type OracleRequestPayload = {
   conversationId: string | null
+  clientMessageId?: string
   question: string
   messages: Array<{ role: "user" | "assistant"; content: string }>
   metadata: Record<string, unknown>
@@ -87,7 +91,6 @@ type OracleRequestPayload = {
   creativeMode?: boolean
   captchaToken?: string
   channel?: string
-  clientMessageId?: string
 }
 
 type RecaptchaClient = {
@@ -104,7 +107,6 @@ type FetchResult = {
   metadata?: Record<string, unknown>
   webPayload?: unknown
   disclaimers?: unknown
-  clientMessageId?: string | null
 }
 
 const isDialogueRole = (role: OracleRole): role is "user" | "assistant" => role === "user" || role === "assistant"
@@ -150,16 +152,11 @@ const restoreChat = (dialog: HTMLElement) => {
 
 const DEFAULT_STORAGE_KEY = "oracle-chat-history"
 const DEFAULT_ENDPOINT = "/api/oracle/query"
-const DEFAULT_CONTEXT_STREAM = "/api/oracle/context-stream"
+const DEFAULT_STREAM_ENDPOINT = "/api/oracle/context-stream"
 const DEFAULT_MAX_HISTORY = 24
 const SEND_COOLDOWN_MS = 1200
 const RECAPTCHA_ACTION = "oracle_chat"
 const DEBUG_ENABLED = true
-const MAX_PROGRESS_ENTRIES = 6
-
-const numberFormatter = new Intl.NumberFormat(undefined, {
-  maximumFractionDigits: 2,
-})
 
 const debugLog = (...args: Array<unknown>) => {
   if (!DEBUG_ENABLED) {
@@ -198,182 +195,6 @@ const toTrimmedString = (value: unknown): string | undefined => {
 
   const trimmed = value.trim()
   return trimmed.length > 0 ? trimmed : undefined
-}
-
-const toRecord = (value: unknown): Record<string, unknown> | undefined => {
-  if (!value || typeof value !== "object") {
-    return undefined
-  }
-  return value as Record<string, unknown>
-}
-
-const formatSeconds = (value: unknown): string | undefined => {
-  if (typeof value !== "number" || !Number.isFinite(value)) {
-    return undefined
-  }
-  if (value >= 10) {
-    return `${value.toFixed(0)}s`
-  }
-  if (value >= 1) {
-    return `${value.toFixed(1)}s`
-  }
-  return `${value.toFixed(2)}s`
-}
-
-const formatCount = (value: unknown): string | undefined => {
-  if (typeof value === "number" && Number.isFinite(value)) {
-    return numberFormatter.format(value)
-  }
-  if (typeof value === "string" && value.trim().length > 0) {
-    return value
-  }
-  return undefined
-}
-
-const parseProgressEntries = (value: unknown): OracleProgressEntry[] | undefined => {
-  if (!Array.isArray(value)) {
-    return undefined
-  }
-  const entries: OracleProgressEntry[] = []
-  value.forEach((entry) => {
-    if (!entry || typeof entry !== "object") {
-      return
-    }
-    const candidate = entry as Record<string, unknown>
-    const stage = toTrimmedString(candidate.stage)
-    const label = toTrimmedString(candidate.label)
-    if (!stage || !label) {
-      return
-    }
-    const timestampValue = candidate.timestamp
-    const timestamp = typeof timestampValue === "number" && Number.isFinite(timestampValue)
-      ? timestampValue
-      : Date.now()
-    const details = toRecord(candidate.details) || undefined
-    entries.push({ stage, label, timestamp, details })
-  })
-  return entries.length > 0 ? entries : undefined
-}
-
-const formatProgressLabel = (stage: string, details?: Record<string, unknown>): string => {
-  const duration = formatSeconds(details?.duration)
-  switch (stage) {
-    case "context-start":
-      return "Scanning wiki sources…"
-    case "context-empty":
-      return "No indexed context found; using fallback"
-    case "context-complete":
-      return duration ? `Context gathered (${duration})` : "Context gathered"
-    case "context-hit":
-      return details?.title ? `Found context: ${String(details.title)}` : "Found relevant context"
-    case "ensure-ready.start":
-      return "Preparing wiki index…"
-    case "ensure-ready.sync-start":
-      return "Syncing wiki mirror…"
-    case "ensure-ready.sync-complete":
-      return duration ? `Wiki mirror synced (${duration})` : "Wiki mirror synced"
-    case "ensure-ready.load-start":
-      return "Loading wiki index…"
-    case "ensure-ready.load-complete": {
-      const docCount = formatCount(details?.doc_count)
-      return docCount ? `Wiki index ready (${docCount} docs)` : "Wiki index ready"
-    }
-    case "ensure-ready.complete":
-      return "Index ready"
-    case "build-context.start":
-      return "Analysing question…"
-    case "build-context.intent":
-      return "Detecting question intent"
-    case "build-context.resolver": {
-      const hits = formatCount(details?.hits)
-      return hits ? `Resolver pulled ${hits} hint(s)` : "Checking wiki hints"
-    }
-    case "build-context.collect-start":
-      return "Gathering wiki passages…"
-    case "build-context.collect-complete": {
-      const candidates = formatCount(details?.combined_candidates)
-      return candidates ? `Collected ${candidates} candidate chunk(s)` : "Candidate collection complete"
-    }
-    case "build-context.selection": {
-      const selected = formatCount(details?.selected)
-      const tokens = formatCount(details?.estimated_tokens)
-      if (selected && tokens) {
-        return `Selecting ${selected} chunk(s) (~${tokens} tokens)`
-      }
-      return selected ? `Selecting ${selected} chunk(s)` : "Selecting top context"
-    }
-    case "build-context.overflow": {
-      const overflow = formatCount(details?.overflow)
-      return overflow ? `${overflow} chunk(s) set aside as overflow` : "Condensing overflow chunks"
-    }
-    case "build-context.fallback":
-      return "Falling back to the full wiki corpus"
-    case "build-context.error":
-      return "Context build failed; using fallback"
-    case "build-context.complete": {
-      const chunkCount = formatCount(details?.chunk_count)
-      return chunkCount ? `Context ready (${chunkCount} chunk(s))` : "Context ready"
-    }
-    case "retrieval.scales-start":
-      return "Scanning multi-scale indexes…"
-    case "retrieval.scale-start":
-      return `Scanning ${String(details?.scale ?? "index")} index…`
-    case "retrieval.segment-start":
-      return `Checking ${String(details?.segment ?? "segment")} segment…`
-    case "retrieval.segment-complete": {
-      const results = formatCount(details?.results)
-      const segment = String(details?.segment ?? "segment")
-      return results
-        ? `${segment} segment returned ${results} chunk(s)${duration ? ` (${duration})` : ""}`
-        : `${segment} segment scanned`
-    }
-    case "retrieval.scale-complete": {
-      const candidates = formatCount(details?.candidates)
-      const scale = String(details?.scale ?? "scale")
-      return candidates
-        ? `${scale} index contributed ${candidates} chunk(s)${duration ? ` (${duration})` : ""}`
-        : `${scale} index scanned`
-    }
-    case "retrieval.scales-complete": {
-      const total = formatCount(details?.total_candidates)
-      return total
-        ? `Retrieved ${total} chunk(s)${duration ? ` in ${duration}` : ""}`
-        : "Retrieval complete"
-    }
-    case "selection.start":
-      return "Balancing candidate scores…"
-    case "selection.stop":
-      return `Selection stopped (${String(details?.reason ?? "threshold")})`
-    case "selection.skipped":
-      return "Selection skipped (no candidates)"
-    default:
-      if (stage.startsWith("context-hit")) {
-        const title = toTrimmedString(details?.title)
-        return title ? `Found context: ${title}` : "Found relevant context"
-      }
-      const cleaned = stage.replace(/[._-]+/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
-      return cleaned
-  }
-}
-
-const derivePendingHeadline = (stage: string, current: string): string => {
-  const normalized = stage.toLowerCase()
-  if (normalized.includes("fallback")) {
-    return "Falling back to the full wiki corpus…"
-  }
-  if (normalized.includes("ensure-ready")) {
-    return "Preparing the wiki index…"
-  }
-  if (normalized.includes("retrieval") || normalized.includes("collect")) {
-    return "Gathering wiki context…"
-  }
-  if (normalized.includes("selection")) {
-    return "Selecting the best wiki passages…"
-  }
-  if (normalized.includes("complete")) {
-    return "Synthesising an answer…"
-  }
-  return current
 }
 
 const pickString = (...values: unknown[]): string | undefined => {
@@ -593,23 +414,10 @@ const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPa
     : undefined
 }
 
-const serialiseProgressEntries = (
-  entries: OracleProgressEntry[] | undefined,
-): OracleProgressEntry[] | undefined => {
-  if (!entries || entries.length === 0) {
-    return undefined
-  }
-  return entries.map((entry) => ({
-    stage: entry.stage,
-    label: entry.label,
-    timestamp: entry.timestamp,
-    details: entry.details ? { ...entry.details } : undefined,
-  }))
-}
-
 const snapshotConfig = (config: OracleConfig) => ({
   apiBaseUrl: config.apiBaseUrl || null,
   endpointPath: config.endpointPath,
+  contextStreamPath: config.contextStreamPath,
   storageKey: config.storageKey,
   maxHistory: config.maxHistory,
   hasRecaptcha: Boolean(config.recaptchaSiteKey),
@@ -628,12 +436,12 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
     oracleApiBase = "",
     oracleEndpoint = DEFAULT_ENDPOINT,
+    oracleContextStream,
     oracleStorageKey,
     oracleMaxHistory,
     oracleRecaptchaKey,
     oracleArticleTitle,
     oracleArticleSlug,
-    oracleContextStream,
   } = root.dataset
 
   const storageKey = oracleStorageKey?.trim() || DEFAULT_STORAGE_KEY
@@ -643,10 +451,10 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   return {
     apiBaseUrl: oracleApiBase?.trim() || "",
     endpointPath: oracleEndpoint?.trim() || DEFAULT_ENDPOINT,
+  contextStreamPath: oracleContextStream?.trim() || DEFAULT_STREAM_ENDPOINT,
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
-    contextStreamPath: oracleContextStream?.trim() || DEFAULT_CONTEXT_STREAM,
     article: {
       title: oracleArticleTitle?.trim() || undefined,
       slug: oracleArticleSlug?.trim() || undefined,
@@ -654,50 +462,37 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   }
 }
 
-const isAbsoluteUrl = (value: string): boolean => /^https?:\/\//i.test(value)
+const resolveEndpointUrl = (baseUrl: string, endpoint: string): string => {
+  const trimmedEndpoint = endpoint.startsWith("/") || endpoint.startsWith("http") ? endpoint : `/${endpoint}`
 
-const resolveEndpointUrl = (apiBaseUrl: string, endpointPath: string): string => {
-  const trimmedEndpoint = endpointPath.startsWith("/") || isAbsoluteUrl(endpointPath)
-    ? endpointPath
-    : `/${endpointPath}`
-
-  if (!apiBaseUrl) {
-    if (isAbsoluteUrl(trimmedEndpoint)) {
+  if (!baseUrl) {
+    if (trimmedEndpoint.startsWith("http")) {
       return trimmedEndpoint
     }
     return `${window.location.origin}${trimmedEndpoint}`
   }
 
-  const normalisedBase = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl
-  if (isAbsoluteUrl(normalisedBase)) {
-    if (isAbsoluteUrl(trimmedEndpoint)) {
-      return trimmedEndpoint
-    }
-    return `${normalisedBase}${trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`}`
+  if (baseUrl.startsWith("http")) {
+    const base = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl
+    return trimmedEndpoint.startsWith("/") ? `${base}${trimmedEndpoint}` : `${base}/${trimmedEndpoint}`
   }
 
-  const rootedBase = normalisedBase.startsWith("/") ? normalisedBase : `/${normalisedBase}`
-  if (isAbsoluteUrl(trimmedEndpoint)) {
-    return trimmedEndpoint
-  }
-  const baseRoot = `${window.location.origin}${rootedBase.endsWith("/") ? rootedBase.slice(0, -1) : rootedBase}`
-  return `${baseRoot}${trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`}`
+  const normalisedBase = baseUrl.startsWith("/") ? baseUrl : `/${baseUrl}`
+  const normalised = normalisedBase.endsWith("/") ? normalisedBase.slice(0, -1) : normalisedBase
+  const suffix = trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`
+  return `${window.location.origin}${normalised}${suffix}`
 }
 
 const buildRequestUrl = (config: OracleConfig): string => resolveEndpointUrl(config.apiBaseUrl, config.endpointPath)
 
-const buildStreamUrl = (
-  config: OracleConfig,
-  messageId: string,
-  conversationId: string | null,
-): string => {
-  const baseUrl = resolveEndpointUrl(config.apiBaseUrl, config.contextStreamPath ?? DEFAULT_CONTEXT_STREAM)
-  const url = new URL(baseUrl)
-  url.searchParams.set("messageId", messageId)
+const buildStreamUrl = (config: OracleConfig, conversationId: string | undefined, messageId: string): string => {
+  const base = resolveEndpointUrl(config.apiBaseUrl, config.contextStreamPath)
+  const streamUrl = new URL(base, window.location.origin)
+  streamUrl.searchParams.set("messageId", messageId)
   if (conversationId) {
-    url.searchParams.set("conversationId", conversationId)
+    streamUrl.searchParams.set("conversationId", conversationId)
   }
-  return url.toString()
+  return streamUrl.toString()
 }
 
 const loadState = (storageKey: string): OracleState => {
@@ -756,16 +551,6 @@ const loadState = (storageKey: string): OracleState => {
               restored.promptContext = promptContext
             }
 
-            const clientMessageId = toTrimmedString((candidate as { clientMessageId?: unknown }).clientMessageId)
-            if (clientMessageId) {
-              restored.clientMessageId = clientMessageId
-            }
-
-            const progress = parseProgressEntries((candidate as { progress?: unknown }).progress)
-            if (progress) {
-              restored.progress = progress
-            }
-
             return restored
           })
           .filter((entry): entry is OracleMessage => Boolean(entry))
@@ -798,8 +583,6 @@ const persistState = (storageKey: string, state: OracleState, maxHistory: number
         disclaimers: message.disclaimers ? [...message.disclaimers] : undefined,
         rawReply: message.rawReply,
         promptContext: message.promptContext,
-        clientMessageId: message.clientMessageId,
-        progress: serialiseProgressEntries(message.progress),
       })),
     }
     window.localStorage.setItem(storageKey, JSON.stringify(payload))
@@ -815,6 +598,148 @@ const createHelperElement = (tag: string, className: string, text?: string): HTM
     element.textContent = text
   }
   return element
+}
+
+const isSafeUrl = (value: string): boolean => /^(https?:\/\/|mailto:|#|\/)/i.test(value)
+
+const normaliseLinkTarget = (value: string): string | undefined => {
+  let trimmed = value.trim()
+  if (!trimmed) {
+    return undefined
+  }
+  if (trimmed.startsWith("<") && trimmed.endsWith(">")) {
+    trimmed = trimmed.slice(1, -1).trim()
+  }
+  return trimmed || undefined
+}
+
+const appendMarkdownWithLinks = (
+  target: HTMLElement,
+  text: string,
+  onLinkClick?: (url: string) => void,
+) => {
+  const renderLine = (line: string) => {
+    const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
+    let lastIndex = 0
+    let match: RegExpExecArray | null
+
+    while ((match = pattern.exec(line)) !== null) {
+      const preceding = line.slice(lastIndex, match.index)
+      if (preceding) {
+        target.appendChild(document.createTextNode(preceding))
+      }
+
+      const label = match[1]
+      const rawUrl = normaliseLinkTarget(match[2])
+
+      if (rawUrl && isSafeUrl(rawUrl)) {
+        const anchor = document.createElement("a")
+        anchor.href = rawUrl
+        anchor.target = "_blank"
+        anchor.rel = "noopener noreferrer"
+        anchor.textContent = label
+        if (onLinkClick) {
+          anchor.addEventListener("click", () => onLinkClick(rawUrl))
+        }
+        target.appendChild(anchor)
+      } else {
+        target.appendChild(document.createTextNode(match[0]))
+      }
+
+      lastIndex = pattern.lastIndex
+    }
+
+    const remainder = line.slice(lastIndex)
+    if (remainder) {
+      target.appendChild(document.createTextNode(remainder))
+    }
+  }
+
+  const lines = text.split(/\n/)
+  lines.forEach((line, index) => {
+    if (index > 0) {
+      target.appendChild(document.createElement("br"))
+    }
+    renderLine(line)
+  })
+}
+
+const appendMarkdownParagraphs = (
+  container: HTMLElement,
+  className: string,
+  text: string,
+  onLinkClick?: (url: string) => void,
+) => {
+  text
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter((block) => block.length > 0)
+    .forEach((block) => {
+      const paragraph = document.createElement("p")
+      paragraph.className = className
+      appendMarkdownWithLinks(paragraph, block, onLinkClick)
+      container.appendChild(paragraph)
+    })
+}
+
+const dedupeBy = <T>(items: T[], selector: (item: T) => string | undefined): T[] => {
+  const seen = new Set<string>()
+  const result: T[] = []
+  items.forEach((item) => {
+    const key = selector(item)
+    if (!key || !seen.has(key)) {
+      if (key) {
+        seen.add(key)
+      }
+      result.push(item)
+    }
+  })
+  return result
+}
+
+const createLinkRail = (
+  label: string,
+  entries: LinkEntry[],
+  onLinkClick?: (url: string, index: number) => void,
+): HTMLElement | undefined => {
+  if (!entries.length) {
+    return undefined
+  }
+
+  const rail = document.createElement("div")
+  rail.className = "oracle-chat__link-rail"
+  rail.appendChild(createHelperElement("span", "oracle-chat__link-rail-label", label))
+
+  const scroller = document.createElement("div")
+  scroller.className = "oracle-chat__link-rail-items"
+
+  entries.forEach((entry, index) => {
+    const displayMeta = entry.meta ? ` • ${entry.meta}` : ""
+    const displayText = `${entry.label}${displayMeta}`
+
+    if (entry.url && isSafeUrl(entry.url)) {
+      const anchor = document.createElement("a")
+      anchor.className = "oracle-chat__pill-link"
+      anchor.href = entry.url
+      anchor.target = "_blank"
+      anchor.rel = "noopener noreferrer"
+      anchor.textContent = displayText
+      anchor.title = displayText
+      if (onLinkClick) {
+        const url = entry.url
+        anchor.addEventListener("click", () => onLinkClick(url, index))
+      }
+      scroller.appendChild(anchor)
+    } else {
+      const span = document.createElement("span")
+      span.className = "oracle-chat__pill-link oracle-chat__pill-link--static"
+      span.textContent = displayText
+      scroller.appendChild(span)
+    }
+  })
+
+  rail.appendChild(scroller)
+  return rail
 }
 
 const renderAssistantMessage = (
@@ -848,38 +773,18 @@ const renderAssistantMessage = (
 
   bubble.innerHTML = ""
 
-  if (leadText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-lead", leadText))
+  if (message.pending) {
+    bubble.classList.add("oracle-chat__bubble--pending")
+    const pendingText = toTrimmedString(message.content) ?? "The ORA_CLE is thinking..."
+    bubble.appendChild(createHelperElement("p", "oracle-chat__pending-text", pendingText))
+    const contextLine = createHelperElement("p", "oracle-chat__pending-context")
+    contextLine.setAttribute("data-oracle-pending-context", message.id)
+    contextLine.hidden = true
+    bubble.appendChild(contextLine)
+    return
   }
 
-  if (secondaryText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", secondaryText))
-  } else if (!payload && fallbackText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", fallbackText))
-  }
-
-  if (message.pending && message.progress?.length) {
-    const progressBlock = document.createElement("div")
-    progressBlock.className = "oracle-chat__progress"
-
-    const heading = createHelperElement("p", "oracle-chat__progress-title", "Gathering context…")
-    progressBlock.appendChild(heading)
-
-    const list = document.createElement("ul")
-    list.className = "oracle-chat__progress-list"
-    const recentEntries = message.progress.slice(-MAX_PROGRESS_ENTRIES)
-    recentEntries.forEach((entry) => {
-      const item = document.createElement("li")
-      item.className = "oracle-chat__progress-item"
-      item.textContent = entry.label
-      list.appendChild(item)
-    })
-
-    progressBlock.appendChild(list)
-    bubble.appendChild(progressBlock)
-  }
-
-  const addLinkAnalytics = (kind: "snippet" | "source", url?: string, index?: number) => {
+  const addLinkAnalytics = (kind: "source" | "answer", url?: string, index?: number) => {
     if (!url) {
       return
     }
@@ -892,110 +797,71 @@ const renderAssistantMessage = (
     })
   }
 
-  if (payload?.contextSnippets?.length) {
-    const snippetList = document.createElement("div")
-    snippetList.className = "oracle-chat__snippet-list"
-
-    payload.contextSnippets.forEach((snippet, index) => {
-      const card = document.createElement("article")
-      card.className = "oracle-chat__snippet"
-
-      const headingText = snippet.title ?? snippet.alias
-      if (headingText) {
-        const heading = createHelperElement("h3", "oracle-chat__snippet-title", headingText)
-        card.appendChild(heading)
-      }
-
-      if (snippet.summary) {
-        card.appendChild(createHelperElement("p", "oracle-chat__snippet-summary", snippet.summary))
-      }
-
-      if (snippet.url) {
-        const link = document.createElement("a")
-        const linkLabel = snippet.url && snippet.title ? snippet.title : snippet.url
-        link.className = "oracle-chat__snippet-link"
-        link.href = snippet.url
-        link.rel = "noopener noreferrer"
-        link.target = "_blank"
-        link.textContent = linkLabel
-        link.addEventListener("click", () => addLinkAnalytics("snippet", snippet.url, index))
-        card.appendChild(link)
-      }
-
-      const metaParts: string[] = []
-      if (snippet.section) {
-        metaParts.push(snippet.section)
-      }
-      if (snippet.strength) {
-        metaParts.push(snippet.strength)
-      }
-      if (snippet.alias && snippet.alias !== snippet.title) {
-        metaParts.push(snippet.alias)
-      }
-
-      if (metaParts.length > 0) {
-        card.appendChild(createHelperElement("p", "oracle-chat__snippet-meta", metaParts.join(" • ")))
-      }
-
-      snippetList.appendChild(card)
-    })
-
-    bubble.appendChild(snippetList)
+  if (leadText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-lead oracle-chat__rich-text",
+      leadText,
+      (url) => addLinkAnalytics("answer", url),
+    )
   }
 
-  if (payload?.sources?.length) {
-    const sourcesSection = document.createElement("section")
-    sourcesSection.className = "oracle-chat__sources"
-    sourcesSection.appendChild(createHelperElement("h3", "oracle-chat__sources-heading", "Sources"))
+  if (secondaryText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-body oracle-chat__rich-text",
+      secondaryText,
+      (url) => addLinkAnalytics("answer", url),
+    )
+  } else if (!payload && fallbackText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-body oracle-chat__rich-text",
+      fallbackText,
+      (url) => addLinkAnalytics("answer", url),
+    )
+  }
 
-    const list = document.createElement("ul")
-    list.className = "oracle-chat__source-list"
-
-    payload.sources.forEach((source, index) => {
-      if (!source.url && !source.title && !source.description) {
-        return
-      }
-
-      const item = document.createElement("li")
-      item.className = "oracle-chat__source-item"
-
-      const linkText = source.title ?? source.url ?? "View source"
-
-      if (source.url) {
-        const anchor = document.createElement("a")
-        anchor.className = "oracle-chat__source-link"
-        anchor.href = source.url
-        anchor.target = "_blank"
-        anchor.rel = "noopener noreferrer"
-        anchor.textContent = linkText
-        anchor.addEventListener("click", () => addLinkAnalytics("source", source.url ?? undefined, index))
-        item.appendChild(anchor)
-      } else {
-        item.appendChild(createHelperElement("span", "oracle-chat__source-label", linkText))
-      }
-
-      const detailParts: string[] = []
-      if (source.description) {
-        detailParts.push(source.description)
-      }
-      if (source.section) {
-        detailParts.push(source.section)
-      }
-      if (source.strength) {
-        detailParts.push(source.strength)
-      }
-
-      if (detailParts.length > 0) {
-        item.appendChild(createHelperElement("p", "oracle-chat__source-meta", detailParts.join(" • ")))
-      }
-
-      list.appendChild(item)
-    })
-
-    if (list.children.length > 0) {
-      sourcesSection.appendChild(list)
-      bubble.appendChild(sourcesSection)
+  const buildSourceEntries = (): LinkEntry[] => {
+    if (!payload?.sources?.length) {
+      return []
     }
+    const items = payload.sources
+      .map<LinkEntry | undefined>((source) => {
+        const label = toTrimmedString(source.title ?? source.url)
+        if (!label) {
+          return undefined
+        }
+
+        const metaParts: string[] = []
+        if (source.description) {
+          metaParts.push(source.description)
+        }
+        if (source.section) {
+          metaParts.push(source.section)
+        }
+        if (source.strength) {
+          metaParts.push(source.strength)
+        }
+
+        return {
+          label,
+          url: source.url ? normaliseLinkTarget(source.url) : undefined,
+          meta: metaParts.length > 0 ? metaParts.join(" • ") : undefined,
+        }
+      })
+      .filter((entry): entry is LinkEntry => Boolean(entry))
+
+    return dedupeBy(items, (entry) => `${entry.label}|${entry.url ?? ""}`)
+  }
+
+  const sourceEntries = buildSourceEntries()
+
+  const sourceRail = createLinkRail("Sources", sourceEntries, (url, index) =>
+    addLinkAnalytics("source", url, index),
+  )
+  if (sourceRail) {
+    bubble.appendChild(sourceRail)
   }
 
   if (payload?.callToAction) {
@@ -1031,43 +897,6 @@ const renderAssistantMessage = (
     }
   }
 
-  const lacksLinks = !(payload?.sources?.length || payload?.contextSnippets?.length)
-  if (lacksLinks) {
-    const fallbackBlock = document.createElement("div")
-    fallbackBlock.className = "oracle-chat__fallback"
-    fallbackBlock.appendChild(
-      createHelperElement(
-        "p",
-        "oracle-chat__fallback-text",
-        "I couldn’t surface specific links for this answer. Consider asking for more detail or exploring related pages.",
-      ),
-    )
-
-    const suggestionQuestion = message.promptContext
-      ? `Can you point me to sources for "${message.promptContext}"?`
-      : "Can you point me to sources for this topic?"
-    const exploreQuestion = "Suggest another topic I should investigate next."
-
-    const fallbackButtons = document.createElement("div")
-    fallbackButtons.className = "oracle-chat__fallback-buttons"
-
-    const addFallbackButton = (label: string, question: string, index: number) => {
-      const button = document.createElement("button")
-      button.type = "button"
-      button.className = "oracle-chat__fallback-button"
-      button.textContent = label
-      button.addEventListener("click", () => {
-        options?.onFollowUpSelect?.(question, { source: "fallback", index })
-      })
-      fallbackButtons.appendChild(button)
-    }
-
-    addFallbackButton("Ask for sources", suggestionQuestion, 0)
-    addFallbackButton("Explore another topic", exploreQuestion, 1)
-
-    fallbackBlock.appendChild(fallbackButtons)
-    bubble.appendChild(fallbackBlock)
-  }
 
   const disclaimersList = Array.from(allDisclaimers)
   if (disclaimersList.length > 0) {
@@ -1087,6 +916,7 @@ const createMessageElement = (message: OracleMessage, options?: MessageRenderOpt
   const wrapper = document.createElement("div")
   wrapper.className = "oracle-chat__message"
   wrapper.dataset.role = message.role
+  wrapper.dataset.messageId = message.id
 
   if (message.role === "user") {
     wrapper.classList.add("oracle-chat__message--user")
@@ -1237,7 +1067,6 @@ const buildRequestBody = (
 
   if (clientMessageId) {
     payload.clientMessageId = clientMessageId
-    metadata.clientMessageId = clientMessageId
   }
 
   return payload
@@ -1326,6 +1155,10 @@ const setupOracleWidget = () => {
     return
   }
 
+  const supportsEventSource = typeof window.EventSource !== "undefined"
+  const activeStreams = new Map<string, EventSource>()
+  const pendingContextState = new Map<string, PendingContextState>()
+
   roots.forEach((root) => {
     if (root.hasAttribute("data-oracle-ready")) {
       return
@@ -1387,158 +1220,6 @@ const setupOracleWidget = () => {
     let activeController: AbortController | undefined
 
     let chatOpen = false
-    let contextSource: EventSource | undefined
-    let contextTargetId: string | undefined
-
-    const stopContextStream = () => {
-      if (contextSource) {
-        contextSource.close()
-        contextSource = undefined
-      }
-      contextTargetId = undefined
-    }
-
-    const applyProgressUpdate = (
-      messageId: string,
-      stage: string,
-      key: string,
-      details?: Record<string, unknown>,
-    ): boolean => {
-      let changed = false
-      state.messages = state.messages.map((entry) => {
-        if (entry.id !== messageId || !entry.pending) {
-          return entry
-        }
-
-        const progress = Array.isArray(entry.progress) ? [...entry.progress] : []
-        const label = formatProgressLabel(stage, details)
-        const nextEntry: OracleProgressEntry = {
-          stage: key,
-          label,
-          timestamp: Date.now(),
-          details,
-        }
-        const existingIndex = progress.findIndex((item) => item.stage === key)
-        if (existingIndex >= 0) {
-          progress[existingIndex] = nextEntry
-        } else {
-          progress.push(nextEntry)
-        }
-        if (progress.length > MAX_PROGRESS_ENTRIES) {
-          progress.splice(0, progress.length - MAX_PROGRESS_ENTRIES)
-        }
-        const updatedContent = derivePendingHeadline(stage, entry.content)
-        changed = true
-        return {
-          ...entry,
-          progress,
-          content: updatedContent,
-        }
-      })
-
-      if (!changed) {
-        return false
-      }
-
-      renderState(historyContainer, state, renderOptions)
-      persistState(storageKey, state, config.maxHistory)
-      updateResetButton()
-      updateSendButtonState()
-      return true
-    }
-
-    const handleContextProgressEvent = (stage: string, key: string, details?: Record<string, unknown>) => {
-      if (!contextTargetId) {
-        return
-      }
-
-      let conversationChanged = false
-      if (stage === "context-start" && details) {
-        const conversationId = toTrimmedString(details.conversationId)
-        if (conversationId && state.conversationId !== conversationId) {
-          state.conversationId = conversationId
-          conversationChanged = true
-        }
-      }
-      const updated = applyProgressUpdate(contextTargetId, stage, key, details)
-      if (conversationChanged && !updated) {
-        persistState(storageKey, state, config.maxHistory)
-      }
-    }
-
-    const parseEventPayload = (event: MessageEvent<string>): Record<string, unknown> => {
-      try {
-        const raw = JSON.parse(event.data) as unknown
-        return toRecord(raw) ?? {}
-      } catch (error) {
-        console.warn("ORA_CLE chat: unable to parse context stream payload", error)
-        return {}
-      }
-    }
-
-    const startContextStream = (messageId: string, conversationId: string | null) => {
-      if (!config.contextStreamPath) {
-        return
-      }
-
-      stopContextStream()
-
-      let streamUrl: string
-      try {
-        streamUrl = buildStreamUrl(config, messageId, conversationId)
-      } catch (error) {
-        console.warn("ORA_CLE chat: unable to build context stream URL", error)
-        return
-      }
-
-      if (typeof EventSource === "undefined") {
-        console.warn("ORA_CLE chat: EventSource API unavailable; progress stream disabled")
-        return
-      }
-
-      try {
-        const source = new EventSource(streamUrl, { withCredentials: true })
-        contextSource = source
-        contextTargetId = messageId
-
-        source.addEventListener("context-start", (event) => {
-          const payload = parseEventPayload(event as MessageEvent<string>)
-          handleContextProgressEvent("context-start", "context-start", payload)
-        })
-
-        source.addEventListener("context-progress", (event) => {
-          const payload = parseEventPayload(event as MessageEvent<string>)
-          const stage = toTrimmedString(payload.stage) ?? "context-progress"
-          const details = { ...payload }
-          delete details.stage
-          handleContextProgressEvent(stage, stage, details)
-        })
-
-        source.addEventListener("context-hit", (event) => {
-          const payload = parseEventPayload(event as MessageEvent<string>)
-          const title = toTrimmedString(payload.title)
-          const index = typeof payload.index === "number" ? payload.index : Date.now()
-          const key = title ? `context-hit:${title}` : `context-hit:${index}`
-          handleContextProgressEvent("context-hit", key, payload)
-        })
-
-        source.addEventListener("context-empty", () => {
-          handleContextProgressEvent("context-empty", "context-empty")
-        })
-
-        source.addEventListener("complete", (event) => {
-          const payload = parseEventPayload(event as MessageEvent<string>)
-          handleContextProgressEvent("context-complete", "context-complete", payload)
-          stopContextStream()
-        })
-
-        source.addEventListener("error", () => {
-          stopContextStream()
-        })
-      } catch (error) {
-        console.warn("ORA_CLE chat: unable to open context stream", error)
-      }
-    }
 
     const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
       textArea.value = question
@@ -1562,26 +1243,20 @@ const setupOracleWidget = () => {
     updateResetButton()
     updateSendButtonState()
 
-    const pendingExisting = state.messages.find((message) => message.pending && message.clientMessageId)
-    if (pendingExisting && typeof pendingExisting.clientMessageId === "string") {
-      startContextStream(pendingExisting.clientMessageId, state.conversationId ?? null)
+    const closeChat = () => {
+    if (!chatOpen) {
+      return
     }
 
-    const closeChat = () => {
-      if (!chatOpen) {
-        return
-      }
-
-      chatOpen = false
-      dialog.classList.remove("oracle-chat--open")
-      dialog.setAttribute("aria-hidden", "true")
-      launcher.setAttribute("aria-expanded", "false")
-      document.body.classList.remove("oracle-chat-active")
-      stopContextStream()
-      restoreChat(dialog)
-      if (document.body.contains(launcher)) {
-        launcher.focus()
-      }
+    chatOpen = false
+    dialog.classList.remove("oracle-chat--open")
+    dialog.setAttribute("aria-hidden", "true")
+    launcher.setAttribute("aria-expanded", "false")
+    document.body.classList.remove("oracle-chat-active")
+    restoreChat(dialog)
+    if (document.body.contains(launcher)) {
+      launcher.focus()
+    }
     }
 
     const openChat = async () => {
@@ -1608,14 +1283,164 @@ const setupOracleWidget = () => {
       })
     }
 
+    const parseEventData = (raw: string | null): Record<string, unknown> | undefined => {
+      if (!raw) {
+        return undefined
+      }
+      try {
+        const parsed = JSON.parse(raw)
+        return typeof parsed === "object" && parsed !== null ? (parsed as Record<string, unknown>) : undefined
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to parse stream payload", error)
+        return undefined
+      }
+    }
+
+    const renderPendingContext = (messageId: string) => {
+      const container = historyContainer.querySelector<HTMLElement>(`[data-oracle-pending-context="${messageId}"]`)
+      if (!container) {
+        return
+      }
+
+      const state = pendingContextState.get(messageId)
+      if (!state) {
+        container.hidden = true
+        container.textContent = ""
+        return
+      }
+
+      container.hidden = false
+      container.textContent = ""
+
+      if (state.titles.length > 0) {
+        container.append(document.createTextNode("Looking through "))
+        state.titles.forEach((title, index) => {
+          if (index > 0) {
+            container.append(document.createTextNode(", "))
+          }
+          const span = document.createElement("span")
+          span.className = "oracle-chat__pending-context-item"
+          span.textContent = title
+          container.appendChild(span)
+        })
+        container.append(document.createTextNode(" …"))
+        return
+      }
+
+      container.textContent = state.empty ? "Still scanning the archive…" : "Scanning the archive…"
+    }
+
+    const ensurePendingState = (messageId: string): PendingContextState => {
+      const existing = pendingContextState.get(messageId)
+      if (existing) {
+        return existing
+      }
+      const next: PendingContextState = {
+        titles: [],
+        empty: false,
+        lastUpdated: Date.now(),
+      }
+      pendingContextState.set(messageId, next)
+      return next
+    }
+
+    const recordContextHit = (messageId: string, rawTitle: unknown) => {
+      const title = toTrimmedString(rawTitle)
+      if (!title) {
+        return
+      }
+      const state = ensurePendingState(messageId)
+      const lower = title.toLowerCase()
+      if (state.titles.some((entry) => entry.toLowerCase() === lower)) {
+        state.lastUpdated = Date.now()
+        return
+      }
+      const updated = [...state.titles, title]
+      if (updated.length > 5) {
+        updated.shift()
+      }
+      state.titles = updated
+      state.empty = false
+      state.lastUpdated = Date.now()
+      renderPendingContext(messageId)
+    }
+
+    const markContextEmpty = (messageId: string) => {
+      const state = ensurePendingState(messageId)
+      if (state.titles.length > 0) {
+        return
+      }
+      state.empty = true
+      state.lastUpdated = Date.now()
+      renderPendingContext(messageId)
+    }
+
+    const stopContextStream = (messageId: string) => {
+      const source = activeStreams.get(messageId)
+      if (source) {
+        source.close()
+        activeStreams.delete(messageId)
+      }
+      pendingContextState.delete(messageId)
+      renderPendingContext(messageId)
+    }
+
+    const startContextStream = (messageId: string, conversationId: string | undefined) => {
+      if (!supportsEventSource || !config.contextStreamPath || activeStreams.has(messageId)) {
+        return
+      }
+
+      try {
+        const streamUrl = buildStreamUrl(config, conversationId, messageId)
+        const source = new EventSource(streamUrl, { withCredentials: true })
+
+        ensurePendingState(messageId)
+        renderPendingContext(messageId)
+
+        source.addEventListener("context-start", () => {
+          pendingContextState.set(messageId, {
+            titles: [],
+            empty: false,
+            lastUpdated: Date.now(),
+          })
+          renderPendingContext(messageId)
+        })
+
+        source.addEventListener("context-hit", (event) => {
+          const data = parseEventData((event as MessageEvent<string>).data)
+          recordContextHit(messageId, data?.title ?? data?.slug ?? data?.label)
+        })
+
+        source.addEventListener("context-empty", () => {
+          markContextEmpty(messageId)
+        })
+
+        source.addEventListener("complete", () => {
+          stopContextStream(messageId)
+        })
+
+        source.addEventListener("error", (event) => {
+          const messageEvent = event as MessageEvent<string>
+          const parsed = typeof messageEvent.data === "string" ? parseEventData(messageEvent.data) : undefined
+          if (parsed?.message && typeof parsed.message === "string") {
+            console.warn("ORA_CLE chat: context stream error", parsed.message)
+          } else {
+            console.warn("ORA_CLE chat: context stream error", event)
+          }
+          stopContextStream(messageId)
+        })
+
+        activeStreams.set(messageId, source)
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to open context stream", error)
+      }
+    }
+
     const resetChat = () => {
+      Array.from(activeStreams.keys()).forEach((messageId) => stopContextStream(messageId))
+      pendingContextState.clear()
       state = { messages: [] }
       lastUserQuestion = ""
-      stopContextStream()
-      if (activeController) {
-        activeController.abort()
-        activeController = undefined
-      }
       persistState(storageKey, state, config.maxHistory)
       renderState(historyContainer, state, renderOptions)
       updateResetButton()
@@ -1632,6 +1457,7 @@ const setupOracleWidget = () => {
     }
 
     const replacePendingWith = (message: OracleMessage) => {
+      stopContextStream(message.id)
       state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
       renderState(historyContainer, state, renderOptions)
       persistState(storageKey, state, config.maxHistory)
@@ -1651,27 +1477,28 @@ const setupOracleWidget = () => {
     }
 
     const sendMessage = async () => {
-      const trimmed = sanitiseContent(textArea.value.trim())
-      if (!trimmed) {
-        return
-      }
+    const trimmed = sanitiseContent(textArea.value.trim())
+    if (!trimmed) {
+      return
+    }
 
-      const now = Date.now()
-      if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
-        return
-      }
-
+    const now = Date.now()
+    if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
+      return
+    }
       lastSendTimestamp = now
       lastUserQuestion = trimmed
 
-      stopContextStream()
+      if (!state.conversationId) {
+        state.conversationId = generateId()
+      }
 
       const userMessage: OracleMessage = {
-        id: generateId(),
-        role: "user",
-        content: trimmed,
-        createdAt: now,
-      }
+      id: generateId(),
+      role: "user",
+      content: trimmed,
+      createdAt: now,
+    }
 
       appendMessage(userMessage)
       emitAnalytics("oracle:question-submitted", {
@@ -1683,22 +1510,19 @@ const setupOracleWidget = () => {
       textArea.value = ""
       autoResize()
 
-      const pendingId = generateId()
       const pendingReply: OracleMessage = {
-        id: pendingId,
-        role: "assistant",
-        content: "The ORA_CLE is thinking",
-        createdAt: Date.now(),
-        pending: true,
-        clientMessageId: pendingId,
-      }
+      id: generateId(),
+      role: "assistant",
+      content: "The ORA_CLE is thinking",
+      createdAt: Date.now(),
+      pending: true,
+    }
 
       pendingReply.promptContext = trimmed
 
       appendMessage(pendingReply)
+  startContextStream(pendingReply.id, state.conversationId)
       updateSendButtonState()
-
-      startContextStream(pendingId, state.conversationId ?? null)
 
       if (activeController) {
         activeController.abort()
@@ -1716,20 +1540,17 @@ const setupOracleWidget = () => {
         }
       }
 
-      const body = buildRequestBody(trimmed, state, config, captchaToken, pendingId)
+  const body = buildRequestBody(trimmed, state, config, captchaToken, pendingReply.id)
 
       try {
         const result = await tryFetch(requestUrl, body, config)
         if (controller.signal.aborted) {
-          stopContextStream()
           return
         }
 
         if (result.conversationId) {
           state.conversationId = result.conversationId
         }
-
-        const pendingState = state.messages.find((entry) => entry.id === pendingId)
 
         let replyText = result.reply?.trim()
         if (!replyText && Array.isArray(result.messages) && result.messages.length > 0) {
@@ -1749,16 +1570,13 @@ const setupOracleWidget = () => {
           role: "assistant",
           content: replyText,
           createdAt: Date.now(),
-          webPayload,
-          disclaimers,
+          webPayload: webPayload,
+          disclaimers: disclaimers,
           rawReply: replyText,
           promptContext: pendingReply.promptContext ?? lastUserQuestion,
-          clientMessageId: result.clientMessageId ?? pendingState?.clientMessageId ?? pendingId,
-          progress: pendingState?.progress,
         }
 
         replacePendingWith(assistantMessage)
-        stopContextStream()
         updateSendButtonState()
 
         const sourcesCount = webPayload?.sources?.length ?? 0
@@ -1792,15 +1610,11 @@ const setupOracleWidget = () => {
           request: summariseRequest(body),
           config: snapshotConfig(config),
         })
+        stopContextStream(pendingReply.id)
         state.messages = state.messages.filter((entry) => !entry.pending)
         renderState(historyContainer, state, renderOptions)
         persistState(storageKey, state, config.maxHistory)
-        stopContextStream()
         showError(error)
-      } finally {
-        if (activeController === controller) {
-          activeController = undefined
-        }
       }
     }
 
@@ -1869,11 +1683,7 @@ const setupOracleWidget = () => {
       textArea.removeEventListener("input", handleInput)
       textArea.removeEventListener("keydown", handleTextareaKeydown)
       window.removeEventListener("keydown", handleEscapeKey)
-      if (activeController) {
-        activeController.abort()
-        activeController = undefined
-      }
-      stopContextStream()
+      activeController?.abort()
       if (chatOpen) {
         dialog.classList.remove("oracle-chat--open")
         dialog.setAttribute("aria-hidden", "true")
