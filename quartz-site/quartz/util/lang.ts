@@ -3,11 +3,7 @@ export function capitalize(s: string): string {
 }
 
 export function classNames(
-  displayClass?: "mobile-only" | "desktop-only",
-  ...classes: string[]
+  ...classes: Array<string | undefined | null | false>
 ): string {
-  if (displayClass) {
-    classes.push(displayClass)
-  }
-  return classes.join(" ")
+  return classes.filter((cls) => typeof cls === "string" && cls.length > 0).join(" ")
 }

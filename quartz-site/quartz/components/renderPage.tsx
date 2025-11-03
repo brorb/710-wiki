@@ -256,16 +256,13 @@ export function renderPage(
       resolveToArray(renderQuartzComponent(BodyComponent, { ...componentData })),
     )
 
-  const mobileBacklinksNodes: JSX.Element[] = []
   const commentNodes: JSX.Element[] = []
   const footerNodes: JSX.Element[] = []
 
   for (const node of renderedAfterBody) {
     const nodeClass = typeof node?.props?.class === "string" ? node.props.class : ""
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean))
-    if (classList.has("backlinks") && classList.has("mobile-only")) {
-      mobileBacklinksNodes.push(node)
-  } else if (classList.has("community-hub")) {
+    if (classList.has("community-hub")) {
       commentNodes.push(node)
     } else {
       footerNodes.push(node)
@@ -334,7 +331,6 @@ export function renderPage(
                 </div>
               </div>
               <Content {...componentData} />
-              {mobileBacklinksNodes}
               {footerNodes.length > 0 ? (
                 <div class="page-footer">
                   {footerNodes}

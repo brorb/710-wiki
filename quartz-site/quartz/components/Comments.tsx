@@ -28,20 +28,15 @@ type UtterancesOptions = {
   theme?: string
 }
 
-interface BaseExtras {
-  mobileAppend?: QuartzComponent
-  desktopCompanion?: QuartzComponent
-}
-
 type Options =
-  | ({
+  | {
       provider: "giscus"
       options: GiscusOptions
-    } & BaseExtras)
-  | ({
+    }
+  | {
       provider: "utterances"
       options: UtterancesOptions
-    } & BaseExtras)
+    }
 
 function boolToStringBool(b: boolean): string {
   return b ? "1" : "0"
@@ -58,30 +53,11 @@ export default ((opts: Options) => {
       return <></>
     }
 
-    const MobileAppend = opts.mobileAppend
-    const DesktopCompanion = opts.desktopCompanion
-
-    const renderMobileAppend = () =>
-      MobileAppend ? (
-        <div class="community-hub__mobile-append">
-          <MobileAppend {...props} displayClass="mobile-only" />
-        </div>
-      ) : null
-
-    const companionNode = DesktopCompanion ? (
-      <div class="community-hub__companion">
-        <div class="community-companion">
-          <DesktopCompanion {...props} />
-        </div>
-      </div>
-    ) : null
-
     const communityShell = (content: VNode) => (
       <section class={classNames(displayClass, "community-hub")}>
         <hr class="community-hub__divider" aria-hidden="true" />
         <div class="community-hub__columns">
           <div class="community-hub__comments">{content}</div>
-          {companionNode}
         </div>
       </section>
     )
@@ -106,7 +82,6 @@ export default ((opts: Options) => {
             data-theme-url={options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`}
             data-lang={options.lang ?? "en"}
           ></div>
-          {renderMobileAppend()}
         </div>
       )
     }
@@ -122,7 +97,6 @@ export default ((opts: Options) => {
           data-label={options.label ?? ""}
           data-theme={options.theme ?? "github-dark"}
         ></div>
-        {renderMobileAppend()}
       </div>
     )
   }

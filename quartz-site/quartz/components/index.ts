@@ -16,8 +16,6 @@ import Graph from "./Graph"
 import Backlinks from "./Backlinks"
 import Search from "./Search"
 import Footer from "./Footer"
-import DesktopOnly from "./DesktopOnly"
-import MobileOnly from "./MobileOnly"
 import Breadcrumbs from "./Breadcrumbs"
 import Comments from "./Comments"
 import ConditionalRender from "./ConditionalRender"
@@ -46,8 +44,6 @@ export {
   Backlinks,
   Search,
   Footer,
-  DesktopOnly,
-  MobileOnly,
   NotFound,
   Breadcrumbs,
   Comments,

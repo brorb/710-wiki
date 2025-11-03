@@ -49,6 +49,12 @@ type OracleMessage = {
   promptContext?: string
 }
 
+type LinkEntry = {
+  label: string
+  url?: string
+  meta?: string
+}
+
 type OracleState = {
   conversationId?: string
   messages: OracleMessage[]
@@ -573,6 +579,148 @@ const createHelperElement = (tag: string, className: string, text?: string): HTM
   return element
 }
 
+const isSafeUrl = (value: string): boolean => /^(https?:\/\/|mailto:|#|\/)/i.test(value)
+
+const normaliseLinkTarget = (value: string): string | undefined => {
+  let trimmed = value.trim()
+  if (!trimmed) {
+    return undefined
+  }
+  if (trimmed.startsWith("<") && trimmed.endsWith(">")) {
+    trimmed = trimmed.slice(1, -1).trim()
+  }
+  return trimmed || undefined
+}
+
+const appendMarkdownWithLinks = (
+  target: HTMLElement,
+  text: string,
+  onLinkClick?: (url: string) => void,
+) => {
+  const renderLine = (line: string) => {
+    const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
+    let lastIndex = 0
+    let match: RegExpExecArray | null
+
+    while ((match = pattern.exec(line)) !== null) {
+      const preceding = line.slice(lastIndex, match.index)
+      if (preceding) {
+        target.appendChild(document.createTextNode(preceding))
+      }
+
+      const label = match[1]
+      const rawUrl = normaliseLinkTarget(match[2])
+
+      if (rawUrl && isSafeUrl(rawUrl)) {
+        const anchor = document.createElement("a")
+        anchor.href = rawUrl
+        anchor.target = "_blank"
+        anchor.rel = "noopener noreferrer"
+        anchor.textContent = label
+        if (onLinkClick) {
+          anchor.addEventListener("click", () => onLinkClick(rawUrl))
+        }
+        target.appendChild(anchor)
+      } else {
+        target.appendChild(document.createTextNode(match[0]))
+      }
+
+      lastIndex = pattern.lastIndex
+    }
+
+    const remainder = line.slice(lastIndex)
+    if (remainder) {
+      target.appendChild(document.createTextNode(remainder))
+    }
+  }
+
+  const lines = text.split(/\n/)
+  lines.forEach((line, index) => {
+    if (index > 0) {
+      target.appendChild(document.createElement("br"))
+    }
+    renderLine(line)
+  })
+}
+
+const appendMarkdownParagraphs = (
+  container: HTMLElement,
+  className: string,
+  text: string,
+  onLinkClick?: (url: string) => void,
+) => {
+  text
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter((block) => block.length > 0)
+    .forEach((block) => {
+      const paragraph = document.createElement("p")
+      paragraph.className = className
+      appendMarkdownWithLinks(paragraph, block, onLinkClick)
+      container.appendChild(paragraph)
+    })
+}
+
+const dedupeBy = <T>(items: T[], selector: (item: T) => string | undefined): T[] => {
+  const seen = new Set<string>()
+  const result: T[] = []
+  items.forEach((item) => {
+    const key = selector(item)
+    if (!key || !seen.has(key)) {
+      if (key) {
+        seen.add(key)
+      }
+      result.push(item)
+    }
+  })
+  return result
+}
+
+const createLinkRail = (
+  label: string,
+  entries: LinkEntry[],
+  onLinkClick?: (url: string, index: number) => void,
+): HTMLElement | undefined => {
+  if (!entries.length) {
+    return undefined
+  }
+
+  const rail = document.createElement("div")
+  rail.className = "oracle-chat__link-rail"
+  rail.appendChild(createHelperElement("span", "oracle-chat__link-rail-label", label))
+
+  const scroller = document.createElement("div")
+  scroller.className = "oracle-chat__link-rail-items"
+
+  entries.forEach((entry, index) => {
+    const displayMeta = entry.meta ? ` • ${entry.meta}` : ""
+    const displayText = `${entry.label}${displayMeta}`
+
+    if (entry.url && isSafeUrl(entry.url)) {
+      const anchor = document.createElement("a")
+      anchor.className = "oracle-chat__pill-link"
+      anchor.href = entry.url
+      anchor.target = "_blank"
+      anchor.rel = "noopener noreferrer"
+      anchor.textContent = displayText
+      anchor.title = displayText
+      if (onLinkClick) {
+        const url = entry.url
+        anchor.addEventListener("click", () => onLinkClick(url, index))
+      }
+      scroller.appendChild(anchor)
+    } else {
+      const span = document.createElement("span")
+      span.className = "oracle-chat__pill-link oracle-chat__pill-link--static"
+      span.textContent = displayText
+      scroller.appendChild(span)
+    }
+  })
+
+  rail.appendChild(scroller)
+  return rail
+}
+
 const renderAssistantMessage = (
   bubble: HTMLElement,
   message: OracleMessage,
@@ -604,17 +752,7 @@ const renderAssistantMessage = (
 
   bubble.innerHTML = ""
 
-  if (leadText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-lead", leadText))
-  }
-
-  if (secondaryText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", secondaryText))
-  } else if (!payload && fallbackText) {
-    bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", fallbackText))
-  }
-
-  const addLinkAnalytics = (kind: "snippet" | "source", url?: string, index?: number) => {
+  const addLinkAnalytics = (kind: "snippet" | "source" | "answer", url?: string, index?: number) => {
     if (!url) {
       return
     }
@@ -627,110 +765,109 @@ const renderAssistantMessage = (
     })
   }
 
-  if (payload?.contextSnippets?.length) {
-    const snippetList = document.createElement("div")
-    snippetList.className = "oracle-chat__snippet-list"
-
-    payload.contextSnippets.forEach((snippet, index) => {
-      const card = document.createElement("article")
-      card.className = "oracle-chat__snippet"
-
-      const headingText = snippet.title ?? snippet.alias
-      if (headingText) {
-        const heading = createHelperElement("h3", "oracle-chat__snippet-title", headingText)
-        card.appendChild(heading)
-      }
-
-      if (snippet.summary) {
-        card.appendChild(createHelperElement("p", "oracle-chat__snippet-summary", snippet.summary))
-      }
-
-      if (snippet.url) {
-        const link = document.createElement("a")
-        const linkLabel = snippet.url && snippet.title ? snippet.title : snippet.url
-        link.className = "oracle-chat__snippet-link"
-        link.href = snippet.url
-        link.rel = "noopener noreferrer"
-        link.target = "_blank"
-        link.textContent = linkLabel
-        link.addEventListener("click", () => addLinkAnalytics("snippet", snippet.url, index))
-        card.appendChild(link)
-      }
-
-      const metaParts: string[] = []
-      if (snippet.section) {
-        metaParts.push(snippet.section)
-      }
-      if (snippet.strength) {
-        metaParts.push(snippet.strength)
-      }
-      if (snippet.alias && snippet.alias !== snippet.title) {
-        metaParts.push(snippet.alias)
-      }
-
-      if (metaParts.length > 0) {
-        card.appendChild(createHelperElement("p", "oracle-chat__snippet-meta", metaParts.join(" • ")))
-      }
-
-      snippetList.appendChild(card)
-    })
-
-    bubble.appendChild(snippetList)
+  if (leadText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-lead oracle-chat__rich-text",
+      leadText,
+      (url) => addLinkAnalytics("answer", url),
+    )
   }
 
-  if (payload?.sources?.length) {
-    const sourcesSection = document.createElement("section")
-    sourcesSection.className = "oracle-chat__sources"
-    sourcesSection.appendChild(createHelperElement("h3", "oracle-chat__sources-heading", "Sources"))
+  if (secondaryText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-body oracle-chat__rich-text",
+      secondaryText,
+      (url) => addLinkAnalytics("answer", url),
+    )
+  } else if (!payload && fallbackText) {
+    appendMarkdownParagraphs(
+      bubble,
+      "oracle-chat__answer-body oracle-chat__rich-text",
+      fallbackText,
+      (url) => addLinkAnalytics("answer", url),
+    )
+  }
 
-    const list = document.createElement("ul")
-    list.className = "oracle-chat__source-list"
-
-    payload.sources.forEach((source, index) => {
-      if (!source.url && !source.title && !source.description) {
-        return
-      }
-
-      const item = document.createElement("li")
-      item.className = "oracle-chat__source-item"
-
-      const linkText = source.title ?? source.url ?? "View source"
-
-      if (source.url) {
-        const anchor = document.createElement("a")
-        anchor.className = "oracle-chat__source-link"
-        anchor.href = source.url
-        anchor.target = "_blank"
-        anchor.rel = "noopener noreferrer"
-        anchor.textContent = linkText
-        anchor.addEventListener("click", () => addLinkAnalytics("source", source.url ?? undefined, index))
-        item.appendChild(anchor)
-      } else {
-        item.appendChild(createHelperElement("span", "oracle-chat__source-label", linkText))
-      }
-
-      const detailParts: string[] = []
-      if (source.description) {
-        detailParts.push(source.description)
-      }
-      if (source.section) {
-        detailParts.push(source.section)
-      }
-      if (source.strength) {
-        detailParts.push(source.strength)
-      }
-
-      if (detailParts.length > 0) {
-        item.appendChild(createHelperElement("p", "oracle-chat__source-meta", detailParts.join(" • ")))
-      }
-
-      list.appendChild(item)
-    })
-
-    if (list.children.length > 0) {
-      sourcesSection.appendChild(list)
-      bubble.appendChild(sourcesSection)
+  const buildSnippetEntries = (): LinkEntry[] => {
+    if (!payload?.contextSnippets?.length) {
+      return []
     }
+    const items = payload.contextSnippets
+      .map<LinkEntry | undefined>((snippet) => {
+        const label = toTrimmedString(snippet.title ?? snippet.alias ?? snippet.url)
+        if (!label) {
+          return undefined
+        }
+
+        const metaParts: string[] = []
+        if (snippet.section) {
+          metaParts.push(snippet.section)
+        }
+        if (snippet.strength) {
+          metaParts.push(snippet.strength)
+        }
+
+        return {
+          label,
+          url: snippet.url ? normaliseLinkTarget(snippet.url) : undefined,
+          meta: metaParts.length > 0 ? metaParts.join(" • ") : undefined,
+        }
+      })
+      .filter((entry): entry is LinkEntry => Boolean(entry))
+
+    return dedupeBy(items, (entry) => `${entry.label}|${entry.url ?? ""}`)
+  }
+
+  const buildSourceEntries = (): LinkEntry[] => {
+    if (!payload?.sources?.length) {
+      return []
+    }
+    const items = payload.sources
+      .map<LinkEntry | undefined>((source) => {
+        const label = toTrimmedString(source.title ?? source.url)
+        if (!label) {
+          return undefined
+        }
+
+        const metaParts: string[] = []
+        if (source.description) {
+          metaParts.push(source.description)
+        }
+        if (source.section) {
+          metaParts.push(source.section)
+        }
+        if (source.strength) {
+          metaParts.push(source.strength)
+        }
+
+        return {
+          label,
+          url: source.url ? normaliseLinkTarget(source.url) : undefined,
+          meta: metaParts.length > 0 ? metaParts.join(" • ") : undefined,
+        }
+      })
+      .filter((entry): entry is LinkEntry => Boolean(entry))
+
+    return dedupeBy(items, (entry) => `${entry.label}|${entry.url ?? ""}`)
+  }
+
+  const snippetEntries = buildSnippetEntries()
+  const sourceEntries = buildSourceEntries()
+
+  const snippetRail = createLinkRail("Context", snippetEntries, (url, index) =>
+    addLinkAnalytics("snippet", url, index),
+  )
+  if (snippetRail) {
+    bubble.appendChild(snippetRail)
+  }
+
+  const sourceRail = createLinkRail("Sources", sourceEntries, (url, index) =>
+    addLinkAnalytics("source", url, index),
+  )
+  if (sourceRail) {
+    bubble.appendChild(sourceRail)
   }
 
   if (payload?.callToAction) {
@@ -766,7 +903,7 @@ const renderAssistantMessage = (
     }
   }
 
-  const lacksLinks = !(payload?.sources?.length || payload?.contextSnippets?.length)
+  const lacksLinks = !(snippetEntries.length || sourceEntries.length)
   if (lacksLinks) {
     const fallbackBlock = document.createElement("div")
     fallbackBlock.className = "oracle-chat__fallback"

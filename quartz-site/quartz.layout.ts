@@ -11,18 +11,11 @@ const sharedAfterBody = [
     component: Component.Canvas(),
     condition: (props) => hasCanvasFrontmatter(props.fileData.frontmatter),
   }),
-  Component.MobileOnly(Component.Backlinks()),
   Component.ConditionalRender({
     component: Component.HomepageFeatures(),
     condition: (page) => page.fileData.slug === "index",
   }),
 ]
-
-const mobileDiscordWidget = Component.MobileOnly(
-  Component.DiscordWidget({
-    variant: "banner",
-  }),
-)
 
 if (commentsConfig.enabled) {
   if (commentsConfig.provider === "giscus") {
@@ -58,12 +51,6 @@ if (commentsConfig.enabled) {
           darkTheme,
           themeUrl,
         },
-        mobileAppend: mobileDiscordWidget,
-        desktopCompanion: Component.DesktopOnly(
-          Component.DiscordWidget({
-            variant: "sidebar",
-          }),
-        ),
       })
     )
   } else if (commentsConfig.provider === "utterances") {
@@ -77,12 +64,6 @@ if (commentsConfig.enabled) {
           label,
           theme,
         },
-        mobileAppend: mobileDiscordWidget,
-        desktopCompanion: Component.DesktopOnly(
-          Component.DiscordWidget({
-            variant: "sidebar",
-          }),
-        ),
       })
     )
   }
@@ -106,55 +87,35 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleHeader(),
     Component.InfoBox(),
     Component.TagList(),
-    Component.MobileOnly(
-      Component.TableOfContents({
-        defaultCollapsed: true,
-      }),
-    ),
   ],
   left: [
     Component.PageTitle(),
-    Component.DesktopOnly(Component.Search()),
-    Component.MobileOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        headerSlot: Component.Search({ variant: "inline" }),
-        useSavedState: false,
-        startCollapsed: true,
-        filterFn: (node) => {
-          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-          return segment !== "templates" && segment !== "canvases"
-        },
-      }),
-    ),
-    Component.DesktopOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        useSavedState: false,
-        startCollapsed: false,
-        filterFn: (node) => {
-          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-          return segment !== "templates" && segment !== "canvases"
-        },
-      })
-    ),
+    Component.Search(),
+    Component.Explorer({
+      folderClickBehavior: "link",
+      folderDefaultState: "collapsed",
+      headerSlot: Component.Search({ variant: "inline" }),
+      useSavedState: false,
+      startCollapsed: false,
+      filterFn: (node) => {
+        const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+        return segment !== "templates" && segment !== "canvases"
+      },
+    }),
   ],
   right: [
-    Component.DesktopOnly(Component.OracleWidget()),
-    Component.DesktopOnly(
-      Component.Graph({
-        localGraph: { removeTags: graphHiddenTags },
-        globalGraph: { removeTags: graphHiddenTags },
-      })
-    ),
-    Component.DesktopOnly(
-      Component.TableOfContents({
-        defaultCollapsed: true,
-      }),
-    ),
-    Component.DesktopOnly(Component.Backlinks()),
+    Component.OracleWidget(),
+    Component.Graph({
+      localGraph: { removeTags: graphHiddenTags },
+      globalGraph: { removeTags: graphHiddenTags },
+    }),
+    Component.TableOfContents({
+      defaultCollapsed: true,
+    }),
+    Component.DiscordWidget({
+      variant: "sidebar",
+    }),
+    Component.Backlinks(),
   ],
 }
 
@@ -166,31 +127,17 @@ export const defaultListPageLayout: PageLayout = {
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-    Component.MobileOnly(
-      Component.TableOfContents({
-        defaultCollapsed: true,
-      })
-    ),
   ],
   left: [
     Component.PageTitle(),
-    Component.DesktopOnly(Component.Search()),
-    Component.MobileOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        useSavedState: false,
-        headerSlot: Component.Search({ variant: "inline" }),
-        filterFn: (node) => node.slugSegment !== "templates",
-      }),
-    ),
-    Component.DesktopOnly(
-      Component.Explorer({
-        folderClickBehavior: "link",
-        folderDefaultState: "open",
-        filterFn: (node) => node.slugSegment !== "templates",
-      })
-    ),
+    Component.Search(),
+    Component.Explorer({
+      folderClickBehavior: "link",
+      folderDefaultState: "open",
+      headerSlot: Component.Search({ variant: "inline" }),
+      useSavedState: false,
+      filterFn: (node) => node.slugSegment !== "templates",
+    }),
   ],
   right: [],
 }

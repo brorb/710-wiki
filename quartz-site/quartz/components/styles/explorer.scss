@@ -124,13 +124,6 @@
     }
   }
 }
-
-.explorer.desktop-only {
-  @media all and not ($mobile) {
-    display: flex;
-  }
-}
-
 .explorer svg {
   pointer-events: all;
   transition: transform 0.35s ease;

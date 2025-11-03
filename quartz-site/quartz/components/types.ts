@@ -13,7 +13,7 @@ export type QuartzComponentProps = {
   children: (QuartzComponent | JSX.Element)[]
   tree: Node
   allFiles: QuartzPluginData[]
-  displayClass?: "mobile-only" | "desktop-only"
+  displayClass?: string
 } & JSX.IntrinsicAttributes & {
     [key: string]: any
   }

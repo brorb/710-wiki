@@ -238,8 +238,9 @@ const oracleWidgetStyles = `
 
 .oracle-chat__surface {
   position: relative;
-  width: min(640px, calc(100vw - 2.5rem));
-  max-height: min(80vh, 720px);
+  width: min(900px, calc(100vw - 1.5rem));
+  max-height: min(92vh, 900px);
+  min-height: 420px;
   background: var(--color-primary-background);
   border-radius: 18px;
   border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
@@ -406,102 +407,78 @@ const oracleWidgetStyles = `
   color: color-mix(in srgb, var(--color-tone-contrast) 92%, var(--color-tone-muted) 8%);
 }
 
-.oracle-chat__snippet-list {
-  display: grid;
-  gap: 0.65rem;
-}
-
-.oracle-chat__snippet {
-  border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 28%, transparent);
-  background: color-mix(in srgb, var(--color-accent-shadow-light) 18%, transparent);
-  padding: 0.6rem 0.75rem;
-  display: grid;
-  gap: 0.4rem;
-}
-
-.oracle-chat__snippet-title {
-  margin: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
-}
-
-.oracle-chat__snippet-summary {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: color-mix(in srgb, var(--color-tone-contrast) 75%, var(--color-tone-muted) 25%);
-}
-
-.oracle-chat__snippet-link {
-  font-size: 0.83rem;
-  font-weight: 600;
+.oracle-chat__rich-text a {
   color: var(--color-accent-bright);
-  text-decoration: none;
-}
-
-.oracle-chat__snippet-link:hover,
-.oracle-chat__snippet-link:focus-visible {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
-.oracle-chat__snippet-meta {
-  margin: 0;
-  font-size: 0.72rem;
+.oracle-chat__rich-text a:hover,
+.oracle-chat__rich-text a:focus-visible {
+  color: color-mix(in srgb, var(--color-accent-bright) 85%, var(--color-tone-contrast) 15%);
+}
+
+.oracle-chat__link-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.oracle-chat__link-rail-label {
+  font-size: 0.78rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-tone-muted) 75%, var(--color-tone-contrast) 25%);
+  color: color-mix(in srgb, var(--color-tone-muted) 70%, var(--color-tone-contrast) 30%);
 }
 
-.oracle-chat__sources {
-  display: grid;
+.oracle-chat__link-rail-items {
+  display: flex;
   gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
-.oracle-chat__sources-heading {
-  margin: 0;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-tone-contrast) 95%, var(--color-tone-muted) 5%);
+.oracle-chat__link-rail-items::-webkit-scrollbar {
+  height: 6px;
 }
 
-.oracle-chat__source-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.55rem;
+.oracle-chat__link-rail-items::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  border-radius: 999px;
 }
 
-.oracle-chat__source-item {
-  display: grid;
-  gap: 0.25rem;
-}
-
-.oracle-chat__source-link {
+.oracle-chat__pill-link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--color-accent-bright);
+  background: color-mix(in srgb, var(--color-accent-bright) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
   text-decoration: none;
+  scroll-snap-align: start;
 }
 
-.oracle-chat__source-link:hover,
-.oracle-chat__source-link:focus-visible {
-  text-decoration: underline;
+.oracle-chat__pill-link:hover,
+.oracle-chat__pill-link:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 30%, transparent);
+  color: var(--color-primary-background);
 }
 
-.oracle-chat__source-label {
-  font-weight: 600;
-  color: color-mix(in srgb, var(--color-tone-contrast) 90%, var(--color-tone-muted) 10%);
-}
-
-.oracle-chat__source-meta {
-  margin: 0;
-  font-size: 0.78rem;
-  color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
+.oracle-chat__pill-link--static {
+  cursor: default;
+  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
+  background: color-mix(in srgb, var(--color-tone-muted) 18%, transparent);
+  border-color: color-mix(in srgb, var(--color-tone-muted) 32%, transparent);
 }
 
 .oracle-chat__cta {
