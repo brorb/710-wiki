@@ -9793,6 +9793,16 @@ var navLinks = [
     iconSlug: "puzzles"
   },
   {
+    href: "/Contribute/",
+    label: "Contribute",
+    iconSlug: "contribute"
+  },
+  {
+    href: "/Theories/",
+    label: "Theories",
+    iconSlug: "theories"
+  },
+  {
     href: "/Discord/",
     label: "Discord",
     iconSlug: "discord"
@@ -10604,7 +10614,8 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
     endpointPath = "/api/oracle/query",
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
-    maxHistory = 24
+    maxHistory = 24,
+    contextStreamPath = "/api/oracle/context-stream"
   } = oracleConfig;
   const launcherLabelId = "oracle-widget-launcher-label";
   return /* @__PURE__ */ jsxs26(
@@ -10618,6 +10629,7 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
       "data-oracle-recaptcha-key": recaptchaSiteKey || void 0,
       "data-oracle-article-title": articleTitle || void 0,
       "data-oracle-article-slug": articleSlug || void 0,
+      "data-oracle-context-stream": contextStreamPath || void 0,
       children: [
         /* @__PURE__ */ jsxs26(
           "button",
@@ -12670,7 +12682,8 @@ var config2 = {
       endpointPath: "/api/oracle/query",
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
-      maxHistory: 24
+      maxHistory: 24,
+      contextStreamPath: "/api/oracle/context-stream"
     }
   },
   plugins: {

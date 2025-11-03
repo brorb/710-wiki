@@ -16,6 +16,7 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
     recaptchaSiteKey,
     storageKey = "oracle-chat-history",
     maxHistory = 24,
+    contextStreamPath = "/api/oracle/context-stream",
   } = oracleConfig
 
   const launcherLabelId = "oracle-widget-launcher-label"
@@ -30,6 +31,7 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
       data-oracle-recaptcha-key={recaptchaSiteKey || undefined}
       data-oracle-article-title={articleTitle || undefined}
       data-oracle-article-slug={articleSlug || undefined}
+  data-oracle-context-stream={contextStreamPath || undefined}
     >
       <button
         type="button"

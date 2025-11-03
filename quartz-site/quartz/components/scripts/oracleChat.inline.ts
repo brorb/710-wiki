@@ -27,6 +27,13 @@ type OracleWebPayload = {
   disclaimers?: string[]
 }
 
+type OracleProgressEntry = {
+  stage: string
+  label: string
+  timestamp: number
+  details?: Record<string, unknown>
+}
+
 type FollowUpContext = {
   source: "suggestion" | "fallback"
   index: number
@@ -47,6 +54,8 @@ type OracleMessage = {
   disclaimers?: string[]
   rawReply?: string
   promptContext?: string
+  clientMessageId?: string
+  progress?: OracleProgressEntry[]
 }
 
 type OracleState = {
@@ -61,6 +70,7 @@ type OracleConfig = {
   storageKey: string
   maxHistory: number
   recaptchaSiteKey?: string
+  contextStreamPath?: string
   article?: {
     title?: string
     slug?: string
@@ -77,6 +87,7 @@ type OracleRequestPayload = {
   creativeMode?: boolean
   captchaToken?: string
   channel?: string
+  clientMessageId?: string
 }
 
 type RecaptchaClient = {
@@ -93,6 +104,7 @@ type FetchResult = {
   metadata?: Record<string, unknown>
   webPayload?: unknown
   disclaimers?: unknown
+  clientMessageId?: string | null
 }
 
 const isDialogueRole = (role: OracleRole): role is "user" | "assistant" => role === "user" || role === "assistant"
@@ -138,10 +150,16 @@ const restoreChat = (dialog: HTMLElement) => {
 
 const DEFAULT_STORAGE_KEY = "oracle-chat-history"
 const DEFAULT_ENDPOINT = "/api/oracle/query"
+const DEFAULT_CONTEXT_STREAM = "/api/oracle/context-stream"
 const DEFAULT_MAX_HISTORY = 24
 const SEND_COOLDOWN_MS = 1200
 const RECAPTCHA_ACTION = "oracle_chat"
 const DEBUG_ENABLED = true
+const MAX_PROGRESS_ENTRIES = 6
+
+const numberFormatter = new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+})
 
 const debugLog = (...args: Array<unknown>) => {
   if (!DEBUG_ENABLED) {
@@ -180,6 +198,182 @@ const toTrimmedString = (value: unknown): string | undefined => {
 
   const trimmed = value.trim()
   return trimmed.length > 0 ? trimmed : undefined
+}
+
+const toRecord = (value: unknown): Record<string, unknown> | undefined => {
+  if (!value || typeof value !== "object") {
+    return undefined
+  }
+  return value as Record<string, unknown>
+}
+
+const formatSeconds = (value: unknown): string | undefined => {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return undefined
+  }
+  if (value >= 10) {
+    return `${value.toFixed(0)}s`
+  }
+  if (value >= 1) {
+    return `${value.toFixed(1)}s`
+  }
+  return `${value.toFixed(2)}s`
+}
+
+const formatCount = (value: unknown): string | undefined => {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return numberFormatter.format(value)
+  }
+  if (typeof value === "string" && value.trim().length > 0) {
+    return value
+  }
+  return undefined
+}
+
+const parseProgressEntries = (value: unknown): OracleProgressEntry[] | undefined => {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+  const entries: OracleProgressEntry[] = []
+  value.forEach((entry) => {
+    if (!entry || typeof entry !== "object") {
+      return
+    }
+    const candidate = entry as Record<string, unknown>
+    const stage = toTrimmedString(candidate.stage)
+    const label = toTrimmedString(candidate.label)
+    if (!stage || !label) {
+      return
+    }
+    const timestampValue = candidate.timestamp
+    const timestamp = typeof timestampValue === "number" && Number.isFinite(timestampValue)
+      ? timestampValue
+      : Date.now()
+    const details = toRecord(candidate.details) || undefined
+    entries.push({ stage, label, timestamp, details })
+  })
+  return entries.length > 0 ? entries : undefined
+}
+
+const formatProgressLabel = (stage: string, details?: Record<string, unknown>): string => {
+  const duration = formatSeconds(details?.duration)
+  switch (stage) {
+    case "context-start":
+      return "Scanning wiki sources…"
+    case "context-empty":
+      return "No indexed context found; using fallback"
+    case "context-complete":
+      return duration ? `Context gathered (${duration})` : "Context gathered"
+    case "context-hit":
+      return details?.title ? `Found context: ${String(details.title)}` : "Found relevant context"
+    case "ensure-ready.start":
+      return "Preparing wiki index…"
+    case "ensure-ready.sync-start":
+      return "Syncing wiki mirror…"
+    case "ensure-ready.sync-complete":
+      return duration ? `Wiki mirror synced (${duration})` : "Wiki mirror synced"
+    case "ensure-ready.load-start":
+      return "Loading wiki index…"
+    case "ensure-ready.load-complete": {
+      const docCount = formatCount(details?.doc_count)
+      return docCount ? `Wiki index ready (${docCount} docs)` : "Wiki index ready"
+    }
+    case "ensure-ready.complete":
+      return "Index ready"
+    case "build-context.start":
+      return "Analysing question…"
+    case "build-context.intent":
+      return "Detecting question intent"
+    case "build-context.resolver": {
+      const hits = formatCount(details?.hits)
+      return hits ? `Resolver pulled ${hits} hint(s)` : "Checking wiki hints"
+    }
+    case "build-context.collect-start":
+      return "Gathering wiki passages…"
+    case "build-context.collect-complete": {
+      const candidates = formatCount(details?.combined_candidates)
+      return candidates ? `Collected ${candidates} candidate chunk(s)` : "Candidate collection complete"
+    }
+    case "build-context.selection": {
+      const selected = formatCount(details?.selected)
+      const tokens = formatCount(details?.estimated_tokens)
+      if (selected && tokens) {
+        return `Selecting ${selected} chunk(s) (~${tokens} tokens)`
+      }
+      return selected ? `Selecting ${selected} chunk(s)` : "Selecting top context"
+    }
+    case "build-context.overflow": {
+      const overflow = formatCount(details?.overflow)
+      return overflow ? `${overflow} chunk(s) set aside as overflow` : "Condensing overflow chunks"
+    }
+    case "build-context.fallback":
+      return "Falling back to the full wiki corpus"
+    case "build-context.error":
+      return "Context build failed; using fallback"
+    case "build-context.complete": {
+      const chunkCount = formatCount(details?.chunk_count)
+      return chunkCount ? `Context ready (${chunkCount} chunk(s))` : "Context ready"
+    }
+    case "retrieval.scales-start":
+      return "Scanning multi-scale indexes…"
+    case "retrieval.scale-start":
+      return `Scanning ${String(details?.scale ?? "index")} index…`
+    case "retrieval.segment-start":
+      return `Checking ${String(details?.segment ?? "segment")} segment…`
+    case "retrieval.segment-complete": {
+      const results = formatCount(details?.results)
+      const segment = String(details?.segment ?? "segment")
+      return results
+        ? `${segment} segment returned ${results} chunk(s)${duration ? ` (${duration})` : ""}`
+        : `${segment} segment scanned`
+    }
+    case "retrieval.scale-complete": {
+      const candidates = formatCount(details?.candidates)
+      const scale = String(details?.scale ?? "scale")
+      return candidates
+        ? `${scale} index contributed ${candidates} chunk(s)${duration ? ` (${duration})` : ""}`
+        : `${scale} index scanned`
+    }
+    case "retrieval.scales-complete": {
+      const total = formatCount(details?.total_candidates)
+      return total
+        ? `Retrieved ${total} chunk(s)${duration ? ` in ${duration}` : ""}`
+        : "Retrieval complete"
+    }
+    case "selection.start":
+      return "Balancing candidate scores…"
+    case "selection.stop":
+      return `Selection stopped (${String(details?.reason ?? "threshold")})`
+    case "selection.skipped":
+      return "Selection skipped (no candidates)"
+    default:
+      if (stage.startsWith("context-hit")) {
+        const title = toTrimmedString(details?.title)
+        return title ? `Found context: ${title}` : "Found relevant context"
+      }
+      const cleaned = stage.replace(/[._-]+/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+      return cleaned
+  }
+}
+
+const derivePendingHeadline = (stage: string, current: string): string => {
+  const normalized = stage.toLowerCase()
+  if (normalized.includes("fallback")) {
+    return "Falling back to the full wiki corpus…"
+  }
+  if (normalized.includes("ensure-ready")) {
+    return "Preparing the wiki index…"
+  }
+  if (normalized.includes("retrieval") || normalized.includes("collect")) {
+    return "Gathering wiki context…"
+  }
+  if (normalized.includes("selection")) {
+    return "Selecting the best wiki passages…"
+  }
+  if (normalized.includes("complete")) {
+    return "Synthesising an answer…"
+  }
+  return current
 }
 
 const pickString = (...values: unknown[]): string | undefined => {
@@ -399,6 +593,20 @@ const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPa
     : undefined
 }
 
+const serialiseProgressEntries = (
+  entries: OracleProgressEntry[] | undefined,
+): OracleProgressEntry[] | undefined => {
+  if (!entries || entries.length === 0) {
+    return undefined
+  }
+  return entries.map((entry) => ({
+    stage: entry.stage,
+    label: entry.label,
+    timestamp: entry.timestamp,
+    details: entry.details ? { ...entry.details } : undefined,
+  }))
+}
+
 const snapshotConfig = (config: OracleConfig) => ({
   apiBaseUrl: config.apiBaseUrl || null,
   endpointPath: config.endpointPath,
@@ -409,6 +617,7 @@ const snapshotConfig = (config: OracleConfig) => ({
 
 const summariseRequest = (payload: OracleRequestPayload) => ({
   conversationId: payload.conversationId,
+  clientMessageId: payload.clientMessageId ?? null,
   questionPreview: payload.question.slice(0, 80),
   messageRoles: payload.messages.map((message) => message.role),
   metadataKeys: Object.keys(payload.metadata || {}),
@@ -424,6 +633,7 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     oracleRecaptchaKey,
     oracleArticleTitle,
     oracleArticleSlug,
+    oracleContextStream,
   } = root.dataset
 
   const storageKey = oracleStorageKey?.trim() || DEFAULT_STORAGE_KEY
@@ -436,6 +646,7 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
+    contextStreamPath: oracleContextStream?.trim() || DEFAULT_CONTEXT_STREAM,
     article: {
       title: oracleArticleTitle?.trim() || undefined,
       slug: oracleArticleSlug?.trim() || undefined,
@@ -443,29 +654,50 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   }
 }
 
-const buildRequestUrl = (config: OracleConfig): string => {
-  const { apiBaseUrl, endpointPath } = config
-  const trimmedEndpoint = endpointPath.startsWith("/") || endpointPath.startsWith("http")
+const isAbsoluteUrl = (value: string): boolean => /^https?:\/\//i.test(value)
+
+const resolveEndpointUrl = (apiBaseUrl: string, endpointPath: string): string => {
+  const trimmedEndpoint = endpointPath.startsWith("/") || isAbsoluteUrl(endpointPath)
     ? endpointPath
     : `/${endpointPath}`
 
   if (!apiBaseUrl) {
-    if (trimmedEndpoint.startsWith("http")) {
+    if (isAbsoluteUrl(trimmedEndpoint)) {
       return trimmedEndpoint
     }
-
     return `${window.location.origin}${trimmedEndpoint}`
   }
 
-  if (apiBaseUrl.startsWith("http")) {
-    const base = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl
-    return trimmedEndpoint.startsWith("/") ? `${base}${trimmedEndpoint}` : `${base}/${trimmedEndpoint}`
+  const normalisedBase = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl
+  if (isAbsoluteUrl(normalisedBase)) {
+    if (isAbsoluteUrl(trimmedEndpoint)) {
+      return trimmedEndpoint
+    }
+    return `${normalisedBase}${trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`}`
   }
 
-  const normalisedBase = apiBaseUrl.startsWith("/") ? apiBaseUrl : `/${apiBaseUrl}`
-  return `${window.location.origin}${normalisedBase.endsWith("/") ? normalisedBase.slice(0, -1) : normalisedBase}${
-    trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`
-  }`
+  const rootedBase = normalisedBase.startsWith("/") ? normalisedBase : `/${normalisedBase}`
+  if (isAbsoluteUrl(trimmedEndpoint)) {
+    return trimmedEndpoint
+  }
+  const baseRoot = `${window.location.origin}${rootedBase.endsWith("/") ? rootedBase.slice(0, -1) : rootedBase}`
+  return `${baseRoot}${trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`}`
+}
+
+const buildRequestUrl = (config: OracleConfig): string => resolveEndpointUrl(config.apiBaseUrl, config.endpointPath)
+
+const buildStreamUrl = (
+  config: OracleConfig,
+  messageId: string,
+  conversationId: string | null,
+): string => {
+  const baseUrl = resolveEndpointUrl(config.apiBaseUrl, config.contextStreamPath ?? DEFAULT_CONTEXT_STREAM)
+  const url = new URL(baseUrl)
+  url.searchParams.set("messageId", messageId)
+  if (conversationId) {
+    url.searchParams.set("conversationId", conversationId)
+  }
+  return url.toString()
 }
 
 const loadState = (storageKey: string): OracleState => {
@@ -524,6 +756,16 @@ const loadState = (storageKey: string): OracleState => {
               restored.promptContext = promptContext
             }
 
+            const clientMessageId = toTrimmedString((candidate as { clientMessageId?: unknown }).clientMessageId)
+            if (clientMessageId) {
+              restored.clientMessageId = clientMessageId
+            }
+
+            const progress = parseProgressEntries((candidate as { progress?: unknown }).progress)
+            if (progress) {
+              restored.progress = progress
+            }
+
             return restored
           })
           .filter((entry): entry is OracleMessage => Boolean(entry))
@@ -556,6 +798,8 @@ const persistState = (storageKey: string, state: OracleState, maxHistory: number
         disclaimers: message.disclaimers ? [...message.disclaimers] : undefined,
         rawReply: message.rawReply,
         promptContext: message.promptContext,
+        clientMessageId: message.clientMessageId,
+        progress: serialiseProgressEntries(message.progress),
       })),
     }
     window.localStorage.setItem(storageKey, JSON.stringify(payload))
@@ -612,6 +856,27 @@ const renderAssistantMessage = (
     bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", secondaryText))
   } else if (!payload && fallbackText) {
     bubble.appendChild(createHelperElement("p", "oracle-chat__answer-body", fallbackText))
+  }
+
+  if (message.pending && message.progress?.length) {
+    const progressBlock = document.createElement("div")
+    progressBlock.className = "oracle-chat__progress"
+
+    const heading = createHelperElement("p", "oracle-chat__progress-title", "Gathering context…")
+    progressBlock.appendChild(heading)
+
+    const list = document.createElement("ul")
+    list.className = "oracle-chat__progress-list"
+    const recentEntries = message.progress.slice(-MAX_PROGRESS_ENTRIES)
+    recentEntries.forEach((entry) => {
+      const item = document.createElement("li")
+      item.className = "oracle-chat__progress-item"
+      item.textContent = entry.label
+      list.appendChild(item)
+    })
+
+    progressBlock.appendChild(list)
+    bubble.appendChild(progressBlock)
   }
 
   const addLinkAnalytics = (kind: "snippet" | "source", url?: string, index?: number) => {
@@ -909,6 +1174,7 @@ const buildRequestBody = (
   state: OracleState,
   config: OracleConfig,
   captchaToken?: string,
+  clientMessageId?: string,
 ) => {
   const history = state.messages
     .filter((message): message is OracleMessage & { role: "user" | "assistant" } =>
@@ -967,6 +1233,11 @@ const buildRequestBody = (
 
   if (captchaToken) {
     payload.captchaToken = captchaToken
+  }
+
+  if (clientMessageId) {
+    payload.clientMessageId = clientMessageId
+    metadata.clientMessageId = clientMessageId
   }
 
   return payload
@@ -1116,6 +1387,158 @@ const setupOracleWidget = () => {
     let activeController: AbortController | undefined
 
     let chatOpen = false
+    let contextSource: EventSource | undefined
+    let contextTargetId: string | undefined
+
+    const stopContextStream = () => {
+      if (contextSource) {
+        contextSource.close()
+        contextSource = undefined
+      }
+      contextTargetId = undefined
+    }
+
+    const applyProgressUpdate = (
+      messageId: string,
+      stage: string,
+      key: string,
+      details?: Record<string, unknown>,
+    ): boolean => {
+      let changed = false
+      state.messages = state.messages.map((entry) => {
+        if (entry.id !== messageId || !entry.pending) {
+          return entry
+        }
+
+        const progress = Array.isArray(entry.progress) ? [...entry.progress] : []
+        const label = formatProgressLabel(stage, details)
+        const nextEntry: OracleProgressEntry = {
+          stage: key,
+          label,
+          timestamp: Date.now(),
+          details,
+        }
+        const existingIndex = progress.findIndex((item) => item.stage === key)
+        if (existingIndex >= 0) {
+          progress[existingIndex] = nextEntry
+        } else {
+          progress.push(nextEntry)
+        }
+        if (progress.length > MAX_PROGRESS_ENTRIES) {
+          progress.splice(0, progress.length - MAX_PROGRESS_ENTRIES)
+        }
+        const updatedContent = derivePendingHeadline(stage, entry.content)
+        changed = true
+        return {
+          ...entry,
+          progress,
+          content: updatedContent,
+        }
+      })
+
+      if (!changed) {
+        return false
+      }
+
+      renderState(historyContainer, state, renderOptions)
+      persistState(storageKey, state, config.maxHistory)
+      updateResetButton()
+      updateSendButtonState()
+      return true
+    }
+
+    const handleContextProgressEvent = (stage: string, key: string, details?: Record<string, unknown>) => {
+      if (!contextTargetId) {
+        return
+      }
+
+      let conversationChanged = false
+      if (stage === "context-start" && details) {
+        const conversationId = toTrimmedString(details.conversationId)
+        if (conversationId && state.conversationId !== conversationId) {
+          state.conversationId = conversationId
+          conversationChanged = true
+        }
+      }
+      const updated = applyProgressUpdate(contextTargetId, stage, key, details)
+      if (conversationChanged && !updated) {
+        persistState(storageKey, state, config.maxHistory)
+      }
+    }
+
+    const parseEventPayload = (event: MessageEvent<string>): Record<string, unknown> => {
+      try {
+        const raw = JSON.parse(event.data) as unknown
+        return toRecord(raw) ?? {}
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to parse context stream payload", error)
+        return {}
+      }
+    }
+
+    const startContextStream = (messageId: string, conversationId: string | null) => {
+      if (!config.contextStreamPath) {
+        return
+      }
+
+      stopContextStream()
+
+      let streamUrl: string
+      try {
+        streamUrl = buildStreamUrl(config, messageId, conversationId)
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to build context stream URL", error)
+        return
+      }
+
+      if (typeof EventSource === "undefined") {
+        console.warn("ORA_CLE chat: EventSource API unavailable; progress stream disabled")
+        return
+      }
+
+      try {
+        const source = new EventSource(streamUrl, { withCredentials: true })
+        contextSource = source
+        contextTargetId = messageId
+
+        source.addEventListener("context-start", (event) => {
+          const payload = parseEventPayload(event as MessageEvent<string>)
+          handleContextProgressEvent("context-start", "context-start", payload)
+        })
+
+        source.addEventListener("context-progress", (event) => {
+          const payload = parseEventPayload(event as MessageEvent<string>)
+          const stage = toTrimmedString(payload.stage) ?? "context-progress"
+          const details = { ...payload }
+          delete details.stage
+          handleContextProgressEvent(stage, stage, details)
+        })
+
+        source.addEventListener("context-hit", (event) => {
+          const payload = parseEventPayload(event as MessageEvent<string>)
+          const title = toTrimmedString(payload.title)
+          const index = typeof payload.index === "number" ? payload.index : Date.now()
+          const key = title ? `context-hit:${title}` : `context-hit:${index}`
+          handleContextProgressEvent("context-hit", key, payload)
+        })
+
+        source.addEventListener("context-empty", () => {
+          handleContextProgressEvent("context-empty", "context-empty")
+        })
+
+        source.addEventListener("complete", (event) => {
+          const payload = parseEventPayload(event as MessageEvent<string>)
+          handleContextProgressEvent("context-complete", "context-complete", payload)
+          stopContextStream()
+        })
+
+        source.addEventListener("error", () => {
+          stopContextStream()
+        })
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to open context stream", error)
+      }
+    }
 
     const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
       textArea.value = question
@@ -1139,20 +1562,26 @@ const setupOracleWidget = () => {
     updateResetButton()
     updateSendButtonState()
 
-    const closeChat = () => {
-    if (!chatOpen) {
-      return
+    const pendingExisting = state.messages.find((message) => message.pending && message.clientMessageId)
+    if (pendingExisting && typeof pendingExisting.clientMessageId === "string") {
+      startContextStream(pendingExisting.clientMessageId, state.conversationId ?? null)
     }
 
-    chatOpen = false
-    dialog.classList.remove("oracle-chat--open")
-    dialog.setAttribute("aria-hidden", "true")
-    launcher.setAttribute("aria-expanded", "false")
-    document.body.classList.remove("oracle-chat-active")
-    restoreChat(dialog)
-    if (document.body.contains(launcher)) {
-      launcher.focus()
-    }
+    const closeChat = () => {
+      if (!chatOpen) {
+        return
+      }
+
+      chatOpen = false
+      dialog.classList.remove("oracle-chat--open")
+      dialog.setAttribute("aria-hidden", "true")
+      launcher.setAttribute("aria-expanded", "false")
+      document.body.classList.remove("oracle-chat-active")
+      stopContextStream()
+      restoreChat(dialog)
+      if (document.body.contains(launcher)) {
+        launcher.focus()
+      }
     }
 
     const openChat = async () => {
@@ -1182,6 +1611,11 @@ const setupOracleWidget = () => {
     const resetChat = () => {
       state = { messages: [] }
       lastUserQuestion = ""
+      stopContextStream()
+      if (activeController) {
+        activeController.abort()
+        activeController = undefined
+      }
       persistState(storageKey, state, config.maxHistory)
       renderState(historyContainer, state, renderOptions)
       updateResetButton()
@@ -1217,24 +1651,27 @@ const setupOracleWidget = () => {
     }
 
     const sendMessage = async () => {
-    const trimmed = sanitiseContent(textArea.value.trim())
-    if (!trimmed) {
-      return
-    }
+      const trimmed = sanitiseContent(textArea.value.trim())
+      if (!trimmed) {
+        return
+      }
 
-    const now = Date.now()
-    if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
-      return
-    }
+      const now = Date.now()
+      if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
+        return
+      }
+
       lastSendTimestamp = now
       lastUserQuestion = trimmed
 
+      stopContextStream()
+
       const userMessage: OracleMessage = {
-      id: generateId(),
-      role: "user",
-      content: trimmed,
-      createdAt: now,
-    }
+        id: generateId(),
+        role: "user",
+        content: trimmed,
+        createdAt: now,
+      }
 
       appendMessage(userMessage)
       emitAnalytics("oracle:question-submitted", {
@@ -1246,18 +1683,22 @@ const setupOracleWidget = () => {
       textArea.value = ""
       autoResize()
 
+      const pendingId = generateId()
       const pendingReply: OracleMessage = {
-      id: generateId(),
-      role: "assistant",
-      content: "The ORA_CLE is thinking",
-      createdAt: Date.now(),
-      pending: true,
-    }
+        id: pendingId,
+        role: "assistant",
+        content: "The ORA_CLE is thinking",
+        createdAt: Date.now(),
+        pending: true,
+        clientMessageId: pendingId,
+      }
 
       pendingReply.promptContext = trimmed
 
       appendMessage(pendingReply)
       updateSendButtonState()
+
+      startContextStream(pendingId, state.conversationId ?? null)
 
       if (activeController) {
         activeController.abort()
@@ -1275,17 +1716,20 @@ const setupOracleWidget = () => {
         }
       }
 
-      const body = buildRequestBody(trimmed, state, config, captchaToken)
+      const body = buildRequestBody(trimmed, state, config, captchaToken, pendingId)
 
       try {
         const result = await tryFetch(requestUrl, body, config)
         if (controller.signal.aborted) {
+          stopContextStream()
           return
         }
 
         if (result.conversationId) {
           state.conversationId = result.conversationId
         }
+
+        const pendingState = state.messages.find((entry) => entry.id === pendingId)
 
         let replyText = result.reply?.trim()
         if (!replyText && Array.isArray(result.messages) && result.messages.length > 0) {
@@ -1305,13 +1749,16 @@ const setupOracleWidget = () => {
           role: "assistant",
           content: replyText,
           createdAt: Date.now(),
-          webPayload: webPayload,
-          disclaimers: disclaimers,
+          webPayload,
+          disclaimers,
           rawReply: replyText,
           promptContext: pendingReply.promptContext ?? lastUserQuestion,
+          clientMessageId: result.clientMessageId ?? pendingState?.clientMessageId ?? pendingId,
+          progress: pendingState?.progress,
         }
 
         replacePendingWith(assistantMessage)
+        stopContextStream()
         updateSendButtonState()
 
         const sourcesCount = webPayload?.sources?.length ?? 0
@@ -1348,7 +1795,12 @@ const setupOracleWidget = () => {
         state.messages = state.messages.filter((entry) => !entry.pending)
         renderState(historyContainer, state, renderOptions)
         persistState(storageKey, state, config.maxHistory)
+        stopContextStream()
         showError(error)
+      } finally {
+        if (activeController === controller) {
+          activeController = undefined
+        }
       }
     }
 
@@ -1417,7 +1869,11 @@ const setupOracleWidget = () => {
       textArea.removeEventListener("input", handleInput)
       textArea.removeEventListener("keydown", handleTextareaKeydown)
       window.removeEventListener("keydown", handleEscapeKey)
-      activeController?.abort()
+      if (activeController) {
+        activeController.abort()
+        activeController = undefined
+      }
+      stopContextStream()
       if (chatOpen) {
         dialog.classList.remove("oracle-chat--open")
         dialog.setAttribute("aria-hidden", "true")

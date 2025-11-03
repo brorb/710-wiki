@@ -33,6 +33,16 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "puzzles",
   },
   {
+    href: "/Contribute/",
+    label: "Contribute",
+    iconSlug: "contribute",
+  },
+  {
+    href: "/Theories/",
+    label: "Theories",
+    iconSlug: "theories",
+  },
+  {
     href: "/Discord/",
     label: "Discord",
     iconSlug: "discord",

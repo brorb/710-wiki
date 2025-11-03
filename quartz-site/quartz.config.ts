@@ -140,6 +140,7 @@ const config: QuartzConfig = {
       recaptchaSiteKey: process.env.ORACLE_RECAPTCHA_SITE_KEY ?? "",
       storageKey: "oracle-chat-history",
       maxHistory: 24,
+      contextStreamPath: "/api/oracle/context-stream",
     },
   },
   plugins: {
