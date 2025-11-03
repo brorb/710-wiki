@@ -92,6 +92,16 @@ header {
     -webkit-mask-image: url("/static/icons/puzzles_icon.svg");
   }
 
+  .links-header-icon--contribute {
+    mask-image: url("/static/icons/plus-icon.svg");
+    -webkit-mask-image: url("/static/icons/plus-icon.svg");
+  }
+
+  .links-header-icon--theories {
+    mask-image: url("/static/icons/theory-icon.svg");
+    -webkit-mask-image: url("/static/icons/theory-icon.svg");
+  }
+
   .links-header-icon--discord {
     mask-image: url("/static/icons/discord_icon.svg");
     -webkit-mask-image: url("/static/icons/discord_icon.svg");
