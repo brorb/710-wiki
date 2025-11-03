@@ -8,7 +8,7 @@ This is the summary of the livestream "STATION_8 TRIM 90" from 4th July 2025 to 
 
 ## Summary
 
-Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestream restarted due to [[REN]], to which [[INDI]] confirms that it is true and adds that they are not supposed to be known about them.
+Livestream restarts from [[STATION_8 TRIM 5]]. A chat member asks if the livestream restarted due to [[REN]], to which [[INDI]] confirms that it is true and adds that they are not supposed to be known about them. Chat members refer to [[INDI]] by the channel's username ([[710 Tone|7/10 Tone]]), which [[INDI]] tells them to stop calling him by that term and that his name is "[[INDI]]" instead.
 
 Stream proceeds as normal until another interference ([[Station Interruption]]) comes on, which eventually gets fixed. Then [[INDI]] says that he can now talk and answers a question made by a chat member about who [[Mr. Forest]] was; the name was an alias for someone who is "now gone". Another chat member asks if [[Mr. Forest]] is dead, to which [[INDI]] says that he is fine, just somewhere very far away (which seems to suggest that he is possibly in hiding).
 
