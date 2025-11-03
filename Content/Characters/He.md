@@ -10,8 +10,9 @@ Title: He
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Appearances:
 - [[HIS PERCEPTION]]
+- [[LOG-67.mp4]] (mentioned)
 - [[STATION_8 TRIM 90]] (mentioned)
-- [[STATION_8 TERMINAL 8]]
+- [[STATION_8 TERMINAL 8]] ([[SYSTEM|SYSTEM hijack]])
 ```
 
 
