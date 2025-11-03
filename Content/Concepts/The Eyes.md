@@ -27,7 +27,7 @@ It is associated with the phrase "ALWAYS WATCHING", which could have some signif
 ```media-box
 Media: ![[The Eyes community post comment.png]]
 Alt: Community post comment with the phrase "ALWAYS WATCHING" repeated
-Caption: Community post from 2025 with the repeated phrase
+Caption: Community post comment with the repeated phrase
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
