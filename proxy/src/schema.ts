@@ -7,6 +7,7 @@ export const messageSchema = z.object({
 
 export const oracleRequestSchema = z.object({
   conversationId: z.string().max(128).nullable().optional(),
+  clientMessageId: z.string().max(128).nullable().optional(),
   question: z.string().min(1).max(4000),
   messages: z.array(messageSchema).max(48),
   metadata: z.record(z.string(), z.unknown()).default({}),

@@ -55,6 +55,12 @@ type LinkEntry = {
   meta?: string
 }
 
+type PendingContextState = {
+  titles: string[]
+  empty: boolean
+  lastUpdated: number
+}
+
 type OracleState = {
   conversationId?: string
   messages: OracleMessage[]
@@ -64,6 +70,7 @@ type OracleState = {
 type OracleConfig = {
   apiBaseUrl: string
   endpointPath: string
+  contextStreamPath: string
   storageKey: string
   maxHistory: number
   recaptchaSiteKey?: string
@@ -75,6 +82,7 @@ type OracleConfig = {
 
 type OracleRequestPayload = {
   conversationId: string | null
+  clientMessageId?: string
   question: string
   messages: Array<{ role: "user" | "assistant"; content: string }>
   metadata: Record<string, unknown>
@@ -144,6 +152,7 @@ const restoreChat = (dialog: HTMLElement) => {
 
 const DEFAULT_STORAGE_KEY = "oracle-chat-history"
 const DEFAULT_ENDPOINT = "/api/oracle/query"
+const DEFAULT_STREAM_ENDPOINT = "/api/oracle/context-stream"
 const DEFAULT_MAX_HISTORY = 24
 const SEND_COOLDOWN_MS = 1200
 const RECAPTCHA_ACTION = "oracle_chat"
@@ -408,6 +417,7 @@ const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPa
 const snapshotConfig = (config: OracleConfig) => ({
   apiBaseUrl: config.apiBaseUrl || null,
   endpointPath: config.endpointPath,
+  contextStreamPath: config.contextStreamPath,
   storageKey: config.storageKey,
   maxHistory: config.maxHistory,
   hasRecaptcha: Boolean(config.recaptchaSiteKey),
@@ -415,6 +425,7 @@ const snapshotConfig = (config: OracleConfig) => ({
 
 const summariseRequest = (payload: OracleRequestPayload) => ({
   conversationId: payload.conversationId,
+  clientMessageId: payload.clientMessageId ?? null,
   questionPreview: payload.question.slice(0, 80),
   messageRoles: payload.messages.map((message) => message.role),
   metadataKeys: Object.keys(payload.metadata || {}),
@@ -425,6 +436,7 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   const {
     oracleApiBase = "",
     oracleEndpoint = DEFAULT_ENDPOINT,
+    oracleContextStream,
     oracleStorageKey,
     oracleMaxHistory,
     oracleRecaptchaKey,
@@ -439,6 +451,7 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   return {
     apiBaseUrl: oracleApiBase?.trim() || "",
     endpointPath: oracleEndpoint?.trim() || DEFAULT_ENDPOINT,
+  contextStreamPath: oracleContextStream?.trim() || DEFAULT_STREAM_ENDPOINT,
     storageKey,
     maxHistory: safeMaxHistory,
     recaptchaSiteKey: oracleRecaptchaKey?.trim() || undefined,
@@ -449,29 +462,37 @@ const getDatasetConfig = (root: HTMLElement): OracleConfig => {
   }
 }
 
-const buildRequestUrl = (config: OracleConfig): string => {
-  const { apiBaseUrl, endpointPath } = config
-  const trimmedEndpoint = endpointPath.startsWith("/") || endpointPath.startsWith("http")
-    ? endpointPath
-    : `/${endpointPath}`
+const resolveEndpointUrl = (baseUrl: string, endpoint: string): string => {
+  const trimmedEndpoint = endpoint.startsWith("/") || endpoint.startsWith("http") ? endpoint : `/${endpoint}`
 
-  if (!apiBaseUrl) {
+  if (!baseUrl) {
     if (trimmedEndpoint.startsWith("http")) {
       return trimmedEndpoint
     }
-
     return `${window.location.origin}${trimmedEndpoint}`
   }
 
-  if (apiBaseUrl.startsWith("http")) {
-    const base = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl
+  if (baseUrl.startsWith("http")) {
+    const base = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl
     return trimmedEndpoint.startsWith("/") ? `${base}${trimmedEndpoint}` : `${base}/${trimmedEndpoint}`
   }
 
-  const normalisedBase = apiBaseUrl.startsWith("/") ? apiBaseUrl : `/${apiBaseUrl}`
-  return `${window.location.origin}${normalisedBase.endsWith("/") ? normalisedBase.slice(0, -1) : normalisedBase}${
-    trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`
-  }`
+  const normalisedBase = baseUrl.startsWith("/") ? baseUrl : `/${baseUrl}`
+  const normalised = normalisedBase.endsWith("/") ? normalisedBase.slice(0, -1) : normalisedBase
+  const suffix = trimmedEndpoint.startsWith("/") ? trimmedEndpoint : `/${trimmedEndpoint}`
+  return `${window.location.origin}${normalised}${suffix}`
+}
+
+const buildRequestUrl = (config: OracleConfig): string => resolveEndpointUrl(config.apiBaseUrl, config.endpointPath)
+
+const buildStreamUrl = (config: OracleConfig, conversationId: string | undefined, messageId: string): string => {
+  const base = resolveEndpointUrl(config.apiBaseUrl, config.contextStreamPath)
+  const streamUrl = new URL(base, window.location.origin)
+  streamUrl.searchParams.set("messageId", messageId)
+  if (conversationId) {
+    streamUrl.searchParams.set("conversationId", conversationId)
+  }
+  return streamUrl.toString()
 }
 
 const loadState = (storageKey: string): OracleState => {
@@ -756,6 +777,10 @@ const renderAssistantMessage = (
     bubble.classList.add("oracle-chat__bubble--pending")
     const pendingText = toTrimmedString(message.content) ?? "The ORA_CLE is thinking..."
     bubble.appendChild(createHelperElement("p", "oracle-chat__pending-text", pendingText))
+    const contextLine = createHelperElement("p", "oracle-chat__pending-context")
+    contextLine.setAttribute("data-oracle-pending-context", message.id)
+    contextLine.hidden = true
+    bubble.appendChild(contextLine)
     return
   }
 
@@ -891,6 +916,7 @@ const createMessageElement = (message: OracleMessage, options?: MessageRenderOpt
   const wrapper = document.createElement("div")
   wrapper.className = "oracle-chat__message"
   wrapper.dataset.role = message.role
+  wrapper.dataset.messageId = message.id
 
   if (message.role === "user") {
     wrapper.classList.add("oracle-chat__message--user")
@@ -978,6 +1004,7 @@ const buildRequestBody = (
   state: OracleState,
   config: OracleConfig,
   captchaToken?: string,
+  clientMessageId?: string,
 ) => {
   const history = state.messages
     .filter((message): message is OracleMessage & { role: "user" | "assistant" } =>
@@ -1036,6 +1063,10 @@ const buildRequestBody = (
 
   if (captchaToken) {
     payload.captchaToken = captchaToken
+  }
+
+  if (clientMessageId) {
+    payload.clientMessageId = clientMessageId
   }
 
   return payload
@@ -1123,6 +1154,10 @@ const setupOracleWidget = () => {
   if (roots.length === 0) {
     return
   }
+
+  const supportsEventSource = typeof window.EventSource !== "undefined"
+  const activeStreams = new Map<string, EventSource>()
+  const pendingContextState = new Map<string, PendingContextState>()
 
   roots.forEach((root) => {
     if (root.hasAttribute("data-oracle-ready")) {
@@ -1248,7 +1283,162 @@ const setupOracleWidget = () => {
       })
     }
 
+    const parseEventData = (raw: string | null): Record<string, unknown> | undefined => {
+      if (!raw) {
+        return undefined
+      }
+      try {
+        const parsed = JSON.parse(raw)
+        return typeof parsed === "object" && parsed !== null ? (parsed as Record<string, unknown>) : undefined
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to parse stream payload", error)
+        return undefined
+      }
+    }
+
+    const renderPendingContext = (messageId: string) => {
+      const container = historyContainer.querySelector<HTMLElement>(`[data-oracle-pending-context="${messageId}"]`)
+      if (!container) {
+        return
+      }
+
+      const state = pendingContextState.get(messageId)
+      if (!state) {
+        container.hidden = true
+        container.textContent = ""
+        return
+      }
+
+      container.hidden = false
+      container.textContent = ""
+
+      if (state.titles.length > 0) {
+        container.append(document.createTextNode("Looking through "))
+        state.titles.forEach((title, index) => {
+          if (index > 0) {
+            container.append(document.createTextNode(", "))
+          }
+          const span = document.createElement("span")
+          span.className = "oracle-chat__pending-context-item"
+          span.textContent = title
+          container.appendChild(span)
+        })
+        container.append(document.createTextNode(" …"))
+        return
+      }
+
+      container.textContent = state.empty ? "Still scanning the archive…" : "Scanning the archive…"
+    }
+
+    const ensurePendingState = (messageId: string): PendingContextState => {
+      const existing = pendingContextState.get(messageId)
+      if (existing) {
+        return existing
+      }
+      const next: PendingContextState = {
+        titles: [],
+        empty: false,
+        lastUpdated: Date.now(),
+      }
+      pendingContextState.set(messageId, next)
+      return next
+    }
+
+    const recordContextHit = (messageId: string, rawTitle: unknown) => {
+      const title = toTrimmedString(rawTitle)
+      if (!title) {
+        return
+      }
+      const state = ensurePendingState(messageId)
+      const lower = title.toLowerCase()
+      if (state.titles.some((entry) => entry.toLowerCase() === lower)) {
+        state.lastUpdated = Date.now()
+        return
+      }
+      const updated = [...state.titles, title]
+      if (updated.length > 5) {
+        updated.shift()
+      }
+      state.titles = updated
+      state.empty = false
+      state.lastUpdated = Date.now()
+      renderPendingContext(messageId)
+    }
+
+    const markContextEmpty = (messageId: string) => {
+      const state = ensurePendingState(messageId)
+      if (state.titles.length > 0) {
+        return
+      }
+      state.empty = true
+      state.lastUpdated = Date.now()
+      renderPendingContext(messageId)
+    }
+
+    const stopContextStream = (messageId: string) => {
+      const source = activeStreams.get(messageId)
+      if (source) {
+        source.close()
+        activeStreams.delete(messageId)
+      }
+      pendingContextState.delete(messageId)
+      renderPendingContext(messageId)
+    }
+
+    const startContextStream = (messageId: string, conversationId: string | undefined) => {
+      if (!supportsEventSource || !config.contextStreamPath || activeStreams.has(messageId)) {
+        return
+      }
+
+      try {
+        const streamUrl = buildStreamUrl(config, conversationId, messageId)
+        const source = new EventSource(streamUrl, { withCredentials: true })
+
+        ensurePendingState(messageId)
+        renderPendingContext(messageId)
+
+        source.addEventListener("context-start", () => {
+          pendingContextState.set(messageId, {
+            titles: [],
+            empty: false,
+            lastUpdated: Date.now(),
+          })
+          renderPendingContext(messageId)
+        })
+
+        source.addEventListener("context-hit", (event) => {
+          const data = parseEventData((event as MessageEvent<string>).data)
+          recordContextHit(messageId, data?.title ?? data?.slug ?? data?.label)
+        })
+
+        source.addEventListener("context-empty", () => {
+          markContextEmpty(messageId)
+        })
+
+        source.addEventListener("complete", () => {
+          stopContextStream(messageId)
+        })
+
+        source.addEventListener("error", (event) => {
+          const messageEvent = event as MessageEvent<string>
+          const parsed = typeof messageEvent.data === "string" ? parseEventData(messageEvent.data) : undefined
+          if (parsed?.message && typeof parsed.message === "string") {
+            console.warn("ORA_CLE chat: context stream error", parsed.message)
+          } else {
+            console.warn("ORA_CLE chat: context stream error", event)
+          }
+          stopContextStream(messageId)
+        })
+
+        activeStreams.set(messageId, source)
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to open context stream", error)
+      }
+    }
+
     const resetChat = () => {
+      Array.from(activeStreams.keys()).forEach((messageId) => stopContextStream(messageId))
+      pendingContextState.clear()
       state = { messages: [] }
       lastUserQuestion = ""
       persistState(storageKey, state, config.maxHistory)
@@ -1267,6 +1457,7 @@ const setupOracleWidget = () => {
     }
 
     const replacePendingWith = (message: OracleMessage) => {
+      stopContextStream(message.id)
       state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
       renderState(historyContainer, state, renderOptions)
       persistState(storageKey, state, config.maxHistory)
@@ -1298,6 +1489,10 @@ const setupOracleWidget = () => {
       lastSendTimestamp = now
       lastUserQuestion = trimmed
 
+      if (!state.conversationId) {
+        state.conversationId = generateId()
+      }
+
       const userMessage: OracleMessage = {
       id: generateId(),
       role: "user",
@@ -1326,6 +1521,7 @@ const setupOracleWidget = () => {
       pendingReply.promptContext = trimmed
 
       appendMessage(pendingReply)
+  startContextStream(pendingReply.id, state.conversationId)
       updateSendButtonState()
 
       if (activeController) {
@@ -1344,7 +1540,7 @@ const setupOracleWidget = () => {
         }
       }
 
-      const body = buildRequestBody(trimmed, state, config, captchaToken)
+  const body = buildRequestBody(trimmed, state, config, captchaToken, pendingReply.id)
 
       try {
         const result = await tryFetch(requestUrl, body, config)
@@ -1414,6 +1610,7 @@ const setupOracleWidget = () => {
           request: summariseRequest(body),
           config: snapshotConfig(config),
         })
+        stopContextStream(pendingReply.id)
         state.messages = state.messages.filter((entry) => !entry.pending)
         renderState(historyContainer, state, renderOptions)
         persistState(storageKey, state, config.maxHistory)

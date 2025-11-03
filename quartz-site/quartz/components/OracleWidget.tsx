@@ -399,6 +399,17 @@ const oracleWidgetStyles = `
   font-size: 0.85rem;
 }
 
+.oracle-chat__pending-context {
+  margin: 0;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 75%, var(--color-tone-contrast) 25%);
+}
+
+.oracle-chat__pending-context-item {
+  font-style: italic;
+  color: var(--color-accent-bright);
+}
+
 .oracle-chat__message--error .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
   color: var(--color-tone-contrast);

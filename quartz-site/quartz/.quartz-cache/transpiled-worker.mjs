@@ -3178,11 +3178,8 @@ function capitalize(s) {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 __name(capitalize, "capitalize");
-function classNames(displayClass, ...classes) {
-  if (displayClass) {
-    classes.push(displayClass);
-  }
-  return classes.join(" ");
+function classNames(...classes) {
+  return classes.filter((cls) => typeof cls === "string" && cls.length > 0).join(" ");
 }
 __name(classNames, "classNames");
 
@@ -7384,15 +7381,12 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
   const renderedAfterBody = afterBody.flatMap(
     (BodyComponent) => resolveToArray(renderQuartzComponent(BodyComponent, { ...componentData }))
   );
-  const mobileBacklinksNodes = [];
   const commentNodes = [];
   const footerNodes = [];
   for (const node of renderedAfterBody) {
     const nodeClass = typeof node?.props?.class === "string" ? node.props.class : "";
     const classList = new Set(nodeClass.split(/\s+/).filter(Boolean));
-    if (classList.has("backlinks") && classList.has("mobile-only")) {
-      mobileBacklinksNodes.push(node);
-    } else if (classList.has("community-hub")) {
+    if (classList.has("community-hub")) {
       commentNodes.push(node);
     } else {
       footerNodes.push(node);
@@ -7437,7 +7431,6 @@ function renderPage(cfg, slug, componentData, components, pageResources2) {
           )) })
         ] }),
         /* @__PURE__ */ jsx4(Content2, { ...componentData }),
-        mobileBacklinksNodes,
         footerNodes.length > 0 ? /* @__PURE__ */ jsx4("div", { class: "page-footer", children: footerNodes }) : null
       ] }),
       commentsFragment,
@@ -9583,39 +9576,11 @@ var Footer_default = /* @__PURE__ */ __name((() => {
   return Footer;
 }), "default");
 
-// quartz/components/DesktopOnly.tsx
-import { jsx as jsx29 } from "preact/jsx-runtime";
-var DesktopOnly_default = /* @__PURE__ */ __name(((component) => {
-  const Component = component;
-  const DesktopOnly = /* @__PURE__ */ __name((props) => {
-    return /* @__PURE__ */ jsx29(Component, { displayClass: "desktop-only", ...props });
-  }, "DesktopOnly");
-  DesktopOnly.displayName = component.displayName;
-  DesktopOnly.afterDOMLoaded = component?.afterDOMLoaded;
-  DesktopOnly.beforeDOMLoaded = component?.beforeDOMLoaded;
-  DesktopOnly.css = component?.css;
-  return DesktopOnly;
-}), "default");
-
-// quartz/components/MobileOnly.tsx
-import { jsx as jsx30 } from "preact/jsx-runtime";
-var MobileOnly_default = /* @__PURE__ */ __name(((component) => {
-  const Component = component;
-  const MobileOnly = /* @__PURE__ */ __name((props) => {
-    return /* @__PURE__ */ jsx30(Component, { displayClass: "mobile-only", ...props });
-  }, "MobileOnly");
-  MobileOnly.displayName = component.displayName;
-  MobileOnly.afterDOMLoaded = component?.afterDOMLoaded;
-  MobileOnly.beforeDOMLoaded = component?.beforeDOMLoaded;
-  MobileOnly.css = component?.css;
-  return MobileOnly;
-}), "default");
-
 // quartz/components/styles/breadcrumbs.scss
 var breadcrumbs_default = "";
 
 // quartz/components/Breadcrumbs.tsx
-import { jsx as jsx31, jsxs as jsxs20 } from "preact/jsx-runtime";
+import { jsx as jsx29, jsxs as jsxs20 } from "preact/jsx-runtime";
 var defaultOptions16 = {
   spacerSymbol: "\u276F",
   rootName: "Home",
@@ -9656,9 +9621,9 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
     if (!options2.showCurrentPage) {
       crumbs.pop();
     }
-    return /* @__PURE__ */ jsx31("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs20("div", { class: "breadcrumb-element", children: [
-      /* @__PURE__ */ jsx31("a", { href: crumb.path, children: crumb.displayName }),
-      index !== crumbs.length - 1 && /* @__PURE__ */ jsx31("p", { children: ` ${options2.spacerSymbol} ` })
+    return /* @__PURE__ */ jsx29("nav", { class: classNames(displayClass, "breadcrumb-container"), "aria-label": "breadcrumbs", children: crumbs.map((crumb, index) => /* @__PURE__ */ jsxs20("div", { class: "breadcrumb-element", children: [
+      /* @__PURE__ */ jsx29("a", { href: crumb.path, children: crumb.displayName }),
+      index !== crumbs.length - 1 && /* @__PURE__ */ jsx29("p", { children: ` ${options2.spacerSymbol} ` })
     ] })) });
   }, "Breadcrumbs");
   Breadcrumbs.css = breadcrumbs_default;
@@ -9669,7 +9634,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment6, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx30, jsxs as jsxs21 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -9679,62 +9644,49 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     const { displayClass, fileData, cfg } = props;
     const disableComment = typeof fileData.frontmatter?.comments !== "undefined" && (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false");
     if (disableComment) {
-      return /* @__PURE__ */ jsx32(Fragment6, {});
+      return /* @__PURE__ */ jsx30(Fragment6, {});
     }
-    const MobileAppend = opts.mobileAppend;
-    const DesktopCompanion = opts.desktopCompanion;
-    const renderMobileAppend = /* @__PURE__ */ __name(() => MobileAppend ? /* @__PURE__ */ jsx32("div", { class: "community-hub__mobile-append", children: /* @__PURE__ */ jsx32(MobileAppend, { ...props, displayClass: "mobile-only" }) }) : null, "renderMobileAppend");
-    const companionNode = DesktopCompanion ? /* @__PURE__ */ jsx32("div", { class: "community-hub__companion", children: /* @__PURE__ */ jsx32("div", { class: "community-companion", children: /* @__PURE__ */ jsx32(DesktopCompanion, { ...props }) }) }) : null;
     const communityShell = /* @__PURE__ */ __name((content) => /* @__PURE__ */ jsxs21("section", { class: classNames(displayClass, "community-hub"), children: [
-      /* @__PURE__ */ jsx32("hr", { class: "community-hub__divider", "aria-hidden": "true" }),
-      /* @__PURE__ */ jsxs21("div", { class: "community-hub__columns", children: [
-        /* @__PURE__ */ jsx32("div", { class: "community-hub__comments", children: content }),
-        companionNode
-      ] })
+      /* @__PURE__ */ jsx30("hr", { class: "community-hub__divider", "aria-hidden": "true" }),
+      /* @__PURE__ */ jsx30("div", { class: "community-hub__columns", children: /* @__PURE__ */ jsx30("div", { class: "community-hub__comments", children: content }) })
     ] }), "communityShell");
     if (opts.provider === "giscus") {
       const options3 = opts.options;
       return communityShell(
-        /* @__PURE__ */ jsxs21("div", { class: "comments-wrapper", "data-provider": "giscus", children: [
-          /* @__PURE__ */ jsx32(
-            "div",
-            {
-              class: "comments giscus",
-              "data-provider": "giscus",
-              "data-repo": options3.repo,
-              "data-repo-id": options3.repoId,
-              "data-category": options3.category,
-              "data-category-id": options3.categoryId,
-              "data-mapping": options3.mapping ?? "url",
-              "data-strict": boolToStringBool(options3.strict ?? true),
-              "data-reactions-enabled": boolToStringBool(options3.reactionsEnabled ?? true),
-              "data-input-position": options3.inputPosition ?? "bottom",
-              "data-light-theme": options3.lightTheme ?? "light",
-              "data-dark-theme": options3.darkTheme ?? "dark",
-              "data-theme-url": options3.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`,
-              "data-lang": options3.lang ?? "en"
-            }
-          ),
-          renderMobileAppend()
-        ] })
+        /* @__PURE__ */ jsx30("div", { class: "comments-wrapper", "data-provider": "giscus", children: /* @__PURE__ */ jsx30(
+          "div",
+          {
+            class: "comments giscus",
+            "data-provider": "giscus",
+            "data-repo": options3.repo,
+            "data-repo-id": options3.repoId,
+            "data-category": options3.category,
+            "data-category-id": options3.categoryId,
+            "data-mapping": options3.mapping ?? "url",
+            "data-strict": boolToStringBool(options3.strict ?? true),
+            "data-reactions-enabled": boolToStringBool(options3.reactionsEnabled ?? true),
+            "data-input-position": options3.inputPosition ?? "bottom",
+            "data-light-theme": options3.lightTheme ?? "light",
+            "data-dark-theme": options3.darkTheme ?? "dark",
+            "data-theme-url": options3.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`,
+            "data-lang": options3.lang ?? "en"
+          }
+        ) })
       );
     }
     const options2 = opts.options;
     return communityShell(
-      /* @__PURE__ */ jsxs21("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
-        /* @__PURE__ */ jsx32(
-          "div",
-          {
-            class: "comments utterances",
-            "data-provider": "utterances",
-            "data-repo": options2.repo,
-            "data-issue-term": options2.issueTerm ?? "pathname",
-            "data-label": options2.label ?? "",
-            "data-theme": options2.theme ?? "github-dark"
-          }
-        ),
-        renderMobileAppend()
-      ] })
+      /* @__PURE__ */ jsx30("div", { class: "comments-wrapper", "data-provider": "utterances", children: /* @__PURE__ */ jsx30(
+        "div",
+        {
+          class: "comments utterances",
+          "data-provider": "utterances",
+          "data-repo": options2.repo,
+          "data-issue-term": options2.issueTerm ?? "pathname",
+          "data-label": options2.label ?? "",
+          "data-theme": options2.theme ?? "github-dark"
+        }
+      ) })
     );
   }, "Comments");
   Comments.afterDOMLoaded = comments_inline_default;
@@ -9742,11 +9694,11 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
 }), "default");
 
 // quartz/components/ConditionalRender.tsx
-import { jsx as jsx33 } from "preact/jsx-runtime";
+import { jsx as jsx31 } from "preact/jsx-runtime";
 var ConditionalRender_default = /* @__PURE__ */ __name(((config3) => {
   const ConditionalRender = /* @__PURE__ */ __name((props) => {
     if (config3.condition(props)) {
-      return /* @__PURE__ */ jsx33(config3.component, { ...props });
+      return /* @__PURE__ */ jsx31(config3.component, { ...props });
     }
     return null;
   }, "ConditionalRender");
@@ -9760,7 +9712,7 @@ var ConditionalRender_default = /* @__PURE__ */ __name(((config3) => {
 var linksHeader_default = "";
 
 // quartz/components/LinksHeader.tsx
-import { jsx as jsx34, jsxs as jsxs22 } from "preact/jsx-runtime";
+import { jsx as jsx32, jsxs as jsxs22 } from "preact/jsx-runtime";
 var navLinks = [
   {
     href: "/",
@@ -9805,9 +9757,9 @@ var navLinks = [
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsx34("div", { id: "links-header-container", children: /* @__PURE__ */ jsx34("nav", { id: "links-header", children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs22("a", { class: "links-header-item", href, children: [
-      /* @__PURE__ */ jsx34("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
-      /* @__PURE__ */ jsx34("span", { children: label })
+    return /* @__PURE__ */ jsx32("div", { id: "links-header-container", children: /* @__PURE__ */ jsx32("nav", { id: "links-header", children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs22("a", { class: "links-header-item", href, children: [
+      /* @__PURE__ */ jsx32("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
+      /* @__PURE__ */ jsx32("span", { children: label })
     ] }, href)) }) });
   }, "LinksHeader");
   LinksHeader.css = linksHeader_default;
@@ -9818,7 +9770,7 @@ var LinksHeader_default = /* @__PURE__ */ __name((() => {
 var discordWidget_inline_default = "";
 
 // quartz/components/DiscordWidget.tsx
-import { jsx as jsx35, jsxs as jsxs23 } from "preact/jsx-runtime";
+import { jsx as jsx33, jsxs as jsxs23 } from "preact/jsx-runtime";
 var WIDGET_SRC = "https://discord.com/widget?id=1389902002737250314&theme=dark";
 var FILTER_ID = "discord-widget-redify";
 var TOP_BAND_HOLD_STOP = 0.098;
@@ -9843,7 +9795,7 @@ var buildFilterId = /* @__PURE__ */ __name(() => `${FILTER_ID}-${++widgetInstanc
 var FilterDefinition = /* @__PURE__ */ __name(({
   filterId,
   gradientData
-}) => /* @__PURE__ */ jsx35("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs23(
+}) => /* @__PURE__ */ jsx33("svg", { class: "discord-widget__filters", "aria-hidden": "true", focusable: "false", width: "0", height: "0", children: /* @__PURE__ */ jsxs23(
   "filter",
   {
     id: filterId,
@@ -9855,7 +9807,7 @@ var FilterDefinition = /* @__PURE__ */ __name(({
     width: "1",
     height: "1",
     children: [
-      /* @__PURE__ */ jsx35(
+      /* @__PURE__ */ jsx33(
         "feColorMatrix",
         {
           in: "SourceGraphic",
@@ -9864,7 +9816,7 @@ var FilterDefinition = /* @__PURE__ */ __name(({
           result: "tinted"
         }
       ),
-      /* @__PURE__ */ jsx35(
+      /* @__PURE__ */ jsx33(
         "feImage",
         {
           x: "0",
@@ -9877,7 +9829,7 @@ var FilterDefinition = /* @__PURE__ */ __name(({
           result: "topGradient"
         }
       ),
-      /* @__PURE__ */ jsx35(
+      /* @__PURE__ */ jsx33(
         "feColorMatrix",
         {
           in: "topGradient",
@@ -9886,11 +9838,11 @@ var FilterDefinition = /* @__PURE__ */ __name(({
           result: "topMask"
         }
       ),
-      /* @__PURE__ */ jsx35("feComposite", { in: "tinted", in2: "topMask", operator: "in", result: "tintedTop" }),
-      /* @__PURE__ */ jsx35("feComposite", { in: "SourceGraphic", in2: "topMask", operator: "out", result: "originalBottom" }),
+      /* @__PURE__ */ jsx33("feComposite", { in: "tinted", in2: "topMask", operator: "in", result: "tintedTop" }),
+      /* @__PURE__ */ jsx33("feComposite", { in: "SourceGraphic", in2: "topMask", operator: "out", result: "originalBottom" }),
       /* @__PURE__ */ jsxs23("feMerge", { children: [
-        /* @__PURE__ */ jsx35("feMergeNode", { in: "tintedTop" }),
-        /* @__PURE__ */ jsx35("feMergeNode", { in: "originalBottom" })
+        /* @__PURE__ */ jsx33("feMergeNode", { in: "tintedTop" }),
+        /* @__PURE__ */ jsx33("feMergeNode", { in: "originalBottom" })
       ] })
     ]
   }
@@ -9909,8 +9861,8 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
         "data-top-band-transition-stop": String(TOP_BAND_TRANSITION_STOP),
         "data-top-band-target-px": String(TOP_BAND_TARGET_PX),
         children: [
-          /* @__PURE__ */ jsx35(FilterDefinition, { filterId, gradientData: initialGradient }),
-          /* @__PURE__ */ jsx35(
+          /* @__PURE__ */ jsx33(FilterDefinition, { filterId, gradientData: initialGradient }),
+          /* @__PURE__ */ jsx33(
             "iframe",
             {
               class: "discord-widget__iframe",
@@ -9983,7 +9935,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment7 } from "preact";
-import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
+import { jsx as jsx34, jsxs as jsxs24 } from "preact/jsx-runtime";
 var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
@@ -10044,7 +9996,7 @@ var renderTextWithWikilinks = /* @__PURE__ */ __name((raw, slug, ctx) => {
       });
       const label = trimmedAlias ?? getTitleForSlug(slugMatch, ctx) ?? trimmedTarget;
       nodes.push(
-        /* @__PURE__ */ jsx36("a", { href, class: "internal", children: label })
+        /* @__PURE__ */ jsx34("a", { href, class: "internal", children: label })
       );
     } else {
       const fallback = trimmedAlias ?? (trimmedTarget.length > 0 ? trimmedTarget : match);
@@ -10072,7 +10024,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
     }
     const combinedKey = normalized.map((entry) => entry.key).join("|");
     const children = intersperse(normalized.map((entry) => entry.node), ", ");
-    return { node: /* @__PURE__ */ jsx36(Fragment7, { children }), key: combinedKey };
+    return { node: /* @__PURE__ */ jsx34(Fragment7, { children }), key: combinedKey };
   }
   const text = normalizeString(value);
   if (!text) {
@@ -10171,9 +10123,9 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
       return null;
     }
     return /* @__PURE__ */ jsxs24("aside", { class: classNames(displayClass, "infobox"), role: "complementary", "aria-label": "Infobox", children: [
-      infobox.title ? /* @__PURE__ */ jsx36("h3", { class: "infobox__title", children: infobox.title }) : null,
+      infobox.title ? /* @__PURE__ */ jsx34("h3", { class: "infobox__title", children: infobox.title }) : null,
       infobox.image ? /* @__PURE__ */ jsxs24("figure", { class: "infobox__media", children: [
-        /* @__PURE__ */ jsx36(
+        /* @__PURE__ */ jsx34(
           "img",
           {
             src: infobox.image.src,
@@ -10182,11 +10134,11 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
             decoding: "async"
           }
         ),
-        infobox.image.caption ? /* @__PURE__ */ jsx36("figcaption", { children: infobox.image.caption }) : null
+        infobox.image.caption ? /* @__PURE__ */ jsx34("figcaption", { children: infobox.image.caption }) : null
       ] }) : null,
-      infobox.items.length > 0 ? /* @__PURE__ */ jsx36("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value, key }) => /* @__PURE__ */ jsxs24("div", { class: "infobox__fact", children: [
-        /* @__PURE__ */ jsx36("dt", { children: label }),
-        /* @__PURE__ */ jsx36("dd", { children: value })
+      infobox.items.length > 0 ? /* @__PURE__ */ jsx34("dl", { class: "infobox__facts", children: infobox.items.map(({ label, value, key }) => /* @__PURE__ */ jsxs24("div", { class: "infobox__fact", children: [
+        /* @__PURE__ */ jsx34("dt", { children: label }),
+        /* @__PURE__ */ jsx34("dd", { children: value })
       ] }, key)) }) : null
     ] });
   }, "InfoBox");
@@ -10284,7 +10236,7 @@ var InfoBox_default = /* @__PURE__ */ __name((() => {
 var homepage_inline_default = "";
 
 // quartz/components/HomepageFeatures.tsx
-import { jsx as jsx37, jsxs as jsxs25 } from "preact/jsx-runtime";
+import { jsx as jsx35, jsxs as jsxs25 } from "preact/jsx-runtime";
 var DEFAULT_LINKS = {
   archive: {
     label: "Visit the Archive Channel",
@@ -10318,18 +10270,18 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
     const discordLink = toLink(homepageLinks.discord, DEFAULT_LINKS.discord);
     return /* @__PURE__ */ jsxs25("section", { class: classNames(displayClass, "home-features"), "data-home-root": true, children: [
       /* @__PURE__ */ jsxs25("section", { class: "home-recent", children: [
-        /* @__PURE__ */ jsx37("h2", { class: "home-recent__title", children: "Recently updated" }),
-        /* @__PURE__ */ jsx37("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx37("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
+        /* @__PURE__ */ jsx35("h2", { class: "home-recent__title", children: "Recently updated" }),
+        /* @__PURE__ */ jsx35("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx35("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
       ] }),
       /* @__PURE__ */ jsxs25("div", { class: "home-actions", children: [
         /* @__PURE__ */ jsxs25("div", { class: "home-card home-random", children: [
-          /* @__PURE__ */ jsx37("h3", { class: "home-card__title", children: "Jump to a random article" }),
-          /* @__PURE__ */ jsx37("p", { class: "home-card__body", children: "Feeling adventurous? Head straight to a random page pulled from the archive." }),
-          /* @__PURE__ */ jsx37("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Take me there" }),
-          /* @__PURE__ */ jsx37("p", { class: "home-random__empty", "data-home-random-empty": true, hidden: true, children: "No eligible pages yet." })
+          /* @__PURE__ */ jsx35("h3", { class: "home-card__title", children: "Jump to a random article" }),
+          /* @__PURE__ */ jsx35("p", { class: "home-card__body", children: "Feeling adventurous? Head straight to a random page pulled from the archive." }),
+          /* @__PURE__ */ jsx35("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Take me there" }),
+          /* @__PURE__ */ jsx35("p", { class: "home-random__empty", "data-home-random-empty": true, hidden: true, children: "No eligible pages yet." })
         ] }),
         /* @__PURE__ */ jsxs25("div", { class: "home-card home-links", children: [
-          /* @__PURE__ */ jsx37("h3", { class: "home-card__title", children: "Stay connected" }),
+          /* @__PURE__ */ jsx35("h3", { class: "home-card__title", children: "Stay connected" }),
           /* @__PURE__ */ jsxs25("div", { class: "home-links__stack", children: [
             /* @__PURE__ */ jsxs25(
               "a",
@@ -10339,7 +10291,7 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx37(
+                  /* @__PURE__ */ jsx35(
                     "span",
                     {
                       class: `home-link-card__icon home-link-card__icon--${archiveLink.iconSlug}`,
@@ -10347,8 +10299,8 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                     }
                   ),
                   /* @__PURE__ */ jsxs25("span", { class: "home-link-card__copy", children: [
-                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__label", children: archiveLink.label }),
-                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__description", children: archiveLink.description })
+                    /* @__PURE__ */ jsx35("span", { class: "home-link-card__label", children: archiveLink.label }),
+                    /* @__PURE__ */ jsx35("span", { class: "home-link-card__description", children: archiveLink.description })
                   ] })
                 ]
               }
@@ -10361,7 +10313,7 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 children: [
-                  /* @__PURE__ */ jsx37(
+                  /* @__PURE__ */ jsx35(
                     "span",
                     {
                       class: `home-link-card__icon home-link-card__icon--${discordLink.iconSlug}`,
@@ -10369,8 +10321,8 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                     }
                   ),
                   /* @__PURE__ */ jsxs25("span", { class: "home-link-card__copy", children: [
-                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__label", children: discordLink.label }),
-                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__description", children: discordLink.description })
+                    /* @__PURE__ */ jsx35("span", { class: "home-link-card__label", children: discordLink.label }),
+                    /* @__PURE__ */ jsx35("span", { class: "home-link-card__description", children: discordLink.description })
                   ] })
                 ]
               }
@@ -10582,8 +10534,8 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 var mediaNormalizer_inline_default = "";
 
 // quartz/components/MediaNormalizer.tsx
-import { Fragment as Fragment8, jsx as jsx38 } from "preact/jsx-runtime";
-var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment8, {}), "MediaNormalizer");
+import { Fragment as Fragment8, jsx as jsx36 } from "preact/jsx-runtime";
+var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx36(Fragment8, {}), "MediaNormalizer");
 MediaNormalizer.afterDOMLoaded = mediaNormalizer_inline_default;
 var MediaNormalizer_default = /* @__PURE__ */ __name((() => MediaNormalizer), "default");
 
@@ -10591,7 +10543,7 @@ var MediaNormalizer_default = /* @__PURE__ */ __name((() => MediaNormalizer), "d
 var oracleChat_inline_default = "";
 
 // quartz/components/OracleWidget.tsx
-import { jsx as jsx39, jsxs as jsxs26 } from "preact/jsx-runtime";
+import { jsx as jsx37, jsxs as jsxs26 } from "preact/jsx-runtime";
 var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
   const oracleConfig = cfg.oracleChat;
   if (!oracleConfig || oracleConfig.enabled === false) {
@@ -10629,8 +10581,8 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
             "aria-expanded": "false",
             "aria-labelledby": launcherLabelId,
             children: [
-              /* @__PURE__ */ jsx39("span", { class: "oracle-widget__copy", id: launcherLabelId, children: /* @__PURE__ */ jsx39("span", { class: "oracle-widget__title", children: "Ask ORA_CLE" }) }),
-              /* @__PURE__ */ jsx39("span", { class: "oracle-widget__avatar-wrap", "aria-hidden": "true", children: /* @__PURE__ */ jsx39(
+              /* @__PURE__ */ jsx37("span", { class: "oracle-widget__copy", id: launcherLabelId, children: /* @__PURE__ */ jsx37("span", { class: "oracle-widget__title", children: "Ask ORA_CLE" }) }),
+              /* @__PURE__ */ jsx37("span", { class: "oracle-widget__avatar-wrap", "aria-hidden": "true", children: /* @__PURE__ */ jsx37(
                 "img",
                 {
                   src: "/static/oracle-pfp.png",
@@ -10644,11 +10596,11 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
           }
         ),
         /* @__PURE__ */ jsxs26("div", { class: "oracle-chat", id: "oracle-chat-panel", role: "dialog", "aria-modal": "true", "aria-hidden": "true", children: [
-          /* @__PURE__ */ jsx39("div", { class: "oracle-chat__overlay", "data-oracle-dismiss": true }),
+          /* @__PURE__ */ jsx37("div", { class: "oracle-chat__overlay", "data-oracle-dismiss": true }),
           /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__surface", role: "document", children: [
             /* @__PURE__ */ jsxs26("header", { class: "oracle-chat__header", children: [
               /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity", children: [
-                /* @__PURE__ */ jsx39(
+                /* @__PURE__ */ jsx37(
                   "img",
                   {
                     src: "/static/oracle-pfp.png",
@@ -10659,29 +10611,29 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
                   }
                 ),
                 /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity-text", children: [
-                  /* @__PURE__ */ jsx39("span", { class: "oracle-chat__name", children: "The ORA_CLE" }),
-                  /* @__PURE__ */ jsx39("span", { class: "oracle-chat__status", children: "Ready to answer wiki questions." })
+                  /* @__PURE__ */ jsx37("span", { class: "oracle-chat__name", children: "The ORA_CLE" }),
+                  /* @__PURE__ */ jsx37("span", { class: "oracle-chat__status", children: "Ready to answer wiki questions." })
                 ] })
               ] }),
               /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__header-actions", children: [
-                /* @__PURE__ */ jsx39("button", { type: "button", class: "oracle-chat__reset", "data-oracle-action": "reset", children: "Reset" }),
-                /* @__PURE__ */ jsx39(
+                /* @__PURE__ */ jsx37("button", { type: "button", class: "oracle-chat__reset", "data-oracle-action": "reset", children: "Reset" }),
+                /* @__PURE__ */ jsx37(
                   "button",
                   {
                     type: "button",
                     class: "oracle-chat__close",
                     "aria-label": "Close chat",
                     "data-oracle-action": "close",
-                    children: /* @__PURE__ */ jsx39("span", { "aria-hidden": "true", children: "\xD7" })
+                    children: /* @__PURE__ */ jsx37("span", { "aria-hidden": "true", children: "\xD7" })
                   }
                 )
               ] })
             ] }),
-            /* @__PURE__ */ jsx39("section", { class: "oracle-chat__history", "data-oracle-history": true, "aria-live": "polite", "aria-label": "Conversation history" }),
+            /* @__PURE__ */ jsx37("section", { class: "oracle-chat__history", "data-oracle-history": true, "aria-live": "polite", "aria-label": "Conversation history" }),
             /* @__PURE__ */ jsxs26("form", { class: "oracle-chat__composer", "data-oracle-form": true, children: [
-              /* @__PURE__ */ jsx39("label", { class: "oracle-chat__label", for: "oracle-chat-input", children: "Ask a question about the 7/10 Wiki" }),
+              /* @__PURE__ */ jsx37("label", { class: "oracle-chat__label", for: "oracle-chat-input", children: "Ask a question about the 7/10 Wiki" }),
               /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__input-row", children: [
-                /* @__PURE__ */ jsx39(
+                /* @__PURE__ */ jsx37(
                   "textarea",
                   {
                     id: "oracle-chat-input",
@@ -10695,7 +10647,7 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
                     spellcheck: true
                   }
                 ),
-                /* @__PURE__ */ jsx39("button", { type: "submit", class: "oracle-chat__send", "data-oracle-send": true, disabled: true, children: "Send" })
+                /* @__PURE__ */ jsx37("button", { type: "submit", class: "oracle-chat__send", "data-oracle-send": true, disabled: true, children: "Send" })
               ] })
             ] })
           ] })
@@ -10831,8 +10783,9 @@ var oracleWidgetStyles = `
 
 .oracle-chat__surface {
   position: relative;
-  width: min(640px, calc(100vw - 2.5rem));
-  max-height: min(80vh, 720px);
+  width: min(900px, calc(100vw - 1.5rem));
+  max-height: min(92vh, 900px);
+  min-height: 420px;
   background: var(--color-primary-background);
   border-radius: 18px;
   border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
@@ -10980,6 +10933,17 @@ var oracleWidgetStyles = `
   background: color-mix(in srgb, var(--color-accent-shadow) 18%, transparent);
 }
 
+.oracle-chat__bubble--pending {
+  gap: 0.4rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 82%, var(--color-tone-contrast) 18%);
+  font-style: italic;
+}
+
+.oracle-chat__pending-text {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
 .oracle-chat__message--error .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-feedback-error) 35%, transparent);
   color: var(--color-tone-contrast);
@@ -10999,102 +10963,78 @@ var oracleWidgetStyles = `
   color: color-mix(in srgb, var(--color-tone-contrast) 92%, var(--color-tone-muted) 8%);
 }
 
-.oracle-chat__snippet-list {
-  display: grid;
-  gap: 0.65rem;
-}
-
-.oracle-chat__snippet {
-  border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 28%, transparent);
-  background: color-mix(in srgb, var(--color-accent-shadow-light) 18%, transparent);
-  padding: 0.6rem 0.75rem;
-  display: grid;
-  gap: 0.4rem;
-}
-
-.oracle-chat__snippet-title {
-  margin: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
-}
-
-.oracle-chat__snippet-summary {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: color-mix(in srgb, var(--color-tone-contrast) 75%, var(--color-tone-muted) 25%);
-}
-
-.oracle-chat__snippet-link {
-  font-size: 0.83rem;
-  font-weight: 600;
+.oracle-chat__rich-text a {
   color: var(--color-accent-bright);
-  text-decoration: none;
-}
-
-.oracle-chat__snippet-link:hover,
-.oracle-chat__snippet-link:focus-visible {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
-.oracle-chat__snippet-meta {
-  margin: 0;
-  font-size: 0.72rem;
+.oracle-chat__rich-text a:hover,
+.oracle-chat__rich-text a:focus-visible {
+  color: color-mix(in srgb, var(--color-accent-bright) 85%, var(--color-tone-contrast) 15%);
+}
+
+.oracle-chat__link-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.oracle-chat__link-rail-label {
+  font-size: 0.78rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-tone-muted) 75%, var(--color-tone-contrast) 25%);
+  color: color-mix(in srgb, var(--color-tone-muted) 70%, var(--color-tone-contrast) 30%);
 }
 
-.oracle-chat__sources {
-  display: grid;
+.oracle-chat__link-rail-items {
+  display: flex;
   gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
-.oracle-chat__sources-heading {
-  margin: 0;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-tone-contrast) 95%, var(--color-tone-muted) 5%);
+.oracle-chat__link-rail-items::-webkit-scrollbar {
+  height: 6px;
 }
 
-.oracle-chat__source-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.55rem;
+.oracle-chat__link-rail-items::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  border-radius: 999px;
 }
 
-.oracle-chat__source-item {
-  display: grid;
-  gap: 0.25rem;
-}
-
-.oracle-chat__source-link {
+.oracle-chat__pill-link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--color-accent-bright);
+  background: color-mix(in srgb, var(--color-accent-bright) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
   text-decoration: none;
+  scroll-snap-align: start;
 }
 
-.oracle-chat__source-link:hover,
-.oracle-chat__source-link:focus-visible {
-  text-decoration: underline;
+.oracle-chat__pill-link:hover,
+.oracle-chat__pill-link:focus-visible {
+  background: color-mix(in srgb, var(--color-accent-bright) 30%, transparent);
+  color: var(--color-primary-background);
 }
 
-.oracle-chat__source-label {
-  font-weight: 600;
-  color: color-mix(in srgb, var(--color-tone-contrast) 90%, var(--color-tone-muted) 10%);
-}
-
-.oracle-chat__source-meta {
-  margin: 0;
-  font-size: 0.78rem;
-  color: color-mix(in srgb, var(--color-tone-muted) 78%, var(--color-tone-contrast) 22%);
+.oracle-chat__pill-link--static {
+  cursor: default;
+  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
+  background: color-mix(in srgb, var(--color-tone-muted) 18%, transparent);
+  border-color: color-mix(in srgb, var(--color-tone-muted) 32%, transparent);
 }
 
 .oracle-chat__cta {
@@ -11323,17 +11263,11 @@ var sharedAfterBody = [
     component: Canvas_default(),
     condition: /* @__PURE__ */ __name((props) => hasCanvasFrontmatter(props.fileData.frontmatter), "condition")
   }),
-  MobileOnly_default(Backlinks_default()),
   ConditionalRender_default({
     component: HomepageFeatures_default(),
     condition: /* @__PURE__ */ __name((page) => page.fileData.slug === "index", "condition")
   })
 ];
-var mobileDiscordWidget = MobileOnly_default(
-  DiscordWidget_default({
-    variant: "banner"
-  })
-);
 if (commentsConfig.enabled) {
   if (commentsConfig.provider === "giscus") {
     const {
@@ -11366,13 +11300,7 @@ if (commentsConfig.enabled) {
           lightTheme,
           darkTheme,
           themeUrl
-        },
-        mobileAppend: mobileDiscordWidget,
-        desktopCompanion: DesktopOnly_default(
-          DiscordWidget_default({
-            variant: "sidebar"
-          })
-        )
+        }
       })
     );
   } else if (commentsConfig.provider === "utterances") {
@@ -11385,13 +11313,7 @@ if (commentsConfig.enabled) {
           issueTerm,
           label,
           theme
-        },
-        mobileAppend: mobileDiscordWidget,
-        desktopCompanion: DesktopOnly_default(
-          DiscordWidget_default({
-            variant: "sidebar"
-          })
-        )
+        }
       })
     );
   }
@@ -11410,88 +11332,54 @@ var defaultContentPageLayout = {
     }),
     ArticleHeader_default(),
     InfoBox_default(),
-    TagList_default(),
-    MobileOnly_default(
-      TableOfContents_default({
-        defaultCollapsed: true
-      })
-    )
+    TagList_default()
   ],
   left: [
     PageTitle_default(),
-    DesktopOnly_default(Search_default()),
-    MobileOnly_default(
-      Explorer_default({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        headerSlot: Search_default({ variant: "inline" }),
-        useSavedState: false,
-        startCollapsed: true,
-        filterFn: /* @__PURE__ */ __name((node) => {
-          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases";
-        }, "filterFn")
-      })
-    ),
-    DesktopOnly_default(
-      Explorer_default({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        useSavedState: false,
-        startCollapsed: false,
-        filterFn: /* @__PURE__ */ __name((node) => {
-          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases";
-        }, "filterFn")
-      })
-    )
+    Search_default(),
+    Explorer_default({
+      folderClickBehavior: "link",
+      folderDefaultState: "collapsed",
+      headerSlot: Search_default({ variant: "inline" }),
+      useSavedState: false,
+      startCollapsed: false,
+      filterFn: /* @__PURE__ */ __name((node) => {
+        const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+        return segment !== "templates" && segment !== "canvases";
+      }, "filterFn")
+    })
   ],
   right: [
-    DesktopOnly_default(OracleWidget_default()),
-    DesktopOnly_default(
-      Graph_default({
-        localGraph: { removeTags: graphHiddenTags },
-        globalGraph: { removeTags: graphHiddenTags }
-      })
-    ),
-    DesktopOnly_default(
-      TableOfContents_default({
-        defaultCollapsed: true
-      })
-    ),
-    DesktopOnly_default(Backlinks_default())
+    OracleWidget_default(),
+    Graph_default({
+      localGraph: { removeTags: graphHiddenTags },
+      globalGraph: { removeTags: graphHiddenTags }
+    }),
+    TableOfContents_default({
+      defaultCollapsed: true
+    }),
+    DiscordWidget_default({
+      variant: "sidebar"
+    }),
+    Backlinks_default()
   ]
 };
 var defaultListPageLayout = {
   beforeBody: [
     Breadcrumbs_default(),
     ArticleTitle_default(),
-    ContentMeta_default(),
-    MobileOnly_default(
-      TableOfContents_default({
-        defaultCollapsed: true
-      })
-    )
+    ContentMeta_default()
   ],
   left: [
     PageTitle_default(),
-    DesktopOnly_default(Search_default()),
-    MobileOnly_default(
-      Explorer_default({
-        folderClickBehavior: "link",
-        folderDefaultState: "collapsed",
-        useSavedState: false,
-        headerSlot: Search_default({ variant: "inline" }),
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
-      })
-    ),
-    DesktopOnly_default(
-      Explorer_default({
-        folderClickBehavior: "link",
-        folderDefaultState: "open",
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
-      })
-    )
+    Search_default(),
+    Explorer_default({
+      folderClickBehavior: "link",
+      folderDefaultState: "open",
+      headerSlot: Search_default({ variant: "inline" }),
+      useSavedState: false,
+      filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+    })
   ],
   right: []
 };
@@ -11833,7 +11721,7 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
-import { jsx as jsx40 } from "preact/jsx-runtime";
+import { jsx as jsx38 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
   enableRSS: true,
@@ -11950,7 +11838,7 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
       if (opts?.enableRSS) {
         return {
           additionalHead: [
-            /* @__PURE__ */ jsx40(
+            /* @__PURE__ */ jsx38(
               "link",
               {
                 rel: "alternate",
