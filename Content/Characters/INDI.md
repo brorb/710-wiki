@@ -47,7 +47,7 @@ INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 
 His relationship with Kepler seems to be that of an employee to a supervisor. During the STATION_8 livestreams, [[Kepler]] would often supervise INDI as a way to try to not let him give away too much as to what was happening during the broadcast. Their tone towards him also seems to be somewhat distant, as if they didn't really want to be responsible for "that thing". They also seem to view INDI was an untrustworthy character yet necessary for whatever purpose they were trying to accomplish.
 ### [[Travis]]
 
-Not much is known about the relationship between [[Travis]] and INDI, but from what little information is available, they seem to have a sort of professional relationship with each other, which seems to be friendlier than the relationship with [[Kepler]].
+Not much is known about the relationship between [[Travis]] and INDI, but from what little information is available, they seem to have a sort of professional relationship with each other, which seems to be friendlier than his relationship with [[Kepler]].
 
 ```
 7/10NPP (INDI): ARE YOU STILL THERE?
