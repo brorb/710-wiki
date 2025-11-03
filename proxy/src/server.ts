@@ -6,6 +6,8 @@ import helmet from "helmet"
 import crypto from "node:crypto"
 import fs from "node:fs"
 import path from "node:path"
+import { Readable } from "node:stream"
+import { ReadableStream as NodeReadableStream } from "node:stream/web"
 import { fileURLToPath } from "node:url"
 
 import { config } from "./config.js"
@@ -27,6 +29,21 @@ const createRequestId = () => {
     return crypto.randomUUID()
   }
   return crypto.randomBytes(12).toString("hex")
+}
+
+const getQueryParam = (value: unknown): string | undefined => {
+  if (typeof value === "string") {
+    const trimmed = value.trim()
+    return trimmed.length > 0 ? trimmed : undefined
+  }
+  if (Array.isArray(value)) {
+    const [first] = value
+    if (typeof first === "string") {
+      const trimmed = first.trim()
+      return trimmed.length > 0 ? trimmed : undefined
+    }
+  }
+  return undefined
 }
 
 const app = express()
@@ -375,6 +392,101 @@ app.post("/api/oracle/query", async (req: Request, res: Response) => {
     return res.status(502).json({ success: false, reason: "Upstream request failed" })
   } finally {
     clearTimeout(timeoutHandle)
+  }
+})
+
+app.get("/api/oracle/context-stream", async (req: Request, res: Response) => {
+  const requestId = createRequestId()
+  const messageId = getQueryParam(req.query.messageId)
+  const conversationId = getQueryParam(req.query.conversationId)
+
+  if (!messageId) {
+    return res.status(400).json({ success: false, reason: "messageId query parameter is required" })
+  }
+
+  const upstreamUrl = new URL(config.oracleContextStreamEndpoint, config.oracleApiBaseUrl)
+  upstreamUrl.searchParams.set("messageId", messageId)
+  if (conversationId) {
+    upstreamUrl.searchParams.set("conversationId", conversationId)
+  }
+
+  debugLog(`stream ${requestId} start`, { upstream: upstreamUrl.toString() })
+
+  res.setHeader("Content-Type", "text/event-stream")
+  res.setHeader("Cache-Control", "no-cache")
+  res.setHeader("Connection", "keep-alive")
+  res.setHeader("X-Accel-Buffering", "no")
+  res.setHeader("X-Request-Id", requestId)
+  res.flushHeaders()
+
+  req.socket.setTimeout(0)
+  req.socket.setNoDelay(true)
+  req.socket.setKeepAlive(true)
+
+  const controller = new AbortController()
+  const onClientClose = () => {
+    debugLog(`stream ${requestId} client closed`)
+    controller.abort()
+  }
+  req.on("close", onClientClose)
+  res.on("close", () => {
+    if (typeof req.off === "function") {
+      req.off("close", onClientClose)
+    } else {
+      req.removeListener("close", onClientClose)
+    }
+  })
+
+  try {
+    const upstreamResponse = await fetch(upstreamUrl, {
+      method: "GET",
+      headers: {
+        "X-Web-Api-Key": config.oracleWebApiToken,
+      },
+      signal: controller.signal,
+    })
+
+    if (!upstreamResponse.ok) {
+      const bodyText = await upstreamResponse.text()
+      debugLog(`stream ${requestId} upstream error`, {
+        status: upstreamResponse.status,
+        statusText: upstreamResponse.statusText,
+        bodyPreview: bodyText.slice(0, 200),
+      })
+      res.write(`event: error\ndata: ${JSON.stringify({ message: "Upstream stream failed." })}\n\n`)
+      return res.end()
+    }
+
+    if (!upstreamResponse.body) {
+      res.write(`event: complete\ndata: ${JSON.stringify({ final: true })}\n\n`)
+      return res.end()
+    }
+
+  const reader = Readable.fromWeb(upstreamResponse.body as unknown as NodeReadableStream<Uint8Array>)
+    reader.on("error", (error) => {
+      debugLog(`stream ${requestId} reader error`, { error })
+      if (!res.writableEnded) {
+        res.write(`event: error\ndata: ${JSON.stringify({ message: "Stream interrupted." })}\n\n`)
+        res.end()
+      }
+    })
+    reader.on("end", () => {
+      debugLog(`stream ${requestId} upstream closed`)
+      if (!res.writableEnded) {
+        res.end()
+      }
+    })
+
+    reader.pipe(res, { end: false })
+  } catch (error) {
+    if (controller.signal.aborted) {
+      return res.end()
+    }
+    console.error("⚠️ [Proxy] Context stream failed", { requestId, error })
+    if (!res.writableEnded) {
+      res.write(`event: error\ndata: ${JSON.stringify({ message: "Context stream failed." })}\n\n`)
+      res.end()
+    }
   }
 })
 
