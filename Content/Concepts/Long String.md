@@ -14,6 +14,7 @@ Appearances:
 - [[LOG-116.mp4]]
 - [[LOG-123.mp4]]
 - [[{_ _ _-_ _._ _ _}re]]
+- [[Parting Gifts]]
 ```
 
 
@@ -193,7 +194,7 @@ It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since 
 Upon execution, Long String fills the screen with "INFECTED BY LONG STRING ;-)" 
 It isn't know exactly *what* Long String was designed to do, but judging by clues contained within [[The Logs]], it seems to be a weapon against [[TTH]] terminals.
 
-[[SYSTEM]] has commented on the use of Long String, but couldn't speak about much due to restrictions placed by [[INDI]]:
+[[SYSTEM]] has commented on the use of Long String, but couldn't speak much about it due to restrictions placed by [[INDI]]:
 ```discord
 [
   {
@@ -213,7 +214,7 @@ It isn't know exactly *what* Long String was designed to do, but judging by clue
 ]
 ```
 
-[[SYSTEM]] would crash after any mention of Long String. For example, when asked if Long String was made in Fortran, [[SYSTEM]] responded with the following before it crashed:
+At one point, [[SYSTEM]] crashed after being asked who made Long String:
 ```discord
 [
   {
