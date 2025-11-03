@@ -28,7 +28,7 @@ type OracleWebPayload = {
 }
 
 type FollowUpContext = {
-  source: "suggestion" | "fallback"
+  source: "suggestion"
   index: number
 }
 
@@ -752,7 +752,14 @@ const renderAssistantMessage = (
 
   bubble.innerHTML = ""
 
-  const addLinkAnalytics = (kind: "snippet" | "source" | "answer", url?: string, index?: number) => {
+  if (message.pending) {
+    bubble.classList.add("oracle-chat__bubble--pending")
+    const pendingText = toTrimmedString(message.content) ?? "The ORA_CLE is thinking..."
+    bubble.appendChild(createHelperElement("p", "oracle-chat__pending-text", pendingText))
+    return
+  }
+
+  const addLinkAnalytics = (kind: "source" | "answer", url?: string, index?: number) => {
     if (!url) {
       return
     }
@@ -790,36 +797,6 @@ const renderAssistantMessage = (
     )
   }
 
-  const buildSnippetEntries = (): LinkEntry[] => {
-    if (!payload?.contextSnippets?.length) {
-      return []
-    }
-    const items = payload.contextSnippets
-      .map<LinkEntry | undefined>((snippet) => {
-        const label = toTrimmedString(snippet.title ?? snippet.alias ?? snippet.url)
-        if (!label) {
-          return undefined
-        }
-
-        const metaParts: string[] = []
-        if (snippet.section) {
-          metaParts.push(snippet.section)
-        }
-        if (snippet.strength) {
-          metaParts.push(snippet.strength)
-        }
-
-        return {
-          label,
-          url: snippet.url ? normaliseLinkTarget(snippet.url) : undefined,
-          meta: metaParts.length > 0 ? metaParts.join(" • ") : undefined,
-        }
-      })
-      .filter((entry): entry is LinkEntry => Boolean(entry))
-
-    return dedupeBy(items, (entry) => `${entry.label}|${entry.url ?? ""}`)
-  }
-
   const buildSourceEntries = (): LinkEntry[] => {
     if (!payload?.sources?.length) {
       return []
@@ -853,15 +830,7 @@ const renderAssistantMessage = (
     return dedupeBy(items, (entry) => `${entry.label}|${entry.url ?? ""}`)
   }
 
-  const snippetEntries = buildSnippetEntries()
   const sourceEntries = buildSourceEntries()
-
-  const snippetRail = createLinkRail("Context", snippetEntries, (url, index) =>
-    addLinkAnalytics("snippet", url, index),
-  )
-  if (snippetRail) {
-    bubble.appendChild(snippetRail)
-  }
 
   const sourceRail = createLinkRail("Sources", sourceEntries, (url, index) =>
     addLinkAnalytics("source", url, index),
@@ -903,43 +872,6 @@ const renderAssistantMessage = (
     }
   }
 
-  const lacksLinks = !(snippetEntries.length || sourceEntries.length)
-  if (lacksLinks) {
-    const fallbackBlock = document.createElement("div")
-    fallbackBlock.className = "oracle-chat__fallback"
-    fallbackBlock.appendChild(
-      createHelperElement(
-        "p",
-        "oracle-chat__fallback-text",
-        "I couldn’t surface specific links for this answer. Consider asking for more detail or exploring related pages.",
-      ),
-    )
-
-    const suggestionQuestion = message.promptContext
-      ? `Can you point me to sources for "${message.promptContext}"?`
-      : "Can you point me to sources for this topic?"
-    const exploreQuestion = "Suggest another topic I should investigate next."
-
-    const fallbackButtons = document.createElement("div")
-    fallbackButtons.className = "oracle-chat__fallback-buttons"
-
-    const addFallbackButton = (label: string, question: string, index: number) => {
-      const button = document.createElement("button")
-      button.type = "button"
-      button.className = "oracle-chat__fallback-button"
-      button.textContent = label
-      button.addEventListener("click", () => {
-        options?.onFollowUpSelect?.(question, { source: "fallback", index })
-      })
-      fallbackButtons.appendChild(button)
-    }
-
-    addFallbackButton("Ask for sources", suggestionQuestion, 0)
-    addFallbackButton("Explore another topic", exploreQuestion, 1)
-
-    fallbackBlock.appendChild(fallbackButtons)
-    bubble.appendChild(fallbackBlock)
-  }
 
   const disclaimersList = Array.from(allDisclaimers)
   if (disclaimersList.length > 0) {
