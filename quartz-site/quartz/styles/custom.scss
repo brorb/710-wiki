@@ -51,7 +51,7 @@
     grid-column: 1 / -1;
   }
 
-  #quartz-body .sidebar.left > .explorer {
+  #quartz-body .sidebar.left > .mobile-only.explorer {
     grid-column: 1;
     grid-row: 2;
     align-self: stretch;
@@ -68,7 +68,7 @@
     min-width: 0;
   }
 
-  #quartz-body .sidebar.left > .explorer .explorer-content {
+  #quartz-body .sidebar.left > .mobile-only.explorer .explorer-content {
     margin-top: 0.75rem;
   }
 
@@ -78,16 +78,15 @@
   }
 }
 
-/* The backlinks module precedes the community hub in the footer stack */
-#quartz-body .backlinks {
+#quartz-body .mobile-only.backlinks {
   margin-bottom: 1.8rem;
 }
 
-#quartz-body .backlinks + .community-hub {
+#quartz-body .mobile-only.backlinks + .community-hub {
   margin-top: 0;
 }
 
-#quartz-body .backlinks + .community-hub .community-hub__divider {
+#quartz-body .mobile-only.backlinks + .community-hub .community-hub__divider {
   margin-top: 1.5rem;
 }
 
@@ -285,15 +284,15 @@ a.wiki-download-link svg {
   width: 100%;
 }
 
-#quartz-body .backlinks {
+#quartz-body .mobile-only.backlinks {
   margin-bottom: 2.5rem;
 }
 
-#quartz-body .backlinks + .community-hub {
+#quartz-body .mobile-only.backlinks + .community-hub {
   margin-top: 0;
 }
 
-#quartz-body .backlinks + .community-hub .community-hub__divider {
+#quartz-body .mobile-only.backlinks + .community-hub .community-hub__divider {
   margin-top: 2.25rem;
 }
 
