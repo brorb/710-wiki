@@ -70,7 +70,7 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 
 ### [[SYSTEM]]
 
-[[SYSTEM]] was originally created by INDI as a PCV package to be sent to [[REN]] servers ("as a way to get back at them"), until he forgot and made it a moderator for the channel during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mhji29fj-8cqtzh --> 
+[[SYSTEM]] was originally created by INDI as a PCV package to be sent to [[REN]] servers ("as a way to get back at them"), until he forgot about [[SYSTEM]] and made it a moderator for the channel during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mhji29fj-8cqtzh --> 
 
 > [!discord-cite]- Discord citation (2 messages)
 >
