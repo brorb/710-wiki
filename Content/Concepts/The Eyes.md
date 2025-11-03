@@ -20,14 +20,14 @@ Appearances:
 
 Possibly a program that manages data, as it appears in the [[Private Room]] (named "SPR chatroom") scanning through data before the chatroom fully connects.
 
-It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them.
+It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them (see [[System Chats#SERVER 01|2nd August 2025 System chats from SERVER 01]] for context)
 
 ---
 ### Gallery
 
 ```media-box
 Media: [[SERVER 01 The Eyes statement-min.png]]
-Alt: SYSTEM crash whenever someone mentions The Eyes
+Alt: SYSTEM crash when someone mentions The Eyes
 Caption: SYSTEM crashes from "The Eyes" being mentioned in SERVER 01
 Align: center
 Wrap: false
@@ -36,7 +36,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[SERVER 01 cannot read or write The Eyes statemen-min.jpg]]
 Alt: SYSTEM crash whenever someone mentions The Eyes
-Caption: SYSTEM cannot read the statement associated with "The Eyes"
+Caption: SYSTEM cannot read/write the statement associated with "The Eyes"
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
