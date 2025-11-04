@@ -121,7 +121,7 @@ This chat comes from the video [[LOG-123.mp4]], posted on 4th May 2025. In it, t
 
 ## Chat #6
 
-The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2025.07.02 - 2025.07.04:
+The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2nd July 2025 - 2025.07.04:
 
 ```
 TRANSCRIPT 001:
