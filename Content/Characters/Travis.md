@@ -12,7 +12,8 @@ Image: ![[Content/Media/710 Media/Images/lm-2.png]]
 Caption: Travis' parting gift from [[prj_home.exe]].
 Appearances:
 - [[STATION_8 TRIM 5]]
-- Community posts
+- [[Community posts]]
+- [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] (name mentioned)
 Status: Dead
 ```
 
@@ -54,5 +55,11 @@ By "... POSTED ON MY CHANNEL", Travis is likely referring to the videos [[backto
 
 To see how this puzzle was solved, visit the [[Parting Gifts Puzzle.canvas]]. 
 
+---
+## Half Life Gameplay Footage
+
+On 4th November 2025, [[710 Tone|7/10 Tone]] uploaded a video with sped-up gameplay footage of [Half Life: Gold Source edition](https://en.wikipedia.org/wiki/GoldSrc), which was apparently being played by Travis and was recorded on "02-1-25", several months before his death.
+
+---
 
 [^1]: [[STATION_8 TRIM 5]]
