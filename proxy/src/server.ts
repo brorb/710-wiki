@@ -520,38 +520,93 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     return res.status(404).send("Not Found")
   }
 
-  const resolved = path.resolve(staticRoot, `.${req.path}`)
-  const relative = path.relative(staticRoot, resolved)
-  if (relative.startsWith("..") || path.isAbsolute(relative)) {
-    return res.status(403).send("Forbidden")
-  }
-
-  try {
-    const stats = fs.statSync(resolved)
-    if (stats.isFile()) {
-      return res.sendFile(resolved)
+  const normalizePath = (value: string): string => {
+    let decoded: string
+    try {
+      decoded = decodeURIComponent(value)
+    } catch (error) {
+      debugLog("failed to decode path", { value, error })
+      decoded = value
     }
-    if (stats.isDirectory()) {
-      const indexFile = path.join(resolved, "index.html")
-      if (fs.existsSync(indexFile)) {
-        return res.sendFile(indexFile)
+    const normalized = path.posix.normalize(decoded).replace(/^\/+/, "")
+    const segments = normalized.split("/").filter((segment) => segment.length > 0)
+    const safeSegments: string[] = []
+    for (const segment of segments) {
+      if (segment === ".") {
+        continue
       }
+      if (segment === "..") {
+        safeSegments.pop()
+        continue
+      }
+      safeSegments.push(segment)
     }
-  } catch (error) {
-    // fall through to send fallback index
+
+    if (safeSegments.length === 0) {
+      return "index.html"
+    }
+    return safeSegments.join("/")
   }
 
-  const notFoundFile = path.join(staticRoot, "404.html")
-  if (fs.existsSync(notFoundFile)) {
-    return res.status(404).sendFile(notFoundFile)
+  const trySendFile = (
+    candidate: string,
+    onFail: () => void,
+    onError: (error: NodeJS.ErrnoException) => void,
+  ) => {
+    res.sendFile(candidate, { root: staticRoot }, (err) => {
+      if (!err) {
+        return
+      }
+
+      if ("code" in err) {
+        const code = (err as NodeJS.ErrnoException).code
+        if (code === "EISDIR") {
+          const indexPath = path.posix.join(candidate, "index.html")
+          return trySendFile(indexPath, onFail, onError)
+        }
+        if (code === "ENOENT") {
+          return onFail()
+        }
+      }
+
+      onError(err as NodeJS.ErrnoException)
+    })
   }
 
-  const fallbackFile = path.join(staticRoot, "index.html")
-  if (fs.existsSync(fallbackFile)) {
-    return res.sendFile(fallbackFile)
+  const fallbackToIndex = () => {
+    const sendIndex = () =>
+      res.sendFile(path.join(staticRoot, "index.html"), (err) => {
+        if (err) {
+          next(err)
+        }
+      })
+
+    if (fs.existsSync(path.join(staticRoot, "404.html"))) {
+      return res.status(404).sendFile("404.html", { root: staticRoot }, (err) => {
+        if (err) {
+          return sendIndex()
+        }
+      })
+    }
+
+    return sendIndex()
   }
 
-  return res.status(404).send("Not Found")
+  const safePath = normalizePath(req.path)
+
+  trySendFile(
+    safePath,
+    fallbackToIndex,
+    (error) => {
+      debugLog("static file error", {
+        path: req.path,
+        safePath,
+        code: error.code ?? null,
+        message: error.message,
+      })
+      next(error)
+    },
+  )
 })
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {

@@ -304,16 +304,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
           googleFontsStyleSheet += `\n${await response.text()}`
         }
 
-        if (!cfg.baseUrl) {
-          throw new Error(
-            "baseUrl must be defined when using Google Fonts without cfg.theme.cdnCaching",
-          )
-        }
-
-        const { processedStylesheet, fontFiles } = await processGoogleFonts(
-          googleFontsStyleSheet,
-          cfg.baseUrl,
-        )
+        const { processedStylesheet, fontFiles } = await processGoogleFonts(googleFontsStyleSheet)
         googleFontsStyleSheet = processedStylesheet
 
         // Download and save font files

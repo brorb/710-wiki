@@ -117,7 +117,6 @@ const fontMimeMap: Record<string, string> = {
 
 export async function processGoogleFonts(
   stylesheet: string,
-  baseUrl: string,
 ): Promise<{
   processedStylesheet: string
   fontFiles: GoogleFontFile[]
@@ -132,7 +131,7 @@ export async function processGoogleFonts(
     const url = match[1]
     const filename = match[2]
     const extension = fontMimeMap[match[3].toLowerCase()]
-    const staticUrl = `https://${baseUrl}/static/fonts/${filename}.${extension}`
+    const staticUrl = `/static/fonts/${filename}.${extension}`
 
     processedStylesheet = processedStylesheet.replace(url, staticUrl)
     fontFiles.push({ url, filename, extension })

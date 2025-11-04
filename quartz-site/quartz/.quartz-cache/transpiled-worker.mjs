@@ -8480,7 +8480,7 @@ var fontMimeMap = {
   woff2: "woff2",
   opentype: "otf"
 };
-async function processGoogleFonts(stylesheet, baseUrl) {
+async function processGoogleFonts(stylesheet) {
   const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/.+(?:\/|(?:kit=))(.+?)[.&].+?)\)\sformat\('(\w+?)'\);/g;
   const fontFiles = [];
   let processedStylesheet = stylesheet;
@@ -8489,7 +8489,7 @@ async function processGoogleFonts(stylesheet, baseUrl) {
     const url = match[1];
     const filename = match[2];
     const extension = fontMimeMap[match[3].toLowerCase()];
-    const staticUrl = `https://${baseUrl}/static/fonts/${filename}.${extension}`;
+    const staticUrl = `/static/fonts/${filename}.${extension}`;
     processedStylesheet = processedStylesheet.replace(url, staticUrl);
     fontFiles.push({ url, filename, extension });
   }
@@ -12381,15 +12381,7 @@ var ComponentResources = /* @__PURE__ */ __name(() => {
           googleFontsStyleSheet += `
 ${await response2.text()}`;
         }
-        if (!cfg.baseUrl) {
-          throw new Error(
-            "baseUrl must be defined when using Google Fonts without cfg.theme.cdnCaching"
-          );
-        }
-        const { processedStylesheet, fontFiles } = await processGoogleFonts(
-          googleFontsStyleSheet,
-          cfg.baseUrl
-        );
+        const { processedStylesheet, fontFiles } = await processGoogleFonts(googleFontsStyleSheet);
         googleFontsStyleSheet = processedStylesheet;
         for (const fontFile of fontFiles) {
           const res = await fetch(fontFile.url);
