@@ -111,7 +111,7 @@ const config: QuartzConfig = {
     ],
     defaultDateType: "modified",
     theme: {
-  fontOrigin: "googleFonts",
+  fontOrigin: "local",
   cdnCaching: false,
       typography: {
         header: "Schibsted Grotesk",

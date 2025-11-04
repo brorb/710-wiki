@@ -125,11 +125,10 @@ app.use(
     const styleSrc = new Set<string>([
       "'self'",
       "'unsafe-inline'",
-      "https://fonts.googleapis.com",
       "https://cdn.jsdelivr.net",
       "https://cdnjs.cloudflare.com",
     ])
-  const fontSrc = new Set<string>(["'self'", "data:", "https://fonts.gstatic.com", "https://fonts.googleapis.com"])
+  const fontSrc = new Set<string>(["'self'", "data:"])
     const frameSrc = new Set<string>([
       "'self'",
       "https:",
@@ -494,11 +493,53 @@ const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const defaultStaticRoot = path.resolve(currentDir, "..", "..", "quartz-site", "public")
 const envStaticRoot = process.env.STATIC_ROOT?.trim()
 const staticRoot = envStaticRoot && envStaticRoot.length > 0 ? path.resolve(envStaticRoot) : defaultStaticRoot
-const hasStaticAssets = fs.existsSync(staticRoot)
+const allowMissingStatic = ["1", "true", "yes"].includes((process.env.ALLOW_MISSING_STATIC ?? "").trim().toLowerCase())
 
-if (!hasStaticAssets) {
-  console.warn(`⚠️ [Proxy] Static root not found at ${staticRoot}`)
+const requiredStaticEntries: string[] = [
+  "index.html",
+  "index.css",
+  "postscript.js",
+  path.join("static", "fonts"),
+  path.join("static", "katex", "katex.min.css"),
+  path.join("static", "katex", "contrib", "copy-tex.min.js"),
+]
+
+const missingStaticEntries = (): string[] => {
+  const missing: string[] = []
+  for (const entry of requiredStaticEntries) {
+    const target = path.join(staticRoot, entry)
+    try {
+      fs.accessSync(target, fs.constants.R_OK)
+    } catch (error) {
+      missing.push(entry)
+    }
+  }
+  return missing
+}
+
+let hasStaticAssets = false
+
+if (!fs.existsSync(staticRoot)) {
+  const message = `⚠️ [Proxy] Static root not found at ${staticRoot}`
+  if (allowMissingStatic) {
+    console.warn(message)
+  } else {
+    console.error(`${message}. Set ALLOW_MISSING_STATIC=1 to bypass this check temporarily.`)
+    process.exit(1)
+  }
 } else {
+  const missing = missingStaticEntries()
+  if (missing.length > 0) {
+    const message = `⚠️ [Proxy] Missing required static assets: ${missing.join(", ")}`
+    if (allowMissingStatic) {
+      console.warn(message)
+    } else {
+      console.error(`${message}. Ensure the Quartz build has completed before starting the proxy.`)
+      process.exit(1)
+    }
+  }
+
+  hasStaticAssets = true
   console.log(`ℹ️ [Proxy] Serving static assets from ${staticRoot}`)
   app.use(
     express.static(staticRoot, {

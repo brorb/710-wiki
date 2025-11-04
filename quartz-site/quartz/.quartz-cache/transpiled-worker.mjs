@@ -2959,11 +2959,11 @@ var Latex = /* @__PURE__ */ __name((opts) => {
       switch (engine) {
         case "katex":
           return {
-            css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
+            css: [{ content: "/static/katex/katex.min.css" }],
             js: [
               {
                 // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
-                src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
+                src: "/static/katex/contrib/copy-tex.min.js",
                 loadTime: "afterDOMReady",
                 contentType: "external"
               }
@@ -12638,7 +12638,7 @@ var config2 = {
     ],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: false,
       typography: {
         header: "Schibsted Grotesk",
