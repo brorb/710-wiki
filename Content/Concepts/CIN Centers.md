@@ -12,5 +12,5 @@ Associates:
 - [[TTH]]
 ```
 
-A Converged Interconnect Network Center likely used for [[TTH]] signal broadcastings, mentioned in a community post (see [[Community Posts]]) during the STATION_8 livestreams.
+A Converged Interconnect Network Center likely used for [[TTH]] signal broadcastings, mentioned in a [[Community Posts|community post]] during the STATION_8 livestreams.
 
