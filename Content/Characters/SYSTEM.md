@@ -1968,7 +1968,7 @@ _From main Discord server._
 _From @brorb's DMs._
 
 ---
-## Hijack by Rod Formak
+## Hijack by [[Rod Formak]]
 
 ```discord
 [
