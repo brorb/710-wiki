@@ -244,7 +244,8 @@ ACCESS REQUEST DENIED: 329ms:ATTEMPTING BRUTE FORCE METHOD
 
 ACCESS GRANTED BY ...[[accesskey.tprnt << {CALLED}]]...
 SENDING INFO
-{'From': '7/10 Tone Sleuths', 'Channel': 'indi-x-kelper[Tag-line:NSFW][role excludes ['username': 'system000008']]}
+{'From': '7/10 Tone Sleuths', 'Channel': 'indi-x-kelper[Tag-line:NSFW][role excludes 
+['username': 'system000008']]}
 {'From': '7/10 Tone Sleuths', 'Channel': 'Live Sleuthing'}
 {'From': '7/10 Tone Sleuths', 'Channel': 'The Noise Room'}
 INFO SENT: COMPLETE

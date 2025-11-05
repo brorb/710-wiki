@@ -25,7 +25,7 @@ It is a forbidden topic of discussion around [[SYSTEM]] since it crashes wheneve
 It is associated with the phrase "ALWAYS WATCHING", which could have some significance behind it.
 
 ```media-box
-Media: ![[The Eyes community post comment.png]]
+Media: [[The Eyes community post comment.png]]
 Alt: Community post comment with the phrase "ALWAYS WATCHING" repeated
 Caption: Community post comment with the repeated phrase
 Align: center
