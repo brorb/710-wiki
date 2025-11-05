@@ -1,9 +1,9 @@
 # Livestream restart (with technical difficulties)
 
-==**7/10NPP**==: I told you.  
-==**7/10 Tone**==: DAMN IT.  
-==**7/10 Tone**==: FIXED.  
-==**7/10NPP**==: Thanks indi.
+7/10NPP: I told you.  
+**7/10 Tone**: DAMN IT.  
+**7/10 Tone**: FIXED.  
+**7/10NPP**: Thanks indi.
 
 ---
 # Before [[SYSTEM|SYSTEMterminal8]]'s appearance
@@ -14,7 +14,7 @@
 **Terrarium**: Bro what is this  
 **Terrarium**: My recommendations are crazy right now tf  
 **AnonymousUser**: cookening?  
-==**7/10 Tone**==: ONLY 2 DAYS LEFT? WHY DOES IT ALWAYS HAVE TO END LIKE THIS?  
+**7/10 Tone**: ONLY 2 DAYS LEFT? WHY DOES IT ALWAYS HAVE TO END LIKE THIS?  
 **AnonymousUser**: for the audience, man  
 **AnonymousUser**: suspence
 
@@ -27,17 +27,17 @@
 **AnonymousUser**: send(SYSTEM_BYTE R0E1)  
 **AnonymousUser**: SYSTEM_BYTE R0E1  
 **The Camera Eye**: Hmmm...nothing  
-==**7/10 Tone**==: PLEASE STOP TRYING TO GET LONG STRING TO WORK. IT'S NOT GOING TO WORK FOR YOU.  
+**7/10 Tone**: PLEASE STOP TRYING TO GET LONG STRING TO WORK. IT'S NOT GOING TO WORK FOR YOU.  
 **The Camera Eye**: Oh.  
 **The Camera Eye**: What is LONG_STRING INDI? QUICK BEFORE 7/10NPP GETS HERE  
-==**7/10 Tone**==: A TOOL.  
+**7/10 Tone**: A TOOL.  
 **The Camera Eye**: For what?  
-==**7/10NPP**==: It's a tool used by us now quit talking about it.  
+**7/10NPP**: It's a tool used by us now quit talking about it.  
 **The Camera Eye**: Oh crap busted...
-==**7/10 Tone**==: I JUST WANTED TO GET RID OF THE SECURITY. I DIDN'T MEAN TO HURT IT.  
+**7/10 Tone**: I JUST WANTED TO GET RID OF THE SECURITY. I DIDN'T MEAN TO HURT IT.  
 **The Camera Eye**: Awww, how considerate of you INDI  
 **The Camera Eye**: Security for Terminal 8?  
-==**7/10NPP**==: Indi, it wasn't your fault. It was the lack of their intelligence that killed it.  
+**7/10NPP**: Indi, it wasn't your fault. It was the lack of their intelligence that killed it.  
 **AmeraM**: Be quiet  
 **AmeraM**: Show some grace  
 **AmeraM**: I'm tired of you  
@@ -55,24 +55,24 @@
 # [[SYSTEM|SYSTEMterminal8]] moderator first appearance
 
 **AnonymousUser**: Enviroment.Stop(0);  
-==**SYSTEMterminal8**==: SYSTEM_TERMINAL_8  
-==**SYSTEMterminal8**== STATUS: ACTIVE  
-==**SYSTEMterminal8**==: SYSTEM ID: 478829  
-==**SYSTEMterminal8**==: RETURNING LIVE VALUE AS <439>  
-==**7/10NPP**==: indi, what is that?  
-==**7/10 Tone**==: A MODERATOR.  
-==**7/10NPP**==: indi, do we really need that?  
-==**7/10 Tone**==: I DON'T KNOW.  
+**SYSTEMterminal8**: SYSTEM_TERMINAL_8  
+**SYSTEMterminal8** STATUS: ACTIVE  
+**SYSTEMterminal8**: SYSTEM ID: 478829  
+**SYSTEMterminal8**: RETURNING LIVE VALUE AS <439>  
+**7/10NPP**: indi, what is that?  
+**7/10 Tone**: A MODERATOR.  
+**7/10NPP**: indi, do we really need that?  
+**7/10 Tone**: I DON'T KNOW.  
 **AmeraM**: Getting there  
-==**SYSTEMterminal8**==: \=\=\=\=\=\=\=\=\=\[ACTIVE-ID\]=\=\=\=\=\=\===  
-==**SYSTEMterminal8**==: Indi, why are you letting it return strings in this?  
-==**7/10NPP**==: Uh, how did it now that?  
+**SYSTEMterminal8**: \=\=\=\=\=\=\=\=\=\[ACTIVE-ID\]=\=\=\=\=\=\===  
+**SYSTEMterminal8**: Indi, why are you letting it return strings in this?  
+**7/10NPP**: Uh, how did it now that?  
 **AmeraM**: Protocol  
-==**SYSTEMterminal8**==: Stop letting it return strings.  
-==**7/10NPP**==: INDI! IT'S PULLING FROM THE PRIVATE ROOM! TURN IT OFF!  
-==**7/10 Tone**==: ALRIGHT FINE.  
+**SYSTEMterminal8**: Stop letting it return strings.  
+**7/10NPP**: INDI! IT'S PULLING FROM THE PRIVATE ROOM! TURN IT OFF!  
+**7/10 Tone**: ALRIGHT FINE.  
 **AmeraM**: |57|  
-==**SYSTEMterminal8**==: DISCONNECTING
+**SYSTEMterminal8**: DISCONNECTING
 
 **The Camera Eye**: Rogue mod?  
 **AnonymousUser**: prob  
@@ -107,16 +107,16 @@
 **The Camera Eye**: What is BTT?  
 **The Camera Eye**: I'm very much calm  
 **AmeraM**: |||
-==**7/10 Tone**==: I FIXED THE MODERATOR.  
-==**7/10NPP**==: indi  
-==**7/10 Tone**==: I REALLY DID. IT'S NOT GOING TO PULL FROM ANYWHERE IMPORTANT.  
-==**7/10NPP**==: Fine.  
-==**SYSTEMterminal8**==: RECONNECTED  
-==**SYSTEMterminal8**==: SYSTEM_TERMINAL_8  
-==**SYSTEMterminal8**==: STATUS: ACTIVE  
-==**SYSTEMterminal8**==: SYSTEM ID: 478829  
-==**SYSTEMterminal8**==: RETURNING LIVE VALUES AS <FALSE\>  
-==**7/10NPP**==: Good.  
+**7/10 Tone**: I FIXED THE MODERATOR.  
+**7/10NPP**: indi  
+**7/10 Tone**: I REALLY DID. IT'S NOT GOING TO PULL FROM ANYWHERE IMPORTANT.  
+**7/10NPP**: Fine.  
+**SYSTEMterminal8**: RECONNECTED  
+**SYSTEMterminal8**: SYSTEM_TERMINAL_8  
+**SYSTEMterminal8**: STATUS: ACTIVE  
+**SYSTEMterminal8**: SYSTEM ID: 478829  
+**SYSTEMterminal8**: RETURNING LIVE VALUES AS <FALSE\>  
+**7/10NPP**: Good.  
 **AmeraM**: |30|
 
 **AnonymousUser**: @SYSTEMterminal8 you have connection with INDI right  
@@ -131,14 +131,14 @@
 AmeraM: |27|  
 **AnonymousUser**: I'll give you 50k credits  
 **BRORBIT**: AmeraM, you do not have Indis best wishes in mind. I am on their side. stay away or we'll involve TTH and REN at the same time  
-==**SYSTEMterminal8**==: WARNING: MALICIOUS COMMENTS DETECTED SENDING R5-REQUEST  
+**SYSTEMterminal8**: WARNING: MALICIOUS COMMENTS DETECTED SENDING R5-REQUEST  
 **AnonymousUser**: Hey to me or brorbit  
 **AnonymousUser**: I'm innocent  
 **AnonymousUser**: trust me  
 **The Camera Eye**: I think it's talking about AmeraM  
-==**SYSTEMterminal8**==: R5-REQUEST DENIED RESUMING STANDARD
+**SYSTEMterminal8**: R5-REQUEST DENIED RESUMING STANDARD
 
-==**7/10NPP**==: What is an R5 request indi?  
+**7/10NPP**: What is an R5 request indi?  
 **AnonymousUser**: yeah INDI  
 **The Camera Eye**: Wait you don't know 710NPP?  
 **AnonymousUser**: Uh this terminal thing is indi's idea  
@@ -148,7 +148,7 @@ AmeraM: |27|
 **AnonymousUser**: what's a R5 Request  
 **The Camera Eye**: Google it?  
 **AnonymousUser**: INDI just casually made a AI to moderate a livestream chat  
-==**7/10 Tone**==: R5 IS A PROTOCAL TO INFORM DELETION OF THE WHOLE LIVE. I DENIDE IT TO DO THAT.  
+**7/10 Tone**: R5 IS A PROTOCAL TO INFORM DELETION OF THE WHOLE LIVE. I DENIDE IT TO DO THAT.  
 **AnonymousUser**: Indi  
 **AnonymousUser**: why is your spelling so bad  
 **Terrarium**: This is still going on?  
@@ -158,13 +158,13 @@ AmeraM: |27|
 **AnonymousUser**: I'm getting ChatGPT
 
 **AmeraM**: keep track  
-==**7/10NPP**==: indi, why don't you turn off the moderator for a bit.  
-==**7/10 Tone**==: FINE.
+**7/10NPP**: indi, why don't you turn off the moderator for a bit.  
+**7/10 Tone**: FINE.
 
 **AnonymousUser**: I will give you 100M credits  
 **The Camera Eye**: Oh now you're just bluffing  
 **AnonymousUser**: Yes, 100 Million Credits  
-==**SYSTEMterminal8**==: Disconnected  
+**SYSTEMterminal8**: Disconnected  
 ~~AmeraM: offer~~
 **AnonymousUser**: oh shoot  
 **AnonymousUser**: wdid Amera just say Offer  
@@ -205,10 +205,10 @@ AmeraM: |27|
 **The Camera Eye**: I'm keeping track  
 **The Camera Eye**: Thanks, I accept your apology AmeraM  
 **AmeraM**: Stand-by
-==**7/10NPP**==: Why does that keep happening? indi, stop putting our entries in there.  
-==**7/10 Tone**==: WHY?  
-==**7/10NPP**==: It's not working for that.  
-==**7/10 Tone**==: OKAY, I'LL TRY TO FIND A DIFFERENT METHOD.  
+**7/10NPP**: Why does that keep happening? indi, stop putting our entries in there.  
+**7/10 Tone**: WHY?  
+**7/10NPP**: It's not working for that.  
+**7/10 Tone**: OKAY, I'LL TRY TO FIND A DIFFERENT METHOD.  
 **AmeraM**: |57|  
 **AnonymousUser**: ooh technical issue my favorite  
 **AmeraM**: deactive  
@@ -257,10 +257,10 @@ AnonymousUser: is this code to turn off the timer?
 ---
 # [[SYSTEM|SYSTEMterminal8]] reconnects and leaks PR logged into accounts
 
-==**SYSTEMterminal8**==: RECONNECTING
+**SYSTEMterminal8**: RECONNECTING
 **AnonymousUser**: System  
 **AnonymousUser**: welcome back  
-==**SYSTEMterminal8**==: SYSTEM_TERMINAL_8  
+**SYSTEMterminal8**: SYSTEM_TERMINAL_8  
 **The Camera Eye**: Uh oh it's the mod again...  
 **AnonymousUser**: Can you tell me aabout the Private Room?  
 **The Camera Eye**: The mod is an AI it won't talk  
@@ -271,22 +271,22 @@ AnonymousUser: is this code to turn off the timer?
 **The Camera Eye**: AM like from I have no mouth and I must scream?  
 **Mecha Dragon2**: Could be the time, or it could be Amera, idk
 
-==**SYSTEMterminal8**==: RETURNING LOGGED-INTO-ACCOUNTS  
-==**SYSTEMterminal8**==: >>IN_DI.SERVERTYPE  
+**SYSTEMterminal8**: RETURNING LOGGED-INTO-ACCOUNTS  
+**SYSTEMterminal8**: >>IN_DI.SERVERTYPE  
 **AnonymousUser**: INDI!!!  
-==**SYSTEMterminal8**==: >>K3P13R  
+**SYSTEMterminal8**: >>K3P13R  
 **The Camera Eye**: LOL LEAKED  
-==**SYSTEMterminal8**==: >>SYSTEMterminal8  
+**SYSTEMterminal8**: >>SYSTEMterminal8  
 **AnonymousUser**: nooooooooooo  
 **AnonymousUser**: uh oh  
 **AnonymousUser**: Kepler?  
 **AnonymousUser**: NPP  
 **The Camera Eye**: WAIT DON'T SAY THAT ANONYMOUS  
-==**SYSTEMterminal8**==: >>data_messagesystem05  
+**SYSTEMterminal8**: >>data_messagesystem05  
 **AnonymousUser**: yeah  
 **AnonymousUser**: we got a message?  
 **The Camera Eye**: From where? Who?  
-==**SYSTEMterminal8**==: DISCONNECTING  
+**SYSTEMterminal8**: DISCONNECTING  
 **AnonymousUser**: noooo  
 **Mecha Dragon2**: sad  
 **The Camera Eye**: Shows up, refusing to elaborate  
@@ -305,18 +305,18 @@ AnonymousUser: is this code to turn off the timer?
 **The Camera Eye**: Uh oh exploitable.  
 **The Camera Eye**: Keep an eye out for the mod LOL
 
-==**7/10NPP**==: Indi  
-==**7/10 Tone**==: YES?  
+**7/10NPP**: Indi  
+**7/10 Tone**: YES?  
 **AnonymousUser**: \*Hyperventalating*  
-==**7/10NPP**==: The moderator you had.  
+**7/10NPP**: The moderator you had.  
 **AnonymousUser**: It told me your username, NPP  
-==**7/10 Tone**==: WHAT ABOUT IT?  
+**7/10 Tone**: WHAT ABOUT IT?  
 **AnonymousUser**: K3P13R  
-==**7/10NPP**==: WHAT? INDI!  
+**7/10NPP**: WHAT? INDI!  
 **AnonymousUser**: data_messagesystem05  
 **The Camera Eye**: WAIT WHAT ARE YOU DOING ANONYMOUS  
 **Mecha Dragon2**: oh no  
-==**7/10 Tone**==: WHAT IS IT? HOW DID THEY GET THAT?  
+**7/10 Tone**: WHAT IS IT? HOW DID THEY GET THAT?  
 **AnonymousUser**: eheheheh  
 **The Camera Eye**: OMG  
 **AnonymousUser**: don't ask  
@@ -324,16 +324,16 @@ AnonymousUser: is this code to turn off the timer?
 **Mecha Dragon2**: devious  
 **The Camera Eye**: You're evil Anonymous
 
-==**7/10NPP**==: THE MODERATOR LOGGED INTO THE PR AND DISCONNECTED!  
+**7/10NPP**: THE MODERATOR LOGGED INTO THE PR AND DISCONNECTED!  
 **Mecha Dragon2**: Or else!  
 **AnonymousUser**: INDI I have ur username too  
 **The Camera Eye**: STOP  
 **The Camera Eye**: PLEASE  
-==**7/10 Tone**==: HOW DID IT DO THAT?  
+**7/10 Tone**: HOW DID IT DO THAT?  
 **The Camera Eye**: It reconnected...  
-==**7/10NPP**==: I TOLD YOU IT WAS A BAD IDEA!  
+**7/10NPP**: I TOLD YOU IT WAS A BAD IDEA!  
 **AnonymousUser**: It was a great idea  
-==**7/10 Tone**==: DAMIN IT.  
+**7/10 Tone**: DAMIN IT.  
 **Mecha Dragon2**: We're not playing games, INDI!  
 **Mecha Dragon2**: HAND IT OVER
 
@@ -695,28 +695,28 @@ largefizshgaming: i stand corrected
 
 # Getting ready for the big finale!
 
-==**7/10 Tone**==: I HOPE WE WILL ALL MEET AGAIN IN THE FUTURE.  
+**7/10 Tone**: I HOPE WE WILL ALL MEET AGAIN IN THE FUTURE.  
 **Mecha Dragon2**: If there is a future  
 **Nisse Trold**: Going for the feels
 
-==**7/10NPP**==: We are increasing the power indi. be ready.  
+**7/10NPP**: We are increasing the power indi. be ready.  
 **Mecha Dragon2**: Makes sense  
-==**7/10 Tone**==: I WILL.  
+**7/10 Tone**: I WILL.  
 **ThePortalNinja**: Stay safe Indi  
 **Nisse Trold**: Chat we are cooked  
 **Mecha Dragon2**: 35 minutes  
 **Mecha Dragon2**: Long live the station timer  
-==**7/10NPP**==: Cursed thing should not be.
+**7/10NPP**: Cursed thing should not be.
 
-==**7/10 Tone**==: I got it indi, just focus on the other things right now.  
+**7/10 Tone**: I got it indi, just focus on the other things right now.  
 **Mecha Dragon2**: Hmm  
 **BRORBIT**: Kepler, give us INDI back  
-==**7/10NPP**==: OKAY  
+**7/10NPP**: OKAY  
 **Mecha Dragon2**: Careful  
 **BRORBIT**: Our birthday boy pls  
 **Mecha Dragon2**: It's close  
 **Swordian**: Indi is focusing on the other things right now  
-==**7/10 Tone**==: Indi is focusing on something else that is really important right now
+**7/10 Tone**: Indi is focusing on something else that is really important right now
 
 ==**7/10 Tone**==: DHIT NO!  
 **Swordian**: NOOO  
