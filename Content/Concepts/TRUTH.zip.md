@@ -1,6 +1,7 @@
 ---
 tags:
   - lore
+  - important
 ---
 A .zip file created by [[INDI]] that was featured in [[LEAKED_1.mp4]] and a "weapon against older technology" according to the video, in other words, it is most likely a type of dangerous computer virus or some kind of top secret information.
 
@@ -32,4 +33,4 @@ It might have some relationship to [[Long String]] judging by it being associate
 
 In [[LEAKED_1.mp4]], it was obtained through a possibly modified YouTube.com link and given to an "S" (full alias unknown) by [[INDI]]. The link to download the file is redacted in the video. [[SYSTEM]] has called this event "not [[INDI]]'s greatest moment".
 
-During [[STATION_8 TRIM 90]], when asked about the file, [[INDI]] didn't seem to know that it was public information, and stated that "you don't want that file", implying that it is not something to be obtained and potentially dangerous.
+During [[STATION_8 TRIM 90]], when asked about the file, [[INDI]] didn't seem to know that it was public information and stated that "you don't want that file", implying that it is not something to be obtained and potentially dangerous.
