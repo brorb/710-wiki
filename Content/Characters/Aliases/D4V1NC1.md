@@ -14,6 +14,8 @@ Appearances:
 Aliases:
 - DaVinci
 - Da Vinci
+Status:
+- Inaccessible
 ```
 
 

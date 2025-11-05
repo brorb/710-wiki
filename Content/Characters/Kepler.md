@@ -16,6 +16,8 @@ Appearances:
 - [[STATION_8 TRIM 90]]
 - [[STATION_8 TERMINAL 8]]
 Also known as: K3P13R
+Status:
+- Inaccessible
 ```
 
 
