@@ -20,4 +20,4 @@ _Uploaded 27 Sept 2025, same as the [[710 NPP|7/10 NPP]] version._
 
 **Video Summary:** A flashing image of a white strip over a black background and a red "L" shape in the left side of the screen while a beeping noise plays on loop (which is possibly a type of signal wave).
 
-**Clues:** The description could be some .op files (OpenPAT or eSignal), which possibly point to some coordinates.
+**Clues:** The description could be some .op files (OpenPAT or eSignal), which possibly point to some coordinates. In the metadata for the video, the YouTube 
