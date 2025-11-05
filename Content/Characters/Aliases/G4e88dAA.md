@@ -15,4 +15,4 @@ Status:
 - Not Valid
 ```
 
-An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4]], possibly for the [[Private Room]]. It is unknown who this alias belongs to.
+An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4]], possibly for the [[Private Room]]. It is unknown who this alias belongs to, if it even belongs to anyone.
