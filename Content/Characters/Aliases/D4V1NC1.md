@@ -4,6 +4,8 @@ tags:
   - characters
   - alias
   - lore
+  - important
+  - puzzle
 ---
 ```infobox
 Title: D4V1NC1
