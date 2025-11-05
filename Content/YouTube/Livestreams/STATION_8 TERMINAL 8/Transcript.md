@@ -86,10 +86,7 @@
 > **AmeraM**: Careful  
 > **AnonymousUser**: @AmeraM Can you provide access to the terminal to me :D  
 > **AnonymousUser**: I'll give you 20k credits  
-> **AmeraM**: I can't have permission, sorry
-
-> **AnonymousUser**: @AmeraM Can you provide access to the terminal to me :D  
-> **AnonymousUser**: I'll give you 20k credits  
+> ~~**AmeraM**: I can't have permission, sorry~~
 > **The Camera Eye**: @AmeraM are you real?  
 > **AnonymousUser**: Alright  
 > **AnonymousUser**: @7/10NPP if you get me access to the system I'll get you 20k creds  
@@ -103,9 +100,6 @@
 > **The Camera Eye**: What is BTT?  
 > ~~**AmeraM**: Stay calm~~
 > **The Camera Eye**: I'm very much calm
-
-> **The Camera Eye**: What is BTT?  
-> **The Camera Eye**: I'm very much calm  
 > **AmeraM**: |||
 > **7/10 Tone**: I FIXED THE MODERATOR.  
 > **7/10NPP**: indi  
