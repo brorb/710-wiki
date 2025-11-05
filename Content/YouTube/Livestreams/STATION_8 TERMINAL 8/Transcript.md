@@ -128,7 +128,7 @@
 > ~~**AmeraM**: Quiet~~
 > **AnonymousUser**: Amera, that's not nice!
 > **AnonymousUser**: OH and btw can you give me access to INDI's code  
-> AmeraM: |27|  
+> **AmeraM**: |27|  
 > **AnonymousUser**: I'll give you 50k credits  
 > **BRORBIT**: AmeraM, you do not have Indis best wishes in mind. I am on their side. stay away or we'll involve TTH and REN at the same time  
 > **SYSTEMterminal8**: WARNING: MALICIOUS COMMENTS DETECTED SENDING R5-REQUEST  
@@ -165,7 +165,7 @@
 > **The Camera Eye**: Oh now you're just bluffing  
 > **AnonymousUser**: Yes, 100 Million Credits  
 > **SYSTEMterminal8**: Disconnected  
-> ~~AmeraM: offer~~
+> ~~**AmeraM**: offer~~
 > **AnonymousUser**: oh shoot  
 > **AnonymousUser**: wdid Amera just say Offer  
 > **The Camera Eye**: You caught that?  
@@ -215,7 +215,7 @@
 > **AnonymousUser**: Tone tur nff the timer  
 > **AmeraM**: |56|  
 > **AnonymousUser**: Amera what numbers are you putting in  
-> AnonymousUser: is this code to turn off the timer?  
+> **AnonymousUser**: is this code to turn off the timer?  
 > **The Camera Eye**: We're supposed to keep track of them I think  
 > **AmeraM**: good night  
 > **AnonymousUser**: @7/10 Tone What is your end-game goal, INDI?
