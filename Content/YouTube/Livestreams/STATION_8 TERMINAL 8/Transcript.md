@@ -1,6 +1,6 @@
 # Livestream restart (with technical difficulties)
 
-> 7/10NPP: I told you.  
+> **7/10NPP**: I told you.  
 > **7/10 Tone**: DAMN IT.  
 > **7/10 Tone**: FIXED.  
 > **7/10NPP**: Thanks indi.
@@ -198,7 +198,7 @@
 > ~~**AmeraM**: sit~~  
 > ~~**AmeraM**: stay calm~~  
 > **The Camera Eye**: What are we dogs?  
-> ~~AmeraM: watch the screen~~  
+> ~~**AmeraM**: watch the screen~~  
 > **The Camera Eye**: You're not the boss of me.
 > **AmeraM**: |8|  
 > ~~**AmeraM**: Apology~~
@@ -235,10 +235,10 @@
 
 > **AnonymousUser**: Lunar, you'll never get my Number One Title
 > **The Camera Eye**: Who's Lunar?
-> ~~AmeraM: |35|~~
+> ~~**AmeraM**: |35|~~
 > **The Camera Eye**: Oh God here's AmeraM again
 > **The Camera Eye**: Aaand she's gone
-> ~~AmeraM: \[|1|]~~
+> ~~**AmeraM**: \[|1|]~~
 
 ---
 
