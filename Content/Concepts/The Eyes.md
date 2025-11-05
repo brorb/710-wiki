@@ -37,7 +37,7 @@ Width: clamp(220px, 32vw, 360px)
 ### Gallery
 
 ```media-box
-Media: Content/Media/Sleuth Media/Images/Discord screenshots/SERVER 01 The Eyes statement-min.png
+Media: [[SERVER 01 The Eyes statement-min.png]]
 Alt: SYSTEM crash when someone mentions The Eyes
 Caption: SYSTEM crashes from "The Eyes" being mentioned in SERVER 01
 Align: center
