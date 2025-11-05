@@ -69,6 +69,7 @@ It is unknown who the two chatters were.
  This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-august-2024-1k)and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
 
 In this chat, they talk about picking up noise from the "stations".
+
 ## Chat #3
 
 ```
@@ -138,6 +139,7 @@ TRANSCRIPT 001:
 TTH: F2930 We see your signal, transferring in a bit. Hold tight.
 ```
 This chat features yet another unknown [[TTH]] worker, [[F2930]], chatting with [[TTH]].
+
 ## Chat #7
 
 ```
@@ -147,6 +149,7 @@ F2930: Why is there a wait time?
 TTH: Difficulties with some Datacores and CIN Centers, but it that will be resolved soon.
 ```
 Here we see that it takes 10 hours for [[F2930]] to receive the signal sent from [[TTH]].  The [[TTH]] supervisor blames this issue on problems with "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
+
 ## Chat #8
 
 ```
@@ -160,6 +163,7 @@ F2930: YEAH, WHAT'S A SERIAL CODE?
 TTH: The code from the signal generation key.
 ```
 This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is very likely that it is [[INDI]] talking here, since him and [[Kepler]] switched places during the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]).
+
 ## Chat #9
 
 ```
