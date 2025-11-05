@@ -300,12 +300,3 @@ Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
-
-```media-box
-Media: [[TTH logo at the end of STATION_8 TERMINAL 8.png]]
-Alt: TTH logo after INDI was found
-Caption: TTH logo flashes for a brief moment after INDI was found at STATION_8 TERMINAL 8
-Align: center
-Wrap: false
-Width: clamp(220px, 32vw, 360px)
-```
