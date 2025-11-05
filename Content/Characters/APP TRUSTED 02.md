@@ -14,7 +14,7 @@ Media: [[Different software named APP TRUSTED 02 (SERVER 01).png]]
 Alt: Different software named APP TRUSTED 02
 Align: left
 Wrap: false
-Width: clamp(220px, 32vw, 360px)
+Width: clamp(220px, 48vw, 360px)
 ```
 
 It had a list of commands that you could input, which would change with various updates made by [[SYSTEM]]. Below is the most recent bot command help menu:
