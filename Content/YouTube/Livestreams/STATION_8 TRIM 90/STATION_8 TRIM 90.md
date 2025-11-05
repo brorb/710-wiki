@@ -36,6 +36,6 @@ After the [[Station Timer]] pops back up as normal from the interference, [[INDI
 - 7/10NPP warns [[INDI]] about "[[He]]" discovering their activities
 - 7/10NPP clarifies relationship: not parental figure, but monitors [[INDI]] to prevent rogue ESPaP signals
 - [[INDI]]'s nature hinted at through name parsing: "IN_DI" (close to robot)
-- Mysterious ~500 byte file referenced; [[INDI]] warns viewers against obtaining it
+- [[TRUTH.zip]] referenced; [[INDI]] warns viewers against obtaining it
 - [[INDI]] accidentally reveals [[710 NPP|7/10 NPP]]'s alias as "[[Kepler]]"
 - Chat security compromised, prompting livestream restart
