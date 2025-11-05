@@ -39,7 +39,7 @@ His official name is "IN_DI" as confirmed by [[Kepler]]/[[710 NPP|7/10 NPP]] in 
 
 ## Personality
 
-INDI always types in upper case letters^[[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript]]. They seem kind-hearted and willing to help. INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, alongside [[SYSTEM]].
+INDI always types in upper case letters^[[1]]. They seem kind-hearted and willing to help. INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [7/10 Tone channel](YouTube Channel), been one of the main sources of lore insight, alongside [[SYSTEM]].
 
 ## Relationships
 
