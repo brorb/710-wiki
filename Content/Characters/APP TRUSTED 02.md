@@ -10,7 +10,7 @@ A discord app bot created by [[SYSTEM]] for [[SERVER 01]].
 According to [[SYSTEM]], the name came from a different software program.
 
 ```media-box
-Media: ![[Different software named APP TRUSTED 02 (SERVER 01).png]]
+Media: [[Different software named APP TRUSTED 02 (SERVER 01).png]]
 Alt: Different software named APP TRUSTED 02
 Align: left
 Wrap: false
