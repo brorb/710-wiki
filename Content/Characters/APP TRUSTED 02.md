@@ -42,6 +42,7 @@ Displays the old help menu:
 old[=============[help menu]============
 <HELP>!:app_help
 <HELP>!:Back]
+APP updated every (random, random, random, random)
 ```
 
 **$app_log_ore**
