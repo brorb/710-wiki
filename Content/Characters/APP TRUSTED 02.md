@@ -79,7 +79,7 @@ Note:
 COMMAND MESSAGE STOPPED FOR T-500
 ```
 
-This command was added after [[SYSTEM]] posted this message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
+This command was added after [[SYSTEM]] posted the below message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
 ```
 <OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
 ```
