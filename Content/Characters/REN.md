@@ -64,4 +64,5 @@ REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any
 During the STATION_8 livestreams, INDI was tasked with sending out REN signals, which was being kept under wraps thanks to an informant within [[TTH]] (possibly [[Kepler]], judging by [[INDI]] saying that he "solved the problem with [[TTH]]" through bribing them with credits to not monitor the signal broadcast, see [[Private Room#Chat 10|the tenth Private Room chat]]).
 
 It is likely that [[TTH]] and [[REN]] are rivals.
+
 ## Gallery

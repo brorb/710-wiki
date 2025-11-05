@@ -41,7 +41,7 @@ Media: [[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]
 Alt: Top corner shows the text "TRANSMISSION STATUS: UNSTABLE. !TRANSMISSION UNSTABLE! DELETING OVERWRITTEN FILES. STARTING END PROGRAM IN:1"
 Caption: INDI was found at the end of STATION_8 TERMINAL 8
 Align: right
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 

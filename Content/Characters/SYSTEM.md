@@ -104,7 +104,7 @@ On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @b
 
 Server members were confused as to how interpret its messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called "SYSTEMterminal8") to type commands in order to navigate a rudimentary file hierarchy:
 
-	\<HELP>!:=============[help menu]=============
+	<HELP>!:=============[help menu]=============
 	<HELP>!:help = 0-
 	<HELP>!:TERMINAL_Storage4u = 1-
 	<HELP>!:Back = 2-
