@@ -25,14 +25,16 @@ In [[STATION_8 TRIM 5]], Travis (through the [[710 Tone|7/10 Tone]] channel) and
 7/10 NPP: WHAT HAPPENED?
 7/10 Tone: Live went out for a bit
 7/10 NPP: OKAY HOW ARE YOU FEELING?
-7/10 Tone: Not much better. It's working its way into my lungs. 
-I might not make it this evening
+7/10 Tone: Not much better. It's working its way into 
+my lungs. I might not make it this evening
 7/10 NPP: KEPLER SAYS THAT HE'S SORRY
-7/10 Tone: Indi, it's not his fault. I was just not carful enough.
+7/10 Tone: Indi, it's not his fault. I was just not 
+carful enough.
 7/10 Tone: And tell him that. 
 I don't want anyone but them to be blamed for this.
 7/10 NPP: I UNDERSTAND. THANK YOU FOR HELPING US.
-7/10 NPP: IF IT'S NOT TOO MUCH TO ASK, BUT HOW DOES IT FEEL?
+7/10 NPP: IF IT'S NOT TOO MUCH TO ASK, BUT HOW DOES IT 
+FEEL?
 7/10 Tone: Cold
 7/10 Tone: I'm tired
 7/10 Tone: I'm going to leave the controls to you indi
