@@ -12,7 +12,8 @@ Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Appearances:
 - [[STATION_8 TRIM 90]]
 - [[STATION_8 TERMINAL 8]]
-- Community posts
+- [[Community posts]]
+- [[Hello]] (mentioned)
 Workers:
 - [[INDI]]
 - [[Kepler]]

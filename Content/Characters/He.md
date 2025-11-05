@@ -13,6 +13,7 @@ Appearances:
 - [[LOG-67.mp4]] (mentioned)
 - [[STATION_8 TRIM 90]] (mentioned)
 - [[STATION_8 TERMINAL 8]] ([[SYSTEM|SYSTEM hijack]])
+- [[Hello]] (mentioned)
 ```
 
 
