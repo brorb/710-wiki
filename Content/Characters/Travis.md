@@ -65,7 +65,7 @@ This message confirms Travis died. It is not known who Travis sent the data to, 
 
 By "... POSTED ON MY CHANNEL", Travis is likely referring to the videos [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]], which were uploaded less than two weeks prior to his death. These videos are the only one on the [[710 Tone|7/10 Tone]] YouTube channel to feature the [[prj_Home.exe]] environment. It is therefore likely that Travis created [[prj_Home.exe]] as a way to hide a message for anyone archiving the surroundings of 7/10 Tone.
 
-To see how this puzzle was solved, visit the [[Parting Gifts Puzzle.canvas]]. 
+To see how this puzzle was solved, visit the [[Parting Gifts Puzzle]] page. 
 
 ---
 ## Half Life Gameplay Footage
