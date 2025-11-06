@@ -13,7 +13,7 @@ Associates: [[Travis]]
 Appearances: [[SERVER 01]] (mentioned by [[SYSTEM]])
 ```
 
-A device that [[Travis]] hid in a cargo container in the west of an undisclosed location, which is what [[SYSTEM]] needed in order to prevent the [[710 Tone|7/10 Tone]] channel (and itself) from being shut down completely.
+A device that [[Travis]] hid somewhere in the west of an undisclosed location, which is what [[SYSTEM]] needed in order to prevent the [[710 Tone|7/10 Tone]] channel (and itself) from being shut down completely.
 
 In [[SERVER 01]], [[The Sleuths]] helped [[SYSTEM]] unlock access to the transmitter by generating random keys with [[APP TRUSTED 02]], which they were successful in the end and [[SYSTEM]] found all 10 keys to gain access just in time before 10th August.
 
