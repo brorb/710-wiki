@@ -88,7 +88,7 @@ According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[71
 
 ```media-box
 Media: [[storage files app_log_ore.png]]
-Align: center
+Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -210,7 +210,7 @@ After the command successfully ran, it completely disappeared from the help menu
 
 ```media-box
 Media: [[roaming program disappearance.png]]
-Align: center
+Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -255,7 +255,7 @@ SCAN: COMPLETE
 
 ```media-box
 Media: [[LOL-min.jpg]]
-Align: center
+Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -268,7 +268,7 @@ On August 7th, 2025, the $print_bob command glitched out and started spamming th
 
 ```media-box
 Media: [[Bob incident (1).png]]
-Align: center
+Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -316,7 +316,7 @@ Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[bob incident fix (3).png]]
-Align: center
+Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
