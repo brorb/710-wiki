@@ -10967,7 +10967,7 @@ var oracleWidgetStyles = `
   top: 0;
   right: 0;
   height: 100vh;
-  width: min(420px, 100vw);
+  width: min(500px, 100vw);
   display: flex;
   align-items: stretch;
   justify-content: stretch;

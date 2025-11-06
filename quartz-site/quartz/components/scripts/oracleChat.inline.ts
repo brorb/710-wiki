@@ -634,9 +634,7 @@ const appendMarkdownWithLinks = (
 
       if (rawUrl && isSafeUrl(rawUrl)) {
         const anchor = document.createElement("a")
-        anchor.href = rawUrl
-        anchor.target = "_blank"
-        anchor.rel = "noopener noreferrer"
+  anchor.href = rawUrl
         anchor.textContent = label
         if (onLinkClick) {
           anchor.addEventListener("click", () => onLinkClick(rawUrl))
@@ -720,9 +718,7 @@ const createLinkRail = (
     if (entry.url && isSafeUrl(entry.url)) {
       const anchor = document.createElement("a")
       anchor.className = "oracle-chat__pill-link"
-      anchor.href = entry.url
-      anchor.target = "_blank"
-      anchor.rel = "noopener noreferrer"
+  anchor.href = entry.url
       anchor.textContent = displayText
       anchor.title = displayText
       if (onLinkClick) {
