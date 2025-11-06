@@ -39,7 +39,7 @@ His official name is "IN_DI" as confirmed by [[Kepler]]/[[710 NPP|7/10 NPP]] in 
 
 ## Personality
 
-INDI always types in upper case letters^[[1]]. He seems kind-hearted and willing to help. INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [[710 Tone|7/10 Tone channel]], been one of the main sources of lore insight, alongside [[SYSTEM]].
+INDI always types in upper case letters[^1]. He seems kind-hearted and willing to help. INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [[710 Tone|7/10 Tone channel]], been one of the main sources of lore insight, alongside [[SYSTEM]].
 
 ## Relationships
 
@@ -141,3 +141,5 @@ Width: clamp(220px, 32vw, 360px)
 [^1]: At first, the channel was though to be run by a human, but [[710 NPP|7/10 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat. See [[Content/YouTube/Livestreams/STATION_8 TRIM 90/Transcript|Transcript]] for [[STATION_8 TRIM 90]] for context.
 
 [^2]: See [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]
+
+[^3]: 
