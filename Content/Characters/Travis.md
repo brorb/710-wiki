@@ -70,7 +70,7 @@ To see how this puzzle was solved, visit the [[Parting Gifts Puzzle]] page.
 ---
 ## Half Life Gameplay Footage
 
-On 4th November 2025, [[710 Tone|7/10 Tone]] uploaded a video with sped-up gameplay footage of [Half Life: Gold Source edition](https://en.wikipedia.org/wiki/GoldSrc), which was apparently being played by Travis and was recorded on "02-1-25", several months before his death.
+On 4th November 2025, [[710 Tone|7/10 Tone]] uploaded [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO|a video]] with sped-up gameplay footage of [Half Life: Gold Source edition](https://en.wikipedia.org/wiki/GoldSrc), which was apparently being played by Travis and was recorded on "02-1-25", several months before his death.
 
 ---
 
