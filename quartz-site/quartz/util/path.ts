@@ -72,7 +72,7 @@ function sluggify(s: string): string {
 export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
   fp = stripSlashes(fp) as FilePath
   let ext = getFileExtension(fp)
-  const withoutFileExt = fp.replace(new RegExp(ext + "$"), "")
+  const withoutFileExt = ext ? fp.slice(0, -ext.length) : fp
   if (excludeExt || [".md", ".html", undefined].includes(ext)) {
     ext = ""
   }
