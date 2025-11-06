@@ -206,7 +206,7 @@ Services-01: Infected, 4/22
 Services-02: Infected, 0/21  
 Complete stopping for T-1000...
 ```
-After the command successfully ran, it completely disappeared from the help menu and therefore became completely unavailable.
+After the command successfully ran, it completely disappeared from the help menu and therefore became unavailable.
 
 ```media-box
 Media: [[roaming program disappearance.png]]
