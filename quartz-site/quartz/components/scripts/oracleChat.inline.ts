@@ -953,9 +953,10 @@ const clearPendingMarkers = (container: HTMLElement) => {
   })
 }
 
-const scrollHistoryToBottom = (container: HTMLElement) => {
+const scrollHistoryToBottom = (container: HTMLElement, onComplete?: () => void) => {
   window.requestAnimationFrame(() => {
     container.scrollTop = container.scrollHeight
+    onComplete?.()
   })
 }
 
@@ -1135,13 +1136,38 @@ const tryFetch = async (
   return payload
 }
 
-const renderState = (container: HTMLElement, state: OracleState, options?: MessageRenderOptions) => {
+type RenderStateBehaviour = {
+  autoScroll?: "bottom" | "preserve" | "none"
+  targetScrollTop?: number
+  onScrollApplied?: () => void
+}
+
+const renderState = (
+  container: HTMLElement,
+  state: OracleState,
+  options?: MessageRenderOptions,
+  behaviour?: RenderStateBehaviour,
+) => {
+  const behaviourMode = behaviour?.autoScroll ?? "bottom"
+  const desiredScrollTop = behaviour?.targetScrollTop
+
   container.innerHTML = ""
   state.messages.forEach((message) => {
     container.appendChild(createMessageElement(message, options))
   })
   if (state.messages.length > 0) {
-    scrollHistoryToBottom(container)
+    if (behaviourMode === "bottom") {
+      scrollHistoryToBottom(container, behaviour?.onScrollApplied)
+    } else if (behaviourMode === "preserve") {
+      window.requestAnimationFrame(() => {
+        const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
+        const nextScrollTop = typeof desiredScrollTop === "number" && Number.isFinite(desiredScrollTop)
+          ? Math.max(0, Math.min(maxScroll, desiredScrollTop))
+          : Math.max(0, Math.min(maxScroll, container.scrollTop))
+        container.scrollTop = nextScrollTop
+        behaviour?.onScrollApplied?.()
+      })
+    }
   }
 }
 
@@ -1172,6 +1198,7 @@ const setupOracleWidget = () => {
     const requestUrl = buildRequestUrl(config)
     const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
     const openStateKey = `${storageKey}::open`
+    const scrollPositionKey = `${storageKey}::scrollTop`
 
     const readOpenState = () => {
       try {
@@ -1191,6 +1218,32 @@ const setupOracleWidget = () => {
         }
       } catch (error) {
         console.warn("ORA_CLE chat: unable to persist panel state", error)
+      }
+    }
+
+    const readScrollPosition = (): number | undefined => {
+      try {
+        const raw = window.localStorage.getItem(scrollPositionKey)
+        if (raw === null) {
+          return undefined
+        }
+        const value = Number.parseFloat(raw)
+        return Number.isFinite(value) ? value : undefined
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to read scroll position", error)
+        return undefined
+      }
+    }
+
+    const writeScrollPosition = (value: number | undefined) => {
+      try {
+        if (typeof value === "number" && Number.isFinite(value)) {
+          window.localStorage.setItem(scrollPositionKey, value.toString())
+        } else {
+          window.localStorage.removeItem(scrollPositionKey)
+        }
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to persist scroll position", error)
       }
     }
 
@@ -1262,8 +1315,21 @@ const setupOracleWidget = () => {
 
     let chatOpen = false
     const shouldRestoreOpen = readOpenState()
-  let closingAnimationHandler: ((event: AnimationEvent) => void) | undefined
-  let enteringAnimationHandler: ((event: AnimationEvent) => void) | undefined
+    const storedScrollTop = shouldRestoreOpen ? readScrollPosition() : undefined
+    const syncScrollPosition = () => writeScrollPosition(historyContainer.scrollTop)
+    let scrollSyncHandle: number | undefined
+    const handleHistoryScroll = () => {
+      if (scrollSyncHandle) {
+        window.cancelAnimationFrame(scrollSyncHandle)
+      }
+      scrollSyncHandle = window.requestAnimationFrame(() => {
+        syncScrollPosition()
+        scrollSyncHandle = undefined
+      })
+    }
+
+    let closingAnimationHandler: ((event: AnimationEvent) => void) | undefined
+    let enteringAnimationHandler: ((event: AnimationEvent) => void) | undefined
 
     const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
       textArea.value = question
@@ -1283,7 +1349,14 @@ const setupOracleWidget = () => {
       getConversationId: () => state.conversationId ?? null,
     }
 
-    renderState(historyContainer, state, renderOptions)
+    const initialRenderBehaviour: RenderStateBehaviour | undefined = storedScrollTop !== undefined
+      ? { autoScroll: "preserve", targetScrollTop: storedScrollTop, onScrollApplied: syncScrollPosition }
+      : shouldRestoreOpen
+        ? { autoScroll: "bottom", onScrollApplied: syncScrollPosition }
+        : undefined
+
+    renderState(historyContainer, state, renderOptions, initialRenderBehaviour)
+    historyContainer.addEventListener("scroll", handleHistoryScroll, { passive: true })
     updateResetButton()
     updateSendButtonState()
 
@@ -1297,6 +1370,11 @@ const setupOracleWidget = () => {
       launcher.setAttribute("aria-expanded", "false")
 
       const finalizeClose = () => {
+        if (scrollSyncHandle) {
+          window.cancelAnimationFrame(scrollSyncHandle)
+          scrollSyncHandle = undefined
+        }
+        writeScrollPosition(undefined)
         dialog.classList.remove("oracle-chat--closing")
         dialog.classList.remove("oracle-chat--open")
         dialog.classList.remove("oracle-chat--entering")
@@ -1340,7 +1418,7 @@ const setupOracleWidget = () => {
       dialog.classList.add("oracle-chat--closing")
     }
 
-    const openChat = async (options?: { autoFocus?: boolean; animate?: boolean }) => {
+    const openChat = async (options?: { autoFocus?: boolean; animate?: boolean; preserveScroll?: boolean }) => {
       moveChatToBody(dialog)
       if (closingAnimationHandler) {
         dialog.removeEventListener("animationend", closingAnimationHandler)
@@ -1389,11 +1467,16 @@ const setupOracleWidget = () => {
       }
 
       const shouldFocus = options?.autoFocus ?? true
+      const shouldPreserveScroll = Boolean(options?.preserveScroll)
       window.requestAnimationFrame(() => {
         if (shouldFocus) {
           textArea.focus()
         }
-        scrollHistoryToBottom(historyContainer)
+        if (shouldPreserveScroll) {
+          syncScrollPosition()
+        } else {
+          scrollHistoryToBottom(historyContainer, syncScrollPosition)
+        }
       })
     }
 
@@ -1556,7 +1639,9 @@ const setupOracleWidget = () => {
       state = { messages: [] }
       lastUserQuestion = ""
       persistState(storageKey, state, config.maxHistory)
-      renderState(historyContainer, state, renderOptions)
+      renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
+      historyContainer.scrollTop = 0
+      writeScrollPosition(0)
       updateResetButton()
       updateSendButtonState()
       autoResize()
@@ -1565,7 +1650,7 @@ const setupOracleWidget = () => {
     const appendMessage = (message: OracleMessage) => {
       state.messages = [...state.messages, message]
       historyContainer.appendChild(createMessageElement(message, renderOptions))
-      scrollHistoryToBottom(historyContainer)
+      scrollHistoryToBottom(historyContainer, syncScrollPosition)
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
     }
@@ -1573,7 +1658,10 @@ const setupOracleWidget = () => {
     const replacePendingWith = (message: OracleMessage) => {
       stopContextStream(message.id)
       state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
-      renderState(historyContainer, state, renderOptions)
+      renderState(historyContainer, state, renderOptions, {
+        autoScroll: "bottom",
+        onScrollApplied: syncScrollPosition,
+      })
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
     }
@@ -1731,7 +1819,10 @@ const setupOracleWidget = () => {
         })
         stopContextStream(pendingReply.id)
         state.messages = state.messages.filter((entry) => !entry.pending)
-        renderState(historyContainer, state, renderOptions)
+        renderState(historyContainer, state, renderOptions, {
+          autoScroll: "bottom",
+          onScrollApplied: syncScrollPosition,
+        })
         persistState(storageKey, state, config.maxHistory)
         showError(error)
         if (
@@ -1796,7 +1887,7 @@ const setupOracleWidget = () => {
 
     if (shouldRestoreOpen) {
       window.requestAnimationFrame(() => {
-        openChat({ autoFocus: false, animate: false }).catch((error) => {
+        openChat({ autoFocus: false, animate: false, preserveScroll: true }).catch((error) => {
           console.warn("ORA_CLE chat: unable to restore open state", error)
           writeOpenState(false)
         })
@@ -1819,6 +1910,11 @@ const setupOracleWidget = () => {
         dialog.removeEventListener("animationend", enteringAnimationHandler)
         enteringAnimationHandler = undefined
       }
+      if (scrollSyncHandle) {
+        window.cancelAnimationFrame(scrollSyncHandle)
+        scrollSyncHandle = undefined
+      }
+      historyContainer.removeEventListener("scroll", handleHistoryScroll)
       activeController?.abort()
       chatOpen = false
       dialog.classList.remove("oracle-chat--open", "oracle-chat--closing", "oracle-chat--entering")
