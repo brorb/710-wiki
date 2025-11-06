@@ -148,6 +148,104 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+const EMBED_ALLOW_FEATURES = [
+  "accelerometer",
+  "autoplay",
+  "fullscreen",
+  "clipboard-write",
+  "encrypted-media",
+  "gyroscope",
+  "picture-in-picture",
+  "web-share",
+] as const
+
+const YOUTUBE_EMBED_SRC_REGEX = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/embed\/)/i
+const DRIVE_PREVIEW_SRC_REGEX = /drive\.google\.com\/file\/.*\/preview/i
+
+type EmbedKind = "youtube" | "drive"
+
+const mergeAllowFeatures = (existing: unknown): string => {
+  const features = new Set<string>()
+
+  if (typeof existing === "string") {
+    existing
+      .split(";")
+      .map((feature) => feature.trim())
+      .filter(Boolean)
+      .forEach((feature) => features.add(feature))
+  } else if (Array.isArray(existing)) {
+    existing
+      .map((feature) => (typeof feature === "string" ? feature : String(feature)))
+      .flatMap((feature) => feature.split(";"))
+      .map((feature) => feature.trim())
+      .filter(Boolean)
+      .forEach((feature) => features.add(feature))
+  }
+
+  for (const feature of EMBED_ALLOW_FEATURES) {
+    features.add(feature)
+  }
+
+  return Array.from(features).join("; ")
+}
+
+const normalizeClassList = (value: unknown): Set<string> => {
+  const classNames = new Set<string>()
+
+  if (typeof value === "string") {
+    value
+      .split(/\s+/)
+      .map((cls) => cls.trim())
+      .filter(Boolean)
+      .forEach((cls) => classNames.add(cls))
+  } else if (Array.isArray(value)) {
+    value
+      .flatMap((entry) => (typeof entry === "string" ? entry.split(/\s+/) : []))
+      .map((cls) => cls.trim())
+      .filter(Boolean)
+      .forEach((cls) => classNames.add(cls))
+  }
+
+  return classNames
+}
+
+const ensureEmbedAttributes = (node: Element, kind: EmbedKind) => {
+  node.properties = node.properties ?? {}
+  const props = node.properties as Record<string, unknown>
+
+  props.allow = mergeAllowFeatures(props.allow)
+
+  if (props.allowfullscreen === undefined) {
+    props.allowfullscreen = true
+  }
+
+  if (props.loading === undefined) {
+    props.loading = "lazy"
+  }
+
+  if (props.referrerpolicy === undefined) {
+    props.referrerpolicy = "strict-origin-when-cross-origin"
+  }
+
+  if (props.frameborder === undefined) {
+    props.frameborder = 0
+  }
+
+  const classNames = normalizeClassList(props.className ?? props.class)
+  classNames.add("external-embed")
+  if (kind === "youtube") {
+    classNames.add("youtube")
+  }
+  props.className = Array.from(classNames)
+  if ("class" in props) {
+    delete props.class
+  }
+
+  if (!props.title) {
+    props.title = kind === "youtube" ? "YouTube video" : "Embedded media"
+  }
+}
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -631,30 +729,51 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   // YouTube video (with optional playlist)
                   node.tagName = "iframe"
                   node.properties = {
-                    class: "external-embed youtube",
-                    allow: "fullscreen",
-                    frameborder: 0,
-                    width: "600px",
+                    ...node.properties,
                     src: playlistId
                       ? `https://www.youtube.com/embed/${videoId}?list=${playlistId}`
                       : `https://www.youtube.com/embed/${videoId}`,
+                    width: node.properties.width ?? "600px",
+                    frameborder: node.properties.frameborder ?? 0,
                   }
+                  ensureEmbedAttributes(node, "youtube")
                 } else if (playlistId) {
                   // YouTube playlist only.
                   node.tagName = "iframe"
                   node.properties = {
-                    class: "external-embed youtube",
-                    allow: "fullscreen",
-                    frameborder: 0,
-                    width: "600px",
+                    ...node.properties,
                     src: `https://www.youtube.com/embed/videoseries?list=${playlistId}`,
+                    width: node.properties.width ?? "600px",
+                    frameborder: node.properties.frameborder ?? 0,
                   }
+                  ensureEmbedAttributes(node, "youtube")
                 }
               }
             })
           }
         })
       }
+
+      plugins.push(() => {
+        return (tree: HtmlRoot) => {
+          visit(tree, "element", (node) => {
+            if (node.tagName !== "iframe") {
+              return
+            }
+
+            const src = typeof node.properties?.src === "string" ? node.properties.src : null
+            if (!src) {
+              return
+            }
+
+            if (YOUTUBE_EMBED_SRC_REGEX.test(src)) {
+              ensureEmbedAttributes(node, "youtube")
+            } else if (DRIVE_PREVIEW_SRC_REGEX.test(src)) {
+              ensureEmbedAttributes(node, "drive")
+            }
+          })
+        }
+      })
 
       if (opts.enableCheckbox) {
         plugins.push(() => {
