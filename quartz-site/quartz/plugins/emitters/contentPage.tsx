@@ -5,7 +5,7 @@ import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
-import { pathToRoot } from "../../util/path"
+import { FullSlug, joinSegments, pathToRoot } from "../../util/path"
 import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { Content } from "../../components"
 import { styleText } from "util"
@@ -37,12 +37,24 @@ async function processContent(
   }
 
   const content = renderPage(cfg, slug, componentData, opts, externalResources)
-  return write({
+  const result = await write({
     ctx,
     content,
     slug,
     ext: ".html",
   })
+
+  const lastSegment = slug.split("/").pop() ?? ""
+  if (lastSegment.includes(".") && !lastSegment.endsWith(".")) {
+    await write({
+      ctx,
+      content,
+      slug: joinSegments(slug, "index") as FullSlug,
+      ext: ".html",
+    })
+  }
+
+  return result
 }
 
 export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {

@@ -39,7 +39,7 @@ __name(sluggify, "sluggify");
 function slugifyFilePath(fp, excludeExt) {
   fp = stripSlashes(fp);
   let ext = getFileExtension(fp);
-  const withoutFileExt = fp.replace(new RegExp(ext + "$"), "");
+  const withoutFileExt = ext ? fp.slice(0, -ext.length) : fp;
   if (excludeExt || [".md", ".html", void 0].includes(ext)) {
     ext = "";
   }
@@ -51,8 +51,16 @@ function slugifyFilePath(fp, excludeExt) {
 }
 __name(slugifyFilePath, "slugifyFilePath");
 function simplifySlug(fp) {
-  const res = stripSlashes(trimSuffix(fp, "index"), true);
-  return res.length === 0 ? "/" : res;
+  let res = stripSlashes(trimSuffix(fp, "index"), true);
+  if (res.length === 0) {
+    return "/";
+  }
+  const segments = res.split("/");
+  const last = segments[segments.length - 1] ?? "";
+  if (last.includes(".") && !res.endsWith("/")) {
+    res = `${res}/`;
+  }
+  return res;
 }
 __name(simplifySlug, "simplifySlug");
 function transformInternalLink(link) {
@@ -8739,7 +8747,8 @@ var Head_default = /* @__PURE__ */ __name((() => {
     const baseDir = fileData.slug === "404" ? path14 : pathToRoot(fileData.slug);
     const assetVersion = getAssetVersion();
     const iconPath = `${joinSegments(baseDir, "static/icon.png")}?v=${assetVersion}`;
-    const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug);
+    const canonicalSlug = simplifySlug(fileData.slug);
+    const socialUrl = fileData.slug === "404" ? url.toString() : joinSegments(url.origin, canonicalSlug);
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName
     );
@@ -11654,12 +11663,22 @@ async function processContent(ctx, tree, fileData, allFiles, opts, resources) {
     allFiles
   };
   const content = renderPage(cfg, slug, componentData, opts, externalResources);
-  return write({
+  const result = await write({
     ctx,
     content,
     slug,
     ext: ".html"
   });
+  const lastSegment = slug.split("/").pop() ?? "";
+  if (lastSegment.includes(".") && !lastSegment.endsWith(".")) {
+    await write({
+      ctx,
+      content,
+      slug: joinSegments(slug, "index"),
+      ext: ".html"
+    });
+  }
+  return result;
 }
 __name(processContent, "processContent");
 var ContentPage = /* @__PURE__ */ __name((userOpts) => {
@@ -11994,8 +12013,10 @@ function generateSiteMap(cfg, idx) {
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`;
 }
 __name(generateSiteMap, "generateSiteMap");
+var MAX_RSS_ITEMS = 100;
 function generateRSSFeed(cfg, idx, limit) {
   const base = cfg.baseUrl ?? "";
+  const effectiveLimit = Math.min(limit ?? MAX_RSS_ITEMS, MAX_RSS_ITEMS);
   const createURLEntry = /* @__PURE__ */ __name((slug, content) => `<item>
     <title>${escapeHTML(content.title)}</title>
     <link>https://${joinSegments(base, encodeURI(slug))}</link>
@@ -12012,13 +12033,13 @@ function generateRSSFeed(cfg, idx, limit) {
       return 1;
     }
     return f1.title.localeCompare(f2.title);
-  }).map(([slug, content]) => createURLEntry(simplifySlug(slug), content)).slice(0, limit ?? idx.size).join("");
+  }).map(([slug, content]) => createURLEntry(simplifySlug(slug), content)).slice(0, effectiveLimit).join("");
   return `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
       <link>https://${base}</link>
-      <description>${!!limit ? i18n(cfg.locale).pages.rss.lastFewNotes({ count: limit }) : i18n(cfg.locale).pages.rss.recentNotes} on ${escapeHTML(
+      <description>${limit !== void 0 ? i18n(cfg.locale).pages.rss.lastFewNotes({ count: effectiveLimit }) : i18n(cfg.locale).pages.rss.recentNotes} on ${escapeHTML(
     cfg.pageTitle
   )}</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
