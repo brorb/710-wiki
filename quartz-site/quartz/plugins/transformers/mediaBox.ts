@@ -616,16 +616,33 @@ const MEDIA_BOX_CSS = `
 }
 
 .media-box-cluster--inline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
+  align-items: start;
 }
 
 .media-box-cluster--inline .media-box {
   margin: 0;
-  flex: 0 1 auto;
   float: none;
+}
+
+.media-box-cluster--inline .media-box--align-left {
+  justify-self: start;
+}
+
+.media-box-cluster--inline .media-box--align-center {
+  justify-self: center;
+}
+
+.media-box-cluster--inline .media-box--align-right {
+  justify-self: end;
+}
+
+@media (min-width: 901px) {
+  .media-box-cluster--inline.media-box-cluster--three {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
 }
 
 @media (max-width: 900px) {
@@ -635,13 +652,12 @@ const MEDIA_BOX_CSS = `
   }
 
   .media-box-cluster--inline {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
   .media-box-cluster--inline .media-box {
-    flex: 1 1 auto;
+    justify-self: center;
     max-width: min(100%, 420px);
   }
 }
@@ -758,10 +774,14 @@ const transformMediaBoxes = (tree: unknown, slug?: FullSlug) => {
 
       let replacements: HtmlNode[]
       if (validEntries.length > 1 && allNoWrap) {
+        const alignSignature = validEntries.map((config) => config.align).join("|")
+        let clusterClass = "media-box-cluster media-box-cluster--inline"
+        if (validEntries.length === 3 && alignSignature === "left|center|right") {
+          clusterClass += " media-box-cluster--three"
+        }
+
         replacements = [
-          createHtmlNode(
-            `<div class="media-box-cluster media-box-cluster--inline">${htmlFigures.join("")}</div>`,
-          ),
+          createHtmlNode(`<div class="${clusterClass}">${htmlFigures.join("")}</div>`),
         ]
       } else {
         replacements = htmlFigures.map((value) => createHtmlNode(value))
