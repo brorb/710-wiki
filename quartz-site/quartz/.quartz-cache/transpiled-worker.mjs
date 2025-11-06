@@ -7349,18 +7349,19 @@ var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
   const versioned = /* @__PURE__ */ __name((path14) => `${path14}?v=${assetVersion}`, "versioned");
-  const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
+  const staticBase = joinSegments(baseDir, "..");
+  const contentIndexPath = versioned(joinSegments(staticBase, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
     css: [
       {
-        content: versioned(joinSegments(baseDir, "index.css"))
+        content: versioned(joinSegments(staticBase, "index.css"))
       },
       ...staticResources.css
     ],
     js: [
       {
-        src: versioned(joinSegments(baseDir, "prescript.js")),
+        src: versioned(joinSegments(staticBase, "prescript.js")),
         loadTime: "beforeDOMReady",
         contentType: "external"
       },
@@ -7375,7 +7376,7 @@ function pageResources(baseDir, staticResources) {
     additionalHead: staticResources.additionalHead
   };
   resources.js.push({
-    src: versioned(joinSegments(baseDir, "postscript.js")),
+    src: versioned(joinSegments(staticBase, "postscript.js")),
     loadTime: "afterDOMReady",
     moduleType: "module",
     contentType: "external"
