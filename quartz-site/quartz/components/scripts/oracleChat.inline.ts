@@ -1316,7 +1316,11 @@ const setupOracleWidget = () => {
     let chatOpen = false
     const shouldRestoreOpen = readOpenState()
     const storedScrollTop = shouldRestoreOpen ? readScrollPosition() : undefined
-    const syncScrollPosition = () => writeScrollPosition(historyContainer.scrollTop)
+    let preservedScrollTop = storedScrollTop
+    const syncScrollPosition = () => {
+      preservedScrollTop = historyContainer.scrollTop
+      writeScrollPosition(preservedScrollTop)
+    }
     let scrollSyncHandle: number | undefined
     const handleHistoryScroll = () => {
       if (scrollSyncHandle) {
@@ -1374,6 +1378,7 @@ const setupOracleWidget = () => {
           window.cancelAnimationFrame(scrollSyncHandle)
           scrollSyncHandle = undefined
         }
+        preservedScrollTop = undefined
         writeScrollPosition(undefined)
         dialog.classList.remove("oracle-chat--closing")
         dialog.classList.remove("oracle-chat--open")
@@ -1468,11 +1473,17 @@ const setupOracleWidget = () => {
 
       const shouldFocus = options?.autoFocus ?? true
       const shouldPreserveScroll = Boolean(options?.preserveScroll)
+      if (shouldPreserveScroll && typeof preservedScrollTop === "number") {
+        historyContainer.scrollTop = preservedScrollTop
+      }
       window.requestAnimationFrame(() => {
         if (shouldFocus) {
           textArea.focus()
         }
         if (shouldPreserveScroll) {
+          if (typeof preservedScrollTop === "number") {
+            historyContainer.scrollTop = preservedScrollTop
+          }
           syncScrollPosition()
         } else {
           scrollHistoryToBottom(historyContainer, syncScrollPosition)
@@ -1639,9 +1650,10 @@ const setupOracleWidget = () => {
       state = { messages: [] }
       lastUserQuestion = ""
       persistState(storageKey, state, config.maxHistory)
-      renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
-      historyContainer.scrollTop = 0
-      writeScrollPosition(0)
+    renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
+    historyContainer.scrollTop = 0
+    preservedScrollTop = 0
+    writeScrollPosition(0)
       updateResetButton()
       updateSendButtonState()
       autoResize()
