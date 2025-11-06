@@ -235,6 +235,8 @@ const ensureEmbedAttributes = (node: Element, kind: EmbedKind) => {
   classNames.add("external-embed")
   if (kind === "youtube") {
     classNames.add("youtube")
+  } else if (kind === "drive") {
+    classNames.add("drive")
   }
   props.className = Array.from(classNames)
   if ("class" in props) {
@@ -243,6 +245,21 @@ const ensureEmbedAttributes = (node: Element, kind: EmbedKind) => {
 
   if (!props.title) {
     props.title = kind === "youtube" ? "YouTube video" : "Embedded media"
+  }
+
+  if (kind === "youtube" && typeof props.src === "string" && props.src.length > 0) {
+    try {
+      const url = new URL(props.src, "https://www.youtube.com")
+      if (url.searchParams.get("enablejsapi") !== "1") {
+        url.searchParams.set("enablejsapi", "1")
+      }
+      if (!url.searchParams.has("playsinline")) {
+        url.searchParams.set("playsinline", "1")
+      }
+      props.src = url.toString()
+    } catch (error) {
+      console.warn("ensureEmbedAttributes: unable to normalize YouTube src", error)
+    }
   }
 }
 

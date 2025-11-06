@@ -78,15 +78,23 @@ function transformSpecialEmbed(node: Paragraph, opts: Options): Html | null {
         const playlistMatch = url.match(/[?&]list=([^#\&\?]*)/)
         const playlistId = playlistMatch ? playlistMatch[1] : null
 
+        const embedUrl = new URL(`https://www.youtube.com/embed/${videoId}`)
+        if (playlistId) {
+          embedUrl.searchParams.set("list", playlistId)
+        }
+        embedUrl.searchParams.set("enablejsapi", "1")
+        embedUrl.searchParams.set("playsinline", "1")
+
         return {
           type: "html",
           value: `<iframe 
             class="external-embed youtube"
             width="600px"
             height="350px"
-            src="https://www.youtube.com/embed/${videoId}${playlistId ? `?list=${playlistId}` : ""}"
+            src="${embedUrl.toString()}"
             frameborder="0"
-            allow="fullscreen"
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
           ></iframe>`,
         }
       } else {
