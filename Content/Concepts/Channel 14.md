@@ -117,13 +117,13 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Weather from LOG-154 (channel 14).png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank) Against Russia Channel 14.png]]
-Align: center
-Wrap: true
+Align: left
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
@@ -134,7 +134,7 @@ Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: right
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
