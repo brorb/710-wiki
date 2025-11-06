@@ -111,6 +111,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 ##### From [[LOG-154.mp4]]:
 
 ```media-box
@@ -121,29 +122,30 @@ Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank) Against Russia Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Atomic Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Atomic glitch Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: left
+Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 ##### From [[garbage_sgl.mp4]]:
 
 ```media-box
@@ -154,23 +156,24 @@ Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank)'s Mighty Construction.png]]
-Align: left
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
-Align: left
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[LowLock5 Channel 14.png]]
-Align: left
+Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 #### Gift from [[SYSTEM]]
 
 ```media-box
@@ -187,7 +190,7 @@ Title: Gift from SYSTEM Recreation
 Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual recrreation by one of The Sleuths
 Caption: Made by The Camera Eye
-Align: left
+Align: right
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
