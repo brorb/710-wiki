@@ -41,7 +41,7 @@ FEEL?
 7/10 NPP: SLEEP WELL TRAVIS
 ```
 
-Most likely, Travis died after this conversation, as [[INDI]] later would go on to say "Travis _was_ a scientist"[^1]. It is likely that the "it" which spread its way into Travis' lungs was [[Black Mold]].
+Most likely Travis died after this conversation, as [[INDI]] later would go on to say "Travis _was_ a scientist"[^1]. It is likely that the "it" which spread its way into Travis' lungs was [[Black Mold]].
 
 ---
 ## Travis' Parting Gift
