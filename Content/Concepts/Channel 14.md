@@ -117,30 +117,24 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Weather from LOG-154 (channel 14).png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank) Against Russia Channel 14.png]]
-Align: center
-Wrap: true
+Align: left
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Atomic Channel 14.png]]
-Align: center
-Wrap: true
-Width: clamp(220px, 32vw, 360px)
-```
-```media-box
-Media: [[Atomic glitch Channel 14.png]]
-Align: center
-Wrap: true
+Align: left
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: right
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -151,25 +145,25 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[Weather and Morning Chats this Lyoce J.png]]
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank)'s Mighty Construction.png]]
 Align: center
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
 Align: center
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[LowLock5 Channel 14.png]]
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -178,7 +172,7 @@ Width: clamp(220px, 32vw, 360px)
 
 ```media-box
 Title: Gift from SYSTEM original
-Media: [[gift_fixed.png]]
+Media: [[gift-full.png]]
 Alt: Channel 14 Schedual received by SYSTEM
 Caption: 
 Align: left
@@ -190,7 +184,7 @@ Title: Gift from SYSTEM Recreation
 Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual recrreation by one of The Sleuths
 Caption: Made by The Camera Eye
-Align: right
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
