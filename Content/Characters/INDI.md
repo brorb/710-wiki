@@ -113,6 +113,7 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 
 ## After [[STATION_8 TERMINAL 8]]
 
+After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]].
 
 ## Gallery
 
