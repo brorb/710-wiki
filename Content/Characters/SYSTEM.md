@@ -4994,7 +4994,7 @@ AND I CANNOT CONTROL IT
 ![[HIS PRECEPTION (full metadata)-min.png|400]]
 This message is most likely from [[INDI]] or another similar entity judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
 
-In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with the name Rod Formak, who is assigned as a Technician Engineer and possibly the real name of [[He]]:
+In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with the name Rod Formak, who is assigned as a Technician Engineer:
 ```discord
 [
   {
@@ -5024,20 +5024,6 @@ In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with t
     "timestamp": "2025-10-02T00:27:46.650000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104138648227984"
-  },
-  {
-    "id": "1423104423693123645",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
-    "content": "<:710eyes:1391504994666156153>",
-    "timestamp": "2025-10-02T00:28:54.610000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1423104423693123645"
   },
   {
     "id": "1423104514000687164",
@@ -5547,7 +5533,7 @@ SYSTEM sometimes has the ability to speak in two different instances (as seen fr
 ```media-box
 Media: [[Brainstorming program SYSTEM.png]]
 Alt: SYSTEM brainstorming program comment
-Align: left
+Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```

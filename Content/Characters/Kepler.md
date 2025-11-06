@@ -23,7 +23,7 @@ Status:
 
 *Kepler* is the alias of the entity running the YouTube channel [[710 NPP|7/10 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]]. Their Private Room ID is "K3P13R", which became "inaccessible" after [[RIGfunctionobservationTEST028.mp4]] was uploaded and it might be possible that they have gone missing.
 
-# Relationships
+## Relationships
 ## [[INDI]]
 
 Kepler has been seen in charge of supervising [[INDI]] during the STATION_8 livestreams (starting with [[STATION_8 TRIM 90]]), hinting at an authoritative role within [[REN]] and/or [[TTH]]. They are known to communicate through the [[Private Room]], which is [[INDI]]'s only reliable way of communication between them.[^2] They seem to be a little weary of [[INDI]], not fully believing that he is 
@@ -32,7 +32,7 @@ Kepler has been seen in charge of supervising [[INDI]] during the STATION_8 live
 
 Not much is known about the relationship between Kepler and [[D4V1NC1]], however their aliases (or IDs) were seen together in the description of [[RIGfunctionobservationTEST028.mp4]], which could suggest that they had some form of communication within the [[Private Room]] and therefore possibly have some form of a professional relationship.
 
-# Personality
+## Personality
 
 [^1]: This was confirmed in livestream chat on 07.07.25
 
