@@ -117,7 +117,7 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 Media: [[INDI Uppercase typing.png]]
 Alt: INDI usually types in all caps
 Caption: INDI types with all uppercase letters
-Align: center
+Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -133,7 +133,7 @@ Width: clamp(220px, 32vw, 360px)
 Media: ![[INDI infected LOG-111.png]]
 Alt: INDI antenna logo with the word "INFECTED" overlayed on it
 Caption: From LOG-111, this could suggest that INDI was infected with something
-Align: center
+Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
