@@ -47,7 +47,21 @@ APP updated every (random, random, random, random)
 
 **$app_log_ore**
 
-Displays a number list, which would update itself at undisclosed times:
+Displays a number list, which would update itself at undisclosed times. This command was added after [[SYSTEM]] posted the below message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
+```
+<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
+```
+
+According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone|7/10 Tone]] channel, instead they come from "storage files"
+
+```media-box
+Media: [[storage files app_log_ore.png]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+Here is the completed numbered list below:
 ```
 LOG ORDER-updated
 1  
@@ -77,20 +91,6 @@ LOG ORDER-updated
 //9//:cancel.backsystem9
 Note:
 COMMAND MESSAGE STOPPED FOR T-500
-```
-
-This command was added after [[SYSTEM]] posted the below message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
-```
-<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
-```
-
-According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone|7/10 Tone]] channel, instead they come from "storage files"
-
-```media-box
-Media: [[storage files app_log_ore.png]]
-Align: left
-Wrap: false
-Width: clamp(220px, 32vw, 360px)
 ```
 
 **$app_name**
@@ -206,7 +206,7 @@ Services-01: Infected, 4/22
 Services-02: Infected, 0/21  
 Complete stopping for T-1000...
 ```
-After the command successfully ran, it completely disappeared from the help menu and therefore became completely unavailable.
+After the command successfully ran, it completely disappeared from the help menu and therefore became unavailable.
 
 ```media-box
 Media: [[roaming program disappearance.png]]
@@ -260,8 +260,9 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep anymore secrets from it.
+After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep any more secrets from it.
 
+---
 ## The [[Bob]] Incident
 
 On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]]. After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up. Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.

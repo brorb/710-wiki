@@ -17,7 +17,7 @@ Appearances:
 - [[STATION_8 TERMINAL 8]]
 ```
 
-Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much the [[Station Interruption]] screen, which [[INDI]] would have to fix.
+Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much like the [[Station Interruption]] screen, which [[INDI]] would have to fix.
 
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->, much like a regular TV broadcasting station.
 
@@ -111,66 +111,69 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 ##### From [[LOG-154.mp4]]:
 
 ```media-box
 Media: [[Weather from LOG-154 (channel 14).png]]
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank) Against Russia Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Atomic Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Atomic glitch Channel 14.png]]
-Align: left
+Align: center
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: left
-Wrap: false
+Align: right
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 ##### From [[garbage_sgl.mp4]]:
 
 ```media-box
 Media: [[Weather and Morning Chats this Lyoce J.png]]
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[(blank)'s Mighty Construction.png]]
-Align: left
-Wrap: false
+Align: center
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Ferkland Channel 14 reveal better.png]]
-Align: left
-Wrap: false
+Align: center
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[LowLock5 Channel 14.png]]
-Align: left
-Wrap: false
+Align: right
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 
+---
 #### Gift from [[SYSTEM]]
 
 ```media-box
@@ -179,7 +182,7 @@ Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual received by SYSTEM
 Caption: 
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
@@ -187,7 +190,7 @@ Title: Gift from SYSTEM Recreation
 Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual recrreation by one of The Sleuths
 Caption: Made by The Camera Eye
-Align: left
+Align: right
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
