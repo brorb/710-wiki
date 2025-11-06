@@ -13,6 +13,6 @@ The Logs (also known as LOGs) are videos uploaded to the [[710 Tone|7/10 Tone]] 
 
 According to the [[Hello]] video, the owner of the [[710 Tone|7/10 Tone]] channel was told to create the program that makes these LOGs by an undisclosed group of people and it is designed to pull data from [[Caper Waves]].
 
-Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] in [[STATION_8 TERMINAL 8]].
+Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] in [[STATION_8 TERMINAL 8]]. They are also meant to be deciphered like some kind of data (as confirmed by [[INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills. According to [[INDI]], they are important to "someone else", but the identity of them is unclear. [^1]
 
-They are also meant to be deciphered like some kind of data (as confirmed by [[INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills.
+[^1]: [[STATION_8 TERMINAL 8]]
