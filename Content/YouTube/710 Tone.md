@@ -56,7 +56,7 @@ Alt: 7/10 Tone's profile picture circa April 11th, 2025
 Caption: 7/10 Tone's profile picture from April 11th, 2025, note some of the original is slightly visible
 Align: left
 Wrap: false
-Width: clamp(220px, 32vw, 360px)
+Width: clamp(500px, 32vw, 360px)
 ```
 
 ## 2025 Gradual Removal and Eventual Purge
