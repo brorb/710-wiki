@@ -154,6 +154,13 @@
       "colour_value": 16711680
     },
     "content": "Detail:",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[image from SYSTEM.png]]",
+        "alt": "710 fanart image from email"
+      }
+    ],
     "timestamp": "2025-07-19T14:45:12.505000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396140828283375729"
