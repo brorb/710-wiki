@@ -133,14 +133,8 @@ Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
-Media: [[Atomic glitch Channel 14.png]]
-Align: left
-Wrap: true
-Width: clamp(220px, 32vw, 360px)
-```
-```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: left
+Align: right
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
@@ -190,7 +184,7 @@ Title: Gift from SYSTEM Recreation
 Media: [[gift_fixed.png]]
 Alt: Channel 14 Schedual recrreation by one of The Sleuths
 Caption: Made by The Camera Eye
-Align: right
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
