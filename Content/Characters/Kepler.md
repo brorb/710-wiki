@@ -21,7 +21,7 @@ Status:
 ```
 
 
-*Kepler* is the alias of the entity running the YouTube channel [[710 NPP|7/10 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]]. Their Private Room ID is "K3P13R", which became "inaccessible" after [[RIGfunctionobservationTEST028.mp4]] was uploaded.
+*Kepler* is the alias of the entity running the YouTube channel [[710 NPP|7/10 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]]. Their Private Room ID is "K3P13R", which became "inaccessible" after [[RIGfunctionobservationTEST028.mp4]] was uploaded and it might be possible that they have gone missing.
 
 # Relationships
 ## [[INDI]]
