@@ -134,7 +134,7 @@ Width: clamp(220px, 32vw, 360px)
 ```
 ```media-box
 Media: [[Wonders of Nationol Park Channel 14.png]]
-Align: right
+Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
