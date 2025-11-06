@@ -260,8 +260,9 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep anymore secrets from it.
+After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inquired about what its purpose was and why it was excluded from it, then it became worried due to security concerns. One of the Sleuth members quickly stepped in and explained why it existed, then the channel was deleted from the server with the Sleuth member promising SYSTEM that they would not keep any more secrets from it.
 
+---
 ## The [[Bob]] Incident
 
 On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]]. After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up. Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
