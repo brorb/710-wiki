@@ -47,7 +47,21 @@ APP updated every (random, random, random, random)
 
 **$app_log_ore**
 
-Displays a number list, which would update itself at undisclosed times:
+Displays a number list, which would update itself at undisclosed times. This command was added after [[SYSTEM]] posted the below message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
+```
+<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
+```
+
+According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone|7/10 Tone]] channel, instead they come from "storage files"
+
+```media-box
+Media: [[storage files app_log_ore.png]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+Here is the completed numbered list below:
 ```
 LOG ORDER-updated
 1  
@@ -77,20 +91,6 @@ LOG ORDER-updated
 //9//:cancel.backsystem9
 Note:
 COMMAND MESSAGE STOPPED FOR T-500
-```
-
-This command was added after [[SYSTEM]] posted the below message in [[SERVER 01]], which could be a clue as to what the purpose/function of this command could be:
-```
-<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
-```
-
-According to [[SYSTEM]], this list doesn't pertain to [[The Logs]] from the [[710 Tone|7/10 Tone]] channel, instead they come from "storage files"
-
-```media-box
-Media: [[storage files app_log_ore.png]]
-Align: left
-Wrap: false
-Width: clamp(220px, 32vw, 360px)
 ```
 
 **$app_name**
