@@ -50,3 +50,4 @@ A type of data corruption according to [[SYSTEM]]<!-- discord-cite:cite-mgvkfl4d
 > }
 > ```
 
+During [[STATION_8 TRIM 5]], INDI said that he "took care of the mold" but couldn't elaborate any further due to restrictions.
