@@ -98,7 +98,10 @@ function normalizeHastElement(rawEl, curBase, newBase) {
 }
 __name(normalizeHastElement, "normalizeHastElement");
 function pathToRoot(slug) {
-  let rootPath = slug.split("/").filter((x) => x !== "").slice(0, -1).map((_) => "..").join("/");
+  const segments = slug.split("/").filter((x) => x !== "");
+  const depth = Math.max(segments.length - 1, 0);
+  const needsExtraLevel = segments.at(-1)?.includes(".") ?? false;
+  let rootPath = Array.from({ length: depth + (needsExtraLevel ? 1 : 0) }, () => "..").join("/");
   if (rootPath.length === 0) {
     rootPath = ".";
   }
@@ -7349,19 +7352,18 @@ var headerRegex = new RegExp(/h[1-6]/);
 function pageResources(baseDir, staticResources) {
   const assetVersion = getAssetVersion();
   const versioned = /* @__PURE__ */ __name((path14) => `${path14}?v=${assetVersion}`, "versioned");
-  const staticBase = joinSegments(baseDir, "..");
-  const contentIndexPath = versioned(joinSegments(staticBase, "static/contentIndex.json"));
+  const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"));
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`;
   const resources = {
     css: [
       {
-        content: versioned(joinSegments(staticBase, "index.css"))
+        content: versioned(joinSegments(baseDir, "index.css"))
       },
       ...staticResources.css
     ],
     js: [
       {
-        src: versioned(joinSegments(staticBase, "prescript.js")),
+        src: versioned(joinSegments(baseDir, "prescript.js")),
         loadTime: "beforeDOMReady",
         contentType: "external"
       },
@@ -7376,7 +7378,7 @@ function pageResources(baseDir, staticResources) {
     additionalHead: staticResources.additionalHead
   };
   resources.js.push({
-    src: versioned(joinSegments(staticBase, "postscript.js")),
+    src: versioned(joinSegments(baseDir, "postscript.js")),
     loadTime: "afterDOMReady",
     moduleType: "module",
     contentType: "external"
