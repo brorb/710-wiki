@@ -223,7 +223,7 @@
 **The Camera Eye**: I see that  
 ==**7/10NPP**==: I can see that indi  
 **The Camera Eye**: What is INDI trying to do?  
-==**7/10NPP**==: have you tried re-enterin the CC entries?  
+==**7/10NPP**==: have you tried re-entering the CC entries?  
 ==**7/10 Tone**==: YES, I ALREADY DID THAT.  
 ==**7/10NPP**==: Wait, what is this? how did the chat switch to this?  
 ==**7/10 Tone**==: DID YOU ENTER SOMETHING WRONG?  
