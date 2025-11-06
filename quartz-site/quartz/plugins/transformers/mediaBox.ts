@@ -1,6 +1,7 @@
 import { Code } from "mdast"
 import { QuartzTransformerPlugin } from "../types"
 import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
+import { findAssetByBasename } from "../../util/assetLookup"
 import { getAssetVersion } from "../../util/assetVersion"
 
 type MediaType = "image" | "video" | "audio"
@@ -117,13 +118,21 @@ const resolveObsidianTarget = (rawTarget: string, slug?: FullSlug): string | und
     return cleaned
   }
 
-  if (!slug) {
-    return cleaned
-  }
-
   try {
-    const target = stripContentPrefix(cleaned) as FilePath
-    const targetSlug = slugifyFilePath(target)
+    let targetPath = stripContentPrefix(cleaned)
+    if (!targetPath.includes("/")) {
+      const matched = findAssetByBasename(targetPath)
+      if (matched) {
+        targetPath = matched
+      }
+    }
+
+    const targetSlug = slugifyFilePath(targetPath as FilePath)
+
+    if (!slug) {
+      return appendAssetVersion(targetSlug, getAssetVersion())
+    }
+
     const baseDir = pathToRoot(slug)
     return appendAssetVersion(joinSegments(baseDir, targetSlug), getAssetVersion())
   } catch {
@@ -154,8 +163,16 @@ const resolveMediaSource = (raw: string, slug?: FullSlug): string | undefined =>
     return cleaned
   }
 
-  const target = stripContentPrefix(cleaned)
-  return appendAssetVersion(joinSegments(pathToRoot(slug), target), getAssetVersion())
+  let targetPath = stripContentPrefix(cleaned)
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath)
+    if (matched) {
+      targetPath = matched
+    }
+  }
+
+  const targetSlug = slugifyFilePath(targetPath as FilePath)
+  return appendAssetVersion(joinSegments(pathToRoot(slug), targetSlug), getAssetVersion())
 }
 
 const resolveLinkTarget = (raw: string, slug?: FullSlug): string | undefined => {
@@ -177,8 +194,16 @@ const resolveLinkTarget = (raw: string, slug?: FullSlug): string | undefined => 
     return cleaned
   }
 
-  const target = stripContentPrefix(cleaned)
-  return joinSegments(pathToRoot(slug), target)
+  let targetPath = stripContentPrefix(cleaned)
+  if (!targetPath.includes("/")) {
+    const matched = findAssetByBasename(targetPath)
+    if (matched) {
+      targetPath = matched
+    }
+  }
+
+  const targetSlug = slugifyFilePath(targetPath as FilePath)
+  return joinSegments(pathToRoot(slug), targetSlug)
 }
 
 const sanitizeCssValue = (value: string | undefined): string | undefined => {
