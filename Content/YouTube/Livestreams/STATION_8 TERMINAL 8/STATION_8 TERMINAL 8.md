@@ -38,7 +38,13 @@ Some viewers expressed concern about the [[710 Tone|7/10 Tone]] channel getting 
 
 As the countdown ends, viewers receive a prompt from [[INDI]]: 
 
-	Hello Again. You remember my promise, right? All I need is a 5 digit code. Look back into the logs to find it. They will be in descriptions of prime numbered logs.
+```
+Hello Again.
+You remember my promise, right?
+All I need is a 5 digit code.
+Look back into the logs to find it.
+They will be in descriptions of prime numbered logs.
+```
 
 The viewers quickly solve this, entering **28634** into chat as the input for the code. For the code was initiated successfully, [[INDI]] thanks the viewers for inputting the code, then the antenna logo starts distorting with technical noises in the background, with text "UNKNOWN ARTIFACTS PRESENTED: DISTRIBUTING OTHER DATA" repeating in the background and blurring distortedly. Then the transmission overloads, with the words "I FOUND YOU INDI" appearing on-screen, then everything freezes before cutting to the [[TTH]] logo for a split second and then to the screen test output scene with the color codes 1 (red), 2 (green), and 3 (blue), as well as a stopwatch timer. The videos [[KEY]] and [[lm-1]] are also subsequently posted onto the [[710 Tone|7/10 Tone]] channel.
 
