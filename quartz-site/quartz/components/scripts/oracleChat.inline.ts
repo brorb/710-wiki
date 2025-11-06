@@ -1175,9 +1175,30 @@ const setupOracleWidget = () => {
     })
     const requestUrl = buildRequestUrl(config)
     const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
+    const openStateKey = `${storageKey}::open`
+
+    const readOpenState = () => {
+      try {
+        return window.localStorage.getItem(openStateKey) === "true"
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to read panel state", error)
+        return false
+      }
+    }
+
+    const writeOpenState = (isOpen: boolean) => {
+      try {
+        if (isOpen) {
+          window.localStorage.setItem(openStateKey, "true")
+        } else {
+          window.localStorage.removeItem(openStateKey)
+        }
+      } catch (error) {
+        console.warn("ORA_CLE chat: unable to persist panel state", error)
+      }
+    }
 
     const launcher = root.querySelector<HTMLButtonElement>(".oracle-widget__launcher")
-    const overlay = root.querySelector<HTMLElement>(".oracle-chat__overlay")
     const dialog = root.querySelector<HTMLElement>(".oracle-chat")
     const historyContainer = root.querySelector<HTMLElement>("[data-oracle-history]")
     const form = root.querySelector<HTMLFormElement>("[data-oracle-form]")
@@ -1185,11 +1206,32 @@ const setupOracleWidget = () => {
     const sendButton = root.querySelector<HTMLButtonElement>("[data-oracle-send]")
     const closeButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='close']")
     const resetButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='reset']")
+  const statusElement = root.querySelector<HTMLElement>("[data-oracle-status-text]")
 
-    if (!launcher || !overlay || !dialog || !historyContainer || !form || !textArea || !sendButton) {
+    if (!launcher || !dialog || !historyContainer || !form || !textArea || !sendButton) {
       console.warn("ORA_CLE chat: widget markup missing expected elements")
       return
     }
+
+    let currentStatus: "online" | "offline" =
+      statusElement?.dataset.state === "offline" ? "offline" : "online"
+
+    const setStatus = (state: "online" | "offline") => {
+      if (currentStatus === state && statusElement?.dataset.state === state) {
+        return
+      }
+
+      currentStatus = state
+
+      if (!statusElement) {
+        return
+      }
+
+      statusElement.textContent = state === "online" ? "Bot status: Online" : "Bot status: Offline"
+      statusElement.dataset.state = state
+    }
+
+    setStatus(currentStatus)
 
     let state = loadState(storageKey)
     let lastUserQuestion = [...state.messages]
@@ -1219,7 +1261,13 @@ const setupOracleWidget = () => {
     let recaptchaClient: RecaptchaClient | undefined
     let activeController: AbortController | undefined
 
+    const prefersReducedMotion =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
+
     let chatOpen = false
+    const shouldRestoreOpen = readOpenState()
+  let closingAnimationHandler: ((event: AnimationEvent) => void) | undefined
+  let enteringAnimationHandler: ((event: AnimationEvent) => void) | undefined
 
     const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
       textArea.value = question
@@ -1244,41 +1292,111 @@ const setupOracleWidget = () => {
     updateSendButtonState()
 
     const closeChat = () => {
-    if (!chatOpen) {
-      return
-    }
-
-    chatOpen = false
-    dialog.classList.remove("oracle-chat--open")
-    dialog.setAttribute("aria-hidden", "true")
-    launcher.setAttribute("aria-expanded", "false")
-    document.body.classList.remove("oracle-chat-active")
-    restoreChat(dialog)
-    if (document.body.contains(launcher)) {
-      launcher.focus()
-    }
-    }
-
-    const openChat = async () => {
-    moveChatToBody(dialog)
-    dialog.classList.add("oracle-chat--open")
-    dialog.setAttribute("aria-hidden", "false")
-    launcher.setAttribute("aria-expanded", "true")
-    document.body.classList.add("oracle-chat-active")
-    chatOpen = true
-    state.lastOpenedAt = Date.now()
-    persistState(storageKey, state, config.maxHistory)
-
-    if (config.recaptchaSiteKey && !recaptchaClient) {
-      try {
-        recaptchaClient = await loadRecaptcha(config.recaptchaSiteKey)
-      } catch (error) {
-        console.warn("ORA_CLE chat: unable to load reCAPTCHA", error)
+      if (!chatOpen && !dialog.classList.contains("oracle-chat--open")) {
+        return
       }
+
+      chatOpen = false
+      writeOpenState(false)
+      launcher.setAttribute("aria-expanded", "false")
+
+      const finalizeClose = () => {
+        dialog.classList.remove("oracle-chat--closing")
+        dialog.classList.remove("oracle-chat--open")
+        dialog.classList.remove("oracle-chat--entering")
+        dialog.setAttribute("aria-hidden", "true")
+        document.body.classList.remove("oracle-chat-active")
+        restoreChat(dialog)
+        if (document.body.contains(launcher)) {
+          launcher.focus()
+        }
+      }
+
+      if (prefersReducedMotion) {
+        if (closingAnimationHandler) {
+          dialog.removeEventListener("animationend", closingAnimationHandler)
+          closingAnimationHandler = undefined
+        }
+        if (enteringAnimationHandler) {
+          dialog.removeEventListener("animationend", enteringAnimationHandler)
+          enteringAnimationHandler = undefined
+        }
+        finalizeClose()
+        return
+      }
+
+      const handleAnimationEnd = (event: AnimationEvent) => {
+        if (event.target !== dialog || event.animationName !== "oracle-chat-slide-out") {
+          return
+        }
+        dialog.removeEventListener("animationend", handleAnimationEnd)
+        closingAnimationHandler = undefined
+        finalizeClose()
+      }
+
+      if (closingAnimationHandler) {
+        dialog.removeEventListener("animationend", closingAnimationHandler)
+      }
+
+      dialog.addEventListener("animationend", handleAnimationEnd)
+      closingAnimationHandler = handleAnimationEnd
+      dialog.classList.remove("oracle-chat--entering")
+      dialog.classList.add("oracle-chat--closing")
     }
 
+    const openChat = async (options?: { autoFocus?: boolean; animate?: boolean }) => {
+      moveChatToBody(dialog)
+      if (closingAnimationHandler) {
+        dialog.removeEventListener("animationend", closingAnimationHandler)
+        closingAnimationHandler = undefined
+      }
+      if (enteringAnimationHandler) {
+        dialog.removeEventListener("animationend", enteringAnimationHandler)
+        enteringAnimationHandler = undefined
+      }
+      dialog.classList.remove("oracle-chat--closing")
+      dialog.classList.remove("oracle-chat--entering")
+      const shouldAnimate = (options?.animate ?? true) && !prefersReducedMotion
+      dialog.classList.add("oracle-chat--open")
+      dialog.setAttribute("aria-hidden", "false")
+      launcher.setAttribute("aria-expanded", "true")
+      document.body.classList.add("oracle-chat-active")
+      chatOpen = true
+      state.lastOpenedAt = Date.now()
+      persistState(storageKey, state, config.maxHistory)
+      writeOpenState(true)
+
+      if (shouldAnimate) {
+        const handleEnterEnd = (event: AnimationEvent) => {
+          if (event.target !== dialog || event.animationName !== "oracle-chat-slide-in") {
+            return
+          }
+          dialog.removeEventListener("animationend", handleEnterEnd)
+          enteringAnimationHandler = undefined
+          dialog.classList.remove("oracle-chat--entering")
+        }
+
+        dialog.addEventListener("animationend", handleEnterEnd)
+        enteringAnimationHandler = handleEnterEnd
+        // Trigger enter animation after listener is bound so first frame is captured
+        window.requestAnimationFrame(() => {
+          dialog.classList.add("oracle-chat--entering")
+        })
+      }
+
+      if (config.recaptchaSiteKey && !recaptchaClient) {
+        try {
+          recaptchaClient = await loadRecaptcha(config.recaptchaSiteKey)
+        } catch (error) {
+          console.warn("ORA_CLE chat: unable to load reCAPTCHA", error)
+        }
+      }
+
+      const shouldFocus = options?.autoFocus ?? true
       window.requestAnimationFrame(() => {
-        textArea.focus()
+        if (shouldFocus) {
+          textArea.focus()
+        }
         scrollHistoryToBottom(historyContainer)
       })
     }
@@ -1464,28 +1582,30 @@ const setupOracleWidget = () => {
       updateResetButton()
     }
 
+
     const showError = (error: unknown) => {
-    const content = error instanceof Error ? error.message : "Something went wrong. Please try again."
-    const errorMessage: OracleMessage = {
-      id: generateId(),
-      role: "error",
-      content,
-      createdAt: Date.now(),
-    }
-    appendMessage(errorMessage)
-    updateSendButtonState()
+      const content = error instanceof Error ? error.message : "Something went wrong. Please try again."
+      const errorMessage: OracleMessage = {
+        id: generateId(),
+        role: "error",
+        content,
+        createdAt: Date.now(),
+      }
+      appendMessage(errorMessage)
+      updateSendButtonState()
     }
 
     const sendMessage = async () => {
-    const trimmed = sanitiseContent(textArea.value.trim())
-    if (!trimmed) {
-      return
-    }
+      const trimmed = sanitiseContent(textArea.value.trim())
+      if (!trimmed) {
+        return
+      }
 
-    const now = Date.now()
-    if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
-      return
-    }
+      const now = Date.now()
+      if (now - lastSendTimestamp < SEND_COOLDOWN_MS) {
+        return
+      }
+
       lastSendTimestamp = now
       lastUserQuestion = trimmed
 
@@ -1494,11 +1614,11 @@ const setupOracleWidget = () => {
       }
 
       const userMessage: OracleMessage = {
-      id: generateId(),
-      role: "user",
-      content: trimmed,
-      createdAt: now,
-    }
+        id: generateId(),
+        role: "user",
+        content: trimmed,
+        createdAt: now,
+      }
 
       appendMessage(userMessage)
       emitAnalytics("oracle:question-submitted", {
@@ -1511,17 +1631,17 @@ const setupOracleWidget = () => {
       autoResize()
 
       const pendingReply: OracleMessage = {
-      id: generateId(),
-      role: "assistant",
-      content: "The ORA_CLE is thinking",
-      createdAt: Date.now(),
-      pending: true,
-    }
+        id: generateId(),
+        role: "assistant",
+        content: "The ORA_CLE is thinking",
+        createdAt: Date.now(),
+        pending: true,
+      }
 
       pendingReply.promptContext = trimmed
 
       appendMessage(pendingReply)
-  startContextStream(pendingReply.id, state.conversationId)
+      startContextStream(pendingReply.id, state.conversationId)
       updateSendButtonState()
 
       if (activeController) {
@@ -1540,7 +1660,7 @@ const setupOracleWidget = () => {
         }
       }
 
-  const body = buildRequestBody(trimmed, state, config, captchaToken, pendingReply.id)
+    const body = buildRequestBody(trimmed, state, config, captchaToken, pendingReply.id)
 
       try {
         const result = await tryFetch(requestUrl, body, config)
@@ -1577,6 +1697,9 @@ const setupOracleWidget = () => {
         }
 
         replacePendingWith(assistantMessage)
+        if (currentStatus !== "online") {
+          setStatus("online")
+        }
         updateSendButtonState()
 
         const sourcesCount = webPayload?.sources?.length ?? 0
@@ -1615,25 +1738,27 @@ const setupOracleWidget = () => {
         renderState(historyContainer, state, renderOptions)
         persistState(storageKey, state, config.maxHistory)
         showError(error)
+        if (
+          error instanceof Error &&
+          (/network request failed/i.test(error.message) || /failed to fetch/i.test(error.message))
+        ) {
+          setStatus("offline")
+        }
       }
     }
 
     const handleLauncherClick = () => {
-    openChat().catch((error) => {
-      console.warn("ORA_CLE chat: unable to open", error)
-    })
-    }
-
-    const handleOverlayClick = () => {
-    closeChat()
+      openChat().catch((error) => {
+        console.warn("ORA_CLE chat: unable to open", error)
+      })
     }
 
     const handleCloseClick = () => {
-    closeChat()
+      closeChat()
     }
 
     const handleResetClick = () => {
-    resetChat()
+      resetChat()
     }
 
     const handleFormSubmit = (event: Event) => {
@@ -1666,7 +1791,6 @@ const setupOracleWidget = () => {
     }
 
     launcher.addEventListener("click", handleLauncherClick)
-    overlay.addEventListener("click", handleOverlayClick)
     closeButton?.addEventListener("click", handleCloseClick)
     resetButton?.addEventListener("click", handleResetClick)
     form.addEventListener("submit", handleFormSubmit)
@@ -1674,20 +1798,35 @@ const setupOracleWidget = () => {
     textArea.addEventListener("keydown", handleTextareaKeydown)
     window.addEventListener("keydown", handleEscapeKey)
 
+    if (shouldRestoreOpen) {
+      window.requestAnimationFrame(() => {
+        openChat({ autoFocus: false, animate: false }).catch((error) => {
+          console.warn("ORA_CLE chat: unable to restore open state", error)
+          writeOpenState(false)
+        })
+      })
+    }
+
     window.addCleanup?.(() => {
       launcher.removeEventListener("click", handleLauncherClick)
-      overlay.removeEventListener("click", handleOverlayClick)
       closeButton?.removeEventListener("click", handleCloseClick)
       resetButton?.removeEventListener("click", handleResetClick)
       form.removeEventListener("submit", handleFormSubmit)
       textArea.removeEventListener("input", handleInput)
       textArea.removeEventListener("keydown", handleTextareaKeydown)
       window.removeEventListener("keydown", handleEscapeKey)
-      activeController?.abort()
-      if (chatOpen) {
-        dialog.classList.remove("oracle-chat--open")
-        dialog.setAttribute("aria-hidden", "true")
+      if (closingAnimationHandler) {
+        dialog.removeEventListener("animationend", closingAnimationHandler)
+        closingAnimationHandler = undefined
       }
+      if (enteringAnimationHandler) {
+        dialog.removeEventListener("animationend", enteringAnimationHandler)
+        enteringAnimationHandler = undefined
+      }
+      activeController?.abort()
+      chatOpen = false
+      dialog.classList.remove("oracle-chat--open", "oracle-chat--closing", "oracle-chat--entering")
+      dialog.setAttribute("aria-hidden", "true")
       document.body.classList.remove("oracle-chat-active")
       restoreChat(dialog)
     })
