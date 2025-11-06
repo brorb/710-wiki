@@ -22,7 +22,7 @@ The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[71
 
 ## Owners
 
-The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]].
+The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]] (see [[Community Posts]]).
 
 > [!discord-cite]- Discord citation (1 message)
 > 
@@ -50,8 +50,14 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 
 ## Profile Picture Changes
 
-![[710 Tone Channel profile picture in April 11th.png|500]]
-_7/10 Tone's profile picture in April 11th, 2025._
+```media-box
+Media: [[710 Tone Channel profile picture in April 11th.png]]
+Alt: 7/10 Tone's profile picture circa April 11th, 2025
+Caption: 7/10 Tone's profile picture from April 11th, 2025, note some of the original is slightly visible
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 ## 2025 Gradual Removal and Eventual Purge
 
