@@ -30,20 +30,19 @@ export function pageResources(
 ): StaticResources {
   const assetVersion = getAssetVersion()
   const versioned = (path: string) => `${path}?v=${assetVersion}`
-  const staticBase = joinSegments(baseDir, "..")
-  const contentIndexPath = versioned(joinSegments(staticBase, "static/contentIndex.json"))
+    const contentIndexPath = versioned(joinSegments(baseDir, "static/contentIndex.json"))
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
 
   const resources: StaticResources = {
     css: [
       {
-  content: versioned(joinSegments(staticBase, "index.css")),
+          content: versioned(joinSegments(baseDir, "index.css")),
       },
       ...staticResources.css,
     ],
     js: [
       {
-  src: versioned(joinSegments(staticBase, "prescript.js")),
+          src: versioned(joinSegments(baseDir, "prescript.js")),
         loadTime: "beforeDOMReady",
         contentType: "external",
       },
@@ -59,7 +58,7 @@ export function pageResources(
   }
 
   resources.js.push({
-  src: versioned(joinSegments(staticBase, "postscript.js")),
+      src: versioned(joinSegments(baseDir, "postscript.js")),
     loadTime: "afterDOMReady",
     moduleType: "module",
     contentType: "external",

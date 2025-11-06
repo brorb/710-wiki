@@ -165,12 +165,10 @@ export function normalizeHastElement(rawEl: HastElement, curBase: FullSlug, newB
 
 // resolve /a/b/c to ../..
 export function pathToRoot(slug: FullSlug): RelativeURL {
-  let rootPath = slug
-    .split("/")
-    .filter((x) => x !== "")
-    .slice(0, -1)
-    .map((_) => "..")
-    .join("/")
+  const segments = slug.split("/").filter((x) => x !== "")
+  const depth = Math.max(segments.length - 1, 0)
+  const needsExtraLevel = segments.at(-1)?.includes(".") ?? false
+  let rootPath = Array.from({ length: depth + (needsExtraLevel ? 1 : 0) }, () => "..").join("/")
 
   if (rootPath.length === 0) {
     rootPath = "."
