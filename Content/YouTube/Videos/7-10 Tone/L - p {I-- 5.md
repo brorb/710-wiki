@@ -8,8 +8,8 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-_Titled as "L - p {I-- 5^:"
-Uploaded 24 Jan 2025._
+Titled as "L - p {I-- 5^:"
+Uploaded 24 Jan 2025.
 
 **LOG: 738114679
 SYSTEM: 932719

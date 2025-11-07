@@ -10,8 +10,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-_Uploaded 1 May 2025._
-
+Uploaded 1 May 2025.
 
 ###### Video Summary:
 ---

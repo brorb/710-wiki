@@ -23,6 +23,7 @@ Notable appearances:
 - [[LOG-109.MP]]
 - [[LOG-111.mp4]]
 - [[LOG-132]]
+- [[ERE IS ONE PERSON I KNOW IT'S KE]] (chatroom)
 - [[STATION_8 TRIM 5]] (in chat)
 - [[STATION_8 TRIM 90]] (in chat)
 - [[STATION_8 TERMINAL 8]]
@@ -46,6 +47,8 @@ INDI always types in upper case letters[^1]. He seems kind-hearted and willing t
 ### [[Kepler]]
 
 His relationship with Kepler seems to be that of an employee to a supervisor. During the STATION_8 livestreams, [[Kepler]] would often supervise INDI as a way to try to not let him give away too much as to what was happening during the broadcast. Their tone towards him also seems to be somewhat distant, as if they didn't really want to be responsible for "that thing". They also seem to view INDI was an untrustworthy character yet necessary for whatever purpose they were trying to accomplish during the livestreams.
+
+---
 ### [[Travis]]
 
 Not much is known about the relationship between [[Travis]] and INDI, but from what little information is available, they seem to have a sort of professional relationship with each other, which seems to be friendlier than his relationship with [[Kepler]].
@@ -69,6 +72,7 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 7/10NPP (INDI): I ALREADY TOLD YOU WHY.
 ```
 
+---
 ### [[SYSTEM]]
 
 [[SYSTEM]] was originally created by INDI as a PCV package to be sent to [[REN]] servers ("as a way to get back at them"), until he forgot about [[SYSTEM]] and made it a moderator for the channel during [[STATION_8 TERMINAL 8]].<!-- discord-cite:cite-mhji29fj-8cqtzh --> 
@@ -111,10 +115,12 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 > }
 > ```
 
+---
 ## After [[STATION_8 TERMINAL 8]]
 
 After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]].
 
+---
 ## Gallery
 
 ```media-box
