@@ -10,10 +10,12 @@ tags:
 Title: Travis
 Image: ![[Content/Media/710 Media/Images/lm-2.png]]
 Caption: Travis' parting gift from [[prj_home.exe]].
+Also known as: TRAVIS@user ([[Private Room]] username)
 Appearances:
 - [[STATION_8 TRIM 5]]
 - [[Community posts]]
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] (name mentioned)
+- [[ERE IS ONE PERSON I KNOW IT'S KE]] (chatroom)
 Status: Dead
 ```
 
