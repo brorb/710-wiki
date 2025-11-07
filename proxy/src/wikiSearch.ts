@@ -42,6 +42,16 @@ export type SearchResult = {
 const DEFAULT_LIMIT = config.searchResultLimit ?? 8
 const MIN_QUERY_LENGTH = 2
 const CONTEXT_WINDOW_WORDS = 30
+const LOG_PATH_SIGNATURE = ["youtube", "videos", "7-10 tone"]
+const LOG_NUMBER_REGEX = /\d+/g
+const LOG_ALIAS_MAP_CANDIDATES = [
+  path.resolve(process.cwd(), "quartz-site/quartz/data/log_alias_map.json"),
+  path.resolve(process.cwd(), "quartz-site/data/log_alias_map.json"),
+  path.resolve(process.cwd(), "data/log_alias_map.json"),
+  path.resolve(process.cwd(), "../quartz-site/quartz/data/log_alias_map.json"),
+  path.resolve(process.cwd(), "../quartz-site/data/log_alias_map.json"),
+  path.resolve(process.cwd(), "../data/log_alias_map.json"),
+]
 
 const DEFAULT_INDEX_CANDIDATES = [
   path.resolve(process.cwd(), "quartz-site/public/static/contentIndex.json"),
@@ -147,6 +157,135 @@ const normaliseAliases = (aliases?: string[]): string[] => {
   return Array.from(seen)
 }
 
+const stripExtension = (value: string): string => value.replace(/\.[^.]+$/u, "")
+
+const basename = (value: string): string => {
+  const normalized = value.replace(/\\/g, "/")
+  const parts = normalized.split("/")
+  return parts.length > 0 ? parts[parts.length - 1] ?? value : value
+}
+
+const expandLogAlias = (label: string): string[] => {
+  const normalized = label.trim()
+  if (normalized.length === 0) {
+    return []
+  }
+  const tokens = new Set<string>()
+  const lowered = normalized.toLowerCase()
+  tokens.add(normalized)
+  tokens.add(lowered)
+
+  const digits = normalized.match(LOG_NUMBER_REGEX) ?? []
+  for (const sequence of digits) {
+    const trimmed = sequence.replace(/^0+(\d)/u, "$1")
+    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence
+    const variants = new Set([sequence, padded, trimmed])
+    for (const variant of variants) {
+      if (!variant) {
+        continue
+      }
+      tokens.add(variant)
+      tokens.add(`log ${variant}`)
+      tokens.add(`log-${variant}`)
+      tokens.add(`log${variant}`)
+      tokens.add(`log_${variant}`)
+    }
+  }
+
+  const collapsedSpace = normalized.replace(/\s+/g, " ")
+  const hyphenated = normalized.replace(/\s+/g, "-")
+  const compact = normalized.replace(/\s+/g, "")
+
+  tokens.add(collapsedSpace)
+  tokens.add(hyphenated)
+  tokens.add(compact)
+
+  return Array.from(tokens).filter((token) => token.length > 0)
+}
+
+type RawLogAliasMap = Record<string, string[]>
+
+let cachedLogAliasMap: Map<string, string[]> | null = null
+
+const buildLogAliasMap = (raw: RawLogAliasMap): Map<string, string[]> => {
+  return new Map<string, string[]>(
+    Object.entries(raw || {}).map(([rawKey, canonicalPieces]) => {
+      const normalizedKey = stripExtension(rawKey).trim().toLowerCase()
+      const aliasSet = new Set<string>()
+
+      expandLogAlias(rawKey).forEach((alias) => aliasSet.add(alias))
+
+      const stripped = stripExtension(rawKey)
+      aliasSet.add(stripped)
+      aliasSet.add(stripped.toLowerCase())
+
+      for (const piece of canonicalPieces ?? []) {
+        expandLogAlias(piece).forEach((alias) => aliasSet.add(alias))
+      }
+
+      return [normalizedKey, Array.from(aliasSet)]
+    }),
+  )
+}
+
+const loadRawLogAliasMap = async (): Promise<RawLogAliasMap> => {
+  for (const candidate of LOG_ALIAS_MAP_CANDIDATES) {
+    try {
+      const contents = await fs.readFile(candidate, "utf8")
+      return JSON.parse(contents) as RawLogAliasMap
+    } catch (error) {
+      continue
+    }
+  }
+  return {}
+}
+
+const ensureLogAliasMap = async (): Promise<Map<string, string[]>> => {
+  if (!cachedLogAliasMap) {
+    const raw = await loadRawLogAliasMap()
+    cachedLogAliasMap = buildLogAliasMap(raw)
+  }
+  return cachedLogAliasMap
+}
+
+const resetLogAliasCache = (): void => {
+  cachedLogAliasMap = null
+}
+
+const isLogEntry = (entry: SerializedContentDetails): boolean => {
+  const reference = entry.filePath || entry.slug
+  if (!reference) {
+    return false
+  }
+  const normalized = reference.replace(/\\/g, "/").toLowerCase()
+  return LOG_PATH_SIGNATURE.every((segment) => normalized.includes(segment))
+}
+
+const deriveLogAliases = (
+  entry: SerializedContentDetails,
+  aliasMap: Map<string, string[]>,
+): string[] => {
+  if (!isLogEntry(entry)) {
+    return []
+  }
+
+  const baseSegment = basename(entry.filePath || entry.slug)
+  const base = stripExtension(baseSegment)
+  if (!base) {
+    return []
+  }
+
+  const key = base.trim().toLowerCase()
+  const aliasSet = new Set<string>(aliasMap.get(key) ?? [])
+  expandLogAlias(base).forEach((alias) => aliasSet.add(alias))
+
+  return Array.from(aliasSet)
+}
+
+const mergeAliases = (entryAliases?: string[], derivedAliases?: string[]): string[] => {
+  return normaliseAliases([...(entryAliases ?? []), ...(derivedAliases ?? [])])
+}
+
 type FlexSearchDocument<T> = {
   addAsync: (id: number, doc: T) => Promise<void>
   searchAsync: (options: { query: string; limit: number; index: string[] }) => Promise<DefaultDocumentSearchResults<any>>
@@ -175,6 +314,7 @@ export class WikiSearchService {
   }
 
   async reload(): Promise<void> {
+    resetLogAliasCache()
     const data = await this.loadContentIndex()
     await this.populateIndex(data)
     this.lastLoadedAt = Date.now()
@@ -240,6 +380,8 @@ export class WikiSearchService {
       },
     })
 
+    const aliasMap = await ensureLogAliasMap()
+
     this.index = document
     this.documents.clear()
     this.slugToDoc.clear()
@@ -248,7 +390,8 @@ export class WikiSearchService {
     const tasks: Array<Promise<unknown>> = []
     for (const [slug, entry] of Object.entries(data)) {
       const id = nextId++
-      const aliases = normaliseAliases(entry.searchAliases)
+      const derivedAliases = deriveLogAliases(entry, aliasMap)
+      const aliases = mergeAliases(entry.searchAliases, derivedAliases)
       const aliasText = aliases.join(" ")
       const baseContent = entry.content ?? ""
       const contentWithAliases = aliasText ? `${baseContent}\n${aliasText}` : baseContent
