@@ -12,6 +12,7 @@ interface Item {
   content: string
   tags: string[]
   aliases: string[]
+  priority?: number
   [key: string]: any
 }
 
@@ -57,6 +58,27 @@ const fetchContentCache: Map<FullSlug, Element[]> = new Map()
 const contextWindowWords = 30
 const numSearchResults = 8
 const numTagResults = 5
+
+const normalizeTerm = (value: string): string =>
+  value
+    .toLowerCase()
+    .replace(/[\u2013\u2014]/g, "-")
+    .replace(/[_#/]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+
+const compactTerm = (value: string): string => normalizeTerm(value).replace(/\s+/g, "")
+
+const dedupe = <T>(values: T[]): T[] => {
+  const seen = new Set<T>()
+  const result: T[] = []
+  for (const value of values) {
+    if (seen.has(value)) continue
+    seen.add(value)
+    result.push(value)
+  }
+  return result
+}
 
 const tokenizeTerm = (term: string) => {
   const tokens = term.split(/\s+/).filter((t) => t.trim() !== "")
@@ -276,13 +298,106 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     }
   }
 
+  const computePriorityScore = (term: string, id: number): number => {
+    const slug = idDataMap[id]
+    const details = data[slug]
+    if (!details) {
+      return -id
+    }
+
+    const normalizedTerm = normalizeTerm(term)
+    const compactQuery = compactTerm(term)
+    const termTokens = normalizedTerm.split(" ").filter((token) => token.length > 0)
+    const digitTokens = dedupe(
+      (term.match(/\d+/g) ?? []).map((raw) => raw.replace(/^0+(\d)/, "$1").trim()),
+    ).filter((token) => token.length > 0)
+
+    const slugNormalized = normalizeTerm(slug)
+    const slugCompact = compactTerm(slug)
+    const titleNormalized = normalizeTerm(details.title ?? slug)
+    const titleCompact = compactTerm(details.title ?? slug)
+    const aliasList = (details.searchAliases ?? []).map((alias) => normalizeTerm(alias))
+    const aliasCompactList = aliasList.map((alias) => alias.replace(/\s+/g, ""))
+
+    let score = 0
+
+    if (aliasList.includes(normalizedTerm) || aliasCompactList.includes(compactQuery)) {
+      score += 1000
+    }
+
+    if (
+      aliasList.some((alias) => normalizedTerm.length > 0 && alias.includes(normalizedTerm)) ||
+      aliasCompactList.some(
+        (alias) => compactQuery.length > 0 && alias.includes(compactQuery.replace(/\s+/g, "")),
+      )
+    ) {
+      score += 400
+    }
+
+    if (digitTokens.length > 0) {
+      const aliasDigitMatch = aliasList.some((alias) =>
+        digitTokens.some((digit) => alias.includes(digit)),
+      )
+      if (aliasDigitMatch) {
+        score += 350
+      }
+
+      const slugDigitMatch = digitTokens.some(
+        (digit) => slugNormalized.includes(digit) || slugCompact.includes(digit),
+      )
+      if (slugDigitMatch) {
+        score += 250
+      }
+    }
+
+    if (titleNormalized === normalizedTerm || titleCompact === compactQuery) {
+      score += 600
+    } else if (
+      normalizedTerm.length > 0 &&
+      (titleNormalized.includes(normalizedTerm) || titleCompact.includes(compactQuery))
+    ) {
+      score += 250
+    }
+
+    if (slugNormalized === normalizedTerm || slugCompact === compactQuery) {
+      score += 500
+    } else if (
+      normalizedTerm.length > 0 &&
+      (slugNormalized.includes(normalizedTerm) || slugCompact.includes(compactQuery))
+    ) {
+      score += 200
+    }
+
+    if (termTokens.length > 1) {
+      const tokenMatches = termTokens.filter((token) => token.length > 0)
+      const aliasTokenMatch = aliasList.some((alias) =>
+        tokenMatches.every((token) => alias.includes(token)),
+      )
+      if (aliasTokenMatch) {
+        score += 150
+      }
+    }
+
+    const mentionsLog = /\blog\b/i.test(term)
+    if (mentionsLog && (details.tags ?? []).some((tag) => tag.toLowerCase().includes("log"))) {
+      score += 120
+    }
+
+    score -= id * 0.01
+
+    return score
+  }
+
   const formatForDisplay = (term: string, id: number) => {
     const slug = idDataMap[id]
     const storedTitle = data[slug].title ?? ""
     const fallbackTitle =
       storedTitle && storedTitle.trim().length > 0 ? storedTitle : slug.split("/").pop() ?? slug
     const aliasText = (data[slug].searchAliases ?? []).join(" ")
-    const combinedContent = aliasText ? `${data[slug].content ?? ""} ${aliasText}` : data[slug].content ?? ""
+    const combinedContent = aliasText
+      ? `${data[slug].content ?? ""} ${aliasText}`
+      : data[slug].content ?? ""
+    const priority = computePriorityScore(term, id)
     return {
       id,
       slug,
@@ -290,6 +405,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
       content: highlight(term, combinedContent, true),
       tags: highlightTags(term.substring(1), data[slug].tags),
       aliases: data[slug].searchAliases ?? [],
+      priority,
     }
   }
 
@@ -465,7 +581,10 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
       ...getByField("tags"),
       ...getByField("aliases"),
     ])
-    const finalResults = [...allIds].map((id) => formatForDisplay(currentSearchTerm, id))
+    const finalResults = [...allIds]
+      .map((id) => formatForDisplay(currentSearchTerm, id))
+      .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
+      .slice(0, numSearchResults)
     await displayResults(finalResults)
   }
 
