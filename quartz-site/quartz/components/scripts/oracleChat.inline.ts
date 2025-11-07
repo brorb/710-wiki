@@ -1136,10 +1136,52 @@ const tryFetch = async (
   return payload
 }
 
+type ScrollAnchor = {
+  messageId: string
+  offset: number
+}
+
 type RenderStateBehaviour = {
   autoScroll?: "bottom" | "preserve" | "none"
-  targetScrollTop?: number
+  anchor?: ScrollAnchor
   onScrollApplied?: () => void
+}
+
+const applyScrollAnchor = (container: HTMLElement, anchor: ScrollAnchor | undefined): boolean => {
+  if (!anchor?.messageId) {
+    return false
+  }
+
+  const target = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message")).find(
+    (element) => element.dataset.messageId === anchor.messageId,
+  )
+  if (!target) {
+    return false
+  }
+
+  const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
+  const desired = target.offsetTop + Math.max(0, Number.isFinite(anchor.offset) ? anchor.offset : 0)
+  const nextScrollTop = Math.min(maxScroll, Math.max(0, desired))
+  container.scrollTop = nextScrollTop
+  return true
+}
+
+const computeScrollAnchor = (container: HTMLElement): ScrollAnchor | undefined => {
+  const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
+  const scrollTop = container.scrollTop
+  if (maxScroll - scrollTop <= 2) {
+    return undefined
+  }
+
+  const messages = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message"))
+  const firstVisible = messages.find((element) => element.offsetTop + element.offsetHeight > scrollTop)
+  const id = firstVisible?.dataset.messageId
+  if (!firstVisible || !id) {
+    return undefined
+  }
+
+  const offset = Math.max(0, Math.min(firstVisible.offsetHeight, scrollTop - firstVisible.offsetTop))
+  return { messageId: id, offset }
 }
 
 const renderState = (
@@ -1149,7 +1191,6 @@ const renderState = (
   behaviour?: RenderStateBehaviour,
 ) => {
   const behaviourMode = behaviour?.autoScroll ?? "bottom"
-  const desiredScrollTop = behaviour?.targetScrollTop
 
   container.innerHTML = ""
   state.messages.forEach((message) => {
@@ -1160,11 +1201,11 @@ const renderState = (
       scrollHistoryToBottom(container, behaviour?.onScrollApplied)
     } else if (behaviourMode === "preserve") {
       window.requestAnimationFrame(() => {
-        const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
-        const nextScrollTop = typeof desiredScrollTop === "number" && Number.isFinite(desiredScrollTop)
-          ? Math.max(0, Math.min(maxScroll, desiredScrollTop))
-          : Math.max(0, Math.min(maxScroll, container.scrollTop))
-        container.scrollTop = nextScrollTop
+        const applied = applyScrollAnchor(container, behaviour?.anchor)
+        if (!applied) {
+          const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
+          container.scrollTop = Math.max(0, Math.min(maxScroll, container.scrollTop))
+        }
         behaviour?.onScrollApplied?.()
       })
     }
@@ -1198,7 +1239,7 @@ const setupOracleWidget = () => {
     const requestUrl = buildRequestUrl(config)
     const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
     const openStateKey = `${storageKey}::open`
-    const scrollPositionKey = `${storageKey}::scrollTop`
+    const scrollAnchorKey = `${storageKey}::scrollAnchor`
 
     const readOpenState = () => {
       try {
@@ -1221,29 +1262,34 @@ const setupOracleWidget = () => {
       }
     }
 
-    const readScrollPosition = (): number | undefined => {
+    const readScrollAnchor = (): ScrollAnchor | undefined => {
       try {
-        const raw = window.localStorage.getItem(scrollPositionKey)
-        if (raw === null) {
+        const raw = window.localStorage.getItem(scrollAnchorKey)
+        if (!raw) {
           return undefined
         }
-        const value = Number.parseFloat(raw)
-        return Number.isFinite(value) ? value : undefined
+        const parsed = JSON.parse(raw)
+        const messageId = typeof parsed?.messageId === "string" ? parsed.messageId : undefined
+        const offset = typeof parsed?.offset === "number" && Number.isFinite(parsed.offset) && parsed.offset >= 0
+          ? parsed.offset
+          : 0
+        return messageId ? { messageId, offset } : undefined
       } catch (error) {
-        console.warn("ORA_CLE chat: unable to read scroll position", error)
+        console.warn("ORA_CLE chat: unable to read scroll anchor", error)
         return undefined
       }
     }
 
-    const writeScrollPosition = (value: number | undefined) => {
+    const writeScrollAnchor = (anchor: ScrollAnchor | undefined) => {
       try {
-        if (typeof value === "number" && Number.isFinite(value)) {
-          window.localStorage.setItem(scrollPositionKey, value.toString())
+        if (anchor?.messageId) {
+          const payload = JSON.stringify({ messageId: anchor.messageId, offset: Math.max(0, anchor.offset) })
+          window.localStorage.setItem(scrollAnchorKey, payload)
         } else {
-          window.localStorage.removeItem(scrollPositionKey)
+          window.localStorage.removeItem(scrollAnchorKey)
         }
       } catch (error) {
-        console.warn("ORA_CLE chat: unable to persist scroll position", error)
+        console.warn("ORA_CLE chat: unable to persist scroll anchor", error)
       }
     }
 
@@ -1315,11 +1361,11 @@ const setupOracleWidget = () => {
 
     let chatOpen = false
     const shouldRestoreOpen = readOpenState()
-    const storedScrollTop = shouldRestoreOpen ? readScrollPosition() : undefined
-    let preservedScrollTop = storedScrollTop
-    const syncScrollPosition = () => {
-      preservedScrollTop = historyContainer.scrollTop
-      writeScrollPosition(preservedScrollTop)
+    const storedAnchor = shouldRestoreOpen ? readScrollAnchor() : undefined
+    let preservedAnchor = storedAnchor
+    const syncScrollAnchor = () => {
+      preservedAnchor = computeScrollAnchor(historyContainer)
+      writeScrollAnchor(preservedAnchor)
     }
     let scrollSyncHandle: number | undefined
     const handleHistoryScroll = () => {
@@ -1327,7 +1373,7 @@ const setupOracleWidget = () => {
         window.cancelAnimationFrame(scrollSyncHandle)
       }
       scrollSyncHandle = window.requestAnimationFrame(() => {
-        syncScrollPosition()
+        syncScrollAnchor()
         scrollSyncHandle = undefined
       })
     }
@@ -1353,10 +1399,10 @@ const setupOracleWidget = () => {
       getConversationId: () => state.conversationId ?? null,
     }
 
-    const initialRenderBehaviour: RenderStateBehaviour | undefined = storedScrollTop !== undefined
-      ? { autoScroll: "preserve", targetScrollTop: storedScrollTop, onScrollApplied: syncScrollPosition }
+    const initialRenderBehaviour: RenderStateBehaviour | undefined = storedAnchor
+      ? { autoScroll: "preserve", anchor: storedAnchor, onScrollApplied: syncScrollAnchor }
       : shouldRestoreOpen
-        ? { autoScroll: "bottom", onScrollApplied: syncScrollPosition }
+        ? { autoScroll: "bottom", onScrollApplied: syncScrollAnchor }
         : undefined
 
     renderState(historyContainer, state, renderOptions, initialRenderBehaviour)
@@ -1378,8 +1424,8 @@ const setupOracleWidget = () => {
           window.cancelAnimationFrame(scrollSyncHandle)
           scrollSyncHandle = undefined
         }
-        preservedScrollTop = undefined
-        writeScrollPosition(undefined)
+        preservedAnchor = undefined
+        writeScrollAnchor(undefined)
         dialog.classList.remove("oracle-chat--closing")
         dialog.classList.remove("oracle-chat--open")
         dialog.classList.remove("oracle-chat--entering")
@@ -1473,20 +1519,20 @@ const setupOracleWidget = () => {
 
       const shouldFocus = options?.autoFocus ?? true
       const shouldPreserveScroll = Boolean(options?.preserveScroll)
-      if (shouldPreserveScroll && typeof preservedScrollTop === "number") {
-        historyContainer.scrollTop = preservedScrollTop
+      if (shouldPreserveScroll && preservedAnchor) {
+        applyScrollAnchor(historyContainer, preservedAnchor)
       }
       window.requestAnimationFrame(() => {
         if (shouldFocus) {
           textArea.focus()
         }
         if (shouldPreserveScroll) {
-          if (typeof preservedScrollTop === "number") {
-            historyContainer.scrollTop = preservedScrollTop
+          if (preservedAnchor) {
+            applyScrollAnchor(historyContainer, preservedAnchor)
           }
-          syncScrollPosition()
+          syncScrollAnchor()
         } else {
-          scrollHistoryToBottom(historyContainer, syncScrollPosition)
+          scrollHistoryToBottom(historyContainer, syncScrollAnchor)
         }
       })
     }
@@ -1650,10 +1696,10 @@ const setupOracleWidget = () => {
       state = { messages: [] }
       lastUserQuestion = ""
       persistState(storageKey, state, config.maxHistory)
-    renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
-    historyContainer.scrollTop = 0
-    preservedScrollTop = 0
-    writeScrollPosition(0)
+      renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
+      historyContainer.scrollTop = 0
+      preservedAnchor = undefined
+      writeScrollAnchor(undefined)
       updateResetButton()
       updateSendButtonState()
       autoResize()
@@ -1662,7 +1708,7 @@ const setupOracleWidget = () => {
     const appendMessage = (message: OracleMessage) => {
       state.messages = [...state.messages, message]
       historyContainer.appendChild(createMessageElement(message, renderOptions))
-      scrollHistoryToBottom(historyContainer, syncScrollPosition)
+      scrollHistoryToBottom(historyContainer, syncScrollAnchor)
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
     }
@@ -1672,7 +1718,7 @@ const setupOracleWidget = () => {
       state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
       renderState(historyContainer, state, renderOptions, {
         autoScroll: "bottom",
-        onScrollApplied: syncScrollPosition,
+        onScrollApplied: syncScrollAnchor,
       })
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
@@ -1833,7 +1879,7 @@ const setupOracleWidget = () => {
         state.messages = state.messages.filter((entry) => !entry.pending)
         renderState(historyContainer, state, renderOptions, {
           autoScroll: "bottom",
-          onScrollApplied: syncScrollPosition,
+          onScrollApplied: syncScrollAnchor,
         })
         persistState(storageKey, state, config.maxHistory)
         showError(error)
