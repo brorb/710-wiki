@@ -9,7 +9,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-_Uploaded 31 Jan 2025._
+Uploaded 31 Jan 2025.
 
 **LOG: 472930126
 SYSTEM: 489203

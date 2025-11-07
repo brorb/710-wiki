@@ -10,7 +10,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-_Uploaded 27 Sept 2025, same as the [[710 NPP|7/10 NPP]] version._
+Uploaded 27 Sept 2025, same as the [[710 NPP|7/10 NPP]] version.
 
 **Description reads:** 
 88d.op  
