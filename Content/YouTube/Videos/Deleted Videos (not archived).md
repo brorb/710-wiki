@@ -37,7 +37,7 @@ Uploaded 14th November, 2024. The code "83#8###" was decoded from (allegedly) mo
 ## 2022
 
 **g j tone** (paraphrased title)
-Mentioned on Reddit, no information on what this video contained.
+Mentioned on Reddit, no information available on what this video contained.
 
 ---
 ## Unknown
