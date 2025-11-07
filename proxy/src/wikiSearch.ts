@@ -33,6 +33,9 @@ export type SearchResult = {
   title: string
   snippet: string
   score: number
+  literalScore: number
+  matchBonus?: number
+  rank: number
   tags: string[]
   aliases: string[]
   updated?: string
@@ -60,11 +63,98 @@ const DEFAULT_INDEX_CANDIDATES = [
   path.resolve(process.cwd(), "public/contentIndex.json"),
 ]
 
+const LITERAL_SEARCH_ENABLED = config.literalSearchEnabled ?? true
+const LITERAL_MAX_RESULTS = config.literalSearchMaxResults ?? 2
+const LITERAL_MIN_SCORE = config.literalSearchMinScore ?? 0.55
+const LITERAL_SCORE_BASE = config.literalSearchScoreBase ?? 0.78
+const LITERAL_SCORE_BONUS = config.literalSearchScoreBonus ?? 0.04
+const LITERAL_TITLE_MATCH_BOOST = config.literalSearchTitleMatchBoost ?? 0.35
+const SNIPPET_CHAR_LIMIT = config.literalSearchSnippetChars ?? 600
+
 const encoder = (value: string) =>
   value
     .toLowerCase()
     .split(/\s+/)
     .filter((token) => token.length > 0)
+
+const truncateSnippet = (value: string, limit: number): string => {
+  if (!value) {
+    return ""
+  }
+  if (value.length <= limit) {
+    return value
+  }
+  const truncated = value.slice(0, limit).trimEnd()
+  return truncated.length === 0 ? value.slice(0, limit) : `${truncated} …`
+}
+
+const normaliseKey = (input: string): string | null => {
+  if (!input) {
+    return null
+  }
+  const trimmed = input.trim().toLowerCase()
+  return trimmed.length > 0 ? trimmed : null
+}
+
+const collectKeyVariants = (value: string): string[] => {
+  const normalised = normaliseKey(value)
+  if (!normalised) {
+    return []
+  }
+
+  const variants = new Set<string>()
+  variants.add(normalised)
+
+  const collapsedSpaces = normalised.replace(/\s+/g, " ")
+  variants.add(collapsedSpaces)
+  variants.add(collapsedSpaces.replace(/\s+/g, "-"))
+  variants.add(collapsedSpaces.replace(/\s+/g, "_"))
+
+  const compact = normalised.replace(/[\s_-]+/g, "")
+  if (compact.length > 0) {
+    variants.add(compact)
+  }
+
+  const alnum = normalised.replace(/[^a-z0-9]+/g, "")
+  if (alnum.length > 0) {
+    variants.add(alnum)
+  }
+
+  return Array.from(variants)
+}
+
+const buildKeySet = (values: string[]): Set<string> => {
+  const keys = new Set<string>()
+  for (const value of values) {
+    collectKeyVariants(value).forEach((variant) => {
+      if (variant.length > 0) {
+        keys.add(variant)
+      }
+    })
+  }
+  return keys
+}
+
+const buildQueryKeySet = (query: string): Set<string> => {
+  const keys = buildKeySet([query])
+  const tokens = query
+    .split(/[\s,;:/\\|]+/)
+    .map((piece) => piece.trim())
+    .filter((piece) => piece.length > 0)
+  tokens.forEach((token) => {
+    collectKeyVariants(token).forEach((variant) => keys.add(variant))
+  })
+  return keys
+}
+
+const hasKeyIntersection = (a: Set<string>, b: Set<string>): boolean => {
+  for (const candidate of a) {
+    if (b.has(candidate)) {
+      return true
+    }
+  }
+  return false
+}
 
 type FieldWeight = "title" | "aliases" | "content" | "tags"
 
@@ -97,13 +187,13 @@ const tokenizeTerm = (term: string) => {
   return tokens.sort((a, b) => b.length - a.length)
 }
 
-const buildSnippet = (term: string, text: string): string => {
+const buildSnippet = (term: string, text: string, limit: number): string => {
   if (!text) {
     return ""
   }
   const tokenizedText = text.split(/\s+/).filter((piece) => piece.length > 0)
   if (tokenizedText.length === 0) {
-    return text.slice(0, 240)
+    return truncateSnippet(text, limit)
   }
 
   const termTokens = tokenizeTerm(term)
@@ -130,13 +220,10 @@ const buildSnippet = (term: string, text: string): string => {
 
   const slice = tokenizedText.slice(windowStart, windowEnd + 1).join(" ")
 
-  if (slice.length === text.length) {
-    return slice
-  }
-
   const prefix = windowStart === 0 ? "" : "…"
   const suffix = windowEnd === tokenizedText.length - 1 ? "" : "…"
-  return `${prefix}${slice}${suffix}`
+  const snippet = `${prefix}${slice}${suffix}`
+  return truncateSnippet(snippet, limit)
 }
 
 const normaliseAliases = (aliases?: string[]): string[] => {
@@ -424,7 +511,7 @@ export class WikiSearchService {
       return []
     }
 
-  const aggregated = new Map<number, AggregatedScore>()
+    const aggregated = new Map<number, AggregatedScore>()
     const fieldPriority: FieldWeight[] = ["title", "aliases", "content", "tags"]
 
     const getByField = (field: FieldWeight): number[] => {
@@ -455,7 +542,11 @@ export class WikiSearchService {
         }
         return a[1].priority - b[1].priority
       })
-      .slice(0, limit)
+      .slice(0, limit * 2)
+
+    const bestRawScore = sorted.length > 0 ? sorted[0][1].score : 0
+    const literalLimit = Math.max(1, Math.min(LITERAL_MAX_RESULTS, limit))
+    const queryKeys = buildQueryKeySet(query)
 
     const results: SearchResult[] = []
     for (const [id, meta] of sorted) {
@@ -463,16 +554,46 @@ export class WikiSearchService {
       if (!doc) {
         continue
       }
+
+      const normalizedScore = bestRawScore > 0 ? meta.score / bestRawScore : 0
+      if (LITERAL_SEARCH_ENABLED && normalizedScore < LITERAL_MIN_SCORE) {
+        continue
+      }
+
+      const aliasKeys = buildKeySet([doc.slug, doc.title, ...doc.aliases])
+      const hasExactMatch =
+        LITERAL_SEARCH_ENABLED &&
+        LITERAL_TITLE_MATCH_BOOST > 0 &&
+        hasKeyIntersection(aliasKeys, queryKeys)
+
+      const matchBonus = hasExactMatch ? LITERAL_TITLE_MATCH_BOOST : 0
+      const rank = results.length + 1
+
+      let finalScore = normalizedScore
+      if (LITERAL_SEARCH_ENABLED) {
+        const bonusMultiplier = Math.max(0, literalLimit - rank)
+        finalScore = LITERAL_SCORE_BASE + LITERAL_SCORE_BONUS * bonusMultiplier + matchBonus
+      }
+
+      const snippet = buildSnippet(query, doc.rawContent || doc.content, SNIPPET_CHAR_LIMIT)
+
       results.push({
         slug: doc.slug,
         title: doc.title,
-  snippet: buildSnippet(query, doc.rawContent || doc.content),
-        score: Number(meta.score.toFixed(4)),
+        snippet,
+        score: Number(finalScore.toFixed(4)),
+        literalScore: Number(normalizedScore.toFixed(4)),
+        matchBonus: matchBonus > 0 ? Number(matchBonus.toFixed(4)) : undefined,
+        rank,
         tags: doc.tags,
         aliases: doc.aliases,
         updated: doc.updated,
         url: this.options?.baseUrl ? new URL(doc.slug, this.options.baseUrl).toString() : undefined,
       })
+
+      if (results.length >= limit) {
+        break
+      }
     }
 
     return results
