@@ -17,6 +17,13 @@ const envSchema = z.object({
   WIKI_SEARCH_RESULT_LIMIT: z.string().optional(),
   WIKI_SEARCH_BASE_URL: z.string().url("WIKI_SEARCH_BASE_URL must be a valid URL").optional(),
   WIKI_SEARCH_API_KEY: z.string().optional(),
+  LITERAL_SEARCH_ENABLED: z.string().optional(),
+  LITERAL_SEARCH_MAX_RESULTS: z.string().optional(),
+  LITERAL_SEARCH_MIN_SCORE: z.string().optional(),
+  LITERAL_SEARCH_SCORE_BASE: z.string().optional(),
+  LITERAL_SEARCH_SCORE_BONUS: z.string().optional(),
+  LITERAL_SEARCH_TITLE_MATCH_BOOST: z.string().optional(),
+  LITERAL_SEARCH_SNIPPET_CHARS: z.string().optional(),
 })
 
 const raw = envSchema.parse(process.env)
@@ -67,6 +74,82 @@ export const config = {
   })(),
   searchBaseUrl: raw.WIKI_SEARCH_BASE_URL?.trim() || undefined,
   searchApiKey: raw.WIKI_SEARCH_API_KEY?.trim() || undefined,
+  literalSearchEnabled: (() => {
+    const candidate = raw.LITERAL_SEARCH_ENABLED?.trim().toLowerCase()
+    if (!candidate) {
+      return true
+    }
+    return ["1", "true", "yes", "on", "enabled"].includes(candidate)
+  })(),
+  literalSearchMaxResults: (() => {
+    const candidate = raw.LITERAL_SEARCH_MAX_RESULTS?.trim()
+    if (!candidate) {
+      return 2
+    }
+    const parsed = Number.parseInt(candidate, 10)
+    if (!Number.isFinite(parsed)) {
+      return 2
+    }
+    return Math.max(1, Math.min(parsed, 8))
+  })(),
+  literalSearchMinScore: (() => {
+    const candidate = raw.LITERAL_SEARCH_MIN_SCORE?.trim()
+    if (!candidate) {
+      return 0.55
+    }
+    const parsed = Number.parseFloat(candidate)
+    if (!Number.isFinite(parsed)) {
+      return 0.55
+    }
+    if (parsed < 0) {
+      return 0
+    }
+    if (parsed > 1) {
+      return 1
+    }
+    return parsed
+  })(),
+  literalSearchScoreBase: (() => {
+    const candidate = raw.LITERAL_SEARCH_SCORE_BASE?.trim()
+    if (!candidate) {
+      return 0.78
+    }
+    const parsed = Number.parseFloat(candidate)
+    return Number.isFinite(parsed) ? parsed : 0.78
+  })(),
+  literalSearchScoreBonus: (() => {
+    const candidate = raw.LITERAL_SEARCH_SCORE_BONUS?.trim()
+    if (!candidate) {
+      return 0.04
+    }
+    const parsed = Number.parseFloat(candidate)
+    if (!Number.isFinite(parsed)) {
+      return 0.04
+    }
+    return Math.max(0, parsed)
+  })(),
+  literalSearchTitleMatchBoost: (() => {
+    const candidate = raw.LITERAL_SEARCH_TITLE_MATCH_BOOST?.trim()
+    if (!candidate) {
+      return 0.35
+    }
+    const parsed = Number.parseFloat(candidate)
+    if (!Number.isFinite(parsed)) {
+      return 0.35
+    }
+    return Math.max(0, parsed)
+  })(),
+  literalSearchSnippetChars: (() => {
+    const candidate = raw.LITERAL_SEARCH_SNIPPET_CHARS?.trim()
+    if (!candidate) {
+      return 600
+    }
+    const parsed = Number.parseInt(candidate, 10)
+    if (!Number.isFinite(parsed)) {
+      return 600
+    }
+    return Math.max(120, parsed)
+  })(),
 } as const
 
 export type AppConfig = typeof config

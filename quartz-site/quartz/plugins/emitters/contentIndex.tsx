@@ -50,6 +50,13 @@ const defaultOptions: Options = {
 type LogAliasMap = Map<string, string[]>
 
 const VIDEO_PATH_INDICATORS = ["youtube/videos", "youtube/livestreams"]
+const MAX_ALIAS_OUTPUT = 80
+const ALIAS_SUBSTITUTIONS: Array<[RegExp, string]> = [
+  [/&/g, " and "],
+  [/@/g, " at "],
+  [/\+/g, " "],
+  [/:/g, " "],
+]
 
 const REMOVABLE_EXTENSIONS = new Set([
   "md",
@@ -105,6 +112,161 @@ function basename(value: string): string {
   const normalized = value.replace(/\\/g, "/")
   const parts = normalized.split("/")
   return parts.length > 0 ? parts[parts.length - 1] ?? value : value
+}
+
+function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch (error) {
+    return value
+  }
+}
+
+function sanitizeUrlSegment(segment: string): string {
+  const decoded = safeDecode(segment ?? "").trim()
+  if (!decoded) {
+    return ""
+  }
+  let normalized = decoded.replace(/'/g, "")
+  normalized = normalized.replace(/\s+/g, "-")
+  normalized = normalized.replace(/-+/g, "-")
+  normalized = normalized.replace(/^-+/, "").replace(/-+$/, "")
+  return normalized
+}
+
+function basicAliasForms(base: string): Set<string> {
+  const forms = new Set<string>()
+  const queue: string[] = [base]
+  while (queue.length > 0) {
+    const current = queue.pop() ?? ""
+    if (forms.has(current)) {
+      continue
+    }
+    forms.add(current)
+
+    for (const [pattern, replacement] of ALIAS_SUBSTITUTIONS) {
+      const replaced = current.replace(pattern, replacement)
+      if (!forms.has(replaced)) {
+        queue.push(replaced)
+      }
+      const stripped = current.replace(pattern, " ")
+      if (!forms.has(stripped)) {
+        queue.push(stripped)
+      }
+    }
+
+    const withoutQuotes = current.replace(/'/g, "")
+    if (!forms.has(withoutQuotes)) {
+      queue.push(withoutQuotes)
+    }
+
+    const withoutParens = current.replace(/[()]+/g, " ")
+    if (!forms.has(withoutParens)) {
+      queue.push(withoutParens)
+    }
+  }
+  return forms
+}
+
+function expandAliasVariants(raw: unknown): Set<string> {
+  if (raw == null) {
+    return new Set()
+  }
+
+  let base: string
+  if (Array.isArray(raw)) {
+    base = raw.map((item) => (item ?? "").toString()).join(" ")
+  } else if (typeof raw === "object") {
+    base = Object.values(raw as Record<string, unknown>)
+      .map((value) => (value ?? "").toString())
+      .join(" ")
+  } else {
+    base = raw.toString()
+  }
+
+  const trimmed = base.trim()
+  if (!trimmed) {
+    return new Set()
+  }
+
+  const variants = basicAliasForms(trimmed)
+  const results = new Set<string>()
+  for (const variant of variants) {
+    const value = variant.trim()
+    if (!value) {
+      continue
+    }
+    results.add(value)
+    results.add(value.toLowerCase())
+
+    const collapsed = value.replace(/\s+/g, "")
+    if (collapsed) {
+      results.add(collapsed)
+    }
+
+    const hyphenated = value.replace(/\s+/g, "-")
+    if (hyphenated) {
+      results.add(hyphenated)
+    }
+
+    const underscored = value.replace(/\s+/g, "_")
+    if (underscored) {
+      results.add(underscored)
+    }
+
+    const spaced = value.replace(/[-_/]+/g, " ").trim()
+    if (spaced) {
+      results.add(spaced)
+    }
+
+    const stripped = value.replace(/[^a-z0-9]+/gi, "").toLowerCase()
+    if (stripped) {
+      results.add(stripped)
+    }
+
+    const pieces = value.split(/[\s_\-/.]+/).filter((piece) => piece.length >= 2)
+    for (const piece of pieces) {
+      results.add(piece)
+      results.add(piece.toLowerCase())
+    }
+  }
+
+  return new Set(Array.from(results).filter((candidate) => candidate.length > 0))
+}
+
+function addAliasVariants(target: Set<string>, raw: unknown) {
+  const variants = expandAliasVariants(raw)
+  for (const variant of variants) {
+    target.add(variant)
+  }
+}
+
+function addPathAliases(target: Set<string>, relativePath: string | undefined) {
+  if (!relativePath) {
+    return
+  }
+  const normalized = relativePath.replace(/\\/g, "/").replace(/^\.\/+/, "")
+  if (!normalized) {
+    return
+  }
+
+  addAliasVariants(target, normalized)
+  const withoutExt = stripAllExtensions(normalized)
+  if (withoutExt && withoutExt !== normalized) {
+    addAliasVariants(target, withoutExt)
+  }
+
+  const segments = normalized.split("/").filter(Boolean)
+  const sanitizedSegments = segments.map((segment) => sanitizeUrlSegment(segment)).filter(Boolean)
+  if (sanitizedSegments.length > 0) {
+    addAliasVariants(target, sanitizedSegments.join("/"))
+  }
+  for (const [index, segment] of sanitizedSegments.entries()) {
+    addAliasVariants(target, segment)
+    if (index === sanitizedSegments.length - 1) {
+      addAliasVariants(target, segment.replace(/[^a-z0-9]+/gi, ""))
+    }
+  }
 }
 
 function expandLogAlias(label: string): string[] {
@@ -217,34 +379,51 @@ function shouldGenerateVideoAliases(relativePath: string | undefined): boolean {
 }
 
 function buildSearchAliases(
+  slug: FullSlug,
   relativePath: string | undefined,
+  title: string | undefined,
+  frontmatterAliases: unknown[] | undefined,
   logAliasMap: LogAliasMap,
 ): string[] | undefined {
-  if (!shouldGenerateVideoAliases(relativePath)) {
-    return undefined
-  }
-  const fileName = basename(relativePath ?? "")
-  const sanitizedBase = stripAllExtensions(fileName)
-  if (!sanitizedBase) {
-    return undefined
-  }
-
-  const key = sanitizedBase.toLowerCase()
   const aliases = new Set<string>()
-  const lookup = logAliasMap.get(key) ?? []
-  for (const alias of lookup) {
-    aliases.add(alias)
+
+  addAliasVariants(aliases, slug)
+  addAliasVariants(aliases, title)
+  if (frontmatterAliases) {
+    for (const candidate of frontmatterAliases) {
+      addAliasVariants(aliases, candidate)
+    }
+  }
+  addPathAliases(aliases, relativePath)
+
+  if (shouldGenerateVideoAliases(relativePath)) {
+    const fileName = basename(relativePath ?? "")
+    const sanitizedBase = stripAllExtensions(fileName)
+    if (sanitizedBase) {
+      const key = sanitizedBase.toLowerCase()
+      const lookup = logAliasMap.get(key) ?? []
+      lookup.forEach((alias) => addAliasVariants(aliases, alias))
+      expandLogAlias(sanitizedBase).forEach((variant) => addAliasVariants(aliases, variant))
+    }
   }
 
-  expandLogAlias(sanitizedBase).forEach((variant) => aliases.add(variant))
+  const aliasList = Array.from(aliases)
+    .map((alias) => alias.trim())
+    .filter((alias) => alias.length > 0)
 
-  const literalBase = sanitizedBase.trim()
-  if (literalBase) {
-    aliases.add(literalBase)
-    aliases.add(literalBase.toLowerCase())
+  if (aliasList.length === 0) {
+    return undefined
   }
 
-  return aliases.size > 0 ? Array.from(aliases) : undefined
+  const deduped = Array.from(new Set(aliasList))
+  deduped.sort((a, b) => {
+    if (a.length !== b.length) {
+      return a.length - b.length
+    }
+    return a.localeCompare(b)
+  })
+
+  return deduped.slice(0, MAX_ALIAS_OUTPUT)
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
@@ -315,10 +494,28 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         const slug = file.data.slug!
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
+          const frontmatter = (file.data.frontmatter ?? {}) as Record<string, unknown>
+          const title = (frontmatter["title"] as string | undefined) ?? slug
+          const frontmatterAliasCandidates: unknown[] = []
+          if (frontmatter["aliases"] !== undefined) {
+            frontmatterAliasCandidates.push(frontmatter["aliases"])
+          }
+          if (frontmatter["alias"] !== undefined) {
+            frontmatterAliasCandidates.push(frontmatter["alias"])
+          }
+          if (frontmatter["aka"] !== undefined) {
+            frontmatterAliasCandidates.push(frontmatter["aka"])
+          }
+          if (frontmatter["searchAliases"] !== undefined) {
+            frontmatterAliasCandidates.push(frontmatter["searchAliases"])
+          }
+
+          const frontmatterAliases = frontmatterAliasCandidates.length > 0 ? frontmatterAliasCandidates : undefined
+
           linkIndex.set(slug, {
             slug,
             filePath: file.data.relativePath!,
-            title: file.data.frontmatter?.title!,
+            title,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",
@@ -327,7 +524,13 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
               : undefined,
             date: date,
             description: file.data.description ?? "",
-            searchAliases: buildSearchAliases(file.data.relativePath, logAliasMap),
+            searchAliases: buildSearchAliases(
+              slug,
+              file.data.relativePath,
+              title,
+              frontmatterAliases,
+              logAliasMap,
+            ),
           })
         }
       }
