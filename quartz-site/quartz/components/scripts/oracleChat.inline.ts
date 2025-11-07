@@ -1212,6 +1212,58 @@ const applyScrollSnapshot = (container: HTMLElement, snapshot: ScrollSnapshot | 
   return true
 }
 
+const restoreScrollSnapshot = (
+  container: HTMLElement,
+  snapshot: ScrollSnapshot | undefined,
+  options?: { attempts?: number; onAfterApply?: () => void },
+) => {
+  if (!snapshot) {
+    options?.onAfterApply?.()
+    return
+  }
+
+  const maxAttempts = Math.max(1, options?.attempts ?? 6)
+  let attempt = 0
+
+  const notify = () => {
+    options?.onAfterApply?.()
+  }
+
+  const step = () => {
+    applyScrollSnapshot(container, snapshot)
+    attempt += 1
+    if (attempt < maxAttempts) {
+      window.requestAnimationFrame(step)
+    } else {
+      notify()
+    }
+  }
+
+  step()
+
+  const reapply = () => {
+    applyScrollSnapshot(container, snapshot)
+    notify()
+  }
+
+  if (document.fonts && document.fonts.status === "loading") {
+    document.fonts
+      .ready
+      .then(reapply)
+      .catch(() => undefined)
+  }
+
+  const pendingImages = Array.from(container.querySelectorAll("img")).filter(
+    (element): element is HTMLImageElement => element instanceof HTMLImageElement && !element.complete,
+  )
+  if (pendingImages.length > 0) {
+    pendingImages.forEach((img) => {
+      img.addEventListener("load", reapply, { once: true })
+      img.addEventListener("error", reapply, { once: true })
+    })
+  }
+}
+
 const renderState = (
   container: HTMLElement,
   state: OracleState,
@@ -1228,15 +1280,12 @@ const renderState = (
     if (behaviourMode === "bottom") {
       scrollHistoryToBottom(container, behaviour?.onScrollApplied)
     } else if (behaviourMode === "preserve") {
-      window.requestAnimationFrame(() => {
-        const applied = applyScrollSnapshot(container, behaviour?.snapshot)
-        if (!applied) {
-          const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
-          container.scrollTop = clampScroll(container.scrollTop, 0, maxScroll)
-        }
-        behaviour?.onScrollApplied?.()
+      restoreScrollSnapshot(container, behaviour?.snapshot, {
+        onAfterApply: behaviour?.onScrollApplied,
       })
     }
+  } else if (behaviourMode === "preserve") {
+    behaviour?.onScrollApplied?.()
   }
 }
 
@@ -1576,20 +1625,29 @@ const setupOracleWidget = () => {
 
       const shouldFocus = options?.autoFocus ?? true
       const shouldPreserveScroll = Boolean(options?.preserveScroll)
-      if (shouldPreserveScroll && preservedSnapshot) {
-        applyScrollSnapshot(historyContainer, preservedSnapshot)
+
+      const applyScrollBehaviour = () => {
+        if (shouldPreserveScroll && preservedSnapshot) {
+          restoreScrollSnapshot(historyContainer, preservedSnapshot, {
+            onAfterApply: syncScrollSnapshot,
+          })
+        } else if (shouldPreserveScroll) {
+          window.requestAnimationFrame(() => {
+            syncScrollSnapshot()
+          })
+        } else {
+          scrollHistoryToBottom(historyContainer, syncScrollSnapshot)
+        }
       }
+
+      applyScrollBehaviour()
+
       window.requestAnimationFrame(() => {
         if (shouldFocus) {
           textArea.focus()
         }
-        if (shouldPreserveScroll) {
-          if (preservedSnapshot) {
-            applyScrollSnapshot(historyContainer, preservedSnapshot)
-          }
-          syncScrollSnapshot()
-        } else {
-          scrollHistoryToBottom(historyContainer, syncScrollSnapshot)
+        if (!shouldPreserveScroll) {
+          applyScrollBehaviour()
         }
       })
     }

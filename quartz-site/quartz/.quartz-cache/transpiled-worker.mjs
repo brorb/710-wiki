@@ -4047,7 +4047,7 @@ var assetLookupCache = /* @__PURE__ */ new Map();
 var slugLookupCache = /* @__PURE__ */ new Map();
 var slugLookupInitialised = false;
 var escapeForGlob = /* @__PURE__ */ __name((value) => value.replace(/([*?\[\]{}()!+@\\])/g, "\\$1"), "escapeForGlob");
-var expandBasenameCandidates = /* @__PURE__ */ __name((basename) => {
+var expandBasenameCandidates = /* @__PURE__ */ __name((basename2) => {
   const candidates = [];
   const seen = /* @__PURE__ */ new Set();
   const addCandidate = /* @__PURE__ */ __name((value) => {
@@ -4065,24 +4065,24 @@ var expandBasenameCandidates = /* @__PURE__ */ __name((basename) => {
     seen.add(key);
     candidates.push(trimmed);
   }, "addCandidate");
-  addCandidate(basename);
+  addCandidate(basename2);
   try {
-    addCandidate(decodeURIComponent(basename));
+    addCandidate(decodeURIComponent(basename2));
   } catch {
   }
-  const hyphenAsSpace = basename.replace(/-/g, " ");
+  const hyphenAsSpace = basename2.replace(/-/g, " ");
   addCandidate(hyphenAsSpace);
   try {
     addCandidate(decodeURIComponent(hyphenAsSpace));
   } catch {
   }
-  const underscoreAsSpace = basename.replace(/_/g, " ");
+  const underscoreAsSpace = basename2.replace(/_/g, " ");
   addCandidate(underscoreAsSpace);
   try {
     addCandidate(decodeURIComponent(underscoreAsSpace));
   } catch {
   }
-  const spacesAsHyphen = basename.replace(/\s+/g, "-");
+  const spacesAsHyphen = basename2.replace(/\s+/g, "-");
   addCandidate(spacesAsHyphen);
   return candidates;
 }, "expandBasenameCandidates");
@@ -4105,13 +4105,13 @@ var ensureSlugLookup = /* @__PURE__ */ __name(() => {
   });
   slugLookupInitialised = true;
 }, "ensureSlugLookup");
-var findAssetByBasename = /* @__PURE__ */ __name((basename) => {
-  const key = basename.toLowerCase();
+var findAssetByBasename = /* @__PURE__ */ __name((basename2) => {
+  const key = basename2.toLowerCase();
   if (assetLookupCache.has(key)) {
     const cached = assetLookupCache.get(key);
     return cached === null ? void 0 : cached;
   }
-  const candidates = expandBasenameCandidates(basename);
+  const candidates = expandBasenameCandidates(basename2);
   for (const candidate of candidates) {
     const pattern = `**/${escapeForGlob(candidate)}`;
     const matches = globbySync(pattern, {
@@ -4131,7 +4131,7 @@ var findAssetByBasename = /* @__PURE__ */ __name((basename) => {
     }
   }
   ensureSlugLookup();
-  const slugKey = slugifyFilePath(basename).toLowerCase();
+  const slugKey = slugifyFilePath(basename2).toLowerCase();
   if (slugLookupCache.has(slugKey)) {
     const mapped = slugLookupCache.get(slugKey);
     if (mapped) {
@@ -5861,13 +5861,13 @@ var CONTENT_ROOT2 = path5.resolve(process.cwd(), "../Content");
 var assetLookupCache2 = /* @__PURE__ */ new Map();
 var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
-var findAssetByBasename2 = /* @__PURE__ */ __name((basename) => {
-  const key = basename.toLowerCase();
+var findAssetByBasename2 = /* @__PURE__ */ __name((basename2) => {
+  const key = basename2.toLowerCase();
   if (assetLookupCache2.has(key)) {
     const cached = assetLookupCache2.get(key);
     return cached === null ? void 0 : cached;
   }
-  const matches = globbySync2(`**/${basename}`, {
+  const matches = globbySync2(`**/${basename2}`, {
     cwd: CONTENT_ROOT2,
     caseSensitiveMatch: false,
     onlyFiles: true
@@ -11023,8 +11023,8 @@ var oracleWidgetStyles = `
 .oracle-chat__dismiss-tab {
   position: absolute;
   top: 50%;
-  left: -3.15rem;
-  transform: translate(-0.4rem, -50%);
+  left: -1px;
+  transform: translate(calc(-100% - 0.85rem), -50%);
   width: 2.75rem;
   height: 5.4rem;
   z-index: 1;
@@ -11067,13 +11067,14 @@ var oracleWidgetStyles = `
 .oracle-chat.oracle-chat--open .oracle-chat__dismiss-tab {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(0, -50%);
+  transform: translate(-100%, -50%);
 }
 
 .oracle-chat__dismiss-icon {
   width: 1.4rem;
   height: 1.4rem;
   fill: currentColor;
+  transform: scaleX(-1);
 }
 
 .oracle-chat__header {
@@ -12141,6 +12142,128 @@ var FolderPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/contentIndex.tsx
 import { toHtml as toHtml2 } from "hast-util-to-html";
+
+// quartz/data/log_alias_map.json
+var log_alias_map_default = {
+  "LOG-156": [],
+  "LOG-155": [],
+  "LOG-154": [],
+  "LOG-147": [],
+  "LOG-142": [],
+  "LOG-141": [],
+  "LOG- _ _ _ ": [],
+  "LOG.138": [],
+  "LOG-136": [],
+  "LOG-137": [],
+  "LOG-135": [],
+  "LOG-134": [],
+  "33LOG-13": [
+    "LOG 133"
+  ],
+  "LOG-132": [],
+  "log-131": [],
+  "LOG-129": [],
+  "LOG-128": [],
+  "LOG-127": [],
+  "LOG-126": [],
+  "LOG-125": [],
+  "LOG-124": [],
+  "LOG-123": [],
+  "LOG-116": [],
+  "LOG-113": [],
+  "LOG-112": [],
+  "LOG-111": [],
+  "LOG-110": [],
+  "LOG-109": [],
+  "LOG-10444444444444444444444": [
+    "log 104"
+  ],
+  "LOG-103": [],
+  "LOG-102": [],
+  "LOG-100": [],
+  "LOG-99": [],
+  "LOG-96": [],
+  "LOG-95": [],
+  "LOG-93": [],
+  "LOG-92": [],
+  "LOG-90": [],
+  "LOG-89": [],
+  "LOG-88": [],
+  "LOG-87": [],
+  "LOG-86": [],
+  "LOG-85": [],
+  "LOG-84": [],
+  "LOG-83": [],
+  "LOG-78": [],
+  "LOG-77": [],
+  "LOG-76": [],
+  "LOG-74": [],
+  "LOG-73": [],
+  "LOG-72": [],
+  "LOG-71": [],
+  "LOG-70": [],
+  "LOG-69": [],
+  "LOG-68": [],
+  "LOG-67": [],
+  "LOG-66": [],
+  "LOG-65": [],
+  "LOG-64": [],
+  "LOG-63": [],
+  "LOG-62": [],
+  "LOG-48": [],
+  "LOG-47": [],
+  "LOG--": [
+    "log 45",
+    "log 46"
+  ],
+  "LOG-44": [],
+  "LOG-43": [],
+  "LOG-42": [],
+  "LOG-41": [],
+  "LOG-40": [],
+  "LOG-39.": [
+    "log 39.5"
+  ],
+  "LOG-39": [],
+  "LOG-38": [],
+  "LOG-37": [],
+  "LOG-36": [],
+  "LOG-35": [],
+  "LOG-34": [],
+  "LOG-33": [],
+  "LOG-32": [],
+  "LOG-31": [],
+  "30": [
+    "log 30"
+  ],
+  "LOG-29": [],
+  "LOG-28": [],
+  "LOG-27": [],
+  "LOG-26": [],
+  "LOG-25": [],
+  "LLOOGG--2211.": [
+    "log 21"
+  ],
+  "LOG-20...": [],
+  "LOG-17": [],
+  "LOG-15": [],
+  "LOG-14.mp4 .": [],
+  "LOG-13": [],
+  "LOG-12": [],
+  "LOG-11": [],
+  "LOG-10": [],
+  "LOG-9": [],
+  "LOG-008": [],
+  "LOG-007": [],
+  "LOG-005": [],
+  "LOG-006": [],
+  "LOG-004": [],
+  "LOG-003": [],
+  "LOG-002": [],
+  "LOG-46": []
+};
+
+// quartz/plugins/emitters/contentIndex.tsx
 import { jsx as jsx40 } from "preact/jsx-runtime";
 var defaultOptions17 = {
   enableSiteMap: true,
@@ -12150,6 +12273,91 @@ var defaultOptions17 = {
   rssSlug: "index",
   includeEmptyFiles: true
 };
+var LOG_PATH_SIGNATURE = ["content", "youtube", "videos", "7-10 tone"];
+var LOG_NUMBER_REGEX = /\d+/g;
+function stripExtension(value) {
+  return value.replace(/\.[^.]+$/u, "");
+}
+__name(stripExtension, "stripExtension");
+function basename(value) {
+  const normalized = value.replace(/\\/g, "/");
+  const parts = normalized.split("/");
+  return parts.length > 0 ? parts[parts.length - 1] ?? value : value;
+}
+__name(basename, "basename");
+function expandLogAlias(label) {
+  const normalized = label.trim();
+  if (normalized.length === 0) {
+    return [];
+  }
+  const tokens = /* @__PURE__ */ new Set();
+  const lowered = normalized.toLowerCase();
+  tokens.add(normalized);
+  tokens.add(lowered);
+  const digits = normalized.match(LOG_NUMBER_REGEX) ?? [];
+  for (const sequence of digits) {
+    const trimmed = sequence.replace(/^0+(\d)/u, "$1");
+    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence;
+    const variants = /* @__PURE__ */ new Set([sequence, padded, trimmed]);
+    for (const variant of variants) {
+      if (!variant) continue;
+      tokens.add(variant);
+      tokens.add(`log ${variant}`);
+      tokens.add(`log-${variant}`);
+      tokens.add(`log${variant}`);
+      tokens.add(`log_${variant}`);
+    }
+  }
+  const collapsedSpace = normalized.replace(/\s+/g, " ");
+  const hyphenated = normalized.replace(/\s+/g, "-");
+  const compact = normalized.replace(/\s+/g, "");
+  tokens.add(collapsedSpace);
+  tokens.add(hyphenated);
+  tokens.add(compact);
+  return Array.from(tokens).filter((token) => token.length > 0);
+}
+__name(expandLogAlias, "expandLogAlias");
+var RAW_LOG_ALIAS_MAP = log_alias_map_default || {};
+var LOG_ALIAS_MAP = new Map(
+  Object.entries(RAW_LOG_ALIAS_MAP).map(([rawKey, canonicalPieces]) => {
+    const normalizedKey = stripExtension(rawKey).trim().toLowerCase();
+    const aliasSet = /* @__PURE__ */ new Set();
+    expandLogAlias(rawKey).forEach((alias) => aliasSet.add(alias));
+    const stripped = stripExtension(rawKey);
+    aliasSet.add(stripped);
+    aliasSet.add(stripped.toLowerCase());
+    for (const piece of canonicalPieces || []) {
+      expandLogAlias(piece).forEach((alias) => aliasSet.add(alias));
+    }
+    return [normalizedKey, Array.from(aliasSet)];
+  })
+);
+function isLogRelativePath(relativePath) {
+  if (!relativePath) {
+    return false;
+  }
+  const normalized = relativePath.replace(/\\/g, "/").toLowerCase();
+  return LOG_PATH_SIGNATURE.every((segment) => normalized.includes(segment));
+}
+__name(isLogRelativePath, "isLogRelativePath");
+function buildSearchAliases(relativePath, logAliasMap) {
+  if (!isLogRelativePath(relativePath)) {
+    return void 0;
+  }
+  const base = stripExtension(basename(relativePath ?? ""));
+  if (!base) {
+    return void 0;
+  }
+  const key = base.toLowerCase();
+  const aliases = /* @__PURE__ */ new Set();
+  const lookup = logAliasMap.get(key) ?? [];
+  for (const alias of lookup) {
+    expandLogAlias(alias).forEach((variant) => aliases.add(variant));
+  }
+  expandLogAlias(base).forEach((variant) => aliases.add(variant));
+  return aliases.size > 0 ? Array.from(aliases) : void 0;
+}
+__name(buildSearchAliases, "buildSearchAliases");
 function generateSiteMap(cfg, idx) {
   const base = cfg.baseUrl ?? "";
   const createURLEntry = /* @__PURE__ */ __name((slug, content) => `<url>
@@ -12197,6 +12405,7 @@ function generateRSSFeed(cfg, idx, limit) {
 __name(generateRSSFeed, "generateRSSFeed");
 var ContentIndex = /* @__PURE__ */ __name((opts) => {
   opts = { ...defaultOptions17, ...opts };
+  const logAliasMap = LOG_ALIAS_MAP;
   return {
     name: "ContentIndex",
     async *emit(ctx, content) {
@@ -12215,7 +12424,8 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
             content: file.data.text ?? "",
             richContent: opts?.rssFullHtml ? escapeHTML(toHtml2(tree, { allowDangerousHtml: true })) : void 0,
             date,
-            description: file.data.description ?? ""
+            description: file.data.description ?? "",
+            searchAliases: buildSearchAliases(file.data.relativePath, logAliasMap)
           });
         }
       }
@@ -12243,7 +12453,8 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
             slug,
             {
               ...rest,
-              updated: date?.toISOString()
+              updated: date?.toISOString(),
+              searchAliases: content2.searchAliases
             }
           ];
         }

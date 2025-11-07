@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url"
 import { config } from "./config.js"
 import { oracleRequestSchema } from "./schema.js"
 import { isRecaptchaEnabled, verifyRecaptcha } from "./recaptcha.js"
+import { wikiSearchService } from "./wikiSearch.js"
 
 const UPSTREAM_TIMEOUT_MS = Number.parseInt(process.env.UPSTREAM_TIMEOUT_MS ?? "", 10) || 65_000
 const DEBUG_PROXY = (process.env.DEBUG_PROXY ?? "").trim().toLowerCase()
@@ -223,7 +224,7 @@ const corsOptions: CorsOptions = {
 
     return callback(new Error("Not allowed by CORS"))
   },
-  methods: ["POST", "OPTIONS"],
+  methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: [
     "Content-Type",
     "X-Requested-With",
@@ -244,6 +245,56 @@ app.use(express.json({ limit: config.requestBodyLimit }))
 
 app.get("/healthz", (_req: Request, res: Response) => {
   res.json({ status: "ok" })
+})
+
+app.get("/api/wiki-search", async (req: Request, res: Response) => {
+  const requestId = createRequestId()
+  const startedAt = Date.now()
+  res.setHeader("X-Request-Id", requestId)
+
+  if (config.searchApiKey) {
+    const authHeader = req.get("x-oracle-search-key") ?? req.get("authorization")
+    const extracted = authHeader?.replace(/^(Bearer|Token)\s+/i, "").trim()
+    if (!extracted || extracted !== config.searchApiKey) {
+      debugLog(`search ${requestId} blocked`, { reason: "auth" })
+      return res.status(403).json({ success: false, reason: "Forbidden" })
+    }
+  }
+
+  const query = getQueryParam(req.query.q)
+  if (!query) {
+    return res.status(400).json({ success: false, reason: "Missing query" })
+  }
+
+  if (query.trim().length < 2) {
+    return res.status(400).json({ success: false, reason: "Query too short" })
+  }
+
+  const limitParam = getQueryParam(req.query.limit)
+  const refreshParam = getQueryParam(req.query.refresh)
+  const limit = limitParam ? Number.parseInt(limitParam, 10) : undefined
+  const effectiveLimit = limit && Number.isFinite(limit) ? Math.min(Math.max(limit, 1), 25) : undefined
+
+  try {
+    if (refreshParam && ["1", "true", "refresh"].includes(refreshParam.toLowerCase())) {
+      await wikiSearchService.reload()
+    }
+
+    const results = await wikiSearchService.search(query, effectiveLimit)
+    const tookMs = Date.now() - startedAt
+    debugLog(`search ${requestId} ok`, { query, count: results.length, tookMs })
+    return res.json({
+      success: true,
+      query,
+      results,
+      count: results.length,
+      tookMs,
+      lastLoadedAt: wikiSearchService.getLastLoadedAt(),
+    })
+  } catch (error) {
+    console.error("⚠️ [Proxy] Wiki search failed", { requestId, query, error })
+    return res.status(500).json({ success: false, reason: "Search failed" })
+  }
 })
 
 app.post("/api/oracle/query", async (req: Request, res: Response) => {

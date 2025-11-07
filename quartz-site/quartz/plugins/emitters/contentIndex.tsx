@@ -7,6 +7,8 @@ import { QuartzEmitterPlugin } from "../types"
 import { toHtml } from "hast-util-to-html"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
+// @ts-ignore – JSON import used for build-time alias hydration
+import logAliasMapJson from "../../data/log_alias_map.json"
 
 export type ContentIndexMap = Map<FullSlug, ContentDetails>
 export type ContentDetails = {
@@ -19,10 +21,12 @@ export type ContentDetails = {
   richContent?: string
   date?: Date
   description?: string
+  searchAliases?: string[]
 }
 
 export type SerializedContentDetails = Omit<ContentDetails, "date" | "description"> & {
   updated?: string
+  searchAliases?: string[]
 }
 
 interface Options {
@@ -41,6 +45,107 @@ const defaultOptions: Options = {
   rssFullHtml: false,
   rssSlug: "index",
   includeEmptyFiles: true,
+}
+
+type LogAliasMap = Map<string, string[]>
+
+const LOG_PATH_SIGNATURE = ["content", "youtube", "videos", "7-10 tone"]
+
+const LOG_NUMBER_REGEX = /\d+/g
+
+function stripExtension(value: string): string {
+  return value.replace(/\.[^.]+$/u, "")
+}
+
+function basename(value: string): string {
+  const normalized = value.replace(/\\/g, "/")
+  const parts = normalized.split("/")
+  return parts.length > 0 ? parts[parts.length - 1] ?? value : value
+}
+
+function expandLogAlias(label: string): string[] {
+  const normalized = label.trim()
+  if (normalized.length === 0) {
+    return []
+  }
+  const tokens = new Set<string>()
+  const lowered = normalized.toLowerCase()
+  tokens.add(normalized)
+  tokens.add(lowered)
+
+  const digits = normalized.match(LOG_NUMBER_REGEX) ?? []
+  for (const sequence of digits) {
+    const trimmed = sequence.replace(/^0+(\d)/u, "$1")
+    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence
+    const variants = new Set([sequence, padded, trimmed])
+    for (const variant of variants) {
+      if (!variant) continue
+      tokens.add(variant)
+      tokens.add(`log ${variant}`)
+      tokens.add(`log-${variant}`)
+      tokens.add(`log${variant}`)
+      tokens.add(`log_${variant}`)
+    }
+  }
+
+  const collapsedSpace = normalized.replace(/\s+/g, " ")
+  const hyphenated = normalized.replace(/\s+/g, "-")
+  const compact = normalized.replace(/\s+/g, "")
+  tokens.add(collapsedSpace)
+  tokens.add(hyphenated)
+  tokens.add(compact)
+
+  return Array.from(tokens).filter((token) => token.length > 0)
+}
+
+const RAW_LOG_ALIAS_MAP = (logAliasMapJson as Record<string, string[]>) || {}
+
+const LOG_ALIAS_MAP: LogAliasMap = new Map(
+  Object.entries(RAW_LOG_ALIAS_MAP).map(([rawKey, canonicalPieces]) => {
+    const normalizedKey = stripExtension(rawKey).trim().toLowerCase()
+    const aliasSet = new Set<string>()
+    expandLogAlias(rawKey).forEach((alias) => aliasSet.add(alias))
+    const stripped = stripExtension(rawKey)
+    aliasSet.add(stripped)
+    aliasSet.add(stripped.toLowerCase())
+    for (const piece of canonicalPieces || []) {
+      expandLogAlias(piece).forEach((alias) => aliasSet.add(alias))
+    }
+    return [normalizedKey, Array.from(aliasSet)]
+  }),
+)
+
+function isLogRelativePath(relativePath: string | undefined): boolean {
+  if (!relativePath) {
+    return false
+  }
+  const normalized = relativePath.replace(/\\/g, "/").toLowerCase()
+  return LOG_PATH_SIGNATURE.every((segment) => normalized.includes(segment))
+}
+
+function buildSearchAliases(
+  relativePath: string | undefined,
+  logAliasMap: LogAliasMap,
+): string[] | undefined {
+  if (!isLogRelativePath(relativePath)) {
+    return undefined
+  }
+  const base = stripExtension(basename(relativePath ?? ""))
+  if (!base) {
+    return undefined
+  }
+
+  const key = base.toLowerCase()
+  const aliases = new Set<string>()
+  const lookup = logAliasMap.get(key) ?? []
+  for (const alias of lookup) {
+    expandLogAlias(alias).forEach((variant) => aliases.add(variant))
+  }
+
+  // Always include raw filename variants for completeness
+  expandLogAlias(base).forEach((variant) => aliases.add(variant))
+
+  return aliases.size > 0 ? Array.from(aliases) : undefined
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
@@ -101,6 +206,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
 
 export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   opts = { ...defaultOptions, ...opts }
+  const logAliasMap = LOG_ALIAS_MAP
   return {
     name: "ContentIndex",
     async *emit(ctx, content) {
@@ -122,6 +228,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
               : undefined,
             date: date,
             description: file.data.description ?? "",
+            searchAliases: buildSearchAliases(file.data.relativePath, logAliasMap),
           })
         }
       }
@@ -153,6 +260,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             {
               ...rest,
               updated: date?.toISOString(),
+              searchAliases: content.searchAliases,
             },
           ]
         },

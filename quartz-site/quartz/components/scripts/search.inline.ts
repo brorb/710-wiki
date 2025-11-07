@@ -3,12 +3,15 @@ import type { SerializedContentDetails } from "../../plugins/emitters/contentInd
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
+type ContentIndex = Record<FullSlug, SerializedContentDetails>
+
 interface Item {
   id: number
   slug: FullSlug
   title: string
   content: string
   tags: string[]
+  aliases: string[]
   [key: string]: any
 }
 
@@ -39,6 +42,10 @@ let index = new FlexSearch.Document<Item>({
       },
       {
         field: "tags",
+        tokenize: "forward",
+      },
+      {
+        field: "aliases",
         tokenize: "forward",
       },
     ],
@@ -271,12 +278,18 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
 
   const formatForDisplay = (term: string, id: number) => {
     const slug = idDataMap[id]
+    const storedTitle = data[slug].title ?? ""
+    const fallbackTitle =
+      storedTitle && storedTitle.trim().length > 0 ? storedTitle : slug.split("/").pop() ?? slug
+    const aliasText = (data[slug].searchAliases ?? []).join(" ")
+    const combinedContent = aliasText ? `${data[slug].content ?? ""} ${aliasText}` : data[slug].content ?? ""
     return {
       id,
       slug,
-      title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
-      content: highlight(term, data[slug].content ?? "", true),
+      title: searchType === "tags" ? fallbackTitle : highlight(term, fallbackTitle, false),
+      content: highlight(term, combinedContent, true),
       tags: highlightTags(term.substring(1), data[slug].tags),
+      aliases: data[slug].searchAliases ?? [],
     }
   }
 
@@ -436,7 +449,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
       searchResults = await index.searchAsync({
         query: currentSearchTerm,
         limit: numSearchResults,
-        index: ["title", "content"],
+        index: ["title", "content", "aliases"],
       })
     }
 
@@ -450,6 +463,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
       ...getByField("title"),
       ...getByField("content"),
       ...getByField("tags"),
+      ...getByField("aliases"),
     ])
     const finalResults = [...allIds].map((id) => formatForDisplay(currentSearchTerm, id))
     await displayResults(finalResults)
@@ -477,13 +491,17 @@ async function fillDocument(data: ContentIndex) {
   let id = 0
   const promises: Array<Promise<unknown>> = []
   for (const [slug, fileData] of Object.entries<SerializedContentDetails>(data)) {
+    const rawAliases = Array.from(new Set((fileData.searchAliases ?? []).map((alias) => alias.toLowerCase())))
+    const aliasText = rawAliases.join(" ")
+    const contentWithAliases = aliasText ? `${fileData.content ?? ""}\n${aliasText}` : fileData.content ?? ""
     promises.push(
       index.addAsync(id++, {
         id,
         slug: slug as FullSlug,
         title: fileData.title,
-        content: fileData.content,
+        content: contentWithAliases,
         tags: fileData.tags,
+        aliases: rawAliases,
       }),
     )
   }

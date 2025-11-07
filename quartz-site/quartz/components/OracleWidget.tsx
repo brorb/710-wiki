@@ -274,8 +274,8 @@ const oracleWidgetStyles = `
 .oracle-chat__dismiss-tab {
   position: absolute;
   top: 50%;
-  left: -3.15rem;
-  transform: translate(-0.4rem, -50%);
+  left: -1px;
+  transform: translate(calc(-100% - 0.85rem), -50%);
   width: 2.75rem;
   height: 5.4rem;
   z-index: 1;
@@ -318,13 +318,14 @@ const oracleWidgetStyles = `
 .oracle-chat.oracle-chat--open .oracle-chat__dismiss-tab {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(0, -50%);
+  transform: translate(-100%, -50%);
 }
 
 .oracle-chat__dismiss-icon {
   width: 1.4rem;
   height: 1.4rem;
   fill: currentColor;
+  transform: scaleX(-1);
 }
 
 .oracle-chat__header {
