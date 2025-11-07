@@ -32,9 +32,18 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
       loadTime: "afterDOMReady",
       contentType: "inline",
       script: `
-        const socket = new WebSocket('${wsUrl}')
-        // reload(true) ensures resources like images and scripts are fetched again in firefox
-        socket.addEventListener('message', () => document.location.reload(true))
+        const isLocalDevHost = typeof window !== 'undefined' &&
+          (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        if (isLocalDevHost) {
+          try {
+            const socket = new WebSocket('${wsUrl}')
+            // reload(true) ensures resources like images and scripts are fetched again in firefox
+            socket.addEventListener('message', () => document.location.reload(true))
+          } catch (error) {
+            console.debug('Quartz live reload disabled:', error)
+          }
+        }
       `,
     })
   }
