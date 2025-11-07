@@ -1155,6 +1155,21 @@ type RenderStateBehaviour = {
 
 const clampScroll = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
 
+const setInstantScrollTop = (container: HTMLElement, value: number, maxScroll: number) => {
+  const clamped = clampScroll(value, 0, maxScroll)
+  const previousBehaviour = container.style.scrollBehavior
+  container.style.scrollBehavior = "auto"
+  try {
+    container.scrollTop = clamped
+  } finally {
+    if (previousBehaviour && previousBehaviour.length > 0) {
+      container.style.scrollBehavior = previousBehaviour
+    } else {
+      container.style.removeProperty("scroll-behavior")
+    }
+  }
+}
+
 const findScrollAnchor = (container: HTMLElement): ScrollAnchor | undefined => {
   const messages = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message"))
   if (messages.length === 0) {
@@ -1197,18 +1212,18 @@ const applyScrollSnapshot = (container: HTMLElement, snapshot: ScrollSnapshot | 
       (element) => element.dataset.messageId === snapshot.anchor?.messageId,
     )
     if (target) {
-  const desired = target.offsetTop + clampScroll(snapshot.anchor.offset, 0, target.offsetHeight)
-  container.scrollTop = clampScroll(desired, 0, maxScroll)
+      const desired = target.offsetTop + clampScroll(snapshot.anchor.offset, 0, target.offsetHeight)
+      setInstantScrollTop(container, desired, maxScroll)
       return true
     }
   }
 
   if (snapshot.bottomGap <= 2) {
-    container.scrollTop = maxScroll
+    setInstantScrollTop(container, maxScroll, maxScroll)
     return true
   }
 
-  container.scrollTop = clampScroll(snapshot.top, 0, maxScroll)
+  setInstantScrollTop(container, snapshot.top, maxScroll)
   return true
 }
 

@@ -44,9 +44,10 @@ const MIN_QUERY_LENGTH = 2
 const CONTEXT_WINDOW_WORDS = 30
 
 const DEFAULT_INDEX_CANDIDATES = [
-  path.resolve(process.cwd(), "../quartz-site/public/static/contentIndex.json"),
-  path.resolve(process.cwd(), "../quartz-site/public/contentIndex.json"),
-  path.resolve(process.cwd(), "../public/static/contentIndex.json"),
+  path.resolve(process.cwd(), "quartz-site/public/static/contentIndex.json"),
+  path.resolve(process.cwd(), "quartz-site/public/contentIndex.json"),
+  path.resolve(process.cwd(), "public/static/contentIndex.json"),
+  path.resolve(process.cwd(), "public/contentIndex.json"),
 ]
 
 const encoder = (value: string) =>
