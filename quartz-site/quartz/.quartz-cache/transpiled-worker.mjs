@@ -12273,12 +12273,52 @@ var defaultOptions17 = {
   rssSlug: "index",
   includeEmptyFiles: true
 };
-var LOG_PATH_SIGNATURE = ["content", "youtube", "videos", "7-10 tone"];
+var VIDEO_PATH_INDICATORS = ["youtube/videos", "youtube/livestreams"];
+var REMOVABLE_EXTENSIONS = /* @__PURE__ */ new Set([
+  "md",
+  "mdown",
+  "mdx",
+  "markdown",
+  "txt",
+  "html",
+  "htm",
+  "mp",
+  "mp2",
+  "mp3",
+  "mp4",
+  "mpeg",
+  "mpg",
+  "mpga",
+  "mov",
+  "avi",
+  "wmv",
+  "webm",
+  "mkv",
+  "m4a",
+  "m4v",
+  "wav",
+  "flac",
+  "aac",
+  "ogg",
+  "opus"
+]);
 var LOG_NUMBER_REGEX = /\d+/g;
-function stripExtension(value) {
-  return value.replace(/\.[^.]+$/u, "");
+function stripAllExtensions(value) {
+  let current = value;
+  while (true) {
+    const match = current.match(/\.([^.]+)$/u);
+    if (!match) {
+      break;
+    }
+    const ext = match[1]?.toLowerCase() ?? "";
+    if (!REMOVABLE_EXTENSIONS.has(ext)) {
+      break;
+    }
+    current = current.slice(0, -match[0].length);
+  }
+  return current;
 }
-__name(stripExtension, "stripExtension");
+__name(stripAllExtensions, "stripAllExtensions");
 function basename(value) {
   const normalized = value.replace(/\\/g, "/");
   const parts = normalized.split("/");
@@ -12291,70 +12331,117 @@ function expandLogAlias(label) {
     return [];
   }
   const tokens = /* @__PURE__ */ new Set();
-  const lowered = normalized.toLowerCase();
-  tokens.add(normalized);
-  tokens.add(lowered);
-  const digits = normalized.match(LOG_NUMBER_REGEX) ?? [];
-  for (const sequence of digits) {
-    const trimmed = sequence.replace(/^0+(\d)/u, "$1");
-    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence;
-    const variants = /* @__PURE__ */ new Set([sequence, padded, trimmed]);
-    for (const variant of variants) {
-      if (!variant) continue;
-      tokens.add(variant);
-      tokens.add(`log ${variant}`);
-      tokens.add(`log-${variant}`);
-      tokens.add(`log${variant}`);
-      tokens.add(`log_${variant}`);
+  const addVariant = /* @__PURE__ */ __name((candidate) => {
+    const trimmed = candidate.trim();
+    if (!trimmed) {
+      return;
+    }
+    tokens.add(trimmed);
+    tokens.add(trimmed.toLowerCase());
+  }, "addVariant");
+  addVariant(normalized);
+  const separatorsToSpace = normalized.replace(/[_-]+/g, " ");
+  addVariant(separatorsToSpace);
+  const punctuationToSpace = normalized.replace(/[^\p{L}\p{N}\s]+/gu, " ");
+  addVariant(punctuationToSpace);
+  const collapsedWhitespace = punctuationToSpace.replace(/\s+/g, " ").trim();
+  if (collapsedWhitespace) {
+    addVariant(collapsedWhitespace);
+    const segments = collapsedWhitespace.split(" ").filter(Boolean);
+    if (segments.length > 1) {
+      addVariant(segments.join("-"));
+      addVariant(segments.join("_"));
+      addVariant(segments.join(""));
+    } else if (segments.length === 1) {
+      addVariant(segments[0]);
     }
   }
-  const collapsedSpace = normalized.replace(/\s+/g, " ");
-  const hyphenated = normalized.replace(/\s+/g, "-");
-  const compact = normalized.replace(/\s+/g, "");
-  tokens.add(collapsedSpace);
-  tokens.add(hyphenated);
-  tokens.add(compact);
-  return Array.from(tokens).filter((token) => token.length > 0);
+  const digits = normalized.match(LOG_NUMBER_REGEX) ?? [];
+  const includeLogPrefixes = digits.length > 0;
+  for (const sequence of digits) {
+    const trimmedSequence = sequence.replace(/^0+(\d)/u, "$1") || sequence;
+    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence;
+    const variants = /* @__PURE__ */ new Set([sequence, trimmedSequence, padded]);
+    for (const variant of variants) {
+      if (!variant) {
+        continue;
+      }
+      addVariant(variant);
+      if (includeLogPrefixes) {
+        addVariant(`log ${variant}`);
+        addVariant(`log-${variant}`);
+        addVariant(`log${variant}`);
+        addVariant(`log_${variant}`);
+      }
+    }
+  }
+  return Array.from(tokens);
 }
 __name(expandLogAlias, "expandLogAlias");
 var RAW_LOG_ALIAS_MAP = log_alias_map_default || {};
 var LOG_ALIAS_MAP = new Map(
   Object.entries(RAW_LOG_ALIAS_MAP).map(([rawKey, canonicalPieces]) => {
-    const normalizedKey = stripExtension(rawKey).trim().toLowerCase();
+    const canonicalKey = stripAllExtensions(rawKey).trim();
+    const normalizedKey = canonicalKey.toLowerCase();
     const aliasSet = /* @__PURE__ */ new Set();
-    expandLogAlias(rawKey).forEach((alias) => aliasSet.add(alias));
-    const stripped = stripExtension(rawKey);
-    aliasSet.add(stripped);
-    aliasSet.add(stripped.toLowerCase());
+    if (canonicalKey.length > 0) {
+      aliasSet.add(canonicalKey);
+      aliasSet.add(canonicalKey.toLowerCase());
+      expandLogAlias(canonicalKey).forEach((alias) => aliasSet.add(alias));
+    }
+    const rawLiteral = rawKey.trim();
+    if (rawLiteral.length > 0 && rawLiteral !== canonicalKey) {
+      aliasSet.add(rawLiteral);
+      aliasSet.add(rawLiteral.toLowerCase());
+    }
     for (const piece of canonicalPieces || []) {
-      expandLogAlias(piece).forEach((alias) => aliasSet.add(alias));
+      const trimmedPiece = piece?.trim() ?? "";
+      if (!trimmedPiece) {
+        continue;
+      }
+      const canonicalPiece = stripAllExtensions(trimmedPiece);
+      if (canonicalPiece.length > 0) {
+        aliasSet.add(canonicalPiece);
+        aliasSet.add(canonicalPiece.toLowerCase());
+        expandLogAlias(canonicalPiece).forEach((alias) => aliasSet.add(alias));
+      }
+      if (canonicalPiece !== trimmedPiece) {
+        aliasSet.add(trimmedPiece);
+        aliasSet.add(trimmedPiece.toLowerCase());
+      }
     }
     return [normalizedKey, Array.from(aliasSet)];
   })
 );
-function isLogRelativePath(relativePath) {
+function shouldGenerateVideoAliases(relativePath) {
   if (!relativePath) {
     return false;
   }
   const normalized = relativePath.replace(/\\/g, "/").toLowerCase();
-  return LOG_PATH_SIGNATURE.every((segment) => normalized.includes(segment));
+  return VIDEO_PATH_INDICATORS.some((indicator) => normalized.includes(indicator));
 }
-__name(isLogRelativePath, "isLogRelativePath");
+__name(shouldGenerateVideoAliases, "shouldGenerateVideoAliases");
 function buildSearchAliases(relativePath, logAliasMap) {
-  if (!isLogRelativePath(relativePath)) {
+  if (!shouldGenerateVideoAliases(relativePath)) {
     return void 0;
   }
-  const base = stripExtension(basename(relativePath ?? ""));
-  if (!base) {
+  const fileName = basename(relativePath ?? "");
+  const sanitizedBase = stripAllExtensions(fileName);
+  if (!sanitizedBase) {
     return void 0;
   }
-  const key = base.toLowerCase();
+  const key = sanitizedBase.toLowerCase();
   const aliases = /* @__PURE__ */ new Set();
   const lookup = logAliasMap.get(key) ?? [];
   for (const alias of lookup) {
-    expandLogAlias(alias).forEach((variant) => aliases.add(variant));
+    aliases.add(alias);
   }
-  expandLogAlias(base).forEach((variant) => aliases.add(variant));
+  expandLogAlias(sanitizedBase).forEach((variant) => aliases.add(variant));
+  const literalBase = sanitizedBase.trim();
+  if (literalBase) {
+    aliases.add(literalBase);
+    aliases.add(literalBase.toLowerCase());
+  }
   return aliases.size > 0 ? Array.from(aliases) : void 0;
 }
 __name(buildSearchAliases, "buildSearchAliases");
@@ -12460,9 +12547,11 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
         }
       );
       const simplifiedIndex = Object.fromEntries(simplifiedEntries);
+      const jsonOutput = JSON.stringify(simplifiedIndex, null, 2);
       yield write({
         ctx,
-        content: JSON.stringify(simplifiedIndex),
+        content: `${jsonOutput}
+`,
         slug: fp,
         ext: ".json"
       });
