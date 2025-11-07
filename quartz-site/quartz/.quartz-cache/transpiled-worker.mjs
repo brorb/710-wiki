@@ -11025,7 +11025,7 @@ var oracleWidgetStyles = `
   top: 50%;
   left: -1px;
   transform: translate(calc(-100% - 0.85rem), -50%);
-  width: 2.75rem;
+  width: 2.06rem;
   height: 5.4rem;
   z-index: 1;
   border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);

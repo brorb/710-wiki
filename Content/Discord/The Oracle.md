@@ -5,7 +5,7 @@ tags:
 ---
 ```infobox
 Title: The Oracle
-Image: ![[oracle_pfp.png]]]
+Image: ![[quartz-site/quartz/static/oracle-pfp.png]]
 Also known as: ORA_CLE.servertype
 ```
 
