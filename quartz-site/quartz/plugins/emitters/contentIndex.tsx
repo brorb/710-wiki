@@ -49,12 +49,56 @@ const defaultOptions: Options = {
 
 type LogAliasMap = Map<string, string[]>
 
-const LOG_PATH_SIGNATURE = ["content", "youtube", "videos", "7-10 tone"]
+const VIDEO_PATH_INDICATORS = ["youtube/videos", "youtube/livestreams"]
+
+const REMOVABLE_EXTENSIONS = new Set([
+  "md",
+  "mdown",
+  "mdx",
+  "markdown",
+  "txt",
+  "html",
+  "htm",
+  "mp",
+  "mp2",
+  "mp3",
+  "mp4",
+  "mpeg",
+  "mpg",
+  "mpga",
+  "mov",
+  "avi",
+  "wmv",
+  "webm",
+  "mkv",
+  "m4a",
+  "m4v",
+  "wav",
+  "flac",
+  "aac",
+  "ogg",
+  "opus",
+])
 
 const LOG_NUMBER_REGEX = /\d+/g
 
-function stripExtension(value: string): string {
-  return value.replace(/\.[^.]+$/u, "")
+function stripAllExtensions(value: string): string {
+  let current = value
+  while (true) {
+    const match = current.match(/\.([^.]+)$/u)
+    if (!match) {
+      break
+    }
+
+    const ext = match[1]?.toLowerCase() ?? ""
+    if (!REMOVABLE_EXTENSIONS.has(ext)) {
+      break
+    }
+
+    current = current.slice(0, -match[0].length)
+  }
+
+  return current
 }
 
 function basename(value: string): string {
@@ -68,82 +112,137 @@ function expandLogAlias(label: string): string[] {
   if (normalized.length === 0) {
     return []
   }
-  const tokens = new Set<string>()
-  const lowered = normalized.toLowerCase()
-  tokens.add(normalized)
-  tokens.add(lowered)
 
-  const digits = normalized.match(LOG_NUMBER_REGEX) ?? []
-  for (const sequence of digits) {
-    const trimmed = sequence.replace(/^0+(\d)/u, "$1")
-    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence
-    const variants = new Set([sequence, padded, trimmed])
-    for (const variant of variants) {
-      if (!variant) continue
-      tokens.add(variant)
-      tokens.add(`log ${variant}`)
-      tokens.add(`log-${variant}`)
-      tokens.add(`log${variant}`)
-      tokens.add(`log_${variant}`)
+  const tokens = new Set<string>()
+  const addVariant = (candidate: string) => {
+    const trimmed = candidate.trim()
+    if (!trimmed) {
+      return
+    }
+    tokens.add(trimmed)
+    tokens.add(trimmed.toLowerCase())
+  }
+
+  addVariant(normalized)
+
+  const separatorsToSpace = normalized.replace(/[_-]+/g, " ")
+  addVariant(separatorsToSpace)
+
+  const punctuationToSpace = normalized.replace(/[^\p{L}\p{N}\s]+/gu, " ")
+  addVariant(punctuationToSpace)
+
+  const collapsedWhitespace = punctuationToSpace.replace(/\s+/g, " ").trim()
+  if (collapsedWhitespace) {
+    addVariant(collapsedWhitespace)
+    const segments = collapsedWhitespace.split(" ").filter(Boolean)
+    if (segments.length > 1) {
+      addVariant(segments.join("-"))
+      addVariant(segments.join("_"))
+      addVariant(segments.join(""))
+    } else if (segments.length === 1) {
+      addVariant(segments[0])
     }
   }
 
-  const collapsedSpace = normalized.replace(/\s+/g, " ")
-  const hyphenated = normalized.replace(/\s+/g, "-")
-  const compact = normalized.replace(/\s+/g, "")
-  tokens.add(collapsedSpace)
-  tokens.add(hyphenated)
-  tokens.add(compact)
+  const digits = normalized.match(LOG_NUMBER_REGEX) ?? []
+  const includeLogPrefixes = digits.length > 0
+  for (const sequence of digits) {
+    const trimmedSequence = sequence.replace(/^0+(\d)/u, "$1") || sequence
+    const padded = sequence.length <= 3 ? sequence.padStart(3, "0") : sequence
+    const variants = new Set([sequence, trimmedSequence, padded])
+    for (const variant of variants) {
+      if (!variant) {
+        continue
+      }
+      addVariant(variant)
+      if (includeLogPrefixes) {
+        addVariant(`log ${variant}`)
+        addVariant(`log-${variant}`)
+        addVariant(`log${variant}`)
+        addVariant(`log_${variant}`)
+      }
+    }
+  }
 
-  return Array.from(tokens).filter((token) => token.length > 0)
+  return Array.from(tokens)
 }
 
 const RAW_LOG_ALIAS_MAP = (logAliasMapJson as Record<string, string[]>) || {}
 
 const LOG_ALIAS_MAP: LogAliasMap = new Map(
   Object.entries(RAW_LOG_ALIAS_MAP).map(([rawKey, canonicalPieces]) => {
-    const normalizedKey = stripExtension(rawKey).trim().toLowerCase()
+    const canonicalKey = stripAllExtensions(rawKey).trim()
+    const normalizedKey = canonicalKey.toLowerCase()
     const aliasSet = new Set<string>()
-    expandLogAlias(rawKey).forEach((alias) => aliasSet.add(alias))
-    const stripped = stripExtension(rawKey)
-    aliasSet.add(stripped)
-    aliasSet.add(stripped.toLowerCase())
-    for (const piece of canonicalPieces || []) {
-      expandLogAlias(piece).forEach((alias) => aliasSet.add(alias))
+
+    if (canonicalKey.length > 0) {
+      aliasSet.add(canonicalKey)
+      aliasSet.add(canonicalKey.toLowerCase())
+      expandLogAlias(canonicalKey).forEach((alias) => aliasSet.add(alias))
     }
+
+    const rawLiteral = rawKey.trim()
+    if (rawLiteral.length > 0 && rawLiteral !== canonicalKey) {
+      aliasSet.add(rawLiteral)
+      aliasSet.add(rawLiteral.toLowerCase())
+    }
+
+    for (const piece of canonicalPieces || []) {
+      const trimmedPiece = piece?.trim() ?? ""
+      if (!trimmedPiece) {
+        continue
+      }
+      const canonicalPiece = stripAllExtensions(trimmedPiece)
+      if (canonicalPiece.length > 0) {
+        aliasSet.add(canonicalPiece)
+        aliasSet.add(canonicalPiece.toLowerCase())
+        expandLogAlias(canonicalPiece).forEach((alias) => aliasSet.add(alias))
+      }
+      if (canonicalPiece !== trimmedPiece) {
+        aliasSet.add(trimmedPiece)
+        aliasSet.add(trimmedPiece.toLowerCase())
+      }
+    }
+
     return [normalizedKey, Array.from(aliasSet)]
   }),
 )
 
-function isLogRelativePath(relativePath: string | undefined): boolean {
+function shouldGenerateVideoAliases(relativePath: string | undefined): boolean {
   if (!relativePath) {
     return false
   }
   const normalized = relativePath.replace(/\\/g, "/").toLowerCase()
-  return LOG_PATH_SIGNATURE.every((segment) => normalized.includes(segment))
+  return VIDEO_PATH_INDICATORS.some((indicator) => normalized.includes(indicator))
 }
 
 function buildSearchAliases(
   relativePath: string | undefined,
   logAliasMap: LogAliasMap,
 ): string[] | undefined {
-  if (!isLogRelativePath(relativePath)) {
+  if (!shouldGenerateVideoAliases(relativePath)) {
     return undefined
   }
-  const base = stripExtension(basename(relativePath ?? ""))
-  if (!base) {
+  const fileName = basename(relativePath ?? "")
+  const sanitizedBase = stripAllExtensions(fileName)
+  if (!sanitizedBase) {
     return undefined
   }
 
-  const key = base.toLowerCase()
+  const key = sanitizedBase.toLowerCase()
   const aliases = new Set<string>()
   const lookup = logAliasMap.get(key) ?? []
   for (const alias of lookup) {
-    expandLogAlias(alias).forEach((variant) => aliases.add(variant))
+    aliases.add(alias)
   }
 
-  // Always include raw filename variants for completeness
-  expandLogAlias(base).forEach((variant) => aliases.add(variant))
+  expandLogAlias(sanitizedBase).forEach((variant) => aliases.add(variant))
+
+  const literalBase = sanitizedBase.trim()
+  if (literalBase) {
+    aliases.add(literalBase)
+    aliases.add(literalBase.toLowerCase())
+  }
 
   return aliases.size > 0 ? Array.from(aliases) : undefined
 }
@@ -268,9 +367,11 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
 
       const simplifiedIndex = Object.fromEntries(simplifiedEntries)
 
+      const jsonOutput = JSON.stringify(simplifiedIndex, null, 2)
+
       yield write({
         ctx,
-        content: JSON.stringify(simplifiedIndex),
+        content: `${jsonOutput}\n`,
         slug: fp,
         ext: ".json",
       })
