@@ -24,7 +24,7 @@ const installShareHandler = (button: HTMLButtonElement): void => {
   const title = normalize(button.dataset.shareTitle) ?? document.title
   const text = normalize(button.dataset.shareText)
   const copyLabel = normalize(button.dataset.shareCopied) ?? "Link copied!"
-  const sharedLabel = normalize(button.dataset.shareShared) ?? "Share dialog opened."
+  const sharedLabel = normalize(button.dataset.shareShared)
   const errorLabel = normalize(button.dataset.shareError) ?? "Sharing not available."
   const cancelLabel = normalize(button.dataset.shareCancel)
   const feedback = button.parentElement?.querySelector(
@@ -80,7 +80,11 @@ const installShareHandler = (button: HTMLButtonElement): void => {
           text,
           url,
         })
-        setFeedback(sharedLabel, SUCCESS_STATE)
+        if (sharedLabel) {
+          setFeedback(sharedLabel, SUCCESS_STATE)
+        } else {
+          setFeedback(undefined)
+        }
         return
       }
 

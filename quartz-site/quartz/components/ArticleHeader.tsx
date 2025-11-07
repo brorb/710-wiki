@@ -58,7 +58,6 @@ const ArticleHeader: QuartzComponent = (props: QuartzComponentProps) => {
               data-share-title={title}
               data-share-text={shareText || undefined}
               data-share-copied="Link copied!"
-              data-share-shared="Share dialog opened."
               data-share-error="Sharing not available."
               data-share-cancel="Share cancelled."
             >

@@ -8117,7 +8117,6 @@ var ArticleHeader = /* @__PURE__ */ __name((props) => {
           "data-share-title": title,
           "data-share-text": shareText || void 0,
           "data-share-copied": "Link copied!",
-          "data-share-shared": "Share dialog opened.",
           "data-share-error": "Sharing not available.",
           "data-share-cancel": "Share cancelled.",
           children: /* @__PURE__ */ jsx13("span", { class: "article-share__icon", "aria-hidden": "true" })
@@ -10798,63 +10797,67 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
             ]
           }
         ),
-        /* @__PURE__ */ jsxs26("div", { class: "oracle-chat", id: "oracle-chat-panel", role: "dialog", "aria-modal": "true", "aria-hidden": "true", children: [
-          /* @__PURE__ */ jsx39("div", { class: "oracle-chat__overlay", "data-oracle-dismiss": true }),
-          /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__surface", role: "document", children: [
-            /* @__PURE__ */ jsxs26("header", { class: "oracle-chat__header", children: [
-              /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity", children: [
-                /* @__PURE__ */ jsx39(
-                  "img",
-                  {
-                    src: "/static/oracle-pfp.png",
-                    alt: "",
-                    class: "oracle-chat__avatar",
-                    loading: "lazy",
-                    decoding: "async"
-                  }
-                ),
-                /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity-text", children: [
-                  /* @__PURE__ */ jsx39("span", { class: "oracle-chat__name", children: "The ORA_CLE" }),
-                  /* @__PURE__ */ jsx39("span", { class: "oracle-chat__status", children: "Ready to answer wiki questions." })
-                ] })
-              ] }),
-              /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__header-actions", children: [
-                /* @__PURE__ */ jsx39("button", { type: "button", class: "oracle-chat__reset", "data-oracle-action": "reset", children: "Reset" }),
-                /* @__PURE__ */ jsx39(
-                  "button",
-                  {
-                    type: "button",
-                    class: "oracle-chat__close",
-                    "aria-label": "Close chat",
-                    "data-oracle-action": "close",
-                    children: /* @__PURE__ */ jsx39("span", { "aria-hidden": "true", children: "\xD7" })
-                  }
-                )
+        /* @__PURE__ */ jsx39("div", { class: "oracle-chat", id: "oracle-chat-panel", role: "dialog", "aria-modal": "true", "aria-hidden": "true", children: /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__surface", role: "document", children: [
+          /* @__PURE__ */ jsxs26("header", { class: "oracle-chat__header", children: [
+            /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity", children: [
+              /* @__PURE__ */ jsx39(
+                "img",
+                {
+                  src: "/static/oracle-pfp.png",
+                  alt: "",
+                  class: "oracle-chat__avatar",
+                  loading: "lazy",
+                  decoding: "async"
+                }
+              ),
+              /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity-text", children: [
+                /* @__PURE__ */ jsx39("span", { class: "oracle-chat__name", children: "The ORA_CLE" }),
+                /* @__PURE__ */ jsx39("span", { class: "oracle-chat__status", "data-oracle-status-text": true, "data-state": "online", children: "Bot status: Online" })
               ] })
             ] }),
-            /* @__PURE__ */ jsx39("section", { class: "oracle-chat__history", "data-oracle-history": true, "aria-live": "polite", "aria-label": "Conversation history" }),
-            /* @__PURE__ */ jsxs26("form", { class: "oracle-chat__composer", "data-oracle-form": true, children: [
-              /* @__PURE__ */ jsx39("label", { class: "oracle-chat__label", for: "oracle-chat-input", children: "Ask a question about the 7/10 Wiki" }),
-              /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__input-row", children: [
-                /* @__PURE__ */ jsx39(
-                  "textarea",
-                  {
-                    id: "oracle-chat-input",
-                    class: "oracle-chat__input",
-                    name: "oracle-chat-input",
-                    placeholder: "Ask ORA_CLE anything about this wiki...",
-                    "data-oracle-input": true,
-                    rows: 1,
-                    autoComplete: "off",
-                    autoCapitalize: "sentences",
-                    spellcheck: true
-                  }
-                ),
-                /* @__PURE__ */ jsx39("button", { type: "submit", class: "oracle-chat__send", "data-oracle-send": true, disabled: true, children: "Send" })
-              ] })
+            /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__header-actions", children: [
+              /* @__PURE__ */ jsx39(
+                "button",
+                {
+                  type: "button",
+                  class: "oracle-chat__reset",
+                  "data-oracle-action": "reset",
+                  "aria-label": "Reset conversation",
+                  children: /* @__PURE__ */ jsx39("span", { class: "oracle-chat__reset-icon", "aria-hidden": "true" })
+                }
+              ),
+              /* @__PURE__ */ jsx39(
+                "button",
+                {
+                  type: "button",
+                  class: "oracle-chat__close",
+                  "aria-label": "Close chat",
+                  "data-oracle-action": "close",
+                  children: /* @__PURE__ */ jsx39("span", { "aria-hidden": "true", children: "\xD7" })
+                }
+              )
             ] })
-          ] })
-        ] })
+          ] }),
+          /* @__PURE__ */ jsx39("section", { class: "oracle-chat__history", "data-oracle-history": true, "aria-live": "polite", "aria-label": "Conversation history" }),
+          /* @__PURE__ */ jsx39("form", { class: "oracle-chat__composer", "data-oracle-form": true, children: /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__input-row", children: [
+            /* @__PURE__ */ jsx39(
+              "textarea",
+              {
+                id: "oracle-chat-input",
+                class: "oracle-chat__input",
+                name: "oracle-chat-input",
+                placeholder: "Ask ORA_CLE anything about 7/10...",
+                "data-oracle-input": true,
+                rows: 1,
+                autoComplete: "off",
+                autoCapitalize: "sentences",
+                "aria-label": "Ask ORA_CLE anything about 7/10",
+                spellcheck: true
+              }
+            ),
+            /* @__PURE__ */ jsx39("button", { type: "submit", class: "oracle-chat__send", "data-oracle-send": true, disabled: true, children: "Send" })
+          ] }) })
+        ] }) })
       ]
     }
   );
@@ -10961,47 +10964,50 @@ var oracleWidgetStyles = `
 
 .oracle-chat {
   position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(500px, 100vw);
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
   pointer-events: none;
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 200ms ease;
+  transform: translateX(100%);
   z-index: 1600;
 }
 
-.oracle-chat.oracle-chat--open {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
+.oracle-chat.oracle-chat--open,
+.oracle-chat.oracle-chat--closing {
+  visibility: visible;
 }
 
-.oracle-chat__overlay {
-  position: absolute;
-  inset: 0;
-  background: color-mix(in srgb, var(--color-panel-depth) 40%, rgba(0, 0, 0, 0.65));
-  backdrop-filter: blur(4px);
+.oracle-chat.oracle-chat--open {
+  pointer-events: auto;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.oracle-chat.oracle-chat--open.oracle-chat--entering {
+  animation: oracle-chat-slide-in 260ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.oracle-chat.oracle-chat--closing {
+  pointer-events: none;
+  animation: oracle-chat-slide-out 220ms cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
 }
 
 .oracle-chat__surface {
   position: relative;
-  width: min(900px, calc(100vw - 1.5rem));
-  max-height: min(92vh, 900px);
-  min-height: 420px;
+  width: 100%;
+  height: 100%;
   background: var(--color-primary-background);
-  border-radius: 18px;
-  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
-  box-shadow: 0 34px 68px rgba(0, 0, 0, 0.35);
+  border-left: 1px solid color-mix(in srgb, var(--color-accent-shadow) 45%, transparent);
+  box-shadow: -26px 0 56px rgba(0, 0, 0, 0.38);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.oracle-chat[aria-hidden="true"] {
-  display: block;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .oracle-chat__header {
@@ -11032,14 +11038,26 @@ var oracleWidgetStyles = `
 }
 
 .oracle-chat__name {
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   color: var(--color-tone-contrast);
+  font-family: var(--font-oracle-label, "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace);
 }
 
 .oracle-chat__status {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-oracle-label, "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace);
   color: var(--color-tone-muted);
+  transition: color 160ms ease;
+}
+
+.oracle-chat__status[data-state="online"] {
+  color: var(--color-accent-bright);
+}
+
+.oracle-chat__status[data-state="offline"] {
+  color: var(--color-feedback-error);
 }
 
 .oracle-chat__header-actions {
@@ -11049,20 +11067,51 @@ var oracleWidgetStyles = `
 }
 
 .oracle-chat__reset {
-  border: none;
-  background: transparent;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 45%, transparent);
+  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
   color: var(--color-accent-bright);
-  font-size: 0.85rem;
   cursor: pointer;
-  padding: 0.35rem 0.6rem;
-  border-radius: 8px;
-  transition: background 140ms ease, color 140ms ease;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
 
 .oracle-chat__reset:hover,
 .oracle-chat__reset:focus-visible {
-  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
-  color: var(--color-tone-contrast);
+  background: color-mix(in srgb, var(--color-accent-bright) 32%, transparent);
+  color: var(--color-primary-background);
+  border-color: color-mix(in srgb, var(--color-accent-bright) 70%, transparent);
+}
+
+.oracle-chat__reset:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 2px;
+}
+
+.oracle-chat__reset:active {
+  transform: translateY(1px);
+}
+
+.oracle-chat__reset-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+  mask: url("/static/icons/refresh-icon.svg") no-repeat center / contain;
+  background: currentColor;
+}
+
+.oracle-chat__reset:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  background: color-mix(in srgb, var(--color-accent-bright) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent-bright) 22%, transparent);
+  color: color-mix(in srgb, var(--color-accent-bright) 65%, var(--color-tone-muted) 35%);
 }
 
 .oracle-chat__close {
@@ -11364,11 +11413,6 @@ var oracleWidgetStyles = `
   gap: 0.55rem;
 }
 
-.oracle-chat__label {
-  font-size: 0.78rem;
-  color: var(--color-tone-subtle);
-}
-
 .oracle-chat__input-row {
   display: flex;
   align-items: flex-end;
@@ -11420,6 +11464,28 @@ var oracleWidgetStyles = `
   animation: oracle-chat-typing 1.2s infinite;
 }
 
+@keyframes oracle-chat-slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes oracle-chat-slide-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 @keyframes oracle-chat-typing {
   0% {
     opacity: 0.2;
@@ -11429,6 +11495,22 @@ var oracleWidgetStyles = `
   }
   66% {
     opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oracle-chat {
+    transition: none;
+  }
+
+  .oracle-chat.oracle-chat--open,
+  .oracle-chat.oracle-chat--closing {
+    animation: none !important;
+  }
+
+  .oracle-chat.oracle-chat--closing {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
 
@@ -11448,10 +11530,6 @@ var oracleWidgetStyles = `
     height: 100%;
     max-height: none;
     border-radius: 0;
-  }
-
-  .oracle-chat__overlay {
-    backdrop-filter: none;
   }
 }
 `;
