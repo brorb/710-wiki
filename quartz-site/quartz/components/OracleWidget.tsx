@@ -54,6 +54,16 @@ const OracleWidgetComponent: QuartzComponent = ({ cfg, fileData }: QuartzCompone
       </button>
       <div class="oracle-chat" id="oracle-chat-panel" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="oracle-chat__surface" role="document">
+          <button
+            type="button"
+            class="oracle-chat__dismiss-tab"
+            data-oracle-action="dismiss-tab"
+            aria-label="Collapse chat panel"
+          >
+            <svg class="oracle-chat__dismiss-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 5.5a1 1 0 0 0-1.4 0l-6 6a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4-1.4L10.41 12l4.09-4.1a1 1 0 0 0 0-1.9z" />
+            </svg>
+          </button>
           <header class="oracle-chat__header">
             <div class="oracle-chat__identity">
               <img
@@ -258,7 +268,63 @@ const oracleWidgetStyles = `
   box-shadow: -26px 0 56px rgba(0, 0, 0, 0.38);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.oracle-chat__dismiss-tab {
+  position: absolute;
+  top: 50%;
+  left: -3.15rem;
+  transform: translate(-0.4rem, -50%);
+  width: 2.75rem;
+  height: 5.4rem;
+  z-index: 1;
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  border-right: none;
+  border-radius: 14px 0 0 14px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent-bright) 70%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 65%, transparent) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-button-text);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 200ms ease, background 160ms ease, border-color 160ms ease;
+  box-shadow:
+    -6px 0 18px rgba(0, 0, 0, 0.45),
+    inset 0 1px 6px rgba(255, 170, 170, 0.25);
+}
+
+.oracle-chat__dismiss-tab:hover,
+.oracle-chat__dismiss-tab:focus-visible {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent-bright) 82%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-deep) 75%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, var(--color-accent-bright) 85%, transparent);
+}
+
+.oracle-chat__dismiss-tab:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+.oracle-chat.oracle-chat--open .oracle-chat__dismiss-tab {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
+}
+
+.oracle-chat__dismiss-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: currentColor;
 }
 
 .oracle-chat__header {

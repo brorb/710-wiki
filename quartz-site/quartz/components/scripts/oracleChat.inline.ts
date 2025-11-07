@@ -1141,47 +1141,75 @@ type ScrollAnchor = {
   offset: number
 }
 
+type ScrollSnapshot = {
+  top: number
+  bottomGap: number
+  anchor?: ScrollAnchor
+}
+
 type RenderStateBehaviour = {
   autoScroll?: "bottom" | "preserve" | "none"
-  anchor?: ScrollAnchor
+  snapshot?: ScrollSnapshot
   onScrollApplied?: () => void
 }
 
-const applyScrollAnchor = (container: HTMLElement, anchor: ScrollAnchor | undefined): boolean => {
-  if (!anchor?.messageId) {
-    return false
+const clampScroll = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
+
+const findScrollAnchor = (container: HTMLElement): ScrollAnchor | undefined => {
+  const messages = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message"))
+  if (messages.length === 0) {
+    return undefined
   }
 
-  const target = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message")).find(
-    (element) => element.dataset.messageId === anchor.messageId,
-  )
-  if (!target) {
-    return false
+  const scrollTop = container.scrollTop
+  const viewportBottom = scrollTop + container.clientHeight
+  const candidate = messages.find((element) => element.offsetTop + element.offsetHeight > scrollTop + 4)
+    ?? messages[messages.length - 1]
+  const id = candidate.dataset.messageId
+  if (!id) {
+    return undefined
   }
 
-  const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
-  const desired = target.offsetTop + Math.max(0, Number.isFinite(anchor.offset) ? anchor.offset : 0)
-  const nextScrollTop = Math.min(maxScroll, Math.max(0, desired))
-  container.scrollTop = nextScrollTop
-  return true
+  const offset = clampScroll(scrollTop - candidate.offsetTop, 0, candidate.offsetHeight)
+  if (candidate.offsetTop + candidate.offsetHeight <= viewportBottom + 2 && viewportBottom >= container.scrollHeight - 2) {
+    return undefined
+  }
+  return { messageId: id, offset }
 }
 
-const computeScrollAnchor = (container: HTMLElement): ScrollAnchor | undefined => {
+const captureScrollSnapshot = (container: HTMLElement): ScrollSnapshot => {
   const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
-  const scrollTop = container.scrollTop
-  if (maxScroll - scrollTop <= 2) {
-    return undefined
+  const top = clampScroll(container.scrollTop, 0, maxScroll)
+  const bottomGap = clampScroll(container.scrollHeight - container.clientHeight - top, 0, maxScroll)
+  const anchor = findScrollAnchor(container)
+  return { top, bottomGap, anchor }
+}
+
+const applyScrollSnapshot = (container: HTMLElement, snapshot: ScrollSnapshot | undefined): boolean => {
+  if (!snapshot) {
+    return false
   }
 
-  const messages = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message"))
-  const firstVisible = messages.find((element) => element.offsetTop + element.offsetHeight > scrollTop)
-  const id = firstVisible?.dataset.messageId
-  if (!firstVisible || !id) {
-    return undefined
+  const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
+
+  if (snapshot.anchor?.messageId) {
+    const target = Array.from(container.querySelectorAll<HTMLElement>(".oracle-chat__message")).find(
+      (element) => element.dataset.messageId === snapshot.anchor?.messageId,
+    )
+    if (target) {
+  const desired = target.offsetTop + clampScroll(snapshot.anchor.offset, 0, target.offsetHeight)
+  container.scrollTop = clampScroll(desired, 0, maxScroll)
+      return true
+    }
   }
 
-  const offset = Math.max(0, Math.min(firstVisible.offsetHeight, scrollTop - firstVisible.offsetTop))
-  return { messageId: id, offset }
+  if (snapshot.bottomGap <= 2) {
+    container.scrollTop = maxScroll
+    return true
+  }
+
+  container.scrollTop = clampScroll(snapshot.top, 0, maxScroll)
+  return true
 }
 
 const renderState = (
@@ -1201,10 +1229,10 @@ const renderState = (
       scrollHistoryToBottom(container, behaviour?.onScrollApplied)
     } else if (behaviourMode === "preserve") {
       window.requestAnimationFrame(() => {
-        const applied = applyScrollAnchor(container, behaviour?.anchor)
+        const applied = applyScrollSnapshot(container, behaviour?.snapshot)
         if (!applied) {
           const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight)
-          container.scrollTop = Math.max(0, Math.min(maxScroll, container.scrollTop))
+          container.scrollTop = clampScroll(container.scrollTop, 0, maxScroll)
         }
         behaviour?.onScrollApplied?.()
       })
@@ -1239,7 +1267,7 @@ const setupOracleWidget = () => {
     const requestUrl = buildRequestUrl(config)
     const storageKey = config.storageKey || DEFAULT_STORAGE_KEY
     const openStateKey = `${storageKey}::open`
-    const scrollAnchorKey = `${storageKey}::scrollAnchor`
+    const scrollSnapshotKey = `${storageKey}::scrollSnapshot`
 
     const readOpenState = () => {
       try {
@@ -1262,34 +1290,62 @@ const setupOracleWidget = () => {
       }
     }
 
-    const readScrollAnchor = (): ScrollAnchor | undefined => {
+    const readScrollSnapshot = (): ScrollSnapshot | undefined => {
       try {
-        const raw = window.localStorage.getItem(scrollAnchorKey)
+        const raw = window.localStorage.getItem(scrollSnapshotKey)
         if (!raw) {
           return undefined
         }
         const parsed = JSON.parse(raw)
-        const messageId = typeof parsed?.messageId === "string" ? parsed.messageId : undefined
-        const offset = typeof parsed?.offset === "number" && Number.isFinite(parsed.offset) && parsed.offset >= 0
-          ? parsed.offset
-          : 0
-        return messageId ? { messageId, offset } : undefined
+        if (typeof parsed === "number") {
+          const value = Number.isFinite(parsed) ? (parsed as number) : 0
+          return { top: value, bottomGap: 0 }
+        }
+        if (typeof parsed?.messageId === "string") {
+          const offset = typeof parsed?.offset === "number" ? parsed.offset : 0
+          return {
+            top: 0,
+            bottomGap: 0,
+            anchor: { messageId: parsed.messageId, offset },
+          }
+        }
+        const top = typeof parsed?.top === "number" ? parsed.top : undefined
+        const bottomGap = typeof parsed?.bottomGap === "number" ? parsed.bottomGap : undefined
+        const anchorId = typeof parsed?.anchor?.messageId === "string" ? parsed.anchor.messageId : undefined
+        const anchorOffset = typeof parsed?.anchor?.offset === "number" ? parsed.anchor.offset : undefined
+        const snapshot: ScrollSnapshot = {
+          top: Number.isFinite(top) ? top : 0,
+          bottomGap: Number.isFinite(bottomGap) ? bottomGap : 0,
+          anchor: anchorId && Number.isFinite(anchorOffset)
+            ? { messageId: anchorId, offset: anchorOffset as number }
+            : undefined,
+        }
+        return snapshot
       } catch (error) {
-        console.warn("ORA_CLE chat: unable to read scroll anchor", error)
+        console.warn("ORA_CLE chat: unable to read scroll snapshot", error)
         return undefined
       }
     }
 
-    const writeScrollAnchor = (anchor: ScrollAnchor | undefined) => {
+    const writeScrollSnapshot = (snapshot: ScrollSnapshot | undefined) => {
       try {
-        if (anchor?.messageId) {
-          const payload = JSON.stringify({ messageId: anchor.messageId, offset: Math.max(0, anchor.offset) })
-          window.localStorage.setItem(scrollAnchorKey, payload)
+        if (snapshot) {
+          const payload = JSON.stringify({
+            top: snapshot.top,
+            bottomGap: snapshot.bottomGap,
+            anchor: snapshot.anchor?.messageId
+              ? {
+                  messageId: snapshot.anchor.messageId,
+                  offset: snapshot.anchor.offset,
+                }
+              : undefined,
+          })
+          window.localStorage.setItem(scrollSnapshotKey, payload)
         } else {
-          window.localStorage.removeItem(scrollAnchorKey)
+          window.localStorage.removeItem(scrollSnapshotKey)
         }
       } catch (error) {
-        console.warn("ORA_CLE chat: unable to persist scroll anchor", error)
+        console.warn("ORA_CLE chat: unable to persist scroll snapshot", error)
       }
     }
 
@@ -1301,7 +1357,8 @@ const setupOracleWidget = () => {
     const sendButton = root.querySelector<HTMLButtonElement>("[data-oracle-send]")
     const closeButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='close']")
     const resetButton = root.querySelector<HTMLButtonElement>("[data-oracle-action='reset']")
-  const statusElement = root.querySelector<HTMLElement>("[data-oracle-status-text]")
+    const statusElement = root.querySelector<HTMLElement>("[data-oracle-status-text]")
+    const dismissTab = root.querySelector<HTMLButtonElement>("[data-oracle-action='dismiss-tab']")
 
     if (!launcher || !dialog || !historyContainer || !form || !textArea || !sendButton) {
       console.warn("ORA_CLE chat: widget markup missing expected elements")
@@ -1361,11 +1418,11 @@ const setupOracleWidget = () => {
 
     let chatOpen = false
     const shouldRestoreOpen = readOpenState()
-    const storedAnchor = shouldRestoreOpen ? readScrollAnchor() : undefined
-    let preservedAnchor = storedAnchor
-    const syncScrollAnchor = () => {
-      preservedAnchor = computeScrollAnchor(historyContainer)
-      writeScrollAnchor(preservedAnchor)
+    const storedSnapshot = shouldRestoreOpen ? readScrollSnapshot() : undefined
+    let preservedSnapshot = storedSnapshot
+    const syncScrollSnapshot = () => {
+      preservedSnapshot = captureScrollSnapshot(historyContainer)
+      writeScrollSnapshot(preservedSnapshot)
     }
     let scrollSyncHandle: number | undefined
     const handleHistoryScroll = () => {
@@ -1373,7 +1430,7 @@ const setupOracleWidget = () => {
         window.cancelAnimationFrame(scrollSyncHandle)
       }
       scrollSyncHandle = window.requestAnimationFrame(() => {
-        syncScrollAnchor()
+        syncScrollSnapshot()
         scrollSyncHandle = undefined
       })
     }
@@ -1399,10 +1456,10 @@ const setupOracleWidget = () => {
       getConversationId: () => state.conversationId ?? null,
     }
 
-    const initialRenderBehaviour: RenderStateBehaviour | undefined = storedAnchor
-      ? { autoScroll: "preserve", anchor: storedAnchor, onScrollApplied: syncScrollAnchor }
+    const initialRenderBehaviour: RenderStateBehaviour | undefined = storedSnapshot
+      ? { autoScroll: "preserve", snapshot: storedSnapshot, onScrollApplied: syncScrollSnapshot }
       : shouldRestoreOpen
-        ? { autoScroll: "bottom", onScrollApplied: syncScrollAnchor }
+        ? { autoScroll: "bottom", onScrollApplied: syncScrollSnapshot }
         : undefined
 
     renderState(historyContainer, state, renderOptions, initialRenderBehaviour)
@@ -1424,8 +1481,8 @@ const setupOracleWidget = () => {
           window.cancelAnimationFrame(scrollSyncHandle)
           scrollSyncHandle = undefined
         }
-        preservedAnchor = undefined
-        writeScrollAnchor(undefined)
+        preservedSnapshot = undefined
+        writeScrollSnapshot(undefined)
         dialog.classList.remove("oracle-chat--closing")
         dialog.classList.remove("oracle-chat--open")
         dialog.classList.remove("oracle-chat--entering")
@@ -1519,20 +1576,20 @@ const setupOracleWidget = () => {
 
       const shouldFocus = options?.autoFocus ?? true
       const shouldPreserveScroll = Boolean(options?.preserveScroll)
-      if (shouldPreserveScroll && preservedAnchor) {
-        applyScrollAnchor(historyContainer, preservedAnchor)
+      if (shouldPreserveScroll && preservedSnapshot) {
+        applyScrollSnapshot(historyContainer, preservedSnapshot)
       }
       window.requestAnimationFrame(() => {
         if (shouldFocus) {
           textArea.focus()
         }
         if (shouldPreserveScroll) {
-          if (preservedAnchor) {
-            applyScrollAnchor(historyContainer, preservedAnchor)
+          if (preservedSnapshot) {
+            applyScrollSnapshot(historyContainer, preservedSnapshot)
           }
-          syncScrollAnchor()
+          syncScrollSnapshot()
         } else {
-          scrollHistoryToBottom(historyContainer, syncScrollAnchor)
+          scrollHistoryToBottom(historyContainer, syncScrollSnapshot)
         }
       })
     }
@@ -1698,8 +1755,8 @@ const setupOracleWidget = () => {
       persistState(storageKey, state, config.maxHistory)
       renderState(historyContainer, state, renderOptions, { autoScroll: "none" })
       historyContainer.scrollTop = 0
-      preservedAnchor = undefined
-      writeScrollAnchor(undefined)
+      preservedSnapshot = undefined
+      writeScrollSnapshot(undefined)
       updateResetButton()
       updateSendButtonState()
       autoResize()
@@ -1708,7 +1765,7 @@ const setupOracleWidget = () => {
     const appendMessage = (message: OracleMessage) => {
       state.messages = [...state.messages, message]
       historyContainer.appendChild(createMessageElement(message, renderOptions))
-      scrollHistoryToBottom(historyContainer, syncScrollAnchor)
+      scrollHistoryToBottom(historyContainer, syncScrollSnapshot)
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
     }
@@ -1718,7 +1775,7 @@ const setupOracleWidget = () => {
       state.messages = state.messages.map((entry) => (entry.pending ? message : entry))
       renderState(historyContainer, state, renderOptions, {
         autoScroll: "bottom",
-        onScrollApplied: syncScrollAnchor,
+        onScrollApplied: syncScrollSnapshot,
       })
       persistState(storageKey, state, config.maxHistory)
       updateResetButton()
@@ -1879,7 +1936,7 @@ const setupOracleWidget = () => {
         state.messages = state.messages.filter((entry) => !entry.pending)
         renderState(historyContainer, state, renderOptions, {
           autoScroll: "bottom",
-          onScrollApplied: syncScrollAnchor,
+          onScrollApplied: syncScrollSnapshot,
         })
         persistState(storageKey, state, config.maxHistory)
         showError(error)
@@ -1937,6 +1994,7 @@ const setupOracleWidget = () => {
 
     launcher.addEventListener("click", handleLauncherClick)
     closeButton?.addEventListener("click", handleCloseClick)
+    dismissTab?.addEventListener("click", handleCloseClick)
     resetButton?.addEventListener("click", handleResetClick)
     form.addEventListener("submit", handleFormSubmit)
     textArea.addEventListener("input", handleInput)
@@ -1955,6 +2013,7 @@ const setupOracleWidget = () => {
     window.addCleanup?.(() => {
       launcher.removeEventListener("click", handleLauncherClick)
       closeButton?.removeEventListener("click", handleCloseClick)
+      dismissTab?.removeEventListener("click", handleCloseClick)
       resetButton?.removeEventListener("click", handleResetClick)
       form.removeEventListener("submit", handleFormSubmit)
       textArea.removeEventListener("input", handleInput)
