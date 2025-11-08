@@ -10,10 +10,12 @@ tags:
 Title: Travis
 Image: ![[Content/Media/710 Media/Images/lm-2.png]]
 Caption: Travis' parting gift from [[prj_home.exe]].
+Also known as: TRAVIS@user ([[Private Room]] username)
 Appearances:
 - [[STATION_8 TRIM 5]]
 - [[Community posts]]
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] (name mentioned)
+- [[ERE IS ONE PERSON I KNOW IT'S KE]] (chatroom)
 Status: Dead
 ```
 
@@ -70,7 +72,7 @@ To see how this puzzle was solved, visit the [[Parting Gifts Puzzle]] page.
 ---
 ## Half Life Gameplay Footage
 
-On 4th November 2025, [[710 Tone|7/10 Tone]] uploaded [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO|a video]] with sped-up gameplay footage of [Half Life: Gold Source edition](https://en.wikipedia.org/wiki/GoldSrc), which was apparently being played by Travis and was recorded on "02-1-25", several months before his death.
+In November 2025, [[710 Tone|7/10 Tone]] uploaded [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO|two]] [[ERE IS ONE PERSON I KNOW IT'S KE|videos]] with sped-up gameplay footage of [Half Life: Gold Source edition](https://en.wikipedia.org/wiki/GoldSrc), which was apparently being played by Travis in February 2025 (the 1st and 4th respectively), several months before his death. In the second video, it can be seen that he communicates with [[INDI]] through what appears to be the [[Private Room]] chat under the username "TRAVIS@user". However, as to what they were discussing remains unclear as the chatroom was cut off by the corner of the screen.
 
 ---
 

@@ -9,7 +9,8 @@ tags:
 ---
 ```infobox
 Title: D4V1NC1
-Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
+Image: ![[daVinci_from_backtone.png]]
+Caption: DaVinci painting from the first "backtone" video
 Appearances:
 - [[RIGfunctionobservationTEST028.mp4]] (description)
 - [[HIS PERCEPTION]] (hidden audio clues)
@@ -27,18 +28,11 @@ An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4
 "D4V1NC1" is clearly a rewrite of "da Vinci", referencing the renaissance scientist [Leonardo da Vinci](https://en.wikipedia.org/wiki/Leonardo_da_Vinci). This follows the trope of characters with aliases of famous scientists, like [[Kepler]] for instance. Da Vinci has also appeared in the video [[backtone.extend 5_f''5.5'']]: 
 
 ```media-box
-Media: [[daVinci_from_backtone.png]]
-Alt: DaVinci painting from the first "backtone" video
-Align: center
-Wrap: false
-Width: clamp(220px, 32vw, 360px)
-```
-```media-box
 Media: [[Da Vinci original image found.jpg]]
 Alt: DaVinci engraving by Raffaello Sanzio Morghen
 Caption: Original image that is the closest thing to the one featured in the video
-Align: center
-Wrap: false
+Align: right
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 

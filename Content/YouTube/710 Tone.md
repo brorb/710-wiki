@@ -61,7 +61,9 @@ Width: clamp(500px, 32vw, 360px)
 
 ## 2025 Gradual Removal and Eventual Purge
 
-![[HOST ERROR removing unmarked labals on august 10th 2025-min.png]]
+```community-post,2,0,2 August 2025,
+ERROR : -89 : update/update(!HOST ERROR! > No host detected, removing all unmarked labels on 8/10/25 at ran.time(0100-2400))
+```
 
 On 10th July 2025, the channel posted a community post (see [[Community Posts]]) stating that all "unmarked labels" would be removed on 20th August 2025.<!-- discord-cite:cite-mh3h3z1q-1ggw5e -->
 

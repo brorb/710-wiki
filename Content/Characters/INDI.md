@@ -72,6 +72,8 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 7/10NPP (INDI): I ALREADY TOLD YOU WHY.
 ```
 
+In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]] through a chatroom that is most likely the [[Private Room]].
+
 ---
 ### [[SYSTEM]]
 
