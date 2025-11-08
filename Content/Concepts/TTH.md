@@ -288,7 +288,7 @@ It is likely that they are the ones responsible for [[The Logs]]. This is known 
 
 ## TTH Bases
 
-TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. In [the [Private Room#Chat 11|11'th Private Room chat]], a TTH worker with ID [[F8829]] reveals that they work in station 887634.
+TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. In [the [Private Room#Chat 11|11th Private Room chat]], a TTH worker with ID [[F8829]] reveals that they work in station 887634.
 
 ## Gallery
 
