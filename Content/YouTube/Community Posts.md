@@ -4,9 +4,33 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
+```community-post,1,1,8 November 2025
+41p 4Cu 4Dtt 4Fi 53n 54g 20i 54t 48t 45o 52g 45e ther
+```
+_^This is hex code, with trailing letters. These trailing letters spell out: 
+```
+putting it together
+```
+while the hex translates to:_
+```
+ALMOST THERE
+```
+
 ```community-post,0,1,4 November 2025
 74 68 65 20 3E 20 23 20 77 69 6C 6C 20 62 65 20 69 72 72 65 6C 65 76 61 6E 74 20 74 6F 20 79 6Fb 75 0A 6E 65 78u 74 3D 3E 0A 2Et 6D 70 34 20 3D 23i 0A 61 20 70 65 72 66 65 63 74 20 76 65 73 73 65 6C 20 66 6F 72 20 75 73 65 20 74 6F 20 63 6Ft 6D 6D w75 6E 69i 63 61l 74l 65 20 be 74 68 72s 6Fo 75o 67n 68 2E
 ```
+_^This is hex, with trailing letters on some hex bytes. The trailing letters spell out:
+```
+but it will be soon
+```
+while the hex translates to:_
+```
+t h e   >   #   w i l l   b e   i r r e l e v a n t   t o   y o u 
+ n e x t = > 
+ . m p 4   = # 
+ a   p e r f e c t   v e s s e l   f o r   u s e   t o   c o m m u n i c a t e   t h r o u g h .
+```
+
 
 ```community-post,2,0,11 October 2025
 !ERROR 1123!: no scheduled removal date: backtracking removal date history of "/update::::::1-23, update-TIME-LIMIT(0000-9999-) removing all unmarked labels :: on [10/6/(NaN)] ? broadcast canceled["ob_point[ACCESS]"] !ERROR!:"MkI" == 122, "iao" == 289 || dir"
@@ -471,3 +495,4 @@ root = J.sm
 5. root 3
 ```
 _^This was a poll. Option 1 won with 46%._
+
