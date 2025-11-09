@@ -9,7 +9,7 @@ tags:
 ---
 ```infobox
 Title: D4V1NC1
-Image: ![[daVinci_from_backtone.png]]
+Image: ![[Content/Media/Sleuth Media/Images/daVinci_from_backtone.png]]
 Caption: DaVinci painting from the first "backtone" video
 Appearances:
 - [[RIGfunctionobservationTEST028.mp4]] (description)
