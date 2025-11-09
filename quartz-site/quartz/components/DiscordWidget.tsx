@@ -1,5 +1,6 @@
 import { classNames } from "../util/lang"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+// @ts-ignore
 import discordWidgetScript from "./scripts/discordWidget.inline"
 
 type DiscordWidgetVariant = "sidebar" | "banner"

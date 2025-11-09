@@ -1,0 +1,272 @@
+@use "../../styles/variables.scss" as *;
+
+.folder-directory {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.6rem;
+}
+
+.folder-directory__summary {
+  margin: 0;
+  font-size: 0.93rem;
+  color: color-mix(in srgb, var(--dark) 72%, var(--gray) 28%);
+}
+
+.folder-directory__section {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.folder-directory__section + .folder-directory__section {
+  margin-top: 3rem;
+  padding-top: 1rem;
+}
+
+.folder-directory__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.folder-directory__section-title {
+  margin: 0;
+  font-size: 1.52rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
+  color: var(--color-accent-deep);
+}
+
+.folder-directory__section-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--gray) 70%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.folder-directory__grid {
+  display: grid;
+  gap: 2.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+
+.folder-directory__grid--subfolders {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.directory-card {
+  position: relative;
+  background: color-mix(in srgb, var(--color-surface-overlay) 65%, rgba(255, 255, 255, 0.08));
+  border: 2px solid var(--color-accent-deep);
+  border-radius: 16px;
+  padding: 0.7rem 0.8rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  outline: none;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 0 1px color-mix(in srgb, var(--color-accent-deep) 40%, transparent);
+}
+
+.directory-card:hover,
+.directory-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-bright);
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.32), 0 0 0 1px color-mix(in srgb, var(--color-accent-bright) 45%, transparent);
+}
+
+.directory-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+  max-height: 26rem;
+  overflow-y: auto;
+  padding: 0.25rem 0.35rem 0.35rem 0.35rem;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: none;
+}
+
+.directory-card__body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.directory-card__body--folder {
+  max-height: none;
+  overflow: visible;
+  padding: 0.25rem 0.2rem 0.3rem 0.2rem;
+}
+
+.directory-card__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.directory-card__content--folder {
+  gap: 0.8rem;
+}
+
+.directory-card__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.folder-directory__subfolder-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: color-mix(in srgb, var(--secondary) 28%, var(--light) 72%);
+  color: var(--dark);
+}
+
+.directory-card__media {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: color-mix(in srgb, var(--gray) 24%, transparent);
+  margin: 0;
+  flex-shrink: 0;
+  min-height: 8.5rem;
+}
+
+.directory-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.directory-card__meta {
+  margin: 0;
+  margin-top: 0.3rem;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--gray) 68%, var(--dark) 32%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.directory-card__title {
+  margin: 0;
+  font-size: 1.44rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
+  color: var(--color-accent-deep);
+}
+
+.directory-card__excerpt {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--dark) 80%, var(--gray) 20%);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  min-height: 3.1rem;
+}
+
+.directory-card__excerpt--placeholder {
+  opacity: 0;
+}
+
+.directory-card__tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+}
+
+.directory-card__tags--after-media {
+  align-self: stretch;
+}
+
+.directory-card__tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.directory-card__tag-link {
+  color: var(--color-accent-deep);
+  text-decoration: none;
+  font-weight: 620;
+  white-space: nowrap;
+}
+
+.directory-card__tag-link:hover,
+.directory-card__tag-link:focus-visible {
+  text-decoration: underline;
+}
+
+.directory-card--folder {
+  background: color-mix(in srgb, var(--color-surface-overlay) 50%, var(--color-tone-muted) 50%);
+  border-color: color-mix(in srgb, var(--color-accent-shadow) 80%, var(--color-accent-shadow) 20%);
+}
+
+.directory-card--folder .directory-card__meta {
+  color: color-mix(in srgb, var(--secondary) 60%, var(--dark) 40%);
+}
+
+.directory-card--folder .directory-card__excerpt {
+  min-height: 2.8rem;
+}
+
+@media all and ($mobile) {
+  .folder-directory {
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .folder-directory__grid,
+  .folder-directory__grid--subfolders {
+    grid-template-columns: 1fr;
+    gap: 2.1rem;
+  }
+
+  .directory-card {
+    padding: 0.75rem;
+  }
+
+  .directory-card__body {
+    padding: 0.2rem 0.25rem 0.3rem;
+    max-height: none;
+  }
+
+  .directory-card__header {
+    gap: 0.75rem;
+  }
+
+  .folder-directory__section + .folder-directory__section {
+    margin-top: 2.4rem;
+    padding-top: 0.8rem;
+  }
+}
