@@ -7827,6 +7827,12 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
   return TagContent;
 }), "default");
 
+// quartz/components/styles/folderDirectory.scss
+var folderDirectory_default = "";
+
+// quartz/components/pages/FolderContent.tsx
+import { Fragment as Fragment4 } from "preact";
+
 // quartz/util/fileTrie.ts
 var FileTrieNode = class _FileTrieNode {
   static {
@@ -7983,6 +7989,83 @@ var defaultOptions10 = {
   showFolderCount: true,
   showSubfolders: true
 };
+var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
+var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
+  if (typeof raw !== "string") {
+    return void 0;
+  }
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const version = getAssetVersion();
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
+  if (embedMatch?.groups?.target) {
+    const target2 = stripContentPrefix4(embedMatch.groups.target);
+    try {
+      const slug = slugifyFilePath(target2);
+      return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), slug), version);
+    } catch {
+      return void 0;
+    }
+  }
+  if (isExternalUrl4(cleaned)) {
+    return cleaned;
+  }
+  const target = stripContentPrefix4(cleaned);
+  return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), target), version);
+}, "resolveAssetReference");
+var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
+  if (!value) {
+    return void 0;
+  }
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (!compact) {
+    return void 0;
+  }
+  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}\u2026` : compact;
+}, "normalizeSnippet");
+var getSnippetForPage = /* @__PURE__ */ __name((page, fallback) => {
+  const frontmatter = page.frontmatter ?? {};
+  const candidates = [
+    typeof page.description === "string" ? page.description : void 0,
+    typeof frontmatter.description === "string" ? frontmatter.description : void 0,
+    typeof page.text === "string" ? page.text : void 0
+  ];
+  for (const candidate of candidates) {
+    const snippet = normalizeSnippet(candidate);
+    if (snippet) {
+      return snippet;
+    }
+  }
+  return fallback;
+}, "getSnippetForPage");
+var getPrimaryImage = /* @__PURE__ */ __name((page, slug) => {
+  const frontmatter = page.frontmatter ?? {};
+  const candidates = [
+    page.infobox?.image?.src,
+    frontmatter.cover,
+    frontmatter.banner,
+    frontmatter.image,
+    frontmatter.thumbnail
+  ];
+  for (const candidate of candidates) {
+    const resolved = resolveAssetReference(candidate, slug);
+    if (resolved) {
+      return resolved;
+    }
+  }
+  return void 0;
+}, "getPrimaryImage");
+var getInitials = /* @__PURE__ */ __name((title) => {
+  const parts = title.split(/\s+/).map((segment) => segment.trim()).filter((segment) => segment.length > 0).slice(0, 2).map((segment) => segment[0]?.toUpperCase() ?? "");
+  const initials = parts.join("");
+  return initials.length > 0 ? initials : title.slice(0, 2).toUpperCase();
+}, "getInitials");
+var pluralize = /* @__PURE__ */ __name((count, singular, plural) => `${count} ${count === 1 ? singular : plural}`, "pluralize");
 var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
   const options2 = { ...defaultOptions10, ...opts };
   const FolderContent = /* @__PURE__ */ __name((props) => {
@@ -7992,65 +8075,281 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
     if (!folder) {
       return null;
     }
-    const allPagesInFolder = folder.children.map((node) => {
-      if (node.data) {
-        return node.data;
-      }
-      if (node.isFolder && options2.showSubfolders) {
-        const getMostRecentDates = /* @__PURE__ */ __name(() => {
-          let maybeDates = void 0;
-          for (const child of node.children) {
-            if (child.data?.dates) {
-              if (!maybeDates) {
-                maybeDates = { ...child.data.dates };
-              } else {
-                if (child.data.dates.created > maybeDates.created) {
-                  maybeDates.created = child.data.dates.created;
-                }
-                if (child.data.dates.modified > maybeDates.modified) {
-                  maybeDates.modified = child.data.dates.modified;
-                }
-                if (child.data.dates.published > maybeDates.published) {
-                  maybeDates.published = child.data.dates.published;
-                }
-              }
+    const getMostRecentDates = /* @__PURE__ */ __name((node) => {
+      let maybeDates;
+      for (const child of node.children) {
+        if (child.data?.dates) {
+          const childDates = child.data.dates;
+          if (!maybeDates) {
+            maybeDates = { ...childDates };
+          } else {
+            if (childDates.created > maybeDates.created) {
+              maybeDates.created = childDates.created;
+            }
+            if (childDates.modified > maybeDates.modified) {
+              maybeDates.modified = childDates.modified;
+            }
+            if (childDates.published > maybeDates.published) {
+              maybeDates.published = childDates.published;
             }
           }
-          return maybeDates ?? {
-            created: /* @__PURE__ */ new Date(),
-            modified: /* @__PURE__ */ new Date(),
-            published: /* @__PURE__ */ new Date()
-          };
-        }, "getMostRecentDates");
-        return {
+        }
+      }
+      return maybeDates ?? {
+        created: /* @__PURE__ */ new Date(),
+        modified: /* @__PURE__ */ new Date(),
+        published: /* @__PURE__ */ new Date()
+      };
+    }, "getMostRecentDates");
+    const entries = folder.children.map((node) => {
+      if (node.data) {
+        return { node, data: node.data };
+      }
+      if (node.isFolder && options2.showSubfolders) {
+        const synthetic = {
           slug: node.slug,
-          dates: getMostRecentDates(),
+          dates: getMostRecentDates(node),
           frontmatter: {
             title: node.displayName,
             tags: []
           }
         };
+        return { node, data: synthetic };
       }
-    }).filter((page) => page !== void 0) ?? [];
+      return null;
+    }).filter((entry) => entry !== null) ?? [];
+    const sortFn = options2.sort ?? byDateAndAlphabeticalFolderFirst(cfg);
+    const sortedEntries = [...entries].sort((a, b) => sortFn(a.data, b.data));
+    const folderEntries = options2.showSubfolders ? sortedEntries.filter((entry) => entry.node.isFolder) : [];
+    const pageEntries = sortedEntries.filter((entry) => !entry.node.isFolder || !options2.showSubfolders);
+    const countRenderableChildren = /* @__PURE__ */ __name((node) => node.children.filter((child) => child.data || child.isFolder).length, "countRenderableChildren");
     const cssClasses = fileData.frontmatter?.cssclasses ?? [];
     const classes = cssClasses.join(" ");
-    const listProps = {
-      ...props,
-      sort: options2.sort,
-      allFiles: allPagesInFolder
-    };
     const content = tree.children.length === 0 ? fileData.description : htmlToJsx(fileData.filePath, tree);
     return /* @__PURE__ */ jsxs5("div", { class: "popover-hint", children: [
       /* @__PURE__ */ jsx11("article", { class: classes, children: content }),
-      /* @__PURE__ */ jsxs5("div", { class: "page-listing", children: [
-        options2.showFolderCount && /* @__PURE__ */ jsx11("p", { children: i18n(cfg.locale).pages.folderContent.itemsUnderFolder({
-          count: allPagesInFolder.length
-        }) }),
-        /* @__PURE__ */ jsx11("div", { children: /* @__PURE__ */ jsx11(PageList, { ...listProps }) })
+      /* @__PURE__ */ jsxs5("div", { class: "folder-directory", children: [
+        pageEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Entries", children: [
+          /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
+            /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Entries" }),
+            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize(pageEntries.length, "entry", "entries") })
+          ] }),
+          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid", children: pageEntries.map((entry) => {
+            const slug = entry.data.slug;
+            if (!slug) {
+              return null;
+            }
+            const frontmatter = entry.data.frontmatter ?? {};
+            const title = typeof frontmatter.title === "string" && frontmatter.title.length > 0 ? frontmatter.title : entry.node.displayName ?? slug.split("/").at(-1) ?? "Untitled";
+            const link = resolveRelative(fileData.slug, slug);
+            const updated = entry.data.dates ? getDate(cfg, entry.data) : void 0;
+            const snippet = getSnippetForPage(entry.data);
+            const hasSnippet = Boolean(snippet);
+            const image = getPrimaryImage(entry.data, slug);
+            const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
+            const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
+            const headingId = `directory-card-title-${safeSlugId}`;
+            return /* @__PURE__ */ jsx11(
+              "article",
+              {
+                class: "directory-card",
+                "data-href": link,
+                role: "link",
+                tabIndex: 0,
+                "aria-labelledby": headingId,
+                children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__body", children: [
+                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__content", children: [
+                    /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
+                    updated && /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
+                      "Updated ",
+                      /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
+                    ] }),
+                    hasSnippet ? /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet }) : /* @__PURE__ */ jsx11(
+                      "div",
+                      {
+                        class: "directory-card__excerpt directory-card__excerpt--placeholder",
+                        "aria-hidden": "true"
+                      }
+                    )
+                  ] }),
+                  image && /* @__PURE__ */ jsx11("div", { class: "directory-card__media", children: /* @__PURE__ */ jsx11("img", { src: image, alt: "", loading: "lazy", decoding: "async", "data-no-zoom": "true" }) }),
+                  tags.length > 0 && /* @__PURE__ */ jsx11("ul", { class: "directory-card__tags directory-card__tags--after-media", children: tags.map((tag) => /* @__PURE__ */ jsx11("li", { class: "directory-card__tag", children: /* @__PURE__ */ jsxs5(
+                    "a",
+                    {
+                      class: "directory-card__tag-link",
+                      href: resolveRelative(fileData.slug, `tags/${tag}`),
+                      children: [
+                        "#",
+                        tag
+                      ]
+                    }
+                  ) }, tag)) })
+                ] })
+              },
+              slug
+            );
+          }) })
+        ] }),
+        folderEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Subfolders", children: [
+          /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
+            /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Collections" }),
+            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize(folderEntries.length, "subfolder", "subfolders") })
+          ] }),
+          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid folder-directory__grid--subfolders", children: folderEntries.map((entry) => {
+            const slug = entry.data.slug;
+            if (!slug) {
+              return null;
+            }
+            const title = entry.data.frontmatter?.title ?? entry.node.displayName ?? slug.split("/").at(-1) ?? "Untitled";
+            const link = resolveRelative(fileData.slug, slug);
+            const childCount = pluralize(countRenderableChildren(entry.node), "item", "items");
+            const updated = entry.data.dates ? getDate(cfg, entry.data) : void 0;
+            const snippet = getSnippetForPage(entry.data);
+            const hasSnippet = Boolean(snippet);
+            const initials = getInitials(title);
+            const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
+            const headingId = `directory-card-title-${safeSlugId}`;
+            return /* @__PURE__ */ jsx11(
+              "article",
+              {
+                class: "directory-card directory-card--folder",
+                "data-href": link,
+                role: "link",
+                tabIndex: 0,
+                "aria-labelledby": headingId,
+                children: /* @__PURE__ */ jsx11("div", { class: "directory-card__body directory-card__body--folder", children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__content directory-card__content--folder", children: [
+                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__header", children: [
+                    /* @__PURE__ */ jsx11("span", { class: "folder-directory__subfolder-icon", "aria-hidden": "true", children: initials }),
+                    /* @__PURE__ */ jsxs5("div", { children: [
+                      /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
+                      /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
+                        childCount,
+                        updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
+                          " \xB7 ",
+                          "Updated ",
+                          /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
+                        ] })
+                      ] })
+                    ] })
+                  ] }),
+                  hasSnippet ? /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet }) : /* @__PURE__ */ jsx11(
+                    "div",
+                    {
+                      class: "directory-card__excerpt directory-card__excerpt--placeholder",
+                      "aria-hidden": "true"
+                    }
+                  )
+                ] }) })
+              },
+              slug
+            );
+          }) })
+        ] })
       ] })
     ] });
   }, "FolderContent");
-  FolderContent.css = concatenateResources(listPage_default, PageList.css);
+  FolderContent.afterDOMLoaded = `
+    (() => {
+      const selector = '.directory-card[data-href]'
+
+      const resolveCard = (target) =>
+        target instanceof Element ? target.closest(selector) : null
+
+      const isTagLink = (target) =>
+        target instanceof Element && target.closest('.directory-card__tag-link')
+
+      const navigate = (href, openInNewTab) => {
+        if (!href) {
+          return
+        }
+
+        const url = new URL(href, window.location.toString())
+        if (openInNewTab) {
+          window.open(url.toString(), '_blank', 'noopener')
+          return
+        }
+
+        if (typeof window.spaNavigate === 'function') {
+          window.spaNavigate(url)
+        } else {
+          window.location.assign(url)
+        }
+      }
+
+      const handleClick = (event) => {
+        if (event.defaultPrevented) {
+          return
+        }
+
+        const card = resolveCard(event.target)
+        if (!card) {
+          return
+        }
+
+        if (isTagLink(event.target)) {
+          return
+        }
+
+        if (window.getSelection && window.getSelection().toString().length > 0) {
+          return
+        }
+
+        if (event.button !== 0) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(card.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      }
+
+      const handleAuxClick = (event) => {
+        if (event.defaultPrevented || event.button !== 1) {
+          return
+        }
+
+        const card = resolveCard(event.target)
+        if (!card || isTagLink(event.target)) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(card.getAttribute('data-href'), true)
+      }
+
+      const handleKeydown = (event) => {
+        if (event.defaultPrevented) {
+          return
+        }
+
+        if (event.key !== 'Enter' && event.key !== ' ') {
+          return
+        }
+
+        const target = event.target
+        if (!(target instanceof HTMLElement)) {
+          return
+        }
+
+        if (!target.matches(selector)) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      }
+
+      document.addEventListener('click', handleClick)
+      document.addEventListener('auxclick', handleAuxClick)
+      document.addEventListener('keydown', handleKeydown)
+
+      window.addCleanup?.(() => {
+        document.removeEventListener('click', handleClick)
+        document.removeEventListener('auxclick', handleAuxClick)
+        document.removeEventListener('keydown', handleKeydown)
+      })
+    })()
+  `;
+  FolderContent.css = concatenateResources(folderDirectory_default);
   return FolderContent;
 }), "default");
 
@@ -8725,11 +9024,11 @@ var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
 }, "write");
 
 // quartz/plugins/emitters/ogImage.tsx
-import { Fragment as Fragment4, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
 var CustomOgImagesEmitterName = "CustomOgImages";
 
 // quartz/components/Head.tsx
-import { Fragment as Fragment5, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
 var Head_default = /* @__PURE__ */ __name((() => {
   const Head = /* @__PURE__ */ __name(({
     cfg,
@@ -8758,7 +9057,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     return /* @__PURE__ */ jsxs11("head", { children: [
       /* @__PURE__ */ jsx18("title", { children: title }),
       /* @__PURE__ */ jsx18("meta", { charSet: "utf-8" }),
-      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment5, { children: [
+      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment6, { children: [
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.gstatic.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "stylesheet", href: googleFontHref(cfg.theme) }),
@@ -8774,7 +9073,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
       /* @__PURE__ */ jsx18("meta", { name: "twitter:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:image:alt", content: description }),
-      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment5, { children: [
+      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment6, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "og:image", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { property: "og:image:url", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { name: "twitter:image", content: ogImageDefaultPath }),
@@ -8786,7 +9085,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
           }
         )
       ] }),
-      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment5, { children: [
+      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment6, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "twitter:domain", content: url.host }),
         /* @__PURE__ */ jsx18("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx18("meta", { property: "twitter:url", content: socialUrl })
@@ -9818,7 +10117,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment6, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
+import { Fragment as Fragment7, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -9828,7 +10127,7 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     const { displayClass, fileData, cfg } = props;
     const disableComment = typeof fileData.frontmatter?.comments !== "undefined" && (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false");
     if (disableComment) {
-      return /* @__PURE__ */ jsx32(Fragment6, {});
+      return /* @__PURE__ */ jsx32(Fragment7, {});
     }
     const MobileAppend = opts.mobileAppend;
     const DesktopCompanion = opts.desktopCompanion;
@@ -10136,12 +10435,12 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 }), "default");
 
 // quartz/components/InfoBox.tsx
-import { Fragment as Fragment7 } from "preact";
+import { Fragment as Fragment8 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
-var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl5 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN4 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix5 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -10157,7 +10456,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix4(target);
+  const sanitized = stripContentPrefix5(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -10226,7 +10525,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
     }
     const combinedKey = normalized.map((entry) => entry.key).join("|");
     const children = intersperse(normalized.map((entry) => entry.node), ", ");
-    return { node: /* @__PURE__ */ jsx36(Fragment7, { children }), key: combinedKey };
+    return { node: /* @__PURE__ */ jsx36(Fragment8, { children }), key: combinedKey };
   }
   const text = normalizeString(value);
   if (!text) {
@@ -10234,7 +10533,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   }
   return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
 }, "normalizeValue");
-var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => {
+var appendAssetVersion4 = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
   }
@@ -10242,29 +10541,29 @@ var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => {
 }, "appendAssetVersion");
 var resolveObsidianTarget4 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl4(rawTarget)) {
+  if (isExternalUrl5(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix4(rawTarget);
+  const targetWithoutExt = stripContentPrefix5(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion3(joinSegments(baseDir, targetSlug), version);
+  return appendAssetVersion4(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
 var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN4);
   if (obsidianMatch?.groups?.target) {
     return resolveObsidianTarget4(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl4(cleaned)) {
+  if (isExternalUrl5(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix4(cleaned);
-  return appendAssetVersion3(joinSegments(pathToRoot(slug), target), version);
+  const target = stripContentPrefix5(cleaned);
+  return appendAssetVersion4(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {
@@ -10736,8 +11035,8 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 var mediaNormalizer_inline_default = "";
 
 // quartz/components/MediaNormalizer.tsx
-import { Fragment as Fragment8, jsx as jsx38 } from "preact/jsx-runtime";
-var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment8, {}), "MediaNormalizer");
+import { Fragment as Fragment9, jsx as jsx38 } from "preact/jsx-runtime";
+var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment9, {}), "MediaNormalizer");
 MediaNormalizer.afterDOMLoaded = mediaNormalizer_inline_default;
 var MediaNormalizer_default = /* @__PURE__ */ __name((() => MediaNormalizer), "default");
 
@@ -12274,6 +12573,13 @@ var defaultOptions17 = {
   includeEmptyFiles: true
 };
 var VIDEO_PATH_INDICATORS = ["youtube/videos", "youtube/livestreams"];
+var MAX_ALIAS_OUTPUT = 80;
+var ALIAS_SUBSTITUTIONS = [
+  [/&/g, " and "],
+  [/@/g, " at "],
+  [/\+/g, " "],
+  [/:/g, " "]
+];
 var REMOVABLE_EXTENSIONS = /* @__PURE__ */ new Set([
   "md",
   "mdown",
@@ -12325,6 +12631,144 @@ function basename(value) {
   return parts.length > 0 ? parts[parts.length - 1] ?? value : value;
 }
 __name(basename, "basename");
+function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch (error) {
+    return value;
+  }
+}
+__name(safeDecode, "safeDecode");
+function sanitizeUrlSegment(segment) {
+  const decoded = safeDecode(segment ?? "").trim();
+  if (!decoded) {
+    return "";
+  }
+  let normalized = decoded.replace(/'/g, "");
+  normalized = normalized.replace(/\s+/g, "-");
+  normalized = normalized.replace(/-+/g, "-");
+  normalized = normalized.replace(/^-+/, "").replace(/-+$/, "");
+  return normalized;
+}
+__name(sanitizeUrlSegment, "sanitizeUrlSegment");
+function basicAliasForms(base) {
+  const forms = /* @__PURE__ */ new Set();
+  const queue = [base];
+  while (queue.length > 0) {
+    const current = queue.pop() ?? "";
+    if (forms.has(current)) {
+      continue;
+    }
+    forms.add(current);
+    for (const [pattern, replacement] of ALIAS_SUBSTITUTIONS) {
+      const replaced = current.replace(pattern, replacement);
+      if (!forms.has(replaced)) {
+        queue.push(replaced);
+      }
+      const stripped = current.replace(pattern, " ");
+      if (!forms.has(stripped)) {
+        queue.push(stripped);
+      }
+    }
+    const withoutQuotes = current.replace(/'/g, "");
+    if (!forms.has(withoutQuotes)) {
+      queue.push(withoutQuotes);
+    }
+    const withoutParens = current.replace(/[()]+/g, " ");
+    if (!forms.has(withoutParens)) {
+      queue.push(withoutParens);
+    }
+  }
+  return forms;
+}
+__name(basicAliasForms, "basicAliasForms");
+function expandAliasVariants(raw) {
+  if (raw == null) {
+    return /* @__PURE__ */ new Set();
+  }
+  let base;
+  if (Array.isArray(raw)) {
+    base = raw.map((item) => (item ?? "").toString()).join(" ");
+  } else if (typeof raw === "object") {
+    base = Object.values(raw).map((value) => (value ?? "").toString()).join(" ");
+  } else {
+    base = raw.toString();
+  }
+  const trimmed = base.trim();
+  if (!trimmed) {
+    return /* @__PURE__ */ new Set();
+  }
+  const variants = basicAliasForms(trimmed);
+  const results = /* @__PURE__ */ new Set();
+  for (const variant of variants) {
+    const value = variant.trim();
+    if (!value) {
+      continue;
+    }
+    results.add(value);
+    results.add(value.toLowerCase());
+    const collapsed = value.replace(/\s+/g, "");
+    if (collapsed) {
+      results.add(collapsed);
+    }
+    const hyphenated = value.replace(/\s+/g, "-");
+    if (hyphenated) {
+      results.add(hyphenated);
+    }
+    const underscored = value.replace(/\s+/g, "_");
+    if (underscored) {
+      results.add(underscored);
+    }
+    const spaced = value.replace(/[-_/]+/g, " ").trim();
+    if (spaced) {
+      results.add(spaced);
+    }
+    const stripped = value.replace(/[^a-z0-9]+/gi, "").toLowerCase();
+    if (stripped) {
+      results.add(stripped);
+    }
+    const pieces = value.split(/[\s_\-/.]+/).filter((piece) => piece.length >= 2);
+    for (const piece of pieces) {
+      results.add(piece);
+      results.add(piece.toLowerCase());
+    }
+  }
+  return new Set(Array.from(results).filter((candidate) => candidate.length > 0));
+}
+__name(expandAliasVariants, "expandAliasVariants");
+function addAliasVariants(target, raw) {
+  const variants = expandAliasVariants(raw);
+  for (const variant of variants) {
+    target.add(variant);
+  }
+}
+__name(addAliasVariants, "addAliasVariants");
+function addPathAliases(target, relativePath) {
+  if (!relativePath) {
+    return;
+  }
+  const normalized = relativePath.replace(/\\/g, "/").replace(/^\.\/+/, "");
+  if (!normalized) {
+    return;
+  }
+  addAliasVariants(target, normalized);
+  const withoutExt = stripAllExtensions(normalized);
+  if (withoutExt && withoutExt !== normalized) {
+    addAliasVariants(target, withoutExt);
+  }
+  const segments = normalized.split("/").filter(Boolean);
+  const sanitizedSegments = segments.map((segment) => sanitizeUrlSegment(segment)).filter(Boolean);
+  if (sanitizedSegments.length > 0) {
+    addAliasVariants(target, sanitizedSegments.join("/"));
+  }
+  for (const [index, segment] of sanitizedSegments.entries()) {
+    addAliasVariants(target, segment);
+    if (index === sanitizedSegments.length - 1) {
+      addAliasVariants(target, segment.replace(/[^a-z0-9]+/gi, ""));
+    }
+  }
+}
+__name(addPathAliases, "addPathAliases");
 function expandLogAlias(label) {
   const normalized = label.trim();
   if (normalized.length === 0) {
@@ -12421,28 +12865,38 @@ function shouldGenerateVideoAliases(relativePath) {
   return VIDEO_PATH_INDICATORS.some((indicator) => normalized.includes(indicator));
 }
 __name(shouldGenerateVideoAliases, "shouldGenerateVideoAliases");
-function buildSearchAliases(relativePath, logAliasMap) {
-  if (!shouldGenerateVideoAliases(relativePath)) {
-    return void 0;
-  }
-  const fileName = basename(relativePath ?? "");
-  const sanitizedBase = stripAllExtensions(fileName);
-  if (!sanitizedBase) {
-    return void 0;
-  }
-  const key = sanitizedBase.toLowerCase();
+function buildSearchAliases(slug, relativePath, title, frontmatterAliases, logAliasMap) {
   const aliases = /* @__PURE__ */ new Set();
-  const lookup = logAliasMap.get(key) ?? [];
-  for (const alias of lookup) {
-    aliases.add(alias);
+  addAliasVariants(aliases, slug);
+  addAliasVariants(aliases, title);
+  if (frontmatterAliases) {
+    for (const candidate of frontmatterAliases) {
+      addAliasVariants(aliases, candidate);
+    }
   }
-  expandLogAlias(sanitizedBase).forEach((variant) => aliases.add(variant));
-  const literalBase = sanitizedBase.trim();
-  if (literalBase) {
-    aliases.add(literalBase);
-    aliases.add(literalBase.toLowerCase());
+  addPathAliases(aliases, relativePath);
+  if (shouldGenerateVideoAliases(relativePath)) {
+    const fileName = basename(relativePath ?? "");
+    const sanitizedBase = stripAllExtensions(fileName);
+    if (sanitizedBase) {
+      const key = sanitizedBase.toLowerCase();
+      const lookup = logAliasMap.get(key) ?? [];
+      lookup.forEach((alias) => addAliasVariants(aliases, alias));
+      expandLogAlias(sanitizedBase).forEach((variant) => addAliasVariants(aliases, variant));
+    }
   }
-  return aliases.size > 0 ? Array.from(aliases) : void 0;
+  const aliasList = Array.from(aliases).map((alias) => alias.trim()).filter((alias) => alias.length > 0);
+  if (aliasList.length === 0) {
+    return void 0;
+  }
+  const deduped = Array.from(new Set(aliasList));
+  deduped.sort((a, b) => {
+    if (a.length !== b.length) {
+      return a.length - b.length;
+    }
+    return a.localeCompare(b);
+  });
+  return deduped.slice(0, MAX_ALIAS_OUTPUT);
 }
 __name(buildSearchAliases, "buildSearchAliases");
 function generateSiteMap(cfg, idx) {
@@ -12502,17 +12956,39 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
         const slug = file.data.slug;
         const date = getDate(ctx.cfg.configuration, file.data) ?? /* @__PURE__ */ new Date();
         if (opts?.includeEmptyFiles || file.data.text && file.data.text !== "") {
+          const frontmatter = file.data.frontmatter ?? {};
+          const title = frontmatter["title"] ?? slug;
+          const frontmatterAliasCandidates = [];
+          if (frontmatter["aliases"] !== void 0) {
+            frontmatterAliasCandidates.push(frontmatter["aliases"]);
+          }
+          if (frontmatter["alias"] !== void 0) {
+            frontmatterAliasCandidates.push(frontmatter["alias"]);
+          }
+          if (frontmatter["aka"] !== void 0) {
+            frontmatterAliasCandidates.push(frontmatter["aka"]);
+          }
+          if (frontmatter["searchAliases"] !== void 0) {
+            frontmatterAliasCandidates.push(frontmatter["searchAliases"]);
+          }
+          const frontmatterAliases = frontmatterAliasCandidates.length > 0 ? frontmatterAliasCandidates : void 0;
           linkIndex.set(slug, {
             slug,
             filePath: file.data.relativePath,
-            title: file.data.frontmatter?.title,
+            title,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",
             richContent: opts?.rssFullHtml ? escapeHTML(toHtml2(tree, { allowDangerousHtml: true })) : void 0,
             date,
             description: file.data.description ?? "",
-            searchAliases: buildSearchAliases(file.data.relativePath, logAliasMap)
+            searchAliases: buildSearchAliases(
+              slug,
+              file.data.relativePath,
+              title,
+              frontmatterAliases,
+              logAliasMap
+            )
           });
         }
       }
