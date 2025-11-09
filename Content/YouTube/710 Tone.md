@@ -27,7 +27,7 @@ Media: [[SocialBlade Views Gained 710 Tone.png]]
 Alt: SocialBlade stats of monthly views gained for 7/10 Tone YouTube channel
 Caption: SocialBlade stats that prove that there was a purge of videos around September 2024
 Align: right
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
