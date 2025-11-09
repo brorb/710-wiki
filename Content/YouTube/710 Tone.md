@@ -16,9 +16,20 @@ Associates:
 ```
 
 
-The channel 7/10 Tone was created on 26th Jun 2021. There exists records of them uploading videos since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24th July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
+The channel 7/10 Tone was created on 26th Jun 2021. It mainly centers around [[The Logs]], with some hints around data, signals, machines (usually sentient-like AI), and time.
 
-The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format. This corresponds to the date which the countdowns from the [[Station Timer]] were counting down to, and also to the profile picture of the 7/10 Tone YouTube channel (see image to the right). We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
+There exists records of (confirmed) video uploads since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24th July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
+
+The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format, which is an important date for this series and corresponds to the countdowns from the [[Station Timer]]. We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
+
+```media-box
+Media: [[SocialBlade Views Gained 710 Tone.png]]
+Alt: SocialBlade stats of monthly views gained for 7/10 Tone YouTube channel
+Caption: SocialBlade stats that prove that there was a purge of videos around September 2024
+Align: right
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```
 
 ## Owners
 
@@ -108,3 +119,4 @@ Finally, as 10th August come around all community posts, livestreams, and videos
 ![[3 hidden videos-min.png]]
 
 However the next day these videos were also unlisted from the channel's page.
+
