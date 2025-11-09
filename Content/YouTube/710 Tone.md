@@ -18,7 +18,7 @@ Associates:
 
 The channel 7/10 Tone was created on 26th Jun 2021. It mainly centers around [[The Logs]], with some hints around data, signals, machines (usually sentient-like AI), and time.
 
-There exists records of video uploads since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24th July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
+There exists records of (confirmed) video uploads since early-mid 2023, although everything from before 2nd January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24th July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
 
 The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format, which is an important date for this series and corresponds to the countdowns from the [[Station Timer]]. We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
 
