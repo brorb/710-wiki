@@ -22,15 +22,6 @@ There exists records of (confirmed) video uploads since early-mid 2023, although
 
 The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format, which is an important date for this series and corresponds to the countdowns from the [[Station Timer]]. We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
 
-```media-box
-Media: [[SocialBlade Views Gained 710 Tone.png]]
-Alt: SocialBlade stats of monthly views gained for 7/10 Tone YouTube channel
-Caption: SocialBlade stats that prove that there was a purge of videos around September 2024
-Align: right
-Wrap: true
-Width: clamp(220px, 32vw, 360px)
-```
-
 ## Owners
 
 The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]] (see [[Community Posts]]).
@@ -59,6 +50,14 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 > }
 > ```
 
+```media-box
+Media: [[SocialBlade Views Gained 710 Tone.png]]
+Alt: SocialBlade stats of monthly views gained for 7/10 Tone YouTube channel
+Caption: SocialBlade stats that prove that there was a purge of videos around September 2024
+Align: right
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```
 ## Profile Picture Changes
 
 ```media-box
