@@ -23109,7 +23109,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-## Station 887634 connects to Discord server
+### Station 887634 connects to Discord server
 
 ```discord
 [
@@ -24423,7 +24423,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-## SYSTEM glitches out
+### SYSTEM glitches out
 
 ```discord
 [
