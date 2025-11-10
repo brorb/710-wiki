@@ -6392,9 +6392,11 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
       return [
         () => (tree, file) => {
           const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
-          if (!slug || slug.toLowerCase() !== TARGET_SLUG) {
+          if (!slug) {
             return;
           }
+          const slugLower = slug.toLowerCase();
+          const isCanonicalPage = slugLower === TARGET_SLUG;
           const root = tree;
           if (!Array.isArray(root.children)) {
             return;
@@ -6406,7 +6408,7 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
             if (!child || typeof child !== "object") {
               continue;
             }
-            if (child.type === "heading" && Array.isArray(child.children)) {
+            if (isCanonicalPage && child.type === "heading" && Array.isArray(child.children)) {
               const text = collectText(child).toLowerCase();
               const match = text.match(/from\s+(\d{4})/);
               currentYear = match ? match[1] : currentYear;

@@ -117,13 +117,40 @@ const mountUtterances = (element: UtterancesElement) => {
 
   element.appendChild(utterancesScript)
 }
-const mountComments = () => {
-  const containers = [...document.querySelectorAll(".comments")] as BaseCommentsElement[]
-  if (containers.length === 0) {
+const COMMENT_MAX_ATTEMPTS = 3
+
+type QuartzDiagnostics = {
+  commentMountFailures: number
+  lastFailure?: string
+}
+
+const getDiagnostics = (): QuartzDiagnostics => {
+  const globalWindow = window as Window & { quartzDiagnostics?: QuartzDiagnostics }
+  if (!globalWindow.quartzDiagnostics) {
+    globalWindow.quartzDiagnostics = { commentMountFailures: 0 }
+  }
+  return globalWindow.quartzDiagnostics
+}
+
+const recordCommentFailure = (provider: Provider, error: unknown) => {
+  const diagnostics = getDiagnostics()
+  diagnostics.commentMountFailures += 1
+  diagnostics.lastFailure = provider
+  console.warn("[quartz] comments mount skipped", { provider, error })
+}
+
+const mountWithRetry = (container: BaseCommentsElement, attempt: number = 0) => {
+  if (!container.isConnected) {
+    if (attempt >= COMMENT_MAX_ATTEMPTS) {
+      recordCommentFailure(container.dataset.provider, "container detached")
+      return
+    }
+
+    requestAnimationFrame(() => mountWithRetry(container, attempt + 1))
     return
   }
 
-  containers.forEach((container) => {
+  try {
     container.innerHTML = ""
 
     if (container.dataset.provider === "giscus") {
@@ -131,8 +158,23 @@ const mountComments = () => {
     } else if (container.dataset.provider === "utterances") {
       mountUtterances(container as UtterancesElement)
     }
-  })
+  } catch (error) {
+    if (attempt >= COMMENT_MAX_ATTEMPTS - 1) {
+      recordCommentFailure(container.dataset.provider, error)
+      return
+    }
 
+    requestAnimationFrame(() => mountWithRetry(container, attempt + 1))
+  }
+}
+
+const mountComments = () => {
+  const containers = [...document.querySelectorAll(".comments")] as BaseCommentsElement[]
+  if (containers.length === 0) {
+    return
+  }
+
+  containers.forEach((container) => mountWithRetry(container))
 }
 
 if (document.readyState === "loading") {
