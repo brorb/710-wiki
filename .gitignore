@@ -1,6 +1,8 @@
 # Local Git credentials
 .git-credentials
 
+AI_intro.txt
+
 # Obsidian system files
 /.obsidian/workspace
 /.obsidian/workspace.json
