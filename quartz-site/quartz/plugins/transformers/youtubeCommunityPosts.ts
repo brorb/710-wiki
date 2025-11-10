@@ -140,7 +140,15 @@ const parseCommunityPostHeader = (raw?: string): CommunityPostHeaderResult | nul
     return null
   }
 
-  const parts = trimmed.split(",").map((part) => part.trim())
+  const parts = trimmed
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part, index, array) => {
+      if (part.length === 0 && index >= array.length - 1) {
+        return false
+      }
+      return true
+    })
   if (parts.length < 4) {
     return null
   }
@@ -151,10 +159,18 @@ const parseCommunityPostHeader = (raw?: string): CommunityPostHeaderResult | nul
     return null
   }
 
-  const postedLabelRaw = parts[3] ?? ""
-  const inlineSegments = parts.slice(4)
-  while (inlineSegments.length > 0 && inlineSegments[inlineSegments.length - 1].length === 0) {
-    inlineSegments.pop()
+  let postedLabelRaw = parts[3] ?? ""
+  const inlineSegments = parts.slice(4).filter((segment) => segment.length > 0)
+
+  if ((!postedLabelRaw || /^[0-9]+$/.test(postedLabelRaw)) && inlineSegments.length > 0) {
+    const candidate = inlineSegments[0]
+    if (candidate && /[A-Za-z]/.test(candidate)) {
+      postedLabelRaw = `${postedLabelRaw} ${candidate}`.trim()
+      inlineSegments.shift()
+    } else if (!postedLabelRaw) {
+      postedLabelRaw = candidate
+      inlineSegments.shift()
+    }
   }
 
   const inlineBody = inlineSegments.join(",").trim()
@@ -254,6 +270,136 @@ const parseBodyMetadata = (raw: string): { metadata: PostMetadata; body: string 
   return { metadata, body }
 }
 
+const MONTH_INDEX: Record<string, number> = {
+  jan: 0,
+  january: 0,
+  feb: 1,
+  february: 1,
+  mar: 2,
+  march: 2,
+  apr: 3,
+  april: 3,
+  may: 4,
+  jun: 5,
+  june: 5,
+  jul: 6,
+  july: 6,
+  aug: 7,
+  august: 7,
+  sep: 8,
+  sept: 8,
+  september: 8,
+  oct: 9,
+  october: 9,
+  nov: 10,
+  november: 10,
+  dec: 11,
+  december: 11,
+}
+
+const ORDINAL_SUFFIX_REGEX = /\b(\d{1,2})(?:st|nd|rd|th)\b/gi
+const TRAILING_PUNCTUATION_REGEX = /[.,]+$/
+
+const DATE_WITH_DAY_FORMATTER = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+})
+
+const DATE_MONTH_YEAR_FORMATTER = new Intl.DateTimeFormat("en-GB", {
+  month: "long",
+  year: "numeric",
+})
+
+const getMonthIndex = (value: string): number | undefined => MONTH_INDEX[value.toLowerCase()]
+
+const padTwo = (value: number): string => (value < 10 ? `0${value}` : `${value}`)
+const padYear = (value: number): string => value.toString().padStart(4, "0")
+
+const formatPostedLabel = (
+  rawLabel: string,
+  fallbackYear?: string,
+): { display: string; iso?: string } => {
+  const base = rawLabel
+    .replace(ORDINAL_SUFFIX_REGEX, "$1")
+    .replace(TRAILING_PUNCTUATION_REGEX, "")
+    .replace(/\s+/g, " ")
+    .trim()
+
+  if (!base) {
+    return { display: "" }
+  }
+
+  const dayMonthYearMatch = base.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/)
+  if (dayMonthYearMatch) {
+    const [, dayRaw, monthRaw, yearRaw] = dayMonthYearMatch
+    const monthIndex = getMonthIndex(monthRaw)
+    if (monthIndex !== undefined) {
+      const year = Number.parseInt(yearRaw, 10)
+      const day = Number.parseInt(dayRaw, 10)
+      if (Number.isFinite(year) && Number.isFinite(day)) {
+        const date = new Date(Date.UTC(year, monthIndex, day))
+        return {
+          display: DATE_WITH_DAY_FORMATTER.format(date),
+          iso: `${yearRaw}-${padTwo(monthIndex + 1)}-${padTwo(day)}`,
+        }
+      }
+    }
+  }
+
+  const dayMonthMatch = base.match(/^(\d{1,2})\s+([A-Za-z]+)$/)
+  if (dayMonthMatch && fallbackYear) {
+    const [, dayRaw, monthRaw] = dayMonthMatch
+    const monthIndex = getMonthIndex(monthRaw)
+    if (monthIndex !== undefined) {
+      const year = Number.parseInt(fallbackYear, 10)
+      const day = Number.parseInt(dayRaw, 10)
+      if (Number.isFinite(year) && Number.isFinite(day)) {
+        const date = new Date(Date.UTC(year, monthIndex, day))
+        return {
+          display: DATE_WITH_DAY_FORMATTER.format(date),
+          iso: `${padYear(year)}-${padTwo(monthIndex + 1)}-${padTwo(day)}`,
+        }
+      }
+    }
+  }
+
+  const monthYearMatch = base.match(/^([A-Za-z]+)\s+(\d{4})$/)
+  if (monthYearMatch) {
+    const [, monthRaw, yearRaw] = monthYearMatch
+    const monthIndex = getMonthIndex(monthRaw)
+    if (monthIndex !== undefined) {
+      const year = Number.parseInt(yearRaw, 10)
+      if (Number.isFinite(year)) {
+        const date = new Date(Date.UTC(year, monthIndex, 1))
+        return {
+          display: DATE_MONTH_YEAR_FORMATTER.format(date),
+          iso: `${yearRaw}-${padTwo(monthIndex + 1)}-01`,
+        }
+      }
+    }
+  }
+
+  const yearMatch = base.match(/^(\d{4})$/)
+  if (yearMatch) {
+    const [, yearRaw] = yearMatch
+    return {
+      display: yearRaw,
+      iso: yearRaw,
+    }
+  }
+
+  if (fallbackYear && !/\d{4}/.test(base)) {
+    const combined = `${base} ${fallbackYear}`
+    const attempt = formatPostedLabel(combined, undefined)
+    if (attempt.display) {
+      return attempt
+    }
+  }
+
+  return { display: base }
+}
+
 const formatCount = (value: number | undefined): string | undefined => {
   if (value === undefined || Number.isNaN(value) || value < 0) {
     return undefined
@@ -321,8 +467,8 @@ const buildPostAnchorId = (
 }
 
 const renderTextSegment = (segment: TextSegment): string => {
-  const content = normaliseWhitespace(segment.content)
-  if (!content.trim()) {
+  const content = normaliseWhitespace(segment.content).replace(/^\s+/, "").replace(/\s+$/, "")
+  if (!content) {
     return ""
   }
 
@@ -385,15 +531,28 @@ const renderPost = (options: {
   const cleanedBody = body.replace(/^\s+/, "")
   const segments = splitSegments(cleanedBody)
   const bodyHtml = renderSegments(segments, slug)
-  const timestamp = metadata.postedLabel
-    ? `Posted ${escapeHtml(metadata.postedLabel)}`
+  let postedDisplay = metadata.postedLabel?.trim() || ""
+  let dataPosted: string | undefined
+  if (postedDisplay) {
+    const formatted = formatPostedLabel(postedDisplay, year)
+    postedDisplay = formatted.display || postedDisplay
+    if (formatted.iso) {
+      dataPosted = formatted.iso
+    }
+    metadata.postedLabel = postedDisplay
+  }
+
+  const timestamp = postedDisplay
+    ? `Posted ${escapeHtml(postedDisplay)}`
     : year
       ? `Posted ${escapeHtml(year)}`
       : "Posted"
 
   const likeCount = formatCount(metadata.likes)
   const commentCount = formatCount(metadata.comments)
-  const dataPosted = metadata.postedLabel ?? year ?? ""
+  if (!dataPosted) {
+    dataPosted = postedDisplay || year || ""
+  }
 
   const textSegments = segments
     .filter((segment): segment is TextSegment => segment.type === "text")
@@ -731,7 +890,8 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
 
             const langRaw = typeof child.lang === "string" ? child.lang.trim() : ""
             const metaRaw = typeof child.meta === "string" ? child.meta.trim() : ""
-            const headerResult = parseCommunityPostHeader(langRaw) ?? parseCommunityPostHeader(metaRaw)
+            const headerRaw = [langRaw, metaRaw].filter((segment) => segment.length > 0).join(",")
+            const headerResult = parseCommunityPostHeader(headerRaw)
 
             if (!headerResult) {
               continue

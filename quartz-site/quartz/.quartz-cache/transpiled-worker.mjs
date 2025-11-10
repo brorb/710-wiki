@@ -5924,7 +5924,12 @@ var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
   if (!COMMUNITY_POST_PREFIX_REGEX.test(trimmed)) {
     return null;
   }
-  const parts = trimmed.split(",").map((part) => part.trim());
+  const parts = trimmed.split(",").map((part) => part.trim()).filter((part, index, array) => {
+    if (part.length === 0 && index >= array.length - 1) {
+      return false;
+    }
+    return true;
+  });
   if (parts.length < 4) {
     return null;
   }
@@ -5933,10 +5938,17 @@ var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
   if (!Number.isFinite(likes) || !Number.isFinite(comments)) {
     return null;
   }
-  const postedLabelRaw = parts[3] ?? "";
-  const inlineSegments = parts.slice(4);
-  while (inlineSegments.length > 0 && inlineSegments[inlineSegments.length - 1].length === 0) {
-    inlineSegments.pop();
+  let postedLabelRaw = parts[3] ?? "";
+  const inlineSegments = parts.slice(4).filter((segment) => segment.length > 0);
+  if ((!postedLabelRaw || /^[0-9]+$/.test(postedLabelRaw)) && inlineSegments.length > 0) {
+    const candidate = inlineSegments[0];
+    if (candidate && /[A-Za-z]/.test(candidate)) {
+      postedLabelRaw = `${postedLabelRaw} ${candidate}`.trim();
+      inlineSegments.shift();
+    } else if (!postedLabelRaw) {
+      postedLabelRaw = candidate;
+      inlineSegments.shift();
+    }
   }
   const inlineBody = inlineSegments.join(",").trim();
   const metadata = {};
@@ -6015,6 +6027,115 @@ var parseBodyMetadata = /* @__PURE__ */ __name((raw) => {
   const body = raw.slice(match[0].length);
   return { metadata, body };
 }, "parseBodyMetadata");
+var MONTH_INDEX = {
+  jan: 0,
+  january: 0,
+  feb: 1,
+  february: 1,
+  mar: 2,
+  march: 2,
+  apr: 3,
+  april: 3,
+  may: 4,
+  jun: 5,
+  june: 5,
+  jul: 6,
+  july: 6,
+  aug: 7,
+  august: 7,
+  sep: 8,
+  sept: 8,
+  september: 8,
+  oct: 9,
+  october: 9,
+  nov: 10,
+  november: 10,
+  dec: 11,
+  december: 11
+};
+var ORDINAL_SUFFIX_REGEX = /\b(\d{1,2})(?:st|nd|rd|th)\b/gi;
+var TRAILING_PUNCTUATION_REGEX = /[.,]+$/;
+var DATE_WITH_DAY_FORMATTER = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric"
+});
+var DATE_MONTH_YEAR_FORMATTER = new Intl.DateTimeFormat("en-GB", {
+  month: "long",
+  year: "numeric"
+});
+var getMonthIndex = /* @__PURE__ */ __name((value) => MONTH_INDEX[value.toLowerCase()], "getMonthIndex");
+var padTwo = /* @__PURE__ */ __name((value) => value < 10 ? `0${value}` : `${value}`, "padTwo");
+var padYear = /* @__PURE__ */ __name((value) => value.toString().padStart(4, "0"), "padYear");
+var formatPostedLabel = /* @__PURE__ */ __name((rawLabel, fallbackYear) => {
+  const base = rawLabel.replace(ORDINAL_SUFFIX_REGEX, "$1").replace(TRAILING_PUNCTUATION_REGEX, "").replace(/\s+/g, " ").trim();
+  if (!base) {
+    return { display: "" };
+  }
+  const dayMonthYearMatch = base.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (dayMonthYearMatch) {
+    const [, dayRaw, monthRaw, yearRaw] = dayMonthYearMatch;
+    const monthIndex = getMonthIndex(monthRaw);
+    if (monthIndex !== void 0) {
+      const year = Number.parseInt(yearRaw, 10);
+      const day = Number.parseInt(dayRaw, 10);
+      if (Number.isFinite(year) && Number.isFinite(day)) {
+        const date = new Date(Date.UTC(year, monthIndex, day));
+        return {
+          display: DATE_WITH_DAY_FORMATTER.format(date),
+          iso: `${yearRaw}-${padTwo(monthIndex + 1)}-${padTwo(day)}`
+        };
+      }
+    }
+  }
+  const dayMonthMatch = base.match(/^(\d{1,2})\s+([A-Za-z]+)$/);
+  if (dayMonthMatch && fallbackYear) {
+    const [, dayRaw, monthRaw] = dayMonthMatch;
+    const monthIndex = getMonthIndex(monthRaw);
+    if (monthIndex !== void 0) {
+      const year = Number.parseInt(fallbackYear, 10);
+      const day = Number.parseInt(dayRaw, 10);
+      if (Number.isFinite(year) && Number.isFinite(day)) {
+        const date = new Date(Date.UTC(year, monthIndex, day));
+        return {
+          display: DATE_WITH_DAY_FORMATTER.format(date),
+          iso: `${padYear(year)}-${padTwo(monthIndex + 1)}-${padTwo(day)}`
+        };
+      }
+    }
+  }
+  const monthYearMatch = base.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (monthYearMatch) {
+    const [, monthRaw, yearRaw] = monthYearMatch;
+    const monthIndex = getMonthIndex(monthRaw);
+    if (monthIndex !== void 0) {
+      const year = Number.parseInt(yearRaw, 10);
+      if (Number.isFinite(year)) {
+        const date = new Date(Date.UTC(year, monthIndex, 1));
+        return {
+          display: DATE_MONTH_YEAR_FORMATTER.format(date),
+          iso: `${yearRaw}-${padTwo(monthIndex + 1)}-01`
+        };
+      }
+    }
+  }
+  const yearMatch = base.match(/^(\d{4})$/);
+  if (yearMatch) {
+    const [, yearRaw] = yearMatch;
+    return {
+      display: yearRaw,
+      iso: yearRaw
+    };
+  }
+  if (fallbackYear && !/\d{4}/.test(base)) {
+    const combined = `${base} ${fallbackYear}`;
+    const attempt = formatPostedLabel(combined, void 0);
+    if (attempt.display) {
+      return attempt;
+    }
+  }
+  return { display: base };
+}, "formatPostedLabel");
 var formatCount = /* @__PURE__ */ __name((value) => {
   if (value === void 0 || Number.isNaN(value) || value < 0) {
     return void 0;
@@ -6057,8 +6178,8 @@ var buildPostAnchorId = /* @__PURE__ */ __name((slug, metadata, snippet) => {
   return `${base}-${sequence}`;
 }, "buildPostAnchorId");
 var renderTextSegment = /* @__PURE__ */ __name((segment) => {
-  const content = normaliseWhitespace(segment.content);
-  if (!content.trim()) {
+  const content = normaliseWhitespace(segment.content).replace(/^\s+/, "").replace(/\s+$/, "");
+  if (!content) {
     return "";
   }
   const safe = escapeHtml2(content).replace(/\n/g, "<br />");
@@ -6104,10 +6225,22 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
   const cleanedBody = body.replace(/^\s+/, "");
   const segments = splitSegments(cleanedBody);
   const bodyHtml = renderSegments(segments, slug);
-  const timestamp = metadata.postedLabel ? `Posted ${escapeHtml2(metadata.postedLabel)}` : year ? `Posted ${escapeHtml2(year)}` : "Posted";
+  let postedDisplay = metadata.postedLabel?.trim() || "";
+  let dataPosted;
+  if (postedDisplay) {
+    const formatted = formatPostedLabel(postedDisplay, year);
+    postedDisplay = formatted.display || postedDisplay;
+    if (formatted.iso) {
+      dataPosted = formatted.iso;
+    }
+    metadata.postedLabel = postedDisplay;
+  }
+  const timestamp = postedDisplay ? `Posted ${escapeHtml2(postedDisplay)}` : year ? `Posted ${escapeHtml2(year)}` : "Posted";
   const likeCount = formatCount(metadata.likes);
   const commentCount = formatCount(metadata.comments);
-  const dataPosted = metadata.postedLabel ?? year ?? "";
+  if (!dataPosted) {
+    dataPosted = postedDisplay || year || "";
+  }
   const textSegments = segments.filter((segment) => segment.type === "text").map((segment) => normaliseWhitespace(segment.content)).join(" ").replace(/\s+/g, " ").trim();
   const shareSnippet = createShareSnippet2(textSegments || metadata.postedLabel || void 0);
   const anchorId = buildPostAnchorId(slug, metadata, shareSnippet);
@@ -6419,7 +6552,8 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
             }
             const langRaw = typeof child.lang === "string" ? child.lang.trim() : "";
             const metaRaw = typeof child.meta === "string" ? child.meta.trim() : "";
-            const headerResult = parseCommunityPostHeader(langRaw) ?? parseCommunityPostHeader(metaRaw);
+            const headerRaw = [langRaw, metaRaw].filter((segment) => segment.length > 0).join(",");
+            const headerResult = parseCommunityPostHeader(headerRaw);
             if (!headerResult) {
               continue;
             }
