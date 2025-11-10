@@ -13,7 +13,7 @@ Associates:
 - [[Travis]]
 - [[SYSTEM]]
 - [[He]]
-Other related channel:
+Other related channel(s):
 - [[710 NPP|7/10 NPP]]
 ```
 
