@@ -6,6 +6,8 @@ declare global {
   interface Window {
     __quartzCleanupFns?: Set<(...args: any[]) => void>
     addCleanup: (fn: (...args: any[]) => void) => any
+    __quartzDisableSpa?: boolean
+    quartzDiagnostics?: QuartzDiagnostics
   }
 }
 
@@ -28,12 +30,16 @@ type NavGuardLogEntry = {
   reason: NavGuardReason
 }
 
+type DisableReason = "comment-script-removed" | "lean-library-popover"
+
 type QuartzDiagnostics = {
   commentMountFailures: number
   lastFailure?: string
   mutationLogs?: MutationLogEntry[]
   navGuardReloads?: number
   navGuardEvents?: NavGuardLogEntry[]
+  commentScriptRemovals?: number
+  spaDisabledReason?: DisableReason
 }
 
 const DIAGNOSTICS_MAX_MUTATIONS = 20
@@ -43,9 +49,13 @@ const MUTATION_TRACE_WINDOW_MS = 4000
 const getDiagnostics = (): QuartzDiagnostics => {
   const globalWindow = window as Window & { quartzDiagnostics?: QuartzDiagnostics }
   if (!globalWindow.quartzDiagnostics) {
-    globalWindow.quartzDiagnostics = { commentMountFailures: 0 }
+    globalWindow.quartzDiagnostics = { commentMountFailures: 0, commentScriptRemovals: 0 }
   } else if (typeof globalWindow.quartzDiagnostics.commentMountFailures !== "number") {
     globalWindow.quartzDiagnostics.commentMountFailures = 0
+  }
+
+  if (typeof globalWindow.quartzDiagnostics.commentScriptRemovals !== "number") {
+    globalWindow.quartzDiagnostics.commentScriptRemovals = 0
   }
   return globalWindow.quartzDiagnostics
 }
@@ -161,6 +171,66 @@ const stopMutationTrace = () => {
   mutationContext = null
 }
 
+const SUSPICIOUS_ID_PATTERNS = [/^popover-/i, /lean/i, /library/i]
+const SUSPICIOUS_CLASS_PATTERNS = [/popover/i, /lean/i, /library/i]
+const MAX_COMMENT_SCRIPT_REMOVALS = 2
+
+const disableSpaForSession = (reason: DisableReason) => {
+  if (window.__quartzDisableSpa) {
+    return
+  }
+
+  window.__quartzDisableSpa = true
+  const diagnostics = getDiagnostics()
+  diagnostics.spaDisabledReason = reason
+  console.warn("[quartz] SPA disabled for session", { reason })
+}
+
+const detectLeanLibraryFootprint = (mutation: MutationRecord) => {
+  if (window.__quartzDisableSpa || mutation.type !== "childList") {
+    return
+  }
+
+  const diagnostics = getDiagnostics()
+
+  const targetEl = mutation.target instanceof Element ? mutation.target : null
+  const isCommentContainer = targetEl?.matches(".comments.utterances, .comments.giscus") ?? false
+  if (isCommentContainer) {
+    const removedScripts = Array.from(mutation.removedNodes).filter((node) => node.nodeName.toLowerCase() === "script")
+    if (removedScripts.length > 0) {
+      diagnostics.commentScriptRemovals = (diagnostics.commentScriptRemovals ?? 0) + removedScripts.length
+      if ((diagnostics.commentScriptRemovals ?? 0) >= MAX_COMMENT_SCRIPT_REMOVALS) {
+        disableSpaForSession("comment-script-removed")
+        return
+      }
+    }
+  }
+
+  const hasSuspiciousAddition = Array.from(mutation.addedNodes).some((node) => {
+    if (!(node instanceof Element)) {
+      return false
+    }
+
+    const id = node.id.toLowerCase()
+    if (id && SUSPICIOUS_ID_PATTERNS.some((pattern) => pattern.test(id))) {
+      return true
+    }
+
+    for (const cls of node.classList) {
+      const lower = cls.toLowerCase()
+      if (SUSPICIOUS_CLASS_PATTERNS.some((pattern) => pattern.test(lower))) {
+        return true
+      }
+    }
+
+    return false
+  })
+
+  if (hasSuspiciousAddition) {
+    disableSpaForSession("lean-library-popover")
+  }
+}
+
 const startMutationTrace = (slug: FullSlug) => {
   stopMutationTrace()
   mutationContext = { slug, pathname: window.location.pathname }
@@ -173,6 +243,7 @@ const startMutationTrace = (slug: FullSlug) => {
       if (shouldLogMutation(mutation)) {
         recordMutationEntry(mutation)
       }
+      detectLeanLibraryFootprint(mutation)
     }
   })
 
@@ -356,6 +427,11 @@ function startLoading() {
 let isNavigating = false
 let p: DOMParser
 async function _navigate(url: URL, isBack: boolean = false) {
+  if (window.__quartzDisableSpa) {
+    window.location.assign(url)
+    return
+  }
+
   isNavigating = true
   stopMutationTrace()
   startLoading()
@@ -445,6 +521,10 @@ async function _navigate(url: URL, isBack: boolean = false) {
 
 async function navigate(url: URL, isBack: boolean = false) {
   if (isNavigating) return
+  if (window.__quartzDisableSpa) {
+    window.location.assign(url)
+    return
+  }
   isNavigating = true
   try {
     await _navigate(url, isBack)
@@ -465,6 +545,11 @@ function createRouter() {
       // dont hijack behaviour, just let browser act normally
       if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
+
+      if (window.__quartzDisableSpa) {
+        window.location.assign(url)
+        return
+      }
 
       if (isSamePage(url) && url.hash) {
         scrollToHashTarget(url.hash, "smooth")
