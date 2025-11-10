@@ -1,1 +1,0 @@
-Here you'll find all sorts of theories about [[710 Tone|7/10 Tone]] and its surroundings.
