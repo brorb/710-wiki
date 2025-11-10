@@ -168,6 +168,8 @@ const mountWithRetry = (container: BaseCommentsElement, attempt: number = 0) => 
   }
 }
 
+const deferMount = () => requestAnimationFrame(mountComments)
+
 const mountComments = () => {
   const containers = [...document.querySelectorAll(".comments")] as BaseCommentsElement[]
   if (containers.length === 0) {
@@ -177,10 +179,37 @@ const mountComments = () => {
   containers.forEach((container) => mountWithRetry(container))
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", mountComments, { once: true })
-} else {
-  mountComments()
+const globalErrorHandler = (event: ErrorEvent) => {
+  const isUtterancesNoMod =
+    typeof event.message === "string" &&
+    event.message.includes("insertAdjacentHTML") &&
+    event.error instanceof DOMException &&
+    event.error.name === "NoModificationAllowedError"
+
+  if (isUtterancesNoMod) {
+    recordCommentFailure("utterances", event.error)
+    event.preventDefault()
+  }
 }
 
-document.addEventListener("nav", mountComments)
+window.addEventListener("error", globalErrorHandler, true)
+if (typeof window.addCleanup === "function") {
+    window.addCleanup(() => window.removeEventListener("error", globalErrorHandler, true))
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", deferMount, { once: true })
+} else {
+  deferMount()
+}
+
+let navMountHandle = 0
+document.addEventListener("nav", () => {
+  if (navMountHandle !== 0) {
+    cancelAnimationFrame(navMountHandle)
+  }
+  navMountHandle = requestAnimationFrame(() => {
+    navMountHandle = 0
+    mountComments()
+  })
+})
