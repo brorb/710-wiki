@@ -15,4 +15,8 @@ According to the [[Hello]] video, the owner of the [[710 Tone|7/10 Tone]] channe
 
 Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] in [[STATION_8 TERMINAL 8]]. They are also meant to be deciphered like some kind of data (as confirmed by [[INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills. According to [[INDI]], they are important to "someone else", but the identity of them is unclear. [^1]
 
+They were not originally meant to be seen by the viewers[^2], but as for why they remained public on the YouTube channel is unknown.
+
 [^1]: [[STATION_8 TERMINAL 8]]
+
+[^2]: As implied by [[INDI]] in [[STATION_8 TERMINAL 8]].
