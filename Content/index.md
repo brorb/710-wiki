@@ -13,7 +13,7 @@ This wiki exists as a tool for young and old sleuths alike to quickly navigate t
 
 ## Keep exploring
 
-Browse the navigation on the left or the above buttons to dive into specific topics, or use the search bar to look up names, timestamps, and clues. If you have any new information to add, visit the "Contribution" page! If you have theories you'd like to share, visit our [Discord server]([https://discord.gg/M3sEVCuEAR](https://discord.gg/M3sEVCuEAR "https://discord.gg/M3sEVCuEAR") and submit a theory to our forums! On the right you'll see a button to ask questions about 7/10 lore to [[The Oracle]], as well as a visual graph of how topics connect together.
+Browse the navigation on the left or the above buttons to dive into specific topics, or use the search bar to look up names, timestamps, and clues. If you have any new information to add, visit the "Contribution" page! If you have theories you'd like to share, visit our [Discord server](https://discord.gg/M3sEVCuEAR "https://discord.gg/M3sEVCuEAR") and submit a theory to our forums! On the right you'll see a button to ask questions about 7/10 lore to [[The Oracle]], as well as a visual graph of how topics connect together.
 
 
 
