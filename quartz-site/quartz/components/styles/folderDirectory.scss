@@ -60,7 +60,7 @@
 
 .directory-card {
   position: relative;
-  background: color-mix(in srgb, var(--color-surface-overlay) 65%, rgba(255, 255, 255, 0.08));
+  background: var(--color-surface-overlay);
   border: 2px solid var(--color-accent-deep);
   border-radius: 16px;
   padding: 0.7rem 0.8rem 0.85rem;
@@ -174,7 +174,11 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
-  color: var(--color-accent-deep);
+  color: var(--color-accent-shadow);
+}
+
+.directory-card .directory-card__title {
+  color: var(--color-accent-shadow);
 }
 
 .directory-card__excerpt {
@@ -228,8 +232,8 @@
 }
 
 .directory-card--folder {
-  background: color-mix(in srgb, var(--color-surface-overlay) 50%, var(--color-tone-muted) 50%);
-  border-color: color-mix(in srgb, var(--color-accent-shadow) 80%, var(--color-accent-shadow) 20%);
+  background: color-mix(in srgb, var(--color-surface-overlay) 55%, var(--color-tone-muted) 45%);
+  border-color: color-mix(in srgb, var(--color-accent-deep) 80%, var(--color-accent-shadow) 20%);
 }
 
 .directory-card--folder .directory-card__meta {
