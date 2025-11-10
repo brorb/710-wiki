@@ -17,6 +17,10 @@ Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] i
 
 They were not originally meant to be seen by the viewers[^2], but as for why they remained public on the YouTube channel is unknown.
 
+## Oddities
+
+Not all LOGs appear "normal" at first, sometimes strange occurrences happen within some of them, such as [[LOG-27.mp4]] or [[LOG-95.mp4]]. These oddities might be of some significance to the lore. The end counter also has oddities such as 
+
 [^1]: [[STATION_8 TERMINAL 8]]
 
 [^2]: As implied by [[INDI]] in [[STATION_8 TERMINAL 8]].
