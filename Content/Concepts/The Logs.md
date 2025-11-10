@@ -19,7 +19,18 @@ They were not originally meant to be seen by the viewers[^2], but as for why the
 
 ## Oddities
 
-Not all LOGs appear "normal" at first, sometimes strange occurrences happen within some of them, such as [[LOG-27.mp4]] or [[LOG-95.mp4]]. These oddities might be of some significance to the lore. The end counter also has oddities such as 
+Not all LOGs appear "normal" at first, sometimes strange occurrences happen within some of them, such as [[LOG-27.mp4]] or [[LOG-95.mp4]]. These oddities might be of some significance to the lore. The end counter also has oddities such as after every 10 increments in the counter, it scrolls through numbers as its counting down by 1 point. Other times it also repeats itself between logs or glitches out.
+
+```media-box
+Media: [[Timer oddity example.png]]
+Alt: End log counter oddity with lines of zeros boxing in the number
+Caption: Here is an example of a counter oddity, which could mean the number has some significance.
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+---
 
 [^1]: [[STATION_8 TERMINAL 8]]
 
