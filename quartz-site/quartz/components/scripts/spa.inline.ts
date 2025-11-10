@@ -250,6 +250,8 @@ async function _navigate(url: URL, isBack: boolean = false) {
 
   notifyNav(getFullSlug(window))
   delete announcer.dataset.persist
+
+  queueMicrotask(verifyVisibleContent)
 }
 
 async function navigate(url: URL, isBack: boolean = false) {
@@ -356,4 +358,22 @@ if (!customElements.get("route-announcer")) {
       }
     },
   )
+}
+
+const verifyVisibleContent = () => {
+  const root = document.getElementById("quartz-root")
+  if (!root) {
+    console.warn("[quartz] missing #quartz-root after SPA navigation; forcing full reload")
+    window.location.assign(window.location.href)
+    return
+  }
+
+  const primaryColumn = root.querySelector(".center")
+  const hasVisibleContent =
+    !!primaryColumn && primaryColumn.childElementCount > 0 && primaryColumn.textContent?.trim().length !== 0
+
+  if (!hasVisibleContent) {
+    console.warn("[quartz] empty center column after SPA navigation; forcing full reload")
+    window.location.assign(window.location.href)
+  }
 }
