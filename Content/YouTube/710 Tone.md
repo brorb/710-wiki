@@ -13,6 +13,8 @@ Associates:
 - [[Travis]]
 - [[SYSTEM]]
 - [[He]]
+Link:
+- [Youtube](https://www.youtube.com/@7-10tone)
 ```
 
 
