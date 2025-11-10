@@ -6,7 +6,264 @@ declare global {
   interface Window {
     __quartzCleanupFns?: Set<(...args: any[]) => void>
     addCleanup: (fn: (...args: any[]) => void) => any
+    __quartzDisableSpa?: boolean
+    quartzDiagnostics?: QuartzDiagnostics
   }
+}
+
+type NavGuardReason = "missing-root" | "empty-center"
+
+type MutationLogEntry = {
+  ts: number
+  slug: FullSlug
+  pathname: string
+  target: string
+  added?: string[]
+  removed?: string[]
+  attributeName?: string
+}
+
+type NavGuardLogEntry = {
+  ts: number
+  slug: FullSlug
+  pathname: string
+  reason: NavGuardReason
+}
+
+type DisableReason = "comment-script-removed" | "lean-library-popover"
+
+type QuartzDiagnostics = {
+  commentMountFailures: number
+  lastFailure?: string
+  mutationLogs?: MutationLogEntry[]
+  navGuardReloads?: number
+  navGuardEvents?: NavGuardLogEntry[]
+  commentScriptRemovals?: number
+  spaDisabledReason?: DisableReason
+}
+
+const DIAGNOSTICS_MAX_MUTATIONS = 20
+const DIAGNOSTICS_MAX_GUARD_EVENTS = 10
+const MUTATION_TRACE_WINDOW_MS = 4000
+
+const getDiagnostics = (): QuartzDiagnostics => {
+  const globalWindow = window as Window & { quartzDiagnostics?: QuartzDiagnostics }
+  if (!globalWindow.quartzDiagnostics) {
+    globalWindow.quartzDiagnostics = { commentMountFailures: 0, commentScriptRemovals: 0 }
+  } else if (typeof globalWindow.quartzDiagnostics.commentMountFailures !== "number") {
+    globalWindow.quartzDiagnostics.commentMountFailures = 0
+  }
+
+  if (typeof globalWindow.quartzDiagnostics.commentScriptRemovals !== "number") {
+    globalWindow.quartzDiagnostics.commentScriptRemovals = 0
+  }
+  return globalWindow.quartzDiagnostics
+}
+
+const pushLimited = <T>(list: T[], entry: T, maxEntries: number) => {
+  list.push(entry)
+  if (list.length > maxEntries) {
+    list.splice(0, list.length - maxEntries)
+  }
+}
+
+const describeNode = (node: Node): string => {
+  if (node instanceof Element) {
+    const id = node.id ? `#${node.id}` : ""
+    const classList = node.classList.length > 0 ? `.${[...node.classList].join(".")}` : ""
+    return `${node.tagName.toLowerCase()}${id}${classList}`
+  }
+
+  if (node.nodeType === Node.TEXT_NODE) {
+    const text = node.textContent?.trim() ?? ""
+    return text.length > 16 ? `#text(${text.slice(0, 16)}…)` : `#text(${text})`
+  }
+
+  return node.nodeName.toLowerCase()
+}
+
+const summarizeNodes = (nodes: NodeList | Node[], maxSummary: number = 3): string[] => {
+  const result: string[] = []
+  const nodeArray = Array.isArray(nodes) ? nodes : Array.from(nodes)
+  for (const node of nodeArray) {
+    if (result.length >= maxSummary) {
+      break
+    }
+    result.push(describeNode(node))
+  }
+  const remaining = nodeArray.length - result.length
+  if (remaining > 0) {
+    result.push(`(+${remaining} more)`)
+  }
+  return result
+}
+
+const isSuspiciousElement = (element: Element): boolean => {
+  const id = element.id.toLowerCase()
+  if (id.includes("popover") || id.includes("lean") || id.includes("library")) {
+    return true
+  }
+
+  for (const cls of element.classList) {
+    const lower = cls.toLowerCase()
+    if (lower.includes("popover") || lower.includes("lean") || lower.includes("library")) {
+      return true
+    }
+  }
+
+  return false
+}
+
+const shouldLogMutation = (mutation: MutationRecord): boolean => {
+  if (mutation.type !== "childList") {
+    return false
+  }
+
+  if (mutation.removedNodes.length > 0) {
+    return true
+  }
+
+  return Array.from(mutation.addedNodes).some((node) => node instanceof Element && isSuspiciousElement(node))
+}
+
+let mutationObserver: MutationObserver | null = null
+let mutationTraceTimeout: number | undefined
+let mutationContext: { slug: FullSlug; pathname: string } | null = null
+
+const recordMutationEntry = (mutation: MutationRecord) => {
+  if (!mutationContext) {
+    mutationContext = { slug: getFullSlug(window), pathname: window.location.pathname }
+  }
+
+  const diagnostics = getDiagnostics()
+  const entry: MutationLogEntry = {
+    ts: Date.now(),
+    slug: mutationContext.slug,
+    pathname: mutationContext.pathname,
+    target: describeNode(mutation.target),
+  }
+
+  if (mutation.type === "childList") {
+    if (mutation.addedNodes.length > 0) {
+      entry.added = summarizeNodes(mutation.addedNodes)
+    }
+    if (mutation.removedNodes.length > 0) {
+      entry.removed = summarizeNodes(mutation.removedNodes)
+    }
+  } else if (mutation.type === "attributes") {
+    entry.attributeName = mutation.attributeName ?? undefined
+  }
+
+  diagnostics.mutationLogs = diagnostics.mutationLogs ?? []
+  pushLimited(diagnostics.mutationLogs, entry, DIAGNOSTICS_MAX_MUTATIONS)
+  console.debug("[quartz] mutation traced", entry)
+}
+
+const stopMutationTrace = () => {
+  if (mutationObserver) {
+    mutationObserver.disconnect()
+    mutationObserver = null
+  }
+  if (mutationTraceTimeout !== undefined) {
+    window.clearTimeout(mutationTraceTimeout)
+    mutationTraceTimeout = undefined
+  }
+  mutationContext = null
+}
+
+const SUSPICIOUS_ID_PATTERNS = [/^popover-/i, /lean/i, /library/i]
+const SUSPICIOUS_CLASS_PATTERNS = [/popover/i, /lean/i, /library/i]
+const MAX_COMMENT_SCRIPT_REMOVALS = 2
+
+const disableSpaForSession = (reason: DisableReason) => {
+  if (window.__quartzDisableSpa) {
+    return
+  }
+
+  window.__quartzDisableSpa = true
+  const diagnostics = getDiagnostics()
+  diagnostics.spaDisabledReason = reason
+  console.warn("[quartz] SPA disabled for session", { reason })
+}
+
+const detectLeanLibraryFootprint = (mutation: MutationRecord) => {
+  if (window.__quartzDisableSpa || mutation.type !== "childList") {
+    return
+  }
+
+  const diagnostics = getDiagnostics()
+
+  const targetEl = mutation.target instanceof Element ? mutation.target : null
+  const isCommentContainer = targetEl?.matches(".comments.utterances, .comments.giscus") ?? false
+  if (isCommentContainer) {
+    const removedScripts = Array.from(mutation.removedNodes).filter((node) => node.nodeName.toLowerCase() === "script")
+    if (removedScripts.length > 0) {
+      diagnostics.commentScriptRemovals = (diagnostics.commentScriptRemovals ?? 0) + removedScripts.length
+      if ((diagnostics.commentScriptRemovals ?? 0) >= MAX_COMMENT_SCRIPT_REMOVALS) {
+        disableSpaForSession("comment-script-removed")
+        return
+      }
+    }
+  }
+
+  const hasSuspiciousAddition = Array.from(mutation.addedNodes).some((node) => {
+    if (!(node instanceof Element)) {
+      return false
+    }
+
+    const id = node.id.toLowerCase()
+    if (id && SUSPICIOUS_ID_PATTERNS.some((pattern) => pattern.test(id))) {
+      return true
+    }
+
+    for (const cls of node.classList) {
+      const lower = cls.toLowerCase()
+      if (SUSPICIOUS_CLASS_PATTERNS.some((pattern) => pattern.test(lower))) {
+        return true
+      }
+    }
+
+    return false
+  })
+
+  if (hasSuspiciousAddition) {
+    disableSpaForSession("lean-library-popover")
+  }
+}
+
+const startMutationTrace = (slug: FullSlug) => {
+  stopMutationTrace()
+  mutationContext = { slug, pathname: window.location.pathname }
+  if (!document.body) {
+    return
+  }
+
+  mutationObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (shouldLogMutation(mutation)) {
+        recordMutationEntry(mutation)
+      }
+      detectLeanLibraryFootprint(mutation)
+    }
+  })
+
+  mutationObserver.observe(document.body, { childList: true, subtree: true })
+  mutationTraceTimeout = window.setTimeout(() => stopMutationTrace(), MUTATION_TRACE_WINDOW_MS)
+}
+
+const recordNavGuard = (reason: NavGuardReason) => {
+  const diagnostics = getDiagnostics()
+  diagnostics.navGuardReloads = (diagnostics.navGuardReloads ?? 0) + 1
+  const entry: NavGuardLogEntry = {
+    ts: Date.now(),
+    slug: getFullSlug(window),
+    pathname: window.location.pathname,
+    reason,
+  }
+  diagnostics.navGuardEvents = diagnostics.navGuardEvents ?? []
+  pushLimited(diagnostics.navGuardEvents, entry, DIAGNOSTICS_MAX_GUARD_EVENTS)
+  console.warn("[quartz] SPA guard triggered", entry)
+  stopMutationTrace()
 }
 
 // adapted from `micromorph`
@@ -170,7 +427,13 @@ function startLoading() {
 let isNavigating = false
 let p: DOMParser
 async function _navigate(url: URL, isBack: boolean = false) {
+  if (window.__quartzDisableSpa) {
+    window.location.assign(url)
+    return
+  }
+
   isNavigating = true
+  stopMutationTrace()
   startLoading()
   p = p || new DOMParser()
   const contents = await fetchCanonical(url)
@@ -248,7 +511,9 @@ async function _navigate(url: URL, isBack: boolean = false) {
     history.pushState({}, "", url)
   }
 
-  notifyNav(getFullSlug(window))
+  const slug = getFullSlug(window)
+  notifyNav(slug)
+  startMutationTrace(slug)
   delete announcer.dataset.persist
 
   queueMicrotask(verifyVisibleContent)
@@ -256,6 +521,10 @@ async function _navigate(url: URL, isBack: boolean = false) {
 
 async function navigate(url: URL, isBack: boolean = false) {
   if (isNavigating) return
+  if (window.__quartzDisableSpa) {
+    window.location.assign(url)
+    return
+  }
   isNavigating = true
   try {
     await _navigate(url, isBack)
@@ -276,6 +545,11 @@ function createRouter() {
       // dont hijack behaviour, just let browser act normally
       if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
+
+      if (window.__quartzDisableSpa) {
+        window.location.assign(url)
+        return
+      }
 
       if (isSamePage(url) && url.hash) {
         scrollToHashTarget(url.hash, "smooth")
@@ -330,7 +604,11 @@ window.addEventListener("hashchange", () => {
 
 // Defer the initial nav notification so component scripts have time to
 // register their `nav` listeners during the rest of the bundle execution.
-const runInitialNav = () => notifyNav(getFullSlug(window))
+const runInitialNav = () => {
+  const slug = getFullSlug(window)
+  notifyNav(slug)
+  startMutationTrace(slug)
+}
 if (typeof queueMicrotask === "function") {
   queueMicrotask(runInitialNav)
 } else {
@@ -363,7 +641,7 @@ if (!customElements.get("route-announcer")) {
 const verifyVisibleContent = () => {
   const root = document.getElementById("quartz-root")
   if (!root) {
-    console.warn("[quartz] missing #quartz-root after SPA navigation; forcing full reload")
+    recordNavGuard("missing-root")
     window.location.assign(window.location.href)
     return
   }
@@ -373,7 +651,7 @@ const verifyVisibleContent = () => {
     !!primaryColumn && primaryColumn.childElementCount > 0 && primaryColumn.textContent?.trim().length !== 0
 
   if (!hasVisibleContent) {
-    console.warn("[quartz] empty center column after SPA navigation; forcing full reload")
+    recordNavGuard("empty-center")
     window.location.assign(window.location.href)
   }
 }
