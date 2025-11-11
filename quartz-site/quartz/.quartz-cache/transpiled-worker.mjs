@@ -7806,6 +7806,9 @@ var Content_default = /* @__PURE__ */ __name((() => Content), "default");
 // quartz/components/styles/listPage.scss
 var listPage_default = "";
 
+// quartz/components/styles/folderDirectory.scss
+var folderDirectory_default = "";
+
 // quartz/components/Date.tsx
 import { jsx as jsx8 } from "preact/jsx-runtime";
 function getDate(cfg, data) {
@@ -7887,6 +7890,78 @@ import { Fragment as Fragment3, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-r
 var defaultOptions9 = {
   numPages: 10
 };
+var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
+var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
+  if (typeof raw !== "string") {
+    return void 0;
+  }
+  const cleaned = raw.trim();
+  if (!cleaned) {
+    return void 0;
+  }
+  const version = getAssetVersion();
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
+  if (embedMatch?.groups?.target) {
+    const target2 = stripContentPrefix4(embedMatch.groups.target);
+    try {
+      const slug = slugifyFilePath(target2);
+      return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), slug), version);
+    } catch {
+      return void 0;
+    }
+  }
+  if (isExternalUrl4(cleaned)) {
+    return cleaned;
+  }
+  const target = stripContentPrefix4(cleaned);
+  return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), target), version);
+}, "resolveAssetReference");
+var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
+  if (!value) {
+    return void 0;
+  }
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (!compact) {
+    return void 0;
+  }
+  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}\u2026` : compact;
+}, "normalizeSnippet");
+var getSnippetForPage = /* @__PURE__ */ __name((page, fallback) => {
+  const frontmatter = page.frontmatter ?? {};
+  const candidates = [
+    typeof page.description === "string" ? page.description : void 0,
+    typeof frontmatter.description === "string" ? frontmatter.description : void 0,
+    typeof page.text === "string" ? page.text : void 0
+  ];
+  for (const candidate of candidates) {
+    const snippet = normalizeSnippet(candidate);
+    if (snippet) {
+      return snippet;
+    }
+  }
+  return fallback;
+}, "getSnippetForPage");
+var getPrimaryImage = /* @__PURE__ */ __name((page, slug) => {
+  const frontmatter = page.frontmatter ?? {};
+  const candidates = [
+    page.infobox?.image?.src,
+    frontmatter.cover,
+    frontmatter.banner,
+    frontmatter.image,
+    frontmatter.thumbnail
+  ];
+  for (const candidate of candidates) {
+    const resolved = resolveAssetReference(candidate, slug);
+    if (resolved) {
+      return resolved;
+    }
+  }
+  return void 0;
+}, "getPrimaryImage");
+var pluralize = /* @__PURE__ */ __name((count, singular, plural) => `${count} ${count === 1 ? singular : plural}`, "pluralize");
 var TagContent_default = /* @__PURE__ */ __name(((opts) => {
   const options2 = { ...defaultOptions9, ...opts };
   const TagContent = /* @__PURE__ */ __name((props) => {
@@ -7946,25 +8021,211 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
       ] });
     } else {
       const pages = allPagesWithTag(tag);
-      const listProps = {
-        ...props,
-        allFiles: pages
-      };
+      const sortFn = options2.sort ?? byDateAndAlphabeticalFolderFirst(cfg);
+      const sortedPages = [...pages].sort(sortFn);
       return /* @__PURE__ */ jsxs4("div", { class: "popover-hint", children: [
         /* @__PURE__ */ jsx10("article", { class: classes, children: content }),
-        /* @__PURE__ */ jsxs4("div", { class: "page-listing", children: [
-          /* @__PURE__ */ jsx10("p", { children: i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length }) }),
-          /* @__PURE__ */ jsx10("div", { children: /* @__PURE__ */ jsx10(PageList, { ...listProps, sort: options2?.sort }) })
-        ] })
+        sortedPages.length > 0 ? /* @__PURE__ */ jsx10("div", { class: "folder-directory", children: /* @__PURE__ */ jsxs4(
+          "section",
+          {
+            class: "folder-directory__section",
+            "aria-label": i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: sortedPages.length }),
+            children: [
+              /* @__PURE__ */ jsxs4("div", { class: "folder-directory__section-header", children: [
+                /* @__PURE__ */ jsxs4("h2", { class: "folder-directory__section-title", children: [
+                  "#",
+                  tag
+                ] }),
+                /* @__PURE__ */ jsx10("span", { class: "folder-directory__section-hint", children: pluralize(sortedPages.length, "entry", "entries") })
+              ] }),
+              /* @__PURE__ */ jsx10("div", { class: "folder-directory__grid", children: sortedPages.map((page) => {
+                const slug2 = page.slug;
+                if (!slug2) {
+                  return null;
+                }
+                const frontmatter = page.frontmatter ?? {};
+                const title = typeof frontmatter.title === "string" && frontmatter.title.length > 0 ? frontmatter.title : page.slug?.split("/").at(-1) ?? "Untitled";
+                const link = resolveRelative(fileData.slug, slug2);
+                const updated = page.dates ? getDate(cfg, page) : void 0;
+                const snippet = getSnippetForPage(page);
+                const hasSnippet = Boolean(snippet);
+                const image = getPrimaryImage(page, slug2);
+                const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
+                const safeSlugId = slug2.replace(/[^a-zA-Z0-9_-]/g, "-");
+                const headingId = `directory-card-title-${safeSlugId}`;
+                return /* @__PURE__ */ jsx10(
+                  "article",
+                  {
+                    class: "directory-card",
+                    "data-href": link,
+                    role: "link",
+                    tabIndex: 0,
+                    "aria-labelledby": headingId,
+                    children: /* @__PURE__ */ jsxs4("div", { class: "directory-card__body", children: [
+                      /* @__PURE__ */ jsxs4("div", { class: "directory-card__content", children: [
+                        /* @__PURE__ */ jsx10("h3", { class: "directory-card__title", id: headingId, children: title }),
+                        updated && /* @__PURE__ */ jsxs4("p", { class: "directory-card__meta", children: [
+                          "Updated ",
+                          /* @__PURE__ */ jsx10(Date2, { date: updated, locale: cfg.locale })
+                        ] }),
+                        hasSnippet && /* @__PURE__ */ jsx10("p", { class: "directory-card__excerpt", children: snippet })
+                      ] }),
+                      image && /* @__PURE__ */ jsx10("div", { class: "directory-card__media", children: /* @__PURE__ */ jsx10("img", { src: image, alt: "", loading: "lazy", decoding: "async", "data-no-zoom": "true" }) }),
+                      tags.length > 0 && /* @__PURE__ */ jsx10("ul", { class: "directory-card__tags directory-card__tags--after-media", children: tags.map((tagName) => /* @__PURE__ */ jsx10("li", { class: "directory-card__tag", children: /* @__PURE__ */ jsxs4(
+                        "a",
+                        {
+                          class: "directory-card__tag-link",
+                          href: resolveRelative(fileData.slug, `tags/${tagName}`),
+                          children: [
+                            "#",
+                            tagName
+                          ]
+                        }
+                      ) }, tagName)) })
+                    ] })
+                  },
+                  slug2
+                );
+              }) })
+            ]
+          }
+        ) }) : /* @__PURE__ */ jsx10("div", { class: "folder-directory", children: /* @__PURE__ */ jsxs4("section", { class: "folder-directory__section", "aria-label": "Empty tag", children: [
+          /* @__PURE__ */ jsxs4("div", { class: "folder-directory__section-header", children: [
+            /* @__PURE__ */ jsxs4("h2", { class: "folder-directory__section-title", children: [
+              "#",
+              tag
+            ] }),
+            /* @__PURE__ */ jsx10("span", { class: "folder-directory__section-hint", children: "0 entries" })
+          ] }),
+          /* @__PURE__ */ jsx10("p", { class: "folder-directory__summary", children: "No entries are currently tagged with this label." })
+        ] }) })
       ] });
     }
   }, "TagContent");
-  TagContent.css = concatenateResources(listPage_default, PageList.css);
+  TagContent.afterDOMLoaded = `
+    (() => {
+      const selector = '.directory-card[data-href]'
+      let handlersBound = false
+
+      const resolveCard = (target) =>
+        target instanceof Element ? target.closest(selector) : null
+
+      const isTagLink = (target) =>
+        target instanceof Element && target.closest('.directory-card__tag-link')
+
+      const navigate = (href, openInNewTab) => {
+        if (!href) {
+          return
+        }
+
+        const url = new URL(href, window.location.toString())
+        if (openInNewTab) {
+          window.open(url.toString(), '_blank', 'noopener')
+          return
+        }
+
+        if (typeof window.spaNavigate === 'function') {
+          window.spaNavigate(url)
+        } else {
+          window.location.assign(url)
+        }
+      }
+
+      const handleClick = (event) => {
+        if (event.defaultPrevented) {
+          return
+        }
+
+        const card = resolveCard(event.target)
+        if (!card) {
+          return
+        }
+
+        if (isTagLink(event.target)) {
+          return
+        }
+
+        if (window.getSelection && window.getSelection().toString().length > 0) {
+          return
+        }
+
+        if (event.button !== 0) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(card.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      }
+
+      const handleAuxClick = (event) => {
+        if (event.defaultPrevented || event.button !== 1) {
+          return
+        }
+
+        const card = resolveCard(event.target)
+        if (!card || isTagLink(event.target)) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(card.getAttribute('data-href'), true)
+      }
+
+      const handleKeydown = (event) => {
+        if (event.defaultPrevented) {
+          return
+        }
+
+        if (event.key !== 'Enter' && event.key !== ' ') {
+          return
+        }
+
+        const target = event.target
+        if (!(target instanceof HTMLElement)) {
+          return
+        }
+
+        if (!target.matches(selector)) {
+          return
+        }
+
+        event.preventDefault()
+        navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      }
+
+      const bindHandlers = () => {
+        if (handlersBound) {
+          return
+        }
+
+        document.addEventListener('click', handleClick)
+        document.addEventListener('auxclick', handleAuxClick)
+        document.addEventListener('keydown', handleKeydown)
+        handlersBound = true
+
+        window.addCleanup?.(() => {
+          document.removeEventListener('click', handleClick)
+          document.removeEventListener('auxclick', handleAuxClick)
+          document.removeEventListener('keydown', handleKeydown)
+          handlersBound = false
+        })
+      }
+
+      const handleNav = () => {
+        bindHandlers()
+      }
+
+      document.addEventListener('nav', handleNav)
+      handleNav()
+
+      window.addCleanup?.(() => {
+        document.removeEventListener('nav', handleNav)
+      })
+    })()
+  `;
+  TagContent.css = concatenateResources(folderDirectory_default, listPage_default, PageList.css);
   return TagContent;
 }), "default");
-
-// quartz/components/styles/folderDirectory.scss
-var folderDirectory_default = "";
 
 // quartz/components/pages/FolderContent.tsx
 import { Fragment as Fragment4 } from "preact";
@@ -8125,11 +8386,11 @@ var defaultOptions10 = {
   showFolderCount: true,
   showSubfolders: true
 };
-var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
-var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
-var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
-var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
+var OBSIDIAN_EMBED_PATTERN4 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl5 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var stripContentPrefix5 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var appendAssetVersion4 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
+var resolveAssetReference2 = /* @__PURE__ */ __name((raw, baseSlug) => {
   if (typeof raw !== "string") {
     return void 0;
   }
@@ -8138,23 +8399,23 @@ var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
     return void 0;
   }
   const version = getAssetVersion();
-  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN4);
   if (embedMatch?.groups?.target) {
-    const target2 = stripContentPrefix4(embedMatch.groups.target);
+    const target2 = stripContentPrefix5(embedMatch.groups.target);
     try {
       const slug = slugifyFilePath(target2);
-      return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), slug), version);
+      return appendAssetVersion4(joinSegments(pathToRoot(baseSlug), slug), version);
     } catch {
       return void 0;
     }
   }
-  if (isExternalUrl4(cleaned)) {
+  if (isExternalUrl5(cleaned)) {
     return cleaned;
   }
-  const target = stripContentPrefix4(cleaned);
-  return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), target), version);
+  const target = stripContentPrefix5(cleaned);
+  return appendAssetVersion4(joinSegments(pathToRoot(baseSlug), target), version);
 }, "resolveAssetReference");
-var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
+var normalizeSnippet2 = /* @__PURE__ */ __name((value, limit = 240) => {
   if (!value) {
     return void 0;
   }
@@ -8164,7 +8425,7 @@ var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
   }
   return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}\u2026` : compact;
 }, "normalizeSnippet");
-var getSnippetForPage = /* @__PURE__ */ __name((page, fallback) => {
+var getSnippetForPage2 = /* @__PURE__ */ __name((page, fallback) => {
   const frontmatter = page.frontmatter ?? {};
   const candidates = [
     typeof page.description === "string" ? page.description : void 0,
@@ -8172,14 +8433,14 @@ var getSnippetForPage = /* @__PURE__ */ __name((page, fallback) => {
     typeof page.text === "string" ? page.text : void 0
   ];
   for (const candidate of candidates) {
-    const snippet = normalizeSnippet(candidate);
+    const snippet = normalizeSnippet2(candidate);
     if (snippet) {
       return snippet;
     }
   }
   return fallback;
 }, "getSnippetForPage");
-var getPrimaryImage = /* @__PURE__ */ __name((page, slug) => {
+var getPrimaryImage2 = /* @__PURE__ */ __name((page, slug) => {
   const frontmatter = page.frontmatter ?? {};
   const candidates = [
     page.infobox?.image?.src,
@@ -8189,7 +8450,7 @@ var getPrimaryImage = /* @__PURE__ */ __name((page, slug) => {
     frontmatter.thumbnail
   ];
   for (const candidate of candidates) {
-    const resolved = resolveAssetReference(candidate, slug);
+    const resolved = resolveAssetReference2(candidate, slug);
     if (resolved) {
       return resolved;
     }
@@ -8201,7 +8462,7 @@ var getInitials = /* @__PURE__ */ __name((title) => {
   const initials = parts.join("");
   return initials.length > 0 ? initials : title.slice(0, 2).toUpperCase();
 }, "getInitials");
-var pluralize = /* @__PURE__ */ __name((count, singular, plural) => `${count} ${count === 1 ? singular : plural}`, "pluralize");
+var pluralize2 = /* @__PURE__ */ __name((count, singular, plural) => `${count} ${count === 1 ? singular : plural}`, "pluralize");
 var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
   const options2 = { ...defaultOptions10, ...opts };
   const FolderContent = /* @__PURE__ */ __name((props) => {
@@ -8265,10 +8526,83 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
     return /* @__PURE__ */ jsxs5("div", { class: "popover-hint", children: [
       /* @__PURE__ */ jsx11("article", { class: classes, children: content }),
       /* @__PURE__ */ jsxs5("div", { class: "folder-directory", children: [
+        folderEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Subfolders", children: [
+          /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
+            /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Collections" }),
+            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize2(folderEntries.length, "subfolder", "subfolders") })
+          ] }),
+          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid folder-directory__grid--subfolders", children: folderEntries.map((entry) => {
+            const slug = entry.data.slug;
+            if (!slug) {
+              return null;
+            }
+            const title = entry.data.frontmatter?.title ?? entry.node.displayName ?? slug.split("/").at(-1) ?? "Untitled";
+            const link = resolveRelative(fileData.slug, slug);
+            const childCount = pluralize2(countRenderableChildren(entry.node), "item", "items");
+            const updated = entry.data.dates ? getDate(cfg, entry.data) : void 0;
+            const snippet = getSnippetForPage2(entry.data);
+            const hasSnippet = Boolean(snippet);
+            const initials = getInitials(title);
+            const previewCandidates = entry.node.children.filter(
+              (child) => child.data && !child.isFolder
+            );
+            const previewPages = previewCandidates.slice(0, 12);
+            const totalPreviewCount = previewCandidates.length;
+            const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
+            const headingId = `directory-card-title-${safeSlugId}`;
+            return /* @__PURE__ */ jsx11(
+              "article",
+              {
+                class: "directory-card directory-card--folder",
+                "data-href": link,
+                role: "link",
+                tabIndex: 0,
+                "aria-labelledby": headingId,
+                children: /* @__PURE__ */ jsx11("div", { class: "directory-card__body directory-card__body--folder", children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__content directory-card__content--folder", children: [
+                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__topline", children: [
+                    /* @__PURE__ */ jsxs5("div", { class: "directory-card__header", children: [
+                      /* @__PURE__ */ jsx11("span", { class: "folder-directory__subfolder-icon", "aria-hidden": "true", children: initials }),
+                      /* @__PURE__ */ jsxs5("div", { children: [
+                        /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
+                        /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
+                          childCount,
+                          updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
+                            " \xB7 ",
+                            "Updated ",
+                            /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
+                          ] })
+                        ] })
+                      ] })
+                    ] }),
+                    previewPages.length > 0 && /* @__PURE__ */ jsxs5(
+                      "div",
+                      {
+                        class: "directory-card__preview-wrap",
+                        "aria-label": `Highlights from ${title}`,
+                        "data-preview-total": totalPreviewCount,
+                        children: [
+                          /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-list", children: previewPages.map((child) => {
+                            const childData = child.data;
+                            const childFrontmatter = childData.frontmatter ?? {};
+                            const childTitle = typeof childFrontmatter.title === "string" && childFrontmatter.title.length > 0 ? childFrontmatter.title : child.displayName ?? childData.slug?.split("/").at(-1) ?? "Untitled";
+                            return /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-card", children: /* @__PURE__ */ jsx11("p", { class: "directory-card__preview-title", children: childTitle }) }, childData.slug ?? childTitle);
+                          }) }),
+                          /* @__PURE__ */ jsx11("span", { class: "directory-card__preview-more", "aria-hidden": "true", hidden: true, children: ". . ." })
+                        ]
+                      }
+                    )
+                  ] }),
+                  hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
+                ] }) })
+              },
+              slug
+            );
+          }) })
+        ] }),
         pageEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Entries", children: [
           /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
             /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Entries" }),
-            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize(pageEntries.length, "entry", "entries") })
+            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize2(pageEntries.length, "entry", "entries") })
           ] }),
           /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid", children: pageEntries.map((entry) => {
             const slug = entry.data.slug;
@@ -8279,9 +8613,9 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
             const title = typeof frontmatter.title === "string" && frontmatter.title.length > 0 ? frontmatter.title : entry.node.displayName ?? slug.split("/").at(-1) ?? "Untitled";
             const link = resolveRelative(fileData.slug, slug);
             const updated = entry.data.dates ? getDate(cfg, entry.data) : void 0;
-            const snippet = getSnippetForPage(entry.data);
+            const snippet = getSnippetForPage2(entry.data);
             const hasSnippet = Boolean(snippet);
-            const image = getPrimaryImage(entry.data, slug);
+            const image = getPrimaryImage2(entry.data, slug);
             const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
             const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
             const headingId = `directory-card-title-${safeSlugId}`;
@@ -8300,13 +8634,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
                       "Updated ",
                       /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
                     ] }),
-                    hasSnippet ? /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet }) : /* @__PURE__ */ jsx11(
-                      "div",
-                      {
-                        class: "directory-card__excerpt directory-card__excerpt--placeholder",
-                        "aria-hidden": "true"
-                      }
-                    )
+                    hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
                   ] }),
                   image && /* @__PURE__ */ jsx11("div", { class: "directory-card__media", children: /* @__PURE__ */ jsx11("img", { src: image, alt: "", loading: "lazy", decoding: "async", "data-no-zoom": "true" }) }),
                   tags.length > 0 && /* @__PURE__ */ jsx11("ul", { class: "directory-card__tags directory-card__tags--after-media", children: tags.map((tag) => /* @__PURE__ */ jsx11("li", { class: "directory-card__tag", children: /* @__PURE__ */ jsxs5(
@@ -8325,61 +8653,6 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
               slug
             );
           }) })
-        ] }),
-        folderEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Subfolders", children: [
-          /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
-            /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Collections" }),
-            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize(folderEntries.length, "subfolder", "subfolders") })
-          ] }),
-          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid folder-directory__grid--subfolders", children: folderEntries.map((entry) => {
-            const slug = entry.data.slug;
-            if (!slug) {
-              return null;
-            }
-            const title = entry.data.frontmatter?.title ?? entry.node.displayName ?? slug.split("/").at(-1) ?? "Untitled";
-            const link = resolveRelative(fileData.slug, slug);
-            const childCount = pluralize(countRenderableChildren(entry.node), "item", "items");
-            const updated = entry.data.dates ? getDate(cfg, entry.data) : void 0;
-            const snippet = getSnippetForPage(entry.data);
-            const hasSnippet = Boolean(snippet);
-            const initials = getInitials(title);
-            const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
-            const headingId = `directory-card-title-${safeSlugId}`;
-            return /* @__PURE__ */ jsx11(
-              "article",
-              {
-                class: "directory-card directory-card--folder",
-                "data-href": link,
-                role: "link",
-                tabIndex: 0,
-                "aria-labelledby": headingId,
-                children: /* @__PURE__ */ jsx11("div", { class: "directory-card__body directory-card__body--folder", children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__content directory-card__content--folder", children: [
-                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__header", children: [
-                    /* @__PURE__ */ jsx11("span", { class: "folder-directory__subfolder-icon", "aria-hidden": "true", children: initials }),
-                    /* @__PURE__ */ jsxs5("div", { children: [
-                      /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
-                      /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
-                        childCount,
-                        updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
-                          " \xB7 ",
-                          "Updated ",
-                          /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
-                        ] })
-                      ] })
-                    ] })
-                  ] }),
-                  hasSnippet ? /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet }) : /* @__PURE__ */ jsx11(
-                    "div",
-                    {
-                      class: "directory-card__excerpt directory-card__excerpt--placeholder",
-                      "aria-hidden": "true"
-                    }
-                  )
-                ] }) })
-              },
-              slug
-            );
-          }) })
         ] })
       ] })
     ] });
@@ -8387,6 +8660,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
   FolderContent.afterDOMLoaded = `
     (() => {
       const selector = '.directory-card[data-href]'
+      let handlersBound = false
 
       const resolveCard = (target) =>
         target instanceof Element ? target.closest(selector) : null
@@ -8474,14 +8748,192 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
         navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
       }
 
-      document.addEventListener('click', handleClick)
-      document.addEventListener('auxclick', handleAuxClick)
-      document.addEventListener('keydown', handleKeydown)
+      const bindHandlers = () => {
+        if (handlersBound) {
+          return
+        }
+
+        document.addEventListener('click', handleClick)
+        document.addEventListener('auxclick', handleAuxClick)
+        document.addEventListener('keydown', handleKeydown)
+        handlersBound = true
+
+        window.addCleanup?.(() => {
+          document.removeEventListener('click', handleClick)
+          document.removeEventListener('auxclick', handleAuxClick)
+          document.removeEventListener('keydown', handleKeydown)
+          handlersBound = false
+        })
+      }
+
+      const previewSelector = '.directory-card__preview-wrap'
+      const previewElements = new Set()
+      const previewObservers = new Map()
+      let previewResizeHandler = null
+
+      const getViewportPreviewCount = () => {
+        const width = window.innerWidth || document.documentElement.clientWidth || 0
+        const height = window.innerHeight || document.documentElement.clientHeight || 1
+        const aspect = height > 0 ? width / height : 1
+
+        if (width >= 1600 && aspect >= 1.5) {
+          return 5
+        }
+        if (width >= 1280 && aspect >= 1.3) {
+          return 4
+        }
+        if (width >= 960) {
+          return 3
+        }
+        if (width >= 640) {
+          return 2
+        }
+        return 1
+      }
+
+      const schedulePreviewUpdate = (wrap) => {
+        window.requestAnimationFrame(() => updatePreviewLayout(wrap))
+      }
+
+      const updatePreviewLayout = (wrap) => {
+        if (!(wrap instanceof HTMLElement)) {
+          return
+        }
+
+        if (!wrap.isConnected) {
+          const observer = previewObservers.get(wrap)
+          if (observer) {
+            observer.disconnect()
+            previewObservers.delete(wrap)
+          }
+          previewElements.delete(wrap)
+          return
+        }
+
+        const list = wrap.querySelector('.directory-card__preview-list')
+        if (!(list instanceof HTMLElement)) {
+          return
+        }
+
+        const cards = Array.from(list.querySelectorAll('.directory-card__preview-card'))
+        const ellipsis = wrap.querySelector('.directory-card__preview-more')
+        const total = Number.parseInt(wrap.getAttribute('data-preview-total') ?? '', 10) || cards.length
+
+        if (cards.length === 0) {
+          if (ellipsis) {
+            ellipsis.hidden = total <= 0
+          }
+          return
+        }
+
+        const style = window.getComputedStyle(list)
+        const gap = Number.parseFloat(style.columnGap || style.gap || '0') || 0
+        const available = list.getBoundingClientRect().width
+        const sampleCard = cards[0]
+        const cardWidth = sampleCard ? sampleCard.getBoundingClientRect().width : 0
+
+        let widthCapacity = Number.POSITIVE_INFINITY
+        if (Number.isFinite(available) && available > 0 && Number.isFinite(cardWidth) && cardWidth > 0) {
+          const maxByWidth = Math.floor((available + gap) / (cardWidth + gap))
+          if (Number.isFinite(maxByWidth)) {
+            widthCapacity = Math.max(1, maxByWidth)
+          }
+        }
+
+        let baseline = Number.parseInt(wrap.getAttribute('data-preview-visible') ?? '', 10)
+        if (!Number.isFinite(baseline) || baseline <= 0) {
+          baseline = getViewportPreviewCount()
+          if (!Number.isFinite(baseline) || baseline < 1) {
+            baseline = 1
+          }
+          baseline = Math.min(baseline, cards.length)
+          if (Number.isFinite(widthCapacity) && widthCapacity > 0) {
+            baseline = Math.min(baseline, widthCapacity)
+          }
+          wrap.setAttribute('data-preview-visible', String(baseline))
+        }
+
+        let visibleCount = baseline
+        if (Number.isFinite(widthCapacity) && widthCapacity > 0) {
+          visibleCount = Math.min(visibleCount, widthCapacity)
+        }
+
+        visibleCount = Math.max(1, Math.min(visibleCount, cards.length))
+
+        cards.forEach((card, index) => {
+          card.toggleAttribute('hidden', index >= visibleCount)
+        })
+
+        const hiddenRendered = cards.length > visibleCount
+        const shouldShowEllipsis = hiddenRendered || total > visibleCount
+        if (ellipsis) {
+          ellipsis.hidden = !shouldShowEllipsis
+        }
+      }
+
+      const ensurePreviewResizeHandler = () => {
+        if (previewResizeHandler) {
+          return
+        }
+
+        previewResizeHandler = () => {
+          previewElements.forEach((wrap) => schedulePreviewUpdate(wrap))
+        }
+
+        window.addEventListener('resize', previewResizeHandler)
+
+        window.addCleanup?.(() => {
+          if (previewResizeHandler) {
+            window.removeEventListener('resize', previewResizeHandler)
+            previewResizeHandler = null
+          }
+        })
+      }
+
+      const setupPreviewLayouts = () => {
+        const wraps = document.querySelectorAll(previewSelector)
+        wraps.forEach((element) => {
+          if (!(element instanceof HTMLElement)) {
+            return
+          }
+
+          previewElements.add(element)
+
+          if (!previewObservers.has(element) && typeof ResizeObserver === 'function') {
+            const observer = new ResizeObserver(() => schedulePreviewUpdate(element))
+            observer.observe(element)
+            previewObservers.set(element, observer)
+          }
+
+          schedulePreviewUpdate(element)
+        })
+
+        if (previewElements.size > 0) {
+          ensurePreviewResizeHandler()
+        }
+      }
+
+      const cleanupPreviews = () => {
+        previewObservers.forEach((observer) => {
+          if (observer && typeof observer.disconnect === 'function') {
+            observer.disconnect()
+          }
+        })
+        previewObservers.clear()
+        previewElements.clear()
+      }
+
+      const handleNav = () => {
+        bindHandlers()
+        setupPreviewLayouts()
+      }
+
+      document.addEventListener('nav', handleNav)
+      handleNav()
 
       window.addCleanup?.(() => {
-        document.removeEventListener('click', handleClick)
-        document.removeEventListener('auxclick', handleAuxClick)
-        document.removeEventListener('keydown', handleKeydown)
+        cleanupPreviews()
+        document.removeEventListener('nav', handleNav)
       })
     })()
   `;
@@ -9594,7 +10046,19 @@ var defaultOptions12 = {
   }, "sortFn"),
   filterFn: /* @__PURE__ */ __name((node) => {
     const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-    return segment !== "tags" && segment !== "canvases" && segment !== "guides";
+    if (segment === "explorables") {
+      return true;
+    }
+    const hiddenSegments = /* @__PURE__ */ new Set([
+      "tags",
+      "canvases",
+      "guides",
+      "media",
+      "contribute",
+      "timelines",
+      "puzzles"
+    ]);
+    return !hiddenSegments.has(segment);
   }, "filterFn"),
   order: ["filter", "map", "sort"]
 };
@@ -10362,26 +10826,6 @@ var navLinks = [
     iconSlug: "concepts"
   },
   {
-    href: "/Timelines/",
-    label: "Chronology",
-    iconSlug: "chronology"
-  },
-  {
-    href: "/Puzzles/",
-    label: "Mysteries",
-    iconSlug: "mysteries"
-  },
-  {
-    href: "/Contribute/",
-    label: "Contribute",
-    iconSlug: "contribute"
-  },
-  {
-    href: "/Theories/",
-    label: "Theories",
-    iconSlug: "theories"
-  },
-  {
     href: "/Discord/",
     label: "Discord",
     iconSlug: "discord"
@@ -10390,6 +10834,11 @@ var navLinks = [
     href: "/YouTube/",
     label: "YouTube",
     iconSlug: "youtube"
+  },
+  {
+    href: "/Explorables/",
+    label: "Explorables",
+    iconSlug: "explorables"
   }
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
@@ -10573,10 +11022,10 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 // quartz/components/InfoBox.tsx
 import { Fragment as Fragment8 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
-var isExternalUrl5 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN4 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var isExternalUrl6 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
+var OBSIDIAN_EMBED_PATTERN5 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
-var stripContentPrefix5 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
+var stripContentPrefix6 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
   if (value === null || value === void 0) {
     return void 0;
@@ -10592,7 +11041,7 @@ var normalizeString = /* @__PURE__ */ __name((value) => {
 }, "normalizeString");
 var intersperse = /* @__PURE__ */ __name((values, separator) => values.flatMap((node, index) => index === 0 ? [node] : [separator, node]), "intersperse");
 var findSlugMatch = /* @__PURE__ */ __name((target, ctx) => {
-  const sanitized = stripContentPrefix5(target);
+  const sanitized = stripContentPrefix6(target);
   const withExt = sanitized.endsWith(".md") ? sanitized : `${sanitized}.md`;
   try {
     const candidateRaw = slugifyFilePath(withExt, true);
@@ -10669,7 +11118,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
   }
   return { node: renderTextWithWikilinks(text, slug, ctx), key: text };
 }, "normalizeValue");
-var appendAssetVersion4 = /* @__PURE__ */ __name((url, version) => {
+var appendAssetVersion5 = /* @__PURE__ */ __name((url, version) => {
   if (!version) {
     return url;
   }
@@ -10677,29 +11126,29 @@ var appendAssetVersion4 = /* @__PURE__ */ __name((url, version) => {
 }, "appendAssetVersion");
 var resolveObsidianTarget4 = /* @__PURE__ */ __name((rawTarget, slug) => {
   const version = getAssetVersion();
-  if (isExternalUrl5(rawTarget)) {
+  if (isExternalUrl6(rawTarget)) {
     return rawTarget;
   }
-  const targetWithoutExt = stripContentPrefix5(rawTarget);
+  const targetWithoutExt = stripContentPrefix6(rawTarget);
   const targetSlug = slugifyFilePath(targetWithoutExt);
   const baseDir = pathToRoot(slug);
-  return appendAssetVersion4(joinSegments(baseDir, targetSlug), version);
+  return appendAssetVersion5(joinSegments(baseDir, targetSlug), version);
 }, "resolveObsidianTarget");
 var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   const cleaned = raw.trim();
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN4);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN5);
   if (obsidianMatch?.groups?.target) {
     return resolveObsidianTarget4(obsidianMatch.groups.target, slug);
   }
-  if (isExternalUrl5(cleaned)) {
+  if (isExternalUrl6(cleaned)) {
     return cleaned;
   }
   const version = getAssetVersion();
-  const target = stripContentPrefix5(cleaned);
-  return appendAssetVersion4(joinSegments(pathToRoot(slug), target), version);
+  const target = stripContentPrefix6(cleaned);
+  return appendAssetVersion5(joinSegments(pathToRoot(slug), target), version);
 }, "resolveImageSource");
 var parseItems = /* @__PURE__ */ __name((rawItems, slug, ctx) => {
   if (!Array.isArray(rawItems)) {

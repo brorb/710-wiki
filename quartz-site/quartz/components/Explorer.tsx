@@ -51,7 +51,21 @@ const defaultOptions: Options = {
   },
   filterFn: (node) => {
     const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-    return segment !== "tags" && segment !== "canvases" && segment !== "guides"
+    if (segment === "explorables") {
+      return true
+    }
+
+    const hiddenSegments = new Set([
+      "tags",
+      "canvases",
+      "guides",
+      "media",
+      "contribute",
+      "timelines",
+      "puzzles",
+    ])
+
+    return !hiddenSegments.has(segment)
   },
   order: ["filter", "map", "sort"],
 }

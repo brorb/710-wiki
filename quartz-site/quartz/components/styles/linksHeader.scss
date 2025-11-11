@@ -87,6 +87,11 @@ header {
     -webkit-mask-image: url("/static/icons/puzzles_icon.svg");
   }
 
+  .links-header-icon--explorables {
+    mask-image: url("/static/icons/explorables-icon.svg");
+    -webkit-mask-image: url("/static/icons/explorables-icon.svg");
+  }
+
   .links-header-icon--contribute {
     mask-image: url("/static/icons/plus-icon.svg");
     -webkit-mask-image: url("/static/icons/plus-icon.svg");
