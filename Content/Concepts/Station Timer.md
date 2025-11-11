@@ -21,7 +21,7 @@ Appearances:
 ```
 
 
-A timer that always counts down to 10th July of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. It appears in [[The Logs]] as a counter and livestreams as the screen shown to the right. During the livestreams, a continuous frequency would play in the background while it counts down.
+A timer that always counts down to 10th July of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. During [[STATION_8 TRIM 5|the]] [[STATION_8 TRIM 90|STATION_8]] [[STATION_8 TERMINAL 8 |livestreams]], a continuous frequency would play in the background while it counts down.
 
 ---
 ### Purpose:
@@ -61,3 +61,5 @@ Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+
+<iframe title="Station_8 Trim 90 Clip (2am Anomaly)" src="https://www.youtube.com/embed/ZhWwYpMCMPs?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>

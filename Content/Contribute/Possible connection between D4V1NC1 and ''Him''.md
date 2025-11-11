@@ -1,3 +1,4 @@
+
 See [[D4V1NC1]] and [[He]] for context on both of these topics.
 
 In the video [[HIS PERCEPTION]], if you speed up the audio you'll hear speech that vaguely sounds like "I am DaVinci" with other chaotic sounds in the background.

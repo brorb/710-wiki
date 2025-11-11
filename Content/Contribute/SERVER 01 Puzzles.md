@@ -1,1 +1,6 @@
-See [[SERVER 01]] for information regarding SERVER 01.
+
+See [[SYSTEM]] and [[SERVER 01]] for more context.
+
+## Ghost Error Image
+
+Around August 2025, [[SYSTEM]] 
