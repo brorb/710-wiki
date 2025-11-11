@@ -398,6 +398,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
   FolderContent.afterDOMLoaded = `
     (() => {
       const selector = '.directory-card[data-href]'
+      let handlersBound = false
 
       const resolveCard = (target) =>
         target instanceof Element ? target.closest(selector) : null
@@ -485,15 +486,26 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
       }
 
-      document.addEventListener('click', handleClick)
-      document.addEventListener('auxclick', handleAuxClick)
-      document.addEventListener('keydown', handleKeydown)
+      const bindHandlers = () => {
+        if (handlersBound) {
+          return
+        }
 
-      window.addCleanup?.(() => {
-        document.removeEventListener('click', handleClick)
-        document.removeEventListener('auxclick', handleAuxClick)
-        document.removeEventListener('keydown', handleKeydown)
-      })
+        document.addEventListener('click', handleClick)
+        document.addEventListener('auxclick', handleAuxClick)
+        document.addEventListener('keydown', handleKeydown)
+        handlersBound = true
+
+        window.addCleanup?.(() => {
+          document.removeEventListener('click', handleClick)
+          document.removeEventListener('auxclick', handleAuxClick)
+          document.removeEventListener('keydown', handleKeydown)
+          handlersBound = false
+        })
+      }
+
+      document.addEventListener('nav', bindHandlers)
+      bindHandlers()
     })()
   `
 
