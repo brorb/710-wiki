@@ -10,7 +10,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 27 Aug 2025.
+Uploaded 27th August 2025.
 
 **Description reads:**
 //err ID: G4e88dAA is not valid  

@@ -1,7 +1,7 @@
 **STATION_8 TERMINAL 8 Livestream Chat Summary**
 
 **Livestream:** [[STATION_8 TERMINAL 8]]  
-**Date:** July 7-10, 2025  
+**Date:** July 7th-10th, 2025  
 **Significance:** The countdown reaches zero; [[SYSTEM]] is created; [[He]] hijacks [[SYSTEM]]; the code 28634 leads to videos [[KEY]] and [[lm-1]].
 
 ---

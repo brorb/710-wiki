@@ -10,7 +10,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 16 Sept 2025.
+Uploaded 16th September 2025.
 
 **Video Summary:** Deep scary noises play over some static with a red tint, a TV broadcast test screen pops up occasionally as well. Near the end, the video cuts to black and there are what sounds like church bells before it glitches out and the video ends.
 

@@ -1,5 +1,5 @@
 **Livestream:** [[STATION_8 TRIM 90]]  
-**Date:** July 4-7, 2025
+**Date:** July 4th-7th, 2025
 **Significance:** [[Channel 14]] Demo channel introduction, [[710 NPP|7/10 NPP]] is now controlled by Kepler
 
 ---

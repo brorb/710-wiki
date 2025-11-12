@@ -4,7 +4,7 @@
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 28 Oct 2025.
+Uploaded 28th October 2025.
 
 **Description reads:** TEST cycle 001
 

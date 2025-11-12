@@ -8,7 +8,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 28 April 2024, the earliest known LOG uploaded to [[710 Tone|7/10 Tone]].
+Uploaded 28th April 2024, the earliest known LOG uploaded to [[710 Tone|7/10 Tone]].
 
 **LOG: 4293029928
 SYSTEM: 4382901
