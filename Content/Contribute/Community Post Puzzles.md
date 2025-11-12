@@ -69,7 +69,8 @@ REVIEW: OVERALL STATUS
 ```
 _^The hex translates to:_
 ```
-S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   R K A M   L L I W   I "
+S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   
+R K A M   L L I W   I "
 ```
 which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous message is not yet understood.
 
