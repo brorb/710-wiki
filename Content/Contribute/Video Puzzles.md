@@ -29,6 +29,8 @@ Some of [[The Logs]] have some abnormalities that can be investigated further, f
 - [[L - p {I-- 5]]
 - [[LOG-40.mp4]]
 
+## Other videos with solvable puzzles
+
 [[000001]]
 [[12_capturedRecall]]
 [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]
@@ -43,11 +45,10 @@ Half Life videos
 [[RIGfunctionobservationTEST028.mp4]]
 [[0034]]
 [[tmp 5664]]
-
 # From [[710 NPP|7/10 NPP]]
 ## [[0001 Bin]]
 
-This video features a 
+This video features a slowed down 
 
 ## [[20240NA@ 25109]]
 
