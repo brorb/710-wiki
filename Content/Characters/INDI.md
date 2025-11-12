@@ -120,7 +120,7 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 ---
 ## After [[STATION_8 TERMINAL 8]]
 
-After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing.
+After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
 
 ---
 ## Gallery
