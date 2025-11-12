@@ -124,7 +124,13 @@ export const defaultContentPageLayout: PageLayout = {
         startCollapsed: true,
         filterFn: (node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-          return segment !== "templates" && segment !== "canvases"
+          return (
+            segment !== "templates" &&
+            segment !== "canvases" &&
+            segment !== "puzzles" &&
+            segment !== "media" &&
+            segment !== "timelines"
+          )
         },
       }),
     ),
@@ -136,7 +142,13 @@ export const defaultContentPageLayout: PageLayout = {
         startCollapsed: false,
         filterFn: (node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
-          return segment !== "templates" && segment !== "canvases"
+          return (
+            segment !== "templates" &&
+            segment !== "canvases" &&
+            segment !== "puzzles" &&
+            segment !== "media" &&
+            segment !== "timelines"
+          )
         },
       })
     ),
@@ -181,14 +193,30 @@ export const defaultListPageLayout: PageLayout = {
         folderDefaultState: "collapsed",
         useSavedState: false,
         headerSlot: Component.Search({ variant: "inline" }),
-        filterFn: (node) => node.slugSegment !== "templates",
+        filterFn: (node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+          return (
+            segment !== "templates" &&
+            segment !== "puzzles" &&
+            segment !== "media" &&
+            segment !== "timelines"
+          )
+        },
       }),
     ),
     Component.DesktopOnly(
       Component.Explorer({
         folderClickBehavior: "link",
         folderDefaultState: "open",
-        filterFn: (node) => node.slugSegment !== "templates",
+        filterFn: (node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
+          return (
+            segment !== "templates" &&
+            segment !== "puzzles" &&
+            segment !== "media" &&
+            segment !== "timelines"
+          )
+        },
       })
     ),
   ],
