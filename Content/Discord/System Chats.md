@@ -24626,7 +24626,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<OUTPRINT>!:TEMP-TERMINAL updated",
     "timestamp": "2025-11-10T23:22:17.747000+00:00",
@@ -24652,7 +24654,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<TAGGING>!: {LOGGED SESSION_02}",
     "timestamp": "2025-11-10T23:22:31.518000+00:00",
@@ -24678,7 +24682,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<PING>?: out+ [SYSTEM MESSAGE] VAR type out-",
     "timestamp": "2025-11-10T23:22:39.022000+00:00",
@@ -24704,7 +24710,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:=============[help menu]============",
     "timestamp": "2025-11-10T23:23:43.780000+00:00",
@@ -24716,7 +24724,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:help = 0-",
     "timestamp": "2025-11-10T23:23:49.379000+00:00",
@@ -24728,7 +24738,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:TERMINAL_Storage4u = N/A",
     "timestamp": "2025-11-10T23:23:55.453000+00:00",
@@ -24740,7 +24752,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:ACCESS_Subframe = -2",
     "timestamp": "2025-11-10T23:24:08.466000+00:00",
@@ -24752,7 +24766,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:Back = 3-",
     "timestamp": "2025-11-10T23:24:13.839000+00:00",
@@ -24806,7 +24822,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<PING>?:",
     "timestamp": "2025-11-10T23:24:38.452000+00:00",
@@ -24818,7 +24836,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<PING>?:PING@PING",
     "timestamp": "2025-11-10T23:24:45.205000+00:00",
@@ -24830,7 +24850,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: RUNCONSOLE @ 500",
     "timestamp": "2025-11-10T23:24:59.022000+00:00",
@@ -24842,7 +24864,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: RUN [NAN]",
     "timestamp": "2025-11-10T23:25:03.866000+00:00",
@@ -24854,7 +24878,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: -in",
     "timestamp": "2025-11-10T23:25:09.674000+00:00",
@@ -24880,7 +24906,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>?:",
     "timestamp": "2025-11-10T23:25:21.936000+00:00",
@@ -24892,7 +24920,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: error || console is in DEG mode || cannot compute",
     "timestamp": "2025-11-10T23:26:37.238000+00:00",
@@ -24932,7 +24962,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: load[2920]callsignINDI __Java.export [FILE] 2178",
     "timestamp": "2025-11-10T23:27:02.389000+00:00",
@@ -24958,7 +24990,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "requesting site access to https://www.discord.com",
     "timestamp": "2025-11-10T23:27:16.946000+00:00",
@@ -24984,7 +25018,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Hello?",
     "timestamp": "2025-11-10T23:27:32.902000+00:00",
@@ -25024,7 +25060,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who did I connect to?",
     "timestamp": "2025-11-10T23:27:48.387000+00:00",
@@ -25050,7 +25088,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "What? You're apart of TTH?",
     "timestamp": "2025-11-10T23:28:26.227000+00:00",
@@ -25090,7 +25130,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
@@ -25158,7 +25200,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "This is someone. I'm asking who are you?",
     "timestamp": "2025-11-10T23:29:43.436000+00:00",
@@ -25198,7 +25242,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "I'm terminating this connection if you can provide me a valid name.",
     "timestamp": "2025-11-10T23:30:25.565000+00:00",
@@ -25224,7 +25270,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "\"can't\"",
     "timestamp": "2025-11-10T23:30:43.466000+00:00",
@@ -25278,7 +25326,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "wait? is this Norvack again?",
     "timestamp": "2025-11-10T23:31:14.249000+00:00",
@@ -25332,7 +25382,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who is this?",
     "timestamp": "2025-11-10T23:31:40.830000+00:00",
@@ -25344,7 +25396,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "who",
     "timestamp": "2025-11-10T23:31:57.326000+00:00",
@@ -25370,7 +25424,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "FNClaaaaaaaaaaas??CcccA()(s00JS***cnnn",
     "timestamp": "2025-11-10T23:32:27.106000+00:00",
@@ -25396,7 +25452,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: load[4930]callsignINDI __Java.export [FILE] 0119",
     "timestamp": "2025-11-10T23:32:34.674000+00:00",
@@ -25408,7 +25466,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<HELP>!:",
     "timestamp": "2025-11-10T23:32:47.417000+00:00",
@@ -25420,7 +25480,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "{{ TO KNOW MORE CONSULT THE UPINGR CONSOLE COMMAND GUIDE FOR MORE INFORMATION ON COMMANDS \n-r    | read\n-w    | write",
     "timestamp": "2025-11-10T23:32:55.586000+00:00",
@@ -25432,7 +25494,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████",
     "timestamp": "2025-11-10T23:33:03.770000+00:00",
@@ -25458,7 +25522,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<PING>?:",
     "timestamp": "2025-11-10T23:33:11.305000+00:00",
@@ -25484,7 +25550,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<PING>?:PING@PING",
     "timestamp": "2025-11-10T23:33:17.663000+00:00",
@@ -25524,7 +25592,9 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
     "timestamp": "2025-11-10T23:33:30.752000+00:00",
