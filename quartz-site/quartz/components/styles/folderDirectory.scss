@@ -61,7 +61,7 @@
 .directory-card {
   position: relative;
   background: var(--color-surface-overlay);
-  border: 2px solid var(--color-accent-deep);
+  border: 2px solid var(--color-accent-shadow);
   border-radius: 16px;
   padding: 0.7rem 0.8rem 0.85rem;
   display: flex;
@@ -115,6 +115,76 @@
 
 .directory-card__content--folder {
   gap: 0.8rem;
+}
+
+
+.directory-card__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.directory-card__topline > .directory-card__header {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.directory-card__preview-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  flex: 1 1 300px;
+  min-width: 12rem;
+  overflow: hidden;
+  min-height: 2.4rem;
+  padding-left: 0.4rem;
+}
+
+.directory-card__preview-list {
+  display: flex;
+  align-items: stretch;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.directory-card__preview-card {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--color-tone-subtle) 44%, var(--color-surface-overlay) 56%);
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow-light) 55%, transparent);
+  padding: 0.3rem 0.4rem 0.35rem;
+  min-width: 6rem;
+}
+
+.directory-card__preview-title {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-tone-contrast) 60%, var(--dark) 40%);
+}
+
+.directory-card__preview-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  letter-spacing: 0.5em;
+  color: color-mix(in srgb, var(--color-accent-bright) 70%, var(--color-tone-muted) 30%);
+  white-space: nowrap;
+  font-weight: 700;
+  pointer-events: none;
+  margin-left: 0.15rem;
 }
 
 .directory-card__header {
@@ -174,11 +244,11 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
-  color: var(--color-accent-shadow);
+  color: var(--color-accent-deep);
 }
 
 .directory-card .directory-card__title {
-  color: var(--color-accent-shadow);
+  color: var(--color-accent-deep);
 }
 
 .directory-card__excerpt {
@@ -193,10 +263,6 @@
   line-clamp: 4;
   overflow: hidden;
   min-height: 3.1rem;
-}
-
-.directory-card__excerpt--placeholder {
-  opacity: 0;
 }
 
 .directory-card__tags {
@@ -232,8 +298,7 @@
 }
 
 .directory-card--folder {
-  background: color-mix(in srgb, var(--color-surface-overlay) 55%, var(--color-tone-muted) 45%);
-  border-color: color-mix(in srgb, var(--color-accent-deep) 80%, var(--color-accent-shadow) 20%);
+  border-color: color-mix(in srgb, var(--color-accent-shadow) 80%, var(--color-accent-deep) 20%);
 }
 
 .directory-card--folder .directory-card__meta {
@@ -267,6 +332,27 @@
 
   .directory-card__header {
     gap: 0.75rem;
+  }
+
+  .directory-card__topline {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .directory-card__preview-wrap {
+    justify-content: flex-start;
+    min-width: 0;
+    flex-wrap: wrap;
+    padding-left: 0;
+  }
+
+  .directory-card__preview-card {
+    min-width: unset;
+  }
+
+  .directory-card__preview-list {
+    flex-wrap: wrap;
+    gap: 0.45rem;
   }
 
   .folder-directory__section + .folder-directory__section {

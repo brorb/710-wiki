@@ -18,26 +18,6 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     iconSlug: "concepts",
   },
   {
-    href: "/Timelines/",
-    label: "Chronology",
-    iconSlug: "chronology",
-  },
-  {
-    href: "/Puzzles/",
-    label: "Mysteries",
-    iconSlug: "mysteries",
-  },
-  {
-    href: "/Contribute/",
-    label: "Contribute",
-    iconSlug: "contribute",
-  },
-  {
-    href: "/Theories/",
-    label: "Theories",
-    iconSlug: "theories",
-  },
-  {
     href: "/Discord/",
     label: "Discord",
     iconSlug: "discord",
@@ -46,6 +26,11 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     href: "/YouTube/",
     label: "YouTube",
     iconSlug: "youtube",
+  },
+  {
+    href: "/Explorables/",
+    label: "Explorables",
+    iconSlug: "explorables",
   },
 ]
 

@@ -206,7 +206,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         .filter((entry): entry is FolderEntry => entry !== null) ?? []
 
     const sortFn = options.sort ?? byDateAndAlphabeticalFolderFirst(cfg)
-  const sortedEntries = [...entries].sort((a, b) => sortFn(a.data, b.data))
+    const sortedEntries = [...entries].sort((a, b) => sortFn(a.data, b.data))
     const folderEntries = options.showSubfolders
       ? sortedEntries.filter((entry) => entry.node.isFolder)
       : []
@@ -227,6 +227,111 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       <div class="popover-hint">
         <article class={classes}>{content}</article>
         <div class="folder-directory">
+          {folderEntries.length > 0 && (
+            <section class="folder-directory__section" aria-label="Subfolders">
+              <div class="folder-directory__section-header">
+                <h2 class="folder-directory__section-title">Collections</h2>
+                <span class="folder-directory__section-hint">
+                  {pluralize(folderEntries.length, "subfolder", "subfolders")}
+                </span>
+              </div>
+              <div class="folder-directory__grid folder-directory__grid--subfolders">
+                {folderEntries.map((entry) => {
+                  const slug = entry.data.slug as FullSlug | undefined
+                  if (!slug) {
+                    return null
+                  }
+
+                  const title =
+                    entry.data.frontmatter?.title ??
+                    entry.node.displayName ??
+                    slug.split("/").at(-1) ??
+                    "Untitled"
+                  const link = resolveRelative(fileData.slug!, slug)
+                  const childCount = pluralize(countRenderableChildren(entry.node), "item", "items")
+                  const updated = entry.data.dates ? getDate(cfg, entry.data) : undefined
+                  const snippet = getSnippetForPage(entry.data)
+                  const hasSnippet = Boolean(snippet)
+                  const initials = getInitials(title)
+                  const previewCandidates = entry.node.children.filter(
+                    (child) => child.data && !child.isFolder,
+                  )
+                  const previewPages = previewCandidates.slice(0, 12)
+                  const totalPreviewCount = previewCandidates.length
+                  const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-")
+                  const headingId = `directory-card-title-${safeSlugId}`
+
+                  return (
+                    <article
+                      class="directory-card directory-card--folder"
+                      key={slug}
+                      data-href={link}
+                      role="link"
+                      tabIndex={0}
+                      aria-labelledby={headingId}
+                    >
+                      <div class="directory-card__body directory-card__body--folder">
+                        <div class="directory-card__content directory-card__content--folder">
+                          <div class="directory-card__topline">
+                            <div class="directory-card__header">
+                              <span class="folder-directory__subfolder-icon" aria-hidden="true">
+                                {initials}
+                              </span>
+                              <div>
+                                <h3 class="directory-card__title" id={headingId}>
+                                  {title}
+                                </h3>
+                                <p class="directory-card__meta">
+                                  {childCount}
+                                  {updated && (
+                                    <Fragment>
+                                      {" · "}
+                                      Updated <DateDisplay date={updated} locale={cfg.locale} />
+                                    </Fragment>
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                            {previewPages.length > 0 && (
+                              <div
+                                class="directory-card__preview-wrap"
+                                aria-label={`Highlights from ${title}`}
+                                data-preview-total={totalPreviewCount}
+                              >
+                                <div class="directory-card__preview-list">
+                                  {previewPages.map((child) => {
+                                    const childData = child.data!
+                                    const childFrontmatter = (childData.frontmatter ?? {}) as Record<string, unknown>
+                                    const childTitle =
+                                      typeof childFrontmatter.title === "string" && childFrontmatter.title.length > 0
+                                        ? (childFrontmatter.title as string)
+                                        : child.displayName ??
+                                          childData.slug?.split("/").at(-1) ??
+                                          "Untitled"
+
+                                    return (
+                                      <div class="directory-card__preview-card" key={childData.slug ?? childTitle}>
+                                        <p class="directory-card__preview-title">{childTitle}</p>
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                                <span class="directory-card__preview-more" aria-hidden="true" hidden>
+                                  . . .
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                          {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
+                        </div>
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
+            </section>
+          )}
+
           {pageEntries.length > 0 && (
             <section class="folder-directory__section" aria-label="Entries">
               <div class="folder-directory__section-header">
@@ -279,14 +384,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
                               Updated <DateDisplay date={updated} locale={cfg.locale} />
                             </p>
                           )}
-                          {hasSnippet ? (
-                            <p class="directory-card__excerpt">{snippet}</p>
-                          ) : (
-                            <div
-                              class="directory-card__excerpt directory-card__excerpt--placeholder"
-                              aria-hidden="true"
-                            ></div>
-                          )}
+                          {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
                         </div>
                         {image && (
                           <div class="directory-card__media">
@@ -314,82 +412,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
               </div>
             </section>
           )}
-
-          {folderEntries.length > 0 && (
-            <section class="folder-directory__section" aria-label="Subfolders">
-              <div class="folder-directory__section-header">
-                <h2 class="folder-directory__section-title">Collections</h2>
-                <span class="folder-directory__section-hint">
-                  {pluralize(folderEntries.length, "subfolder", "subfolders")}
-                </span>
-              </div>
-              <div class="folder-directory__grid folder-directory__grid--subfolders">
-                {folderEntries.map((entry) => {
-                  const slug = entry.data.slug as FullSlug | undefined
-                  if (!slug) {
-                    return null
-                  }
-
-                  const title =
-                    entry.data.frontmatter?.title ??
-                    entry.node.displayName ??
-                    slug.split("/").at(-1) ??
-                    "Untitled"
-                  const link = resolveRelative(fileData.slug!, slug)
-                  const childCount = pluralize(countRenderableChildren(entry.node), "item", "items")
-                  const updated = entry.data.dates ? getDate(cfg, entry.data) : undefined
-                  const snippet = getSnippetForPage(entry.data)
-                  const hasSnippet = Boolean(snippet)
-                  const initials = getInitials(title)
-                  const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-")
-                  const headingId = `directory-card-title-${safeSlugId}`
-
-                  return (
-                    <article
-                      class="directory-card directory-card--folder"
-                      key={slug}
-                      data-href={link}
-                      role="link"
-                      tabIndex={0}
-                      aria-labelledby={headingId}
-                    >
-                      <div class="directory-card__body directory-card__body--folder">
-                        <div class="directory-card__content directory-card__content--folder">
-                          <div class="directory-card__header">
-                            <span class="folder-directory__subfolder-icon" aria-hidden="true">
-                              {initials}
-                            </span>
-                            <div>
-                              <h3 class="directory-card__title" id={headingId}>
-                                {title}
-                              </h3>
-                              <p class="directory-card__meta">
-                                {childCount}
-                                {updated && (
-                                  <Fragment>
-                                    {" · "}
-                                    Updated <DateDisplay date={updated} locale={cfg.locale} />
-                                  </Fragment>
-                                )}
-                              </p>
-                            </div>
-                          </div>
-                          {hasSnippet ? (
-                            <p class="directory-card__excerpt">{snippet}</p>
-                          ) : (
-                            <div
-                              class="directory-card__excerpt directory-card__excerpt--placeholder"
-                              aria-hidden="true"
-                            ></div>
-                          )}
-                        </div>
-                      </div>
-                    </article>
-                  )
-                })}
-              </div>
-            </section>
-          )}
         </div>
       </div>
     )
@@ -398,6 +420,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
   FolderContent.afterDOMLoaded = `
     (() => {
       const selector = '.directory-card[data-href]'
+      let handlersBound = false
 
       const resolveCard = (target) =>
         target instanceof Element ? target.closest(selector) : null
@@ -485,14 +508,192 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
       }
 
-      document.addEventListener('click', handleClick)
-      document.addEventListener('auxclick', handleAuxClick)
-      document.addEventListener('keydown', handleKeydown)
+      const bindHandlers = () => {
+        if (handlersBound) {
+          return
+        }
+
+        document.addEventListener('click', handleClick)
+        document.addEventListener('auxclick', handleAuxClick)
+        document.addEventListener('keydown', handleKeydown)
+        handlersBound = true
+
+        window.addCleanup?.(() => {
+          document.removeEventListener('click', handleClick)
+          document.removeEventListener('auxclick', handleAuxClick)
+          document.removeEventListener('keydown', handleKeydown)
+          handlersBound = false
+        })
+      }
+
+      const previewSelector = '.directory-card__preview-wrap'
+      const previewElements = new Set()
+      const previewObservers = new Map()
+      let previewResizeHandler = null
+
+      const getViewportPreviewCount = () => {
+        const width = window.innerWidth || document.documentElement.clientWidth || 0
+        const height = window.innerHeight || document.documentElement.clientHeight || 1
+        const aspect = height > 0 ? width / height : 1
+
+        if (width >= 1600 && aspect >= 1.5) {
+          return 5
+        }
+        if (width >= 1280 && aspect >= 1.3) {
+          return 4
+        }
+        if (width >= 960) {
+          return 3
+        }
+        if (width >= 640) {
+          return 2
+        }
+        return 1
+      }
+
+      const schedulePreviewUpdate = (wrap) => {
+        window.requestAnimationFrame(() => updatePreviewLayout(wrap))
+      }
+
+      const updatePreviewLayout = (wrap) => {
+        if (!(wrap instanceof HTMLElement)) {
+          return
+        }
+
+        if (!wrap.isConnected) {
+          const observer = previewObservers.get(wrap)
+          if (observer) {
+            observer.disconnect()
+            previewObservers.delete(wrap)
+          }
+          previewElements.delete(wrap)
+          return
+        }
+
+        const list = wrap.querySelector('.directory-card__preview-list')
+        if (!(list instanceof HTMLElement)) {
+          return
+        }
+
+        const cards = Array.from(list.querySelectorAll('.directory-card__preview-card'))
+        const ellipsis = wrap.querySelector('.directory-card__preview-more')
+        const total = Number.parseInt(wrap.getAttribute('data-preview-total') ?? '', 10) || cards.length
+
+        if (cards.length === 0) {
+          if (ellipsis) {
+            ellipsis.hidden = total <= 0
+          }
+          return
+        }
+
+        const style = window.getComputedStyle(list)
+        const gap = Number.parseFloat(style.columnGap || style.gap || '0') || 0
+        const available = list.getBoundingClientRect().width
+        const sampleCard = cards[0]
+        const cardWidth = sampleCard ? sampleCard.getBoundingClientRect().width : 0
+
+        let widthCapacity = Number.POSITIVE_INFINITY
+        if (Number.isFinite(available) && available > 0 && Number.isFinite(cardWidth) && cardWidth > 0) {
+          const maxByWidth = Math.floor((available + gap) / (cardWidth + gap))
+          if (Number.isFinite(maxByWidth)) {
+            widthCapacity = Math.max(1, maxByWidth)
+          }
+        }
+
+        let baseline = Number.parseInt(wrap.getAttribute('data-preview-visible') ?? '', 10)
+        if (!Number.isFinite(baseline) || baseline <= 0) {
+          baseline = getViewportPreviewCount()
+          if (!Number.isFinite(baseline) || baseline < 1) {
+            baseline = 1
+          }
+          baseline = Math.min(baseline, cards.length)
+          if (Number.isFinite(widthCapacity) && widthCapacity > 0) {
+            baseline = Math.min(baseline, widthCapacity)
+          }
+          wrap.setAttribute('data-preview-visible', String(baseline))
+        }
+
+        let visibleCount = baseline
+        if (Number.isFinite(widthCapacity) && widthCapacity > 0) {
+          visibleCount = Math.min(visibleCount, widthCapacity)
+        }
+
+        visibleCount = Math.max(1, Math.min(visibleCount, cards.length))
+
+        cards.forEach((card, index) => {
+          card.toggleAttribute('hidden', index >= visibleCount)
+        })
+
+        const hiddenRendered = cards.length > visibleCount
+        const shouldShowEllipsis = hiddenRendered || total > visibleCount
+        if (ellipsis) {
+          ellipsis.hidden = !shouldShowEllipsis
+        }
+      }
+
+      const ensurePreviewResizeHandler = () => {
+        if (previewResizeHandler) {
+          return
+        }
+
+        previewResizeHandler = () => {
+          previewElements.forEach((wrap) => schedulePreviewUpdate(wrap))
+        }
+
+        window.addEventListener('resize', previewResizeHandler)
+
+        window.addCleanup?.(() => {
+          if (previewResizeHandler) {
+            window.removeEventListener('resize', previewResizeHandler)
+            previewResizeHandler = null
+          }
+        })
+      }
+
+      const setupPreviewLayouts = () => {
+        const wraps = document.querySelectorAll(previewSelector)
+        wraps.forEach((element) => {
+          if (!(element instanceof HTMLElement)) {
+            return
+          }
+
+          previewElements.add(element)
+
+          if (!previewObservers.has(element) && typeof ResizeObserver === 'function') {
+            const observer = new ResizeObserver(() => schedulePreviewUpdate(element))
+            observer.observe(element)
+            previewObservers.set(element, observer)
+          }
+
+          schedulePreviewUpdate(element)
+        })
+
+        if (previewElements.size > 0) {
+          ensurePreviewResizeHandler()
+        }
+      }
+
+      const cleanupPreviews = () => {
+        previewObservers.forEach((observer) => {
+          if (observer && typeof observer.disconnect === 'function') {
+            observer.disconnect()
+          }
+        })
+        previewObservers.clear()
+        previewElements.clear()
+      }
+
+      const handleNav = () => {
+        bindHandlers()
+        setupPreviewLayouts()
+      }
+
+      document.addEventListener('nav', handleNav)
+      handleNav()
 
       window.addCleanup?.(() => {
-        document.removeEventListener('click', handleClick)
-        document.removeEventListener('auxclick', handleAuxClick)
-        document.removeEventListener('keydown', handleKeydown)
+        cleanupPreviews()
+        document.removeEventListener('nav', handleNav)
       })
     })()
   `
