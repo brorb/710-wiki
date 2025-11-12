@@ -77,7 +77,7 @@ Note: non-updated SYSTEMS will cause probelms in serverware
 COMMAND MESSAGE STOPPED FOR T-500
 ```
 
-On August 8th, 2025, [[SYSTEM]] would update this feature within APP TRUSTED 02 to display the following list:
+On 8th August 2025, [[SYSTEM]] would update this feature within APP TRUSTED 02 to display the following list:
 ```
 LOG ORDER-updated          
 //1//:cancel.backsystem1
@@ -265,7 +265,7 @@ After [[SYSTEM]] found out about the ==[403 FORBIDDEN]== Discord channel, it inq
 ---
 ## The [[Bob]] Incident
 
-On August 7th, 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]]. After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up. Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
+On 7th August 2025, the $print_bob command glitched out and started spamming the eyes part of [[Bob]], most likely in reference to [[The Eyes]]. After a moment of spam, [[SYSTEM]] stepped in to tell someone not to do it again, but it wasn't clear as to who it was referring to since it said it got its conversations mixed up. Whatever caused this incident was most likely an outside party, but the reason for this happening is unknown since [[SYSTEM]] had no time to discuss it.
 
 ```media-box
 Media: [[Bob incident (1).png]]
