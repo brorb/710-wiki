@@ -1,5 +1,5 @@
 
-See [[SYSTEM]] and [[SERVER 01]] for more context.
+See [[SYSTEM]] and [[SERVER 01]] for more information on these topics.
 
 ## Ghost Error Image
 
