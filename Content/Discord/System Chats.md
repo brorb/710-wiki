@@ -1,6 +1,6 @@
 ## From [[The Sleuths]] Discord
 
-### [[SYSTEM]] first joins [[The Sleuths]] Discord server (19th July 2025)
+### [[SYSTEM]] first joins [[The Sleuths]] Discord server (19 July 2025)
 
 ```discord
 [
@@ -3207,7 +3207,7 @@
 ]
 ```
 
-### Logged Session 3.1 (20th July 2025)
+### Logged Session 3.1 (20 July 2025)
 
 ```discord
 [
@@ -5193,7 +5193,7 @@
 ]
 ```
 
-### Logged Session 4 (21st July 2025)
+### Logged Session 4 (21 July 2025)
 
 ```discord
 [
@@ -14454,7 +14454,7 @@
 ]
 ```
 
-### [[The Sleuths]] send [[SYSTEM]] their documentation spreadsheet (22nd July 2025)
+### [[The Sleuths]] send [[SYSTEM]] their documentation spreadsheet (22 July 2025)
 
 ```discord
 [
@@ -15520,7 +15520,7 @@
 ]
 ```
 
-### [[SYSTEM]] returns to the Discord (29th July 2025)
+### [[SYSTEM]] returns to the Discord (29 July 2025)
 
 **710-hub**
 ```discord
@@ -27108,7 +27108,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-##### SYSTEM codes (28th July 2025)
+##### SYSTEM codes (28 July 2025)
 
 **@brorb**
 
@@ -27821,7 +27821,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
   }
 ]
 ```
-##### SERVER 01 Invites (28th July 2025)
+##### SERVER 01 Invites (28 July 2025)
 
 **@Noel|HLF**
 
@@ -28218,7 +28218,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-**"Cancelled message" DM (sent to @Abe, @L4N4U1997, @ThePortalNinja, @brorb, @Noel|HLF, and @Jovenly 'training for job' Cosmo on 10th September 2025)**
+**"Cancelled message" DM (sent to @Abe, @L4N4U1997, @ThePortalNinja, @brorb, @Noel|HLF, and @Jovenly 'training for job' Cosmo on 10 September 2025)**
 ```discord
 [
   {
@@ -28240,7 +28240,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 
 ## [[SERVER 01]]
 
-##### 26th-28th July 2025 ([[SYSTEM]] getting the server setup)
+##### 26th-28 July 2025 ([[SYSTEM]] getting the server setup)
 ```discord
 [
   {
@@ -28288,8 +28288,8 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-_(SYSTEM creates APP TRUSTED on 27th July 2025, 07:30)
-(bot renamed to APP TRUSTED 02 on 27th July 2025 11:26)_
+_(SYSTEM creates APP TRUSTED on 27 July 2025, 07:30)
+(bot renamed to APP TRUSTED 02 on 27 July 2025 11:26)_
 
 ```discord
 [
@@ -28329,12 +28329,12 @@ _(SYSTEM creates APP TRUSTED on 27th July 2025, 07:30)
 ]
 ```
 
-##### 29th July 2025
+##### 29 July 2025
 
-_(@Noel HLF enters the server on 29th July 2025, 01:21)
-(@brorb enters the serveron 29th July 2025, 01:22)
-(@Swordian enters the server on 29th July 2025, 01:25)
-(@Abe enters the server on 29th July 2025, 01:26)_
+_(@Noel HLF enters the server on 29 July 2025, 01:21)
+(@brorb enters the serveron 29 July 2025, 01:22)
+(@Swordian enters the server on 29 July 2025, 01:25)
+(@Abe enters the server on 29 July 2025, 01:26)_
 
 ```discord
 [
@@ -28593,7 +28593,7 @@ _(@Noel HLF enters the server on 29th July 2025, 01:21)
 ]
 ```
 
-_(@kayxsu joins the server on 29th July 2025, 01:50)_
+_(@kayxsu joins the server on 29 July 2025, 01:50)_
 
 ```discord
 [
@@ -28656,10 +28656,10 @@ _(@kayxsu joins the server on 29th July 2025, 01:50)_
 ]
 ```
 
-_(@Carlos joins the server on 29th July 2025, 02:00)_
-_(@Rick joins the server on 29th July 2025, 02:14)_
-_(@Yuri joins the server on 29th July 2025, 08:17)
-(@ThePortalNinja joins in the server on 29th July 2025)_
+_(@Carlos joins the server on 29 July 2025, 02:00)_
+_(@Rick joins the server on 29 July 2025, 02:14)_
+_(@Yuri joins the server on 29 July 2025, 08:17)
+(@ThePortalNinja joins in the server on 29 July 2025)_
 
 ```discord
 [
@@ -29432,7 +29432,7 @@ You can also type $help category for more info on a category.
   }
 ]
 ```
-##### 30th July 2025
+##### 30 July 2025
 
 ```discord
 [
@@ -29966,7 +29966,7 @@ COMMAND MESSAGE STOPPED FOR T-300
 ]
 ```
 
-##### 31st July 2025
+##### 31 July 2025
 
 ```discord
 [
@@ -30699,7 +30699,7 @@ _(@brorb rejoins the server after getting kicked out)_
 ]
 ```
 
-##### 2nd August 2025
+##### 2 August 2025
 
 ```discord
 [
@@ -32443,7 +32443,7 @@ You can also type $help category for more info on a category.
 ]
 ```
 
-##### 3rd August 2025
+##### 3 August 2025
 
 ```discord
 [
@@ -34723,7 +34723,7 @@ You can also type $help category for more info on a category.
 ]
 ```
 
-##### 4th August 2025
+##### 4 August 2025
 
 ```discord
 [
@@ -34950,7 +34950,7 @@ ERROR: NOT UPDATED (please update from current version 8.0.78, 10/7/NaN.
 Note: non-updated SYSTEMS will cause probelms in serverware
 ```
 
-##### 5th August 2025
+##### 5 August 2025
 
 ```discord
 [
@@ -35873,7 +35873,7 @@ Note: non-updated SYSTEMS will cause probelms in serverware
 ]
 ```
 
-##### 6th August 2025
+##### 6 August 2025
 
 ```discord
 [
@@ -37442,7 +37442,7 @@ You can also type $help category for more info on a category.
 ]
 ```
 
-##### 7th August 2025
+##### 7 August 2025
 
 ```discord
 [
@@ -39894,7 +39894,7 @@ HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
 ]
 ```
 
-##### 8th August 2025
+##### 8 August 2025
 
 ```discord
 [
@@ -42820,7 +42820,7 @@ In content: Must be 2000 or fewer in length.
 ]
 ```
 
-##### 9th August 2025
+##### 9 August 2025
 
 ```discord
 [

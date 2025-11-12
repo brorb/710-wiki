@@ -9,6 +9,6 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-_Uploaded 27th September 2025, same as [[12_capturedRecall]] on the [[710 Tone|7/10 Tone]] channel._
+_Uploaded 27 September 2025, same as [[12_capturedRecall]] on the [[710 Tone|7/10 Tone]] channel._
 
 **Video Summary:** Same thing as the 7/10 Tone version, except the audio quality is lower and the video isn't partially corrupted.

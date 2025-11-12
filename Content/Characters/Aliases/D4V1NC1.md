@@ -28,7 +28,7 @@ An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4
 "D4V1NC1" is clearly a rewrite of "da Vinci", referencing the renaissance scientist [Leonardo da Vinci](https://en.wikipedia.org/wiki/Leonardo_da_Vinci). This follows the trope of characters with aliases of famous scientists, like [[Kepler]] for instance. Da Vinci has also appeared in the video [[backtone.extend 5_f''5.5'']]: 
 
 
-The image of DaVinci fills the screen for a couple of seconds, before the camera pans away to more red room. The text "QUANDO NATUS EST" appears along with a heavily distorted voice reading it aloud. The phrase is classical Latin and means "When was he born", likely referring to Leonardo DaVinci, who was born April 15, 1452.
+The image of DaVinci fills the screen for a couple of seconds, before the camera pans away to more red room. The text "QUANDO NATUS EST" appears along with a heavily distorted voice reading it aloud. The phrase is classical Latin and means "When was he born", likely referring to Leonardo DaVinci, who was born 15 April 1452.
 
 ```media-box
 Media: [[Da Vinci original image found.jpg]]

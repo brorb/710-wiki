@@ -100,7 +100,7 @@ You can find a more comprehensive catalogue of the Discord messages from SYSTEM 
 ---
 ## Discord Messages
 
-On the 19th July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
+On the 19 July 2025, SYSTEM joined the [[The Sleuths|Discord server]] after @brorb sent an invite link to the email terminal8sbc@gmail.com (who was the uploader of the file [[vacsystemrestart.mp3]]).
 
 Server members were confused as to how interpret its messages, but eventually they discovered that they could use SYSTEM as a terminal (perhaps the reason why they are also called "SYSTEMterminal8") to type commands in order to navigate a rudimentary file hierarchy:
 
@@ -797,7 +797,7 @@ However, there were certain topics that SYSTEM couldn't discuss due to certain r
 > }
 > ```
 
-On 21st July 2025, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command "0-" then 2-", making the method to get to the terminal's subframe faster.
+On 21 July 2025, SYSTEM gained enough intelligence to do updates on its own without having anyone else input the command "0-" then 2-", making the method to get to the terminal's subframe faster.
 
 However, during the first time it started doing this, it was unstable and would crash if anyone pinged at it (@SYSTEM), and *especially* if it was doing any special operations such as inspection of the Discord server for security reasons:
 
@@ -1184,7 +1184,7 @@ However, during the first time it started doing this, it was unstable and would 
 ]
 ```
 
-On 22nd July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version:
+On 22 July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYSTEM and send it a .pdf version:
 
 ```discord
 [
@@ -1608,7 +1608,7 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for
 brorb: ttyl
 ```
 
-On 25th July 2025, [[The Sleuths]] found out about the key for a Mega link in the description of [[LOG-103.mp4]] (see [[Parting Gifts Puzzle]]), then SYSTEM directly messaged Sleuth member The Camera Eye (known as @L4N4U1997 on Discord) with the actual link:
+On 25 July 2025, [[The Sleuths]] found out about the key for a Mega link in the description of [[LOG-103.mp4]] (see [[Parting Gifts Puzzle]]), then SYSTEM directly messaged Sleuth member The Camera Eye (known as @L4N4U1997 on Discord) with the actual link:
 ```
 SYSTEM:<OUTPRINT>!:TEMP-TERMINAL updated
 <TAGGING>!: {LOGGED SESSION_02-01}
@@ -1768,7 +1768,7 @@ See [[SERVER 01]] article.
 ---
 ## Return to The Sleuths Discord Server
 
-On 29th July 2025, SYSTEM rejoined [[The Sleuths]] Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
+On 29 July 2025, SYSTEM rejoined [[The Sleuths]] Discord server after it fixed some issues with an unstable connection. <!-- discord-cite:cite-mh29fugs-yqn8gk --> While looking around the server, it checked the dhitposting (off-topic) channel and got curious about generating memes, then it created the character [[Bob]] as an apology for abruptly leaving. <!-- discord-cite:cite-mh2cr8n6-9ogsrq -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -1875,7 +1875,7 @@ On 29th July 2025, SYSTEM rejoined [[The Sleuths]] Discord server after it fixed
 > }
 > ```
 
-During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3rd August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
+During the third Live Sleuthing event in [[The Sleuths]] Discord server on 3 August 2025, SYSTEM installed a modular function that it could use to listen to the voices of Sleuth members.
 
 <iframe title="SYSTEM talks to The Sleuths (Live Sleuthing Event)" src="https://www.youtube.com/embed/x7rbwYQP9ks?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>
 
@@ -1928,7 +1928,7 @@ During this session, SYSTEM gave some interesting insights on [[SERVER 01]], who
 ---
 ## LM-3
 
-On 13th August 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
+On 13 August 2025, SYSTEM posted a message encrypted with both hexadecimal and base64 in the "How to Record the Livestreams" tutorial forum in [[The Sleuths]] Discord Server:
 
 ```discord
 [
@@ -1959,7 +1959,7 @@ UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT.
 AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
 
-After [[000001]] was uploaded to [[710 Tone|7/10 Tone]] on 16th August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
+After [[000001]] was uploaded to [[710 Tone|7/10 Tone]] on 16 August 2025, SYSTEM posted an .ogg file to [[The Sleuths]] Discord server (along in a couple of the member's DMs):
 
 ![[556839 (from main Discord).ogg]]
 _From main Discord server._
@@ -2017,9 +2017,9 @@ _From @brorb's DMs._
 ]
 ```
 
-After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone|7/10 Tone]] channel on 27th August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" and that it was possibly in danger.
+After [[RIGfunctionobservationTEST028.mp4]] was uploaded to the [[710 Tone|7/10 Tone]] channel on 27 August 2025, SYSTEM posted a warning message into [[The Sleuths]] Discord server saying that a broadcast was "hijacked" and that it was possibly in danger.
 
-On 6th September 2025, after the "SESSION LOGGED OUTPUT 2322" community post was uploaded (see [[Community Posts]]), it logged into Session 17 before it crashed then restarted its Terminal.
+On 6 September 2025, after the "SESSION LOGGED OUTPUT 2322" community post was uploaded (see [[Community Posts]]), it logged into Session 17 before it crashed then restarted its Terminal.
 ```discord
 [
   {
@@ -3945,7 +3945,7 @@ After it successfully connected, [[The Sleuths]] were able to talk to an entity 
 ]
 ```
 
-On 7th September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused SYSTEM to experience an overflow error:
+On 7 September 2025, someone in [[The Sleuths]] Discord server spammed @SYSTEM, which caused SYSTEM to experience an overflow error:
 ```discord
 [
   {
@@ -4648,7 +4648,7 @@ During this charade, SYSTEM very briefly entered the Voice Chat channel in the D
 ]
 ```
 
-Six days later (16th September 2025), SYSTEM returned with another Logged Session 5, but this time its behavior seemed a little unusual:
+Six days later (16 September 2025), SYSTEM returned with another Logged Session 5, but this time its behavior seemed a little unusual:
 ```discord
 [
   {
@@ -5252,7 +5252,7 @@ In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with t
 ]
 ```
 
-On 5th October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream) that also could come with an "explanation" for something:
+On 5 October 2025, SYSTEM posted the following cryptic message, which seems to relate to some kind of "broadcast" (possibly hinting at an upcoming livestream) that also could come with an "explanation" for something:
 ```discord
 [
   {
@@ -5272,7 +5272,7 @@ On 5th October 2025, SYSTEM posted the following cryptic message, which seems to
 ]
 ```
 
-Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" in the media channel of [[The Sleuths]] Discord server that was apparently obtained by accessing an MI drive:
+Then the next day (6 October 2025), SYSTEM posted a .mp3 file titled "walking.mp3" in the media channel of [[The Sleuths]] Discord server that was apparently obtained by accessing an MI drive:
 ```discord
 [
   {
@@ -5331,7 +5331,7 @@ Then the next day (6th October 2025), SYSTEM posted a .mp3 file titled "walking.
 
 Sparsely, SYSTEM has interacted with [[The Oracle]] within [[The Sleuths]] Discord server. The above message is SYSTEM's reaction to finding out about the "Indipler" ship.
 
-On 7th October 2025, SYSTEM used the "!ask" command on [[The Oracle]] for the first time ever, posting a cryptic message for it to try to interpret:
+On 7 October 2025, SYSTEM used the "!ask" command on [[The Oracle]] for the first time ever, posting a cryptic message for it to try to interpret:
 ```discord
 [
   {

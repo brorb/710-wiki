@@ -4,7 +4,7 @@
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 26th January 2025, same as [[LOG-26.mp4]].
+Uploaded 26 January 2025, same as [[LOG-26.mp4]].
 
 **LOG: 319039617
 SYSTEM: 402937

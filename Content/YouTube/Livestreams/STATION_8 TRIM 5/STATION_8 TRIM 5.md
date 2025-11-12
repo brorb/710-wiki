@@ -1,4 +1,4 @@
-This is the summary of the livestream "STATION_8 TRIM 5", from 2nd and 3rd July 2025
+This is the summary of the livestream "STATION_8 TRIM 5", from 2nd and 3 July 2025
 
 [[Travis]] (who is control of the [[710 Tone|7/10 Tone]] channel) communicates with [[INDI]] (who is in control of the [[710 NPP|7/10 NPP]] channel) through chat. [[INDI]] tells [[Travis]] that he has "one last job" to do before he perishes from the [[Black Mold]], then asks him when he escaped from somewhere. Travis says that he was "never apart of the complex", which [[INDI]] replies that he's very lucky and then apologizes that he left. [[INDI]] also says that "testing confirms that this one will destroy another", which could mean a base or something else but isn't clearly specified. Stream goes out due to some kind of technical difficulty then restarts.
 

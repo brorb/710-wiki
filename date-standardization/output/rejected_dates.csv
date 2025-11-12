@@ -1,0 +1,4 @@
+file,line_number,pattern,original_date,suggested_date,original_line,manual_replacement,note,status
+Content/YouTube/Videos/7-10 Tone/ERE IS ONE PERSON I KNOW IT'S KE.md,12,numeric_day_month_year,02-4-25,2 April 2025,> 	date: 02-4-25,,,pending
+Content/YouTube/Videos/7-10 Tone/LONG_STR.mp4.md,24,numeric_day_month_year,5-45-438,,987472685797698579637597430985794387659724-5-45-438-258483-285499258432,,Invalid day value '45',pending
+Content/YouTube/Videos/7-10 Tone/THE EFFECT OF LONG STRING IS NOT FOR YOU TO.md,22,numeric_day_month_year,02-1-25,2 January 2025,> 	date: 02-1-25,,,pending

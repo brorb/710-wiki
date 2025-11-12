@@ -9,7 +9,7 @@ tags:
   style="width:100%; aspect-ratio:16/9; border:0;"
   allowfullscreen>
 </iframe>
-Uploaded 23rd February 2025.
+Uploaded 23 February 2025.
 
 **Video Summary:** The first appearance of [[Long String]]. Starts off the screen saying "ATTEMPTING PROGRAM EXECUTION", then the screen goes red with loud data noises. Then the program loads with loud data noises in the background until it finishes and cuts to black, an image of two broadcast test screens (one big and one small) flashes on-screen before cutting to the [[Station Interruption]] scene (color code red, blue), which plays out for a bit until Long String is launched and repeatedly prints its string, print{V83mak8.exe}, all over the screen while red and blue colors flash in the background.
 ###### Long String Transcript:

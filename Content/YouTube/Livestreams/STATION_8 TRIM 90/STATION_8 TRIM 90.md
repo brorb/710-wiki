@@ -4,7 +4,7 @@
 
 ---
 
-This is the summary of the livestream "STATION_8 TRIM 90" from 4th July 2025 to 7th July 2025.
+This is the summary of the livestream "STATION_8 TRIM 90" from 4 July 2025 to 7 July 2025.
 
 ## Summary
 

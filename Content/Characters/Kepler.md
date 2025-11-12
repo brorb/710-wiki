@@ -34,6 +34,6 @@ Not much is known about the relationship between Kepler and [[D4V1NC1]], however
 
 ## Personality
 
-[^1]: This was confirmed in livestream chat on 07.07.25
+[^1]: This was confirmed in livestream chat on 7 July 2025
 
 [^2]: INDI confirmed this in the chat of [[STATION_8 TERMINAL 8]]
