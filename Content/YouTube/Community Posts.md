@@ -470,7 +470,7 @@ _^This post was edited. Original read:_
 "YOU WILL COWER IN THE WAKE OF MY PROGRESSION AND YOU WILL WATCH FOR ETERNITY!"  
 "PLEASE, DON'T DO THIS!"  
 "PLEASE!"  
-=\=EMD\=\=  
+==EMD==  
 Ipse diabolus super nos est, et omnes remittuntur pro peccatis nostris
 ```
 _The phrase is Latin and translates to: “The Devil himself is over us, and all are forgiven for our sins.” The meaning of this is not understood._
