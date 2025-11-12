@@ -283,13 +283,19 @@ _^The hex translates to:_
  # X 3 3 1 2 3 9 :   A B O U T   T I M E   Y O U   S I G N A L E D   U S . 
  # A 9 9 2 1 4 4 :   H E Y ,   W E ' R E   W O R K I N G   O N   I T . 
  # X 3 3 1 2 3 9 :   Y O U ' R E   N O T   W O R K I N G   H A R D   E N O U G H . 
- # A 9 9 2 1 4 4 :   W H A T   T H E   H E L L   I S   T H A T   S U P P O S E D   T O   M E A N ! ? 
- # X 3 3 1 2 3 9 :   A N Y T I M E   Y O U   T U R N   O N   T H A T   S T A T I O N ,   I T   G O E S   T O   S H I T   A N D   S E N D 
- O U T   F R E Q U N C I E S   T O   A N Y   N E I G H B O R I N G   R E S I V E R   N O W   I   D O N T   K N O W   W H A T   I S 
- H A P P E N I N G   B U T   Y O U   A N D   Y O U R   B O Y S   A R E   S U P P O S E D   T O   B E   S E N D I N G   O U T 
+ # A 9 9 2 1 4 4 :   W H A T   T H E   H E L L   I S   T H A T   S U P P O S E D   T O   M 
+ E A N ! ? 
+ # X 3 3 1 2 3 9 :   A N Y T I M E   Y O U   T U R N   O N   T H A T   S T A T I O N ,   I 
+ T   G O E S   T O   S H I T   A N D   S E N D 
+ O U T   F R E Q U N C I E S   T O   A N Y   N E I G H B O R I N G   R E S I V E R   N O W  
+ I   D O N T   K N O W   W H A T   I S 
+ H A P P E N I N G   B U T   Y O U   A N D   Y O U R   B O Y S   A R E   S U P P O S E D   
+ T O   B E   S E N D I N G   O U T 
  I N F O R M A T I O N   N O T   T R Y I N G   T O   C A L L   O T H E R   S T A T I O N S 
- # A 9 9 2 1 4 :   A R E   Y O U   S A Y I N G   T H A T   I T ' S   O U R   F A U L T   F O R   T H A T   I N C I D E N T ? 
- # X 3 3 1 2 3 9 :   N O ,   W E " R E   S A Y I N G   T H A T   Y O U   N E E D   T O   G E T   T H A T   S T A T I O N   U N D E R   
+ # A 9 9 2 1 4 :   A R E   Y O U   S A Y I N G   T H A T   I T ' S   O U R   F A U L T   F 
+ O R   T H A T   I N C I D E N T ? 
+ # X 3 3 1 2 3 9 :   N O ,   W E " R E   S A Y I N G   T H A T   Y O U   N E E D   T O   G 
+ E T   T H A T   S T A T I O N   U N D E R   
  C O N T R O L   O R   W E   A R E   T E R M I N A T I N G   T H E   M I S S I O N . 
  # A 9 9 2 1 4 :   W E ' L L   T R Y .
 ```
@@ -300,7 +306,9 @@ This is an example of a [[Private Room]] chat, and its content matches that of [
 ```
 _^The hex translates to:_
 ```
-S Y S T E M _ U P D A T E ( f i l e . 3 3 l 0 ) : : D E T E C T E D = - 5   e r r o r s   & &   1   m i s c -   U P D A T I N G = = = = = 0 0 0 0 1 - 0 0 0 0 4 / s w a w s | e x c l u s i o n /
+S Y S T E M _ U P D A T E ( f i l e . 3 3 l 0 ) : : D E T E C T E D = - 5   e r r o r s   & 
+&   1   m i s c -   U P D A T I N G = = = = = 0 0 0 0 1 - 0 0 0 0 4 / s w a w s | e x c l u 
+s i o n /
 ```
 
 ```community-post,4,0,February 2025,
@@ -308,7 +316,8 @@ S Y S T E M _ U P D A T E ( f i l e . 3 3 l 0 ) : : D E T E C T E D = - 5   e r 
 ```
 _^The hex translates to:_
 ```
-S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   R K A M   L L I W   I "
+S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   
+R K A M   L L I W   I "
 ```
 which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous message is not yet understood.
 
@@ -317,7 +326,8 @@ which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous mess
 ```
 _^The hex translates to:_
 ```
-" S Y S T E M - O U T P U T :   W A R N I N G   A N O M A L O U S   E R R O R   D E T E C T E D | | 0 x 0 0 2 3 1 1 e 3 1 n "
+" S Y S T E M - O U T P U T :   W A R N I N G   A N O M A L O U S   E R R O R   D E T E C T 
+E D | | 0 x 0 0 2 3 1 1 e 3 1 n "
 ```
 
 
@@ -326,7 +336,10 @@ _^The hex translates to:_
 ```
 _^The hex translates to:_
 ```
-u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D :   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
+u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D 
+:   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L 
+O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 
+5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
 ```
 _This references a hash code "768bbf1bbc182b06357d18298dbb4ae9", but its use has not been found._
 
@@ -335,8 +348,12 @@ _This references a hash code "768bbf1bbc182b06357d18298dbb4ae9", but its use has
 ```
 _^This is base 85 / ASCII 85 and translates to:_
 ```
-SYSTEM REPAIR-#00229: CLR str VARS "H3" "EK" || CLR lst VARS "Lot1" "Lot6" || CLR upR Data 112, 3, 3, 112, 2
-SYSTEM REBOOT-#002: START :: "0000, 00, 00, 00 LT", END=============================================================================================================================================================================5????????????????-&$*
+SYSTEM REPAIR-#00229: CLR str VARS "H3" "EK" || CLR lst VARS "Lot1" "Lot6" || CLR upR Data 
+112, 3, 3, 112, 2
+SYSTEM REBOOT-#002: START :: "0000, 00, 00, 00 LT", 
+END=========================================================================================
+====================================================================================5???????
+?????????-&$*
 ```
 _This is the first and only time ASCII 85 has been used, and its relevance is not understood._
 
