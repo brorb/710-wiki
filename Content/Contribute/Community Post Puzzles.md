@@ -80,6 +80,32 @@ Logs deleted: [[LOG-124.mp4]] [[LOG-125.mp4]] [[LOG-126.mp4]] [[LOG-127.mp4]] [[
 
 ---
 
+```community-post,4,0,February 2025,
+53 59 53 54 45 4D 20 4D 45 53 53 41 47 45 20 4F 55 54 50 55 54 3C 22 4C 55 46 4E 49 41 50 20 44 4E 41 20 57 4F 4C 53 20 53 52 55 4F 59 20 52 4B 41 4D 20 4C 4C 49 57 20 49 22
+```
+_^The hex translates to:_
+```
+S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   
+R K A M   L L I W   I "
+```
+Reversed text translates to "I WILL MAKR YOURS SLOW AND PAINFUL"
+The purpose for this ominous message and whoever it is referring to remains unclear.
+
+```community-post,4,1,February 2025,
+75 70 64 61 74 65 20 6F 75 74 70 75 74 20 61 70 70 65 6E 64 69 6E 67 3C 22 53 59 53 54 45 4D 3A 20 53 59 53 54 45 4D 20 41 50 50 45 4E 44 3A 20 56 41 52 2D 49 2C 20 43 2C 20 4F 50 63 2C 20 4F 50 73 2C 20 53 2C 20 7C 7C 20 4C 49 53 54 20 26 26 20 63 61 63 68 65 20 35 3A 20 4C 4F 43 4B 24 24 20 4C 4F 43 4B 20 43 4F 44 45 20 38 3B 20 48 41 53 48 43 4F 44 45 3A 20 37 36 38 62 62 66 31 62 62 63 31 38 32 62 30 36 33 35 37 64 31 38 32 39 38 64 62 62 34 61 65 39 2F 72 65 74 75 72 6E 20 61 6C 6C 3A 30 22 20 3A 3A 20 6D 69 78 20 30 31
+```
+The above message translates to the following:
+```
+u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D 
+:   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L 
+O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 
+5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
+```
+The use for this provided hash code is unknown.
+
+---
+## Community posts with images
+
 ```community-post,4,2,26 June 2025,
 When is his shift again?
 ![[shift.webp|300]]
@@ -96,20 +122,4 @@ REVIEW: OVERALL STATUS
 [CC: 89666 :: RETURNED FALSE STATEMENT]
 ![[test.webp|300]]
 ```
-
-```community-post,4,0,February 2025,
-53 59 53 54 45 4D 20 4D 45 53 53 41 47 45 20 4F 55 54 50 55 54 3C 22 4C 55 46 4E 49 41 50 20 44 4E 41 20 57 4F 4C 53 20 53 52 55 4F 59 20 52 4B 41 4D 20 4C 4C 49 57 20 49 22
-```
-_^The hex translates to:_
-```
-S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   S R U O Y   
-R K A M   L L I W   I "
-```
-which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous message is not yet understood.
-
-```
-u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D 
-:   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L 
-O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 
-5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
-```
+^This above message might relate to the concept of "CC entries" briefly mentioned by [[INDI]] in the [[STATION_8 TRIM 90]] livestream chat. But as to what "CC entries" really mean overall is unknown.

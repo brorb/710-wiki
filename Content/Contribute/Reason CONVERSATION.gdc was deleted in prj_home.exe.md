@@ -1,2 +1,2 @@
 
-On 
+In the game [[prj_Home.exe]] obtained from the [[Parting Gifts Puzzle]], there is an empty .gdc script called "CONVERSATION" that was referenced in "lm-2", which was supposed to contain a conversation between [[Travis]] and another redacted character
