@@ -1,0 +1,12 @@
+{
+  "files_with_matches": 160,
+  "pattern_counts": {
+    "day_month": 11,
+    "day_month_year": 224,
+    "month_day_year": 5,
+    "month_year": 6,
+    "numeric_day_month_year": 4,
+    "year_month_day": 1
+  },
+  "total_matches": 251
+}
