@@ -73,3 +73,9 @@ S Y S T E M   M E S S A G E   O U T P U T < " L U F N I A P   D N A   W O L S   
 ```
 which, reversed, becomes "I WILL MAKR YOURS SLOW AND PAINFUL". This ominous message is not yet understood.
 
+```
+u p d a t e   o u t p u t   a p p e n d i n g < " S Y S T E M :   S Y S T E M   A P P E N D 
+:   V A R - I ,   C ,   O P c ,   O P s ,   S ,   | |   L I S T   & &   c a c h e   5 :   L 
+O C K $ $   L O C K   C O D E   8 ;   H A S H C O D E :   7 6 8 b b f 1 b b c 1 8 2 b 0 6 3 
+5 7 d 1 8 2 9 8 d b b 4 a e 9 / r e t u r n   a l l : 0 "   : :   m i x   0 1
+```
