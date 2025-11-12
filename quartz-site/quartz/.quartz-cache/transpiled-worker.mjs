@@ -5949,6 +5949,12 @@ var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
       postedLabelRaw = candidate;
       inlineSegments.shift();
     }
+  } else if (postedLabelRaw && inlineSegments.length > 0 && /[A-Za-z]/.test(postedLabelRaw) && !/\d{4}/.test(postedLabelRaw)) {
+    const candidate = inlineSegments[0];
+    if (/^\d{4}$/.test(candidate)) {
+      postedLabelRaw = `${postedLabelRaw} ${candidate}`.trim();
+      inlineSegments.shift();
+    }
   }
   const inlineBody = inlineSegments.join(",").trim();
   const metadata = {};
@@ -6315,20 +6321,22 @@ var YT_COMMUNITY_CSS = `
   margin-top: 20px;
 }
 
-.yt-community-post__avatar {
-  display: inline-flex;
+.yt-community-post__header {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 2px;
-  flex-shrink: 0;
+  justify-content: space-between;
+  gap: 8px;
+  row-gap: 4px;
+  flex-wrap: wrap;
+  width: 100%;
 }
-
+.yt-community-post__identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1;
+}
 .yt-community-post__avatar img {
   width: 100%;
   height: 100%;
@@ -6340,25 +6348,9 @@ var YT_COMMUNITY_CSS = `
 .yt-community-post__content {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   flex: 1;
   min-width: 0;
-}
-
-.yt-community-post__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-}
-
-.yt-community-post__identity {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px;
-  line-height: 1;
 }
 
 .yt-community-post__channel {
@@ -6376,8 +6368,8 @@ var YT_COMMUNITY_CSS = `
 .yt-community-post__share-container.article-share {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  align-items: center;
+  gap: 1px;
   flex-shrink: 0;
 }
 
@@ -12612,7 +12604,7 @@ var defaultContentPageLayout = {
         startCollapsed: true,
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases";
+          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     ),
@@ -12624,7 +12616,7 @@ var defaultContentPageLayout = {
         startCollapsed: false,
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases";
+          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     )
@@ -12665,14 +12657,20 @@ var defaultListPageLayout = {
         folderDefaultState: "collapsed",
         useSavedState: false,
         headerSlot: Search_default({ variant: "inline" }),
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+        }, "filterFn")
       })
     ),
     DesktopOnly_default(
       Explorer_default({
         folderClickBehavior: "link",
         folderDefaultState: "open",
-        filterFn: /* @__PURE__ */ __name((node) => node.slugSegment !== "templates", "filterFn")
+        filterFn: /* @__PURE__ */ __name((node) => {
+          const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
+          return segment !== "templates" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+        }, "filterFn")
       })
     )
   ],
