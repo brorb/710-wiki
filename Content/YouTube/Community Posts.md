@@ -251,8 +251,8 @@ E R R O R :   o p - s y s . f i l e ( J I D 8 8 7 ) : m i s s i n g | | f i l e 
 p t s e r v i c e _ l i s t . c p p )          5 9 
  R E M O V I N G   F I L E S   F R O M E   C - S - S   M O V I N G   T O   S - S [ # 4 2 8 
  9 3 3 ]   U S I N G   S S H   T O   S S G H          4 E 
- C L I E N T   S I D E   V E I W I N G                     ( F A L S E )                                              4 9 
- C L I E N T   S I D E   E D I T I N G                   ( F A L S E )                                                4 3 
+ C L I E N T   S I D E   V E I W I N G                     ( F A L S E )                4 9 
+ C L I E N T   S I D E   E D I T I N G                   ( F A L S E )                  4 3 
  P R O C E S S I N G   D A T A . . .
 ```
 
@@ -427,7 +427,10 @@ _^This post was edited. Original read:_
 "How much worse?"  
 "Well now we are picking up random frequencies from the stations"  
 "well, I think we have to resort to the next plan"  
-"Yeah guess so and ���� ������ ������������� ����������������������������������������������������������������� �����������������������������������������������������������������������������������������������������������������**
+"Yeah guess so and ���� ������ ������������� 
+����������������������������������������������������������������� 
+��������������������������������������������������������������������������������������������
+���������������������**
 ```
 _This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]]._
 
@@ -436,7 +439,9 @@ _This is an example of a [[Private Room]] chat, being that of [[Private Room#Cha
 ```
 _^This post was edited. Original read:_
 ```
-**"He only stared at me, and the last thing he tells me is to watch for the red star. I couldn't get that stupid logo out of my head ever since that day, like it had been burned into the gray matter."  
+**"He only stared at me, and the last thing he tells me is to watch for the red star. I 
+couldn't get that stupid logo out of my head ever since that day, like it had been burned 
+into the gray matter."  
 "And did you see him again after that?"  
 "No, I l��ke� fo� ��� ��������������������������_
 ```

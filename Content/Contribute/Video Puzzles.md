@@ -28,9 +28,6 @@ Some of [[The Logs]] have some abnormalities that can be investigated further, f
 - [[LOG-71.mp4]]
 - [[L - p {I-- 5]]
 - [[LOG-40.mp4]]
-- 
-
-## Other videos
 
 [[000001]]
 [[12_capturedRecall]]
@@ -50,7 +47,7 @@ Half Life videos
 # From [[710 NPP|7/10 NPP]]
 ## [[0001 Bin]]
 
-This video features a slowed down 
+This video features a 
 
 ## [[20240NA@ 25109]]
 
