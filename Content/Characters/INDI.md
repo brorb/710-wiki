@@ -117,6 +117,8 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 > }
 > ```
 
+[[SYSTEM]] can use INDI as a callsign to connect to other servers.
+
 ---
 ## After [[STATION_8 TERMINAL 8]]
 
