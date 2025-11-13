@@ -44,6 +44,7 @@ It is implied that [[Kepler]] was involved in something that caused them to apol
 
 
 ![[Channel 14 Demo Channel-min.png|500]]
+^The phone number to [[Channel 14]] appears to be censored.
 
 > **7/10 Tone**: FERKLAND IS A COUNTY IN NABRASKA. WHERE THAT CHANNEL IS LOCATED IN.  
 > **7/10 Tone**: BUT, I DON'T KNOW IF THE PERSON MAKING THE TITLE BUMPER KNOWS THAT, THAT IS NOT 
