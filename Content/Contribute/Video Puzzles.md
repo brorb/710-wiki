@@ -1,6 +1,4 @@
 
-# From [[710 Tone|7/10 Tone]]
-
 Some of [[The Logs]] / videos have some abnormalities that can be investigated further, from strange imagery to hidden audio cues.
 #### Here is a list of [[The Logs]] that have anomalies that can be investigated further:
 
@@ -127,9 +125,6 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	See [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] and [[ERE IS ONE PERSON I KNOW IT'S KE]].
 
+### From [[710 NPP|7/10 NPP]]
 
----
-# From [[710 NPP|7/10 NPP]]
-#### [[0001 Bin]]
-
-This video features 
+- #### [[0001 Bin]]
