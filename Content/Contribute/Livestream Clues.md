@@ -42,9 +42,10 @@ It is implied that [[Kepler]] was involved in something that caused them to apol
 
 ## [[STATION_8 TRIM 90]]
 
+There is a lot of mystery surrounding [[Channel 14]] and it significance to the lore, even though it is a slightly recurring subject for the [[710 Tone|7/10 Tone]] channel.
 
 ![[Channel 14 Demo Channel-min.png|500]]
-^The phone number to [[Channel 14]] appears to be censored.
+^The phone number to [[Channel 14]] appears to be censored
 
 > **7/10 Tone**: FERKLAND IS A COUNTY IN NABRASKA. WHERE THAT CHANNEL IS LOCATED IN.  
 > **7/10 Tone**: BUT, I DON'T KNOW IF THE PERSON MAKING THE TITLE BUMPER KNOWS THAT, THAT IS NOT 
