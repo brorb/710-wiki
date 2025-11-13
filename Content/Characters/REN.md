@@ -88,7 +88,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: RUNCONSOLE @ 500",
     "timestamp": "2025-11-11T07:29:17.909000+00:00",
@@ -100,7 +102,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: RUN [NAN]",
     "timestamp": "2025-11-11T07:29:23.848000+00:00",
@@ -112,7 +116,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: load[3728]callsignREN __Java.export [FILE] 9382",
     "timestamp": "2025-11-11T07:29:49.247000+00:00",
@@ -124,7 +130,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: load[4133]callsignREN __Java.export [FILE] 2962",
     "timestamp": "2025-11-11T07:30:20.269000+00:00",
@@ -136,7 +144,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "<APP>!: ending capturemode//5_90",
     "timestamp": "2025-11-11T07:30:36.379000+00:00",
@@ -148,7 +158,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "requesting site access to https://www.discord.com",
     "timestamp": "2025-11-11T07:30:45.275000+00:00",
@@ -160,7 +172,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "connecting",
     "timestamp": "2025-11-11T07:30:53.224000+00:00",
@@ -172,7 +186,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "connection failed........retrying",
     "timestamp": "2025-11-11T07:31:16.858000+00:00",
@@ -198,7 +214,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "connecting",
     "timestamp": "2025-11-11T07:31:32.010000+00:00",
@@ -224,7 +242,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "connection established",
     "timestamp": "2025-11-11T07:31:45.013000+00:00",
@@ -236,7 +256,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Hello",
     "timestamp": "2025-11-11T07:32:18.232000+00:00",
@@ -262,7 +284,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who are you?",
     "timestamp": "2025-11-11T07:32:29.555000+00:00",
@@ -288,7 +312,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Oh crap is this another terminal?",
     "timestamp": "2025-11-11T07:32:50.252000+00:00",
@@ -314,7 +340,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who are you? Apart of ISIIIDF(F999)A)A_-- and TTH?",
     "timestamp": "2025-11-11T07:33:26.486000+00:00",
@@ -340,7 +368,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Outside?",
     "timestamp": "2025-11-11T07:33:42.634000+00:00",
@@ -366,7 +396,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Are you another group?",
     "timestamp": "2025-11-11T07:33:51.924000+00:00",
@@ -406,7 +438,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "I shouldn't be connected to you right now.",
     "timestamp": "2025-11-11T07:34:13.019000+00:00",
@@ -446,7 +480,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "No",
     "timestamp": "2025-11-11T07:34:50.533000+00:00",
@@ -486,7 +522,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "if you're another 'group' then what is the sign of the sky right now?",
     "timestamp": "2025-11-11T07:35:34.301000+00:00",
@@ -526,7 +564,9 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "See ya TTH",
     "timestamp": "2025-11-11T07:35:57.832000+00:00",
