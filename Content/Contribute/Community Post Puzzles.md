@@ -100,6 +100,7 @@ When is his shift again?
 Mistakes were made, but I corrected them. Please, if you can, try not to be too harsh on them. they had good intentions.
 ![[backtones2.webp]]
 ```
+^This image definitely relates to [[prj_Home.exe]], which appears to be an early development state judging by the lone platform.
 
 ```community-post,7,0,June 2025,
 TEST STATUS: SUCCESS  

@@ -150,10 +150,9 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	
 
+
+---
 # From [[710 NPP|7/10 NPP]]
-## [[0001 Bin]]
+#### [[0001 Bin]]
 
-This video features a slowed down 
-
-## [[20240NA@ 25109]]
-
+This video features 

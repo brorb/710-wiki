@@ -39,10 +39,12 @@ After a stream restart, the below messages were exchanged by [[Travis]] and [[IN
 > **7/10NPP**: SLEEP WELL TRAVIS
 
 It is implied that [[Kepler]] was involved in something that caused them to apologize to [[Travis]].
+
 ## [[STATION_8 TRIM 90]]
 
 
 ![[Channel 14 Demo Channel-min.png|500]]
 
 ## [[STATION_8 TERMINAL 8]]
+
 
