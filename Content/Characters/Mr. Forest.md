@@ -5,6 +5,7 @@ tags:
   - alias
   - lore
   - human
+  - unsolved
 ---
 ```infobox
 Title: Mr. Forest

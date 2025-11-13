@@ -5,6 +5,7 @@ tags:
   - lore
   - important
   - human
+  - unsolved
 ---
 ```infobox
 Title: Travis

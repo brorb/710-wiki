@@ -3,6 +3,8 @@ title: Rod Formak
 tags:
   - characters
   - lore
+  - unsolved
+  - human
 ---
 ```infobox
 Title: Rod Formak

@@ -4,6 +4,7 @@ tags:
   - characters
   - lore
   - important
+  - unsolved
 ---
 ```infobox
 Title: He
