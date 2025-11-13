@@ -20,7 +20,7 @@ Before he perished, [[Travis]] mentioned never being a part of a complex, but wh
 > **7/10 Tone**: Why does it always end like this?
 > **7/10NPP**: I ALREADY TOLD YOU WHY.
 
-One theory would suggest that this "complex" is a part of a laboratory or other scientific institution (maybe perhaps the [[Ferkland Institute]]?), since [[Travis]] was a scientist according to [[INDI]].
+One theory would suggest that this "complex" is a part of a laboratory or other scientific institution (perhaps the [[Ferkland Institute]]?), since [[Travis]] was a scientist according to [[INDI]].
 
 After a stream restart, the below messages were exchanged by [[Travis]] and [[INDI]] before [[INDI]] was given control of the main [[710 Tone|7/10 Tone Youtube Channel]]:
 
@@ -40,9 +40,10 @@ After a stream restart, the below messages were exchanged by [[Travis]] and [[IN
 
 It is implied that [[Kepler]] was involved in something that caused them to apologize to [[Travis]].
 
+---
 ## [[STATION_8 TRIM 90]]
 
-There is a lot of mystery surrounding [[Channel 14]] and it significance to the lore, even though it is a slightly recurring subject for the [[710 Tone|7/10 Tone]] channel.
+There is a lot of mystery surrounding [[Channel 14]] and it's significance to the lore, even though it is a recurring subject for the [[710 Tone|7/10 Tone]] channel.
 
 ![[Channel 14 Demo Channel-min.png|500]]
 ^The phone number to [[Channel 14]] appears to be censored
@@ -60,7 +61,7 @@ There is a lot of mystery surrounding [[Channel 14]] and it significance to the 
 > **BRORBIT**: Ok, stay safe Indi!  
 > **The Camera Eye**: Okay, good luck
 
-
+Judging by the above 
 
 > **7/10 Tone**: I FIXED IT KEPLER.  
 > **7/10NPP**: INDI!  
@@ -78,7 +79,7 @@ There is a lot of mystery surrounding [[Channel 14]] and it significance to the 
 > **7/10NPP**: indi, wait.  
 > **7/10 Tone**: DON'T WORRY THE DATA WILL STILL BE IN THE COMS.
 
-
+---
 ## [[STATION_8 TERMINAL 8]]
 
 
