@@ -5560,3 +5560,4 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
+Also, SYSTEM has the ability to connect through both [[INDI]], [[REN]], and some other unspecified entity (N/A). 
