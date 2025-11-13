@@ -1,7 +1,8 @@
 
 # From [[710 Tone|7/10 Tone]]
 
-Some of [[The Logs]] / videos have some abnormalities that can be investigated furthe. From strange imagery to hidden audio cues, here is a list of [[The Logs]] that have anomalies that can be investigated further:
+Some of [[The Logs]] / videos have some abnormalities that can be investigated further, from strange imagery to hidden audio cues.
+#### Here is a list of [[The Logs]] that have anomalies that can be investigated further:
 
 - ##### [[LOG-15.mmp44]]
 	
@@ -35,10 +36,6 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	
 
-- ##### [[LOG-34.mp4]]
-	
-	
-
 - ##### [[LOG-40.mp4]]
 	
 	
@@ -47,15 +44,7 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	
 
-- ##### [[machina_ad_mortem.mp4]]
-	
-	
-
 - ##### [[LOG-67.mp4]]
-	
-	
-
-- ##### [[LOG-71.mp4]]
 	
 	
 
@@ -79,19 +68,7 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	
 
-- ##### [[33LOG-13]]
-	
-	
-
 - ##### [[LOG-154.mp4]]
-	
-	
-
-- ##### [[LOG-155.mp4]]
-	
-	
-
-- ##### [[LOG-156.mp4]]
 	
 	
 
