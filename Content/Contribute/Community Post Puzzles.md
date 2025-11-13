@@ -28,15 +28,6 @@ but it will be soon
 
 ---
 
-The below message was sent to The Sleuths via Discord DMs by [[SYSTEM]] and then sent as a community post:
-
-```community-post,6,0,10 September 2025,
-"?/////////:canceled message  
-"
-```
-
----
-
 Over the course of 23 July to 1 August 2025, [[710 Tone|7/10 Tone]] started deleting a select few of [[The Logs]] before ultimately purging the channel completely. It is unknown why these videos/logs in particular were removed in such a order, let alone if they contained a special reason to be removed by the channel.
 
 Here are the posts that accompanied these deletions:
