@@ -5560,5 +5560,125 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-SYSTEM also has the ability to connect to both [[TTH]] members and [[REN]].
+SYSTEM also has the ability to connect to both [[TTH]] and [[REN]] servers. 
+
+---
+## DM codes from SYSTEM
+
+```discord
+[
+  {
+    "id": "1437584496114536488",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Hello?",
+    "timestamp": "2025-11-10T23:27:32.902000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584496114536488"
+  },
+  {
+    "id": "1437584509473259664",
+    "author": {
+      "display_name": "Abe",
+      "username": "abegirl2322",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "Hi",
+    "timestamp": "2025-11-10T23:27:36.087000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/b7d064cce83ab832c4857ca31b4c91de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584509473259664"
+  },
+  {
+    "id": "1437584518684082358",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Ayyyooo!",
+    "timestamp": "2025-11-10T23:27:38.283000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584518684082358"
+  },
+  {
+    "id": "1437584561063071894",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Who did I connect to?",
+    "timestamp": "2025-11-10T23:27:48.387000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584561063071894"
+  },
+  {
+    "id": "1437584605334208552",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Is uh #4322-4892-B a valid ID? That's mine.",
+    "timestamp": "2025-11-10T23:27:58.942000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584605334208552"
+  },
+  {
+    "id": "1437584719775797289",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "What? You're apart of TTH?",
+    "timestamp": "2025-11-10T23:28:26.227000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584719775797289"
+  },
+  {
+    "id": "1437584735969869984",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "No.",
+    "timestamp": "2025-11-10T23:28:30.088000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584735969869984"
+  },
+  {
+    "id": "1437584869235626076",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
+    "timestamp": "2025-11-10T23:29:01.861000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
+  }
+]
+```
 

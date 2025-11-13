@@ -674,15 +674,15 @@
 > **ThePortalNinja**: About what?  
 > **The Camera Eye**: The beeps  
 > **ThePortalNinja**: The beeps?  
-> largefizshgaming: read the room portal  
+> **largefizshgaming**: read the room portal  
 > ~~**7/10 Tone**: THE LOGS.~~  
-> largefizshgaming: i stand corrected  
+> **largefizshgaming**: i stand corrected  
 > **The Camera Eye**: Oh...different response  
 > **ThePortalNinja**: The logs could get deleted?  
 > **ThePortalNinja**: Aren't they important?  
 > ~~**7/10 Tone**: THEY ARE IMPORTANT TO SOMEONE ELSE.~~  
 > **The Camera Eye**: Your superior?  
-> ~~7/10NPP: Indi, please stop.~~  
+> ~~**7/10NPP**: Indi, please stop.~~  
 > ~~**7/10 Tone**: OKAY.~~
 
 ---

@@ -58,6 +58,22 @@ It is implied that [[Kepler]] was involved in something that caused them to apol
 > **BRORBIT**: Ok, stay safe Indi!  
 > **The Camera Eye**: Okay, good luck
 
+
+> **7/10 Tone**: I FIXED IT KEPLER.  
+> **7/10NPP**: INDI!  
+> **7/10 Tone**: WHAT?  
+> **7/10NPP**: WHY DID YOU JUST USE MY ALIAS?!  
+> **7/10 Tone**: OH, SORRY.  
+> **7/10 Tone**: IT'S NOT LIKE HE CAN SEE US ANYWAYS.  
+> **7/10NPP**: Okay, fine, just don't do that with anyone else.
+> **7/10 Tone**: I 
+> **7/10 Tone**: I'M GOING TO TRY TO DELETE IT FROME MY END.  
+> **7/10 Tone**: STILL TRYING.  
+> **7/10 Tone**: THAT NOT GOING TO HAPPEN. I CAN'T GET TO THE REGISTRAGION FOR IT.  
+> **7/10NPP**: It's fine indi, just stop sending messages on this.  
+> **7/10 Tone**: OH, I GOT IT! I'LL JUST RESTART THE LIVESTREAM.  
+> **7/10NPP**: indi, wait.  
+> **7/10 Tone**: DON'T WORRY THE DATA WILL STILL BE IN THE COMS.
 ## [[STATION_8 TERMINAL 8]]
 
 
