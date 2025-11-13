@@ -122,7 +122,7 @@
 
 ---
 
-# [[INDI]] reveals [[Kepler]] as [[710 NPP]]
+# [[INDI]] reveals [[Kepler]] as [[710 NPP|7/10 NPP]]
 
 > **7/10 Tone**: IT'S NOT WORKING  
 > **The Camera Eye**: I see that  
