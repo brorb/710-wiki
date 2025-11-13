@@ -1,6 +1,8 @@
 
 See [[D4V1NC1]] and [[He]] for context on both of these topics.
 
+Over the course of the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]])
+
 In the video [[HIS PERCEPTION]], if you speed up the audio you'll hear speech that vaguely sounds like "I am DaVinci" with other chaotic sounds in the background.
 
 The below file was provided by [[The Sleuths|Sleuth member]] The Camera Eye, who sped up the audio by 160%, **volume warning as it is quite loud**:

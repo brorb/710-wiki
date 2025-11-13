@@ -125,7 +125,7 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 
 - ##### Half Life videos
 	
-	
+	See [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] and [[ERE IS ONE PERSON I KNOW IT'S KE]].
 
 
 ---

@@ -26,6 +26,8 @@ but it will be soon
 > Int-score: 51/100
 > :score: > var importance
 
+Same video also featured a chatroom betwen [[Travis]] and [[INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
+
 ---
 
 Over the course of 23 July to 1 August 2025, [[710 Tone|7/10 Tone]] started deleting a select few of [[The Logs]] before ultimately purging the channel completely. It is unknown why these videos/logs in particular were removed in such a order, let alone if they contained a special reason to be removed by the channel.
