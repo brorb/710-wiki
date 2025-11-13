@@ -35,39 +35,33 @@ Here are the posts that accompanied these deletions:
 ```community-post,4,1,1 August 2025,
 /update::::::9-32, update---(.,(- 4 )) | | ERROR: LIST(-22-, 139, 43, 48, 128)ERROR:22, 139 NOT FOUND, collecting larger:values))))) updated{index, index, 1)
 ```
-
-Logs deleted: [[LLOOGG--2211..mmpp44]] [[LOG-  .  + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
+^Logs deleted: [[LLOOGG--2211..mmpp44]] [[LOG-  .  + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
 
 ```community-post,2,0,29 July 2025,
 ///////////////////update::::::0-78, update---(.,(- 5 )) ERROR: LIST(39, 10, -58-, 6, -54-)ERROR:58,54 NOT FOUND, collecting larger:values))))) updated{index, index, 1)
 ```
-
-Logs deleted: [[LOG-39..mp4]] [[LOG-10.mp4]] [[machina_ad_mortem.mp4]] [[LOG-006.mp4]] [[LONG_STR.mp4]]
+^Logs deleted: [[LOG-39..mp4]] [[LOG-10.mp4]] [[machina_ad_mortem.mp4]] [[LOG-006.mp4]] [[LONG_STR.mp4]]
 
 ```community-post,4,1,28 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(84, 24, 44, 3, 12)))))) updated{index, index, 1)
 ```
-
-Logs deleted: [[LOG-84.mp4]] [[{ - . }re]] [[LOG-44.mp4]] [[LOG-003.mp4]] [[LOG-12.mp4]]
+^Logs deleted: [[LOG-84.mp4]] [[{ - . }re]] [[LOG-44.mp4]] [[LOG-003.mp4]] [[LOG-12.mp4]]
 
 ```community-post,1,0,27 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(102, 87, 47, 2, 5)))))) updated{index, index, 1) RETURNING(unexpected data [LOG-46.PCV])
 ```
-
 Logs deleted: [[LOG-102.mp3]] [[LOG-87.mp4]] [[LOG-47.mp4]] [[LOG-002.mp4]] [[LOG-005.mp4]]
 [[LOG-46.mp4]] also appeared at this time.
 
 ```community-post,2,1,25 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(111, 123, 132, 133, 138))))))Type\%\%\{&/\_\.(..)\\+?/} updated{index, index, 1)
 ```
-
-Logs deleted: [[LOG-111.mp4]] [[LOG-123.mp4]] [[LOG-132]] [[33LOG-13]] [[LOG.138.mp4]]
+^Logs deleted: [[LOG-111.mp4]] [[LOG-123.mp4]] [[LOG-132]] [[33LOG-13]] [[LOG.138.mp4]]
 
 ```community-post,4,0,23 July 2025,
 ///////////////////update::::::5-64, update---(.,(- 0 )) ERROR: LIST(124, 125, 126, 127, 154, 156))))))Type updated{index, index, 1)
 ```
-
-Logs deleted: [[LOG-124.mp4]] [[LOG-125.mp4]] [[LOG-126.mp4]] [[LOG-127.mp4]] [[LOG-154.mp4]] [[LOG-156.mp4]]
+^Logs deleted: [[LOG-124.mp4]] [[LOG-125.mp4]] [[LOG-126.mp4]] [[LOG-127.mp4]] [[LOG-154.mp4]] [[LOG-156.mp4]]
 
 ---
 

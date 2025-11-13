@@ -56,7 +56,6 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 > }
 > ```
 
-
 > [!discord-cite]- Discord citation (2 messages)
 > 
 > ```json
@@ -94,6 +93,8 @@ However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]
 >   ]
 > }
 > ```
+
+
 
 You can find a more comprehensive catalogue of the Discord messages from SYSTEM in the [[System Chats]] article.
 
