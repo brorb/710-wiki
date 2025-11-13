@@ -70,7 +70,7 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	
 
-## Other videos with solvable puzzles
+#### Other videos with solvable puzzles
 
 
 - ##### [[TRANSLATED-DD.PCV]]
@@ -125,6 +125,6 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 	See [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] and [[ERE IS ONE PERSON I KNOW IT'S KE]].
 
-### From [[710 NPP|7/10 NPP]]
+#### From [[710 NPP|7/10 NPP]]
 
-- #### [[0001 Bin]]
+- ##### [[0001 Bin]]
