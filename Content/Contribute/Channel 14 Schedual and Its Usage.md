@@ -28,8 +28,6 @@ Width: clamp(220px, 32vw, 360px)
 
 The purpose of schedule is to keep up with something <!-- discord-cite:cite-mhxskef5-ye3m4l --> and could be of some significance later on, so it is a good idea to keep an eye out for any relevance relating to [[Channel 14]] in particular.
 
-This
-
 > [!discord-cite]- Discord citation (1 message)
 >
 > ```json
