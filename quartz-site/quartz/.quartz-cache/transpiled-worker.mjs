@@ -3061,8 +3061,7 @@ var defaultOptions5 = {
   markdownLinkResolution: "absolute",
   prettyLinks: true,
   openLinksInNewTab: false,
-  lazyLoad: false,
-  externalLinkIcon: true
+  lazyLoad: false
 };
 var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
   const opts = { ...defaultOptions5, ...userOpts };
@@ -3085,28 +3084,6 @@ var CrawlLinks = /* @__PURE__ */ __name((userOpts) => {
                 const isExternal = isAbsoluteUrl(dest);
                 const hasAlias = node.children.length === 1 && node.children[0].type === "text" && node.children[0].value !== dest;
                 classes.push(isExternal ? "external" : "internal");
-                if (isExternal && opts.externalLinkIcon) {
-                  node.children.push({
-                    type: "element",
-                    tagName: "svg",
-                    properties: {
-                      "aria-hidden": "true",
-                      class: "external-icon",
-                      style: "max-width:0.8em;max-height:0.8em",
-                      viewBox: "0 0 512 512"
-                    },
-                    children: [
-                      {
-                        type: "element",
-                        tagName: "path",
-                        properties: {
-                          d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"
-                        },
-                        children: []
-                      }
-                    ]
-                  });
-                }
                 if (hasAlias) {
                   classes.push("alias");
                 }
@@ -3262,6 +3239,25 @@ var arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g);
 var wikilinkRegex = new RegExp(
   /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]*)?\]\]/g
 );
+function resolveWikilinkTarget(raw, allSlugs) {
+  const candidate = raw?.trim();
+  if (!candidate) {
+    return raw ?? "";
+  }
+  let slug;
+  try {
+    slug = slugifyFilePath(candidate);
+  } catch (_error) {
+    return candidate;
+  }
+  if (!allSlugs || allSlugs.length === 0) {
+    return slug;
+  }
+  const simplifiedTarget = simplifySlug(slug);
+  const match = allSlugs.find((existing) => simplifySlug(existing) === simplifiedTarget);
+  return match ?? slug;
+}
+__name(resolveWikilinkTarget, "resolveWikilinkTarget");
 var tableRegex = new RegExp(/^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n?)+/gm);
 var tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\]|\[\^[^\]]*?\])/g);
 var highlightRegex = new RegExp(/==([^=]+)==/g);
@@ -3411,6 +3407,8 @@ var ObsidianFlavoredMarkdown = /* @__PURE__ */ __name((userOpts) => {
                 const fp = rawFp?.trim() ?? "";
                 const anchor = rawHeader?.trim() ?? "";
                 const alias = rawAlias?.slice(1).trim();
+                const hasExplicitTarget = fp.length > 0;
+                const resolvedSlug = hasExplicitTarget ? resolveWikilinkTarget(fp, ctx.allSlugs) : "";
                 if (value.startsWith("!")) {
                   const ext = path3.extname(fp).toLowerCase();
                   const url2 = slugifyFilePath(fp);
@@ -3454,8 +3452,8 @@ var ObsidianFlavoredMarkdown = /* @__PURE__ */ __name((userOpts) => {
                     };
                   }
                 }
-                if (opts.disableBrokenWikilinks) {
-                  const slug = slugifyFilePath(fp);
+                if (opts.disableBrokenWikilinks && hasExplicitTarget) {
+                  const slug = resolveWikilinkTarget(fp, ctx.allSlugs);
                   const exists = ctx.allSlugs && ctx.allSlugs.includes(slug);
                   if (!exists) {
                     return {
@@ -3464,7 +3462,7 @@ var ObsidianFlavoredMarkdown = /* @__PURE__ */ __name((userOpts) => {
                     };
                   }
                 }
-                const url = fp + anchor;
+                const url = `${hasExplicitTarget ? resolvedSlug : ""}${anchor}`;
                 return {
                   type: "link",
                   url,
@@ -12705,7 +12703,7 @@ var defaultListPageLayout = {
         headerSlot: Search_default({ variant: "inline" }),
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     ),
@@ -12715,7 +12713,7 @@ var defaultListPageLayout = {
         folderDefaultState: "open",
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     )

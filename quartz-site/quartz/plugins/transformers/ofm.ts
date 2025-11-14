@@ -22,7 +22,7 @@ import checkboxScript from "../../components/scripts/checkbox.inline"
 // @ts-ignore
 import mermaidScript from "../../components/scripts/mermaid.inline"
 import mermaidStyle from "../../components/styles/mermaid.inline.scss"
-import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
+import { FilePath, FullSlug, pathToRoot, simplifySlug, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { capitalize } from "../../util/lang"
@@ -119,6 +119,28 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 export const wikilinkRegex = new RegExp(
   /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]*)?\]\]/g,
 )
+
+function resolveWikilinkTarget(raw: string | undefined, allSlugs: readonly FullSlug[] | undefined): string {
+  const candidate = raw?.trim()
+  if (!candidate) {
+    return raw ?? ""
+  }
+
+  let slug: string
+  try {
+    slug = slugifyFilePath(candidate as FilePath)
+  } catch (_error) {
+    return candidate
+  }
+
+  if (!allSlugs || allSlugs.length === 0) {
+    return slug
+  }
+
+  const simplifiedTarget = simplifySlug(slug as FullSlug)
+  const match = allSlugs.find((existing) => simplifySlug(existing) === simplifiedTarget)
+  return match ?? slug
+}
 
 // ^\|([^\n])+\|\n(\|) -> matches the header row
 // ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
@@ -340,6 +362,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 const fp = rawFp?.trim() ?? ""
                 const anchor = rawHeader?.trim() ?? ""
                 const alias: string | undefined = rawAlias?.slice(1).trim()
+                const hasExplicitTarget = fp.length > 0
+                const resolvedSlug = hasExplicitTarget
+                  ? resolveWikilinkTarget(fp, ctx.allSlugs)
+                  : ""
 
                 // embed cases
                 if (value.startsWith("!")) {
@@ -393,9 +419,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 }
 
                 // treat as broken link if slug not in ctx.allSlugs
-                if (opts.disableBrokenWikilinks) {
-                  const slug = slugifyFilePath(fp as FilePath)
-                  const exists = ctx.allSlugs && ctx.allSlugs.includes(slug)
+                if (opts.disableBrokenWikilinks && hasExplicitTarget) {
+                  const slug = resolveWikilinkTarget(fp, ctx.allSlugs)
+                  const exists = ctx.allSlugs && ctx.allSlugs.includes(slug as FullSlug)
                   if (!exists) {
                     return {
                       type: "html",
@@ -405,7 +431,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 }
 
                 // internal link
-                const url = fp + anchor
+                const url = `${hasExplicitTarget ? resolvedSlug : ""}${anchor}`
 
                 return {
                   type: "link",

@@ -197,6 +197,7 @@ export const defaultListPageLayout: PageLayout = {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
           return (
             segment !== "templates" &&
+            segment !== "canvases" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
@@ -212,6 +213,7 @@ export const defaultListPageLayout: PageLayout = {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : ""
           return (
             segment !== "templates" &&
+            segment !== "canvases" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
