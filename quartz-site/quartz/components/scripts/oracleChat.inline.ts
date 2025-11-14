@@ -613,71 +613,343 @@ const normaliseLinkTarget = (value: string): string | undefined => {
   return trimmed || undefined
 }
 
-const appendMarkdownWithLinks = (
+type MarkdownBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; level: number; text: string }
+  | { type: "list"; ordered: boolean; items: string[] }
+  | { type: "code"; language?: string; text: string }
+
+const normalizeClassList = (value: string | string[]): string[] => {
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => entry.split(/\s+/).map((token) => token.trim())).filter(Boolean)
+  }
+  return value
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter((token) => token.length > 0)
+}
+
+const parseMarkdownBlocks = (input: string): MarkdownBlock[] => {
+  const normalised = input.replace(/\r\n?/g, "\n")
+  const lines = normalised.split("\n")
+  const blocks: MarkdownBlock[] = []
+  let i = 0
+
+  const flushParagraph = (buffer: string[]) => {
+    if (!buffer.length) {
+      return
+    }
+    const text = buffer.join("\n").trim()
+    if (text.length === 0) {
+      buffer.length = 0
+      return
+    }
+    blocks.push({ type: "paragraph", text })
+    buffer.length = 0
+  }
+
+  const paragraphBuffer: string[] = []
+
+  const pushBufferedParagraph = () => flushParagraph(paragraphBuffer)
+
+  while (i < lines.length) {
+    const rawLine = lines[i]
+    const line = rawLine ?? ""
+    const trimmed = line.trim()
+
+    if (trimmed.length === 0) {
+      pushBufferedParagraph()
+      i++
+      continue
+    }
+
+    const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/)
+    if (headingMatch) {
+      pushBufferedParagraph()
+      const level = headingMatch[1].length
+      const text = headingMatch[2].trim()
+      blocks.push({ type: "heading", level, text })
+      i++
+      continue
+    }
+
+    const fencedCodeMatch = trimmed.match(/^```([^`]*)$/)
+    if (fencedCodeMatch) {
+      pushBufferedParagraph()
+      const language = fencedCodeMatch[1]?.trim() || undefined
+      i++
+      const codeLines: string[] = []
+      while (i < lines.length && !/^```\s*$/.test(lines[i]?.trim() ?? "")) {
+        codeLines.push(lines[i] ?? "")
+        i++
+      }
+      if (i < lines.length) {
+        i++
+      }
+      blocks.push({ type: "code", language, text: codeLines.join("\n") })
+      continue
+    }
+
+    const listMatch = line.match(/^\s*([*+-]|\d+\.)\s+(.*)$/)
+    if (listMatch) {
+      pushBufferedParagraph()
+      const ordered = /^\s*\d+\./.test(line)
+      const items: string[] = []
+      let currentItem = listMatch[2]?.trim() ?? ""
+      i++
+
+      while (true) {
+        if (i >= lines.length) {
+          if (currentItem.length > 0) {
+            items.push(currentItem)
+          }
+          break
+        }
+
+        const nextLine = lines[i] ?? ""
+        const nextTrimmed = nextLine.trim()
+
+        if (nextTrimmed.length === 0) {
+          if (currentItem.length > 0) {
+            items.push(currentItem)
+            currentItem = ""
+          }
+          i++
+          break
+        }
+
+        const continuationMatch = nextLine.match(/^\s{2,}(.*)$/)
+        const bulletMatch = nextLine.match(/^\s*([*+-]|\d+\.)\s+(.*)$/)
+
+        if (bulletMatch) {
+          if (currentItem.length > 0) {
+            items.push(currentItem)
+          }
+          currentItem = bulletMatch[2]?.trim() ?? ""
+          i++
+          continue
+        }
+
+        if (continuationMatch && continuationMatch[1]) {
+          currentItem = `${currentItem}\n${continuationMatch[1]}`
+          i++
+          continue
+        }
+
+        if (nextTrimmed.startsWith("```")) {
+          if (currentItem.length > 0) {
+            items.push(currentItem)
+            currentItem = ""
+          }
+          break
+        }
+
+        currentItem = `${currentItem}\n${nextTrimmed}`
+        i++
+      }
+
+      if (currentItem.length > 0) {
+        items.push(currentItem)
+      }
+
+      blocks.push({ type: "list", ordered, items })
+      continue
+    }
+
+    paragraphBuffer.push(line)
+    i++
+  }
+
+  pushBufferedParagraph()
+  return blocks
+}
+
+type InlinePattern = {
+  regex: RegExp
+  render: (
+    target: HTMLElement,
+    match: RegExpExecArray,
+    onLinkClick?: (url: string) => void,
+  ) => HTMLElement | Text | undefined
+}
+
+const renderInlineMarkdown = (
   target: HTMLElement,
   text: string,
   onLinkClick?: (url: string) => void,
 ) => {
-  const renderLine = (line: string) => {
-    const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
-    let lastIndex = 0
-    let match: RegExpExecArray | null
-
-    while ((match = pattern.exec(line)) !== null) {
-      const preceding = line.slice(lastIndex, match.index)
-      if (preceding) {
-        target.appendChild(document.createTextNode(preceding))
-      }
-
-      const label = match[1]
-      const rawUrl = normaliseLinkTarget(match[2])
-
-      if (rawUrl && isSafeUrl(rawUrl)) {
-        const anchor = document.createElement("a")
-  anchor.href = rawUrl
-        anchor.textContent = label
-        if (onLinkClick) {
-          anchor.addEventListener("click", () => onLinkClick(rawUrl))
+  const patterns: InlinePattern[] = [
+    {
+      regex: /\[([^\]]+)\]\(([^)]+)\)/g,
+      render: (_target, match, linkHandler) => {
+        const label = match[1]
+        const rawUrl = normaliseLinkTarget(match[2])
+        if (rawUrl && isSafeUrl(rawUrl)) {
+          const anchor = document.createElement("a")
+          anchor.href = rawUrl
+          anchor.textContent = label
+          if (linkHandler) {
+            anchor.addEventListener("click", () => linkHandler(rawUrl))
+          }
+          return anchor
         }
-        target.appendChild(anchor)
-      } else {
-        target.appendChild(document.createTextNode(match[0]))
+        return new Text(match[0])
+      },
+    },
+    {
+      regex: /`([^`]+)`/g,
+      render: (_target, match) => {
+        const code = document.createElement("code")
+        code.textContent = match[1]
+        return code
+      },
+    },
+    {
+      regex: /\*\*([^*]+)\*\*/g,
+      render: (_target, match, linkHandler) => {
+        const strong = document.createElement("strong")
+        renderInlineMarkdown(strong, match[1], linkHandler)
+        return strong
+      },
+    },
+    {
+      regex: /__([^_]+)__/g,
+      render: (_target, match, linkHandler) => {
+        const strong = document.createElement("strong")
+        renderInlineMarkdown(strong, match[1], linkHandler)
+        return strong
+      },
+    },
+    {
+      regex: /\*([^*]+)\*/g,
+      render: (_target, match, linkHandler) => {
+        const em = document.createElement("em")
+        renderInlineMarkdown(em, match[1], linkHandler)
+        return em
+      },
+    },
+    {
+      regex: /_([^_]+)_/g,
+      render: (_target, match, linkHandler) => {
+        const em = document.createElement("em")
+        renderInlineMarkdown(em, match[1], linkHandler)
+        return em
+      },
+    },
+    {
+      regex: /~~([^~]+)~~/g,
+      render: (_target, match, linkHandler) => {
+        const del = document.createElement("del")
+        renderInlineMarkdown(del, match[1], linkHandler)
+        return del
+      },
+    },
+  ]
+
+  let cursor = 0
+  const length = text.length
+
+  while (cursor < length) {
+    let closestMatch: { pattern: InlinePattern; match: RegExpExecArray } | undefined
+
+    for (const pattern of patterns) {
+      pattern.regex.lastIndex = cursor
+      const match = pattern.regex.exec(text)
+      if (!match) {
+        continue
       }
-
-      lastIndex = pattern.lastIndex
+      if (!closestMatch || match.index < closestMatch.match.index) {
+        closestMatch = { pattern, match }
+      }
     }
 
-    const remainder = line.slice(lastIndex)
-    if (remainder) {
-      target.appendChild(document.createTextNode(remainder))
+    if (!closestMatch) {
+      const remaining = text.slice(cursor)
+      if (remaining.length > 0) {
+        target.appendChild(new Text(remaining))
+      }
+      break
     }
+
+    const { pattern, match } = closestMatch
+    if (match.index > cursor) {
+      target.appendChild(new Text(text.slice(cursor, match.index)))
+    }
+
+    const rendered = pattern.render(target, match, onLinkClick)
+    if (rendered) {
+      target.appendChild(rendered)
+    }
+
+    cursor = match.index + match[0].length
   }
-
-  const lines = text.split(/\n/)
-  lines.forEach((line, index) => {
-    if (index > 0) {
-      target.appendChild(document.createElement("br"))
-    }
-    renderLine(line)
-  })
 }
 
-const appendMarkdownParagraphs = (
+const renderRichMarkdown = (
   container: HTMLElement,
-  className: string,
-  text: string,
+  className: string | string[],
+  markdown: string,
   onLinkClick?: (url: string) => void,
 ) => {
-  text
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter((block) => block.length > 0)
-    .forEach((block) => {
-      const paragraph = document.createElement("p")
-      paragraph.className = className
-      appendMarkdownWithLinks(paragraph, block, onLinkClick)
-      container.appendChild(paragraph)
+  const classes = normalizeClassList(className)
+  const blocks = parseMarkdownBlocks(markdown)
+
+  const attachInline = (target: HTMLElement, text: string) => {
+    const segments = text.split(/\n/)
+    segments.forEach((segment, index) => {
+      if (index > 0) {
+        target.appendChild(document.createElement("br"))
+      }
+      renderInlineMarkdown(target, segment, onLinkClick)
     })
+  }
+
+  blocks.forEach((block) => {
+    switch (block.type) {
+      case "paragraph": {
+        const paragraph = document.createElement("p")
+        classes.forEach((cls) => paragraph.classList.add(cls))
+        paragraph.classList.add("oracle-chat__rich-block")
+        attachInline(paragraph, block.text)
+        container.appendChild(paragraph)
+        break
+      }
+      case "heading": {
+        const heading = document.createElement("p")
+        classes.forEach((cls) => heading.classList.add(cls))
+        heading.classList.add("oracle-chat__rich-block", "oracle-chat__heading")
+        heading.dataset.level = block.level.toString()
+        attachInline(heading, block.text)
+        container.appendChild(heading)
+        break
+      }
+      case "list": {
+        const list = document.createElement(block.ordered ? "ol" : "ul")
+        classes.forEach((cls) => list.classList.add(cls))
+        list.classList.add("oracle-chat__rich-block", "oracle-chat__list")
+        block.items.forEach((item) => {
+          const li = document.createElement("li")
+          attachInline(li, item)
+          list.appendChild(li)
+        })
+        container.appendChild(list)
+        break
+      }
+      case "code": {
+        const pre = document.createElement("pre")
+        classes.forEach((cls) => pre.classList.add(cls))
+        pre.classList.add("oracle-chat__rich-block", "oracle-chat__code-block")
+        const code = document.createElement("code")
+        if (block.language) {
+          code.dataset.language = block.language
+        }
+        code.textContent = block.text
+        pre.appendChild(code)
+        container.appendChild(pre)
+        break
+      }
+    }
+  })
 }
 
 const dedupeBy = <T>(items: T[], selector: (item: T) => string | undefined): T[] => {
@@ -794,7 +1066,7 @@ const renderAssistantMessage = (
   }
 
   if (leadText) {
-    appendMarkdownParagraphs(
+    renderRichMarkdown(
       bubble,
       "oracle-chat__answer-lead oracle-chat__rich-text",
       leadText,
@@ -803,14 +1075,14 @@ const renderAssistantMessage = (
   }
 
   if (secondaryText) {
-    appendMarkdownParagraphs(
+    renderRichMarkdown(
       bubble,
       "oracle-chat__answer-body oracle-chat__rich-text",
       secondaryText,
       (url) => addLinkAnalytics("answer", url),
     )
   } else if (!payload && fallbackText) {
-    appendMarkdownParagraphs(
+    renderRichMarkdown(
       bubble,
       "oracle-chat__answer-body oracle-chat__rich-text",
       fallbackText,
@@ -901,7 +1173,7 @@ const renderAssistantMessage = (
     disclaimersList.forEach((entry) => {
       const item = document.createElement("li")
       item.className = "oracle-chat__disclaimer-item"
-      item.textContent = entry
+      renderInlineMarkdown(item, entry, (url) => addLinkAnalytics("answer", url))
       list.appendChild(item)
     })
     bubble.appendChild(list)
@@ -1027,6 +1299,9 @@ const buildRequestBody = (
     }
   })()
 
+  const boundedSections =
+    typeof sectionCount === "number" && sectionCount > 0 ? Math.min(sectionCount, 12) : undefined
+
   const metadata: Record<string, unknown> = {
     origin: window.location.hostname || "710tone.wiki",
     path: pagePath,
@@ -1054,8 +1329,8 @@ const buildRequestBody = (
     channel: "web",
   }
 
-  if (typeof sectionCount === "number") {
-    payload.sections = sectionCount
+  if (typeof boundedSections === "number") {
+    payload.sections = boundedSections
   }
 
   if (captchaToken) {
