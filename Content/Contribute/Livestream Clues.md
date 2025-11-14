@@ -94,7 +94,7 @@ That piece of information seems to suggest that The Rebels might have had some s
 
 ---
 
-Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if 
+Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if they were able to decipher [[The Logs]], to which [[Kepler]] said no. This is some interest due to the question of why [[REN]] associates would want to decipher them and what kind of data they could possibly contain. However, an observation to keep in mind is that they do not have the proper tools or skills to crack them efficiently.
 
 > **7/10 Tone**: DID YOU EVER DECIPHER [[The Logs|THE LOGS]]?  
 > **7/10NPP**: No.  
@@ -107,6 +107,7 @@ Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if
 > **7/10 Tone**: WE DON'T HAVE THE PROPER TOOLS OR SKILLS.  
 > **The Camera Eye**: Gotcha
 
+It is possible that whoever is in charge of making them has the correct methods available to decode them, but this is just speculation and needs to be looked into further.
 
 > **The Camera Eye**: Who made the logs anyway?  
 > **7/10 Tone**: THE \[\_\_\_\] BUT I'M GOING TO GUESS THAT YOU'RE NOT GOING TO GET THAT.  
@@ -115,6 +116,8 @@ Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if
 > **The Camera Eye**: Just a guess..  
 > **7/10NPP**: Indi, don't tell them who it is.  
 > **7/10 Tone**: FINE.
+
+The \[\_\_\_\] that INDI could be referring to could be either [[TTH]] or [[The Eyes]], but it is most likely [[TTH]].
 
 > **7/10 Tone**: I CAN'T SPEAK ABOUT THAT.  
 > **The Camera Eye**: Ok  
@@ -126,3 +129,5 @@ Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if
 > **The Camera Eye**: Your superior?  
 > **7/10NPP**: Indi, please stop.  
 > **7/10 Tone**: OKAY.
+
+Whoever [[The Logs]] are for appears to be a secret topic within the 7/10 universe, but some hidden clues could be lurking somewhere beneath the surface.

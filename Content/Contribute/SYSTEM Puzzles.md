@@ -39,7 +39,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Hello?",
     "timestamp": "2025-11-10T23:27:32.902000+00:00",
@@ -51,7 +53,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who did I connect to?",
     "timestamp": "2025-11-10T23:27:48.387000+00:00",
@@ -77,7 +81,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "What? You're apart of TTH?",
     "timestamp": "2025-11-10T23:28:26.227000+00:00",
@@ -103,7 +109,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
@@ -118,7 +126,63 @@ This confirms that these codes might be related to [[TTH]] in some way, or at le
 ---
 ### [[TTH]] and [[REN]] member messages
 
-In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed. The name "Norvack" was mentioned as well as 
+In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed. From the mysterious name [[Norvack]] 
+
+```discord
+[
+  {
+    "id": "1437585424510877917",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "wait? is this Norvack again?",
+    "timestamp": "2025-11-10T23:31:14.249000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437585424510877917"
+  }
+]
+```
+
+To a possible lead on some branches relating to [[TTH]] or [[REN]]:
+
+```discord
+[
+  {
+    "id": "1437584869235626076",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "colour_value": null
+    },
+    "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
+    "timestamp": "2025-11-10T23:29:01.861000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
+  }
+]
+```
+```discord
+[
+  {
+    "id": "1437706775108386877",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "colour_value": null
+    },
+    "content": "Who are you? Apart of ISIIIDF(F999)A)A_-- and TTH?",
+    "timestamp": "2025-11-11T07:33:26.486000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437706775108386877"
+  }
+]
+```
+
+There are many possibilities to look into the broader scope of [[TTH]]'s inner workings and the scale of their organization (how many branches are in relation to it, what role certain workers within [[TTH]] and others are like, etc).
 
 ---
 ### Riddles
@@ -144,3 +208,30 @@ On 13 August 2025, [[SYSTEM]] posted a comment to the "How to record the livestr
 ]
 ```
 
+The hexadecimal in this message translates to the following:
+```
+BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. I HATE EVERYTHING YOU STAND FOR. UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
+```
+
+The meaning of this message isn't fully understood, but it appears to be a riddle of some kind, and the fact that it was posted in the tutorial forum could be a possible hint as to what it could be for (perhaps for a future broadcast?).
+
+
+
+```discord
+[
+  {
+    "id": "1428847630296809482",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
+    "timestamp": "2025-10-17T20:50:21.768000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
+  }
+]
+```
