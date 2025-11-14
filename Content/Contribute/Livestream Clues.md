@@ -47,7 +47,7 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 
 ![[Channel 14 Demo Channel-min.png|500]]
 
-The phone number to [[Channel 14]] is censored as shown in the picture above, 
+The phone number to [[Channel 14]] is censored as shown in the picture above, however there could be some clues to reveal it and possibly gain some piece of lore about [[Channel 14]].
 
 ---
 ## [[STATION_8 TERMINAL 8]]
@@ -63,7 +63,7 @@ The [[SYSTEM|SYSTEMterminal8]] moderator leaked some [[Private Room]] aliases in
 
 ---
 
-
+Interestingly enough, [[INDI]] mentioned that [[Travis]] hid something from him in the [[710 Tone|710 Tone]]'s YouTube channel, 
 
 > **7/10 Tone**: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
 > **The Camera Eye**: Analytics Tab? You mean the Studio?  
@@ -78,16 +78,23 @@ The [[SYSTEM|SYSTEMterminal8]] moderator leaked some [[Private Room]] aliases in
 > **The Camera Eye**: Okay, that's fine INDI.  
 > **The Camera Eye**: Good luck on your signal transfer :)
 
+---
+Last year, a group known as "The Rebels" were apparently responsible for the livestream interferences. However, there is only a minimal amount of information available about this group, with the only surviving evidence of their existence is from one comment on a Reddit post. Other than the name and a mention of what they apparently did, there is not much else known about them. When asked about them in the livestream chat, [[Kepler]] (under control of the [[710 Tone|7/10 Tone]] channel at the time) responded with the following:
+
 > **The Camera Eye**: WAIT A MINUTE  
 > **The Camera Eye**: IS ZONE PART OF THE REBELS??????  
 > **The Camera Eye**: We haven't seen them before  
 > **The Camera Eye**: Kepler do you know who the rebels are?  
 > **AnonymousUser**: are [[REN]] rebels  
-> **7/10 Tone**: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.  
-> **AnonymousUser**: why was [[INDI]] scared of [[REN]] and [[TTH]]?  
-> **AnonymousUser**: and, of course  
-> **AnonymousUser**: what is [[TTH]] and why do they hate each other  
-> **7/10 Tone**: Sorry, but I have more important things to deal with now.  
+> **7/10 Tone**: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.
+
+(**Context note: ZONE was another viewer who appeared in the livestream chat during [[STATION_8 TERMINAL 8]], who [[The Sleuths]] thought to be potentially involved with 7/10, but [[Kepler]] de-confirmed this theory by saying that they didn't know who it was**)
+
+That piece of information seems to suggest that The Rebels might have had some significant role last year, and [[Kepler]] knows something about them that they cannot discuss.
+
+---
+
+Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if 
 
 > **7/10 Tone**: DID YOU EVER DECIPHER [[The Logs|THE LOGS]]?  
 > **7/10NPP**: No.  
@@ -112,12 +119,7 @@ The [[SYSTEM|SYSTEMterminal8]] moderator leaked some [[Private Room]] aliases in
 > **7/10 Tone**: I CAN'T SPEAK ABOUT THAT.  
 > **The Camera Eye**: Ok  
 > **ThePortalNinja**: About what?  
-> **The Camera Eye**: The beeps  
-> **ThePortalNinja**: The beeps?  
-> **largefizshgaming**: read the room portal  
 > **7/10 Tone**: THE LOGS.  
-> **largefizshgaming**: i stand corrected  
-> **The Camera Eye**: Oh...different response  
 > **ThePortalNinja**: The logs could get deleted?  
 > **ThePortalNinja**: Aren't they important?  
 > **7/10 Tone**: THEY ARE IMPORTANT TO SOMEONE ELSE.  
