@@ -56,24 +56,11 @@ According to [[SYSTEM]], this is a "ghost error" image. However, this could pote
 Other hints include explanations from [[SYSTEM]] that the purpose of the message was meant for a \<CALL> command.
 
 ---
-## Original sources behind the audio file sounds 
+### Location of [[The Transmitter]]
 
-In August 2025, the two audio files below were uploaded by [[SYSTEM]] to the server.
+See [[The Transmitter]] for more information about this topic.
 
-![[FILEOOGEtnspE9wjfSf89aASj9.ogg]]
-
-![[TRANSMITTERopensignal.ogg]]
-
-The first one is 
-
----
-### Miscellanous [[SYSTEM]] messages from the server
-
-```
-<PING:?: ERROR in line 8829: [[[{{cxi==cxo||:>y}}find:err in web 6]]deny:count_v :: retry << == >> NSID += NAFH]
-<OUTPRINT>!:(90-78-90-43-29-58-39-30-28-19-48-09"Error:systemtxt2dsc.tnk:: line:33399")
-<OUTPRINT>!:(94-27-30-40-28-29-17-29-29"Error:systemtxt2dsc.tnk:: line:33399")
-```
+On 5 August 2025, [[SYSTEM]] found [[The Transmitter]] that [[Travis]] hid, but it's exact location wasn't specified due to being censored and mentioning it appeared to have crashed [[SYSTEM]].
 
 ```
 <OUTPRINT>!:(I found out where Travis hid everything!)
@@ -82,4 +69,9 @@ The first one is
 <OUTPRINT>!:(Sorry, hid*)
 <OUTPRINT>!:(Somewhere in the west, but I can't tell you where exactly.)
 <OUTPRINT>!:(No, west _ _ _ _ _ _ _ _ _ _ _. oops.)
+<OUTPRINT>!:(Sorry, I can't chat for long, gotta go....... fff{}[]]}
+<OUTPRINT>!:(████████████████████████████████████████████ sorry, ████████████████████ sorry, ████████████████████████████, sorry, ████████████████████ ████████████████████ ████████████████████, sorry...........))))))))))))))))))  
+<CRASH>!:SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random),[unpingstatus=true]
 ```
+
+It is possible to determine the location's name based on the number of spaces in place of the letters.
