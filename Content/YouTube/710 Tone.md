@@ -133,4 +133,8 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-On November 14th 2025, 
+On November 14th 2025, a community post was uploaded to the 7/10 Tone channel before it was purged once again. Unlike last time, the "unmarked labels" removal date was scheduled for 31 December:
+
+
+
+But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER"
