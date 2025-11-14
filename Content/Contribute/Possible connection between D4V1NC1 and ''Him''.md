@@ -31,7 +31,9 @@ Over the course of the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[ST
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
     "timestamp": "2025-10-17T20:50:21.768000+00:00",
