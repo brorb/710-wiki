@@ -66,4 +66,81 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 ---
 ## [[STATION_8 TERMINAL 8]]
 
+> **SYSTEMterminal8**: RETURNING LOGGED-INTO-ACCOUNTS  
+> **SYSTEMterminal8**: >>IN_DI.SERVERTYPE  
+> **AnonymousUser**: INDI!!!  
+> **SYSTEMterminal8**: >>K3P13R  
+> **The Camera Eye**: LOL LEAKED  
+> **SYSTEMterminal8**: >>SYSTEMterminal8  
+> **AnonymousUser**: nooooooooooo  
+> **AnonymousUser**: uh oh  
+> **AnonymousUser**: Kepler?  
+> **AnonymousUser**: NPP  
+> **The Camera Eye**: WAIT DON'T SAY THAT ANONYMOUS  
+> **SYSTEMterminal8**: >>data_messagesystem05  
+> **AnonymousUser**: yeah  
+> **AnonymousUser**: we got a message?  
+> **The Camera Eye**: From where? Who?  
+> **SYSTEMterminal8**: DISCONNECTING  
 
+> **7/10 Tone**: IF ANYONE ARCHIVES THIS, JUST KNOW THAT ME AND KEPLER ARE THE ONLY TWO WORKING WITH THE SIGNALS. NOBODY ELSE.  
+> **7/10 Tone**: AND MAYBE ONE OF THE MODERATORS MIGHT ALSO HAVE ACCESS.  
+> **The Camera Eye**: I've been found out...  
+> **The Camera Eye**: INDI how did you know? LOL  
+> **The Camera Eye**: Don't tell me you're in the Discord.  
+> **7/10 Tone**: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
+> **The Camera Eye**: Analytics Tab? You mean the Studio?  
+> **7/10 Tone**: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.  
+> **The Camera Eye**: Is Travis dead by now?  
+> **The Camera Eye**: Was he infected with the mold?  
+> **7/10 Tone**: I DON'T KNOW.  
+> **The Camera Eye**: Okay.  
+> **The Camera Eye**: So there's a possibility he COULD be alive still?  
+> **7/10 Tone**: SORRY, I CAN'T CONTINUE THIS TOPIC.  
+> **The Camera Eye**: Okay, that's fine INDI.  
+> **The Camera Eye**: Good luck on your signal transfer :)
+
+> **The Camera Eye**: WAIT A MINUTE  
+> **The Camera Eye**: IS ZONE PART OF THE REBELS??????  
+> **The Camera Eye**: We haven't seen them before  
+> **The Camera Eye**: Kepler do you know who the rebels are?  
+> **AnonymousUser**: are REN rebels  
+> **7/10 Tone**: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.  
+> **AnonymousUser**: why was INDI scared of REN and TTH?  
+> **AnonymousUser**: and, of course  
+> **AnonymousUser**: what is TTH and why do they hate each other  
+> **7/10 Tone**: Sorry, but I have more important things to deal with now.  
+
+> **7/10 Tone**: DID YOU EVER DECIPHER THE LOGS?  
+> **7/10NPP**: No.  
+> **7/10 Tone**: OKAY.  
+> **The Camera Eye**: Neither did I  
+> **The Camera Eye**: Were you guys supposed to decipher them?  
+> **Wr3n24**: Were we meant to?  
+> **7/10 Tone**: THEY ARE NOT FOR YOU.  
+> **The Camera Eye**: I know, I'm asking about you  
+> **7/10 Tone**: WE DON'T HAVE THE PROPER TOOLS OR SKILLS.  
+> **The Camera Eye**: Gotcha  
+> **The Camera Eye**: Who made the logs anyway?  
+> **7/10 Tone**: THE \[\_\_\_\] BUT I'M GOING TO GUESS THAT YOU'RE NOT GOING TO GET THAT.  
+> **The Camera Eye**: Redacted, okay, got it  
+> **The Camera Eye**: The mold?  
+> **The Camera Eye**: Just a guess..  
+> **7/10NPP**: Indi, don't tell them who it is.  
+> **7/10 Tone**: FINE.
+
+> **7/10 Tone**: I CAN'T SPEAK ABOUT THAT.  
+> **The Camera Eye**: Ok  
+> **ThePortalNinja**: About what?  
+> **The Camera Eye**: The beeps  
+> **ThePortalNinja**: The beeps?  
+> **largefizshgaming**: read the room portal  
+> **7/10 Tone**: THE LOGS.  
+> **largefizshgaming**: i stand corrected  
+> **The Camera Eye**: Oh...different response  
+> **ThePortalNinja**: The logs could get deleted?  
+> **ThePortalNinja**: Aren't they important?  
+> **7/10 Tone**: THEY ARE IMPORTANT TO SOMEONE ELSE.  
+> **The Camera Eye**: Your superior?  
+> **7/10NPP**: Indi, please stop.  
+> **7/10 Tone**: OKAY.
