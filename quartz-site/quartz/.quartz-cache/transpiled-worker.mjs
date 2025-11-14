@@ -13294,6 +13294,7 @@ var REMOVABLE_EXTENSIONS = /* @__PURE__ */ new Set([
   "opus"
 ]);
 var LOG_NUMBER_REGEX = /\d+/g;
+var FOLDER_DESCRIPTION_BASENAME2 = "foldercontentdescription";
 function stripAllExtensions(value) {
   let current = value;
   while (true) {
@@ -13642,7 +13643,24 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
         const date = getDate(ctx.cfg.configuration, file.data) ?? /* @__PURE__ */ new Date();
         if (opts?.includeEmptyFiles || file.data.text && file.data.text !== "") {
           const frontmatter = file.data.frontmatter ?? {};
-          const title = frontmatter["title"] ?? slug;
+          const simplifiedSlug = simplifySlug(slug);
+          const slugSegments = simplifiedSlug.split("/").filter((segment) => segment.length > 0);
+          const lastSegment = slugSegments.at(-1)?.toLowerCase();
+          const isFolderDescription = lastSegment === FOLDER_DESCRIPTION_BASENAME2;
+          const folderSlug = isFolderDescription ? slugSegments.slice(0, -1).join("/") : void 0;
+          const folderIndexSlug = isFolderDescription ? joinSegments(folderSlug ?? "", "index") : slug;
+          const folderLabel = folderSlug?.split("/").filter((segment) => segment.length > 0).at(-1) ?? folderSlug ?? "";
+          const fallbackFolderTitle = folderLabel && folderLabel.length > 0 ? folderLabel : i18n(cfg.locale).pages.folderContent.folder;
+          const rawFrontmatterTitle = typeof frontmatter["title"] === "string" ? frontmatter["title"].trim() : "";
+          const resolvedTitle = (() => {
+            if (isFolderDescription) {
+              if (rawFrontmatterTitle.length > 0 && rawFrontmatterTitle.toLowerCase() !== FOLDER_DESCRIPTION_BASENAME2) {
+                return rawFrontmatterTitle;
+              }
+              return fallbackFolderTitle;
+            }
+            return rawFrontmatterTitle.length > 0 ? rawFrontmatterTitle : slug;
+          })();
           const frontmatterAliasCandidates = [];
           if (frontmatter["aliases"] !== void 0) {
             frontmatterAliasCandidates.push(frontmatter["aliases"]);
@@ -13657,10 +13675,11 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
             frontmatterAliasCandidates.push(frontmatter["searchAliases"]);
           }
           const frontmatterAliases = frontmatterAliasCandidates.length > 0 ? frontmatterAliasCandidates : void 0;
-          linkIndex.set(slug, {
-            slug,
+          const effectiveSlug = isFolderDescription ? folderIndexSlug : slug;
+          const details = {
+            slug: effectiveSlug,
             filePath: file.data.relativePath,
-            title,
+            title: resolvedTitle,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",
@@ -13668,13 +13687,30 @@ var ContentIndex = /* @__PURE__ */ __name((opts) => {
             date,
             description: file.data.description ?? "",
             searchAliases: buildSearchAliases(
-              slug,
+              effectiveSlug,
               file.data.relativePath,
-              title,
+              resolvedTitle,
               frontmatterAliases,
               logAliasMap
             )
-          });
+          };
+          if (isFolderDescription && linkIndex.has(effectiveSlug)) {
+            const existing = linkIndex.get(effectiveSlug);
+            const mergedLinks = Array.from(/* @__PURE__ */ new Set([...existing.links ?? [], ...details.links ?? []]));
+            const mergedTags = Array.from(/* @__PURE__ */ new Set([...existing.tags ?? [], ...details.tags ?? []]));
+            const mergedAliasesSet = /* @__PURE__ */ new Set([...existing.searchAliases ?? [], ...details.searchAliases ?? []]);
+            linkIndex.set(effectiveSlug, {
+              ...existing,
+              links: mergedLinks,
+              tags: mergedTags,
+              title: existing.title && existing.title.trim().length > 0 ? existing.title : details.title,
+              content: existing.content && existing.content.trim().length > 0 ? existing.content : details.content,
+              richContent: existing.richContent ?? details.richContent,
+              searchAliases: mergedAliasesSet.size > 0 ? Array.from(mergedAliasesSet) : void 0
+            });
+          } else {
+            linkIndex.set(effectiveSlug, details);
+          }
         }
       }
       if (opts?.enableSiteMap) {
