@@ -7875,12 +7875,70 @@ PageList.css = `
 }
 `;
 
+// quartz/util/snippet.ts
+var OBSIDIAN_LINK_PATTERN2 = /\[\[(?<target>[^\]|]+)(\|(?<alias>[^\]]+))?\]\]/g;
+var OBSIDIAN_EMBED_PATTERN3 = /!\[\[(?<target>[^\]]+)\]\]/g;
+var MARKDOWN_LINK_PATTERN = /\[(?<label>[^\]]+)\]\((?<url>[^)]+)\)/g;
+var MARKDOWN_IMAGE_PATTERN = /!\[(?<alt>[^\]]*)\]\((?<url>[^)]+)\)/g;
+var ANGLED_LINK_PATTERN = /<(?<url>https?:[^>\s]+)>/g;
+var INLINE_CODE_PATTERN = /`([^`]+)`/g;
+var STRONG_PATTERN = /\*\*([^*]+)\*\*/g;
+var EMPHASIS_PATTERN = /\*([^*]+)\*/g;
+var STRONG_UNDERSCORE_PATTERN = /__([^_]+)__/g;
+var EMPHASIS_UNDERSCORE_PATTERN = /_([^_]+)_/g;
+var normaliseLinkTarget = /* @__PURE__ */ __name((target) => {
+  const trimmed = target.trim();
+  if (!trimmed) {
+    return "";
+  }
+  const withoutEmbedPrefix = trimmed.replace(/^!+/, "");
+  const withoutAnchor = withoutEmbedPrefix.split("#").at(0) ?? withoutEmbedPrefix;
+  const lastSegment = withoutAnchor.split("/").filter(Boolean).pop() ?? withoutAnchor;
+  const normalised = lastSegment.replace(/[_-]+/g, " ").trim();
+  return normalised.length > 0 ? normalised : trimmed;
+}, "normaliseLinkTarget");
+var formatSnippetText = /* @__PURE__ */ __name((value) => {
+  let formatted = value;
+  formatted = formatted.replace(OBSIDIAN_EMBED_PATTERN3, "");
+  formatted = formatted.replace(OBSIDIAN_LINK_PATTERN2, (_, target, alias) => {
+    const aliasText = alias?.trim();
+    if (aliasText) {
+      return aliasText;
+    }
+    return normaliseLinkTarget(target);
+  });
+  formatted = formatted.replace(MARKDOWN_IMAGE_PATTERN, (_, alt) => (alt ?? "").trim());
+  formatted = formatted.replace(MARKDOWN_LINK_PATTERN, (_, label) => label.trim());
+  formatted = formatted.replace(ANGLED_LINK_PATTERN, (_, url) => url);
+  formatted = formatted.replace(INLINE_CODE_PATTERN, (_, code) => code);
+  formatted = formatted.replace(STRONG_PATTERN, (_, text) => text);
+  formatted = formatted.replace(EMPHASIS_PATTERN, (_, text) => text);
+  formatted = formatted.replace(STRONG_UNDERSCORE_PATTERN, (_, text) => text);
+  formatted = formatted.replace(EMPHASIS_UNDERSCORE_PATTERN, (_, text) => text);
+  return formatted;
+}, "formatSnippetText");
+var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
+  if (!value) {
+    return void 0;
+  }
+  const formatted = formatSnippetText(value);
+  const compact = formatted.replace(/\s+/g, " ").trim();
+  if (!compact) {
+    return void 0;
+  }
+  if (compact.length <= limit) {
+    return compact;
+  }
+  const truncated = compact.slice(0, limit - 1).trimEnd();
+  return `${truncated}\u2026`;
+}, "normalizeSnippet");
+
 // quartz/components/pages/TagContent.tsx
 import { Fragment as Fragment3, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-runtime";
 var defaultOptions9 = {
   numPages: 10
 };
-var OBSIDIAN_EMBED_PATTERN3 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_EMBED_PATTERN4 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var isExternalUrl4 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var stripContentPrefix4 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var appendAssetVersion3 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
@@ -7893,7 +7951,7 @@ var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
     return void 0;
   }
   const version = getAssetVersion();
-  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN3);
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN4);
   if (embedMatch?.groups?.target) {
     const target2 = stripContentPrefix4(embedMatch.groups.target);
     try {
@@ -7909,16 +7967,6 @@ var resolveAssetReference = /* @__PURE__ */ __name((raw, baseSlug) => {
   const target = stripContentPrefix4(cleaned);
   return appendAssetVersion3(joinSegments(pathToRoot(baseSlug), target), version);
 }, "resolveAssetReference");
-var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
-  if (!value) {
-    return void 0;
-  }
-  const compact = value.replace(/\s+/g, " ").trim();
-  if (!compact) {
-    return void 0;
-  }
-  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}\u2026` : compact;
-}, "normalizeSnippet");
 var getSnippetForPage = /* @__PURE__ */ __name((page, fallback) => {
   const frontmatter = page.frontmatter ?? {};
   const candidates = [
@@ -8013,6 +8061,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
       const pages = allPagesWithTag(tag);
       const sortFn = options2.sort ?? byDateAndAlphabeticalFolderFirst(cfg);
       const sortedPages = [...pages].sort(sortFn);
+      const entriesSortSelectId = `tag-sort-${tag.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
       return /* @__PURE__ */ jsxs4("div", { class: "popover-hint", children: [
         /* @__PURE__ */ jsx10("article", { class: classes, children: content }),
         sortedPages.length > 0 ? /* @__PURE__ */ jsx10("div", { class: "folder-directory", children: /* @__PURE__ */ jsxs4(
@@ -8026,9 +8075,31 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
                   "#",
                   tag
                 ] }),
-                /* @__PURE__ */ jsx10("span", { class: "folder-directory__section-hint", children: pluralize(sortedPages.length, "entry", "entries") })
+                /* @__PURE__ */ jsxs4("div", { class: "folder-directory__section-tools", children: [
+                  /* @__PURE__ */ jsx10("span", { class: "folder-directory__section-hint", children: pluralize(sortedPages.length, "entry", "entries") }),
+                  /* @__PURE__ */ jsxs4("label", { class: "folder-directory__sort", htmlFor: entriesSortSelectId, children: [
+                    /* @__PURE__ */ jsx10("span", { class: "folder-directory__sort-label", children: "Sort by" }),
+                    /* @__PURE__ */ jsxs4(
+                      "select",
+                      {
+                        class: "folder-directory__sort-select",
+                        id: entriesSortSelectId,
+                        defaultValue: "newest",
+                        "data-sort-target": "entries",
+                        children: [
+                          /* @__PURE__ */ jsx10("option", { value: "newest", children: "Date \xB7 Newest" }),
+                          /* @__PURE__ */ jsx10("option", { value: "oldest", children: "Date \xB7 Oldest" }),
+                          /* @__PURE__ */ jsx10("option", { value: "alpha", children: "Title \xB7 A \u2192 Z" }),
+                          /* @__PURE__ */ jsx10("option", { value: "size", children: "Size \xB7 Longest" }),
+                          /* @__PURE__ */ jsx10("option", { value: "shortest", children: "Size \xB7 Shortest" }),
+                          /* @__PURE__ */ jsx10("option", { value: "random", children: "Random" })
+                        ]
+                      }
+                    )
+                  ] })
+                ] })
               ] }),
-              /* @__PURE__ */ jsx10("div", { class: "folder-directory__grid", children: sortedPages.map((page) => {
+              /* @__PURE__ */ jsx10("div", { class: "folder-directory__grid", "data-sort-grid": "entries", children: sortedPages.map((page) => {
                 const slug2 = page.slug;
                 if (!slug2) {
                   return null;
@@ -8041,6 +8112,11 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
                 const hasSnippet = Boolean(snippet);
                 const image = getPrimaryImage(page, slug2);
                 const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
+                const normalizedTitle = title.trim().toLocaleLowerCase();
+                const datasetTitle = normalizedTitle.length > 0 ? normalizedTitle : title.toLocaleLowerCase();
+                const pageText = typeof page.text === "string" ? page.text : "";
+                const contentSize = pageText.replace(/\s+/g, " ").trim().length;
+                const updatedTimestamp = updated ? updated.getTime() : 0;
                 const safeSlugId = slug2.replace(/[^a-zA-Z0-9_-]/g, "-");
                 const headingId = `directory-card-title-${safeSlugId}`;
                 return /* @__PURE__ */ jsx10(
@@ -8048,6 +8124,9 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
                   {
                     class: "directory-card",
                     "data-href": link,
+                    "data-sort-title": datasetTitle,
+                    "data-sort-updated": String(updatedTimestamp),
+                    "data-sort-size": String(contentSize),
                     role: "link",
                     tabIndex: 0,
                     "aria-labelledby": headingId,
@@ -8094,6 +8173,106 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
   }, "TagContent");
   TagContent.afterDOMLoaded = `
     (() => {
+      const SORT_SELECT_SELECTOR = '.folder-directory__sort-select'
+      const sortBindings = new Map()
+
+      const parseSortNumber = (value) => {
+        if (typeof value !== 'string' || value.length === 0) {
+          return 0
+        }
+        const parsed = Number.parseFloat(value)
+        return Number.isFinite(parsed) ? parsed : 0
+      }
+
+      const sortComparators = {
+        newest: (a, b) => parseSortNumber(b.dataset.sortUpdated) - parseSortNumber(a.dataset.sortUpdated),
+        oldest: (a, b) => parseSortNumber(a.dataset.sortUpdated) - parseSortNumber(b.dataset.sortUpdated),
+        alpha: (a, b) => {
+          const titleA = (a.dataset.sortTitle ?? '').toString()
+          const titleB = (b.dataset.sortTitle ?? '').toString()
+          return titleA.localeCompare(titleB)
+        },
+        size: (a, b) => parseSortNumber(b.dataset.sortSize) - parseSortNumber(a.dataset.sortSize),
+        shortest: (a, b) => parseSortNumber(a.dataset.sortSize) - parseSortNumber(b.dataset.sortSize),
+      }
+
+      const getSortGridForSelect = (select) => {
+        if (!(select instanceof HTMLSelectElement)) {
+          return null
+        }
+        const target = select.getAttribute('data-sort-target')
+        if (!target) {
+          return null
+        }
+        const section = select.closest('.folder-directory__section')
+        if (!section) {
+          return null
+        }
+        const grid = section.querySelector('.folder-directory__grid[data-sort-grid="' + target + '"]')
+        return grid instanceof HTMLElement ? grid : null
+      }
+
+      const applySortForSelect = (select) => {
+        const grid = getSortGridForSelect(select)
+        if (!grid) {
+          return
+        }
+
+        const cards = Array.from(grid.querySelectorAll('.directory-card'))
+        if (cards.length === 0) {
+          return
+        }
+
+        const sortKey = select.value
+        const comparator = sortComparators[sortKey] ?? sortComparators.newest
+        const decorated = cards.map((card, index) => ({ card, index, random: Math.random() }))
+        decorated.sort((a, b) => {
+          if (sortKey === 'random') {
+            const randomDiff = a.random - b.random
+            return randomDiff !== 0 ? randomDiff : a.index - b.index
+          }
+
+          const result = comparator(a.card, b.card)
+          return result !== 0 ? result : a.index - b.index
+        })
+        decorated.forEach(({ card }) => grid.appendChild(card))
+      }
+
+      const cleanupSortControls = () => {
+        sortBindings.forEach((handler, element) => {
+          element.removeEventListener('change', handler)
+        })
+        sortBindings.clear()
+      }
+
+      const pruneSortBindings = () => {
+        Array.from(sortBindings.entries()).forEach(([element, handler]) => {
+          if (!(element instanceof HTMLSelectElement) || !element.isConnected) {
+            element.removeEventListener('change', handler)
+            sortBindings.delete(element)
+          }
+        })
+      }
+
+      const bindSortControls = () => {
+        pruneSortBindings()
+        const selects = document.querySelectorAll(SORT_SELECT_SELECTOR)
+        selects.forEach((element) => {
+          if (!(element instanceof HTMLSelectElement)) {
+            return
+          }
+          if (!element.closest('.folder-directory')) {
+            return
+          }
+          if (!sortBindings.has(element)) {
+            const handler = () => applySortForSelect(element)
+            element.addEventListener('change', handler)
+            sortBindings.set(element, handler)
+          }
+          applySortForSelect(element)
+        })
+      }
+
       const selector = '.directory-card[data-href]'
       let handlersBound = false
 
@@ -8203,6 +8382,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
 
       const handleNav = () => {
         bindHandlers()
+        bindSortControls()
       }
 
       document.addEventListener('nav', handleNav)
@@ -8210,6 +8390,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
 
       window.addCleanup?.(() => {
         document.removeEventListener('nav', handleNav)
+        cleanupSortControls()
       })
     })()
   `;
@@ -8376,7 +8557,7 @@ var defaultOptions10 = {
   showFolderCount: true,
   showSubfolders: true
 };
-var OBSIDIAN_EMBED_PATTERN4 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_EMBED_PATTERN5 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var isExternalUrl5 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var stripContentPrefix5 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var appendAssetVersion4 = /* @__PURE__ */ __name((url, version) => version ? url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}` : url, "appendAssetVersion");
@@ -8389,7 +8570,7 @@ var resolveAssetReference2 = /* @__PURE__ */ __name((raw, baseSlug) => {
     return void 0;
   }
   const version = getAssetVersion();
-  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN4);
+  const embedMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN5);
   if (embedMatch?.groups?.target) {
     const target2 = stripContentPrefix5(embedMatch.groups.target);
     try {
@@ -8405,16 +8586,6 @@ var resolveAssetReference2 = /* @__PURE__ */ __name((raw, baseSlug) => {
   const target = stripContentPrefix5(cleaned);
   return appendAssetVersion4(joinSegments(pathToRoot(baseSlug), target), version);
 }, "resolveAssetReference");
-var normalizeSnippet2 = /* @__PURE__ */ __name((value, limit = 240) => {
-  if (!value) {
-    return void 0;
-  }
-  const compact = value.replace(/\s+/g, " ").trim();
-  if (!compact) {
-    return void 0;
-  }
-  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}\u2026` : compact;
-}, "normalizeSnippet");
 var getSnippetForPage2 = /* @__PURE__ */ __name((page, fallback) => {
   const frontmatter = page.frontmatter ?? {};
   const candidates = [
@@ -8423,7 +8594,7 @@ var getSnippetForPage2 = /* @__PURE__ */ __name((page, fallback) => {
     typeof page.text === "string" ? page.text : void 0
   ];
   for (const candidate of candidates) {
-    const snippet = normalizeSnippet2(candidate);
+    const snippet = normalizeSnippet(candidate);
     if (snippet) {
       return snippet;
     }
@@ -10340,28 +10511,7 @@ var Graph_default = /* @__PURE__ */ __name(((opts) => {
           ]
         }
       ),
-      /* @__PURE__ */ jsxs17("div", { class: "graph-outer", children: [
-        /* @__PURE__ */ jsx26("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }),
-        /* @__PURE__ */ jsx26("button", { class: "global-graph-icon", "aria-label": "Global Graph", children: /* @__PURE__ */ jsx26(
-          "svg",
-          {
-            version: "1.1",
-            xmlns: "http://www.w3.org/2000/svg",
-            xmlnsXlink: "http://www.w3.org/1999/xlink",
-            x: "0px",
-            y: "0px",
-            viewBox: "0 0 55 55",
-            fill: "currentColor",
-            xmlSpace: "preserve",
-            children: /* @__PURE__ */ jsx26(
-              "path",
-              {
-                d: "M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17\n                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4\n                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562\n                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829\n                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91\n                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4\n                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665\n                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2\n                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4\n                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2\n                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"
-              }
-            )
-          }
-        ) })
-      ] }),
+      /* @__PURE__ */ jsx26("div", { class: "graph-outer", children: /* @__PURE__ */ jsx26("div", { class: "graph-container", "data-cfg": JSON.stringify(localGraph) }) }),
       /* @__PURE__ */ jsx26(
         "div",
         {
@@ -11059,7 +11209,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 import { Fragment as Fragment8 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
 var isExternalUrl6 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
-var OBSIDIAN_EMBED_PATTERN5 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
+var OBSIDIAN_EMBED_PATTERN6 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
 var OBSIDIAN_WIKILINK_PATTERN = /\[\[([^|\]#]+)?(#[^|\]]+)?(?:\|([^\]]+))?\]\]/g;
 var stripContentPrefix6 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
 var normalizeString = /* @__PURE__ */ __name((value) => {
@@ -11175,7 +11325,7 @@ var resolveImageSource = /* @__PURE__ */ __name((raw, slug) => {
   if (!cleaned) {
     return void 0;
   }
-  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN5);
+  const obsidianMatch = cleaned.match(OBSIDIAN_EMBED_PATTERN6);
   if (obsidianMatch?.groups?.target) {
     return resolveObsidianTarget4(obsidianMatch.groups.target, slug);
   }
@@ -11361,16 +11511,22 @@ var homepage_inline_default = "";
 import { jsx as jsx37, jsxs as jsxs25 } from "preact/jsx-runtime";
 var DEFAULT_LINKS = {
   archive: {
-    label: "Visit the Archive Channel",
-    href: "https://www.youtube.com/@710ToneArchiveChannel",
-    description: "Catch up on reuploads, VODs, and finds from across the community.",
+    label: "YouTube channel",
+    href: "https://www.youtube.com/@710Tone",
+    description: "Watch every upload and catch up on past drops.",
     iconSlug: "youtube"
   },
   discord: {
-    label: "Join the Sleuths Discord",
-    href: "https://discord.gg/fRvXBHmzef",
-    description: "Coordinate puzzle solving, share theories, and keep watch on live drops.",
+    label: "Join the Discord",
+    href: "https://discord.gg/M3sEVCuEAR",
+    description: "Swap theories and work puzzles with fellow sleuths.",
     iconSlug: "discord"
+  },
+  reddit: {
+    label: "Visit r/710Tone",
+    href: "https://www.reddit.com/r/710Tone/",
+    description: "Browse community finds and share what you uncover.",
+    iconSlug: "reddit"
   }
 };
 var toLink = /* @__PURE__ */ __name((candidate, fallback) => {
@@ -11390,16 +11546,55 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
     const homepageLinks = linksRaw && typeof linksRaw === "object" ? linksRaw : {};
     const archiveLink = toLink(homepageLinks.archive, DEFAULT_LINKS.archive);
     const discordLink = toLink(homepageLinks.discord, DEFAULT_LINKS.discord);
+    const redditLink = toLink(homepageLinks.reddit, DEFAULT_LINKS.reddit);
     return /* @__PURE__ */ jsxs25("section", { class: classNames(displayClass, "home-features"), "data-home-root": true, children: [
       /* @__PURE__ */ jsxs25("section", { class: "home-recent", children: [
         /* @__PURE__ */ jsx37("h2", { class: "home-recent__title", children: "Recently updated" }),
-        /* @__PURE__ */ jsx37("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx37("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) })
+        /* @__PURE__ */ jsx37("div", { class: "home-recent__scroller", children: /* @__PURE__ */ jsx37("ol", { class: "home-recent__list", "data-home-recent-list": true, children: /* @__PURE__ */ jsx37("li", { class: "home-recent__empty", children: "Loading recent updates\u2026" }) }) })
       ] }),
       /* @__PURE__ */ jsxs25("div", { class: "home-actions", children: [
         /* @__PURE__ */ jsxs25("div", { class: "home-card home-random", children: [
-          /* @__PURE__ */ jsx37("h3", { class: "home-card__title", children: "Jump to a random article" }),
-          /* @__PURE__ */ jsx37("p", { class: "home-card__body", children: "Feeling adventurous? Head straight to a random page pulled from the archive." }),
-          /* @__PURE__ */ jsx37("button", { type: "button", class: "home-random__button", "data-home-random-button": true, children: "Take me there" }),
+          /* @__PURE__ */ jsxs25("div", { class: "home-random__frame", children: [
+            /* @__PURE__ */ jsx37(
+              "button",
+              {
+                type: "button",
+                class: "home-random__trigger",
+                "data-home-random-trigger": true,
+                "aria-label": "Roll a random article",
+                children: /* @__PURE__ */ jsx37(
+                  "span",
+                  {
+                    class: "home-random__dice",
+                    "aria-hidden": "true",
+                    "data-home-random-dice": true,
+                    "data-face": "5",
+                    children: /* @__PURE__ */ jsxs25("span", { class: "home-random__dice-face", children: [
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--top-left" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--top-right" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--mid-left" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--center" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--mid-right" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--bottom-left" }),
+                      /* @__PURE__ */ jsx37("span", { class: "home-random__pip home-random__pip--bottom-right" })
+                    ] })
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsx37("div", { class: "home-random__panel", "data-home-random-panel": true, children: /* @__PURE__ */ jsx37("div", { class: "home-random__card", "data-home-random-card": true, children: /* @__PURE__ */ jsxs25(
+              "div",
+              {
+                class: "home-random-card home-random-card--placeholder",
+                "data-home-random-placeholder": true,
+                "aria-hidden": "true",
+                children: [
+                  /* @__PURE__ */ jsx37("h3", { class: "home-random-card__title", "data-home-random-placeholder-title": true, children: "Try a random article!" }),
+                  /* @__PURE__ */ jsx37("p", { class: "home-random-card__placeholder-copy", "data-home-random-placeholder-copy": true, children: "Tap the die to roll the archive." })
+                ]
+              }
+            ) }) })
+          ] }),
           /* @__PURE__ */ jsx37("p", { class: "home-random__empty", "data-home-random-empty": true, hidden: true, children: "No eligible pages yet." })
         ] }),
         /* @__PURE__ */ jsxs25("div", { class: "home-card home-links", children: [
@@ -11448,6 +11643,28 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
                   ] })
                 ]
               }
+            ),
+            /* @__PURE__ */ jsxs25(
+              "a",
+              {
+                class: "home-link-card",
+                href: redditLink.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: [
+                  /* @__PURE__ */ jsx37(
+                    "span",
+                    {
+                      class: `home-link-card__icon home-link-card__icon--${redditLink.iconSlug}`,
+                      "aria-hidden": "true"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxs25("span", { class: "home-link-card__copy", children: [
+                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__label", children: redditLink.label }),
+                    /* @__PURE__ */ jsx37("span", { class: "home-link-card__description", children: redditLink.description })
+                  ] })
+                ]
+              }
             )
           ] })
         ] })
@@ -11460,12 +11677,18 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   flex-direction: column;
   gap: 1.75rem;
   margin: 2.5rem 0 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .home-recent {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  min-width: 0;
 }
 
 .home-recent__title {
@@ -11473,56 +11696,137 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   font-size: clamp(1.1rem, 1.2vw + 0.6rem, 1.35rem);
 }
 
+.home-recent__scroller {
+  --home-recent-gutter: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 var(--home-recent-gutter);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable both-edges;
+}
+
+body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-tone-muted) 45%, transparent);
+  border-radius: 999px;
+}
+
 .home-recent__list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0.2rem;
+  display: flex;
+  gap: 0.85rem;
+  width: 100%;
+  min-width: 0;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.home-recent-card {
+  flex: 0 0 clamp(240px, 22vw + 110px, 300px);
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.home-recent-card__link {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-surface-overlay) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.18),
+    0 1px 0 color-mix(in srgb, var(--color-accent-shadow-light) 28%, transparent);
+  text-decoration: none;
+  color: var(--color-tone-contrast);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
-.home-recent__item {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.4rem;
+.home-recent-card__link:hover,
+.home-recent-card__link:focus-visible {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-accent-bright) 50%, transparent);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.22),
+    0 1px 0 color-mix(in srgb, var(--color-accent-bright) 32%, transparent);
+  outline: none;
 }
 
-.home-recent__link {
+.home-recent-card__title {
+  margin: 0;
+  font-size: clamp(1rem, 0.7vw + 0.8rem, 1.15rem);
+  font-weight: 650;
+  color: var(--color-tone-contrast);
+  letter-spacing: 0.01em;
+}
+
+
+.home-recent-card__meta {
+  margin: 0;
+  font-size: 0.86rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 68%, var(--color-tone-contrast) 32%);
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-weight: 600;
-  color: var(--dark);
-  text-decoration: none;
+  gap: 0.5rem;
 }
 
-.home-recent__meta {
-  font-size: 0.82rem;
-  color: var(--darkgray);
-}
-
-.home-recent__time {
+.home-recent-card__meta time {
   font-variant-numeric: tabular-nums;
 }
 
+.home-recent-card__meta-label {
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 72%, var(--color-accent-shadow-light) 28%);
+  font-family: var(--font-oracle-label, "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace);
+}
+
 .home-recent__empty {
-  color: var(--darkgray);
+  flex: 0 0 clamp(240px, 22vw + 110px, 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-tone-muted) 18%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--color-tone-muted) 40%, transparent);
+  color: color-mix(in srgb, var(--color-tone-muted) 80%, var(--color-tone-contrast) 20%);
   font-size: 0.9rem;
+  scroll-snap-align: start;
+  text-align: center;
 }
 
 .home-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  min-width: 0;
 }
 
 .home-card {
   flex: 1 1 260px;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
   padding: 1.1rem 1.25rem;
   border-radius: 14px;
   background: var(--lightgray);
@@ -11540,36 +11844,337 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   font-size: 0.92rem;
 }
 
-.home-random__button {
-  align-self: flex-start;
-  appearance: none;
-  padding: 0.55rem 1.05rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--dark);
-  color: var(--light);
-  font-weight: 600;
-  font-size: 0.92rem;
-  cursor: pointer;
-  transition: transform 100ms ease, box-shadow 100ms ease;
-}
-
-.home-random__button:hover,
-.home-random__button:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.16);
-}
-
-.home-random__button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
 .home-random__empty {
   margin: 0;
   font-size: 0.85rem;
   color: var(--darkgray);
+}
+
+.home-random__frame {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.home-random__trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  min-width: 96px;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 26px;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--color-accent-bright) 30%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-accent-shadow) 50%, transparent),
+    0 12px 26px rgba(0, 0, 0, 0.24);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.home-random__trigger:focus-visible,
+.home-random__trigger:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-accent-bright) 55%, transparent),
+    0 16px 34px rgba(0, 0, 0, 0.28);
+  outline: none;
+}
+
+.home-random__trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-accent-shadow) 45%, transparent),
+    0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.home-random__dice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  transition: transform 180ms ease;
+}
+
+.home-random__dice-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--light);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 6px;
+  gap: 4px;
+}
+
+.home-random__pip {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dark);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.home-random__pip--top-left {
+  grid-area: 1 / 1;
+}
+
+.home-random__pip--top-right {
+  grid-area: 1 / 3;
+}
+
+.home-random__pip--mid-left {
+  grid-area: 2 / 1;
+}
+
+.home-random__pip--center {
+  grid-area: 2 / 2;
+}
+
+.home-random__pip--mid-right {
+  grid-area: 2 / 3;
+}
+
+.home-random__pip--bottom-left {
+  grid-area: 3 / 1;
+}
+
+.home-random__pip--bottom-right {
+  grid-area: 3 / 3;
+}
+
+.home-random__dice[data-face="1"] .home-random__pip--center,
+.home-random__dice[data-face="2"] .home-random__pip--top-left,
+.home-random__dice[data-face="2"] .home-random__pip--bottom-right,
+.home-random__dice[data-face="3"] .home-random__pip--top-left,
+.home-random__dice[data-face="3"] .home-random__pip--center,
+.home-random__dice[data-face="3"] .home-random__pip--bottom-right,
+.home-random__dice[data-face="4"] .home-random__pip--top-left,
+.home-random__dice[data-face="4"] .home-random__pip--top-right,
+.home-random__dice[data-face="4"] .home-random__pip--bottom-left,
+.home-random__dice[data-face="4"] .home-random__pip--bottom-right,
+.home-random__dice[data-face="5"] .home-random__pip--top-left,
+.home-random__dice[data-face="5"] .home-random__pip--top-right,
+.home-random__dice[data-face="5"] .home-random__pip--center,
+.home-random__dice[data-face="5"] .home-random__pip--bottom-left,
+.home-random__dice[data-face="5"] .home-random__pip--bottom-right,
+.home-random__dice[data-face="6"] .home-random__pip--top-left,
+.home-random__dice[data-face="6"] .home-random__pip--top-right,
+.home-random__dice[data-face="6"] .home-random__pip--mid-left,
+.home-random__dice[data-face="6"] .home-random__pip--mid-right,
+.home-random__dice[data-face="6"] .home-random__pip--bottom-left,
+.home-random__dice[data-face="6"] .home-random__pip--bottom-right {
+  opacity: 1;
+}
+
+.home-random__trigger.is-rolling .home-random__dice {
+  animation: home-random-dice-wobble 520ms ease-in-out;
+}
+
+.home-random__panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.35rem 1.6rem;
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--color-accent-bright) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 48%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.22);
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(190px, 21vw, 240px);
+}
+
+.home-random__panel--active {
+  background: color-mix(in srgb, var(--color-surface-overlay) 94%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent-shadow) 40%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.home-random__prompt {
+  margin: 0;
+  font-size: clamp(1.05rem, 0.6vw + 0.85rem, 1.25rem);
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-contrast) 90%, var(--color-tone-muted) 10%);
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-surface-overlay) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+
+.home-random__card {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+
+.home-random-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-surface-overlay) 94%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 36%, transparent);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 10px 22px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+  color: var(--color-tone-contrast);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  width: 100%;
+  min-height: clamp(190px, 21vw, 240px);
+}
+
+.home-random-card:hover,
+.home-random-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-accent-bright) 45%, transparent);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 12px 26px rgba(0, 0, 0, 0.22);
+  outline: none;
+}
+
+.home-random-card--placeholder {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  pointer-events: none;
+}
+
+.home-random-card--placeholder .home-random-card__title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-oracle-label, "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace);
+}
+
+.home-random-card__placeholder-copy {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  color: color-mix(in srgb, var(--color-tone-muted) 55%, var(--color-tone-contrast) 45%);
+}
+
+.home-random-card__title {
+  margin: 0;
+  font-size: clamp(1.05rem, 0.8vw + 0.95rem, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.home-random-card__meta {
+  margin: 0;
+  font-size: 0.86rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 70%, var(--color-tone-contrast) 30%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.home-random-card__meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+.home-random-card__meta-label {
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: color-mix(in srgb, var(--color-tone-muted) 72%, var(--color-accent-shadow-light) 28%);
+  font-family: var(--font-oracle-label, "VCR OSD Mono", var(--font-thematic), "Share Tech Mono", "Lucida Console", "Courier New", monospace);
+}
+
+.home-random-card__snippet {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-tone-contrast) 85%, var(--color-tone-muted) 15%);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-random-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-random-card__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-random-card__tag-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-shadow) 40%, transparent);
+  background: color-mix(in srgb, var(--color-accent-shadow-light) 18%, transparent);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-tone-muted) 68%, var(--color-tone-contrast) 32%);
+  text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.home-random-card__tag-link:hover,
+.home-random-card__tag-link:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.home-random-card--enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.home-random-card--entered {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .home-links__stack {
@@ -11621,6 +12226,11 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
   -webkit-mask-image: url("/static/icons/discord_icon.svg");
 }
 
+.home-link-card__icon--reddit {
+  mask-image: url("/static/icons/reddit-icon.svg");
+  -webkit-mask-image: url("/static/icons/reddit-icon.svg");
+}
+
 .home-link-card__copy {
   display: flex;
   flex-direction: column;
@@ -11639,12 +12249,45 @@ var HomepageFeatures_default = /* @__PURE__ */ __name((() => {
 }
 
 @media (max-width: 640px) {
-  .home-recent {
-    padding: 1.1rem 1.2rem;
+  .home-recent__scroller {
+    --home-recent-gutter: 0.5rem;
   }
 
   .home-card {
     padding: 1rem 1.1rem;
+  }
+
+  .home-random__frame {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-random__trigger {
+    width: 82px;
+    min-width: 82px;
+  }
+
+  .home-random__panel {
+    width: 100%;
+  }
+
+  .home-random-card {
+    min-height: 0;
+  }
+}
+
+@keyframes home-random-dice-wobble {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  30% {
+    transform: rotate(-18deg) scale(1.04);
+  }
+  60% {
+    transform: rotate(14deg) scale(0.98);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
   }
 }
 `;
@@ -11704,16 +12347,7 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
             "aria-labelledby": launcherLabelId,
             children: [
               /* @__PURE__ */ jsx39("span", { class: "oracle-widget__copy", id: launcherLabelId, children: /* @__PURE__ */ jsx39("span", { class: "oracle-widget__title", children: "Ask ORA_CLE" }) }),
-              /* @__PURE__ */ jsx39("span", { class: "oracle-widget__avatar-wrap", "aria-hidden": "true", children: /* @__PURE__ */ jsx39(
-                "img",
-                {
-                  src: "/static/oracle-pfp.png",
-                  alt: "",
-                  class: "oracle-widget__avatar",
-                  loading: "lazy",
-                  decoding: "async"
-                }
-              ) })
+              /* @__PURE__ */ jsx39("span", { class: "oracle-widget__avatar-wrap", "aria-hidden": "true", children: /* @__PURE__ */ jsx39("span", { class: "oracle-widget__avatar", role: "presentation" }) })
             ]
           }
         ),
@@ -11730,16 +12364,7 @@ var OracleWidgetComponent = /* @__PURE__ */ __name(({ cfg, fileData }) => {
           ),
           /* @__PURE__ */ jsxs26("header", { class: "oracle-chat__header", children: [
             /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity", children: [
-              /* @__PURE__ */ jsx39(
-                "img",
-                {
-                  src: "/static/oracle-pfp.png",
-                  alt: "",
-                  class: "oracle-chat__avatar",
-                  loading: "lazy",
-                  decoding: "async"
-                }
-              ),
+              /* @__PURE__ */ jsx39("span", { class: "oracle-chat__avatar", role: "presentation", "aria-hidden": "true" }),
               /* @__PURE__ */ jsxs26("div", { class: "oracle-chat__identity-text", children: [
                 /* @__PURE__ */ jsx39("span", { class: "oracle-chat__name", children: "The ORA_CLE" }),
                 /* @__PURE__ */ jsx39("span", { class: "oracle-chat__status", "data-oracle-status-text": true, "data-state": "online", children: "Bot status: Online" })
@@ -11864,10 +12489,11 @@ var oracleWidgetStyles = `
 }
 
 .oracle-widget__avatar {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  object-fit: cover;
+  background: url("/static/oracle-pfp.png") center / cover no-repeat;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-shadow) 35%, transparent);
   flex-shrink: 0;
 }
@@ -12012,10 +12638,12 @@ var oracleWidgetStyles = `
 }
 
 .oracle-chat__avatar {
+  display: inline-flex;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  object-fit: cover;
+  background: url("/static/oracle-pfp.png") center / cover no-repeat;
+  flex-shrink: 0;
 }
 
 .oracle-chat__identity-text {
@@ -12163,7 +12791,7 @@ var oracleWidgetStyles = `
 
 .oracle-chat__message--user .oracle-chat__bubble {
   background: color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
-  color: var(--color-primary-background);
+  color: var(--color-tone-contrast);
   display: block;
   white-space: pre-wrap;
 }
@@ -12293,46 +12921,6 @@ var oracleWidgetStyles = `
   line-height: 1.5;
   font-weight: 600;
   color: color-mix(in srgb, var(--color-accent-bright) 75%, var(--color-tone-contrast) 25%);
-}
-
-.oracle-chat__followups {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.oracle-chat__followups-label {
-  margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-tone-muted) 70%, var(--color-tone-contrast) 30%);
-}
-
-.oracle-chat__followup-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.oracle-chat__followup-button {
-  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
-  background: color-mix(in srgb, var(--color-accent-bright) 18%, transparent);
-  color: var(--color-accent-bright);
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: background 140ms ease, color 140ms ease, transform 140ms ease;
-}
-
-.oracle-chat__followup-button:hover,
-.oracle-chat__followup-button:focus-visible {
-  background: color-mix(in srgb, var(--color-accent-bright) 35%, transparent);
-  color: var(--color-primary-background);
-}
-
-.oracle-chat__followup-button:active {
-  transform: translateY(1px);
 }
 
 .oracle-chat__fallback {

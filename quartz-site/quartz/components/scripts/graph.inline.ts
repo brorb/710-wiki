@@ -1373,7 +1373,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   }
 
   const triggerElements = document.querySelectorAll(
-    ".global-graph-icon, .graph__show-full",
+    ".graph__show-full",
   ) as NodeListOf<HTMLElement>
   triggerElements.forEach((trigger) => {
     trigger.addEventListener("click", renderGlobalGraph)

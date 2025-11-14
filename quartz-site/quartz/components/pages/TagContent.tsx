@@ -20,6 +20,7 @@ import { ComponentChildren } from "preact"
 import { concatenateResources } from "../../util/resources"
 import { getAssetVersion } from "../../util/assetVersion"
 import { Date as DateDisplay, getDate } from "../Date"
+import { normalizeSnippet } from "../../util/snippet"
 
 interface TagContentOptions {
   sort?: SortFn
@@ -65,19 +66,6 @@ const resolveAssetReference = (raw: unknown, baseSlug: FullSlug): string | undef
 
   const target = stripContentPrefix(cleaned)
   return appendAssetVersion(joinSegments(pathToRoot(baseSlug), target), version)
-}
-
-const normalizeSnippet = (value?: string, limit = 240): string | undefined => {
-  if (!value) {
-    return undefined
-  }
-
-  const compact = value.replace(/\s+/g, " ").trim()
-  if (!compact) {
-    return undefined
-  }
-
-  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}…` : compact
 }
 
 const getSnippetForPage = (page: QuartzPluginData, fallback?: string): string | undefined => {
@@ -214,6 +202,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
       const pages = allPagesWithTag(tag)
       const sortFn = options.sort ?? byDateAndAlphabeticalFolderFirst(cfg)
       const sortedPages = [...pages].sort(sortFn)
+      const entriesSortSelectId = `tag-sort-${tag.replace(/[^a-zA-Z0-9_-]/g, "-")}`
 
       return (
         <div class="popover-hint">
@@ -226,11 +215,29 @@ export default ((opts?: Partial<TagContentOptions>) => {
               >
                 <div class="folder-directory__section-header">
                   <h2 class="folder-directory__section-title">#{tag}</h2>
-                  <span class="folder-directory__section-hint">
-                    {pluralize(sortedPages.length, "entry", "entries")}
-                  </span>
+                  <div class="folder-directory__section-tools">
+                    <span class="folder-directory__section-hint">
+                      {pluralize(sortedPages.length, "entry", "entries")}
+                    </span>
+                    <label class="folder-directory__sort" htmlFor={entriesSortSelectId}>
+                      <span class="folder-directory__sort-label">Sort by</span>
+                      <select
+                        class="folder-directory__sort-select"
+                        id={entriesSortSelectId}
+                        defaultValue="newest"
+                        data-sort-target="entries"
+                      >
+                        <option value="newest">Date · Newest</option>
+                        <option value="oldest">Date · Oldest</option>
+                        <option value="alpha">Title · A → Z</option>
+                        <option value="size">Size · Longest</option>
+                        <option value="shortest">Size · Shortest</option>
+                        <option value="random">Random</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
-                <div class="folder-directory__grid">
+                <div class="folder-directory__grid" data-sort-grid="entries">
                   {sortedPages.map((page) => {
                     const slug = page.slug as FullSlug | undefined
                     if (!slug) {
@@ -250,6 +257,11 @@ export default ((opts?: Partial<TagContentOptions>) => {
                     const tags = Array.isArray(frontmatter.tags)
                       ? (frontmatter.tags as string[])
                       : []
+                    const normalizedTitle = title.trim().toLocaleLowerCase()
+                    const datasetTitle = normalizedTitle.length > 0 ? normalizedTitle : title.toLocaleLowerCase()
+                    const pageText = typeof page.text === "string" ? page.text : ""
+                    const contentSize = pageText.replace(/\s+/g, " ").trim().length
+                    const updatedTimestamp = updated ? updated.getTime() : 0
                     const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-")
                     const headingId = `directory-card-title-${safeSlugId}`
 
@@ -258,6 +270,9 @@ export default ((opts?: Partial<TagContentOptions>) => {
                         class="directory-card"
                         key={slug}
                         data-href={link}
+                        data-sort-title={datasetTitle}
+                        data-sort-updated={String(updatedTimestamp)}
+                        data-sort-size={String(contentSize)}
                         role="link"
                         tabIndex={0}
                         aria-labelledby={headingId}
@@ -318,6 +333,106 @@ export default ((opts?: Partial<TagContentOptions>) => {
 
   TagContent.afterDOMLoaded = `
     (() => {
+      const SORT_SELECT_SELECTOR = '.folder-directory__sort-select'
+      const sortBindings = new Map()
+
+      const parseSortNumber = (value) => {
+        if (typeof value !== 'string' || value.length === 0) {
+          return 0
+        }
+        const parsed = Number.parseFloat(value)
+        return Number.isFinite(parsed) ? parsed : 0
+      }
+
+      const sortComparators = {
+        newest: (a, b) => parseSortNumber(b.dataset.sortUpdated) - parseSortNumber(a.dataset.sortUpdated),
+        oldest: (a, b) => parseSortNumber(a.dataset.sortUpdated) - parseSortNumber(b.dataset.sortUpdated),
+        alpha: (a, b) => {
+          const titleA = (a.dataset.sortTitle ?? '').toString()
+          const titleB = (b.dataset.sortTitle ?? '').toString()
+          return titleA.localeCompare(titleB)
+        },
+        size: (a, b) => parseSortNumber(b.dataset.sortSize) - parseSortNumber(a.dataset.sortSize),
+        shortest: (a, b) => parseSortNumber(a.dataset.sortSize) - parseSortNumber(b.dataset.sortSize),
+      }
+
+      const getSortGridForSelect = (select) => {
+        if (!(select instanceof HTMLSelectElement)) {
+          return null
+        }
+        const target = select.getAttribute('data-sort-target')
+        if (!target) {
+          return null
+        }
+        const section = select.closest('.folder-directory__section')
+        if (!section) {
+          return null
+        }
+        const grid = section.querySelector('.folder-directory__grid[data-sort-grid="' + target + '"]')
+        return grid instanceof HTMLElement ? grid : null
+      }
+
+      const applySortForSelect = (select) => {
+        const grid = getSortGridForSelect(select)
+        if (!grid) {
+          return
+        }
+
+        const cards = Array.from(grid.querySelectorAll('.directory-card'))
+        if (cards.length === 0) {
+          return
+        }
+
+        const sortKey = select.value
+        const comparator = sortComparators[sortKey] ?? sortComparators.newest
+        const decorated = cards.map((card, index) => ({ card, index, random: Math.random() }))
+        decorated.sort((a, b) => {
+          if (sortKey === 'random') {
+            const randomDiff = a.random - b.random
+            return randomDiff !== 0 ? randomDiff : a.index - b.index
+          }
+
+          const result = comparator(a.card, b.card)
+          return result !== 0 ? result : a.index - b.index
+        })
+        decorated.forEach(({ card }) => grid.appendChild(card))
+      }
+
+      const cleanupSortControls = () => {
+        sortBindings.forEach((handler, element) => {
+          element.removeEventListener('change', handler)
+        })
+        sortBindings.clear()
+      }
+
+      const pruneSortBindings = () => {
+        Array.from(sortBindings.entries()).forEach(([element, handler]) => {
+          if (!(element instanceof HTMLSelectElement) || !element.isConnected) {
+            element.removeEventListener('change', handler)
+            sortBindings.delete(element)
+          }
+        })
+      }
+
+      const bindSortControls = () => {
+        pruneSortBindings()
+        const selects = document.querySelectorAll(SORT_SELECT_SELECTOR)
+        selects.forEach((element) => {
+          if (!(element instanceof HTMLSelectElement)) {
+            return
+          }
+          if (!element.closest('.folder-directory')) {
+            return
+          }
+          if (!sortBindings.has(element)) {
+            const handler = () => applySortForSelect(element)
+            element.addEventListener('change', handler)
+            sortBindings.set(element, handler)
+          }
+          applySortForSelect(element)
+        })
+      }
+
       const selector = '.directory-card[data-href]'
       let handlersBound = false
 
@@ -427,6 +542,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
 
       const handleNav = () => {
         bindHandlers()
+        bindSortControls()
       }
 
       document.addEventListener('nav', handleNav)
@@ -434,6 +550,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
 
       window.addCleanup?.(() => {
         document.removeEventListener('nav', handleNav)
+        cleanupSortControls()
       })
     })()
   `
