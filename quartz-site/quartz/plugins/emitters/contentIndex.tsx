@@ -89,6 +89,8 @@ const REMOVABLE_EXTENSIONS = new Set([
 
 const LOG_NUMBER_REGEX = /\d+/g
 
+const FOLDER_DESCRIPTION_BASENAME = "foldercontentdescription"
+
 function stripAllExtensions(value: string): string {
   let current = value
   while (true) {
@@ -495,7 +497,35 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
           const frontmatter = (file.data.frontmatter ?? {}) as Record<string, unknown>
-          const title = (frontmatter["title"] as string | undefined) ?? slug
+          const simplifiedSlug = simplifySlug(slug)
+          const slugSegments = simplifiedSlug.split("/").filter((segment) => segment.length > 0)
+          const lastSegment = slugSegments.at(-1)?.toLowerCase()
+          const isFolderDescription = lastSegment === FOLDER_DESCRIPTION_BASENAME
+          const folderSlug = isFolderDescription ? slugSegments.slice(0, -1).join("/") : undefined
+          const folderIndexSlug = isFolderDescription
+            ? (joinSegments(folderSlug ?? "", "index") as FullSlug)
+            : slug
+
+          const folderLabel = folderSlug?.split("/").filter((segment) => segment.length > 0).at(-1) ?? folderSlug ?? ""
+          const fallbackFolderTitle =
+            folderLabel && folderLabel.length > 0
+              ? folderLabel
+              : i18n(cfg.locale).pages.folderContent.folder
+
+          const rawFrontmatterTitle =
+            typeof frontmatter["title"] === "string" ? frontmatter["title"].trim() : ""
+
+          const resolvedTitle = (() => {
+            if (isFolderDescription) {
+              if (rawFrontmatterTitle.length > 0 && rawFrontmatterTitle.toLowerCase() !== FOLDER_DESCRIPTION_BASENAME) {
+                return rawFrontmatterTitle
+              }
+              return fallbackFolderTitle
+            }
+
+            return rawFrontmatterTitle.length > 0 ? rawFrontmatterTitle : slug
+          })()
+
           const frontmatterAliasCandidates: unknown[] = []
           if (frontmatter["aliases"] !== undefined) {
             frontmatterAliasCandidates.push(frontmatter["aliases"])
@@ -512,10 +542,11 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
 
           const frontmatterAliases = frontmatterAliasCandidates.length > 0 ? frontmatterAliasCandidates : undefined
 
-          linkIndex.set(slug, {
-            slug,
+          const effectiveSlug = isFolderDescription ? folderIndexSlug : slug
+          const details: ContentDetails = {
+            slug: effectiveSlug,
             filePath: file.data.relativePath!,
-            title,
+            title: resolvedTitle,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
             content: file.data.text ?? "",
@@ -525,13 +556,32 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             date: date,
             description: file.data.description ?? "",
             searchAliases: buildSearchAliases(
-              slug,
+              effectiveSlug,
               file.data.relativePath,
-              title,
+              resolvedTitle,
               frontmatterAliases,
               logAliasMap,
             ),
-          })
+          }
+
+          if (isFolderDescription && linkIndex.has(effectiveSlug)) {
+            const existing = linkIndex.get(effectiveSlug)!
+            const mergedLinks = Array.from(new Set([...(existing.links ?? []), ...(details.links ?? [])]))
+            const mergedTags = Array.from(new Set([...(existing.tags ?? []), ...(details.tags ?? [])]))
+            const mergedAliasesSet = new Set<string>([...(existing.searchAliases ?? []), ...(details.searchAliases ?? [])])
+            linkIndex.set(effectiveSlug, {
+              ...existing,
+              links: mergedLinks,
+              tags: mergedTags,
+              title:
+                existing.title && existing.title.trim().length > 0 ? existing.title : details.title,
+              content: existing.content && existing.content.trim().length > 0 ? existing.content : details.content,
+              richContent: existing.richContent ?? details.richContent,
+              searchAliases: mergedAliasesSet.size > 0 ? Array.from(mergedAliasesSet) : undefined,
+            })
+          } else {
+            linkIndex.set(effectiveSlug, details)
+          }
         }
       }
 
