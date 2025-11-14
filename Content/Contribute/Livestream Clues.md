@@ -38,7 +38,7 @@ After a stream restart, the below messages were exchanged by [[Travis]] and [[IN
 > **7/10 Tone**: I'm going to leave the controls to you indi
 > **7/10NPP**: SLEEP WELL TRAVIS
 
-It is implied that [[Kepler]] was involved in something that caused them to apologize to [[Travis]].
+It is implied that [[Kepler]] was involved in something that caused them to apologize to [[Travis]], but exactly what for is unknown. [[Kepler]] might have played some part of [[Travis]]' downfall by accident, but [[Travis]] didn't want anyone else to be blamed but "them" (likely referring to the agency that got [[Travis]] in the first place).
 
 ---
 ## [[STATION_8 TRIM 90]]
@@ -47,51 +47,29 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 
 ![[Channel 14 Demo Channel-min.png|500]]
 
-> **7/10 Tone**: I FIXED IT KEPLER.  
-> **7/10NPP**: INDI!  
-> **7/10 Tone**: WHAT?  
-> **7/10NPP**: WHY DID YOU JUST USE MY ALIAS?!  
-> **7/10 Tone**: OH, SORRY.  
-> **7/10 Tone**: IT'S NOT LIKE HE CAN SEE US ANYWAYS.  
-> **7/10NPP**: Okay, fine, just don't do that with anyone else.
-> **7/10 Tone**: I 
-> **7/10 Tone**: I'M GOING TO TRY TO DELETE IT FROME MY END.  
-> **7/10 Tone**: STILL TRYING.  
-> **7/10 Tone**: THAT NOT GOING TO HAPPEN. I CAN'T GET TO THE REGISTRAGION FOR IT.  
-> **7/10NPP**: It's fine indi, just stop sending messages on this.  
-> **7/10 Tone**: OH, I GOT IT! I'LL JUST RESTART THE LIVESTREAM.  
-> **7/10NPP**: indi, wait.  
-> **7/10 Tone**: DON'T WORRY THE DATA WILL STILL BE IN THE COMS.
+The phone number to [[Channel 14]] is censored as shown in the picture above, however there could be some clues to reveal it and possibly gain some piece of lore about [[Channel 14]].
 
 ---
 ## [[STATION_8 TERMINAL 8]]
 
+The [[SYSTEM|SYSTEMterminal8]] moderator leaked some [[Private Room]] aliases in the livestream chat, mentioning an alias that has been only mentioned this one time, data_messagesystem05. It is unclear exactly who (or what) owns this "data_messagesystem05" alias:
+
 > **SYSTEMterminal8**: RETURNING LOGGED-INTO-ACCOUNTS  
 > **SYSTEMterminal8**: >>IN_DI.SERVERTYPE  
-> **AnonymousUser**: INDI!!!  
 > **SYSTEMterminal8**: >>K3P13R  
-> **The Camera Eye**: LOL LEAKED  
 > **SYSTEMterminal8**: >>SYSTEMterminal8  
-> **AnonymousUser**: nooooooooooo  
-> **AnonymousUser**: uh oh  
-> **AnonymousUser**: Kepler?  
-> **AnonymousUser**: NPP  
-> **The Camera Eye**: WAIT DON'T SAY THAT ANONYMOUS  
 > **SYSTEMterminal8**: >>data_messagesystem05  
-> **AnonymousUser**: yeah  
-> **AnonymousUser**: we got a message?  
-> **The Camera Eye**: From where? Who?  
-> **SYSTEMterminal8**: DISCONNECTING  
+> **SYSTEMterminal8**: DISCONNECTING
 
-> **7/10 Tone**: IF ANYONE ARCHIVES THIS, JUST KNOW THAT ME AND KEPLER ARE THE ONLY TWO WORKING WITH THE SIGNALS. NOBODY ELSE.  
-> **7/10 Tone**: AND MAYBE ONE OF THE MODERATORS MIGHT ALSO HAVE ACCESS.  
-> **The Camera Eye**: I've been found out...  
-> **The Camera Eye**: INDI how did you know? LOL  
-> **The Camera Eye**: Don't tell me you're in the Discord.  
+---
+
+Interestingly enough, [[INDI]] mentioned that [[Travis]] hid something from him in the [[710 Tone|710 Tone]]'s YouTube channel, 
+
 > **7/10 Tone**: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
 > **The Camera Eye**: Analytics Tab? You mean the Studio?  
-> **7/10 Tone**: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.  
-> **The Camera Eye**: Is Travis dead by now?  
+> **7/10 Tone**: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.
+
+> **The Camera Eye**: Is [[Travis]] dead by now?  
 > **The Camera Eye**: Was he infected with the mold?  
 > **7/10 Tone**: I DON'T KNOW.  
 > **The Camera Eye**: Okay.  
@@ -100,18 +78,25 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 > **The Camera Eye**: Okay, that's fine INDI.  
 > **The Camera Eye**: Good luck on your signal transfer :)
 
+---
+Last year, a group known as "The Rebels" were apparently responsible for the livestream interferences. However, there is only a minimal amount of information available about this group, with the only surviving evidence of their existence is from one comment on a Reddit post. Other than the name and a mention of what they apparently did, there is not much else known about them. When asked about them in the livestream chat, [[Kepler]] (under control of the [[710 Tone|7/10 Tone]] channel at the time) responded with the following:
+
 > **The Camera Eye**: WAIT A MINUTE  
 > **The Camera Eye**: IS ZONE PART OF THE REBELS??????  
 > **The Camera Eye**: We haven't seen them before  
 > **The Camera Eye**: Kepler do you know who the rebels are?  
-> **AnonymousUser**: are REN rebels  
-> **7/10 Tone**: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.  
-> **AnonymousUser**: why was INDI scared of REN and TTH?  
-> **AnonymousUser**: and, of course  
-> **AnonymousUser**: what is TTH and why do they hate each other  
-> **7/10 Tone**: Sorry, but I have more important things to deal with now.  
+> **AnonymousUser**: are [[REN]] rebels  
+> **7/10 Tone**: That, I can't tell you. All you need to know is that me and, hopefully Indi, are not the enemies.
 
-> **7/10 Tone**: DID YOU EVER DECIPHER THE LOGS?  
+(**Context note: ZONE was another viewer who appeared in the livestream chat during [[STATION_8 TERMINAL 8]], who [[The Sleuths]] thought to be potentially involved with 7/10, but [[Kepler]] de-confirmed this theory by saying that they didn't know who it was**)
+
+That piece of information seems to suggest that The Rebels might have had some significant role last year, and [[Kepler]] knows something about them that they cannot discuss.
+
+---
+
+Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if 
+
+> **7/10 Tone**: DID YOU EVER DECIPHER [[The Logs|THE LOGS]]?  
 > **7/10NPP**: No.  
 > **7/10 Tone**: OKAY.  
 > **The Camera Eye**: Neither did I  
@@ -120,7 +105,9 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 > **7/10 Tone**: THEY ARE NOT FOR YOU.  
 > **The Camera Eye**: I know, I'm asking about you  
 > **7/10 Tone**: WE DON'T HAVE THE PROPER TOOLS OR SKILLS.  
-> **The Camera Eye**: Gotcha  
+> **The Camera Eye**: Gotcha
+
+
 > **The Camera Eye**: Who made the logs anyway?  
 > **7/10 Tone**: THE \[\_\_\_\] BUT I'M GOING TO GUESS THAT YOU'RE NOT GOING TO GET THAT.  
 > **The Camera Eye**: Redacted, okay, got it  
@@ -132,12 +119,7 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 > **7/10 Tone**: I CAN'T SPEAK ABOUT THAT.  
 > **The Camera Eye**: Ok  
 > **ThePortalNinja**: About what?  
-> **The Camera Eye**: The beeps  
-> **ThePortalNinja**: The beeps?  
-> **largefizshgaming**: read the room portal  
 > **7/10 Tone**: THE LOGS.  
-> **largefizshgaming**: i stand corrected  
-> **The Camera Eye**: Oh...different response  
 > **ThePortalNinja**: The logs could get deleted?  
 > **ThePortalNinja**: Aren't they important?  
 > **7/10 Tone**: THEY ARE IMPORTANT TO SOMEONE ELSE.  

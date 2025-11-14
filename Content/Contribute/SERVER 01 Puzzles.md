@@ -35,7 +35,7 @@ Note:
 COMMAND MESSAGE STOPPED FOR T-500
 ```
 
-It is currently not understood what the purpose of this command does other than display this list. However, the following message that [[SYSTEM]] posted in the server before the implementation of the command could be a clue as to it's purpose:
+It is currently not understood what the purpose of this command was other than display this list. However, the following message that [[SYSTEM]] posted in the server before the implementation of the command could be a clue as to it's purpose:
 
 ```
 <OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
@@ -64,25 +64,15 @@ In August 2025, the two audio files below were uploaded by [[SYSTEM]] to the ser
 
 ![[TRANSMITTERopensignal.ogg]]
 
-The first one 
+The first one is 
 
 ---
 ### Miscellanous [[SYSTEM]] messages from the server
 
 ```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
+<PING:?: ERROR in line 8829: [[[{{cxi==cxo||:>y}}find:err in web 6]]deny:count_v :: retry << == >> NSID += NAFH]
+<OUTPRINT>!:(90-78-90-43-29-58-39-30-28-19-48-09"Error:systemtxt2dsc.tnk:: line:33399")
+<OUTPRINT>!:(94-27-30-40-28-29-17-29-29"Error:systemtxt2dsc.tnk:: line:33399")
 ```
 
 ```

@@ -65,6 +65,8 @@ During the STATION_8 livestreams, INDI was tasked with sending out REN signals[^
 
 It is likely that [[TTH]] and REN are rivals, judging by the way the two interact. REN sends [[Long String]] to [[TTH]] terminals as presumably a sort of weapon against them, since it has a very destructive payload that results in their terminals having to be purged.
 
+
+
 Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discord server]] through [[SYSTEM]] and talked with [[The Sleuths]]:
 
 ```discord
@@ -575,6 +577,5 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
   }
 ]
 ```
-
 
 [^1]: REN signals could be a type of radio transmission or communication frequency, however it is never really made clear exactly what they are.

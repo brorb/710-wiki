@@ -122,3 +122,19 @@ Finally, as 10 August 2025 come around all community posts, livestreams, and vid
 
 However the next day these videos were also unlisted from the channel's page.
 
+## 2025 Second Channel Purge
+
+```media-box
+Media: [[purge community post ping.jpg]]
+Alt: 
+Caption: Ping from The Oracle in the The Sleuths about the new community post that went along with the purge
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+On November 14th 2025, a community post was uploaded to the 7/10 Tone channel before it was purged once again. Unlike last time, the "unmarked labels" removal date was scheduled for 31 December:
+
+
+
+But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER"
