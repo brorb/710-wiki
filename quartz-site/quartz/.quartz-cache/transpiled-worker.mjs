@@ -7900,15 +7900,25 @@ var normaliseLinkTarget = /* @__PURE__ */ __name((target) => {
 var formatSnippetText = /* @__PURE__ */ __name((value) => {
   let formatted = value;
   formatted = formatted.replace(OBSIDIAN_EMBED_PATTERN3, "");
-  formatted = formatted.replace(OBSIDIAN_LINK_PATTERN2, (_, target, alias) => {
-    const aliasText = alias?.trim();
-    if (aliasText) {
+  formatted = formatted.replace(OBSIDIAN_LINK_PATTERN2, (...args) => {
+    const groups = args[args.length - 1] ?? {};
+    const fallbackTarget = args[1] ?? "";
+    const target = groups.target ?? fallbackTarget;
+    const aliasRaw = groups.alias ?? "";
+    const aliasText = aliasRaw.trim().replace(/^\|/, "");
+    if (aliasText.length > 0) {
       return aliasText;
     }
-    return normaliseLinkTarget(target);
+    return normaliseLinkTarget(target ?? "");
   });
-  formatted = formatted.replace(MARKDOWN_IMAGE_PATTERN, (_, alt) => (alt ?? "").trim());
-  formatted = formatted.replace(MARKDOWN_LINK_PATTERN, (_, label) => label.trim());
+  formatted = formatted.replace(MARKDOWN_IMAGE_PATTERN, (...args) => {
+    const alt = args[1] ?? "";
+    return alt.trim();
+  });
+  formatted = formatted.replace(MARKDOWN_LINK_PATTERN, (...args) => {
+    const label = args[1] ?? "";
+    return label.trim();
+  });
   formatted = formatted.replace(ANGLED_LINK_PATTERN, (_, url) => url);
   formatted = formatted.replace(INLINE_CODE_PATTERN, (_, code) => code);
   formatted = formatted.replace(STRONG_PATTERN, (_, text) => text);
@@ -11893,15 +11903,17 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
 }
 
 .home-random__dice {
+  --home-random-dice-size: 62px;
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
+  display: grid;
+  place-items: center;
+  width: var(--home-random-dice-size);
+  height: var(--home-random-dice-size);
+  flex: 0 0 auto;
   border-radius: 18px;
   background: rgba(0, 0, 0, 0.2);
   padding: 8px;
+  box-sizing: border-box;
   transition: transform 180ms ease;
 }
 
@@ -11919,6 +11931,7 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
   justify-items: center;
   padding: 6px;
   gap: 4px;
+  box-sizing: border-box;
 }
 
 .home-random__pip {
@@ -12031,16 +12044,18 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
 
 
 .home-random__card {
-  width: 100%;
-  min-width: 0;
-  display: flex;
-}
-
-.home-random-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  transition: transform 180ms ease;
   padding: 1.15rem 1.25rem;
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-surface-overlay) 94%, transparent);
