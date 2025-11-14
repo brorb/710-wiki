@@ -35,7 +35,11 @@ Note:
 COMMAND MESSAGE STOPPED FOR T-500
 ```
 
-It is currently not understood what the purpose of this command does other than display this list.
+It is currently not understood what the purpose of this command does other than display this list. However, the following message that [[SYSTEM]] posted in the server before the implementation of the command could be a clue as to it's purpose:
+
+```
+<OUTPRINT>!:(init-0039, [KWPE+03 WFUS+8])
+```
 
 ---
 ## Ghost error image
@@ -59,3 +63,11 @@ In August 2025, the two audio files below were uploaded by [[SYSTEM]] to the ser
 ![[TRANSMITTERopensignal.ogg]]
 
 The first one 
+
+---
+
+### Miscellanous [[SYSTEM]] messages from the server
+
+```
+
+```
