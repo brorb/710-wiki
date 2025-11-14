@@ -70,19 +70,12 @@ The first one
 ### Miscellanous [[SYSTEM]] messages from the server
 
 ```
-
+<PING:?: ERROR in line 8829: [[[{{cxi==cxo||:>y}}find:err in web 6]]deny:count_v :: retry << == >> NSID += NAFH]
 ```
 
 ```
-
-```
-
-```
-
-```
-
-```
-
+<OUTPRINT>!:(90-78-90-43-29-58-39-30-28-19-48-09"Error:systemtxt2dsc.tnk:: line:33399")
+<OUTPRINT>!:(94-27-30-40-28-29-17-29-29"Error:systemtxt2dsc.tnk:: line:33399")
 ```
 
 ```
