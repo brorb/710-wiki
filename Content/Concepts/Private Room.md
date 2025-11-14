@@ -198,6 +198,58 @@ F2930: I see, what a shame, well it's near\<INSERT LAN CORD EXPUNGED AFTER 0432 
 In this last private room chat, it is confirmed that [[F2930]] has purged their terminal. [[F2930]] mentions that they aren't "going to have that district for that long", implying that they have a changing jurisdictional responsibilities. They try to bribe the [[TTH]] agent with 2000 Credits. This is the first mention of this "Credit" currency. The [[TTH]] agent does not accept the bribe.
 
 ## Chat #11
+
+On 12 October 2025, the following message were posted in [[The Sleuths]] Discord server by [[SYSTEM]]:
+```discord
+[
+  {
+    "id": "1427001239564193956",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "75223__:::{N/A}\"They don't need to know that [___]. They are already still trying to figure out how travis fits into all of this-=",
+    "timestamp": "2025-10-12T18:33:27.913000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427001239564193956"
+  },
+  {
+    "id": "1427001697359888616",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "||||[{Have it your way{{ I'm not going to have this in my repot:::\"''",
+    "timestamp": "2025-10-12T18:35:17.060000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427001697359888616"
+  },
+  {
+    "id": "1427001797817536532",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "<PING>?: [INQUIRY EMPTY]-IDLING for (random, random, random, random), [unpingstatus=true]\n<PING>?: [TEST COMPLETE]-IDLING for (random, random, random, random), [unpingstatus=true]",
+    "timestamp": "2025-10-12T18:35:41.011000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1427001797817536532"
+  }
+]
+```
+
+This is likely a leaked conversation within the Private Room, with two characters talking about [[Travis]] and how some group is trying to figure out how he connects to something.
+
+## Chat #12
 This chat occurred in [[The Sleuths]]' Discord server when a [[TTH]] agent unknowingly connected to it:
 
 ```discord
@@ -1126,7 +1178,7 @@ Right after this conversation ended, a new community post was posted.
 ```
 ^See [[Community Posts]] for more context on this message.
 
-## Chat #12
+## Chat #13
 
 This chat occurred in [[The Sleuths]]' Discord server when an unspecified character (however it is most likely a [[TTH]] worker):
 ```discord
@@ -2009,7 +2061,7 @@ Please remember to keep your connections closed to any connecting terminals, tha
 Davis99238
 ```
 
-## Chat #13
+## Chat #14
 
 This chat occurred between a member of [[REN]] and [[The Sleuths]]:
 ```discord
