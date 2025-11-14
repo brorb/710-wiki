@@ -577,4 +577,5 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
 ```
 
 
+
 [^1]: REN signals could be a type of radio transmission or communication frequency, however it is never really made clear exactly what they are.

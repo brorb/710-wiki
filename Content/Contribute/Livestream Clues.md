@@ -83,14 +83,10 @@ There is a lot of mystery surrounding [[Channel 14]] and it's significance to th
 > **The Camera Eye**: From where? Who?  
 > **SYSTEMterminal8**: DISCONNECTING  
 
-> **7/10 Tone**: IF ANYONE ARCHIVES THIS, JUST KNOW THAT ME AND KEPLER ARE THE ONLY TWO WORKING WITH THE SIGNALS. NOBODY ELSE.  
-> **7/10 Tone**: AND MAYBE ONE OF THE MODERATORS MIGHT ALSO HAVE ACCESS.  
-> **The Camera Eye**: I've been found out...  
-> **The Camera Eye**: INDI how did you know? LOL  
-> **The Camera Eye**: Don't tell me you're in the Discord.  
 > **7/10 Tone**: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
 > **The Camera Eye**: Analytics Tab? You mean the Studio?  
-> **7/10 Tone**: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.  
+> **7/10 Tone**: STUDIO.YOUTUBE.COM AND SOMETHING ELSE AFTER THAT THAT TRAVIS HID FROM ME.
+
 > **The Camera Eye**: Is Travis dead by now?  
 > **The Camera Eye**: Was he infected with the mold?  
 > **7/10 Tone**: I DON'T KNOW.  
