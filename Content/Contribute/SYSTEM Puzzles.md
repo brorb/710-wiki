@@ -124,9 +124,11 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
 This confirms that these codes might be related to [[TTH]] in some way, or at least a branch in relation to [[TTH]]. The name of the ID type appears to be censored, potentially a confidential piece of lore that can be uncovered one day.
 
 ---
-### [[TTH]] and [[REN]] member messages
+### [[TTH]] and [[REN]]
 
-In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed. From the mysterious name [[Norvack]] 
+In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed.
+
+From the mysterious name [[Norvack]]:
 
 ```discord
 [
@@ -147,7 +149,7 @@ In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to 
 ]
 ```
 
-To a possible lead on some branches relating to [[TTH]] or [[REN]]:
+To a possible lead on some branches or other entities/organizations relating to [[TTH]] or [[REN]]:
 
 ```discord
 [
@@ -182,7 +184,47 @@ To a possible lead on some branches relating to [[TTH]] or [[REN]]:
 ]
 ```
 
-There are many possibilities to look into the broader scope of [[TTH]]'s inner workings and the scale of their organization (how many branches are in relation to it, what role certain workers within [[TTH]] and others are like, etc).
+There are many possibilities to look into the broader scope of [[TTH]]'s / [[REN]]'s inner workings and the scale of their organizations (how many branches are in relation to it, what role certain workers within [[TTH]] and others are like, etc). Also, there might be a possibility of finding out the role that [[He]] plays within the lore of 7/10 and His true purpose in its world, since it is hinted that [[He]] might have connections with [[TTH]].
+
+```discord
+[
+  {
+    "id": "1427768443935133749",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "(fixed with GIMP in five secs)",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[Cam TTH logo enhanced fixed.png]]",
+        "alt": "Camera's improvement of Cosmo's image"
+      }
+    ],
+    "timestamp": "2025-10-14T21:22:03.689000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
+  },
+  {
+    "id": "1428847630296809482",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
+    "timestamp": "2025-10-17T20:50:21.768000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
+  }
+]
+```
 
 ---
 ### Riddles
@@ -215,23 +257,3 @@ BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, T
 
 The meaning of this message isn't fully understood, but it appears to be a riddle of some kind, and the fact that it was posted in the tutorial forum could be a possible hint as to what it could be for (perhaps for a future broadcast?).
 
-
-
-```discord
-[
-  {
-    "id": "1428847630296809482",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
-    "timestamp": "2025-10-17T20:50:21.768000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
-  }
-]
-```
