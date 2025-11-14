@@ -6,15 +6,21 @@ tags:
 ```infobox
 Title: The Oracle
 Image: ![[Content/Media/Sleuth Media/Images/oracle_pfp.png]]
-Also known as: ORA_CLE.servertype
+Also known as: ORA_CLE, ORA_CLE.servertype
+Picture by: ThePortalNinja
+Current version: 3.0.1
 ```
 
 
-The Oracle is a Discord bot made by @brorb for [[The Sleuths]] Discord server. It is connected directly to the wiki and is able to use all existing data here to answer any questions. To use it, simply type 
+The Oracle is a Discord bot made by @brorb for [[The Sleuths]]. It is connected directly to the wiki, and can therefore answer any question which the wiki can. It can be interacted with either via the "Ask ORA_CLE" button on the right, or by running
 ```
 !ask <query>
 ```
 either in a channel on the Discord server, or in a DM to the bot.
 
-Like any LLM, the Oracle can be wrong at times, so make sure to not over-rely on it.
-It does not handle image generation or image analysis (yet!).
+The bot is _not free_ to run (it uses Claude 3 Haiku), but all costs are covered by brorb (for now lol), so please use responsibly!
+
+
+
+
+

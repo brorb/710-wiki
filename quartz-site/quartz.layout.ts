@@ -220,5 +220,19 @@ export const defaultListPageLayout: PageLayout = {
       })
     ),
   ],
-  right: [],
+  right: [
+    Component.DesktopOnly(Component.OracleWidget()),
+    Component.DesktopOnly(
+      Component.Graph({
+        localGraph: { removeTags: graphHiddenTags },
+        globalGraph: { removeTags: graphHiddenTags },
+      }),
+    ),
+    Component.DesktopOnly(
+      Component.TableOfContents({
+        defaultCollapsed: true,
+      }),
+    ),
+    Component.DesktopOnly(Component.Backlinks()),
+  ],
 }

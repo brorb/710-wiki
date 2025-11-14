@@ -156,7 +156,6 @@ const recordMutationEntry = (mutation: MutationRecord) => {
 
   diagnostics.mutationLogs = diagnostics.mutationLogs ?? []
   pushLimited(diagnostics.mutationLogs, entry, DIAGNOSTICS_MAX_MUTATIONS)
-  console.debug("[quartz] mutation traced", entry)
 }
 
 const stopMutationTrace = () => {

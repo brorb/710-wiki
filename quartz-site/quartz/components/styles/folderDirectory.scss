@@ -24,7 +24,7 @@
 
 .folder-directory__section-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
@@ -45,6 +45,62 @@
   color: color-mix(in srgb, var(--gray) 70%, transparent);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.folder-directory__section-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.folder-directory__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-tone-primary);
+}
+
+.folder-directory__sort-label {
+  font-weight: 700;
+  font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
+  color: var(--color-accent-deep);
+}
+
+.folder-directory__sort-select {
+  font: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 0.35rem 1.6rem 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-bright) 55%, transparent);
+  background-color: color-mix(in srgb, var(--color-surface-overlay) 92%, var(--color-accent-shadow-light) 8%);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23cdd4ff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.65rem) 50%;
+  background-size: 0.55rem;
+  color: var(--color-tone-primary);
+  min-width: 10.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.folder-directory__sort-select option {
+  color: var(--color-tone-primary);
+  background-color: var(--color-surface-overlay);
+}
+
+.folder-directory__sort-select:focus-visible {
+  outline: none;
+  border-color: var(--color-accent-bright);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-bright) 45%, transparent);
 }
 
 .folder-directory__grid {
@@ -75,10 +131,20 @@
 }
 
 .directory-card:hover,
-.directory-card:focus-visible {
+.directory-card:focus-within {
   transform: translateY(-4px);
   border-color: var(--color-accent-bright);
   box-shadow: 0 24px 58px rgba(0, 0, 0, 0.32), 0 0 0 1px color-mix(in srgb, var(--color-accent-bright) 45%, transparent);
+}
+
+.directory-card__link {
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
 }
 
 .directory-card__body {
@@ -232,7 +298,7 @@
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: color-mix(in srgb, var(--gray) 68%, var(--dark) 32%);
+  color: color-mix(in srgb, var(--dark) 80%, var(--gray) 20%);
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
@@ -244,18 +310,18 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   font-family: "VCR OSD Mono", "Share Tech Mono", "Lucida Console", "Courier New", monospace;
-  color: var(--color-accent-deep);
+  color: var(--color-accent-bright);
 }
 
 .directory-card .directory-card__title {
-  color: var(--color-accent-deep);
+  color: var(--color-accent-bright);
 }
 
 .directory-card__excerpt {
   margin: 0;
   font-size: 0.93rem;
   line-height: 1.5;
-  color: color-mix(in srgb, var(--dark) 80%, var(--gray) 20%);
+  color: #ffffff;
   flex: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -319,6 +385,26 @@
   .folder-directory__grid--subfolders {
     grid-template-columns: 1fr;
     gap: 2.1rem;
+  }
+
+  .folder-directory__section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.95rem;
+  }
+
+  .folder-directory__section-tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .folder-directory__sort {
+    font-size: 0.75rem;
+  }
+
+  .folder-directory__sort-select {
+    width: 100%;
+    max-width: 16rem;
   }
 
   .directory-card {

@@ -1,7 +1,7 @@
 import { QuartzComponentConstructor } from "./types"
 import style from "./styles/linksHeader.scss"
 
-const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
+const navLinks: Array<{ href: string; label: string; iconSlug: string; alignRight?: boolean }> = [
   {
     href: "/",
     label: "Home",
@@ -32,6 +32,12 @@ const navLinks: Array<{ href: string; label: string; iconSlug: string }> = [
     label: "Explorables",
     iconSlug: "explorables",
   },
+  {
+    href: "/Contribute/",
+    label: "Contribute",
+    iconSlug: "contribute",
+    alignRight: true,
+  },
 ]
 
 export default (() => {
@@ -39,12 +45,25 @@ export default (() => {
     return (
       <div id="links-header-container">
         <nav id="links-header">
-          {navLinks.map(({ href, label, iconSlug }) => (
-            <a class="links-header-item" href={href} key={href}>
-              <span class={`links-header-icon links-header-icon--${iconSlug}`} aria-hidden="true" />
-              <span>{label}</span>
-            </a>
-          ))}
+          {navLinks.map(({ href, label, iconSlug, alignRight }) => {
+            const classes = ["links-header-item", `links-header-item--${iconSlug}`]
+            if (alignRight) {
+              classes.push("links-header-item--right")
+            }
+
+            return (
+              <a class={classes.join(" ")} href={href} key={href}>
+                {iconSlug === "contribute" ? (
+                  <span class="links-header-icon links-header-icon--image" aria-hidden="true">
+                    <img src="/static/icons/plus-icon.svg" alt="" />
+                  </span>
+                ) : (
+                  <span class={`links-header-icon links-header-icon--${iconSlug}`} aria-hidden="true" />
+                )}
+                <span>{label}</span>
+              </a>
+            )
+          })}
         </nav>
       </div>
     )

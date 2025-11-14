@@ -20,6 +20,7 @@ import { write } from "./helpers"
 import { i18n, TRANSLATIONS } from "../../i18n"
 import { BuildCtx } from "../../util/ctx"
 import { StaticResources } from "../../util/resources"
+import { VFile } from "vfile"
 interface FolderPageOptions extends FullPageLayout {
   sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number
 }
@@ -66,23 +67,74 @@ function computeFolderInfo(
 ): Record<SimpleSlug, ProcessedContent> {
   // Create default folder descriptions
   const folderInfo: Record<SimpleSlug, ProcessedContent> = Object.fromEntries(
-    [...folders].map((folder) => [
-      folder,
-      defaultProcessedContent({
-        slug: joinSegments(folder, "index") as FullSlug,
-        frontmatter: {
-          title: `${i18n(locale).pages.folderContent.folder}: ${folder}`,
-          tags: [],
-        },
-      }),
-    ]),
+    [...folders].map((folder) => {
+      const folderLabel = folder.split("/").filter(Boolean).at(-1) ?? folder
+      const defaultTitle = folderLabel.length > 0 ? folderLabel : i18n(locale).pages.folderContent.folder
+      return [
+        folder,
+        defaultProcessedContent({
+          slug: joinSegments(folder, "index") as FullSlug,
+          frontmatter: {
+            title: defaultTitle,
+            tags: [],
+          },
+        }),
+      ]
+    }),
   )
+
+  const explicitFolders = new Set<SimpleSlug>()
+  const descriptionContent = new Map<SimpleSlug, ProcessedContent>()
+  const descriptionBasename = "foldercontentdescription"
 
   // Update with actual content if available
   for (const [tree, file] of content) {
-    const slug = stripSlashes(simplifySlug(file.data.slug!)) as SimpleSlug
-    if (folders.has(slug)) {
-      folderInfo[slug] = [tree, file]
+    const originalSlug = file.data.slug
+    if (!originalSlug) {
+      continue
+    }
+    const simplifiedSlug = stripSlashes(simplifySlug(originalSlug)) as SimpleSlug
+    const segments = simplifiedSlug.split("/")
+    const lastSegment = segments.at(-1)?.toLowerCase()
+
+    if (lastSegment === descriptionBasename) {
+      const folderSlug = segments.slice(0, -1).join("/") as SimpleSlug
+      if (folders.has(folderSlug)) {
+        const remappedSlug = joinSegments(folderSlug, "index") as FullSlug
+        const clonedFile = new VFile(file)
+        const existingFrontmatter = (file.data.frontmatter ?? {}) as Record<string, unknown>
+        const folderLabel = folderSlug.split("/").filter(Boolean).at(-1) ?? folderSlug
+        const fallbackTitle = folderLabel.length > 0 ? folderLabel : i18n(locale).pages.folderContent.folder
+        const frontmatterTitle =
+          typeof existingFrontmatter.title === "string"
+            ? existingFrontmatter.title.trim()
+            : ""
+        const resolvedTitle =
+          frontmatterTitle.length > 0 && frontmatterTitle.toLowerCase() !== descriptionBasename
+            ? frontmatterTitle
+            : fallbackTitle
+        clonedFile.data = {
+          ...file.data,
+          slug: remappedSlug,
+          frontmatter: {
+            ...existingFrontmatter,
+            title: resolvedTitle,
+          },
+        }
+        descriptionContent.set(folderSlug, [tree, clonedFile])
+      }
+      continue
+    }
+
+    if (folders.has(simplifiedSlug)) {
+      folderInfo[simplifiedSlug] = [tree, file]
+      explicitFolders.add(simplifiedSlug)
+    }
+  }
+
+  for (const [folder, processed] of descriptionContent) {
+    if (!explicitFolders.has(folder)) {
+      folderInfo[folder] = processed
     }
   }
 

@@ -8455,6 +8455,8 @@ var getInitials = /* @__PURE__ */ __name((title) => {
   return initials.length > 0 ? initials : title.slice(0, 2).toUpperCase();
 }, "getInitials");
 var pluralize2 = /* @__PURE__ */ __name((count, singular, plural) => `${count} ${count === 1 ? singular : plural}`, "pluralize");
+var FOLDER_DESCRIPTION_BASENAME = "foldercontentdescription";
+var isFolderDescriptionSlug = /* @__PURE__ */ __name((slug) => Boolean(slug && slug.split("/").at(-1)?.toLowerCase() === FOLDER_DESCRIPTION_BASENAME), "isFolderDescriptionSlug");
 var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
   const options2 = { ...defaultOptions10, ...opts };
   const FolderContent = /* @__PURE__ */ __name((props) => {
@@ -8492,6 +8494,9 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
     }, "getMostRecentDates");
     const entries = folder.children.map((node) => {
       if (node.data) {
+        if (isFolderDescriptionSlug(node.data.slug)) {
+          return null;
+        }
         return { node, data: node.data };
       }
       if (node.isFolder && options2.showSubfolders) {
@@ -8511,7 +8516,13 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
     const sortedEntries = [...entries].sort((a, b) => sortFn(a.data, b.data));
     const folderEntries = options2.showSubfolders ? sortedEntries.filter((entry) => entry.node.isFolder) : [];
     const pageEntries = sortedEntries.filter((entry) => !entry.node.isFolder || !options2.showSubfolders);
-    const countRenderableChildren = /* @__PURE__ */ __name((node) => node.children.filter((child) => child.data || child.isFolder).length, "countRenderableChildren");
+    const entriesSortSelectId = `folder-sort-${(fileData.slug ?? "entries").replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+    const countRenderableChildren = /* @__PURE__ */ __name((node) => node.children.filter((child) => {
+      if (child.data && isFolderDescriptionSlug(child.data.slug)) {
+        return false;
+      }
+      return child.data || child.isFolder;
+    }).length, "countRenderableChildren");
     const cssClasses = fileData.frontmatter?.cssclasses ?? [];
     const classes = cssClasses.join(" ");
     const content = tree.children.length === 0 ? fileData.description : htmlToJsx(fileData.filePath, tree);
@@ -8535,68 +8546,82 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
             const snippet = getSnippetForPage2(entry.data);
             const hasSnippet = Boolean(snippet);
             const initials = getInitials(title);
-            const previewCandidates = entry.node.children.filter(
-              (child) => child.data && !child.isFolder
-            );
+            const previewCandidates = entry.node.children.filter((child) => {
+              if (!child.data || child.isFolder) {
+                return false;
+              }
+              return !isFolderDescriptionSlug(child.data.slug);
+            });
             const previewPages = previewCandidates.slice(0, 12);
             const totalPreviewCount = previewCandidates.length;
             const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
             const headingId = `directory-card-title-${safeSlugId}`;
-            return /* @__PURE__ */ jsx11(
-              "article",
-              {
-                class: "directory-card directory-card--folder",
-                "data-href": link,
-                role: "link",
-                tabIndex: 0,
-                "aria-labelledby": headingId,
-                children: /* @__PURE__ */ jsx11("div", { class: "directory-card__body directory-card__body--folder", children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__content directory-card__content--folder", children: [
-                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__topline", children: [
-                    /* @__PURE__ */ jsxs5("div", { class: "directory-card__header", children: [
-                      /* @__PURE__ */ jsx11("span", { class: "folder-directory__subfolder-icon", "aria-hidden": "true", children: initials }),
-                      /* @__PURE__ */ jsxs5("div", { children: [
-                        /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
-                        /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
-                          childCount,
-                          updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
-                            " \xB7 ",
-                            "Updated ",
-                            /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
-                          ] })
-                        ] })
+            return /* @__PURE__ */ jsx11("article", { class: "directory-card directory-card--folder", "aria-labelledby": headingId, children: /* @__PURE__ */ jsx11("a", { class: "directory-card__link", href: link, "aria-labelledby": headingId, children: /* @__PURE__ */ jsx11("div", { class: "directory-card__body directory-card__body--folder", children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__content directory-card__content--folder", children: [
+              /* @__PURE__ */ jsxs5("div", { class: "directory-card__topline", children: [
+                /* @__PURE__ */ jsxs5("div", { class: "directory-card__header", children: [
+                  /* @__PURE__ */ jsx11("span", { class: "folder-directory__subfolder-icon", "aria-hidden": "true", children: initials }),
+                  /* @__PURE__ */ jsxs5("div", { children: [
+                    /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
+                    /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
+                      childCount,
+                      updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
+                        " \xB7 ",
+                        "Updated ",
+                        /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
                       ] })
-                    ] }),
-                    previewPages.length > 0 && /* @__PURE__ */ jsxs5(
-                      "div",
-                      {
-                        class: "directory-card__preview-wrap",
-                        "aria-label": `Highlights from ${title}`,
-                        "data-preview-total": totalPreviewCount,
-                        children: [
-                          /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-list", children: previewPages.map((child) => {
-                            const childData = child.data;
-                            const childFrontmatter = childData.frontmatter ?? {};
-                            const childTitle = typeof childFrontmatter.title === "string" && childFrontmatter.title.length > 0 ? childFrontmatter.title : child.displayName ?? childData.slug?.split("/").at(-1) ?? "Untitled";
-                            return /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-card", children: /* @__PURE__ */ jsx11("p", { class: "directory-card__preview-title", children: childTitle }) }, childData.slug ?? childTitle);
-                          }) }),
-                          /* @__PURE__ */ jsx11("span", { class: "directory-card__preview-more", "aria-hidden": "true", hidden: true, children: ". . ." })
-                        ]
-                      }
-                    )
-                  ] }),
-                  hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
-                ] }) })
-              },
-              slug
-            );
+                    ] })
+                  ] })
+                ] }),
+                previewPages.length > 0 && /* @__PURE__ */ jsxs5(
+                  "div",
+                  {
+                    class: "directory-card__preview-wrap",
+                    "aria-label": `Highlights from ${title}`,
+                    "data-preview-total": totalPreviewCount,
+                    children: [
+                      /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-list", children: previewPages.map((child) => {
+                        const childData = child.data;
+                        const childFrontmatter = childData.frontmatter ?? {};
+                        const childTitle = typeof childFrontmatter.title === "string" && childFrontmatter.title.length > 0 ? childFrontmatter.title : child.displayName ?? childData.slug?.split("/").at(-1) ?? "Untitled";
+                        return /* @__PURE__ */ jsx11("div", { class: "directory-card__preview-card", children: /* @__PURE__ */ jsx11("p", { class: "directory-card__preview-title", children: childTitle }) }, childData.slug ?? childTitle);
+                      }) }),
+                      /* @__PURE__ */ jsx11("span", { class: "directory-card__preview-more", "aria-hidden": "true", hidden: true, children: ". . ." })
+                    ]
+                  }
+                )
+              ] }),
+              hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
+            ] }) }) }) }, slug);
           }) })
         ] }),
         pageEntries.length > 0 && /* @__PURE__ */ jsxs5("section", { class: "folder-directory__section", "aria-label": "Entries", children: [
           /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-header", children: [
             /* @__PURE__ */ jsx11("h2", { class: "folder-directory__section-title", children: "Entries" }),
-            /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize2(pageEntries.length, "entry", "entries") })
+            /* @__PURE__ */ jsxs5("div", { class: "folder-directory__section-tools", children: [
+              /* @__PURE__ */ jsx11("span", { class: "folder-directory__section-hint", children: pluralize2(pageEntries.length, "entry", "entries") }),
+              /* @__PURE__ */ jsxs5("label", { class: "folder-directory__sort", htmlFor: entriesSortSelectId, children: [
+                /* @__PURE__ */ jsx11("span", { class: "folder-directory__sort-label", children: "Sort by" }),
+                /* @__PURE__ */ jsxs5(
+                  "select",
+                  {
+                    class: "folder-directory__sort-select",
+                    id: entriesSortSelectId,
+                    defaultValue: "newest",
+                    "data-sort-target": "entries",
+                    children: [
+                      /* @__PURE__ */ jsx11("option", { value: "newest", children: "Date \xB7 Newest" }),
+                      /* @__PURE__ */ jsx11("option", { value: "oldest", children: "Date \xB7 Oldest" }),
+                      /* @__PURE__ */ jsx11("option", { value: "alpha", children: "Title \xB7 A \u2192 Z" }),
+                      /* @__PURE__ */ jsx11("option", { value: "size", children: "Size \xB7 Longest" }),
+                      /* @__PURE__ */ jsx11("option", { value: "shortest", children: "Size \xB7 Shortest" }),
+                      /* @__PURE__ */ jsx11("option", { value: "random", children: "Random" })
+                    ]
+                  }
+                )
+              ] })
+            ] })
           ] }),
-          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid", children: pageEntries.map((entry) => {
+          /* @__PURE__ */ jsx11("div", { class: "folder-directory__grid", "data-sort-grid": "entries", children: pageEntries.map((entry) => {
             const slug = entry.data.slug;
             if (!slug) {
               return null;
@@ -8611,24 +8636,31 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
             const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
             const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-");
             const headingId = `directory-card-title-${safeSlugId}`;
-            return /* @__PURE__ */ jsx11(
+            const normalizedTitle = title.trim().toLocaleLowerCase();
+            const datasetTitle = normalizedTitle.length > 0 ? normalizedTitle : title.toLocaleLowerCase();
+            const pageText = typeof entry.data.text === "string" ? entry.data.text : "";
+            const contentSize = pageText.replace(/\s+/g, " ").trim().length;
+            const updatedTimestamp = updated ? updated.getTime() : 0;
+            return /* @__PURE__ */ jsxs5(
               "article",
               {
                 class: "directory-card",
-                "data-href": link,
-                role: "link",
-                tabIndex: 0,
+                "data-sort-title": datasetTitle,
+                "data-sort-updated": String(updatedTimestamp),
+                "data-sort-size": String(contentSize),
                 "aria-labelledby": headingId,
-                children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__body", children: [
-                  /* @__PURE__ */ jsxs5("div", { class: "directory-card__content", children: [
-                    /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
-                    updated && /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
-                      "Updated ",
-                      /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
+                children: [
+                  /* @__PURE__ */ jsx11("a", { class: "directory-card__link", href: link, "aria-labelledby": headingId, children: /* @__PURE__ */ jsxs5("div", { class: "directory-card__body", children: [
+                    /* @__PURE__ */ jsxs5("div", { class: "directory-card__content", children: [
+                      /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
+                      updated && /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
+                        "Updated ",
+                        /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
+                      ] }),
+                      hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
                     ] }),
-                    hasSnippet && /* @__PURE__ */ jsx11("p", { class: "directory-card__excerpt", children: snippet })
-                  ] }),
-                  image && /* @__PURE__ */ jsx11("div", { class: "directory-card__media", children: /* @__PURE__ */ jsx11("img", { src: image, alt: "", loading: "lazy", decoding: "async", "data-no-zoom": "true" }) }),
+                    image && /* @__PURE__ */ jsx11("div", { class: "directory-card__media", children: /* @__PURE__ */ jsx11("img", { src: image, alt: "", loading: "lazy", decoding: "async", "data-no-zoom": "true" }) })
+                  ] }) }),
                   tags.length > 0 && /* @__PURE__ */ jsx11("ul", { class: "directory-card__tags directory-card__tags--after-media", children: tags.map((tag) => /* @__PURE__ */ jsx11("li", { class: "directory-card__tag", children: /* @__PURE__ */ jsxs5(
                     "a",
                     {
@@ -8640,7 +8672,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
                       ]
                     }
                   ) }, tag)) })
-                ] })
+                ]
               },
               slug
             );
@@ -8651,110 +8683,89 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
   }, "FolderContent");
   FolderContent.afterDOMLoaded = `
     (() => {
-      const selector = '.directory-card[data-href]'
-      let handlersBound = false
+      const SORT_SELECT_SELECTOR = '.folder-directory__sort-select'
+      const sortBindings = new Map()
 
-      const resolveCard = (target) =>
-        target instanceof Element ? target.closest(selector) : null
-
-      const isTagLink = (target) =>
-        target instanceof Element && target.closest('.directory-card__tag-link')
-
-      const navigate = (href, openInNewTab) => {
-        if (!href) {
-          return
+      const parseSortNumber = (value) => {
+        if (typeof value !== 'string' || value.length === 0) {
+          return 0
         }
-
-        const url = new URL(href, window.location.toString())
-        if (openInNewTab) {
-          window.open(url.toString(), '_blank', 'noopener')
-          return
-        }
-
-        if (typeof window.spaNavigate === 'function') {
-          window.spaNavigate(url)
-        } else {
-          window.location.assign(url)
-        }
+        const parsed = Number.parseFloat(value)
+        return Number.isFinite(parsed) ? parsed : 0
       }
 
-      const handleClick = (event) => {
-        if (event.defaultPrevented) {
-          return
-        }
-
-        const card = resolveCard(event.target)
-        if (!card) {
-          return
-        }
-
-        if (isTagLink(event.target)) {
-          return
-        }
-
-        if (window.getSelection && window.getSelection().toString().length > 0) {
-          return
-        }
-
-        if (event.button !== 0) {
-          return
-        }
-
-        event.preventDefault()
-        navigate(card.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      const sortComparators = {
+        newest: (a, b) => parseSortNumber(b.dataset.sortUpdated) - parseSortNumber(a.dataset.sortUpdated),
+        oldest: (a, b) => parseSortNumber(a.dataset.sortUpdated) - parseSortNumber(b.dataset.sortUpdated),
+        alpha: (a, b) => {
+          const titleA = (a.dataset.sortTitle ?? '').toString()
+          const titleB = (b.dataset.sortTitle ?? '').toString()
+          return titleA.localeCompare(titleB)
+        },
+        size: (a, b) => parseSortNumber(b.dataset.sortSize) - parseSortNumber(a.dataset.sortSize),
+        shortest: (a, b) => parseSortNumber(a.dataset.sortSize) - parseSortNumber(b.dataset.sortSize),
       }
 
-      const handleAuxClick = (event) => {
-        if (event.defaultPrevented || event.button !== 1) {
-          return
+      const getSortGridForSelect = (select) => {
+        if (!(select instanceof HTMLSelectElement)) {
+          return null
         }
-
-        const card = resolveCard(event.target)
-        if (!card || isTagLink(event.target)) {
-          return
+        const target = select.getAttribute('data-sort-target')
+        if (!target) {
+          return null
         }
-
-        event.preventDefault()
-        navigate(card.getAttribute('data-href'), true)
+        const section = select.closest('.folder-directory__section')
+        if (!section) {
+          return null
+        }
+        const grid = section.querySelector('.folder-directory__grid[data-sort-grid="' + target + '"]')
+        return grid instanceof HTMLElement ? grid : null
       }
 
-      const handleKeydown = (event) => {
-        if (event.defaultPrevented) {
+      const applySortForSelect = (select) => {
+        const grid = getSortGridForSelect(select)
+        if (!grid) {
           return
         }
 
-        if (event.key !== 'Enter' && event.key !== ' ') {
+        const cards = Array.from(grid.querySelectorAll('.directory-card'))
+        if (cards.length === 0) {
           return
         }
 
-        const target = event.target
-        if (!(target instanceof HTMLElement)) {
-          return
-        }
+        const sortKey = select.value
+        const comparator = sortComparators[sortKey] ?? sortComparators.newest
+        const decorated = cards.map((card, index) => ({ card, index, random: Math.random() }))
+        decorated.sort((a, b) => {
+          if (sortKey === 'random') {
+            const randomDiff = a.random - b.random
+            return randomDiff !== 0 ? randomDiff : a.index - b.index
+          }
 
-        if (!target.matches(selector)) {
-          return
-        }
-
-        event.preventDefault()
-        navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+          const result = comparator(a.card, b.card)
+          return result !== 0 ? result : a.index - b.index
+        })
+        decorated.forEach(({ card }) => grid.appendChild(card))
       }
 
-      const bindHandlers = () => {
-        if (handlersBound) {
-          return
-        }
+      const cleanupSortControls = () => {
+        sortBindings.forEach((handler, element) => {
+          element.removeEventListener('change', handler)
+        })
+        sortBindings.clear()
+      }
 
-        document.addEventListener('click', handleClick)
-        document.addEventListener('auxclick', handleAuxClick)
-        document.addEventListener('keydown', handleKeydown)
-        handlersBound = true
-
-        window.addCleanup?.(() => {
-          document.removeEventListener('click', handleClick)
-          document.removeEventListener('auxclick', handleAuxClick)
-          document.removeEventListener('keydown', handleKeydown)
-          handlersBound = false
+      const bindSortControls = () => {
+        cleanupSortControls()
+        const selects = document.querySelectorAll(SORT_SELECT_SELECTOR)
+        selects.forEach((element) => {
+          if (!(element instanceof HTMLSelectElement)) {
+            return
+          }
+          const handler = () => applySortForSelect(element)
+          element.addEventListener('change', handler)
+          sortBindings.set(element, handler)
+          applySortForSelect(element)
         })
       }
 
@@ -8916,7 +8927,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
       }
 
       const handleNav = () => {
-        bindHandlers()
+        bindSortControls()
         setupPreviewLayouts()
       }
 
@@ -8924,6 +8935,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
       handleNav()
 
       window.addCleanup?.(() => {
+        cleanupSortControls()
         cleanupPreviews()
         document.removeEventListener('nav', handleNav)
       })
@@ -10760,6 +10772,28 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
       );
     }
     const options2 = opts.options;
+    const resolveUtterancesIssueTerm = /* @__PURE__ */ __name(() => {
+      if (typeof options2.issueTerm === "string") {
+        const trimmed = options2.issueTerm.trim();
+        if (trimmed.length > 0) {
+          return trimmed;
+        }
+      }
+      const slugValue = typeof fileData.slug === "string" ? fileData.slug.trim() : "";
+      if (slugValue.length > 0) {
+        return `slug:${slugValue}`;
+      }
+      const pathValue = typeof fileData.filePath === "string" ? fileData.filePath.trim() : "";
+      if (pathValue.length > 0) {
+        return `path:${pathValue}`;
+      }
+      const titleValue = typeof fileData.frontmatter?.title === "string" ? fileData.frontmatter.title.trim() : "";
+      if (titleValue.length > 0) {
+        return `title:${titleValue}`;
+      }
+      return "slug:index";
+    }, "resolveUtterancesIssueTerm");
+    const utterancesIssueTerm = resolveUtterancesIssueTerm();
     return communityShell(
       /* @__PURE__ */ jsxs21("div", { class: "comments-wrapper", "data-provider": "utterances", children: [
         /* @__PURE__ */ jsx32(
@@ -10768,7 +10802,7 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
             class: "comments utterances",
             "data-provider": "utterances",
             "data-repo": options2.repo,
-            "data-issue-term": options2.issueTerm ?? "pathname",
+            "data-issue-term": utterancesIssueTerm,
             "data-label": options2.label ?? "",
             "data-theme": options2.theme ?? "github-dark"
           }
@@ -10831,14 +10865,26 @@ var navLinks = [
     href: "/Explorables/",
     label: "Explorables",
     iconSlug: "explorables"
+  },
+  {
+    href: "/Contribute/",
+    label: "Contribute",
+    iconSlug: "contribute",
+    alignRight: true
   }
 ];
 var LinksHeader_default = /* @__PURE__ */ __name((() => {
   const LinksHeader = /* @__PURE__ */ __name(() => {
-    return /* @__PURE__ */ jsx34("div", { id: "links-header-container", children: /* @__PURE__ */ jsx34("nav", { id: "links-header", children: navLinks.map(({ href, label, iconSlug }) => /* @__PURE__ */ jsxs22("a", { class: "links-header-item", href, children: [
-      /* @__PURE__ */ jsx34("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
-      /* @__PURE__ */ jsx34("span", { children: label })
-    ] }, href)) }) });
+    return /* @__PURE__ */ jsx34("div", { id: "links-header-container", children: /* @__PURE__ */ jsx34("nav", { id: "links-header", children: navLinks.map(({ href, label, iconSlug, alignRight }) => {
+      const classes = ["links-header-item", `links-header-item--${iconSlug}`];
+      if (alignRight) {
+        classes.push("links-header-item--right");
+      }
+      return /* @__PURE__ */ jsxs22("a", { class: classes.join(" "), href, children: [
+        iconSlug === "contribute" ? /* @__PURE__ */ jsx34("span", { class: "links-header-icon links-header-icon--image", "aria-hidden": "true", children: /* @__PURE__ */ jsx34("img", { src: "/static/icons/plus-icon.svg", alt: "" }) }) : /* @__PURE__ */ jsx34("span", { class: `links-header-icon links-header-icon--${iconSlug}`, "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx34("span", { children: label })
+      ] }, href);
+    }) }) });
   }, "LinksHeader");
   LinksHeader.css = linksHeader_default;
   return LinksHeader;
@@ -12674,7 +12720,21 @@ var defaultListPageLayout = {
       })
     )
   ],
-  right: []
+  right: [
+    DesktopOnly_default(OracleWidget_default()),
+    DesktopOnly_default(
+      Graph_default({
+        localGraph: { removeTags: graphHiddenTags },
+        globalGraph: { removeTags: graphHiddenTags }
+      })
+    ),
+    DesktopOnly_default(
+      TableOfContents_default({
+        defaultCollapsed: true
+      })
+    ),
+    DesktopOnly_default(Backlinks_default())
+  ]
 };
 
 // quartz/plugins/emitters/contentPage.tsx
@@ -12906,6 +12966,7 @@ var TagPage = /* @__PURE__ */ __name((userOpts) => {
 
 // quartz/plugins/emitters/folderPage.tsx
 import path8 from "path";
+import { VFile as VFile2 } from "vfile";
 async function* processFolderInfo(ctx, folderInfo, allFiles, opts, resources) {
   for (const [folder, folderContent] of Object.entries(folderInfo)) {
     const slug = joinSegments(folder, "index");
@@ -12933,21 +12994,62 @@ async function* processFolderInfo(ctx, folderInfo, allFiles, opts, resources) {
 __name(processFolderInfo, "processFolderInfo");
 function computeFolderInfo(folders, content, locale) {
   const folderInfo = Object.fromEntries(
-    [...folders].map((folder) => [
-      folder,
-      defaultProcessedContent({
-        slug: joinSegments(folder, "index"),
-        frontmatter: {
-          title: `${i18n(locale).pages.folderContent.folder}: ${folder}`,
-          tags: []
-        }
-      })
-    ])
+    [...folders].map((folder) => {
+      const folderLabel = folder.split("/").filter(Boolean).at(-1) ?? folder;
+      const defaultTitle = folderLabel.length > 0 ? folderLabel : i18n(locale).pages.folderContent.folder;
+      return [
+        folder,
+        defaultProcessedContent({
+          slug: joinSegments(folder, "index"),
+          frontmatter: {
+            title: defaultTitle,
+            tags: []
+          }
+        })
+      ];
+    })
   );
+  const explicitFolders = /* @__PURE__ */ new Set();
+  const descriptionContent = /* @__PURE__ */ new Map();
+  const descriptionBasename = "foldercontentdescription";
   for (const [tree, file] of content) {
-    const slug = stripSlashes(simplifySlug(file.data.slug));
-    if (folders.has(slug)) {
-      folderInfo[slug] = [tree, file];
+    const originalSlug = file.data.slug;
+    if (!originalSlug) {
+      continue;
+    }
+    const simplifiedSlug = stripSlashes(simplifySlug(originalSlug));
+    const segments = simplifiedSlug.split("/");
+    const lastSegment = segments.at(-1)?.toLowerCase();
+    if (lastSegment === descriptionBasename) {
+      const folderSlug = segments.slice(0, -1).join("/");
+      if (folders.has(folderSlug)) {
+        const remappedSlug = joinSegments(folderSlug, "index");
+        const clonedFile = new VFile2(file);
+        const existingFrontmatter = file.data.frontmatter ?? {};
+        const folderLabel = folderSlug.split("/").filter(Boolean).at(-1) ?? folderSlug;
+        const fallbackTitle = folderLabel.length > 0 ? folderLabel : i18n(locale).pages.folderContent.folder;
+        const frontmatterTitle = typeof existingFrontmatter.title === "string" ? existingFrontmatter.title.trim() : "";
+        const resolvedTitle = frontmatterTitle.length > 0 && frontmatterTitle.toLowerCase() !== descriptionBasename ? frontmatterTitle : fallbackTitle;
+        clonedFile.data = {
+          ...file.data,
+          slug: remappedSlug,
+          frontmatter: {
+            ...existingFrontmatter,
+            title: resolvedTitle
+          }
+        };
+        descriptionContent.set(folderSlug, [tree, clonedFile]);
+      }
+      continue;
+    }
+    if (folders.has(simplifiedSlug)) {
+      folderInfo[simplifiedSlug] = [tree, file];
+      explicitFolders.add(simplifiedSlug);
+    }
+  }
+  for (const [folder, processed] of descriptionContent) {
+    if (!explicitFolders.has(folder)) {
+      folderInfo[folder] = processed;
     }
   }
   return folderInfo;

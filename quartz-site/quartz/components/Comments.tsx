@@ -112,13 +112,43 @@ export default ((opts: Options) => {
     }
 
     const options = opts.options
+    const resolveUtterancesIssueTerm = () => {
+      if (typeof options.issueTerm === "string") {
+        const trimmed = options.issueTerm.trim()
+        if (trimmed.length > 0) {
+          return trimmed
+        }
+      }
+
+      const slugValue = typeof fileData.slug === "string" ? fileData.slug.trim() : ""
+      if (slugValue.length > 0) {
+        return `slug:${slugValue}`
+      }
+
+      const pathValue = typeof fileData.filePath === "string" ? fileData.filePath.trim() : ""
+      if (pathValue.length > 0) {
+        return `path:${pathValue}`
+      }
+
+      const titleValue =
+        typeof fileData.frontmatter?.title === "string"
+          ? fileData.frontmatter.title.trim()
+          : ""
+      if (titleValue.length > 0) {
+        return `title:${titleValue}`
+      }
+
+      return "slug:index"
+    }
+
+    const utterancesIssueTerm = resolveUtterancesIssueTerm()
     return communityShell(
       <div class="comments-wrapper" data-provider="utterances">
         <div
           class="comments utterances"
           data-provider="utterances"
           data-repo={options.repo}
-          data-issue-term={options.issueTerm ?? "pathname"}
+          data-issue-term={utterancesIssueTerm}
           data-label={options.label ?? ""}
           data-theme={options.theme ?? "github-dark"}
         ></div>

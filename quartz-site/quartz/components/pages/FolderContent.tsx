@@ -137,6 +137,10 @@ const getInitials = (title: string): string => {
 const pluralize = (count: number, singular: string, plural: string): string =>
   `${count} ${count === 1 ? singular : plural}`
 
+const FOLDER_DESCRIPTION_BASENAME = "foldercontentdescription"
+const isFolderDescriptionSlug = (slug?: string | null): boolean =>
+  Boolean(slug && slug.split("/").at(-1)?.toLowerCase() === FOLDER_DESCRIPTION_BASENAME)
+
 export default ((opts?: Partial<FolderContentOptions>) => {
   const options: FolderContentOptions = { ...defaultOptions, ...opts }
 
@@ -186,6 +190,9 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       folder.children
         .map((node) => {
           if (node.data) {
+            if (isFolderDescriptionSlug(node.data.slug as string | undefined)) {
+              return null
+            }
             return { node, data: node.data }
           }
 
@@ -211,9 +218,15 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       ? sortedEntries.filter((entry) => entry.node.isFolder)
       : []
     const pageEntries = sortedEntries.filter((entry) => !entry.node.isFolder || !options.showSubfolders)
+    const entriesSortSelectId = `folder-sort-${(fileData.slug ?? "entries").replace(/[^a-zA-Z0-9_-]/g, "-")}`
 
     const countRenderableChildren = (node: FolderNode): number =>
-      node.children.filter((child) => child.data || child.isFolder).length
+      node.children.filter((child) => {
+        if (child.data && isFolderDescriptionSlug(child.data.slug as string | undefined)) {
+          return false
+        }
+        return child.data || child.isFolder
+      }).length
 
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
     const classes = cssClasses.join(" ")
@@ -253,25 +266,22 @@ export default ((opts?: Partial<FolderContentOptions>) => {
                   const snippet = getSnippetForPage(entry.data)
                   const hasSnippet = Boolean(snippet)
                   const initials = getInitials(title)
-                  const previewCandidates = entry.node.children.filter(
-                    (child) => child.data && !child.isFolder,
-                  )
+                  const previewCandidates = entry.node.children.filter((child) => {
+                    if (!child.data || child.isFolder) {
+                      return false
+                    }
+                    return !isFolderDescriptionSlug(child.data.slug as string | undefined)
+                  })
                   const previewPages = previewCandidates.slice(0, 12)
                   const totalPreviewCount = previewCandidates.length
                   const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-")
                   const headingId = `directory-card-title-${safeSlugId}`
 
                   return (
-                    <article
-                      class="directory-card directory-card--folder"
-                      key={slug}
-                      data-href={link}
-                      role="link"
-                      tabIndex={0}
-                      aria-labelledby={headingId}
-                    >
-                      <div class="directory-card__body directory-card__body--folder">
-                        <div class="directory-card__content directory-card__content--folder">
+                    <article class="directory-card directory-card--folder" key={slug} aria-labelledby={headingId}>
+                      <a class="directory-card__link" href={link} aria-labelledby={headingId}>
+                        <div class="directory-card__body directory-card__body--folder">
+                          <div class="directory-card__content directory-card__content--folder">
                           <div class="directory-card__topline">
                             <div class="directory-card__header">
                               <span class="folder-directory__subfolder-icon" aria-hidden="true">
@@ -322,9 +332,10 @@ export default ((opts?: Partial<FolderContentOptions>) => {
                               </div>
                             )}
                           </div>
-                          {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
+                            {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     </article>
                   )
                 })}
@@ -336,11 +347,29 @@ export default ((opts?: Partial<FolderContentOptions>) => {
             <section class="folder-directory__section" aria-label="Entries">
               <div class="folder-directory__section-header">
                 <h2 class="folder-directory__section-title">Entries</h2>
-                <span class="folder-directory__section-hint">
-                  {pluralize(pageEntries.length, "entry", "entries")}
-                </span>
+                <div class="folder-directory__section-tools">
+                  <span class="folder-directory__section-hint">
+                    {pluralize(pageEntries.length, "entry", "entries")}
+                  </span>
+                  <label class="folder-directory__sort" htmlFor={entriesSortSelectId}>
+                    <span class="folder-directory__sort-label">Sort by</span>
+                    <select
+                      class="folder-directory__sort-select"
+                      id={entriesSortSelectId}
+                      defaultValue="newest"
+                      data-sort-target="entries"
+                    >
+                      <option value="newest">Date · Newest</option>
+                      <option value="oldest">Date · Oldest</option>
+                      <option value="alpha">Title · A → Z</option>
+                      <option value="size">Size · Longest</option>
+                      <option value="shortest">Size · Shortest</option>
+                      <option value="random">Random</option>
+                    </select>
+                  </label>
+                </div>
               </div>
-              <div class="folder-directory__grid">
+              <div class="folder-directory__grid" data-sort-grid="entries">
                 {pageEntries.map((entry) => {
                   const slug = entry.data.slug as FullSlug | undefined
                   if (!slug) {
@@ -364,48 +393,55 @@ export default ((opts?: Partial<FolderContentOptions>) => {
                     : []
                   const safeSlugId = slug.replace(/[^a-zA-Z0-9_-]/g, "-")
                   const headingId = `directory-card-title-${safeSlugId}`
+                  const normalizedTitle = title.trim().toLocaleLowerCase()
+                  const datasetTitle = normalizedTitle.length > 0 ? normalizedTitle : title.toLocaleLowerCase()
+                  const pageText = typeof entry.data.text === "string" ? entry.data.text : ""
+                  const contentSize = pageText.replace(/\s+/g, " ").trim().length
+                  const updatedTimestamp = updated ? updated.getTime() : 0
 
                   return (
                     <article
                       class="directory-card"
                       key={slug}
-                      data-href={link}
-                      role="link"
-                      tabIndex={0}
+                      data-sort-title={datasetTitle}
+                      data-sort-updated={String(updatedTimestamp)}
+                      data-sort-size={String(contentSize)}
                       aria-labelledby={headingId}
                     >
-                      <div class="directory-card__body">
-                        <div class="directory-card__content">
-                          <h3 class="directory-card__title" id={headingId}>
-                            {title}
-                          </h3>
-                          {updated && (
-                            <p class="directory-card__meta">
-                              Updated <DateDisplay date={updated} locale={cfg.locale} />
-                            </p>
-                          )}
-                          {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
-                        </div>
-                        {image && (
-                          <div class="directory-card__media">
-                            <img src={image} alt="" loading="lazy" decoding="async" data-no-zoom="true" />
+                      <a class="directory-card__link" href={link} aria-labelledby={headingId}>
+                        <div class="directory-card__body">
+                          <div class="directory-card__content">
+                            <h3 class="directory-card__title" id={headingId}>
+                              {title}
+                            </h3>
+                            {updated && (
+                              <p class="directory-card__meta">
+                                Updated <DateDisplay date={updated} locale={cfg.locale} />
+                              </p>
+                            )}
+                            {hasSnippet && <p class="directory-card__excerpt">{snippet}</p>}
                           </div>
-                        )}
-                        {tags.length > 0 && (
-                          <ul class="directory-card__tags directory-card__tags--after-media">
-                            {tags.map((tag) => (
-                              <li class="directory-card__tag" key={tag}>
-                                <a
-                                  class="directory-card__tag-link"
-                                  href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                                >
-                                  #{tag}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                          {image && (
+                            <div class="directory-card__media">
+                              <img src={image} alt="" loading="lazy" decoding="async" data-no-zoom="true" />
+                            </div>
+                          )}
+                        </div>
+                      </a>
+                      {tags.length > 0 && (
+                        <ul class="directory-card__tags directory-card__tags--after-media">
+                          {tags.map((tag) => (
+                            <li class="directory-card__tag" key={tag}>
+                              <a
+                                class="directory-card__tag-link"
+                                href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
+                              >
+                                #{tag}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </article>
                   )
                 })}
@@ -419,110 +455,89 @@ export default ((opts?: Partial<FolderContentOptions>) => {
 
   FolderContent.afterDOMLoaded = `
     (() => {
-      const selector = '.directory-card[data-href]'
-      let handlersBound = false
+      const SORT_SELECT_SELECTOR = '.folder-directory__sort-select'
+      const sortBindings = new Map()
 
-      const resolveCard = (target) =>
-        target instanceof Element ? target.closest(selector) : null
-
-      const isTagLink = (target) =>
-        target instanceof Element && target.closest('.directory-card__tag-link')
-
-      const navigate = (href, openInNewTab) => {
-        if (!href) {
-          return
+      const parseSortNumber = (value) => {
+        if (typeof value !== 'string' || value.length === 0) {
+          return 0
         }
-
-        const url = new URL(href, window.location.toString())
-        if (openInNewTab) {
-          window.open(url.toString(), '_blank', 'noopener')
-          return
-        }
-
-        if (typeof window.spaNavigate === 'function') {
-          window.spaNavigate(url)
-        } else {
-          window.location.assign(url)
-        }
+        const parsed = Number.parseFloat(value)
+        return Number.isFinite(parsed) ? parsed : 0
       }
 
-      const handleClick = (event) => {
-        if (event.defaultPrevented) {
-          return
-        }
-
-        const card = resolveCard(event.target)
-        if (!card) {
-          return
-        }
-
-        if (isTagLink(event.target)) {
-          return
-        }
-
-        if (window.getSelection && window.getSelection().toString().length > 0) {
-          return
-        }
-
-        if (event.button !== 0) {
-          return
-        }
-
-        event.preventDefault()
-        navigate(card.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+      const sortComparators = {
+        newest: (a, b) => parseSortNumber(b.dataset.sortUpdated) - parseSortNumber(a.dataset.sortUpdated),
+        oldest: (a, b) => parseSortNumber(a.dataset.sortUpdated) - parseSortNumber(b.dataset.sortUpdated),
+        alpha: (a, b) => {
+          const titleA = (a.dataset.sortTitle ?? '').toString()
+          const titleB = (b.dataset.sortTitle ?? '').toString()
+          return titleA.localeCompare(titleB)
+        },
+        size: (a, b) => parseSortNumber(b.dataset.sortSize) - parseSortNumber(a.dataset.sortSize),
+        shortest: (a, b) => parseSortNumber(a.dataset.sortSize) - parseSortNumber(b.dataset.sortSize),
       }
 
-      const handleAuxClick = (event) => {
-        if (event.defaultPrevented || event.button !== 1) {
-          return
+      const getSortGridForSelect = (select) => {
+        if (!(select instanceof HTMLSelectElement)) {
+          return null
         }
-
-        const card = resolveCard(event.target)
-        if (!card || isTagLink(event.target)) {
-          return
+        const target = select.getAttribute('data-sort-target')
+        if (!target) {
+          return null
         }
-
-        event.preventDefault()
-        navigate(card.getAttribute('data-href'), true)
+        const section = select.closest('.folder-directory__section')
+        if (!section) {
+          return null
+        }
+        const grid = section.querySelector('.folder-directory__grid[data-sort-grid="' + target + '"]')
+        return grid instanceof HTMLElement ? grid : null
       }
 
-      const handleKeydown = (event) => {
-        if (event.defaultPrevented) {
+      const applySortForSelect = (select) => {
+        const grid = getSortGridForSelect(select)
+        if (!grid) {
           return
         }
 
-        if (event.key !== 'Enter' && event.key !== ' ') {
+        const cards = Array.from(grid.querySelectorAll('.directory-card'))
+        if (cards.length === 0) {
           return
         }
 
-        const target = event.target
-        if (!(target instanceof HTMLElement)) {
-          return
-        }
+        const sortKey = select.value
+        const comparator = sortComparators[sortKey] ?? sortComparators.newest
+        const decorated = cards.map((card, index) => ({ card, index, random: Math.random() }))
+        decorated.sort((a, b) => {
+          if (sortKey === 'random') {
+            const randomDiff = a.random - b.random
+            return randomDiff !== 0 ? randomDiff : a.index - b.index
+          }
 
-        if (!target.matches(selector)) {
-          return
-        }
-
-        event.preventDefault()
-        navigate(target.getAttribute('data-href'), event.metaKey || event.ctrlKey)
+          const result = comparator(a.card, b.card)
+          return result !== 0 ? result : a.index - b.index
+        })
+        decorated.forEach(({ card }) => grid.appendChild(card))
       }
 
-      const bindHandlers = () => {
-        if (handlersBound) {
-          return
-        }
+      const cleanupSortControls = () => {
+        sortBindings.forEach((handler, element) => {
+          element.removeEventListener('change', handler)
+        })
+        sortBindings.clear()
+      }
 
-        document.addEventListener('click', handleClick)
-        document.addEventListener('auxclick', handleAuxClick)
-        document.addEventListener('keydown', handleKeydown)
-        handlersBound = true
-
-        window.addCleanup?.(() => {
-          document.removeEventListener('click', handleClick)
-          document.removeEventListener('auxclick', handleAuxClick)
-          document.removeEventListener('keydown', handleKeydown)
-          handlersBound = false
+      const bindSortControls = () => {
+        cleanupSortControls()
+        const selects = document.querySelectorAll(SORT_SELECT_SELECTOR)
+        selects.forEach((element) => {
+          if (!(element instanceof HTMLSelectElement)) {
+            return
+          }
+          const handler = () => applySortForSelect(element)
+          element.addEventListener('change', handler)
+          sortBindings.set(element, handler)
+          applySortForSelect(element)
         })
       }
 
@@ -684,7 +699,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       }
 
       const handleNav = () => {
-        bindHandlers()
+        bindSortControls()
         setupPreviewLayouts()
       }
 
@@ -692,6 +707,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       handleNav()
 
       window.addCleanup?.(() => {
+        cleanupSortControls()
         cleanupPreviews()
         document.removeEventListener('nav', handleNav)
       })
