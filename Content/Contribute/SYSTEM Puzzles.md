@@ -17,7 +17,27 @@ It is unknown what exactly is making the sound in the audio, but it sounds like 
 
 **walking.mp3**
 ![[walking.mp3]]
-^This audio file was uploaded on 
+^This audio file was uploaded on 6 October 2025 in the \#media channel in the server. The purpose of this audio isn't fully known, but it could be referring to a set of steps (hence the title).
+
+This audio file was succeeded from the following message:
+```discord
+[
+  {
+    "id": "1424743937200885792",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "MI-drive #14: allowing access to 0x004782df8",
+    "timestamp": "2025-10-06T13:03:45.091000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424743937200885792"
+  }
+]
+```
 
 ---
 ### DM Codes
