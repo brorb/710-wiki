@@ -417,15 +417,17 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
 }
 
 .home-random__dice {
+  --home-random-dice-size: 62px;
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
+  display: grid;
+  place-items: center;
+  width: var(--home-random-dice-size);
+  height: var(--home-random-dice-size);
+  flex: 0 0 auto;
   border-radius: 18px;
   background: rgba(0, 0, 0, 0.2);
   padding: 8px;
+  box-sizing: border-box;
   transition: transform 180ms ease;
 }
 
@@ -443,6 +445,7 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
   justify-items: center;
   padding: 6px;
   gap: 4px;
+  box-sizing: border-box;
 }
 
 .home-random__pip {
@@ -555,16 +558,18 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
 
 
 .home-random__card {
-  width: 100%;
-  min-width: 0;
-  display: flex;
-}
-
-.home-random-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  transition: transform 180ms ease;
   padding: 1.15rem 1.25rem;
   border-radius: 20px;
   background: color-mix(in srgb, var(--color-surface-overlay) 94%, transparent);
