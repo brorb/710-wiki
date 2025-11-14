@@ -53,7 +53,7 @@ According to [[SYSTEM]], this is a "ghost error" image. However, this could pote
 <OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
 ```
 
-Other hints include the following explanations from [[SYSTEM]]
+Other hints include explanations from [[SYSTEM]] that the purpose of the message was meant for a \<CALL> command.
 
 ---
 ## Original sources behind the audio file sounds 
@@ -67,7 +67,6 @@ In August 2025, the two audio files below were uploaded by [[SYSTEM]] to the ser
 The first one 
 
 ---
-
 ### Miscellanous [[SYSTEM]] messages from the server
 
 ```
@@ -87,5 +86,10 @@ The first one
 ```
 
 ```
-
+<OUTPRINT>!:(I found out where Travis hid everything!)
+<OUTPRINT>!:(Everything, well not everything everything, but the important things is what he hid.)
+<OUTPRINT>!:(He everything the storages and the transmitter in a cargo container.)  
+<OUTPRINT>!:(Sorry, hid*)
+<OUTPRINT>!:(Somewhere in the west, but I can't tell you where exactly.)
+<OUTPRINT>!:(No, west _ _ _ _ _ _ _ _ _ _ _. oops.)
 ```
