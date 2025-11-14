@@ -12648,7 +12648,7 @@ var defaultContentPageLayout = {
         startCollapsed: true,
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "guides" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     ),
@@ -12660,7 +12660,7 @@ var defaultContentPageLayout = {
         startCollapsed: false,
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "guides" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     )
@@ -12703,7 +12703,7 @@ var defaultListPageLayout = {
         headerSlot: Search_default({ variant: "inline" }),
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "guides" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     ),
@@ -12713,7 +12713,7 @@ var defaultListPageLayout = {
         folderDefaultState: "open",
         filterFn: /* @__PURE__ */ __name((node) => {
           const segment = typeof node.slugSegment === "string" ? node.slugSegment.toLowerCase() : "";
-          return segment !== "templates" && segment !== "canvases" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
+          return segment !== "templates" && segment !== "canvases" && segment !== "guides" && segment !== "puzzles" && segment !== "media" && segment !== "timelines";
         }, "filterFn")
       })
     )

@@ -127,6 +127,7 @@ export const defaultContentPageLayout: PageLayout = {
           return (
             segment !== "templates" &&
             segment !== "canvases" &&
+            segment !== "guides" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
@@ -145,6 +146,7 @@ export const defaultContentPageLayout: PageLayout = {
           return (
             segment !== "templates" &&
             segment !== "canvases" &&
+            segment !== "guides" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
@@ -198,6 +200,7 @@ export const defaultListPageLayout: PageLayout = {
           return (
             segment !== "templates" &&
             segment !== "canvases" &&
+            segment !== "guides" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
@@ -214,6 +217,7 @@ export const defaultListPageLayout: PageLayout = {
           return (
             segment !== "templates" &&
             segment !== "canvases" &&
+            segment !== "guides" &&
             segment !== "puzzles" &&
             segment !== "media" &&
             segment !== "timelines"
