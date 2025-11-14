@@ -56,3 +56,4 @@ On 12 October 2025, the following conversation was posted by [[SYSTEM]] in [[The
 ]
 ```
 
+This seems to confirm that [[Travis]] has an underlying connection to the lore, which makes sense due to the above reasons as to what implied role he plays in the 7/10 universe.
