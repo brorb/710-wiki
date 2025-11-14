@@ -20,7 +20,14 @@ either in a channel on the Discord server, or in a DM to the bot.
 
 The bot is _not free_ to run (it uses Claude 3 Haiku), but all costs are covered by brorb (for now lol), so please use responsibly!
 
-
-
+```media-box
+Title: Oracle Flow Chart
+Image: ![[Content/Media/Sleuth-Media/Images/oracle_system_flow.png]]
+Alt: Oracle flow chart
+Caption: For those interested, this is the flow chart of the logic behind the Oracle
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 

@@ -22,18 +22,10 @@ type OracleWebPayload = {
   answer?: string
   contextSnippets?: OracleWebSnippet[]
   sources?: OracleWebSource[]
-  followUpQuestions?: string[]
   callToAction?: string
   disclaimers?: string[]
 }
-
-type FollowUpContext = {
-  source: "suggestion"
-  index: number
-}
-
 type MessageRenderOptions = {
-  onFollowUpSelect?: (question: string, context: FollowUpContext) => void
   getConversationId?: () => string | null
 }
 
@@ -273,11 +265,6 @@ const parseWebPayload = (value: unknown): OracleWebPayload | undefined => {
   payload.answer = pickString(raw.answer, raw.body, raw.summary)
   payload.callToAction = pickString(raw.callToAction, raw.cta)
 
-  const followUps = toTrimmedStringArray(raw.followUpQuestions ?? raw.followUps)
-  if (followUps) {
-    payload.followUpQuestions = followUps
-  }
-
   const snippetSource = Array.isArray(raw.contextSnippets) ? raw.contextSnippets : raw.snippets
   if (Array.isArray(snippetSource)) {
     const snippets = snippetSource
@@ -380,9 +367,6 @@ const serialiseWebPayload = (payload: OracleWebPayload | undefined): OracleWebPa
   }
   if (payload.callToAction) {
     copy.callToAction = payload.callToAction
-  }
-  if (payload.followUpQuestions?.length) {
-    copy.followUpQuestions = [...payload.followUpQuestions]
   }
   if (payload.disclaimers?.length) {
     copy.disclaimers = [...payload.disclaimers]
@@ -1136,36 +1120,6 @@ const renderAssistantMessage = (
     bubble.appendChild(createHelperElement("p", "oracle-chat__cta", payload.callToAction))
   }
 
-  if (payload?.followUpQuestions?.length) {
-    const followUpsWrapper = document.createElement("div")
-    followUpsWrapper.className = "oracle-chat__followups"
-    followUpsWrapper.appendChild(createHelperElement("p", "oracle-chat__followups-label", "Suggested follow-ups"))
-
-    const buttons = document.createElement("div")
-    buttons.className = "oracle-chat__followup-buttons"
-
-    payload.followUpQuestions.forEach((question, index) => {
-      const trimmed = toTrimmedString(question)
-      if (!trimmed) {
-        return
-      }
-      const button = document.createElement("button")
-      button.type = "button"
-      button.className = "oracle-chat__followup-button"
-      button.textContent = trimmed
-      button.addEventListener("click", () => {
-        options?.onFollowUpSelect?.(trimmed, { source: "suggestion", index })
-      })
-      buttons.appendChild(button)
-    })
-
-    if (buttons.children.length > 0) {
-      followUpsWrapper.appendChild(buttons)
-      bubble.appendChild(followUpsWrapper)
-    }
-  }
-
-
   const disclaimersList = Array.from(allDisclaimers)
   if (disclaimersList.length > 0) {
     const list = document.createElement("ul")
@@ -1704,6 +1658,23 @@ const setupOracleWidget = () => {
       return
     }
 
+    const oracleMedia = root.querySelectorAll<HTMLImageElement>("img[data-no-zoom]")
+    if (oracleMedia.length > 0) {
+      const mediumZoom = (window as typeof window & {
+        mediumZoom?: {
+          detach?: (elements?: Element | Element[] | NodeListOf<Element>) => void
+        }
+      }).mediumZoom
+
+      if (mediumZoom?.detach) {
+        try {
+          mediumZoom.detach(Array.from(oracleMedia))
+        } catch (error) {
+          console.warn("ORA_CLE chat: unable to detach medium-zoom", error)
+        }
+      }
+    }
+
     let currentStatus: "online" | "offline" =
       statusElement?.dataset.state === "offline" ? "offline" : "online"
 
@@ -1777,21 +1748,7 @@ const setupOracleWidget = () => {
     let closingAnimationHandler: ((event: AnimationEvent) => void) | undefined
     let enteringAnimationHandler: ((event: AnimationEvent) => void) | undefined
 
-    const handleFollowUpSelect = (question: string, context: FollowUpContext) => {
-      textArea.value = question
-      autoResize()
-      updateSendButtonState()
-      textArea.focus()
-      emitAnalytics("oracle:followup-selected", {
-        question,
-        source: context.source,
-        index: context.index,
-        conversationId: state.conversationId ?? null,
-      })
-    }
-
     const renderOptions: MessageRenderOptions = {
-      onFollowUpSelect: handleFollowUpSelect,
       getConversationId: () => state.conversationId ?? null,
     }
 
@@ -2251,22 +2208,13 @@ const setupOracleWidget = () => {
 
         const sourcesCount = webPayload?.sources?.length ?? 0
         const snippetCount = webPayload?.contextSnippets?.length ?? 0
-        const followUpCount = webPayload?.followUpQuestions?.length ?? 0
 
         emitAnalytics("oracle:response-received", {
           conversationId: state.conversationId ?? null,
           hasWebPayload: Boolean(webPayload),
           sourceCount: sourcesCount,
           snippetCount,
-          followUpCount,
         })
-
-        if (followUpCount > 0) {
-          emitAnalytics("oracle:followups-presented", {
-            conversationId: state.conversationId ?? null,
-            followUpCount,
-          })
-        }
 
         if (sourcesCount === 0 && snippetCount === 0) {
           emitAnalytics("oracle:fallback-presented", {

@@ -42,7 +42,7 @@
 .folder-directory__section-hint {
   margin: 0;
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--gray) 70%, transparent);
+  color: var(--color-accent-deep);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }

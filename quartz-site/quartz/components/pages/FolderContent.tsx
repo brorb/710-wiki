@@ -19,6 +19,7 @@ import {
   slugifyFilePath,
 } from "../../util/path"
 import { getAssetVersion } from "../../util/assetVersion"
+import { normalizeSnippet } from "../../util/snippet"
 
 interface FolderContentOptions {
   /**
@@ -69,19 +70,6 @@ const resolveAssetReference = (raw: unknown, baseSlug: FullSlug): string | undef
 
   const target = stripContentPrefix(cleaned)
   return appendAssetVersion(joinSegments(pathToRoot(baseSlug), target), version)
-}
-
-const normalizeSnippet = (value?: string, limit = 240): string | undefined => {
-  if (!value) {
-    return undefined
-  }
-
-  const compact = value.replace(/\s+/g, " ").trim()
-  if (!compact) {
-    return undefined
-  }
-
-  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}…` : compact
 }
 
 const getSnippetForPage = (page: QuartzPluginData, fallback?: string): string | undefined => {
