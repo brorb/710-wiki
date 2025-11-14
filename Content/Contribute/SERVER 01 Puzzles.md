@@ -53,6 +53,8 @@ According to [[SYSTEM]], this is a "ghost error" image. However, this could pote
 <OUTPRINT>!:((CIN, condition -= : "(True)", ANS="SNDJ' ANS="SNDH"{RECALL})<!OUTPRINT=False>)
 ```
 
+Other hints include the following explanations from [[SYSTEM]]
+
 ---
 ## Original sources behind the audio file sounds 
 
@@ -67,6 +69,22 @@ The first one
 ---
 
 ### Miscellanous [[SYSTEM]] messages from the server
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
 
 ```
 
