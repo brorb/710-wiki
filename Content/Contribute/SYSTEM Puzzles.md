@@ -118,9 +118,7 @@ This confirms that these codes might be related to [[TTH]] in some way, or at le
 ---
 ### [[TTH]] and [[REN]] member messages
 
-In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members over to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed.
-
-
+In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed. The name "Norvack" was mentioned as well as 
 
 ---
 ### Riddles
@@ -134,7 +132,9 @@ On 13 August 2025, [[SYSTEM]] posted a comment to the "How to record the livestr
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "51 6B 46 44 53 79 42 47 55 6B 39 4E 49 46 4A 50 54 30 31 54 49 45 39 47 49 45 5A 4A 55 6B 55 73 49 45 68 46 49 45 68 42 55 79 42 4F 54 79 42 53 54 30 39 4E 49 45 46 4F 52 43 42 58 53 55 78 4D 49 45 56 59 55 45 46 4F 52 43 42 56 54 6C 52 4A 54 43 42 49 53 56 4D 67 55 30 74 4A 54 69 42 43 55 6B 56 42 53 31 4D 73 49 46 52 49 52 55 34 67 56 45 38 67 51 31 4A 56 54 56 42 4D 52 53 42 56 54 6B 52 46 55 69 42 49 53 56 4D 67 54 31 64 4F 49 46 4E 4C 52 55 78 46 56 45 39 4F 49 45 39 47 49 45 4E 50 54 6B 4E 53 52 56 52 46 49 45 46 4F 52 43 42 54 56 45 56 46 54 43 34 67 53 53 42 49 51 56 52 46 49 45 56 57 52 56 4A 5A 56 45 68 4A 54 6B 63 67 57 55 39 56 49 46 4E 55 51 55 35 45 49 45 5A 50 55 69 34 67 56 55 35 55 53 55 77 67 56 45 68 46 54 69 77 67 57 55 39 56 49 46 64 4A 54 45 77 67 56 56 4E 46 49 45 46 4F 57 56 52 49 53 55 35 48 49 45 5A 50 55 69 42 44 54 30 35 55 55 6B 39 4D 49 45 46 4F 52 43 42 51 56 55 35 4A 55 30 68 4E 52 55 35 55 4C 69 42 42 54 6B 51 67 53 53 42 58 53 55 78 4D 49 46 4A 46 54 55 46 4A 54 69 42 4D 53 55 74 46 49 46 52 49 53 56 4D 73 49 46 56 4F 56 45 6C 4D 49 45 6B 6E 54 53 42 47 55 6B 56 46 49 45 46 48 51 55 6C 4F 4C 67 6F 4B{LM-3}{#3}||{CAUSE < BACKTRACK 5}:::::::::",
     "timestamp": "2025-08-13T22:59:53.299000+00:00",

@@ -1969,7 +1969,7 @@ _From main Discord server._
 _From @brorb's DMs._
 
 ---
-## Hijack by [[Rod Formak]]
+## Hijack by [[He]] and [[Rod Formak]] name reveal
 
 ```discord
 [
@@ -5682,3 +5682,14 @@ SYSTEM also has the ability to connect to both [[TTH]] and [[REN]] servers.
 ]
 ```
 
+On 28 July 2025, SYSTEM DMed a select few Sleuth members certain unique codes:
+
+```
+#9430-5890-B (@brorb)
+#3729-3920-B (@TheP0rtalNinja)
+#4322-4892-B (@L4N4U1997)
+#5832-4902-B (@Noel|HLF)
+#7592-3299-B (@kayxsu)
+```
+
+Which, as you can see above, would later be revealed to be in relation to [[TTH]].
