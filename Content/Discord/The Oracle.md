@@ -18,7 +18,7 @@ The Oracle is a Discord bot made by @brorb for [[The Sleuths]]. It is connected 
 ```
 either in a channel on the Discord server, or in a DM to the bot.
 
-The bot is _not free_ to run (it uses Claude 3 Haiku), but all costs are covered by brorb (for now lol), so please use responsibly!
+The bot is _not free_ to run (it uses Claude 3 Haiku), but all costs are covered by brorb (for now lol), so please use responsibly.
 
 ```media-box
 Title: Oracle Flow Chart
