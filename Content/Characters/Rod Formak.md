@@ -16,31 +16,6 @@ Associates:
 
 A technician engineer who gained access to [[SYSTEM]] on 1 October 2025.<!-- discord-cite:cite-mhfek3c6-mw9mi3 -->
 
-Here is a sentence i want to cite <!-- discord-cite:cite-mi0asf0c-qkxhrb -->
-
-> [!discord-cite]- Discord citation (1 message)
->
-> ```json
-> {
->   "id": "cite-mi0asf0c-qkxhrb",
->   "messages": [
->     {
->       "id": "1439223693564706827",
->       "author": {
->         "display_name": "Yuriana (New Account)",
->         "username": "phtalt",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
->       "content": "Okay bob works all I care about",
->       "timestamp": "2025-11-15T12:01:08.029000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1429203385608962208/81e7c4ae6a032d98299cf08e2d0d6228.png?size=1024",
->       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1439223693564706827"
->     }
->   ]
-> }
-> ```
 
 
 > [!discord-cite]- Discord citation (8 messages)
