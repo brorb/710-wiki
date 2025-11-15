@@ -17,7 +17,27 @@ It is unknown what exactly is making the sound in the audio, but it sounds like 
 
 **walking.mp3**
 ![[walking.mp3]]
-^This audio file was uploaded on 
+^This audio file was uploaded on 6 October 2025 in the \#media channel in the server. The purpose of this audio isn't fully known, but it could be referring to a set of steps (hence the title).
+
+This audio file was succeeded from the following message:
+```discord
+[
+  {
+    "id": "1424743937200885792",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "MI-drive #14: allowing access to 0x004782df8",
+    "timestamp": "2025-10-06T13:03:45.091000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424743937200885792"
+  }
+]
+```
 
 ---
 ### DM Codes
@@ -39,7 +59,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Hello?",
     "timestamp": "2025-11-10T23:27:32.902000+00:00",
@@ -51,7 +73,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Who did I connect to?",
     "timestamp": "2025-11-10T23:27:48.387000+00:00",
@@ -77,7 +101,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "What? You're apart of TTH?",
     "timestamp": "2025-11-10T23:28:26.227000+00:00",
@@ -103,7 +129,9 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
@@ -116,9 +144,111 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
 This confirms that these codes might be related to [[TTH]] in some way, or at least a branch in relation to [[TTH]]. The name of the ID type appears to be censored, potentially a confidential piece of lore that can be uncovered one day.
 
 ---
-### [[TTH]] and [[REN]] member messages
+### [[TTH]] and [[REN]]
 
-In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed. The name "Norvack" was mentioned as well as 
+In November 2025, [[SYSTEM]] was able to connect [[TTH]] and [[REN]] members to the [[The Sleuths]] Discord server for communication, and through this some interesting pieces of lore were revealed.
+
+From the mysterious name [[Norvack]]:
+
+```discord
+[
+  {
+    "id": "1437585424510877917",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "wait? is this Norvack again?",
+    "timestamp": "2025-11-10T23:31:14.249000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437585424510877917"
+  }
+]
+```
+
+To a possible lead on some branches or other entities/organizations relating to [[TTH]] or [[REN]]:
+
+```discord
+[
+  {
+    "id": "1437584869235626076",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
+    "timestamp": "2025-11-10T23:29:01.861000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
+  }
+]
+```
+```discord
+[
+  {
+    "id": "1437706775108386877",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Who are you? Apart of ISIIIDF(F999)A)A_-- and TTH?",
+    "timestamp": "2025-11-11T07:33:26.486000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437706775108386877"
+  }
+]
+```
+
+There are many possibilities to look into the broader scope of [[TTH]]'s / [[REN]]'s inner workings and the scale of their organizations (how many branches are in relation to it, what role certain workers within [[TTH]] and others are like, etc). Also, there might be a possibility of finding out the role that [[He]] plays within the lore of 7/10 and His true purpose in its world, since it is hinted that [[He]] might have connections with [[TTH]].
+
+```discord
+[
+  {
+    "id": "1427768443935133749",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "(fixed with GIMP in five secs)",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[Cam TTH logo enhanced fixed.png]]",
+        "alt": "Camera's improvement of Cosmo's image"
+      }
+    ],
+    "timestamp": "2025-10-14T21:22:03.689000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
+  },
+  {
+    "id": "1428847630296809482",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
+    "timestamp": "2025-10-17T20:50:21.768000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
+  }
+]
+```
 
 ---
 ### Riddles
@@ -144,3 +274,46 @@ On 13 August 2025, [[SYSTEM]] posted a comment to the "How to record the livestr
 ]
 ```
 
+The hexadecimal in this message translates to the following:
+```
+BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. I HATE EVERYTHING YOU STAND FOR. UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
+```
+
+The meaning of this message isn't fully understood, but it appears to be a riddle of some kind, and the fact that it was posted in the tutorial forum could be a possible hint as to what it could be for (perhaps for a future broadcast?).
+
+On 9 October 2025, [[SYSTEM]] posted the following riddle, while also using [[The Oracle]]'s "!ask" inquiry command:
+
+```discord
+[
+  {
+    "id": "1425301683776393336",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "!ask >>>>>>>>>AND HE SAID THAT THIS SEVENTH DAY WAS THE DAY HE FINISHED HIS WORK, BUT ON THAT DAY, HE DID NOT REST. NO, HE BEGAN TO WORK AGAIN. AND AGAIN, AND AGAIN, UNTIL BLOOD WAS SPILLED-BUT IT WAS NOT HIS.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>[667865]{657776}{568842450}",
+    "timestamp": "2025-10-08T02:00:02.237000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301683776393336"
+  },
+  {
+    "id": "1425301779234557963",
+    "author": {
+      "display_name": "ORA_CLE.servertype",
+      "username": "ORA_CLE.servertype",
+      "color": "#770000",
+      "colour": "#770000",
+      "colour_value": 7798784
+    },
+    "content": "**SYSTEM OVERRIDE DETECTED**\n\nThe transmission you've shared appears to be a corrupted or intercepted message containing what looks like biblical or religious imagery twisted into something darker. The reference to the \"seventh day\" traditionally relates to rest in creation mythology, but this version describes continued work \"until blood was spilled.\"\n\nThe numerical sequences `[667865]{657776}{568842450}` at the end suggest this is encoded data, possibly from one of the system entities like **SYSTEMterminal8** or an unknown transmission source.\n\n**Analysis:**\n- The excessive `>>>>>>>>>` characters indicate system stress or interference\n- Religious imagery perverted into violent themes matches patterns we've seen in corrupted LOG files\n- The blood reference could relate to the recurring mentions of harm coming to entities like Travis\n\nThis transmission format is unusual even for our documented interactions with INDI, Kepler, or SYSTEMterminal8. The theological corruption suggests either:\n1. Deep system malfunction affecting core programming\n2. Interference from an unknown entity (possibly REN-related)\n3. A warning about events connected to the recurring July 10th cycles\n\n**Speculative:** The numbers might decode to coordinates, dates, or system access codes. Has anyone attempted to run these through our standard decryption methods?\n\nThe community should document this immediately in [**The Spreadsheet™**](https://docs.google.com/spreadsheets/d/15Tsk-1D86tVUuvibTRxOxzEceLfEDll4QCJnrO-9qis/edit?usp=sharing) - this level of system corruption is concerning.",
+    "timestamp": "2025-10-08T02:00:24.996000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301779234557963"
+  }
+]
+```
+
+The meaning of this message isn't fully understood, but it appears biblical or poetic in nature, possibly another riddle to solve. The themes of work could relate to [[TTH]], since it is an organization centered around "human work" (hence the logo's symbolism).

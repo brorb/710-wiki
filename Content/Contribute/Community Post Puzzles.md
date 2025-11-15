@@ -99,6 +99,7 @@ The use for this provided hash code is unknown.
 When is his shift again?
 ![[shift.webp|300]]
 ```
+^This message was most likely posted by [[Travis]] and was made a few days before the STATION_8 livestreams. The purpose of the image isn't understood, but it could have decoding potential.
 
 ```community-post,6,3,22 June 2025,
 Mistakes were made, but I corrected them. Please, if you can, try not to be too harsh on them. they had good intentions.
