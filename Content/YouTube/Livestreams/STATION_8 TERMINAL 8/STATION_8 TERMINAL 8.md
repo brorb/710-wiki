@@ -62,7 +62,7 @@ The viewers quickly solve this, entering **28634** into chat as the input for th
 - [[Kepler]] takes control of [[710 Tone|7/10 Tone]] account multiple times
 - Discussion of [[Travis]] having locked controls and hidden important information
 - Power increased for signal transfer as countdown approaches zero
-- Countdown reaches 0:00 at 3:00AM EST.
+- Countdown reaches 0:00 on 10 July 2025, 3:00AM EST.
 - Prompt appears requesting 5-digit code from prime-numbered logs
 - Community enters code **28634**
 - "I FOUND YOU INDI" appears on screen
