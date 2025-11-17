@@ -1,0 +1,131 @@
+
+See [[TTH]] for more information about this subject.
+
+[[TTH]] is an elusive organization in the 7/10 universe, their goal and purpose is not fully understood (although it has been alluded to possibly being nefarious due to their potential connection with the [[Ferkland Institute]]) and the scope of their size is kept well-hidden. Although, certain clues could point other branches or entities being connected to them according to hints through [[SYSTEM]] (as well as certain [[TTH]] members themselves who communicated to [[The Sleuths]] through [[SYSTEM]]).
+
+It is possible that certain IDs correlate to certain rankings or other branches within [[TTH]], such as the IDs given to [[The Sleuths]] by [[SYSTEM]]. Here, Sleuth member The Camera Eye tested out her ID number to see if it was a valid ID and got the following response:
+
+```discord
+[
+  {
+    "id": "1437584496114536488",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Hello?",
+    "timestamp": "2025-11-10T23:27:32.902000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584496114536488"
+  },
+  {
+    "id": "1437584518684082358",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Ayyyooo!",
+    "timestamp": "2025-11-10T23:27:38.283000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584518684082358"
+  },
+  {
+    "id": "1437584561063071894",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Who did I connect to?",
+    "timestamp": "2025-11-10T23:27:48.387000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584561063071894"
+  },
+  {
+    "id": "1437584605334208552",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Is uh #4322-4892-B a valid ID? That's mine.",
+    "timestamp": "2025-11-10T23:27:58.942000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584605334208552"
+  },
+  {
+    "id": "1437584719775797289",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "What? You're apart of TTH?",
+    "timestamp": "2025-11-10T23:28:26.227000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584719775797289"
+  },
+  {
+    "id": "1437584735969869984",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "No.",
+    "timestamp": "2025-11-10T23:28:30.088000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584735969869984"
+  },
+  {
+    "id": "1437584869235626076",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
+    "timestamp": "2025-11-10T23:29:01.861000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
+  },
+  {
+    "id": "1437584900969726033",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Huh?",
+    "timestamp": "2025-11-10T23:29:09.427000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584900969726033"
+  }
+]
+```
+
+The last statement seems to suggest that it is another branch in relation [[TTH]], but whether it is above or below them is unknown. Information appears to be censored with what looks like a random string of characters, which is the case for another mysterious branches or entities within the organization:
+
+```community-post,0,0,14 November 2025,
+ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
+```
+
+These few hints leave more questions than answers about the true nature and actual size of the organization. How big are they really? How do the branches relate to each other? What role does each branch or entity or member serve within the organization?
