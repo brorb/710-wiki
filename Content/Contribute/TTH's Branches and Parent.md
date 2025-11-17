@@ -1,7 +1,29 @@
 
 See [[TTH]] for more information about this subject.
 
-[[TTH]] is an elusive organization in the 7/10 universe, their goal and purpose is not fully understood (although it has been alluded to possibly being nefarious due to their potential connection with the [[Ferkland Institute]]) and the scope of their size is kept well-hidden. Although, certain clues could point other branches or entities being connected to them according to hints through [[SYSTEM]] (as well as certain [[TTH]] members themselves who communicated to [[The Sleuths]] through [[SYSTEM]]).
+[[TTH]] is an elusive organization in the 7/10 universe, their goal and purpose is not fully understood (although it has been alluded to possibly being nefarious due to their potential connection with the [[Ferkland Institute]]) and the scope of their size is kept well-hidden. Although, certain clues could point other branches or entities being connected to them according to hints through [[SYSTEM]] (as well as certain [[TTH]] members themselves who communicated to [[The Sleuths]] through [[SYSTEM]]). It is confirmed by [[SYSTEM]] that [[TTH]] is a sub-branch of something, possibly another organization/entity.<!-- discord-cite:cite-mi2h0awh-i8r88f -->
+
+> [!discord-cite]- Discord citation (1 message)
+>
+> ```json
+> {
+>   "id": "cite-mi2h0awh-i8r88f",
+>   "messages": [
+>     {
+>       "id": "1396758985977233548",
+>       "author": {
+>         "display_name": "SYSTEM",
+>         "username": "system000008",
+>         "colour_value": null
+>       },
+>       "content": "<OUTPRINT>!:(TTH is a sub branch of NaN, actually I can't tell you a lot about them because of limits IN_DI put.)",
+>       "timestamp": "2025-07-21T07:41:32.784000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758985977233548"
+>     }
+>   ]
+> }
+> ```
 
 It is possible that certain IDs correlate to certain rankings or other branches within [[TTH]], such as the IDs given to [[The Sleuths]] by [[SYSTEM]]. Here, Sleuth member The Camera Eye tested out her ID number to see if it was a valid ID and got the following response:
 
