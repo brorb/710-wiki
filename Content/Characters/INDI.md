@@ -151,16 +151,9 @@ Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
-```media-box
-Title: INDI's voice
-Type: audio
-Media: [[Content/Media/Sleuth Media/INDI voice from STATION_8 TERMINAL 8.mp3]]
-Caption: 
-Credit: Source: STATION_8 TERMINAL 8 livestream, Sleuth footage rip
-Align: left
-Wrap: false
-Width: 320px
-```
+
+![[INDI voice from STATION_8 TERMINAL 8.mp3]]
+^An example of INDI's voice, as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].^
 
 [^1]: At first, the channel was though to be run by a human, but [[710 NPP|7/10 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat. See [[Content/YouTube/Livestreams/STATION_8 TRIM 90/Transcript|Transcript]] for [[STATION_8 TRIM 90]] for context.
 
