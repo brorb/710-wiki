@@ -122,7 +122,6 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 ---
 ## After [[STATION_8 TERMINAL 8]]
 
-
 ![[INDI voice from STATION_8 TERMINAL 8.mp3]]
 *An example of INDI's voice as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].*
 
