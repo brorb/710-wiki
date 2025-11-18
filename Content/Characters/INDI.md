@@ -122,6 +122,10 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 ---
 ## After [[STATION_8 TERMINAL 8]]
 
+
+![[INDI voice from STATION_8 TERMINAL 8.mp3]]
+*An example of INDI's voice as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].*
+
 After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
 
 ---
@@ -151,9 +155,6 @@ Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
-
-![[INDI voice from STATION_8 TERMINAL 8.mp3]]
-^An example of INDI's voice, as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].^
 
 [^1]: At first, the channel was though to be run by a human, but [[710 NPP|7/10 NPP]] (otherwise known as [[Kepler]]) confirmed otherwise in the [[STATION_8 TRIM 90]] livestream chat. See [[Content/YouTube/Livestreams/STATION_8 TRIM 90/Transcript|Transcript]] for [[STATION_8 TRIM 90]] for context.
 
