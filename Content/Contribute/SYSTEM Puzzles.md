@@ -44,11 +44,13 @@ This audio file was succeeded from the following message:
 
 On 28 July 2025, [[SYSTEM]] DMed a select few Sleuth members a special kind of string for each member.
 
-- \#9430-5890-B (@brorb)
-- \#3729-3920-B (@TheP0rtalNinja)
-- \#4322-4892-B (@L4N4U1997, aka The Camera Eye)
-- \#5832-4902-B (@Noel|HLF)
-- \#7592-3299-B (@kayxsu)
+```
+#9430-5890-B (@brorb)
+#3729-3920-B (@TheP0rtalNinja)
+#4322-4892-B (@L4N4U1997, aka The Camera Eye)
+#5832-4902-B (@Noel|HLF)
+#7592-3299-B (@kayxsu)
+```
 
 Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server through [[SYSTEM]], Sleuth member The Camera Eye tested out her code from [[SYSTEM]] to see if it was a form of ID and got this response:
 
