@@ -1,5 +1,5 @@
 
-See the article [[INDI]] for information about the character.
+See the article [[INDI]] for information about the character
 
 [[INDI]] goes by "IN_DI.servertype" or "IN_DI" for short, which could be an abbreviation for something but it is unknown what it is. Some possible theories for what it could mean are the following:
 
