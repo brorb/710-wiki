@@ -17,6 +17,9 @@ SYSTEM ID: 573221739**
 
 **Video Summary:** Video starts out normal until 1:33, where it cuts to a glitchy background with slow typing text (see Transcript below) and ominous noises. This goes on until 5:55 where the static comes back to normal. Timer counts down from 124 to 123.
 
+**Clues:** When reversing the ominous noises part, you can hear a voice that says "You are not supposed to be here"
+
+![[LOG-67.mp4 secret message.mp3]]
 ###### Transcript:
 HELLO. AGAIN.
 YEAH. IT FEELS AS IF IT WAS JUST YESTERDAY
