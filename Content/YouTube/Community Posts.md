@@ -4,6 +4,22 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
+```community-post,2,0,14 December 2025,
+Logged, stt.log:
+"
+permission bypass, accepted
+edit bypass, declined
+
+permissions:
+[READ ONLY]
+
+edit key: brute force detected
+allowing reattempts in
+10d 00h 00m 00s
+"
+Deletion of non-important file in: 1 day 00 hours 00 minute 00 seconds
+```
+
 ```community-post,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```
