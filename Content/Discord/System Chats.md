@@ -30569,7 +30569,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-**"Cancelled message" DM (sent to @Abe, @L4N4U1997, @ThePortalNinja, @brorb, @Noel|HLF, and @Jovenly 'training for job' Cosmo on 10 September 2025)**
+**"Cancelled message" DM (sent to @Abe, @L4N4U1997, @ThePortalNinja, @brorb, @Noel|HLF, and @Jovenly Cosmo on 10 September 2025)**
 ```discord
 [
   {
@@ -30589,6 +30589,40 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
+##### Captured by [[SYSTEM II]]
+
+```discord
+[
+  {
+    "id": "1437709148379942945",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "<OUTPUT>!:(H###E)))))L***&P)",
+    "timestamp": "2025-12-14T13:11:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437709148379942945"
+  },
+  {
+    "id": "1449744295182602374",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFFFFF",
+      "colour": "#FFFFFF",
+      "colour_value": 16777215
+    },
+    "content": "!!!!!",
+    "timestamp": "2025-12-14T13:12:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449744295182602374"
+  }
+]
+```
 ## [[SERVER 01]]
 
 ##### 26th-28 July 2025 ([[SYSTEM]] getting the server setup)
