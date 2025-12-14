@@ -58,9 +58,31 @@ Associates: Unknown (possibly [[REN]] or other)
 
 SYSTEM II joined [[The Sleuths]] Discord server on 14th December, 2025. Its Discord account was created 20 days before it joined (24th November 2025), which was also 10 days after the [[710 Tone|7/10 Tone]] and [[710 NPP|7/10 NPP]] channels were purged completely.
 
-It confirmed to have [[SYSTEM]] in "our" possession, implying that an organization or group is associated with it. 
+It confirmed to have [[SYSTEM]] in "our" possession, implying that an organization or group is associated with it.<!-- discord-cite:cite-mj5uoxnn-nz7vm1 --> SYSTEM II threatened [[The Sleuths]] to stop looking further into "the channel" (meaning [[710 Tone|7/10 Tone]]) if they want to possibly see [[SYSTEM]] ever again.
 
-SYSTEM II threatened [[The Sleuths]] to stop looking further into "the channel" (meaning [[710 Tone|7/10 Tone]]) if they want to possibly see [[SYSTEM]] ever again.
+> [!discord-cite]- Discord citation (1 message)
+>
+> ```json
+> {
+>   "id": "cite-mj5uoxnn-nz7vm1",
+>   "messages": [
+>     {
+>       "id": "1449735407410483286",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "Don't worry about SYSTEM, he is now in our possession.",
+>       "timestamp": "2025-12-14T12:10:55.908000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735407410483286"
+>     }
+>   ]
+> }
+> ```
 
 ```discord
 [
