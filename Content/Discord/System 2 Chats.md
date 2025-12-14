@@ -322,6 +322,13 @@
       "colour_value": 16767555
     },
     "content": "",
+    "attachments": [
+      {
+        "mtype": "attachment",
+        "attachment": "![[brorb SYSTEM captured message.png]]",
+        "alt": "Proof that SYSTEM is captured"
+      }
+    ],
     "timestamp": "2025-12-14T12:12:16.093000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735743730876549"
