@@ -133,8 +133,10 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-On November 14th 2025, a community post was uploaded to the 7/10 Tone channel before it was purged once again. Unlike last time, the "unmarked labels" removal date was scheduled for 31 December:
+On 12th November 2025, a community post was uploaded to the 7/10 Tone channel before it was purged once again. Unlike last time, the "unmarked labels" removal date was scheduled for 31 December:
 
+```community-post,1,1,12 November 2025,
+!/update:4-54, update-TIME-LIMIT(2000-8:00pm {N/A}-standard-time) removing all unmarked labels :: on [12/31/[NAN]]
+```
 
-
-But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER"
+But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER", the channel was purged much earlier than the scheduled date, along with the second channel [[710 NPP|7/10 NPP]].
