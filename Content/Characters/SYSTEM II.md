@@ -58,7 +58,9 @@ Associates: Unknown (possibly [[REN]] or other)
 
 SYSTEM II joined [[The Sleuths]] Discord server on 14th December, 2025. Its Discord account was created 20 days before it joined (24th November 2025), which was also 10 days after the [[710 Tone|7/10 Tone]] and [[710 NPP|7/10 NPP]] channels were purged completely.
 
-It confirmed to have [[SYSTEM]] in "our" possession, implying that an organization or group is associated with it. SYSTEM II threatened [[The Sleuths]] to stop looking further into "the channel" (meaning [[710 Tone|7/10 Tone]]) if they want to possibly see [[SYSTEM]] ever again.
+It confirmed to have [[SYSTEM]] in "our" possession, implying that an organization or group is associated with it. 
+
+SYSTEM II threatened [[The Sleuths]] to stop looking further into "the channel" (meaning [[710 Tone|7/10 Tone]]) if they want to possibly see [[SYSTEM]] ever again.
 
 ```discord
 [
