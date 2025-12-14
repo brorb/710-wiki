@@ -4,7 +4,6 @@ tags:
   - characters
   - important
   - lore
-  - REN
   - Discord
 ---
 ```infobox
