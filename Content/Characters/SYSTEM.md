@@ -5693,3 +5693,9 @@ On 28 July 2025, SYSTEM DMed a select few Sleuth members certain unique codes:
 ```
 
 Which, as you can see above, would later be revealed to be in relation to [[TTH]].
+
+---
+
+## Capture by [[SYSTEM II]]
+
+On 
