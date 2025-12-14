@@ -6610,3 +6610,30 @@ Afterwards, SYSTEM was reconnected through the subframe and tried to reach a sec
 ```
 
 Upon request, [[The Sleuths]] kicked SYSTEM from their Discord server.
+
+About a month later, on 14th December 2025, another entity named [[SYSTEM II]] joined [[The Sleuths]] Discord server and confirmed that it had captured SYSTEM.<!-- discord-cite:cite-mj5v5dwd-6dwfij -->
+
+> [!discord-cite]- Discord citation (1 message)
+>
+> ```json
+> {
+>   "id": "cite-mj5v5dwd-6dwfij",
+>   "messages": [
+>     {
+>       "id": "1449735407410483286",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "color": "#FF0000",
+>         "colour": "#FF0000",
+>         "colour_value": 16711680
+>       },
+>       "content": "Don't worry about SYSTEM, he is now in our possession.",
+>       "timestamp": "2025-12-14T12:10:55.908000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735407410483286"
+>     }
+>   ]
+> }
+> ```
+
