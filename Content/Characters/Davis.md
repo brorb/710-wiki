@@ -9,7 +9,7 @@ tags:
 ```infobox
 Title: Davis
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
-Appearances: [[Community Posts]]]
+Appearances: [[Community Posts]]
 Full alias:
 Davis99238
 ```
