@@ -5299,7 +5299,9 @@ Then the next day (6 October 2025), SYSTEM posted a .mp3 file titled "walking.mp
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "colour_value": null
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
     },
     "content": "",
     "attachments": [
