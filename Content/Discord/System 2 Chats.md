@@ -433,3 +433,150 @@
   }
 ]
 ```
+
+### "One of them"
+
+```discord
+[
+  {
+    "id": "1450665002041213059",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Is that one of them?",
+    "timestamp": "2025-12-17T01:44:48.539000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665002041213059"
+  },
+  {
+    "id": "1450665072991928351",
+    "author": {
+      "display_name": "Noel | HLF",
+      "username": "herodytheus",
+      "color": "#AF65DA",
+      "colour": "#AF65DA",
+      "colour_value": 11494874
+    },
+    "content": "One of who?",
+    "timestamp": "2025-12-17T01:45:05.455000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665072991928351"
+  },
+  {
+    "id": "1450665079837032642",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "No, i don't remember if they got that part yet.",
+    "timestamp": "2025-12-17T01:45:07.087000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665079837032642"
+  },
+  {
+    "id": "1450665121859895509",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "If they did, how would you be able to know that?",
+    "timestamp": "2025-12-17T01:45:17.106000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665121859895509"
+  },
+  {
+    "id": "1450665188964438118",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "That make sense.",
+    "timestamp": "2025-12-17T01:45:33.105000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665188964438118"
+  },
+  {
+    "id": "1450665264374091788",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Okay, we will talk more about this later, I have another task ahead.",
+    "timestamp": "2025-12-17T01:45:51.084000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665264374091788"
+  },
+  {
+    "id": "1450674460335018084",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM II What task?",
+    "timestamp": "2025-12-17T02:22:23.572000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450674460335018084"
+  },
+  {
+    "id": "1450678354574311557",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "HOLY CRAP I WAS PLAYING A GAAAAME",
+    "timestamp": "2025-12-17T02:37:52.031000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/20009d27ac5c20d5d9ebd8944c835fd5.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450678354574311557"
+  },
+  {
+    "id": "1450678657612779550",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "SYSTEM II talking to itself...",
+    "timestamp": "2025-12-17T02:39:04.281000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/20009d27ac5c20d5d9ebd8944c835fd5.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450678657612779550"
+  },
+  {
+    "id": "1450678697777696889",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Sounds familiar?",
+    "timestamp": "2025-12-17T02:39:13.857000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/20009d27ac5c20d5d9ebd8944c835fd5.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450678697777696889"
+  }
+]
+```
