@@ -9,7 +9,8 @@ Title: Ferkland Institute
 Image: ![[Content/Media/Sleuth Media/Images/Ferkland Institute.png]]
 Caption: The obfuscated logo of the Ferkland Institute from [[LOG-10444444444444444444444]]
 Region: [[Ferkland County]]
-Appearances: [[LOG-10444444444444444444444]]
+Appearances: [[LOG-15.mmp44]]
+[[LOG-10444444444444444444444]]
 ```
 
 
