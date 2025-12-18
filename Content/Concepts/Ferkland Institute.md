@@ -24,4 +24,4 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-Their logo has only appeared once, in [[LOG-10444444444444444444444]], with the text "FUNDED DEATH" branded on top. The meaning of this is not fully understood but it can be inferred that The Institute might have been involved in some shady business.
+Their logo has only appeared twice: first at the end of [[LOG-15.mmp44]], right before the [[TTH]] logo appears in the same corner of the screen, and again in [[LOG-10444444444444444444444]] with the text "FUNDED DEATH" branded on top. The meaning of the phrase "FUNDED DEATH" is not fully understood but it can be inferred that The Institute might have been involved in some shady business.
