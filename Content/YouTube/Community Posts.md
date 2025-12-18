@@ -563,7 +563,7 @@ $$>skin - powershell.open 122325
 ![[option1.webp]]
 ![[option2.webp]]
 ```
-_^This was a poll between two two pictures. The upper one won with 78%_
+_^This was a poll between two pictures. The upper one won with 78%_
 
 
 ```community-post,2,0,2024,
