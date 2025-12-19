@@ -13,7 +13,9 @@ Uploaded 3 June 2025.
 
 **Video Summary:** Starts off with some glitchy visuals and audio, which get more intense as a low-pitched screechy noise fades in until it cuts to an image of a red square outline over a black background and the words "INITIALIZING" on the left side of the outline. The intro to Channel 14 pops up and then shows the schedule (see below), before it distorts and the background music slows down, then it freezes and cuts to static.
 
-**Clues:** The beginning part is similar to the noise when the [[Station Timer]] in [[STATION_8 TERMINAL 8]] was approaching closer to 0|0|0|0.
+**Clues:** The beginning part is similar to the noise when the [[Station Timer]] in [[STATION_8 TERMINAL 8]] was approaching closer to 0|0|0|0. If you reverse it and speed it up you'll get the following audio:
+
+
 
 **Channel 14 Schedule Transcript:**
 
