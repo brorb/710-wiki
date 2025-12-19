@@ -5299,17 +5299,16 @@ Then the next day (6 October 2025), SYSTEM posted a .mp3 file titled "walking.mp
     "author": {
       "display_name": "SYSTEM",
       "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
+      "colour_value": null
     },
-    "content": "",
+    "content": " ",
     "attachments": [
       {
         "mtype": "attachment",
         "attachment": "![[walking.mp3]]",
         "alt": "walking.mp3"
       }
+    ],
     "timestamp": "2025-10-06T13:05:17.758000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424744325874585661"
