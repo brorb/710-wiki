@@ -15,7 +15,7 @@ Uploaded 3 June 2025.
 
 **Clues:** The beginning part is similar to the noise when the [[Station Timer]] in [[STATION_8 TERMINAL 8]] was approaching closer to 0|0|0|0. If you reverse it and speed it up you'll get the following audio:
 
-
+![[garbage_sgl secret message.mp3]]
 
 **Channel 14 Schedule Transcript:**
 
