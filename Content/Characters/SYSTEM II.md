@@ -53,6 +53,7 @@ Associates: Unknown (possibly [[REN]] or other)
 > }
 > ```
 
+For a more comprehensive catalogue of SYSTEM II's Discord messages, please see [[System 2 Chats]].
 ## Joining [[The Sleuths]] Discord server
 
 SYSTEM II joined [[The Sleuths]] Discord server on 14th December, 2025. Its Discord account was created 20 days before it joined (24th November 2025), which was also 10 days after the [[710 Tone|7/10 Tone]] and [[710 NPP|7/10 NPP]] channels were purged completely.
@@ -98,6 +99,134 @@ It confirmed to have [[SYSTEM]] in "our" possession, implying that an organizati
     "timestamp": "2025-12-14T12:12:41.256000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735849272016977"
+  }
+]
+```
+
+## Leaked Messages in [[The Sleuths]] Discord server
+
+In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would post one-sided messages where it seems to have some kind of conversation with an unknown character. This is most likely without its own knowledge, but for how or why these messages were posted into the Discord server are currently unknown.
+
+```discord
+[
+  {
+    "id": "1450665002041213059",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Is that one of them?",
+    "timestamp": "2025-12-17T01:44:48.539000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665002041213059"
+  },
+  {
+    "id": "1450665079837032642",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "No, i don't remember if they got that part yet.",
+    "timestamp": "2025-12-17T01:45:07.087000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665079837032642"
+  },
+  {
+    "id": "1450665121859895509",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "If they did, how would you be able to know that?",
+    "timestamp": "2025-12-17T01:45:17.106000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665121859895509"
+  },
+  {
+    "id": "1450665188964438118",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "That make sense.",
+    "timestamp": "2025-12-17T01:45:33.105000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665188964438118"
+  },
+  {
+    "id": "1450665264374091788",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Okay, we will talk more about this later, I have another task ahead.",
+    "timestamp": "2025-12-17T01:45:51.084000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665264374091788"
+  }
+]
+```
+
+On 18th December 2025, these kind of messages would lead to an interesting lore drop about [[He]] and one of [[TTH]]'s members:
+
+```discord
+[
+  {
+    "id": "1451437109423640698",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Really TTHA0002? You used TTHA0002? That number is used by one of his associates.",
+    "timestamp": "2025-12-19T04:52:53.284000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437109423640698"
+  },
+  {
+    "id": "1451437274259787848",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I know all of them capitalize him.",
+    "timestamp": "2025-12-19T04:53:32.584000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437274259787848"
+  },
+  {
+    "id": "1451437364751630397",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "HE is like a virus to them, but more, you know.",
+    "timestamp": "2025-12-19T04:53:54.159000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
   }
 ]
 ```

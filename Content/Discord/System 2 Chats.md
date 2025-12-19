@@ -580,3 +580,304 @@
   }
 ]
 ```
+
+### [[TTHA0002]] is used by one of [[He|His]] associates
+
+```discord
+[
+  {
+    "id": "1451433564745896079",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "It was your idea.",
+    "timestamp": "2025-12-19T04:38:48.167000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433564745896079"
+  },
+  {
+    "id": "1451433641988325518",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "what do you mean I used the wrong your",
+    "timestamp": "2025-12-19T04:39:06.583000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433641988325518"
+  },
+  {
+    "id": "1451433744094466200",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "you idiot",
+    "timestamp": "2025-12-19T04:39:30.927000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433744094466200"
+  },
+  {
+    "id": "1451433847307632770",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "no that isn't a thing",
+    "timestamp": "2025-12-19T04:39:55.535000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433847307632770"
+  },
+  {
+    "id": "1451433920997494874",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "What?",
+    "timestamp": "2025-12-19T04:40:13.104000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433920997494874"
+  },
+  {
+    "id": "1451433998831190016",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Can you please stop send this to me, I have already seen it.",
+    "timestamp": "2025-12-19T04:40:31.661000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451433998831190016"
+  },
+  {
+    "id": "1451434228553089196",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "WHAT",
+    "timestamp": "2025-12-19T04:41:26.431000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434228553089196"
+  },
+  {
+    "id": "1451434255295975495",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM II @SYSTEM II",
+    "timestamp": "2025-12-19T04:41:32.807000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434255295975495"
+  },
+  {
+    "id": "1451434272048021545",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@710 Notify @710 Notify",
+    "timestamp": "2025-12-19T04:41:36.801000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434272048021545"
+  },
+  {
+    "id": "1451434330214633584",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM II Who is talking right now?",
+    "timestamp": "2025-12-19T04:41:50.669000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434330214633584"
+  },
+  {
+    "id": "1451434425706610778",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM II Is this from the private room?",
+    "timestamp": "2025-12-19T04:42:13.436000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434425706610778"
+  },
+  {
+    "id": "1451434546359832627",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Damn a few minutes too late I guess",
+    "timestamp": "2025-12-19T04:42:42.202000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451434546359832627"
+  },
+  {
+    "id": "1451437109423640698",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Really TTHA0002? You used TTHA0002? That number is used by one of his associates.",
+    "timestamp": "2025-12-19T04:52:53.284000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437109423640698"
+  },
+  {
+    "id": "1451437163609587844",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Yo",
+    "timestamp": "2025-12-19T04:53:06.203000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437163609587844"
+  },
+  {
+    "id": "1451437190969294939",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "It's fine, just don't do that again.",
+    "timestamp": "2025-12-19T04:53:12.726000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437190969294939"
+  },
+  {
+    "id": "1451437264889450526",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "@SYSTEM II Who is speaking?",
+    "timestamp": "2025-12-19T04:53:30.350000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437264889450526"
+  },
+  {
+    "id": "1451437274259787848",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I know all of them capitalize him.",
+    "timestamp": "2025-12-19T04:53:32.584000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437274259787848"
+  },
+  {
+    "id": "1451437310116626594",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "We do",
+    "timestamp": "2025-12-19T04:53:41.133000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437310116626594"
+  },
+  {
+    "id": "1451437339757777028",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Isn't He important?",
+    "timestamp": "2025-12-19T04:53:48.200000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437339757777028"
+  },
+  {
+    "id": "1451437364751630397",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "HE is like a virus to them, but more, you know.",
+    "timestamp": "2025-12-19T04:53:54.159000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
+  },
+  {
+    "id": "1451437461057048777",
+    "author": {
+      "display_name": "ThePortalNinja",
+      "username": "theportalninja",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Okay fine refuse to elaborate and leave see if I CARE",
+    "timestamp": "2025-12-19T04:54:17.120000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/fdcc187e1b41385db73b37108163eb46.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437461057048777"
+  }
+]
+```
