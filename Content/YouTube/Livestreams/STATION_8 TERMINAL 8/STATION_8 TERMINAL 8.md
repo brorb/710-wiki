@@ -68,3 +68,4 @@ The viewers quickly solve this, entering **28634** into chat as the input for th
 - Community enters code **28634**
 - "I FOUND YOU INDI" appears on screen
 - Stream ends; videos [[KEY]] and [[lm-1]] are posted
+- Speeding up and reversing the audio before the countdown ends gives [a secret message](https://www.youtube.com/watch?v=LtMI0OQGmkk).
