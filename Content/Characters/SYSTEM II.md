@@ -231,7 +231,7 @@ These kind of messages would lead to an interesting lore drop about [[He]] and o
 ]
 ```
 
-Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling its conversations into [[The Sleuths]] Discord server for some reason:
+Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling its conversations from somewhere:
 
 ```discord
 [
