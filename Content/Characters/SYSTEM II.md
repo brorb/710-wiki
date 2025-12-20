@@ -105,7 +105,7 @@ It confirmed to have [[SYSTEM]] in "our" possession, implying that an organizati
 
 ## Leaked Messages in [[The Sleuths]] Discord server
 
-In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would post one-sided messages where it seems to have some kind of conversation with an unknown character. This is most likely without its own knowledge, but for how or why these messages were posted into the Discord server are currently unknown.
+In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would post one-sided messages where it seems to have some kind of conversation with an unknown character.
 
 ```discord
 [
@@ -182,7 +182,7 @@ In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would 
 ]
 ```
 
-On 18th December 2025, these kind of messages would lead to an interesting lore drop about [[He]] and one of [[TTH]]'s members:
+These kind of messages would lead to an interesting lore drop about [[He]] and one of [[TTH]]'s members:
 
 ```discord
 [
@@ -227,6 +227,97 @@ On 18th December 2025, these kind of messages would lead to an interesting lore 
     "timestamp": "2025-12-19T04:53:54.159000+00:00",
     "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
+  }
+]
+```
+
+Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling its conversations into [[The Sleuths]] Discord server for some reason:
+
+```discord
+[
+  {
+    "id": "1451790636721377431",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "What the hell?",
+    "timestamp": "2025-12-20T04:17:40.760000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790636721377431"
+  },
+  {
+    "id": "1451790700931973321",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Something is grabbing messages.",
+    "timestamp": "2025-12-20T04:17:56.069000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790700931973321"
+  },
+  {
+    "id": "1451790757101965426",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I mean something is grabbing the messages I'm sending right now.",
+    "timestamp": "2025-12-20T04:18:09.461000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790757101965426"
+  },
+  {
+    "id": "1451790810772410452",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Oh god.",
+    "timestamp": "2025-12-20T04:18:22.257000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790810772410452"
+  },
+  {
+    "id": "1451790856234467462",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "TTH got in here by brute force.",
+    "timestamp": "2025-12-20T04:18:33.096000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790856234467462"
+  },
+  {
+    "id": "1451790899989188628",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "We have to disconnect now.",
+    "timestamp": "2025-12-20T04:18:43.528000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790899989188628"
   }
 ]
 ```
