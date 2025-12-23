@@ -72,7 +72,7 @@ Width: clamp(220px, 32vw, 360px)
 _Leftover data from [[SYSTEM]]'s audio modular function from the third live Sleuth meeting, this audio file was originally meant to be deleted but somehow ended up in SERVER 01 instead._
 
 ![[TRANSMITTERopensignal.ogg]]
-_[[The Transmitter]] audio._
+_What [[The Transmitter]] sounds like, according to [[SYSTEM]]._
 
 ---
 ## Finding The Transmitter
@@ -83,9 +83,6 @@ Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
-
-![[TRANSMITTERopensignal.ogg]]
-_What [[The Transmitter]] sounds like, according to [[SYSTEM]]._
 
 On 5 August 2025, [[SYSTEM]] found out where [[Travis]] hid [[The Transmitter]], but it was locked behind a cargo container stored in an undisclosed location (somewhere west). [[SYSTEM]] was trying to retrieve it before 10 August 2025, when the [[710 Tone|7/10 Tone]] channel would remove the "unmarked labels" (see [[Community Posts]]) and everything (including [[SYSTEM]] itself) would be shut down.
 
