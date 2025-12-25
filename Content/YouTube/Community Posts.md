@@ -4,6 +4,21 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
+```community-post,1,0,25 December 2025,
+Logged, stt.log:
+"
+permission bypass, accepted
+edit bypass, accepted
+
+permissions:
+[READ]
+[WRITE]
+
+
+"
+Deletion of non-important file in: 1 day 00 hours 00 minute 00 seconds
+```
+
 ```community-post,4,0,14 December 2025,
 Logged, stt.log:
 "
