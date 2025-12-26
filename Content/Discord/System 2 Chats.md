@@ -1425,3 +1425,220 @@
   }
 ]
 ```
+
+### "We lost the device"
+
+```discord
+[
+  {
+    "id": "1454112064460030096",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "We lost the device.",
+    "timestamp": "2025-12-26T14:02:12.263000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112064460030096"
+  },
+  {
+    "id": "1454112104679477410",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I know.",
+    "timestamp": "2025-12-26T14:02:21.852000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112104679477410"
+  },
+  {
+    "id": "1454112132001173515",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "oh no",
+    "timestamp": "2025-12-26T14:02:28.366000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112132001173515"
+  },
+  {
+    "id": "1454112148266684457",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "We will inform them.",
+    "timestamp": "2025-12-26T14:02:32.244000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112148266684457"
+  },
+  {
+    "id": "1454112177383280745",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "The Transmitter?",
+    "timestamp": "2025-12-26T14:02:39.186000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112177383280745"
+  },
+  {
+    "id": "1454112199424475279",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "It starts in a couple of days.",
+    "timestamp": "2025-12-26T14:02:44.441000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112199424475279"
+  },
+  {
+    "id": "1454112217950720050",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "!!!!",
+    "timestamp": "2025-12-26T14:02:48.858000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112217950720050"
+  },
+  {
+    "id": "1454112242969739294",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "What STARTS?!",
+    "timestamp": "2025-12-26T14:02:54.823000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112242969739294"
+  },
+  {
+    "id": "1454112255342805118",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I don't know.",
+    "timestamp": "2025-12-26T14:02:57.773000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112255342805118"
+  },
+  {
+    "id": "1454112302268682343",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Well don't ask me about it.",
+    "timestamp": "2025-12-26T14:03:08.961000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112302268682343"
+  },
+  {
+    "id": "1454112313878515794",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "HOW LONG DOES IT LAST",
+    "timestamp": "2025-12-26T14:03:11.729000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112313878515794"
+  },
+  {
+    "id": "1454112416811061453",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I can't stand this.",
+    "timestamp": "2025-12-26T14:03:36.270000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112416811061453"
+  },
+  {
+    "id": "1454112442748633281",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Do you think that I had something with them knowing about the password, key, username?",
+    "timestamp": "2025-12-26T14:03:42.454000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112442748633281"
+  },
+  {
+    "id": "1454112518531449001",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Don't blame me for their mistakes. They won't have the next one, or the one after that.",
+    "timestamp": "2025-12-26T14:04:00.522000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112518531449001"
+  },
+  {
+    "id": "1454112719006339244",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Holy shit...",
+    "timestamp": "2025-12-26T14:04:48.319000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454112719006339244"
+  }
+]
+```
