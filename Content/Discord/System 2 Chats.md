@@ -1733,3 +1733,94 @@
   }
 ]
 ```
+
+### SYSTEM II leaves [[The Sleuths]] Discord server
+
+```discord
+[
+  {
+    "id": "1454842374168510558",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I have given you enough information",
+    "timestamp": "2025-12-28T14:24:11.666000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842374168510558"
+  },
+  {
+    "id": "1454842410898030749",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Goodbye",
+    "timestamp": "2025-12-28T14:24:20.423000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842410898030749"
+  },
+  {
+    "id": "1454842462991290562",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "OH SHIT",
+    "timestamp": "2025-12-28T14:24:32.843000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842462991290562"
+  },
+  {
+    "id": "1454842482151129213",
+    "author": {
+      "display_name": "brorb",
+      "username": "brorb",
+      "color": "#FFDA43",
+      "colour": "#FFDA43",
+      "colour_value": 16767555
+    },
+    "content": "You've not given us enough",
+    "timestamp": "2025-12-28T14:24:37.411000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842482151129213"
+  },
+  {
+    "id": "1454842903770824918",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "Oh well...",
+    "timestamp": "2025-12-28T14:26:17.933000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842903770824918"
+  },
+  {
+    "id": "1454843502373507299",
+    "author": {
+      "display_name": "L4N4U1997",
+      "username": "camera.3y3",
+      "color": "#FF00AA",
+      "colour": "#FF00AA",
+      "colour_value": 16711850
+    },
+    "content": "See ya on New Year's I guess",
+    "timestamp": "2025-12-28T14:28:40.651000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/38c483c3fb41573031bc633eeac976de.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454843502373507299"
+  }
+]
+```
