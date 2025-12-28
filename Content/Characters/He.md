@@ -20,7 +20,29 @@ Appearances:
 
 An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]].
 
-"He" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg -->.
+"He" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg --> as well as [[SYSTEM II]]. <!-- discord-cite:cite-mjpuly83-knzzu4 -->
+
+> [!discord-cite]- Discord citation (1 message)
+>
+> ```json
+> {
+>   "id": "cite-mjpuly83-knzzu4",
+>   "messages": [
+>     {
+>       "id": "1451437109423640698",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "colour_value": null
+>       },
+>       "content": "Really TTHA0002? You used TTHA0002? That number is used by one of his associates.",
+>       "timestamp": "2025-12-19T04:52:53.284000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437109423640698"
+>     }
+>   ]
+> }
+> ```
 
 > [!discord-cite]- Discord citation (2 messages)
 > 
@@ -60,3 +82,24 @@ An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_
 >   ]
 > }
 > ```
+
+According to [[SYSTEM II]], "He" is like a "virus" to someone (or some sort of group).
+
+```discord
+[
+  {
+    "id": "1451437364751630397",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "HE is like a virus to them, but more, you know.",
+    "timestamp": "2025-12-19T04:53:54.159000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
+  }
+]
+```
