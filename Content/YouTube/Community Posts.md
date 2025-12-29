@@ -17,6 +17,7 @@ ________________________________________________________________________________
 
 {... = extra data cut}
 ```
+^#3 is notably missing from this list.
 
 ```community-post,2,0,25 December 2025,
 Logged, stt.log:
