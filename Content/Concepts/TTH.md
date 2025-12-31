@@ -287,6 +287,54 @@ It is likely that they are the ones responsible for [[The Logs]]. This is known 
 > }
 > ```
 
+According to [[SYSTEM II]], they currently have someone captive, possibly among a list of others. <!-- discord-cite:cite-mju9sv0b-m2u96b -->
+
+> [!discord-cite]- Discord citation (3 messages)
+>
+> ```json
+> {
+>   "id": "cite-mju9sv0b-m2u96b",
+>   "messages": [
+>     {
+>       "id": "1452857328104898674",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "colour_value": null
+>       },
+>       "content": "TTH? yeah, they do have him.",
+>       "timestamp": "2025-12-23T02:56:19.804000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1452857328104898674"
+>     },
+>     {
+>       "id": "1452857404915191961",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "colour_value": null
+>       },
+>       "content": "Get that on the list then.",
+>       "timestamp": "2025-12-23T02:56:38.117000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1452857404915191961"
+>     },
+>     {
+>       "id": "1452857481628749969",
+>       "author": {
+>         "display_name": "SYSTEM II",
+>         "username": "systemrulemaker_16338",
+>         "colour_value": null
+>       },
+>       "content": "INDI? what that?",
+>       "timestamp": "2025-12-23T02:56:56.407000+00:00",
+>       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+>       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1452857481628749969"
+>     }
+>   ]
+> }
+> ```
+
 ## TTH Bases
 
 TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. In the [[Private Room#Chat 11|11th Private Room chat]], a TTH worker with ID [[F8829]] reveals that they work in station 887634.
