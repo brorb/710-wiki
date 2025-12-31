@@ -557,7 +557,7 @@ _The phrase is Latin and translates to: “The Devil himself is over us, and all
 ```
 _^This post was edited. The original was in reversed base 64 and translated to:_
 ```
-**}}6۝x nxۑx߀4 xמx۞m 9 oy۝xya8 xn8۟x8** 
+}}6۝x nxۑx߀4 xמx۞m 9 oy۝xya8 xn8۟x8
 ```
 
 ```community-post,2,0,2024,
