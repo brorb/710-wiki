@@ -375,7 +375,7 @@ _^The hex translates to:_
  C O N T R O L   O R   W E   A R E   T E R M I N A T I N G   T H E   M I S S I O N . 
  # A 9 9 2 1 4 :   W E ' L L   T R Y .
 ```
-This is an example of a [[Private Room]] chat, and its content matches that of [[Private Room#Chat 3|chat #3]], also appearing in [[{ - . }re]]. 
+This is an example of a [[Private Room]] chat, and its content matches that of [[Private Room#Chat 3|the third Private Room chat]], also appearing in [[{ - . }re]]. 
 
 ```community-post,4,1,February 2025,
 53 59 53 54 45 4D 5F 55 50 44 41 54 45 28 66 69 6C 65 2E 33 33 6C 30 29 3A 3A 44 45 54 45 43 54 45 44 3D 2D 35 20 65 72 72 6F 72 73 20 26 26 20 31 20 6D 69 73 63 2D 20 55 50 44 41 54 49 4E 47 3D 3D 3D 3D 3D 30 30 30 30 31 2D 30 30 30 30 34 2F 73 77 61 77 73 7C 65 78 63 6C 75 73 69 6F 6E 2F
@@ -502,7 +502,7 @@ s t a r t i n g
 ```
 _^This post was edited. Original read:_
 ```
-**"Technician speaking"  
+"Technician speaking"  
 "Hi, what's your number?"  
 "F8887, and yours?"  
 "This is F2617"  
@@ -514,7 +514,7 @@ _^This post was edited. Original read:_
 "Yeah guess so and ���� ������ ������������� 
 ����������������������������������������������������������������� 
 ��������������������������������������������������������������������������������������������
-���������������������**
+���������������������
 ```
 _This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]]._
 
@@ -523,7 +523,7 @@ _This is an example of a [[Private Room]] chat, being that of [[Private Room#Cha
 ```
 _^This post was edited. Original read:_
 ```
-**"He only stared at me, and the last thing he tells me is to watch for the red star. I 
+"He only stared at me, and the last thing he tells me is to watch for the red star. I 
 couldn't get that stupid logo out of my head ever since that day, like it had been burned 
 into the gray matter."  
 "And did you see him again after that?"  
@@ -584,8 +584,8 @@ continuing VP - "youtube.com"**
 ```
 _^This post was edited. Original read:_
 ```
-**This is my only way through. Hi my name is ����. and if anyone and I mean anyone is 
-getting please do�� ���� �� ������ � ������ �� ���������� ��.**
+This is my only way through. Hi my name is ����. and if anyone and I mean anyone is 
+getting please do�� ���� �� ������ � ������ �� ���������� ��.
 ```
 
 ```community-post,4,1,2024,
