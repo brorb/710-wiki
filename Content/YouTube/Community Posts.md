@@ -569,7 +569,7 @@ INTELLECT WARNING: PATH OBSCURED CALLSIGN 848 REPEATE CONDITIONS >>
 ```
 _^This post was edited. Original read:_
 ```
-**!WARNING! :: malicious program detected...  
+!WARNING! :: malicious program detected...  
 resolution finalized  
 continuing VP - "youtube.com"**
 ```
