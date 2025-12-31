@@ -516,7 +516,7 @@ _^This post was edited. Original read:_
 ��������������������������������������������������������������������������������������������
 ���������������������
 ```
-_This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|chat #2]]._
+^This is an example of a [[Private Room]] chat, being that of [[Private Room#Chat 2|the second Private Room chat]].
 
 ```community-post,10,0,2024,
 00000000
