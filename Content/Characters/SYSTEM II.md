@@ -105,7 +105,7 @@ It confirmed to have [[SYSTEM]] in "our" possession, implying that an organizati
 
 ## Leaked Messages in [[The Sleuths]] Discord server
 
-In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would post one-sided messages where it seems to have some kind of conversation with an unknown character.
+In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would post one-sided messages where there seems to be an out-of-context conversation.
 
 ```discord
 [
@@ -231,7 +231,7 @@ These kind of messages would lead to an interesting lore drop about [[He]] and o
 ]
 ```
 
-Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling its conversations from somewhere:
+Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling the conversations from somewhere (possibly the [[Private Room]]):
 
 ```discord
 [
