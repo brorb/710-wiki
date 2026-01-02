@@ -50,6 +50,40 @@ correcting_STATUS(7)
 TTH_1
 ```
 
-LINX-OS Terminal 10
+LINX-OS Terminal 10 appears again, mounts to a drive named "SYS.4K", which has an error message with an unknown alignment to antenna A1, yet it has a successful alignment with a rad dish. It imports data to systems 5, 4, 3, 2, C1, and C2, then the command /return server prints out with the input username being "93jNkIow" and the password censored. Data sends back and an input key prompt prints out below. The red text quickly types out over a dark red background:
 
-**Clues:** The program that creates [[The Logs]] is referred to as the "7/10" program in the [[LINX-OS]] kernel. On the log data screen, "PORT-CALL" is set as 328-AN-ZY.
+```
+THERE IS STILL ONE LEFT.
+THIS WAS NOT MADE FOR THEM BUT THEY CAN STAY
+```
+
+LINX-OS Terminal 10 appears once again with the following text:
+
+```
+T/opDisk/list-4/Qrig:<START-Alins[90, 900, 9000] -C -drive +1
+>Connection complete
+>Redetailing data packets..............................COMPLETE
+>SENDING_BACK(true) testing txt format
+>CONNECTING TO SYSTEMterminal-8
+>CONNECTION PINGED
+>CENTERING burned-IMAGE
+>ALL ABOVE COMPLETE
+>RESUME PROGRAM
+<
+>Resuming "7/10" program, call stated.......................SECURED
+```
+
+The Eyes appear with a glitched noise in the background, then they open up to stare directly at the viewer before the Station Timer pops up, it starts at 190 days and counts down, static fills the screen.
+
+The Log intro plays and flashes the data screen before it cuts to blue, text pops up on screen with the following data:
+
+```
+TEST: 83902
+SYSTEM: 889
+STATUS: [POOR]
+CODE VB: 32947910384
+```
+
+A test completes and restarts the system, with 3 errors found in starting cores A, C, and D. After the system boots back up again and data noises conclude, the video proceeds as a normal log with black and red static for the remainder of the video.
+
+**Clues:** The program that creates [[The Logs]] is referred to as the "7/10" program in the [[LINX-OS]] kernel. During the system test, five terms can be found on the bottom: .NFIO, .GUDO, .NWUF, .WNEK, and .UVDI, which could be codes. On the log data screen, "PORT-CALL" is set as 328-AN-ZY; this is the first time an actual value has been set to this section.
