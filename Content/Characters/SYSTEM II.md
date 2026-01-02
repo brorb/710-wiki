@@ -231,7 +231,7 @@ These kind of messages would lead to an interesting lore drop about [[He]] and o
 ]
 ```
 
-Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling the conversations from somewhere (possibly the [[Private Room]]):
+Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling the conversations from somewhere:
 
 ```discord
 [
