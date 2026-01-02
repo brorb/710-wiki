@@ -21,20 +21,24 @@ Appearances:
 ```
 
 
-A timer that always counts down to 10 July 2025 of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. During [[STATION_8 TRIM 5|the]] [[STATION_8 TRIM 90|STATION_8]] [[STATION_8 TERMINAL 8 |livestreams]], a continuous frequency would play in the background while it counts down.
+A timer that usually counts down to 10 July 2025 of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. During [[STATION_8 TRIM 5|the]] [[STATION_8 TRIM 90|STATION_8]] [[STATION_8 TERMINAL 8 |livestreams]], a continuous frequency would play in the background while it counts down. It also appears at the end of [[The Logs]] as a number counter.
 
 ---
 ### Purpose:
 
-The timer's sole purpose is to count down to 10 July 2025 annually.
+The timer's sole purpose is to count down to 10 July 2025 annually. However, there also seems to be some discrepancy with this fact, as during 2025 the number counter at the end of [[The Logs]] pointed to an earlier date at first (10th June) before it seemingly corrected itself in [[LOG-20...|LOG-20]].
 
 ### When the timer started:
 
-In 2025, the Station Timer screen (as seen above) started broadcasting on the "ES-ETA" livestream from 7 June 2025. However, it has been featured as far back as the "[[30]]" video.
+The Station Timer seems to restart every year, usually marking a "new era" for [[710 Tone|7/10 Tone]].
+
+In 2025, the Station Timer started broadcasting on the "ES-ETA" livestream from 7 June 2025. However, it had been featured as far back as the "[[30]]" video.
 
 ### When the timer ended and what happened afterwards:
 
-In [[STATION_8 TERMINAL 8]], the timer ended on 10 July 2025 at 3:00AM EST. When it ended, [[INDI]] asked the viewers to enter in a 5-digit code (referred to as "the op code" by [[SYSTEM]]) with the digits being contained in the descriptions of prime numbered logs ([[LOG-002.mp4]], [[LOG-007.mp4]], [[LOG-17.mp4]], [[LOG-31.mp4]], and finally [[LOG-71.mp4]]). The code (28634 when combined) was entered successfully and INDI began a transmission signal, but was overloaded and got found by someone (possibly the mysterious "[[He]]" figure).
+In [[STATION_8 TERMINAL 8]], the timer ended on 10 July 2025 at 3:00AM EST. When it ended, [[INDI]] asked the viewers to enter in a 5-digit code (referred to as "the op code" by [[SYSTEM]] 
+
+with the digits being contained in the descriptions of prime numbered logs ([[LOG-002.mp4]], [[LOG-007.mp4]], [[LOG-17.mp4]], [[LOG-31.mp4]], and finally [[LOG-71.mp4]]). The code (28634 when combined) was entered successfully and INDI began a transmission signal, but was overloaded and got found by someone (possibly the mysterious "[[He]]" figure).
 
 ```media-box
 Media: [[Content/Media/710 Media/Images/FOUND YOU INDI (1)-min.png]]

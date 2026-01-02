@@ -82,5 +82,10 @@ According to the game's metadata, it was created on 14 August 2024.
 > }
 > ```
 
-**Link to prj_home.exe here:** https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
+On 31 December 2025, the original mega link to download the file was deleted, along with the download link to lm-2.
+
+---
+
+**Original Mega link to prj_home.exe:** https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0 (invalid now)
+**Mirror link:** https://mega.nz/file/TPowxIrR#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
 **Godot decompile tool here:** https://github.com/GDRETools/gdsdecomp
