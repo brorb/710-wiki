@@ -1,6 +1,3 @@
----
-tags:
----
 
 <iframe 
   src="https://drive.google.com/file/d/1d9zBjRLluK5uENRg6sxU6yryLuhuHmfc/preview" 
