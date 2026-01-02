@@ -14,6 +14,7 @@ Appearances:
 - [[30]]
 - [[LOG-27.mp4]]
 - [[{ - . }re]]
+- [[LOG-1.mp4]]
 - Community post from February 2025 (see [[Community Posts]])
 ```
 
@@ -80,6 +81,14 @@ Width: clamp(220px, 32vw, 360px)
 Media: [[The Eyes Hello.png]]
 Alt: The Eyes in the corner of the screen of "Hello" video
 Caption: The Eyes as they appear in the Hello video, note the reversed words, which translate to "YOUR NOT IN CONTROL HERE"
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[The Eyes in LOG-1.png]]
+Alt: The Eyes updated appearance with a wider, opened stare directly at the viewer
+Caption: The Eyes as they appear in LOG-1.mp4
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
