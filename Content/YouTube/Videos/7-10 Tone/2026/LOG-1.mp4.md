@@ -52,4 +52,4 @@ TTH_1
 
 
 
-**Clues:** "PORT-CALL" is set to 328-AN-ZY
+**Clues:** The program that creates [[The Logs]] is referred to as the "7/10" program in the [[LINX-OS]] kernel. On the log data screen, "PORT-CALL" is set as 328-AN-ZY.
