@@ -20,7 +20,7 @@ An operating system that appeared in [[710 Tone|7/10 Tone]] videos, where the pr
 ```media-box
 Media: [[Content/Media/Other/LINX-OS Terminal 8 (Hello).png]]
 Alt: LINX-OS Terminal 8 screen
-Caption: LINX-OS screen as seen in [[Hello]]
+Caption: LINX-OS screen as seen in Hello
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
