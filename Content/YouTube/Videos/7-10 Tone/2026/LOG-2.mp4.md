@@ -19,6 +19,6 @@ OPEN
 SYSTEM: 852634
 SYSTEM ID: 749140692**
 
-**Video Summary:** Black and red static, beginning sound is data noise, 
+**Video Summary:** Black and red static, beginning sound is data noise, with buzzing sounds in the background. Timer counts from 189 to 188.
 
 **Clues:** 
