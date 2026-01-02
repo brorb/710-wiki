@@ -82,7 +82,14 @@ According to the game's metadata, it was created on 14 August 2024.
 > }
 > ```
 
-On 31 December 2025, the original mega link to download the file was deleted, along with the download link to lm-2.
+On 31 December 2025, the original mega link to download the game was deleted, along with the download link to lm-2.
+
+```community-post,0,1,31 December 2025,
+>:\\probe
+>NOTED, [2 items]
+>MEGA.{extension}
+>removed, [2 items]
+```
 
 ---
 
