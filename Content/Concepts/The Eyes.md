@@ -21,7 +21,7 @@ Appearances:
 
 Possibly a program that manages data, as it appears in the [[Private Room]] (named "SPR chatroom") scanning through data before the chatroom fully connects.
 
-It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them (see [2 August 2025 SYSTEM chats from SERVER 01](https://710tone.wiki/Discord/System-Chats#2nd-august-2025) for context).
+It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them (see [[System Chats#Logged Session 7.2 and 7.3|System Chats]]).
 
 It is associated with the phrase "ALWAYS WATCHING", which could have some significance behind it.
 
