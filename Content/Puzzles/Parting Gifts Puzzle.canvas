@@ -91,7 +91,7 @@
 			"height":60
 		},
 		{"id":"a509197f7cab8b52","type":"link","url":"https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0","x":2510,"y":131,"width":400,"height":428},
-		{"id":"f0fea005e72e6fac","type":"file","file":"Content/YouTube/Videos/7-10 Tone/BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}.md","x":2360,"y":1160,"width":550,"height":400},
+		{"id":"f0fea005e72e6fac","type":"file","file":"Content/YouTube/Videos/7-10 Tone/2025/BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}.md","x":2360,"y":1160,"width":550,"height":400},
 		{
 			"id":"a2f4a0fc5fda05f8",
 			"type":"text",
@@ -116,7 +116,7 @@
 		{
 			"id":"390d423d61d5dfa2",
 			"type":"file",
-			"file":"Content/YouTube/Videos/7-10 Tone/KEY.md",
+			"file":"Content/YouTube/Videos/7-10 Tone/2025/KEY.md",
 			"styleAttributes":{
 				"border":null
 			},
@@ -125,7 +125,7 @@
 			"width":420,
 			"height":280
 		},
-		{"id":"02f282af569dc11e","type":"file","file":"Content/YouTube/Videos/7-10 Tone/lm-1.md","x":40,"y":190,"width":420,"height":289},
+		{"id":"02f282af569dc11e","type":"file","file":"Content/YouTube/Videos/7-10 Tone/2025/lm-1.md","x":40,"y":190,"width":420,"height":289},
 		{
 			"id":"4d243120bf9ad03d",
 			"type":"text",
