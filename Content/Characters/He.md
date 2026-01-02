@@ -17,7 +17,6 @@ Appearances:
 - [[Hello]] (mentioned)
 ```
 
-
 An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]].
 
 "He" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg --> as well as [[SYSTEM II]]. <!-- discord-cite:cite-mjpuly83-knzzu4 -->
