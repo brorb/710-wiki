@@ -321,3 +321,38 @@ Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling its
   }
 ]
 ```
+
+On 28th December 2025, SYSTEM II left [[The Sleuths]] Discord server after it had declared that it had given them enough information:
+
+```discord
+[
+  {
+    "id": "1454842374168510558",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "I have given you enough information",
+    "timestamp": "2025-12-28T14:24:11.666000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842374168510558"
+  },
+  {
+    "id": "1454842410898030749",
+    "author": {
+      "display_name": "SYSTEM II",
+      "username": "systemrulemaker_16338",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "Goodbye",
+    "timestamp": "2025-12-28T14:24:20.423000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842410898030749"
+  }
+]
+```
