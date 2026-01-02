@@ -15,7 +15,7 @@ Uploaded 1 Jan 2026
 SYSTEM: 473019
 SYSTEM ID: 328924078**
 
-**Video Summary:** Video begins with the "Station Connection Terminated" screen, with the timer counting to 59 minutes and 55 seconds before it restarts. It continues until around 40 seconds into the timer when the word "CONNECTING" flashes on screen then it cuts to black, a dial-tone beeps in the background briefly, then another alarm-like computer sound gradually gets louder as text types onto the screen, some backup files are created. It cuts to the intro [[Channel 14]], which gets corrupted as more text is typed out on the bottom of the screen. The text then rescales and prints out the following directory:
+**Video Summary:** Video begins with the "Station Connection Terminated" screen, with the timer counting to 59 minutes and 55 seconds before it restarts. It continues until around 40 seconds into the timer when the word "CONNECTING" flashes on screen then it cuts to black, a dial-tone beeps in the background briefly, then another alarm-like computer sound gradually gets louder as text types onto the screen, some backup files are created. It cuts to the intro [[Channel 14]], which gets corrupted as more text is typed out on the bottom of the screen. The text then rescales and prints out the following directory while computer noises play in the background:
 
 ```
 cnt var OP_COM = 39.05f .v
@@ -34,7 +34,7 @@ HEOS                [datalist11]                [unconst #2]
 ```
 ^Note that the "NWFI" listed item is in red and also #3 in the unconst variable.
 
-The program loads and the LINX-OS Terminal 10 boots up, then more text types up on the bottom corner of the screen:
+The program loads and LINX-OS Terminal 10 appears briefly as it boots up, more text prints on the bottom corner of the screen:
 
 ```
 SYSTEM.34432
@@ -50,6 +50,6 @@ correcting_STATUS(7)
 TTH_1
 ```
 
-
+LINX-OS Terminal 10
 
 **Clues:** The program that creates [[The Logs]] is referred to as the "7/10" program in the [[LINX-OS]] kernel. On the log data screen, "PORT-CALL" is set as 328-AN-ZY.

@@ -11,7 +11,7 @@ tags:
   allowfullscreen>
 </iframe>
 Titled as "[BACKTONE:COMPLETED]{KPJV, ETSN, YMUK, WWEV}"
-Uploaded 24 June 2025.
+Uploaded 24 June 2025
 
 **Video Summary:** Features [[prj_Home.exe]], which glitches and distorts as the player walks around in a strange matter. The video cuts around until they finally enter the house, ending up in a red room similar to the one in [[backtone.extend 5_f''5.5'']]. As they try to turn around, the video freezes and glitches, with the words "UNABLE TO PROCESS" repeating over and over again until the video ends.
 
