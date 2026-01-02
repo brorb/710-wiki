@@ -7,6 +7,7 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 ```community-post,4,3,1 Jan 2025,
 Start
 ```
+^This post marks the restart of [[710 Tone|7/10 Tone]] for 2026, posted right before [[LOG-1.mp4]] was uploaded to the channel.
 
 ```community-post,0,1,31 December 2025,
 >:\\probe
@@ -14,6 +15,7 @@ Start
 >MEGA.{extension}
 >removed, [2 items]
 ```
+^After this community post was uploaded, the Mega downloads for both [[prj_Home.exe]] and [[Travis|lm-2]] were deleted.
 
 ```community-post,3,0,29 December 2025,
 LOGGED SERVICE 01:       TIME:                                 Logged [in/out]: ...
