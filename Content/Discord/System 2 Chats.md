@@ -882,7 +882,7 @@
 ]
 ```
 
-### [[TTH]] is pulling from [[SYSTEM II]]'s conversations
+### [[TTH]] is pulling from these conversations
 
 ```discord
 [
