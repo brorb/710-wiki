@@ -93,6 +93,6 @@ On 31 December 2025, the original mega link to download the game was deleted, al
 
 ---
 
-**Original Mega link to prj_home.exe:** https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0 (invalid now)
-**Mirror link:** https://mega.nz/file/TPowxIrR#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
+**Original Mega link to prj_home.exe (invalid now):** https://mega.nz/file/4e1ACZSY#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
+**Mirror:** https://mega.nz/file/TPowxIrR#G6jCqAgY5WfOFuLFcQbNJkBlcPT0ivany-fAEbbdRd0
 **Godot decompile tool here:** https://github.com/GDRETools/gdsdecomp
