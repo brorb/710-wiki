@@ -15,6 +15,7 @@ Appearances:
 - [[Parting Gifts]]
 - [[STATION_8 TRIM 90]]
 - [[STATION_8 TERMINAL 8]]
+- [[uBBNS]] (music)
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]]
 - [[LOG-1.mp4]]
 ```
