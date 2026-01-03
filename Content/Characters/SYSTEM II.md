@@ -5,6 +5,7 @@ tags:
   - important
   - lore
   - Discord
+  - system
 ---
 ```infobox
 Title: SYSTEM II

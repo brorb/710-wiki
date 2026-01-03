@@ -6,6 +6,7 @@ tags:
   - YouTube
   - Discord
   - important
+  - system
 ---
 ```infobox
 Title: SYSTEM
