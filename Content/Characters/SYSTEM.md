@@ -1970,7 +1970,7 @@ _From main Discord server._
 _From @brorb's DMs._
 
 ---
-## Hijack and [[Rod Formak]] name reveal
+## Hijack by [[He]] and [[Rod Formak]] name reveal
 
 ```discord
 [
