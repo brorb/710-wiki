@@ -50,7 +50,7 @@ correcting_STATUS(7)
 TTH_1
 ```
 
-LINX-OS Terminal 10 appears again, mounts to a drive named "SYS.4K", which has an error message with an unknown alignment to antenna A1, yet it has a successful alignment with a rad dish. It imports data to systems 5, 4, 3, 2, C1, and C2, then the command /return server prints out with the input username being "93jNkIow" and the password censored. Data sends back and an input key prompt prints out below. The red text quickly types out over a dark red background:
+LINX-OS Terminal 10 appears again, mounts to a drive named "SYS.4K", which has an error message with an unknown alignment to antenna A1, yet it has a successful alignment with a rad dish. It imports data to systems 5, 4, 3, 2, C1, and C2, an input command "/return server" prints out with the input username "93jNkIow" and the password is censored. Data sends back and an input key prompt prints out below. The red text quickly types out over a dark red background:
 
 ```
 THERE IS STILL ONE LEFT.
