@@ -15,7 +15,7 @@ Start
 >MEGA.{extension}
 >removed, [2 items]
 ```
-^After this community post was uploaded, the Mega downloads for both [[prj_Home.exe]] and [[Travis|lm-2]] were deleted.
+^After this community post was uploaded, the Mega downloads for both [[prj_Home.exe]] and [[Travis|lm-2]] were deleted. This post might correspond with the "update:4-54" post below, except this one was uploaded at 9:01pm EST.
 
 ```community-post,3,0,29 December 2025,
 LOGGED SERVICE 01:       TIME:                                 Logged [in/out]: ...
