@@ -1642,7 +1642,7 @@
   }
 ]
 ```
-^This conversation would hint at 
+^This conversation would hint at the [[LINX-OS|LINX OS Terminal 10]] input username, password and key shown in [[LOG-1.mp4]].
 ### 27th December Conversation
 
 ```discord
