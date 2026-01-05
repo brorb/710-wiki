@@ -11,4 +11,4 @@ COPY:
 SUBSCRIBE || LIKE || DISLIKE || SHARE || SAVE || CLIP || ...
 downloading meta..................................................[COMPLETE]
 
-**Video Summary:** Normal red and black static, timer counts down from 187 to 186.
+**Video Summary:** Normal red and black static, timer counts down from 186 to 185.
