@@ -16,4 +16,4 @@ pause logged info
 SYSTEM: 343222
 SYSTEM ID: 513935132**
 
-**Video Summary:** 
+**Video Summary:** Normal red and black static, timer counts from 185 to 184.
