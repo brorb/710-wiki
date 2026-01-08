@@ -127,7 +127,7 @@ However the next day these videos were also unlisted from the channel's page.
 ```media-box
 Media: [[purge community post ping.jpg]]
 Alt: 
-Caption: Ping from The Oracle in the The Sleuths about the new community post that went along with the purge
+Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
