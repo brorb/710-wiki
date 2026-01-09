@@ -6,7 +6,7 @@ tags:
 ```infobox
 Title: The Logs
 Image: ![[Content/Media/Sleuth Media/Images/Example of LOGs.png]]
-Caption: Example of LOG videos from the 7/10 Tone channel
+Caption: Example of log videos from the 7/10 Tone channel (circa 2025)
 ```
 
 The Logs are videos uploaded to the [[710 Tone|7/10 Tone]] channel that usually contain red and black blocks with some soft noise in the background and a counter at the end that counts down (which is presumably the [[Station Timer]]). These videos usually have "LOG", a number, and a file extension (.mp4) in the title, however not all logs are labeled like this (for example, [[33LOG-13]] and [[machina_ad_mortem.mp4]]).
