@@ -20,14 +20,16 @@ Also known as:
 - SPR
 ```
 
-The Private Room is a chat room used by [[TTH]] to discuss internal matters. It is not known why or how the chats are leaked to the public. It is also called SPR chat, for "Super Private Chat"
+The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal matters. It is also called SPR chat, short for "Super Private Chat". It is not known why or how the chats are leaked to the public.
 
 There are three ways in which the chats have become available to the public:
 1. Via [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
 2. Via videos on the [[710 Tone|7/10 Tone]] channel
 3. Via [[The Sleuths]] Discord server
 
+## Purpose
 
+The Private Room seems to be a form of communication between the two factions of [[TTH]] and [[REN]], with [[INDI]] specifically mentioning that it is the only reliable form of communication with [[Kepler]].[^1]
 ## Content
 
 There are only two parties chatting at a time, often under aliases (such as [[F2930]] or [[A992144]]), although [[TTH]] has been known to chat without aliases. The topics are usually about signal management, with mentions of some kind of "mission."
@@ -3277,3 +3279,5 @@ After disconnecting, [[SYSTEM]] got hijacked by something, possibly [[REN]], and
   }
 ]
 ```
+
+[^1]: In [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
