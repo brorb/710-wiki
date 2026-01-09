@@ -14,7 +14,7 @@ REMOVED ".mp4" extensions
 ...
 "
 ```
-^This signaled the removal of the ".mp4" file extensions from the titles of [[The Logs]].
+^This signaled the removal of the ".mp4" file extensions from the titles of [[The Logs]], starting with [[LOG 9]].
 
 ```community-post,4,0,7 Jan 2025,
 Log Output Delayed[Maintenance work to system]
