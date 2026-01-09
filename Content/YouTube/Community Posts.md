@@ -4,7 +4,19 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
-```community-post,6,3,7 Jan 2025,
+```community-post,2,0,9 Jan 2025,
+Logged output:
+"
+UPDATING STRING SQU:
+LOG "#"
+UPDATE:
+REMOVED ".mp4" extensions
+...
+"
+```
+^This signaled the removal of the ".mp4" file extensions from the titles of [[The Logs]].
+
+```community-post,4,0,7 Jan 2025,
 Log Output Delayed[Maintenance work to system]
 Assessing Problem[Time est output @ .................[1/7/__]]
 ```
