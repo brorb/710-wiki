@@ -15,9 +15,11 @@ Appearances:
 - [[LOG-123.mp4]]
 - [[STATION_8 TRIM 90]] (mentioned)
 - [[STATION_8 TERMINAL 8]] (mentioned)
+- [[ERE IS ONE PERSON I KNOW IT'S KE]]
 Also known as:
 - Super Private Chat
 - SPR
+- COPR
 ```
 
 The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal matters. It is also called SPR chat, short for "Super Private Chat". It is not known why or how the chats are leaked to the public.
@@ -3280,5 +3282,11 @@ After disconnecting, [[SYSTEM]] got hijacked by something, possibly [[REN]], and
   }
 ]
 ```
+
+## Chat #15
+
+In [[ERE IS ONE PERSON I KNOW IT'S KE]], there is a snippet of a Private Room chat (.copr) between [[Travis]] and [[INDI]].
+
+
 
 [^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].

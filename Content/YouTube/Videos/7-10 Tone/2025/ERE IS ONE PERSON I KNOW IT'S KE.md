@@ -16,7 +16,7 @@ Uploaded on 6 November 2025.
 > :score: > var importance
 > clearing data...
 
-Extremely sped-up gameplay footage from [Half Life GoldSrc](https://en.wikipedia.org/wiki/GoldSrc) edition proceeds throughout the video, then at around 3 minutes an obscured chatroom box between [[INDI]] and [[Travis]] opens in the right bottom corner of the screen. [[INDI]] has the username of "IN_DI.servertype" and Travis has the username of "TRAVIS@user". Unfortunately their conversation is mostly obscured, aside from the line "IF IT IS TURE THAT" from [[INDI]]. At the end of the video the following text appears:
+Extremely sped-up gameplay footage from [Half Life GoldSrc](https://en.wikipedia.org/wiki/GoldSrc) edition proceeds throughout the video, then at around 3 minutes an obscured chatroom box between [[INDI]] and [[Travis]] opens in the right bottom corner of the screen. [[INDI]] has the username of "IN_DI.servertype" and Travis has the username of "TRAVIS@user". Unfortunately their conversation is mostly obscured. At the end of the video the following text appears:
 
 > Searching temp files FROM C^
 > allocating memory
