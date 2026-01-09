@@ -3287,6 +3287,14 @@ After disconnecting, [[SYSTEM]] got hijacked by something, possibly [[REN]], and
 
 In [[ERE IS ONE PERSON I KNOW IT'S KE]], there is a snippet of a Private Room chat (.copr) between [[Travis]] and [[INDI]].
 
+```media-box
+Media: [[COPR chat with INDI and Travis.png]]
+Alt: Half Life gameplay video with .copr chat between INDI and Travis in the bottom right corner.
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
+Unfortunately, this chat is partially cut off so it is hard to make out exactly what they are discussing.
 
 [^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
