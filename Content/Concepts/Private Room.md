@@ -3281,4 +3281,4 @@ After disconnecting, [[SYSTEM]] got hijacked by something, possibly [[REN]], and
 ]
 ```
 
-[^1]: In [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
+[^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
