@@ -46,7 +46,7 @@ Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 
-After [[INDI]] was found, the [[lm-1]] and [[KEY]] videos popped up on the [[710 Tone|7/10 Tone channel]].
+After [[INDI]] was found, the [[lm-1]] and [[KEY]] videos popped up on the [[710 Tone|7/10 Tone channel]] (as well as [[Parting Gifts]] shortly after that, meaning that these videos might have been [[INDI]]'s parting gifts before he was found), and therefore leading to the [[Parting Gifts Puzzle|Parting Gifts Puzzle]].
 
 ### Interferences:
 
