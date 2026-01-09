@@ -11,7 +11,7 @@ Caption: Example of LOG videos from the 7/10 Tone channel
 
 The Logs are videos uploaded to the [[710 Tone|7/10 Tone]] channel that usually contain red and black blocks with some soft noise in the background and a counter at the end that counts down (which is presumably the [[Station Timer]]). These videos usually have "LOG", a number, and a file extension (.mp4) in the title, however not all logs are labeled like this (for example, [[33LOG-13]] and [[machina_ad_mortem.mp4]]).
 
-According to the [[Hello]] video, the owner of the [[710 Tone|7/10 Tone]] channel was told to create the program that makes these LOGs by an undisclosed group of people and it is designed to pull data from [[Caper Waves]]. This program is officially dubbed the "7/10" program in [[LOG-1.mp4]], and seemingly runs on [[LINX-OS]].
+According to the [[Hello]] video, the owner of the [[710 Tone|7/10 Tone]] channel was told to create the program that makes these LOGs by an undisclosed group of people and it is designed to pull data from [[Caper Waves]]. This program is officially dubbed the "7/10" program in [[LOG-1.mp4]], running on [[LINX-OS]].
 
 Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] in [[STATION_8 TERMINAL 8]]. They are also meant to be deciphered like some kind of data (also confirmed by [[INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills. According to [[INDI]], they are important to "someone else", but the identity of them is unclear. [^1]
 
