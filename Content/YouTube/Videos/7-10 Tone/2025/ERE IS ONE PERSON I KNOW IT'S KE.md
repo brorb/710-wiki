@@ -6,7 +6,7 @@ Uploaded on 6 November 2025.
 
 > Searching temp files FROM C^
 > allocating memory
-> clearing data rom: \[GAMEPLAY4.mp4] to \[relay5.data]
+> clearing data from: \[GAMEPLAY4.mp4] to \[relay5.data]
 > meta:
 > 	owner: [[Travis|TRAVIS]]
 > 	date: 02-4-25
@@ -20,6 +20,6 @@ Extremely sped-up gameplay footage from [Half Life GoldSrc](https://en.wikipedia
 
 > Searching temp files FROM C^
 > allocating memory
-> clearing data rom: \[GAMEPLAY6.mp4] to \[relay7.data]
+> clearing data from: \[GAMEPLAY6.mp4] to \[relay7.data]
 
 **Clues:** The chatroom featured in the video is most likely the [[Private Room]], with the title being "INDI_CHAT.copr"
