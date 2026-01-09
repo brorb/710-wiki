@@ -23,7 +23,6 @@ Appearances:
 
 A timer that usually counts down to 10 July 2025 of every year, which is apparently an important event for the [[710 Tone|7/10 Tone]] channel. During [[STATION_8 TRIM 5|the]] [[STATION_8 TRIM 90|STATION_8]] [[STATION_8 TERMINAL 8 |livestreams]], a continuous frequency would play in the background while it counts down. It also appears at the end of [[The Logs]] as a number counter.
 
----
 ### Purpose:
 
 The timer's sole purpose is to count down to 10 July 2025 annually. However, there also seems to be some discrepancy with this fact, as during 2025 the number counter at the end of [[The Logs]] pointed to an earlier date at first (10th June) before it seemingly corrected itself in [[LOG-20...|LOG-20]].
