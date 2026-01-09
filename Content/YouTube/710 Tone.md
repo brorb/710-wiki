@@ -18,7 +18,7 @@ Other related channel(s):
 ```
 
 
-The channel [7/10 Tone](https://www.youtube.com/@7-10tone) was created on 26 June 2021. It mostly centers around [[The Logs]], with some hints around data, signals, machines (usually sentient-like AI), and time.
+The channel [7/10 Tone](https://www.youtube.com/@7-10tone) was created on 26 June 2021. It mostly centers around [[The Logs]], data, signals, machines (usually sentient-like AI), and time.
 
 There exists records of video uploads since early-mid 2023, although everything from before 2 January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24 July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
 
