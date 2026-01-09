@@ -22,7 +22,7 @@ They were not originally meant to be seen by the viewers[^2], but as for why the
 ```media-box
 Media: [[LOG-46 log data screen.jpg]]
 Alt: Old log data screen
-Caption: Log data screen from [[LOG-46.mp4]]
+Caption: Log data screen from LOG-46.mp4
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
@@ -30,7 +30,7 @@ Width: clamp(220px, 32vw, 360px)
 ```media-box
 Media: [[machina_ad_mortem log data screen.png]]
 Alt: Updated log data screen
-Caption: The updated look of the log data screen, as seen in [[machina_ad_mortem.mp4]]
+Caption: The updated look of the log data screen, as seen in machina_ad_mortem.mp4
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
