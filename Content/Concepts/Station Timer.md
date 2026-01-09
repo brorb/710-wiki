@@ -35,7 +35,7 @@ In 2025, the Station Timer started broadcasting on the "ES-ETA" livestream from 
 
 ### When the timer ended and what happened afterwards:
 
-In [[STATION_8 TERMINAL 8]], the timer ended on 10 July 2025 at 3:00AM EST. When it ended, [[INDI]] asked the viewers to enter in a 5-digit code (referred to as "the op code" by [[SYSTEM]]), which apparently granted [[INDI]] access to something and he was about to transmit something before being found by someone.
+In [[STATION_8 TERMINAL 8]], the timer ended on 10 July 2025 at 3:00AM EST. When it ended, [[INDI]] asked the viewers to enter in a 5-digit code (referred to as "the op code" by [[SYSTEM]]), which apparently granted [[INDI]] access to something and he was about to transmit something before being found by someone (possibly [[TTH]] or [[He]]).
 
 with the digits being contained in the descriptions of prime numbered logs ([[LOG-002.mp4]], [[LOG-007.mp4]], [[LOG-17.mp4]], [[LOG-31.mp4]], and finally [[LOG-71.mp4]]). The code (28634 when combined) was entered successfully and INDI began a transmission signal, but was overloaded and got found by someone (possibly the mysterious "[[He]]" figure).
 
