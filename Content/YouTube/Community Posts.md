@@ -84,7 +84,7 @@ Deletion of non-important file in: 1 day 00 hours 00 minute 00 seconds
 ```community-post,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```
-^This post was quickly deleted along with the rest of the [[710 Tone|7/10 Tone]] channel's contents, all three videos on [[710 NPP|7/10 NPP]]'s channel were also removed.
+^This post was quickly deleted along with the rest of the [[710 Tone|7/10 Tone]] channel's contents, all three videos on [[710 NPP|7/10 NPP]]'s channel were also removed after this was posted.
 
 ```community-post,1,1,12 November 2025,
 !/update:4-54, update-TIME-LIMIT(2000-8:00pm {N/A}-standard-time) removing all unmarked labels :: on [12/31/[NAN]]
