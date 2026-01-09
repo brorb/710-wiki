@@ -29,7 +29,8 @@ There are three ways in which the chats have become available to the public:
 
 ## Purpose
 
-The Private Room seems to be a form of communication between the two factions of [[TTH]] and [[REN]], with [[INDI]] specifically mentioning that it is the only reliable form of communication with [[Kepler]].[^1]
+The Private Room seems to be a form of communication between the two factions of [[TTH]] and [[REN]], with [[INDI]] specifically mentioning that it is his only reliable form of communication with [[Kepler]], much like a private chat room for relying important information about operations.[^1]
+
 ## Content
 
 There are only two parties chatting at a time, often under aliases (such as [[F2930]] or [[A992144]]), although [[TTH]] has been known to chat without aliases. The topics are usually about signal management, with mentions of some kind of "mission."
