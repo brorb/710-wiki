@@ -50,4 +50,4 @@ Goodbye for now.
 
 It cuts to black, then the soft log noise gets gradually louder until some red scanlines appear with the same woman talking in the background once again. The red and black static comes back, but it repeats itself for about 2 minutes before it goes back to normal. Timer counts down from 181 to 180.
 
-**Clues:** The woman's voice is similar to the one heard in { - . }re, however this is most likely not the same person. 
+**Clues:** The woman's voice is similar to the one heard in { - . }re, however this is most likely not the same person. Some of the audio is the same as the noise heard in RIGfunctionobservationTEST028.mp4.
