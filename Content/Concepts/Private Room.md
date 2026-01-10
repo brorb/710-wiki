@@ -49,6 +49,7 @@ into the gray matter."
 "And did you see him again after that?"
 "No, I l��ke� fo� ��� ��������������������������
 ```
+
 This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-2024-1). 
 It is possible that the unspecified "he" is [[He]], but the lack of capitalization puts this into debate. The logo referred to could be that of [[TTH]], [[The Eyes]] or even the [[Ferkland Institute]].
 The last message gets cut off and corrupted, likely meant to start with "No, I looked for ....".
@@ -72,7 +73,7 @@ It is unknown who the two chatters were.
 ��������������������������������������������������������������������������������������������
 ���������������������
 ```
- This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-august-2024-1k)and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
+ This one originates from a [2024 community post](https://710tone.wiki/YouTube/Community-Posts#youtube-community-posts-youtube-post-august-2024-1k) and is similar to [[Private Room#Chat 1|Chat #1]] in that it features similar cutting of and corruption at the end. In this chat, however, we get the names of the chatters: [[F8887]] and [[F2617]].  The former is a technician while the exact role of the latter is unknown, but it is likely they operate some radio station - perhaps a [[TTH#TTH Bases1|TTH base]]. The "F" in their names could refer to [[Ferkland County]], but this is not confirmed.
 
 In this chat, they talk about picking up noise from the "stations".
 
@@ -94,7 +95,8 @@ X331239: NO WE'RE SAYING THAT YOU NEED TO GET THAT STATION UNDER CONTROL OR WE A
 TERMINATING THE MISSION
 A992144: WE'LL TRY
 ```
-This chat comes from the video [[{ - . }re]], posted 24 January 2025. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats. Interestingly, this private chat has also been posted as a [[Community Posts#]]
+
+This chat comes from the video [[{ - . }re]], posted 24 January 2025. Notably, this chat follows a different format than the two preceding chats, firstly being in video format, secondly by initially specifying user ID's and lastly by being in all caps and not ending in a corrupted message. This format also applies to the next two private room chats. Interestingly, this private chat has also been posted as a community post.
 
 In this chat, [[A992144]] and [[X331239]] discuss an "incident" and a "mission" -- both of which are unknown. [[X331239]] is an autoreactive figure relative to [[A992144]] who seemingly has a crew working alongside them ("YOU AND YOUR BOYS").
 [[A992144]] is reprimanded for carelessly broadcasting on undesirable frequencies.  
@@ -140,65 +142,59 @@ This chat comes from the video [[LOG-123.mp4]], posted on 4 May 2025. In it, the
 
 The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2 July 2025 - 4 July 2025:
 
-```
-TRANSCRIPT 001:
+```community-post,0,0,2 July 2025,
+TRANSCRIPT 001:  
 TTH: F2930 We see your signal, transferring in a bit. Hold tight.
 ```
 This chat features yet another unknown [[TTH]] worker, [[F2930]], chatting with [[TTH]].
 
 ## Chat #7
 
-```
-TRANSCRIPT 002:
-TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200
-F2930: Why is there a wait time?
+```community-post,1,1,2 July 2025,
+TRANSCRIPT 002:  
+TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200  
+F2930: Why is there a wait time?  
 TTH: Difficulties with some Datacores and CIN Centers, but it that will be resolved soon.
 ```
 Here we see that it takes 10 hours for [[F2930]] to receive the signal sent from [[TTH]].  The [[TTH]] supervisor blames this issue on problems with "Datacores" and "[[CIN Centers]]". We do not know the meaning of these terms.
 
 ## Chat #8
 
-```
-TRANSCRIP 003:
-TTH: F2930, we encountered some anomalous interference with your signal
-F2930: THEN FIX IT.
-TTH: F2930, This matter is on your part.
-F2930: SORRY, THEN I'LL FIX IT.
-TTH: Then just send the serial code back and we'll get you back on it.
-F2930: YEAH, WHAT'S A SERIAL CODE?
+```community-post,1,0,3 July 2025,
+TRANSCRIP 003:  
+TTH: F2930, we encountered some anomalous interference with your signal  
+F2930: THEN FIX IT.  
+TTH: F2930, This matter is on your part.  
+F2930: SORRY, THEN I'LL FIX IT.  
+TTH: Then just send the serial code back and we'll get you back on it.  
+F2930: YEAH, WHAT'S A SERIAL CODE?  
 TTH: The code from the signal generation key.
 ```
 This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is very likely that it is [[INDI]] talking here, since him and [[Kepler]] switched places during the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]).
 
 ## Chat #9
 
-```
-TRANSCRIPT 004:
-TTH: F2930, We're getting some REN signals. Do you have anything to explain that?
-F2930: WHAT DO YOU MEAN REN SIGNALS?
-TTH: Don't play dumb, we're going to have to search your terminal before we can allow you 
-to pass through.
-F2930: NO, WAIT! I DON'T CONTRIBUTE WITH REN!
-TTH: Don't worry F2930. If we find nothing then you can pass through, but if you are hiding 
-something then we will have to do something about that.
+```community-post,1,0,4 July 2025,
+TRANSCRIPT 004:  
+TTH: F2930, We're getting some REN signals. Do you have anything to explain that?  
+F2930: WHAT DO YOU MEAN REN SIGNALS?  
+TTH: Don't play dumb, we're going to have to search your terminal before we can allow you to pass through.  
+F2930: NO, WAIT! I DON'T CONTRIBUTE WITH REN!  
+TTH: Don't worry F2930. If we find nothing then you can pass through, but if you are hiding something then we will have to do something about that.
 ```
 Here, the mysterious [[REN]] signals are mentioned. [[F2930]] is suspected of having something nefarious in their terminal -- perhaps [[Long String]]?
 
 ## Chat #10
 
-```
-TRANSCRIPT 005:
-TTH: Okay, we went through everything and found nothing. It is suspicious however, that 
-your terminal is completely clean of anything, but it's whatever. We just have to monitor 
-your signals for 3 - 6 days and we will conclude whether or not we'll allow your signals to 
-continue being private.
-F2930: Come on, I'm not even going to have that district for that long, can't we do 
-something to make your head turn the other way?
-TTH: What are you implying?
-F2930: Nothing, just I have 2000 Credit somewhere. I'll tell you where it is if you let my 
-signal go through without monitoring it.
-TTH: I'm sorry, but I can\<INSERT S PROTECTED CODE>'t take bribes.
-F2930: I see, what a shame, well it's near\<INSERT LAN CORD EXPUNGED AFTER 0432 AM>
+```community-post,4,1,4 July 2025,
+TRANSCRIPT 005:  
+TTH: Okay, we went through everything and found nothing. It is suspicious however, that your terminal is completely clean of anything, but it's whatever. We just have to monitor your signals for 3 - 6 days and we will conclude whether or not we'll allow your signals to continue being private.  
+F2930: Come on, I'm not even going to have that district for that long, can't we do something to make your head turn the other way?  
+TTH: What are you implying?  
+F2930: Nothing, just I have 2000 Credit somewhere. I'll tell you where it is if you let my signal go through without monitoring it.  
+TTH: I'm sorry, but I can< INSERT S PROTECTED CODE >'t take bribes.  
+F2930: I see, what a shame, well it's near< INSERT LAN CORD EXPUNGED AFTER 0432 AM >
+
 ```
 In this last private room chat, it is confirmed that [[F2930]] has purged their terminal. [[F2930]] mentions that they aren't "going to have that district for that long", implying that they have a changing jurisdictional responsibilities. They try to bribe the [[TTH]] agent with 2000 Credits. This is the first mention of this "Credit" currency. The [[TTH]] agent does not accept the bribe.
 
