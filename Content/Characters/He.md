@@ -9,15 +9,18 @@ tags:
 ```infobox
 Title: He
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
+Also known as:
+- HIM
 Appearances:
 - [[HIS PERCEPTION]]
 - [[LOG-67.mp4]] (mentioned)
 - [[STATION_8 TRIM 90]] (mentioned)
 - [[STATION_8 TERMINAL 8]] ([[SYSTEM|SYSTEM hijack]])
 - [[Hello]] (mentioned)
+- [[LOG-10]] (mentioned)
 ```
 
-An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]].
+An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]]. His name is usually all capitalized as "HIM".
 
 "He" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg --> as well as [[SYSTEM II]]. <!-- discord-cite:cite-mjpuly83-knzzu4 -->
 
