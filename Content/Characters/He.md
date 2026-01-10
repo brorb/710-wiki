@@ -10,7 +10,7 @@ tags:
 Title: He
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Also known as:
-- HIM
+- HE or HIM
 Appearances:
 - [[HIS PERCEPTION]]
 - [[LOG-67.mp4]] (mentioned)
@@ -20,9 +20,9 @@ Appearances:
 - [[LOG-10]] (mentioned)
 ```
 
-An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]]. His name is usually all capitalized as "HIM".
+An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]]. His name is usually all capitalized as "HIM" or "HE".
 
-"He" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg --> as well as [[SYSTEM II]]. <!-- discord-cite:cite-mjpuly83-knzzu4 -->
+"HE" is most likely involved with [[TTH]], according to a hint from [[SYSTEM]]<!-- discord-cite:cite-mgvkt6vn-24zczg --> as well as [[SYSTEM II]]. <!-- discord-cite:cite-mjpuly83-knzzu4 -->
 
 > [!discord-cite]- Discord citation (1 message)
 >
@@ -85,7 +85,7 @@ An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_
 > }
 > ```
 
-According to [[SYSTEM II]], "He" is like a "virus" to someone (or some sort of group).
+According to [[SYSTEM II]], "HE" is like a "virus" to someone (or some sort of group, judging by the term "them").
 
 ```discord
 [
@@ -104,4 +104,15 @@ According to [[SYSTEM II]], "He" is like a "virus" to someone (or some sort of g
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
   }
 ]
+```
+
+In [[LOG-10]], the following text talks about HIM:
+
+```
+You're not supposed to know about HIM
+That is what they would tell you but I will make you an offer.
+You will tell me everything about them.
+And I will show you HIM, HE will show you the future.
+They are listening and trying to intervene.
+Goodbye for now.
 ```
