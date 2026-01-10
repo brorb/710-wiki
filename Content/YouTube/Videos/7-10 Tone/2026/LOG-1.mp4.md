@@ -73,7 +73,7 @@ T/opDisk/list-4/Qrig:<START-Alins[90, 900, 9000] -C -drive +1
 >Resuming "7/10" program, call stated.......................SECURED
 ```
 
-The Eyes appear with a glitched noise in the background, then they open up to stare directly at the viewer before the Station Timer pops up, it starts at 190 days and counts down, static fills the screen.
+[[The Eyes]] appear with a glitched noise in the background, then they open up to stare directly at the viewer before the Station Timer pops up, it starts at 190 days and counts down, static fills the screen.
 
 The Log intro plays and flashes the data screen before it cuts to blue, text pops up on screen with the following data:
 
