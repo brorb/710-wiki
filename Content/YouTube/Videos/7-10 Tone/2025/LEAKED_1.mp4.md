@@ -15,7 +15,7 @@ Uploaded 1 May 2025.
 ###### Video Summary:
 ---
 The video starts with some colorful static and low-pitched noise, then cuts to the following text:
-**SERVICE LOG #8829: TAKEN FROM TTH BASE #13. THE LOG IS AN OVERVIEW AT HOW '[[INDI]]' WAS ABLE TO PRESUADED AN INDIVIDUAL TO DOWNLOAD A FILE THAT PINGED THEIR PLC LOCATION. DESTROYING ANOTHER P.E.**
+**SERVICE LOG #8829: TAKEN FROM TTH BASE #13. THE LOG IS AN OVERVIEW AT HOW '[[Content/Characters/INDI]]' WAS ABLE TO PRESUADED AN INDIVIDUAL TO DOWNLOAD A FILE THAT PINGED THEIR PLC LOCATION. DESTROYING ANOTHER P.E.**
 
 TTH logo appears at the bottom corner for a split second before more text appears on-screen:
 **INDI'S "TRUTH.ZIP" 001:

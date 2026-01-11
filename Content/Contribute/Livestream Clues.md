@@ -20,9 +20,9 @@ Before he perished, [[Travis]] mentioned never being a part of a complex, but wh
 > **7/10 Tone**: Why does it always end like this?
 > **7/10NPP**: I ALREADY TOLD YOU WHY.
 
-One theory would suggest that this "complex" is a part of a laboratory or other scientific institution (perhaps the [[Ferkland Institute]]?), since [[Travis]] was a scientist according to [[INDI]].
+One theory would suggest that this "complex" is a part of a laboratory or other scientific institution (perhaps the [[Ferkland Institute]]?), since [[Travis]] was a scientist according to [[Content/Characters/INDI]].
 
-After a stream restart, the below messages were exchanged by [[Travis]] and [[INDI]] before [[INDI]] was given control of the main [[710 Tone|7/10 Tone Youtube Channel]]:
+After a stream restart, the below messages were exchanged by [[Travis]] and [[Content/Characters/INDI]] before [[Content/Characters/INDI]] was given control of the main [[710 Tone|7/10 Tone Youtube Channel]]:
 
 > **7/10NPP**: WHAT HAPPENED?
 > **7/10 Tone**: Live went out for a bit
@@ -63,7 +63,7 @@ The [[SYSTEM|SYSTEMterminal8]] moderator leaked some [[Private Room]] aliases in
 
 ---
 
-Interestingly enough, [[INDI]] mentioned that [[Travis]] hid something from him in the [[710 Tone|710 Tone]]'s YouTube channel, 
+Interestingly enough, [[Content/Characters/INDI]] mentioned that [[Travis]] hid something from him in the [[710 Tone|710 Tone]]'s YouTube channel, 
 
 > **7/10 Tone**: I DON'T KNOW ANYTHING EXCEPT THAT THIS LIVE HAS 149 VIEWS, 7 LIKES AND 2 CONCURRENT VIEWERS FROM ANALYTICS TAB \[1]  
 > **The Camera Eye**: Analytics Tab? You mean the Studio?  
@@ -94,7 +94,7 @@ That piece of information seems to suggest that The Rebels might have had some s
 
 ---
 
-Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if they were able to decipher [[The Logs]], to which [[Kepler]] said no. This is some interest due to the question of why [[REN]] associates would want to decipher them and what kind of data they could possibly contain. However, an observation to keep in mind is that they do not have the proper tools or skills to crack them efficiently.
+Moments before the [[Station Timer]] reached zero, [[Content/Characters/INDI]] asked [[Kepler]] if they were able to decipher [[The Logs]], to which [[Kepler]] said no. This is some interest due to the question of why [[REN]] associates would want to decipher them and what kind of data they could possibly contain. However, an observation to keep in mind is that they do not have the proper tools or skills to crack them efficiently.
 
 > **7/10 Tone**: DID YOU EVER DECIPHER [[The Logs|THE LOGS]]?  
 > **7/10NPP**: No.  

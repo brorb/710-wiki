@@ -175,7 +175,7 @@
 
 ---
 
-# [[INDI]] is asked about [[TRUTH.zip]]
+# [[Content/Characters/INDI]] is asked about [[TRUTH.zip]]
 
 **BRORBIT**: IN_DI WHEN DO WE GET THE FILE?  
 **AmeraM**: nghlir  
@@ -217,7 +217,7 @@
 
 ---
 
-# [[INDI]] reveals [[Kepler]] as [[710 NPP|7/10 NPP]]
+# [[Content/Characters/INDI]] reveals [[Kepler]] as [[710 NPP|7/10 NPP]]
 
 ==**7/10 Tone**==: IT'S NOT WORKING  
 **The Camera Eye**: I see that  
@@ -809,7 +809,7 @@ SYSTEMterminal8: You're not going to do that.
 
 ---
 
-# [[INDI]] reveals the purpose of the [[Private Room]]
+# [[Content/Characters/INDI]] reveals the purpose of the [[Private Room]]
 
 ==**7/10NPP**==: BEHIND YOU.  
 **The Camera Eye**: Who? Me?  
@@ -840,7 +840,7 @@ SYSTEMterminal8: You're not going to do that.
 
 ---
 
-# [[INDI]] gains the power to delete comments in the chat
+# [[Content/Characters/INDI]] gains the power to delete comments in the chat
 
 **Mecha Dragon2**: Aight cool  
 ~~==**7/10 Tone**==: I'M BACK~~  
@@ -873,7 +873,7 @@ SYSTEMterminal8: You're not going to do that.
 
 ---
 
-# [[INDI]] and [[Kepler]] try to contact someone (most likely [[REN]])
+# [[Content/Characters/INDI]] and [[Kepler]] try to contact someone (most likely [[REN]])
 
 **abe**: Jesus 2 am realy ugg  
 **The Camera Eye**: I  

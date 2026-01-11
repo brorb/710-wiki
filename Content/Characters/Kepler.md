@@ -24,9 +24,9 @@ Status:
 *Kepler* is the alias of the entity running the YouTube channel [[710 NPP|7/10 NPP]][^1]. It is likely that they are human and a possible informant of [[REN]] within [[TTH]]. Their Private Room ID is "K3P13R", which became "inaccessible" after [[RIGfunctionobservationTEST028.mp4]] was uploaded and it might be possible that they have gone missing.
 
 ## Relationships
-## [[INDI]]
+## [[Content/Characters/INDI]]
 
-Kepler has been seen in charge of supervising [[INDI]] during the STATION_8 livestreams (starting with [[STATION_8 TRIM 90]]), hinting at an authoritative role within [[REN]] and/or [[TTH]]. They are known to communicate through the [[Private Room]], which is [[INDI]]'s only reliable way of communication between them.[^2] They seem to be a little weary of [[INDI]], not fully believing that he is 
+Kepler has been seen in charge of supervising [[Content/Characters/INDI]] during the STATION_8 livestreams (starting with [[STATION_8 TRIM 90]]), hinting at an authoritative role within [[REN]] and/or [[TTH]]. They are known to communicate through the [[Private Room]], which is [[Content/Characters/INDI]]'s only reliable way of communication between them.[^2] They seem to be a little weary of [[Content/Characters/INDI]], not fully believing that he is 
 
 ## [[D4V1NC1]]
 

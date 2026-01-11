@@ -31,7 +31,7 @@ There are three ways in which the chats have become available to the public:
 
 ## Purpose
 
-The Private Room seems to be a form of communication between the two factions of [[TTH]] and [[REN]], with [[INDI]] specifically mentioning that it is his only reliable form of communication with [[Kepler]], much like a private chat room for relying important information about operations.[^1]
+The Private Room seems to be a form of communication between the two factions of [[TTH]] and [[REN]], with [[Content/Characters/INDI]] specifically mentioning that it is his only reliable form of communication with [[Kepler]], much like a private chat room for relying important information about operations.[^1]
 
 ## Content
 
@@ -170,7 +170,7 @@ TTH: Then just send the serial code back and we'll get you back on it.
 F2930: YEAH, WHAT'S A SERIAL CODE?  
 TTH: The code from the signal generation key.
 ```
-This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[INDI]] usually talks. It is very likely that it is [[INDI]] talking here, since him and [[Kepler]] switched places during the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]).
+This chat differs a bit from the ones preceding it, in that [[F2930]] talks in all upper-case, similar to how [[Content/Characters/INDI]] usually talks. It is very likely that it is [[Content/Characters/INDI]] talking here, since him and [[Kepler]] switched places during the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]).
 
 ## Chat #9
 
@@ -1168,7 +1168,7 @@ This chat occurred in [[The Sleuths]]' Discord server when a [[TTH]] agent unkno
 ]
 ```
 In this chat, a [[TTH]] worker with ID [[F8829]] is confused as they end up connecting to a Discord server. Some key takeaways here are:
-1. [[F8829]] does not know who [[INDI]] is. This hints at [[INDI]] not being a purist [[TTH]] creation
+1. [[F8829]] does not know who [[Content/Characters/INDI]] is. This hints at [[Content/Characters/INDI]] not being a purist [[TTH]] creation
 2. They ask "Is this REN?", hinting that [[REN]] may be an opposing threat to [[TTH]] (speculative).
 3. They reveal they work for station 887634 - an hitherto unknown [[TTH#TTH Bases|TTH Base]].
 
@@ -3281,7 +3281,7 @@ After disconnecting, [[SYSTEM]] got hijacked by something, possibly [[REN]], and
 
 ## Chat #15
 
-In [[ERE IS ONE PERSON I KNOW IT'S KE]], there is a snippet of a Private Room chat (.copr) between [[Travis]] and [[INDI]].
+In [[ERE IS ONE PERSON I KNOW IT'S KE]], there is a snippet of a Private Room chat (.copr) between [[Travis]] and [[Content/Characters/INDI]].
 
 ```media-box
 Media: [[COPR chat with INDI and Travis.png]]
@@ -3293,4 +3293,4 @@ Width: clamp(220px, 32vw, 360px)
 
 Unfortunately, this chat is partially cut off so it is hard to make out exactly what they are discussing.
 
-[^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
+[^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[Content/Characters/INDI]] said that it was his only reliable form of communication with [[Kepler]].

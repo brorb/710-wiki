@@ -13,7 +13,7 @@ The Logs are videos uploaded to the [[710 Tone|7/10 Tone]] channel that usually 
 
 According to the [[Hello]] video, the owner of the [[710 Tone|7/10 Tone]] channel was told to create the program that makes these logs by an undisclosed group of people and it is designed to pull data from [[Caper Waves]]. This program is officially dubbed the "7/10" program in [[LOG-1.mp4]], running on [[LINX-OS]].
 
-Most likely [[TTH]] are in charge of making them, which was hinted by [[INDI]] in [[STATION_8 TERMINAL 8]]. They are also meant to be deciphered like some kind of data (also confirmed by [[INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills. According to [[INDI]], they are important to "someone else", but the identity of them is unclear. [^1]
+Most likely [[TTH]] are in charge of making them, which was hinted by [[Content/Characters/INDI]] in [[STATION_8 TERMINAL 8]]. They are also meant to be deciphered like some kind of data (also confirmed by [[Content/Characters/INDI]] in [[STATION_8 TERMINAL 8]]), however they are too complex to be properly decoded without proper tools or skills. According to [[Content/Characters/INDI]], they are important to "someone else", but the identity of them is unclear. [^1]
 
 They were not originally meant to be seen by the viewers[^2], but as for why they remained public on the YouTube channel is unknown.
 
@@ -56,4 +56,4 @@ Other times the log data screen also gets unusual oddities, such as glitches, un
 
 [^1]: [[STATION_8 TERMINAL 8]]
 
-[^2]: As implied by [[INDI]] in [[STATION_8 TERMINAL 8]].
+[^2]: As implied by [[Content/Characters/INDI]] in [[STATION_8 TERMINAL 8]].

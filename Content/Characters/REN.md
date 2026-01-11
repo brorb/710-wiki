@@ -19,9 +19,9 @@ Workers:
 - [[Kepler]]
 ```
 
-_REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under (as they have mentioned in [[STATION_8 TERMINAL 8]]).
+_REN_ is the name (or alias) of someone that both [[Content/Characters/INDI]] and [[Kepler]] work under (as they have mentioned in [[STATION_8 TERMINAL 8]]).
 
-REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any information regarding them confidential. [[SYSTEM]] has clarified that REN isn't an acronym and that [[INDI]] is very loyal to them. <!-- discord-cite:cite-mhfepsx9-q09n3c -->
+REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any information regarding them confidential. [[SYSTEM]] has clarified that REN isn't an acronym and that [[Content/Characters/INDI]] is very loyal to them. <!-- discord-cite:cite-mhfepsx9-q09n3c -->
 
 > [!discord-cite]- Discord citation (2 messages)
 >
@@ -61,7 +61,7 @@ REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any
 > }
 > ```
 
-During the STATION_8 livestreams, INDI was tasked with sending out REN signals[^1], which was being kept under wraps thanks to an informant within [[TTH]] (possibly [[Kepler]], judging by [[INDI]] saying that he "solved the problem with [[TTH]]" through bribing them with credits to not monitor the signal broadcast, see [[Private Room#Chat 10|the tenth Private Room chat]]).
+During the STATION_8 livestreams, INDI was tasked with sending out REN signals[^1], which was being kept under wraps thanks to an informant within [[TTH]] (possibly [[Kepler]], judging by [[Content/Characters/INDI]] saying that he "solved the problem with [[TTH]]" through bribing them with credits to not monitor the signal broadcast, see [[Private Room#Chat 10|the tenth Private Room chat]]).
 
 It is likely that [[TTH]] and REN are rivals, judging by the way the two interact. REN sends [[Long String]] to [[TTH]] terminals as presumably a sort of weapon against them, since it has a very destructive payload that results in their terminals having to be purged.
 

@@ -28,7 +28,7 @@ but it will be soon
 > Int-score: 51/100
 > :score: > var importance
 
-Same video also featured a chatroom betwen [[Travis]] and [[INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
+Same video also featured a chatroom betwen [[Travis]] and [[Content/Characters/INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
 
 ---
 
@@ -113,4 +113,4 @@ REVIEW: OVERALL STATUS
 [CC: 89666 :: RETURNED FALSE STATEMENT]
 ![[test.webp|300]]
 ```
-^This above message might relate to the concept of "CC entries" briefly mentioned by [[INDI]] in the [[STATION_8 TRIM 90]] livestream chat. But as to what "CC entries" really mean overall is unknown.
+^This above message might relate to the concept of "CC entries" briefly mentioned by [[Content/Characters/INDI]] in the [[STATION_8 TRIM 90]] livestream chat. But as to what "CC entries" really mean overall is unknown.
