@@ -127,7 +127,7 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 
 After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, INDI sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
 
-On 11 Jan 2026, his name was mentioned in the title of video uploaded by [[710 Tone|7/10 Tone]], see [[INDI (2026)]].
+On 11 January 2026, his name was mentioned in the title of a video uploaded by [[710 Tone|7/10 Tone]], see [[INDI (2026)]].
 
 ---
 ## Gallery
