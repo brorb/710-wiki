@@ -125,7 +125,7 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 ![[INDI voice from STATION_8 TERMINAL 8.mp3]]
 *An example of INDI's voice as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].*
 
-After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, [[Content/Characters/INDI]] sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
+After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, INDI sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
 
 ---
 ## Gallery

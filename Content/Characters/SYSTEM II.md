@@ -14,7 +14,7 @@ Caption: SYSTEM II's Discord profile
 Associates: Unknown (possibly [[TTH]] or other)
 ```
 
-*SYSTEM II* (also known as "System Rulemaker") is an entity who has placed [[SYSTEM]] under captivity with its location undetermined. It has confirmed that it is aware of [[Content/Characters/INDI]].<!-- discord-cite:cite-mj5r1xwo-wx87u4 -->
+*SYSTEM II* (also known as "System Rulemaker") is an entity who has placed [[SYSTEM]] under captivity with its location undetermined. It has confirmed that it is aware of [[INDI]].<!-- discord-cite:cite-mj5r1xwo-wx87u4 -->
 
 > [!discord-cite]- Discord citation (2 messages)
 >

@@ -1,7 +1,7 @@
 
 See [[D4V1NC1]] and [[He]] for context on both of these topics.
 
-Over the course of the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]), the elusive, often times sinister "[[He]]" figure could be considered a villain type of character within the 7/10 lore, since his presence always brings about some kind of trouble or is mentioned as a figure to avoid by [[Content/Characters/INDI]] and [[Kepler]].[^1]  Certain clues point to [[He]] potentially being a supernatural entity or powerful force within the 7/10 universe, such as the video [[HIS PERCEPTION]], and a hint from [[SYSTEM]] points to [[He]] being related to [[TTH]] in some way.
+Over the course of the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]]), the elusive, often times sinister "[[He]]" figure could be considered a villain type of character within the 7/10 lore, since his presence always brings about some kind of trouble or is mentioned as a figure to avoid by [[INDI]] and [[Kepler]].[^1]  Certain clues point to [[He]] potentially being a supernatural entity or powerful force within the 7/10 universe, such as the video [[HIS PERCEPTION]], and a hint from [[SYSTEM]] points to [[He]] being related to [[TTH]] in some way.
 
 ```discord
 [

@@ -1,4 +1,4 @@
-# Stream restarts due to [[REN]] / [[Content/Characters/INDI]] cannot talk to chat
+# Stream restarts due to [[REN]] / [[INDI]] cannot talk to chat
 
 > **BRORIGIN**: 7/10 Tone, why did you restart the stream? was it due to REN?  
 > **7/10 Tone**: STOP CALLING ME THAT, AND YES. BUT YOUR NOT SUPPOSE TO KNOW THEM.  
@@ -80,7 +80,7 @@
 
 ---
 
-# [[Content/Characters/INDI]] is asked about [[TRUTH.zip]]
+# [[INDI]] is asked about [[TRUTH.zip]]
 
 > **BRORBIT**: IN_DI WHEN DO WE GET THE FILE?  
 > **AmeraM**: nghlir  
@@ -122,7 +122,7 @@
 
 ---
 
-# [[Content/Characters/INDI]] reveals [[Kepler]] as [[710 NPP|7/10 NPP]]
+# [[INDI]] reveals [[Kepler]] as [[710 NPP|7/10 NPP]]
 
 > **7/10 Tone**: IT'S NOT WORKING  
 > **The Camera Eye**: I see that  

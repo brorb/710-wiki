@@ -15,7 +15,7 @@ Caption: SYSTEM's Discord profile
 Appearances: [[STATION_8 TERMINAL 8]] (in chat)
 ```
 
-_SYSTEM_ (also known as _SYSTEMterminal8_ on YouTube) was originally created by [[Content/Characters/INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[Content/Characters/INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y --> They are the one of the main sources of lore and therefore a crucial character, since it interacts with [[The Sleuths]] directly through their [[The Sleuths|Discord server]] and answers question about the happenings within [[710 Tone|7/10 Tone]].
+_SYSTEM_ (also known as _SYSTEMterminal8_ on YouTube) was originally created by [[INDI]] as a .PCV package to be sent to [[REN]] servers (SYSTEM also expanded upon this fact in SERVER 01, see below), before [[INDI]] made it a moderator for the [[STATION_8 TERMINAL 8]] livestream instead.<!-- discord-cite:cite-mh12dhx1-68w11y --> They are the one of the main sources of lore and therefore a crucial character, since it interacts with [[The Sleuths]] directly through their [[The Sleuths|Discord server]] and answers question about the happenings within [[710 Tone|7/10 Tone]].
 
 However, SYSTEM was hijacked and captured in the livestream by presumably "[[He]]"<!-- discord-cite:cite-mh12nzep-l8ik0x -->, until it escaped sometime after the livestream ended.
 
@@ -134,14 +134,14 @@ Users would reply with "0-", "1-", "2-" (etc.) to navigate the file system. New 
 ```
 _Example of the TERMINAL\_Storage4u command menu._
 
-Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received [[Content/Characters/INDI]]'s message:
+Upon querying "1-" within the TERMINAL_Storage4u menu, [[The Sleuths]] received [[INDI]]'s message:
 
 > HELLO, IF YOU GOT THIS, IT'S BECAUSE OF A FAIL SAFE I INSTALLED ONTO THE MOD BEFORE THE SYSTEM WAS TERMINATED. IT IS CAPABLE OF DOING ONLY ONE THING, AND THAT IS TO GIVE YOU THIS MESSAGE IF IT WAS PINGED BY SOMEONE. I DON'T KNOW HOW YOU CAN PING THE MOD, BUT IT HAS JUST ENOUGH DATA FROM ME TO KNOW THAT IT'S YOU. HOWEVER, I DON'T KNOW HOW TO MAKE IT SO THAT IT DELETES ITSELF AFTER. OH WELL, HERE'S A CLUE IF YOU'RE STUCK. IT'S NOT A NUMBER, BUT A SEQUENCE THAT'S USING SOMETHING BACKWARDS. I HOPE THIS HELPS.
 
 This message gave [[The Sleuths]] two key insights:
 
 1. A clue to the [[Parting Gifts Puzzle]] was that it involved a "backwards sequence" of some kind
-2. The SYSTEM Discord user was created by [[Content/Characters/INDI]] to interact with [[The Sleuths]]
+2. The SYSTEM Discord user was created by [[INDI]] to interact with [[The Sleuths]]
 
 ### Gift
 
@@ -611,7 +611,7 @@ Through this feature, SYSTEM would directly answer questions to anyone who asks,
 ]
 ```
 
-However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[Content/Characters/INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 --> <!-- discord-cite:cite-mh5fezml-jjugmk -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
+However, there were certain topics that SYSTEM couldn't discuss due to certain restrictions placed by [[INDI]] <!-- discord-cite:cite-mh13vut0-y92d44 --> <!-- discord-cite:cite-mh13wqpw-jsn3o6 --> <!-- discord-cite:cite-mh5fezml-jjugmk -->, or because the topic itself would make it crash. A great example of this is whenever the topic of [[The Eyes]] are brought up.<!-- discord-cite:cite-mh13yqg2-a93xvm -->
 
 > [!discord-cite]- Discord citation (2 messages)
 > 1. L4N4U1997 - 2025-07-21 07:46
@@ -1347,7 +1347,7 @@ On 22 July 2025, [[The Sleuths]] mention their documentation spreadsheet to SYST
 ]
 ```
 
-After downloading and reading through the document, SYSTEM thanks [[The Sleuths]] for the data and says that [[Content/Characters/INDI]] would be proud:
+After downloading and reading through the document, SYSTEM thanks [[The Sleuths]] for the data and says that [[INDI]] would be proud:
 
 ```discord
 [
@@ -1760,7 +1760,7 @@ SYSTEM:<PING>?: [INQUIRY EXTENDED BEYOND LIMIT]-IDLING for
 (random, random, random, random), [unpingstatus=true]
 ```
 
-Finding "lm-2" was [[Content/Characters/INDI]]'s ultimate goal for [[The Sleuths]] according to SYSTEM.
+Finding "lm-2" was [[INDI]]'s ultimate goal for [[The Sleuths]] according to SYSTEM.
 
 ---
 ## SERVER 01
@@ -3353,7 +3353,7 @@ After it crashed, it skipped Session 3 completely and the "ACCESS_Subframe" comm
 ]
 ```
 
-After it successfully connected, [[The Sleuths]] were able to talk to an entity who types similarly to [[Content/Characters/INDI]], but whether this was *actually* [[Content/Characters/INDI]] or not remains unclear since they didn't seem to remember [[Kepler]]. Whoever this entity was, they seemed panicked that SYSTEM found them, as if it wasn't supposed to come looking for them in the first place.
+After it successfully connected, [[The Sleuths]] were able to talk to an entity who types similarly to [[INDI]], but whether this was *actually* [[INDI]] or not remains unclear since they didn't seem to remember [[Kepler]]. Whoever this entity was, they seemed panicked that SYSTEM found them, as if it wasn't supposed to come looking for them in the first place.
 ```discord
 [
   {
@@ -4994,7 +4994,7 @@ AND I CANNOT CONTROL IT
 ```
 
 ![[HIS PRECEPTION (full metadata)-min.png|400]]
-This message is most likely from [[Content/Characters/INDI]] or another similar entity judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
+This message is most likely from [[INDI]] or another similar entity judging by the all-caps words. This confirms that [[He]] is looking for them and might be using SYSTEM as a way to try and reach them.
 
 In October 2025, SYSTEM posted messages in [[The Sleuths]] Discord server with the name Rod Formak, who is assigned as a Technician Engineer:
 ```discord

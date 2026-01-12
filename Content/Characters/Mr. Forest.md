@@ -14,7 +14,7 @@ Caption: No more existing media is available regarding Mr. Forest
 Appearances: Community posts in 2024 (expunged then deleted)
 ```
 
-"Mr. Forest" was the alias for an unknown character who was apparently prominent during 2024. In [[STATION_8 TRIM 90]], [[Content/Characters/INDI]] says that Mr. Forest was "someone who is now gone", not dead but "somewhere far away". However, they could possibly be dead by now according to [[SYSTEM]]. <!-- discord-cite:cite-mgvl1k9o-teil7i -->
+"Mr. Forest" was the alias for an unknown character who was apparently prominent during 2024. In [[STATION_8 TRIM 90]], [[INDI]] says that Mr. Forest was "someone who is now gone", not dead but "somewhere far away". However, they could possibly be dead by now according to [[SYSTEM]]. <!-- discord-cite:cite-mgvl1k9o-teil7i -->
 
 The cause of their death or their true whereabouts (whether in hiding or actually dead) remains unclear.
 

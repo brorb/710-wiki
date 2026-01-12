@@ -35,7 +35,7 @@ Width: clamp(220px, 32vw, 360px)
 
 ## Owners
 
-The main controllers of the channel were previously [[Travis]] (before he died), [[Content/Characters/INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]] (see [[Community Posts]]).
+The main controllers of the channel were previously [[Travis]] (before he died), [[INDI]] and [[Kepler]] during the STATION_8 livestreams (at least before INDI was found at the end of [[STATION_8 TERMINAL 8]]), and [[SYSTEM]]. However, [[SYSTEM]] no longer had control over the channel after the livestreams ended <!-- discord-cite:cite-mh3yb1uj-huk2wk --> until it gained access to [[The Transmitter]] (see [[Community Posts]]).
 
 > [!discord-cite]- Discord citation (1 message)
 > 

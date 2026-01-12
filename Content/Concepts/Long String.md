@@ -198,7 +198,7 @@ It is odd that [[SYSTEM]] was curious about how the sample was retrieved, since 
 Upon execution, Long String fills the screen with the phrase "INFECTED BY LONG STRING ;-)" 
 It isn't known exactly *what* Long String was designed to do (and its effects might be considered classified information), but judging by clues contained within [[The Logs]], it seems to be a weapon against [[TTH]] terminals.
 
-[[SYSTEM]] has commented on the use of Long String, but couldn't speak much about it due to restrictions placed by [[Content/Characters/INDI]]:
+[[SYSTEM]] has commented on the use of Long String, but couldn't speak much about it due to restrictions placed by [[INDI]]:
 ```discord
 [
   {

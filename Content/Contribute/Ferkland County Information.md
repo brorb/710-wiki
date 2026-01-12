@@ -1,5 +1,5 @@
 
-[[Ferkland County]] is a place with very little information regarding it, with the only things that are known about it being that it is the location of the [[Ferkland Institute]] and [[Channel 14]]'s broadcasting station, as well as apparently any memories about that place physically hurt [[Content/Characters/INDI]] to remember.
+[[Ferkland County]] is a place with very little information regarding it, with the only things that are known about it being that it is the location of the [[Ferkland Institute]] and [[Channel 14]]'s broadcasting station, as well as apparently any memories about that place physically hurt [[INDI]] to remember.
 
 > **7/10 Tone**: FERKLAND IS A COUNTY IN NABRASKA. WHERE THAT CHANNEL IS LOCATED IN.  
 > **7/10 Tone**: BUT, I DON'T KNOW IF THE PERSON MAKING THE TITLE BUMPER KNOWS THAT, THAT IS NOT 
