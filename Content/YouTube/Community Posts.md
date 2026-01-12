@@ -4,11 +4,19 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
-```community-post,0,0,11 Jan 2025,
+```community-post,0,0,12 Jan 2026,
+ERROR: meta-following text = NO INPUT, ["Upload Interrupted click "resume upload" and select DRP-1-12.mp4 to resume"]
+FOLLOWING:
+logged time output 1/12/[NA]12:00am
+FOLLOWING:
+ERROR: Log crash for 1-12-...
+```
+
+```community-post,2,0,11 Jan 2026,
 ERROR: Log crash for 1-11-...
 ```
 
-```community-post,2,0,9 Jan 2025,
+```community-post,2,0,9 Jan 2026,
 Logged output:
 "
 UPDATING STRING SQU:
@@ -20,13 +28,13 @@ REMOVED ".mp4" extensions
 ```
 ^This signaled the removal of the ".mp4" file extensions from the titles of [[The Logs]], starting with [[LOG_9]].
 
-```community-post,4,0,7 Jan 2025,
+```community-post,4,0,7 Jan 2026,
 Log Output Delayed[Maintenance work to system]
 Assessing Problem[Time est output @ .................[1/7/__]]
 ```
 ^This post was accompanied by [[LOG-7.mp4]].
 
-```community-post,6,3,1 Jan 2025,
+```community-post,6,3,1 Jan 2026,
 Start
 ```
 ^This post marks the restart of [[710 Tone|7/10 Tone]] for 2026, posted right before [[LOG-1.mp4]] was uploaded to the channel.
