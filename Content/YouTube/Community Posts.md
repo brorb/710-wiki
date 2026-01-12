@@ -4,6 +4,9 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 
+---
+## 2026
+
 ```community-post,0,0,12 Jan 2026,
 ERROR: meta-following text = NO INPUT, ["Upload Interrupted click "resume upload" and select DRP-1-12.mp4 to resume"]
 FOLLOWING:
@@ -38,6 +41,9 @@ Assessing Problem[Time est output @ .................[1/7/__]]
 Start
 ```
 ^This post marks the restart of [[710 Tone|7/10 Tone]] for 2026, posted right before [[LOG-1.mp4]] was uploaded to the channel.
+
+---
+## 2025
 
 ```community-post,0,1,31 December 2025,
 >:\\probe
@@ -479,6 +485,9 @@ _This is the first and only time ASCII 85 has been used, and its relevance is no
 ```community-post,5,0,January 2025,
 ATTENTION: ESPaP> All posts have been expunged regarding information about ***. Please hold for further information. DIAL CODE &&&-789990-AB
 ```
+
+---
+## 2024
 
 ```community-post,5,1,December 2024,
 PC.5.25.5{ATA-5554} || claim objective resubmitted
