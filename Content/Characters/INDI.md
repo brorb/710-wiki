@@ -30,7 +30,7 @@ Notable appearances:
 ```
 
 
-INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1]running the [[710 Tone|7/10 Tone]] Youtube channel. His job is to run [[REN]] signals, according to implications from [[Kepler]].[^3]
+INDI (also known as *IN_DI* or *IN_DI.servertype*) is the name of the entity[^1] running the [[710 Tone|7/10 Tone]] Youtube channel. His job is to run [[REN]] signals, according to implications from [[Kepler]].[^3]
 
 During the STATION_8 livestreams, INDI would respond to viewers through the chat, even though he wasn't really supposed to do so.
 
@@ -126,6 +126,8 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 *An example of INDI's voice as heard after the timer hit zero in [[STATION_8 TERMINAL 8]].*
 
 After he was found after the [[Content/YouTube/Livestreams/STATION_8 TERMINAL 8/Transcript|Livestream chat]] initiated the op code at the end of the timer, INDI sent [[KEY]] and [[lm-1]] as part of the [[Parting Gifts Puzzle]]. Immediately afterwards, he went missing and it is currently unknown where he is.
+
+On 11 Jan 2026, his name was mentioned in the title of video uploaded by [[710 Tone|7/10 Tone]], see [[INDI (2026)]].
 
 ---
 ## Gallery
