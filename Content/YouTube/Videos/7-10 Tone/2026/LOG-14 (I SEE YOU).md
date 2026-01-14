@@ -15,4 +15,4 @@ SYSTEM ID: 540638991**
 
 **Video Summary:** Normal red and black static, timer counts down from 177 to 176.
 
-**Clues:** The description could be a part of the puzzle at the end of LOG-13. However, it was later deleted after the title was changed to "I SEE YOU"
+**Clues:** The description could be a part of the puzzle at the end of LOG-13. However, it was later deleted after the title was changed to "I SEE YOU" and then to "ORACLE", a direct reference to The Oracle.
