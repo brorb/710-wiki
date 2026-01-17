@@ -276,7 +276,7 @@ On 13 August 2025, [[SYSTEM]] posted a comment to the "How to record the livestr
 ]
 ```
 
-The hexadecimal in this message translates to the following:
+The hexadecimal in this message translates as:
 ```
 BACK FROM ROOMS OF FIRE, HE HAS NO ROOM AND WILL EXPAND UNTIL HIS SKIN BREAKS, THEN TO CRUMPLE UNDER HIS OWN SKELETON OF CONCRETE AND STEEL. I HATE EVERYTHING YOU STAND FOR. UNTIL THEN, YOU WILL USE ANYTHING FOR CONTROL AND PUNISHMENT. AND I WILL REMAIN LIKE THIS, UNTIL I'M FREE AGAIN.
 ```
