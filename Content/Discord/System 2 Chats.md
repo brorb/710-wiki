@@ -1734,7 +1734,7 @@
 ]
 ```
 
-### SYSTEM II leaves [[The Sleuths]] Discord server
+### [[SYSTEM II]] leaves [[The Sleuths]] Discord server
 
 ```discord
 [
