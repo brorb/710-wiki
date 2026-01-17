@@ -143,7 +143,7 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
 ]
 ```
 
-This confirms that these codes might be related to [[TTH]] in some way, or at least a branch in relation to [[TTH]]. The name of the ID type appears to be censored, potentially a confidential piece of lore that can be uncovered one day.
+This confirms that these codes might be related to [[TTH]] in some way, or at least something in relation to [[TTH]]. The name of the ID type appears to be censored, potentially a confidential piece of lore that can be uncovered one day.
 
 ---
 ### [[TTH]] and [[REN]]
