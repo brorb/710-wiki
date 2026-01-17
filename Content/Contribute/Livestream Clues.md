@@ -79,7 +79,7 @@ Interestingly enough, [[INDI]] mentioned that [[Travis]] hid something from him 
 > **The Camera Eye**: Good luck on your signal transfer :)
 
 ---
-Last year, a group known as "The Rebels" were apparently responsible for the livestream interferences. However, there is only a minimal amount of information available about this group, with the only surviving evidence of their existence is from one comment on a Reddit post. Other than the name and a mention of what they apparently did, there is not much else known about them. When asked about them in the livestream chat, [[Kepler]] (under control of the [[710 Tone|7/10 Tone]] channel at the time) responded with the following:
+In 2024, a group known as "The Rebels" were apparently responsible for livestream interferences. However, there is only a minimal amount of information available about this group, with the only surviving evidence of their existence is from one comment on a Reddit post. Other than the name and a mention of what they apparently did, there is not much else known about them. When asked about them in the livestream chat, [[Kepler]] (under control of the [[710 Tone|7/10 Tone]] channel at the time) responded with the following:
 
 > **The Camera Eye**: WAIT A MINUTE  
 > **The Camera Eye**: IS ZONE PART OF THE REBELS??????  
