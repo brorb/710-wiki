@@ -90,7 +90,7 @@ Last year, a group known as "The Rebels" were apparently responsible for the liv
 
 (**Context note: ZONE was another viewer who appeared in the livestream chat during [[STATION_8 TERMINAL 8]], who [[The Sleuths]] thought to be potentially involved with 7/10, but [[Kepler]] de-confirmed this theory by saying that they didn't know who it was**)
 
-That piece of information seems to suggest that The Rebels might have had some significant role last year, and [[Kepler]] knows something about them that they cannot discuss.
+That piece of information seems to suggest that The Rebels might have had some significant role during what happened in 2024, and [[Kepler]] knows something about them that they cannot discuss.
 
 ---
 
