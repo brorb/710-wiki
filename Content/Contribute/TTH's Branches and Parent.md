@@ -144,10 +144,10 @@ It is possible that certain IDs correlate to certain rankings or other branches 
 ]
 ```
 
-The last statement seems to suggest that it is another branch in relation [[TTH]], but whether it is above or below them is unknown. Information appears to be censored with what looks like a random string of characters, which is the case for another mysterious branches or entities within the organization:
+Information appears to be censored with what looks like a random string of characters, which is the case for other mysterious terms relating to [[TTH]]:
 
 ```community-post,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```
 
-These few hints leave more questions than answers about the true nature and actual size of the organization. How big are they really? How do the branches relate to each other? What role does each branch or entity or member serve within the organization?
+These few hints leave more questions than answers about the true nature and actual size of the organization. How big are they really? How do these branches relate to each other? What role does each branch or entity or member serve within the organization?
