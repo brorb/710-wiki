@@ -18,7 +18,7 @@ The Oracle is a Discord bot made by @brorb for [[The Sleuths]]. It is connected 
 ```
 either in a channel on the Discord server, or in a DM to the bot.
 
-You also get notified for any 7/10 happenings in the Discord with the "!notify-me" command, such as uploads from any channels associated with 7/10 or any special happenings within the server itself (if the @710 Notify role is pinged).
+You also get added to the notification role in the Discord with the "!notify-me" command, which will notify you when new uploads / changes happen in any channels associated with 7/10 or if special events happen within the server itself (if the @710 Notify role is pinged[^1]).
 
 The bot is _not free_ to run (it uses Claude 3 Haiku), but all costs are covered by brorb (for now lol), so please use responsibly.
 
@@ -33,3 +33,4 @@ Width: clamp(220px, 32vw, 360px)
 ```
 
 
+[^1]: Please ping responsibly and avoid spam, you only need to use it once to notify the special role.
