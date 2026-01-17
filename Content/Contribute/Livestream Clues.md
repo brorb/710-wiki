@@ -100,7 +100,7 @@ That piece of information seems to suggest that The Rebels might have had some s
 
 ---
 
-Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if they were able to decipher [[The Logs]], to which [[Kepler]] said no. This is some interest due to the question of why [[REN]] associates would want to decipher them and what kind of data they could possibly contain. However, an observation to keep in mind is that they do not have the proper tools or skills to crack them efficiently.
+Moments before the [[Station Timer]] reached zero, [[INDI]] asked [[Kepler]] if they were able to decipher [[The Logs]], to which [[Kepler]] said no. This is interesting due to the question of why [[REN]] associates would want to decipher them and what kind of data they could possibly contain. However, an observation to keep in mind is that they do not have the proper tools or skills to crack them efficiently.
 
 > **7/10 Tone**: DID YOU EVER DECIPHER [[The Logs|THE LOGS]]?  
 > **7/10NPP**: No.  
@@ -123,7 +123,7 @@ It is possible that whoever is in charge of making them has the correct methods 
 > **7/10NPP**: Indi, don't tell them who it is.  
 > **7/10 Tone**: FINE.
 
-The \[\_\_\_\] that INDI could be referring to could be either [[TTH]] or [[The Eyes]], but it is most likely [[TTH]].
+The \[\_\_\_\] that INDI could be referring to either [[TTH]] or [[The Eyes]], but it is most likely [[TTH]].
 
 > **7/10 Tone**: I CAN'T SPEAK ABOUT THAT.  
 > **The Camera Eye**: Ok  

@@ -1,7 +1,7 @@
 
 See [[Community Posts]] to see all of the known community posts archived.
 
-
+## Half Life Gameplay Video Puzzles
 
 The following community post was uploaded to [[710 Tone|7/10 Tone]] after the release of [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]]:
 ```community-post,0,1,4 November 2025
@@ -31,6 +31,7 @@ but it will be soon
 Same video also featured a chatroom betwen [[Travis]] and [[INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
 
 ---
+## Special Log Deletions
 
 Over the course of 23 July to 1 August 2025, [[710 Tone|7/10 Tone]] started deleting a select few of [[The Logs]] before ultimately purging the channel completely. It is unknown why these videos/logs in particular were removed in such a order, let alone if they contained a special reason to be removed by the channel.
 
@@ -68,6 +69,7 @@ Logs deleted: [[LOG-102.mp3]] [[LOG-87.mp4]] [[LOG-47.mp4]] [[LOG-002.mp4]] [[LO
 ^Logs deleted: [[LOG-124.mp4]] [[LOG-125.mp4]] [[LOG-126.mp4]] [[LOG-127.mp4]] [[LOG-154.mp4]] [[LOG-156.mp4]]
 
 ---
+## Miscellaneous Puzzles
 
 ```community-post,4,0,February 2025,
 53 59 53 54 45 4D 20 4D 45 53 53 41 47 45 20 4F 55 54 50 55 54 3C 22 4C 55 46 4E 49 41 50 20 44 4E 41 20 57 4F 4C 53 20 53 52 55 4F 59 20 52 4B 41 4D 20 4C 4C 49 57 20 49 22

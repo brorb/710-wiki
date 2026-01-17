@@ -6,7 +6,7 @@ See the article [[INDI]] for information about the character.
 Suggested by [[The Oracle]]:
 
 - The name "IN_DI" may be a play on words, with "IN" referring to an internal or embedded entity, and "DI" potentially standing for "digital intelligence" or "digital identity." This could suggest that [[INDI]] is some form of artificial construct or AI.
-- The name could be a reference to the word "indie," implying that [[INDI]] operates independently or outside of traditional hierarchies. This could tie into the character's seemingly antagonistic relationship with [[Kepler]] and the [[710 NPP|7/10 NPP]] channel.
+- The name could be a reference to the word "indie," implying that [[INDI]] operates independently or outside of traditional hierarchies. This could tie into the character's seemingly antagonistic relationship with [[Kepler]].
 
 Other theories include:
 
