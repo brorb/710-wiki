@@ -1,3 +1,10 @@
+---
+tags:
+  - anomalies
+  - lore
+  - important
+  - YouTube
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1BAFsadlJXwB8-QcWiKiBRQGPPndi2-XQ/preview" 
