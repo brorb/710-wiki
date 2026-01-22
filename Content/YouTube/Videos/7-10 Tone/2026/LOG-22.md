@@ -2,6 +2,7 @@
 tags:
   - anomalies
   - YouTube
+  - lore
 ---
 
 <iframe 
