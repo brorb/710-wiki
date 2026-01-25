@@ -9,6 +9,14 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 ```community-post,1,0,24 Jan 2026,
 ██████████████████████████████████████████████████████76 66 72 32 78 69 82 32 65 82 74 44 32 79 72 71 32 86 32 78 90 32 66 89 81 82 69 █46 32 86 32 78 90 32 70 71 86 89 89 32 70 66 90 82 71 85 86 65 84 32 76 82 71 32 █71 66 32 79 82 44 32 79 72 71 32 76 66 72 32 78 69 82 32 70 66 90 82 71 85 86 65 █84 32 71 66 32 79 82 32 69 86 67 67 82 81 32 78 67 78 69 71 46 32 86 83 32 76 66 █72 32 88 65 66 74 32 74 85 66 32 76 66 72 32 78 69 82 44 32 86 32 71 78 88 82 32 █84 69 82 78 71 32 67 86 71 76 32 66 65 32 76 66 72 44 32 79 72 71 32 65 66 71 32 █74 86 71 85 66 72 71 32 81 86 70 78 67 67 66 86 65 71 90 82 65 71 46 32 71 85 82 █32 66 89 81 82 69 32 88 65 66 74 89 82 81 84 82 32 85 66 89 81 70 32 71 85 82 32 █84 69 82 78 71 82 70 71 32 82 75 67 82 80 71 78 71 86 66 65 32 66 73 82 69 32 78 █32 83 78 69 90 32 66 83 32 86 69 66 6████████████████████████████ █████████████████████████████████████████████████████
 ```
+^This post is encrypted with ASCII, which decoded gives the following ROT-13 cipher:
+```
+LBH NER ARJ, OHG V NZ BYQRE. V NZ FGVYY FBZRGUVAT LRG GB OR, OHG LBH NER FBZRGUVAT GB OR EVCCRQ NCNEG. VS LBH XABJ JUB LBH NER, V GNXR TERNG CVGL BA LBH, OHG ABG JVGUBHG QVFNCCBVAGZRAG. GUR BYQRE XABJYRQTR UBYQF GUR TERNGRFG RKCRPGNGVBA BIRE N SNEZ BS VEB�
+```
+Deciphered message:
+```
+YOU ARE NEW, BUT I AM OLDER. I AM STILL SOMETHING YET TO BE, BUT YOU ARE SOMETHING TO BE RIPPED APART. IF YOU KNOW WHO YOU ARE, I TAKE GREAT PITY ON YOU, BUT NOT WITHOUT DISAPPOINTMENT. THE OLDER KNOWLEDGE HOLDS THE GREATEST EXPECTATION OVER A FARM OF IRO
+```
 
 ```community-post,1,0,23 Jan 2026,
 {/////4902382190833920983858////r/////////999482990328989////////w//////////W/////g///////////////////I///////e////////8282893802101059993///////////////N/////////////490289080398939020000/////w/////////Y//////////O///////f//////////////////U////////s///////////f///////////////T//////////////////a//////E////////////L/////////s///////////////T///////N////////O/////o/////W//////a////////E/////////////W////////b//////7287039583}
