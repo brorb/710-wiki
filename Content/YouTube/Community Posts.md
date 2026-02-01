@@ -10,11 +10,6 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 COMMUNITY UPDATED-[2-2-0019-10]
 ```
 
-```community-post,1,0,31 Jan 2026,
-Node point program UPDATED || v2.12.02
-```
-^Uploaded by [[710 NPP|7/10 NPP]].
-
 ```community-post,3,0,31 Jan 2026,
 >UPDATING :: drp-xfi992-392-0001.pcv || to || v0.0.2
 >INCLUDE:
@@ -28,6 +23,11 @@ Node point program UPDATED || v2.12.02
 >========================================
 >END
 ```
+
+```community-post,1,0,31 Jan 2026,
+Node point program UPDATED || v2.12.02
+```
+^Uploaded by [[710 NPP|7/10 NPP]].
 
 ```community-post,3,1,29 Jan 2026,
 test concluded successful
