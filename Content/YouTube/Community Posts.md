@@ -7,6 +7,11 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 ## 2026
 
 ```community-post,2,0,31 Jan 2026,
+Node point program UPDATED || v2.12.02
+```
+^Uploaded by [[710 NPP|7/10 NPP]].
+
+```community-post,2,0,31 Jan 2026,
 COMMUNITY UPDATED-[2-2-0019-10]
 ```
 
