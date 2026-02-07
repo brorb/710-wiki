@@ -19,9 +19,7 @@ Workers:
 - [[Kepler]]
 ```
 
-_REN_ is the name (or alias) of someone that both [[INDI]] and [[Kepler]] work under (as they have mentioned in [[STATION_8 TERMINAL 8]]).
-
-REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any information regarding them confidential. [[SYSTEM]] has clarified that REN isn't an acronym and that [[INDI]] is very loyal to them. <!-- discord-cite:cite-mhfepsx9-q09n3c -->
+_REN_ is the name (or alias) of someone that [[INDI]], [[Kepler]], and [[D4V1NC1]] work under. REN seems to be a taboo topic for the 7/10 characters to talk about, keeping any information regarding them confidential. [[SYSTEM]] has clarified that REN isn't an acronym and that [[INDI]] is very loyal to them. <!-- discord-cite:cite-mhfepsx9-q09n3c -->
 
 > [!discord-cite]- Discord citation (2 messages)
 >

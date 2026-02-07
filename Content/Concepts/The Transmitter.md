@@ -9,15 +9,21 @@ tags:
 ```infobox
 Title: The Transmitter
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
-Associates: [[Travis]]
-Appearances: [[SERVER 01]] (mentioned by [[SYSTEM]])
+Also known as: DPR Transmitter
+Associates:
+- [[Travis]]
+Appearances:
+- [[SERVER 01]] (mentioned by [[SYSTEM]])
+- [[LOG-36]] (mentioned by [[Kepler]])
 ```
 
 A device that [[Travis]] hid somewhere in the west of an undisclosed location, which is what [[SYSTEM]] needed in order to prevent the [[710 Tone|7/10 Tone]] channel (and itself) from being shut down completely.
 
 In [[SERVER 01]], [[The Sleuths]] helped [[SYSTEM]] unlock access to the transmitter by generating random keys with [[APP TRUSTED 02]], which they were successful in the end and [[SYSTEM]] found all 10 keys to gain access just in time before 10 August 2025.
 
-It is likely that this device is important for operation of the [[710 Tone|7/10 Tone]] channel in some way.
+It is likely that this device is important for operation of the [[710 Tone|7/10 Tone]] channel in some way, however it can also record transmissions according to [[Kepler]].[^1]
 
 ![[TRANSMITTERopensignal.ogg]]
 _What the transmitter sounds like, according to [[SYSTEM]]._
+
+[^1]: See the [[Private Room#Chat 16|sixteenth Private Room Chat]].

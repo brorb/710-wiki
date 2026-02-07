@@ -20,6 +20,7 @@ Also known as:
 - Super Private Chat
 - SPR
 - COPR
+- COPPERBOX
 ```
 
 The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal matters. It is also called SPR chat, short for "Super Private Chat". It is not known why or how the chats are leaked to the public.
@@ -3292,5 +3293,25 @@ Width: clamp(220px, 32vw, 360px)
 ```
 
 Unfortunately, this chat is partially cut off so it is hard to make out exactly what they are discussing.
+## Chat #16
+
+In [[LOG-36]], [[D4V1NC1]] and [[Kepler]] are seen chatting with each other through the COPR (COPPERBOX) Private Room Chat:
+
+```
+K3P13R:That was too close Dev.
+K3P13R:What even is an injector?
+D4V1NC1:I don't know, maybe another way for him to spread?
+K3P13R:I'm noticing that the transmission is being recorded.
+D4V1NC1:How can you tell?
+K3P13R:The data is slightly weaker when I send data through. About 50-60 mb/s less than usual.
+K3P13R:It's a side effect of something recording.
+K3P13R:The only thing that can record this is the DPR transmitter that Travis was in possession of.
+D4V1NC1:Is this the recording to YouTube one?
+K3P13R:Most likely.
+D4V1NC1:This is a problem. If the injector knows about this then HE will know too.
+K3P13R:I thought this was unable to reconnect without another human on the other side?
+D4V1NC1:We should disconnect from this and report this back to REN.
+K3P13R:Okay, good idea.
+```
 
 [^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].

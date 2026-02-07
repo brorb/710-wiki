@@ -14,15 +14,19 @@ Caption: DaVinci painting from the first "backtone" video
 Appearances:
 - [[RIGfunctionobservationTEST028.mp4]] (description)
 - [[HIS PERCEPTION]] (hidden audio clues)
+- [[LOG-36]]
 Aliases:
 - DaVinci
 - Da Vinci
+- Dev (mentioned by [[Kepler]])
+Associates:
+- REN
 Status:
-- Inaccessible
+- Inaccessible (as if RIGfunctionobservationTEST028.mp4)
 ```
 
 
-An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4]]. It is currently unknown who this alias really belongs to, but it could be related to the "backtone" videos (see [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]), which are in turn related to [[Travis]] (since the [[prj_Home.exe]] file was his creation before he died). However, it could also be whoever the elusive "[[He]]" figure is judging by the hidden audio clues of [[HIS PERCEPTION]].
+An alias that appeared in the description of [[RIGfunctionobservationTEST028.mp4]]. It is currently unknown who this alias really belongs to, but it could be related to the "backtone" videos (see [[backtone.extend 5_f''5.5'']] and [[BACKTONE-COMPLETED{KPJV, ETSN, YMUK, WWEV}]]), which are in turn related to [[Travis]] (since the [[prj_Home.exe]] file was his creation before he died). However, it could also be whoever the elusive "[[He]]" figure is judging by the hidden audio clues of [[HIS PERCEPTION]]. In [[LOG-36]], their actual name was confirmed as "Dev" by [[Kepler]].
 
 ## Leonardo DaVinci
 "D4V1NC1" is clearly a rewrite of "da Vinci", referencing the renaissance scientist [Leonardo da Vinci](https://en.wikipedia.org/wiki/Leonardo_da_Vinci). This follows the trope of characters with aliases of famous scientists, like [[Kepler]] for instance. Da Vinci has also appeared in the video [[backtone.extend 5_f''5.5'']]: 
