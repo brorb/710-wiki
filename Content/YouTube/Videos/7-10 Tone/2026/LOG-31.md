@@ -1,3 +1,11 @@
+---
+tags:
+  - anomalies
+  - puzzle
+  - unsolved
+  - important
+  - lore
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1UgXHaaHvaVgWBFOxGpuPl0FPSKxOez5k/preview" 
