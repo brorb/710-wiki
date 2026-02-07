@@ -33,9 +33,7 @@ Kepler has been seen in charge of supervising [[INDI]] during the STATION_8 live
 
 ## [[D4V1NC1]]
 
-Not much is known about the relationship between Kepler and [[D4V1NC1]], however their aliases (or IDs) were seen together in the description of [[RIGfunctionobservationTEST028.mp4]], which could suggest that they had some form of communication within the [[Private Room]] and therefore possibly have some form of a professional relationship.
-
-## Personality
+Not much is known about the relationship between Kepler and [[D4V1NC1]], however their aliases (or IDs) were seen together in the description of [[RIGfunctionobservationTEST028.mp4]], which suggested that they had some form of communication within the [[Private Room]] and therefore possibly have some form of a professional relationship. In [[LOG-36]], it is confirmed that they both work together under [[REN]].
 
 [^1]: This was confirmed in livestream chat on 7 July 2025
 
