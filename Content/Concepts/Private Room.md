@@ -36,11 +36,9 @@ The Private Room seems to be a form of communication between the two factions of
 
 ## Content
 
-There are only two parties chatting at a time, often under aliases (such as [[F2930]] or [[A992144]]), although [[TTH]] has been known to chat without aliases. The topics are usually about signal management, with mentions of some kind of "mission."
+There are only two parties chatting at a time, mostly under aliases such as [[F2930]] or [[A992144]]. The topics are usually about signal management, with mentions of some kind of "mission."
 
-There are 11 known private room chats, of which 7 have been from community posts, 3 from videos and 1 through Discord chats. Below they appear in chronological order
-
----
+Below the chats appear in chronological order:
 ## Chat #1
 
 ```
