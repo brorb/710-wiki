@@ -1,3 +1,11 @@
+---
+tags:
+  - anomalies
+  - important
+  - lore
+  - REN
+  - YouTube
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1SkNMNrClBWZ47zK4fH0H3C4Yi20CiPTo/preview" 
