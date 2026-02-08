@@ -21,20 +21,20 @@ type FrontmatterLinks = {
 const DEFAULT_LINKS: Record<keyof FrontmatterLinks, LinkConfig> = {
   archive: {
     label: "Archival Channel",
-    href: "https://www.youtube.com/@710NPP",
+    href: "https://www.youtube.com/@710ToneArchiveChannel",
     description: "Follow the archive channel and view lost 7/10 Tone media",
     iconSlug: "youtube",
   },
   discord: {
     label: "Join the Discord",
-    href: "https://discord.gg/M3sEVCuEAR",
-    description: "Swap theories and work puzzles with fellow sleuths.",
+    href: "https://discord.gg/2ByK7Xcmy4",
+    description: "Swap theories and work puzzles with fellow sleuths",
     iconSlug: "discord",
   },
   reddit: {
     label: "Visit r/710Tone",
     href: "https://www.reddit.com/r/710Tone/",
-    description: "Browse community finds and share what you uncover.",
+    description: "Browse community finds and share what you uncover",
     iconSlug: "reddit",
   },
 }
