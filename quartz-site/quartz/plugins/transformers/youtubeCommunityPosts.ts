@@ -828,6 +828,16 @@ const YT_COMMUNITY_CSS = `
   gap: 6px;
   line-height: 1;
 }
+
+.yt-community-post__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #2a2a2a;
+}
+
 .yt-community-post__avatar img {
   width: 100%;
   height: 100%;
