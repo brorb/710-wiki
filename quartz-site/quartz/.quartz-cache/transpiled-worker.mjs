@@ -2912,9 +2912,17 @@ Warning: couldn't find git repository for ${ctx.argv.directory}`
                 published ||= file.data.frontmatter.published;
               } else if (source === "git" && repo) {
                 try {
-                  const relativePath = path.relative(repositoryWorkdir, fullFp);
+                  const absoluteFp = path.resolve(fullFp);
+                  const normalize = /* @__PURE__ */ __name((p) => p.replace(/\\/g, "/"), "normalize");
+                  const normWorkdir = normalize(repositoryWorkdir);
+                  const normFp = normalize(absoluteFp);
+                  let relativePath = normFp;
+                  if (normFp.startsWith(normWorkdir)) {
+                    relativePath = normFp.slice(normWorkdir.length);
+                  }
+                  relativePath = relativePath.replace(/^\/+/, "");
                   modified ||= await repo.getFileLatestModifiedDateAsync(relativePath);
-                } catch {
+                } catch (e) {
                   console.log(
                     styleText(
                       "yellow",
@@ -5851,11 +5859,110 @@ var DiscordMessages = /* @__PURE__ */ __name(() => {
 
 // quartz/plugins/transformers/youtubeCommunityPosts.ts
 import path5 from "node:path";
+import fs2, { existsSync } from "node:fs";
+import fsp from "node:fs/promises";
 import { globbySync as globbySync2 } from "globby";
 var TARGET_SLUG = "youtube/community-posts";
-var CHANNEL_NAME = "7/10 Tone";
-var AVATAR_TARGET = "Media/710 Media/Images/710 tone pfp small.jpg";
+var DEFAULT_CHANNEL_HANDLE = "7-10tone";
 var CONTENT_ROOT2 = path5.resolve(process.cwd(), "../Content");
+var CACHE_DIR = path5.resolve(process.cwd(), ".quartz-cache");
+var CACHE_FILE = path5.join(CACHE_DIR, "youtube-channels.json");
+var AVATAR_RELATIVE_DIR = "Media/Avatars";
+var AVATAR_DIR = path5.resolve(CONTENT_ROOT2, AVATAR_RELATIVE_DIR);
+if (!existsSync(CACHE_DIR)) {
+  fs2.mkdirSync(CACHE_DIR, { recursive: true });
+}
+if (!existsSync(AVATAR_DIR)) {
+  fs2.mkdirSync(AVATAR_DIR, { recursive: true });
+}
+var memoryCache = null;
+var loadCache = /* @__PURE__ */ __name(async () => {
+  if (memoryCache) return memoryCache;
+  try {
+    const data = await fsp.readFile(CACHE_FILE, "utf-8");
+    memoryCache = JSON.parse(data);
+  } catch {
+    memoryCache = {};
+  }
+  return memoryCache;
+}, "loadCache");
+var saveCache = /* @__PURE__ */ __name(async () => {
+  if (memoryCache) {
+    await fsp.writeFile(CACHE_FILE, JSON.stringify(memoryCache, null, 2));
+  }
+}, "saveCache");
+var downloadImage = /* @__PURE__ */ __name(async (url, destPath) => {
+  try {
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      }
+    });
+    if (!res.ok) {
+      console.warn(`[YouTubeCommunityPosts] Failed to fetch image ${url}: ${res.statusText}`);
+      return;
+    }
+    const buffer = await res.arrayBuffer();
+    await fsp.writeFile(destPath, Buffer.from(buffer));
+  } catch (err) {
+    console.warn(`[YouTubeCommunityPosts] Failed to download image from ${url}`, err);
+  }
+}, "downloadImage");
+var fetchChannelData = /* @__PURE__ */ __name(async (handle) => {
+  try {
+    const res = await fetch(`https://www.youtube.com/@${handle}`, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      }
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const titleMatch = html.match(/<meta property="og:title" content="([^"]+)">/);
+    const imageMatch = html.match(/<meta property="og:image" content="([^"]+)">/);
+    if (!titleMatch || !imageMatch) return null;
+    const name = titleMatch[1];
+    const imageUrl = imageMatch[1];
+    let ext = "jpg";
+    if (imageUrl.includes(".png")) ext = "png";
+    const safeHandle = handle.replace(/[^a-zA-Z0-9_\-]/g, "");
+    const avatarFilename = `${safeHandle}.${ext}`;
+    const localAvatarPath = `${AVATAR_RELATIVE_DIR}/${avatarFilename}`;
+    const absoluteAvatarPath = path5.join(AVATAR_DIR, avatarFilename);
+    await downloadImage(imageUrl, absoluteAvatarPath);
+    return {
+      name,
+      avatar: localAvatarPath
+    };
+  } catch (err) {
+    console.warn(`[YouTubeCommunityPosts] Failed to fetch channel @${handle}`, err);
+    return null;
+  }
+}, "fetchChannelData");
+var getChannelProfile = /* @__PURE__ */ __name(async (handle) => {
+  const cache = await loadCache();
+  const normalizedKey = handle.toLowerCase();
+  if (cache[normalizedKey]) {
+    return cache[normalizedKey];
+  }
+  if (normalizedKey === "7-10tone" && !cache[normalizedKey]) {
+    cache[normalizedKey] = {
+      name: "7/10 Tone",
+      avatar: "Media/710 Media/Images/710 tone pfp small.jpg"
+    };
+    return cache[normalizedKey];
+  }
+  console.log(`[YouTubeCommunityPosts] Fetching channel data for: @${handle}`);
+  const profile = await fetchChannelData(handle);
+  if (profile) {
+    cache[normalizedKey] = profile;
+    await saveCache();
+    return profile;
+  }
+  return {
+    name: `@${handle}`,
+    avatar: "Media/Avatars/default.jpg"
+  };
+}, "getChannelProfile");
 var assetLookupCache2 = /* @__PURE__ */ new Map();
 var isExternalUrl2 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var stripContentPrefix2 = /* @__PURE__ */ __name((target) => target.replace(/^[./]+/, "").replace(/^content\//i, ""), "stripContentPrefix");
@@ -5912,7 +6019,7 @@ var collectText = /* @__PURE__ */ __name((node) => {
   return "";
 }, "collectText");
 var EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
-var METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i;
+var METADATA_LINE_REGEX = /^\s*(?:@([a-zA-Z0-9_\-]+)\s*,\s*)?(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i;
 var COMMUNITY_POST_PREFIX_REGEX = /^\s*community-post\s*,/i;
 var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
   if (!raw) {
@@ -5931,13 +6038,22 @@ var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
   if (parts.length < 4) {
     return null;
   }
-  const likes = Number.parseInt(parts[1] ?? "", 10);
-  const comments = Number.parseInt(parts[2] ?? "", 10);
+  let argIndex = 1;
+  let channelHandle = DEFAULT_CHANNEL_HANDLE;
+  if (parts[1] && parts[1].startsWith("@")) {
+    channelHandle = parts[1].slice(1).toLowerCase();
+    argIndex++;
+  }
+  if (parts.length < argIndex + 2) {
+    return null;
+  }
+  const likes = Number.parseInt(parts[argIndex] ?? "", 10);
+  const comments = Number.parseInt(parts[argIndex + 1] ?? "", 10);
   if (!Number.isFinite(likes) || !Number.isFinite(comments)) {
     return null;
   }
-  let postedLabelRaw = parts[3] ?? "";
-  const inlineSegments = parts.slice(4).filter((segment) => segment.length > 0);
+  let postedLabelRaw = parts[argIndex + 2] ?? "";
+  const inlineSegments = parts.slice(argIndex + 3).filter((segment) => segment.length > 0);
   if ((!postedLabelRaw || /^[0-9]+$/.test(postedLabelRaw)) && inlineSegments.length > 0) {
     const candidate = inlineSegments[0];
     if (candidate && /[A-Za-z]/.test(candidate)) {
@@ -5958,6 +6074,7 @@ var parseCommunityPostHeader = /* @__PURE__ */ __name((raw) => {
   const metadata = {};
   metadata.likes = likes;
   metadata.comments = comments;
+  metadata.channelHandle = channelHandle;
   if (postedLabelRaw.length > 0) {
     metadata.postedLabel = postedLabelRaw;
   }
@@ -6006,7 +6123,7 @@ var parseMetadataMatch = /* @__PURE__ */ __name((match) => {
   if (!match) {
     return {};
   }
-  const [, likesRaw, commentsRaw, labelRaw] = match;
+  const [, handleRaw, likesRaw, commentsRaw, labelRaw] = match;
   const likes = Number.parseInt(likesRaw, 10);
   const comments = Number.parseInt(commentsRaw, 10);
   const postedLabel = labelRaw.trim();
@@ -6019,6 +6136,9 @@ var parseMetadataMatch = /* @__PURE__ */ __name((match) => {
   }
   if (postedLabel.length > 0) {
     metadata.postedLabel = postedLabel;
+  }
+  if (handleRaw) {
+    metadata.channelHandle = handleRaw.toLowerCase();
   }
   return metadata;
 }, "parseMetadataMatch");
@@ -6189,15 +6309,15 @@ var renderTextSegment = /* @__PURE__ */ __name((segment) => {
   const safe = escapeHtml2(content).replace(/\n/g, "<br />");
   return `<div class="yt-community-post__text">${safe}</div>`;
 }, "renderTextSegment");
-var renderEmbedSegment = /* @__PURE__ */ __name((segment, slug) => {
+var renderEmbedSegment = /* @__PURE__ */ __name((segment, slug, channelName) => {
   if (!segment.target) {
     return "";
   }
   const src = resolveObsidianTarget2(segment.target, slug);
   const width = parseNumericAlias(segment.alias);
-  const fallbackAlt = toSentenceCase(segment.target.split("/").pop() ?? "") || CHANNEL_NAME;
+  const fallbackAlt = toSentenceCase(segment.target.split("/").pop() ?? "") || channelName;
   const aliasAlt = width ? void 0 : segment.alias;
-  const alt = escapeAttribute2((aliasAlt && aliasAlt.length > 0 ? aliasAlt : fallbackAlt) || CHANNEL_NAME);
+  const alt = escapeAttribute2((aliasAlt && aliasAlt.length > 0 ? aliasAlt : fallbackAlt) || channelName);
   const styles = [];
   if (width) {
     styles.push(`max-width: ${width}px`);
@@ -6207,16 +6327,16 @@ var renderEmbedSegment = /* @__PURE__ */ __name((segment, slug) => {
     <img src="${escapeAttribute2(src)}" alt="${alt}" loading="lazy" decoding="async"${styleAttr} />
   </figure>`;
 }, "renderEmbedSegment");
-var renderSegments = /* @__PURE__ */ __name((segments, slug) => {
+var renderSegments = /* @__PURE__ */ __name((segments, slug, channelName) => {
   return segments.map((segment) => {
     if (segment.type === "text") {
       return renderTextSegment(segment);
     }
-    return renderEmbedSegment(segment, slug);
+    return renderEmbedSegment(segment, slug, channelName);
   }).filter((html) => html.length > 0).join("\n");
 }, "renderSegments");
 var renderPost = /* @__PURE__ */ __name((options2) => {
-  const { content, year, slug, avatarSrc, metadataHint } = options2;
+  const { content, year, slug, metadataHint, channelProfile } = options2;
   const trimmed = content.replace(/^\s+|\s+$/g, "");
   if (!trimmed) {
     return "";
@@ -6226,9 +6346,11 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
     ...metadataHint,
     ...bodyMetadata
   };
+  const channelName = channelProfile.name;
+  const avatarSrc = resolveObsidianTarget2(channelProfile.avatar, slug);
   const cleanedBody = body.replace(/^\s+/, "");
   const segments = splitSegments(cleanedBody);
-  const bodyHtml = renderSegments(segments, slug);
+  const bodyHtml = renderSegments(segments, slug, channelName);
   let postedDisplay = metadata.postedLabel?.trim() || "";
   let dataPosted;
   if (postedDisplay) {
@@ -6254,7 +6376,7 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
     'class="yt-community-post__share article-share__button"',
     `aria-label="${escapeAttribute2(shareLabel)}"`,
     `data-share-url="#${escapeAttribute2(anchorId)}"`,
-    `data-share-title="${escapeAttribute2(`${CHANNEL_NAME} community post`)}"`
+    `data-share-title="${escapeAttribute2(`${channelName} community post`)}"`
   ];
   if (shareSnippet) {
     shareAttributes.push(`data-share-text="${escapeAttribute2(shareSnippet)}"`);
@@ -6271,12 +6393,12 @@ var renderPost = /* @__PURE__ */ __name((options2) => {
     </div>` : "";
   return `<article class="yt-community-post" id="${escapeAttribute2(anchorId)}" data-posted="${escapeAttribute2(dataPosted)}">
   <span class="yt-community-post__avatar">
-    <img src="${escapeAttribute2(avatarSrc)}" alt="${escapeAttribute2(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
+    <img src="${escapeAttribute2(avatarSrc)}" alt="${escapeAttribute2(channelName)}" loading="lazy" width="48" height="48" />
   </span>
   <div class="yt-community-post__content">
     <div class="yt-community-post__header">
       <div class="yt-community-post__identity">
-        <span class="yt-community-post__channel">${escapeHtml2(CHANNEL_NAME)}</span>
+        <span class="yt-community-post__channel">${escapeHtml2(channelName)}</span>
         <span class="yt-community-post__timestamp">${timestamp}</span>
       </div>
       ${shareMarkup}
@@ -6335,12 +6457,24 @@ var YT_COMMUNITY_CSS = `
   gap: 6px;
   line-height: 1;
 }
+
+.yt-community-post__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: transparent;
+}
+
 .yt-community-post__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .yt-community-post__content {
@@ -6513,7 +6647,7 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
     name: "YouTubeCommunityPosts",
     markdownPlugins() {
       return [
-        () => (tree, file) => {
+        () => async (tree, file) => {
           const slug = typeof file?.data?.slug === "string" ? file.data.slug : void 0;
           if (!slug) {
             return;
@@ -6524,7 +6658,6 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
           if (!Array.isArray(root.children)) {
             return;
           }
-          const avatarSrc = resolveObsidianTarget2(AVATAR_TARGET, slug);
           let currentYear;
           for (let idx = 0; idx < root.children.length; idx++) {
             const child = root.children[idx];
@@ -6547,6 +6680,8 @@ var YouTubeCommunityPosts = /* @__PURE__ */ __name(() => {
             if (!headerResult) {
               continue;
             }
+            const channelHandle = headerResult.metadata.channelHandle || DEFAULT_CHANNEL_HANDLE;
+            const channelProfile = await getChannelProfile(channelHandle);
             let value = typeof child.value === "string" ? child.value : "";
             if (headerResult.inlineBody) {
               value = value.length > 0 ? `${headerResult.inlineBody}
@@ -6556,8 +6691,8 @@ ${value}` : headerResult.inlineBody;
               content: value,
               year: currentYear,
               slug,
-              avatarSrc,
-              metadataHint: headerResult.metadata
+              metadataHint: headerResult.metadata,
+              channelProfile
             });
             if (!html) {
               continue;
@@ -9785,12 +9920,12 @@ var U200D = String.fromCharCode(8205);
 
 // quartz/plugins/emitters/helpers.ts
 import path6 from "path";
-import fs2 from "fs";
+import fs3 from "fs";
 var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
   const pathToPage = joinSegments(ctx.argv.output, slug + ext);
   const dir = path6.dirname(pathToPage);
-  await fs2.promises.mkdir(dir, { recursive: true });
-  await fs2.promises.writeFile(pathToPage, content);
+  await fs3.promises.mkdir(dir, { recursive: true });
+  await fs3.promises.writeFile(pathToPage, content);
   return pathToPage;
 }, "write");
 
@@ -11521,21 +11656,21 @@ var homepage_inline_default = "";
 import { jsx as jsx37, jsxs as jsxs25 } from "preact/jsx-runtime";
 var DEFAULT_LINKS = {
   archive: {
-    label: "YouTube channel",
-    href: "https://www.youtube.com/@710Tone",
-    description: "Watch every upload and catch up on past drops.",
+    label: "Archival Channel",
+    href: "https://www.youtube.com/@710ToneArchiveChannel",
+    description: "Follow the archive channel and view lost 7/10 Tone media",
     iconSlug: "youtube"
   },
   discord: {
     label: "Join the Discord",
-    href: "https://discord.gg/M3sEVCuEAR",
-    description: "Swap theories and work puzzles with fellow sleuths.",
+    href: "https://discord.gg/2ByK7Xcmy4",
+    description: "Swap theories and work puzzles with fellow sleuths",
     iconSlug: "discord"
   },
   reddit: {
     label: "Visit r/710Tone",
     href: "https://www.reddit.com/r/710Tone/",
-    description: "Browse community finds and share what you uncover.",
+    description: "Browse community finds and share what you uncover",
     iconSlug: "reddit"
   }
 };
@@ -14420,7 +14555,7 @@ var AliasRedirects = /* @__PURE__ */ __name(() => ({
 
 // quartz/plugins/emitters/assets.ts
 import path11 from "path";
-import fs3 from "fs";
+import fs4 from "fs";
 
 // quartz/util/glob.ts
 import path10 from "path";
@@ -14448,8 +14583,8 @@ var copyFile = /* @__PURE__ */ __name(async (argv, fp) => {
   const name = slugifyFilePath(fp);
   const dest = joinSegments(argv.output, name);
   const dir = path11.dirname(dest);
-  await fs3.promises.mkdir(dir, { recursive: true });
-  await fs3.promises.copyFile(src, dest);
+  await fs4.promises.mkdir(dir, { recursive: true });
+  await fs4.promises.copyFile(src, dest);
   return dest;
 }, "copyFile");
 var Assets = /* @__PURE__ */ __name(() => {
@@ -14470,7 +14605,7 @@ var Assets = /* @__PURE__ */ __name(() => {
         } else if (changeEvent.type === "delete") {
           const name = slugifyFilePath(changeEvent.path);
           const dest = joinSegments(ctx.argv.output, name);
-          await fs3.promises.unlink(dest);
+          await fs4.promises.unlink(dest);
         }
       }
     }
@@ -14478,7 +14613,7 @@ var Assets = /* @__PURE__ */ __name(() => {
 }, "Assets");
 
 // quartz/plugins/emitters/static.ts
-import fs4 from "fs";
+import fs5 from "fs";
 import { dirname } from "path";
 var Static = /* @__PURE__ */ __name(() => ({
   name: "Static",
@@ -14486,12 +14621,12 @@ var Static = /* @__PURE__ */ __name(() => ({
     const staticPath = joinSegments(QUARTZ, "static");
     const fps = await glob("**", staticPath, cfg.configuration.ignorePatterns);
     const outputStaticPath = joinSegments(argv.output, "static");
-    await fs4.promises.mkdir(outputStaticPath, { recursive: true });
+    await fs5.promises.mkdir(outputStaticPath, { recursive: true });
     for (const fp of fps) {
       const src = joinSegments(staticPath, fp);
       const dest = joinSegments(outputStaticPath, fp);
-      await fs4.promises.mkdir(dirname(dest), { recursive: true });
-      await fs4.promises.copyFile(src, dest);
+      await fs5.promises.mkdir(dirname(dest), { recursive: true });
+      await fs5.promises.copyFile(src, dest);
       yield dest;
     }
   },
@@ -15078,7 +15213,7 @@ var config2 = {
     transformers: [
       FrontMatter(),
       CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"]
+        priority: ["frontmatter", "git"]
       }),
       SyntaxHighlighting({
         theme: {
@@ -15222,7 +15357,7 @@ Failed to process html \`${file.data.filePath}\``, err);
 __name(createMarkdownParser, "createMarkdownParser");
 
 // quartz/util/sourcemap.ts
-import fs5 from "fs";
+import fs6 from "fs";
 import { fileURLToPath as fileURLToPath2 } from "url";
 var options = {
   // source map hack to get around query param
@@ -15231,7 +15366,7 @@ var options = {
     if (source.includes(".quartz-cache")) {
       let realSource = fileURLToPath2(source.split("?", 2)[0] + ".map");
       return {
-        map: fs5.readFileSync(realSource, "utf8")
+        map: fs6.readFileSync(realSource, "utf8")
       };
     } else {
       return null;

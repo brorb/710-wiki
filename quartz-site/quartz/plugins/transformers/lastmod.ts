@@ -79,9 +79,23 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 published ||= file.data.frontmatter.published as MaybeDate
               } else if (source === "git" && repo) {
                 try {
-                  const relativePath = path.relative(repositoryWorkdir, fullFp).split(path.sep).join("/")
+                  // Normalize paths to ensure consistency before calculating relative path
+                  // Ensure fullFp is absolute (it might be relative like ../Content/...)
+                  const absoluteFp = path.resolve(fullFp)
+
+                  const normalize = (p: string) => p.replace(/\\/g, "/")
+                  const normWorkdir = normalize(repositoryWorkdir)
+                  const normFp = normalize(absoluteFp)
+                  
+                  let relativePath = normFp
+                  if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
+                      relativePath = normFp.slice(normWorkdir.length)
+                  }
+                  // Clean up leading slashes
+                  relativePath = relativePath.replace(/^\/+/, "")
+
                   modified ||= await repo.getFileLatestModifiedDateAsync(relativePath)
-                } catch {
+                } catch (e) {
                   console.log(
                     styleText(
                       "yellow",
