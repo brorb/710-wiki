@@ -1,4 +1,6 @@
 import path from "node:path"
+import fs, { existsSync } from "node:fs"
+import fsp from "node:fs/promises"
 import { globbySync } from "globby"
 import { QuartzTransformerPlugin } from "../types"
 import { getAssetVersion } from "../../util/assetVersion"
@@ -27,14 +29,130 @@ interface ChannelProfile {
 
 const DEFAULT_CHANNEL_HANDLE = "7-10tone"
 
-const CHANNELS: Record<string, ChannelProfile> = {
-  "7-10tone": {
-    name: "7/10 Tone",
-    avatar: "Media/710 Media/Images/710 tone pfp small.jpg",
-  },
+const CONTENT_ROOT = path.resolve(process.cwd(), "../Content")
+const CACHE_DIR = path.resolve(process.cwd(), ".quartz-cache")
+const CACHE_FILE = path.join(CACHE_DIR, "youtube-channels.json")
+const AVATAR_RELATIVE_DIR = "Media/Avatars"
+const AVATAR_DIR = path.resolve(CONTENT_ROOT, AVATAR_RELATIVE_DIR)
+
+// Ensure directories exist
+if (!existsSync(CACHE_DIR)) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true })
+}
+if (!existsSync(AVATAR_DIR)) {
+  fs.mkdirSync(AVATAR_DIR, { recursive: true })
 }
 
-const CONTENT_ROOT = path.resolve(process.cwd(), "../Content")
+let memoryCache: Record<string, ChannelProfile> | null = null
+
+const loadCache = async (): Promise<Record<string, ChannelProfile>> => {
+  if (memoryCache) return memoryCache
+  try {
+    const data = await fsp.readFile(CACHE_FILE, "utf-8")
+    memoryCache = JSON.parse(data)
+  } catch {
+    memoryCache = {}
+  }
+  return memoryCache!
+}
+
+const saveCache = async () => {
+  if (memoryCache) {
+    await fsp.writeFile(CACHE_FILE, JSON.stringify(memoryCache, null, 2))
+  }
+}
+
+const downloadImage = async (url: string, destPath: string) => {
+  try {
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      },
+    })
+    if (!res.ok) {
+       console.warn(`[YouTubeCommunityPosts] Failed to fetch image ${url}: ${res.statusText}`)
+       return
+    }
+    const buffer = await res.arrayBuffer()
+    await fsp.writeFile(destPath, Buffer.from(buffer))
+  } catch (err) {
+    console.warn(`[YouTubeCommunityPosts] Failed to download image from ${url}`, err)
+  }
+}
+
+const fetchChannelData = async (handle: string): Promise<ChannelProfile | null> => {
+  try {
+    const res = await fetch(`https://www.youtube.com/@${handle}`, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      },
+    })
+    if (!res.ok) return null
+    const html = await res.text()
+
+    const titleMatch = html.match(/<meta property="og:title" content="([^"]+)">/)
+    const imageMatch = html.match(/<meta property="og:image" content="([^"]+)">/)
+
+    if (!titleMatch || !imageMatch) return null
+
+    const name = titleMatch[1]
+    const imageUrl = imageMatch[1]
+
+    let ext = "jpg"
+    if (imageUrl.includes(".png")) ext = "png"
+    
+    // Clean up filename
+    const safeHandle = handle.replace(/[^a-zA-Z0-9_\-]/g, "")
+    const avatarFilename = `${safeHandle}.${ext}`
+    const localAvatarPath = `${AVATAR_RELATIVE_DIR}/${avatarFilename}`
+    const absoluteAvatarPath = path.join(AVATAR_DIR, avatarFilename)
+
+    await downloadImage(imageUrl, absoluteAvatarPath)
+
+    return {
+      name,
+      avatar: localAvatarPath,
+    }
+  } catch (err) {
+    console.warn(`[YouTubeCommunityPosts] Failed to fetch channel @${handle}`, err)
+    return null
+  }
+}
+
+const getChannelProfile = async (handle: string): Promise<ChannelProfile> => {
+  const cache = await loadCache()
+  const normalizedKey = handle.toLowerCase()
+
+  if (cache[normalizedKey]) {
+    return cache[normalizedKey]
+  }
+
+  // Pre-seed defaults if desired, or just fetch
+  if (normalizedKey === "7-10tone" && !cache[normalizedKey]) {
+      cache[normalizedKey] = {
+        name: "7/10 Tone",
+        avatar: "Media/710 Media/Images/710 tone pfp small.jpg"
+      }
+      return cache[normalizedKey]
+  }
+  
+  console.log(`[YouTubeCommunityPosts] Fetching channel data for: @${handle}`)
+  const profile = await fetchChannelData(handle)
+
+  if (profile) {
+    cache[normalizedKey] = profile
+    await saveCache()
+    return profile
+  }
+
+  return {
+    name: `@${handle}`,
+    avatar: "Media/Avatars/default.jpg", 
+  }
+}
+
 const assetLookupCache = new Map<string, string | null>()
 
 const isExternalUrl = (url: string): boolean => /^(https?:)?\/\//i.test(url)
@@ -560,8 +678,9 @@ const renderPost = (options: {
   year?: string
   slug: FullSlug
   metadataHint?: PostMetadata
+  channelProfile: ChannelProfile
 }): string => {
-  const { content, year, slug, metadataHint } = options
+  const { content, year, slug, metadataHint, channelProfile } = options
   const trimmed = content.replace(/^\s+|\s+$/g, "")
   if (!trimmed) {
     return ""
@@ -573,10 +692,8 @@ const renderPost = (options: {
     ...bodyMetadata,
   }
 
-  const channelHandle = metadata.channelHandle || DEFAULT_CHANNEL_HANDLE
-  const channelInfo = CHANNELS[channelHandle] || CHANNELS[DEFAULT_CHANNEL_HANDLE]
-  const channelName = channelInfo.name
-  const avatarSrc = resolveObsidianTarget(channelInfo.avatar, slug)
+  const channelName = channelProfile.name
+  const avatarSrc = resolveObsidianTarget(channelProfile.avatar, slug)
 
   const cleanedBody = body.replace(/^\s+/, "")
   const segments = splitSegments(cleanedBody)
@@ -890,7 +1007,7 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
     name: "YouTubeCommunityPosts",
     markdownPlugins() {
       return [
-        () => (tree: unknown, file: { data?: { slug?: FullSlug } }) => {
+        () => async (tree: unknown, file: { data?: { slug?: FullSlug } }) => {
           const slug = typeof file?.data?.slug === "string" ? (file.data.slug as FullSlug) : undefined
           if (!slug) {
             return
@@ -932,15 +1049,20 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
               continue
             }
 
+            const channelHandle = headerResult.metadata.channelHandle || DEFAULT_CHANNEL_HANDLE
+            const channelProfile = await getChannelProfile(channelHandle)
+
             let value = typeof child.value === "string" ? child.value : ""
             if (headerResult.inlineBody) {
               value = value.length > 0 ? `${headerResult.inlineBody}\n${value}` : headerResult.inlineBody
             }
+            
             const html = renderPost({
               content: value,
               year: currentYear,
               slug,
               metadataHint: headerResult.metadata,
+              channelProfile,
             })
 
             if (!html) {

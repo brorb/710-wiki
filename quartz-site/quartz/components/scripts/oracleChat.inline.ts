@@ -1000,7 +1000,7 @@ const renderAssistantMessage = (
   options?: MessageRenderOptions,
 ) => {
   const payload = message.webPayload
-  const leadText = payload?.lead ?? payload?.answer ?? message.content
+  const leadText = payload?.lead ?? payload?.answer
   const secondaryText = payload?.answer && payload.answer !== leadText ? payload.answer : undefined
   const fallbackText = !payload ? message.content : undefined
   const allDisclaimers = new Set<string>()
