@@ -196,7 +196,7 @@ TTH: I'm sorry, but I can< INSERT S PROTECTED CODE >'t take bribes.
 F2930: I see, what a shame, well it's near< INSERT LAN CORD EXPUNGED AFTER 0432 AM >
 
 ```
-In this Private Room chat, it is confirmed that [[F2930]] has purged their terminal. [[F2930]] mentions that they aren't "going to have that district for that long", implying that they have a changing jurisdictional responsibilities. They try to bribe the [[TTH]] agent with 2000 Credits. This is the first mention of this "Credit" currency. The [[TTH]] agent does not accept the bribe.
+In this Private Room chat, it is confirmed that [[F2930]] has purged their terminal. [[F2930]] mentions that they aren't "going to have that district for that long", implying that they have a changing jurisdictional responsibilities. They try to bribe the [[TTH]] agent with 2000 Credits. This is the first mention of this "Credit" currency.
 
 ## Chat #11
 
