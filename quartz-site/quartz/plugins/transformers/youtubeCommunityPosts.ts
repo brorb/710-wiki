@@ -835,7 +835,7 @@ const YT_COMMUNITY_CSS = `
   height: 48px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #2a2a2a;
+  background-color: transparent;
 }
 
 .yt-community-post__avatar img {
@@ -844,6 +844,8 @@ const YT_COMMUNITY_CSS = `
   object-fit: cover;
   object-position: center;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .yt-community-post__content {
