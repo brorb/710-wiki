@@ -19,7 +19,7 @@ Appearances:
 ```
 
 
-Possibly a program that manages data, as it appears in the [[Private Room]] (named "SPR chatroom") scanning through data before the chatroom fully connects.
+Possibly a program that manages data, as it appears in the [[Private Room|SPR]] scanning through data before the chatroom fully connects.
 
 It is a forbidden topic of discussion around [[SYSTEM]] since it crashes whenever the name is mentioned. In [[SERVER 01]], [[SYSTEM]] explained that it cannot read or write a statement that involves them (see [[System Chats#2nd August 2025|SERVER 01 2nd August chats]].
 
