@@ -35,12 +35,10 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
       return [
         () => {
           let repo: Repository | undefined = undefined
-          let repositoryWorkdir: string = ""
           
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory)
-              repositoryWorkdir = repo.workdir() ?? ctx.argv.directory
             } catch (e) {
               console.log(styleText("yellow", `\nWarning: Failed to discover git repo: ${e}`))
             }
@@ -69,24 +67,36 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 if (file.data.frontmatter.published) published ||= file.data.frontmatter.published as MaybeDate
               } else if (source === "git" && repo) {
                 try {
-                  const absoluteFp = path.resolve(fullFp)
-                  // Normalize for git lookup
-                  const normalize = (p: string) => p.replace(/\\/g, "/")
-                  const normWorkdir = normalize(repositoryWorkdir)
-                  const normFp = normalize(absoluteFp)
+                  // Strategy 1: Absolute Path (simplest, works if inside repo)
+                  let gitModified = await repo.getFileLatestModifiedDateAsync(fullFp)
                   
-                  let relativePath = normFp
-                  if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
-                      relativePath = normFp.slice(normWorkdir.length)
+                  // Strategy 2: Computed Relative Path (if absolute fails)
+                  if (!gitModified) {
+                      const repositoryWorkdir = repo.workdir() ?? ctx.argv.directory
+                      const absoluteFp = path.resolve(fullFp)
+                      // Normalize slashes for generic matching
+                      const normalize = (p: string) => p.replace(/\\/g, "/")
+                      const normWorkdir = normalize(repositoryWorkdir)
+                      const normFp = normalize(absoluteFp)
+                      
+                      let relativePath = normFp
+                      // Case-insensitive prefix checking for robustness
+                      if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
+                          relativePath = normFp.slice(normWorkdir.length)
+                      }
+                      relativePath = relativePath.replace(/^\/+/, "")
+                      
+                      gitModified = await repo.getFileLatestModifiedDateAsync(relativePath)
                   }
-                  relativePath = relativePath.replace(/^\/+/, "")
-                  
-                  const gitModified = await repo.getFileLatestModifiedDateAsync(relativePath)
+
                   if (gitModified) {
                       modified ||= gitModified
+                  } else {
+                     // Log warning only if we really expected a git date
+                     // console.log(styleText("yellow", `\nWarning: No git date for ${fp}`))
                   }
                 } catch (e) {
-                   // ignore
+                   console.log(styleText("yellow", `\nWarning: git lookup failed for ${fp}: ${e}`))
                 }
               }
             }
