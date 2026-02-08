@@ -36,7 +36,7 @@ Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
-At the start of each log, there is a screen that lists certain values for its data: Log, System, and System ID. The purpose of this data is currently unknown, but it's most likely used by whoever potentially keeps track of them. In 2025, the program was updated in [[update log 001]], and therefore the look of the screen and data has since changed starting from [[LOG-008.mp4]].
+At the start of each log, there is a screen that lists certain values for its data: Port Call, Log, System, and System ID. The purpose of this data is currently unknown, but it's most likely used by whoever potentially keeps track of them. In 2025, the program was updated in [[update log 001]], and therefore the look of the screen and data has since changed starting from [[LOG-008.mp4]].
 ## Oddities
 
 Not all LOGs appear "normal" at first, sometimes strange occurrences happen within some of them, such as [[LOG-27.mp4]] or [[LOG-95.mp4]]. These oddities might be of some significance to the lore. The end counter also has oddities such as after every 10 increments in the counter, it scrolls through numbers as its counting down by 1 point. Other times it repeats itself between logs or glitches out.
