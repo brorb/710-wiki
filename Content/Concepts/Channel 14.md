@@ -20,7 +20,7 @@ Appearances:
 - [[LOG-1.mp4]]
 ```
 
-Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much like the [[Station Interruption]] screen, which [[INDI]] would have to fix.
+Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in 2025 through [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much like the [[Station Interruption]] screen, which [[INDI]] would have to fix.
 
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->, much like a regular TV broadcasting station.
 
