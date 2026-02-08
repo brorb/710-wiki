@@ -2849,7 +2849,6 @@ import { visit } from "unist-util-visit";
 import fs from "fs";
 import { Repository } from "@napi-rs/simple-git";
 import path from "path";
-import { styleText } from "util";
 import { execSync } from "child_process";
 var defaultOptions3 = {
   priority: ["frontmatter", "git", "filesystem"]
@@ -2857,15 +2856,6 @@ var defaultOptions3 = {
 function coerceDate(fp, d) {
   const dt = new Date(d);
   const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0;
-  if (invalidDate && d !== void 0) {
-    console.log(
-      styleText(
-        "yellow",
-        `
-Warning: found invalid date "${d}" in ${fp}. Supported formats: https://quartz.jzhao.xyz/features/created-modified-dates#date-format`
-      )
-    );
-  }
   return invalidDate ? void 0 : dt;
 }
 __name(coerceDate, "coerceDate");
@@ -2878,26 +2868,27 @@ var CreatedModifiedDate = /* @__PURE__ */ __name((userOpts) => {
         () => {
           let repo = void 0;
           let repoRoot = "";
+          let processCount = 0;
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory);
               repoRoot = repo.workdir() || "";
+              console.error(`[DEBUG] Git Repo Discovered. Root: ${repoRoot}, ArgvDir: ${ctx.argv.directory}`);
             } catch (e) {
-              console.log(styleText("yellow", `
-Warning: Failed to discover git repo: ${e}`));
+              console.error(`[DEBUG] Failed to discover git repo: ${e}`);
             }
           }
           return async (_tree, file) => {
+            processCount++;
+            const isDebug = processCount <= 5;
             let created = void 0;
             let modified = void 0;
             let published = void 0;
             const fp = file.data.relativePath;
             const fullFp = file.data.filePath;
-            const debugFile = fp.endsWith("index.md") || fp.includes("710 NPP");
-            if (debugFile) {
-              console.log(styleText("blue", `
-[DEBUG-START] ${fp}`));
-              console.log(`[DEBUG] Priorities: ${opts.priority.join(", ")}`);
+            if (isDebug) {
+              console.error(`[DEBUG] File #${processCount}: ${fp}`);
+              console.error(`[DEBUG] Full Path: ${fullFp}`);
             }
             for (const source of opts.priority) {
               if (source === "filesystem") {
@@ -2905,14 +2896,12 @@ Warning: Failed to discover git repo: ${e}`));
                   const st = await fs.promises.stat(fullFp);
                   created ||= st.birthtimeMs;
                   modified ||= st.mtimeMs;
-                  if (debugFile) console.log(`[DEBUG] Check Filesystem -> Modified: ${st.mtimeMs}`);
                 } catch (e) {
                 }
               } else if (source === "frontmatter" && file.data.frontmatter) {
                 if (file.data.frontmatter.created) created ||= file.data.frontmatter.created;
                 if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified;
                 if (file.data.frontmatter.published) published ||= file.data.frontmatter.published;
-                if (debugFile && modified) console.log(`[DEBUG] Check Frontmatter -> Modified: ${modified}`);
               } else if (source === "git" && repoRoot) {
                 try {
                   const absoluteFp = path.resolve(fullFp);
@@ -2924,43 +2913,37 @@ Warning: Failed to discover git repo: ${e}`));
                     relativePath = normFp.slice(normWorkdir.length);
                   }
                   relativePath = relativePath.replace(/^\/+/, "");
-                  if (debugFile) console.log(`[DEBUG] Git Check: Relative Path "${relativePath}"`);
+                  if (isDebug) console.error(`[DEBUG] Relative path for git: ${relativePath}`);
                   let gitDate = void 0;
                   if (repo) {
                     gitDate = await repo.getFileLatestModifiedDateAsync(relativePath);
-                    if (debugFile) console.log(`[DEBUG] Simple-Git Result: ${gitDate}`);
+                    if (isDebug) console.error(`[DEBUG] Simple-Git returned: ${gitDate}`);
                   }
                   if (!gitDate) {
                     try {
                       const cmd = `git log -1 --format=%ct -- "${relativePath}"`;
                       const out = execSync(cmd, { cwd: repoRoot, encoding: "utf-8" }).trim();
-                      if (debugFile) console.log(`[DEBUG] Git CLI Result (raw): "${out}"`);
+                      if (isDebug) console.error(`[DEBUG] CLI Git returned: '${out}'`);
                       if (out && !isNaN(parseInt(out))) {
                         gitDate = parseInt(out) * 1e3;
                       }
                     } catch (execErr) {
-                      if (debugFile) console.log(`[DEBUG] Git CLI Error: ${execErr}`);
+                      if (isDebug) console.error(`[DEBUG] CLI Git failed: ${execErr}`);
                     }
                   }
                   if (gitDate) {
                     modified ||= gitDate;
                   }
                 } catch (e) {
-                  console.log(styleText("yellow", `
-Warning: git lookup failed for ${fp}: ${e}`));
+                  console.error(`[DEBUG] Git processing error for ${fp}: ${e}`);
                 }
               }
             }
-            const finalModified = coerceDate(fp, modified);
-            if (debugFile) {
-              console.log(`[DEBUG] Final Resolved Modified: ${modified}`);
-              console.log(`[DEBUG] Final Coerced Date: ${finalModified}`);
-              console.log(styleText("blue", `[DEBUG-END] ${fp}
-`));
-            }
+            const finalDate = coerceDate(fp, modified);
+            if (isDebug) console.error(`[DEBUG] Final Modified Date: ${finalDate}`);
             file.data.dates = {
               created: coerceDate(fp, created),
-              modified: finalModified,
+              modified: finalDate,
               published: coerceDate(fp, published)
             };
           };
@@ -7890,7 +7873,7 @@ import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { Fragment as Fragment2, jsx as jsx5, jsxs as jsxs2 } from "preact/jsx-runtime";
 
 // quartz/util/trace.ts
-import { styleText as styleText2 } from "util";
+import { styleText } from "util";
 import process2 from "process";
 import { isMainThread } from "workerpool";
 var rootFile = /.*at file:/;
@@ -7899,7 +7882,7 @@ function trace(msg, err) {
   const lines = [];
   lines.push("");
   lines.push(
-    "\n" + styleText2(["bgRed", "black", "bold"], " ERROR ") + "\n\n" + styleText2("red", ` ${msg}`) + (err.message.length > 0 ? `: ${err.message}` : "")
+    "\n" + styleText(["bgRed", "black", "bold"], " ERROR ") + "\n\n" + styleText("red", ` ${msg}`) + (err.message.length > 0 ? `: ${err.message}` : "")
   );
   let reachedEndOfLegibleTrace = false;
   for (const line of stack.split("\n").slice(1)) {
@@ -13566,7 +13549,7 @@ var defaultListPageLayout = {
 };
 
 // quartz/plugins/emitters/contentPage.tsx
-import { styleText as styleText3 } from "util";
+import { styleText as styleText2 } from "util";
 async function processContent(ctx, tree, fileData, allFiles, opts, resources) {
   const slug = fileData.slug;
   const cfg = ctx.cfg.configuration;
@@ -13638,7 +13621,7 @@ var ContentPage = /* @__PURE__ */ __name((userOpts) => {
       }
       if (!containsIndex) {
         console.log(
-          styleText3(
+          styleText2(
             "yellow",
             `
 Warning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path7.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`
@@ -15358,7 +15341,7 @@ import { unified } from "unified";
 
 // quartz/util/perf.ts
 import pretty from "pretty-time";
-import { styleText as styleText4 } from "util";
+import { styleText as styleText3 } from "util";
 var PerfTimer = class {
   static {
     __name(this, "PerfTimer");
@@ -15372,7 +15355,7 @@ var PerfTimer = class {
     this.evts[evtName] = process.hrtime();
   }
   timeSince(evtName) {
-    return styleText4("yellow", pretty(process.hrtime(this.evts[evtName ?? "start"])));
+    return styleText3("yellow", pretty(process.hrtime(this.evts[evtName ?? "start"])));
   }
 };
 

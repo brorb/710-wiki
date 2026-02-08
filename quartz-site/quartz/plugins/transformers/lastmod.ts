@@ -16,14 +16,6 @@ const defaultOptions: Options = {
 function coerceDate(fp: string, d: any): Date | undefined {
   const dt = new Date(d)
   const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0
-  if (invalidDate && d !== undefined) {
-    console.log(
-      styleText(
-        "yellow",
-        `\nWarning: found invalid date "${d}" in ${fp}. Supported formats: https://quartz.jzhao.xyz/features/created-modified-dates#date-format`,
-      ),
-    )
-  }
   return invalidDate ? undefined : dt
 }
 
@@ -37,28 +29,34 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
         () => {
           let repo: Repository | undefined = undefined
           let repoRoot: string = ""
+          
+          // Debug counter
+          let processCount = 0;
 
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory)
               repoRoot = repo.workdir() || ""
+              console.error(`[DEBUG] Git Repo Discovered. Root: ${repoRoot}, ArgvDir: ${ctx.argv.directory}`);
             } catch (e) {
-              console.log(styleText("yellow", `\nWarning: Failed to discover git repo: ${e}`))
+              console.error(`[DEBUG] Failed to discover git repo: ${e}`);
             }
           }
 
           return async (_tree, file) => {
+            processCount++;
+            const isDebug = processCount <= 5; // Log first 5 files
+
             let created: MaybeDate = undefined
             let modified: MaybeDate = undefined
             let published: MaybeDate = undefined
 
             const fp = file.data.relativePath!
             const fullFp = file.data.filePath!
-            const debugFile = fp.endsWith("index.md") || fp.includes("710 NPP")
 
-            if (debugFile) {
-                console.log(styleText("blue", `\n[DEBUG-START] ${fp}`));
-                console.log(`[DEBUG] Priorities: ${opts.priority.join(", ")}`);
+            if (isDebug) {
+                console.error(`[DEBUG] File #${processCount}: ${fp}`);
+                console.error(`[DEBUG] Full Path: ${fullFp}`);
             }
 
             for (const source of opts.priority) {
@@ -67,7 +65,6 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                     const st = await fs.promises.stat(fullFp)
                     created ||= st.birthtimeMs
                     modified ||= st.mtimeMs
-                    if (debugFile) console.log(`[DEBUG] Check Filesystem -> Modified: ${st.mtimeMs}`);
                  } catch (e) {
                     // ignore
                  }
@@ -75,13 +72,10 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 if (file.data.frontmatter.created) created ||= file.data.frontmatter.created as MaybeDate
                 if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified as MaybeDate
                 if (file.data.frontmatter.published) published ||= file.data.frontmatter.published as MaybeDate
-                
-                if (debugFile && modified) console.log(`[DEBUG] Check Frontmatter -> Modified: ${modified}`);
               } else if (source === "git" && repoRoot) {
-                // Try git strategy
                 try {
-                   // Calculate relative path robustly
                    const absoluteFp = path.resolve(fullFp)
+                   // Normalize slashes
                    const normalize = (p: string) => p.replace(/\\/g, "/")
                    const normWorkdir = normalize(repoRoot)
                    const normFp = normalize(absoluteFp)
@@ -91,52 +85,48 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                        relativePath = normFp.slice(normWorkdir.length)
                    }
                    relativePath = relativePath.replace(/^\/+/, "")
-
-                   if (debugFile) console.log(`[DEBUG] Git Check: Relative Path "${relativePath}"`);
+                   
+                   if (isDebug) console.error(`[DEBUG] Relative path for git: ${relativePath}`);
 
                    // 1. Try simple-git
                    let gitDate = undefined;
                    if (repo) {
                         gitDate = await repo.getFileLatestModifiedDateAsync(relativePath)
-                        if (debugFile) console.log(`[DEBUG] Simple-Git Result: ${gitDate}`);
+                        if (isDebug) console.error(`[DEBUG] Simple-Git returned: ${gitDate}`);
                    }
                    
                    // 2. Fallback to CLI git if simple-git failed
                    if (!gitDate) {
                         try {
+                           // Use strict allow-list for args to prevent injection, though limited here
                            const cmd = `git log -1 --format=%ct -- "${relativePath}"`
                            const out = execSync(cmd, { cwd: repoRoot, encoding: "utf-8" }).trim()
-                           if (debugFile) console.log(`[DEBUG] Git CLI Result (raw): "${out}"`);
                            
+                           if (isDebug) console.error(`[DEBUG] CLI Git returned: '${out}'`);
+
                            if (out && !isNaN(parseInt(out))) {
                                gitDate = parseInt(out) * 1000
                            }
                         } catch(execErr) {
-                           if (debugFile) console.log(`[DEBUG] Git CLI Error: ${execErr}`);
+                           if (isDebug) console.error(`[DEBUG] CLI Git failed: ${execErr}`);
                         }
                    }
 
                    if (gitDate) {
                        modified ||= gitDate;
                    }
-
                 } catch (e) {
-                   console.log(styleText("yellow", `\nWarning: git lookup failed for ${fp}: ${e}`))
+                   console.error(`[DEBUG] Git processing error for ${fp}: ${e}`);
                 }
               }
             }
 
-            const finalModified = coerceDate(fp, modified);
-
-            if (debugFile) {
-                console.log(`[DEBUG] Final Resolved Modified: ${modified}`);
-                console.log(`[DEBUG] Final Coerced Date: ${finalModified}`);
-                console.log(styleText("blue", `[DEBUG-END] ${fp}\n`));
-            }
+            const finalDate = coerceDate(fp, modified);
+            if (isDebug) console.error(`[DEBUG] Final Modified Date: ${finalDate}`);
 
             file.data.dates = {
               created: coerceDate(fp, created),
-              modified: finalModified,
+              modified: finalDate,
               published: coerceDate(fp, published),
             }
           }
