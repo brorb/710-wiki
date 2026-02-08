@@ -2850,6 +2850,7 @@ import fs from "fs";
 import { Repository } from "@napi-rs/simple-git";
 import path from "path";
 import { styleText } from "util";
+import { execSync } from "child_process";
 var defaultOptions3 = {
   priority: ["frontmatter", "git", "filesystem"]
 };
@@ -2865,7 +2866,7 @@ Warning: found invalid date "${d}" in ${fp}. Supported formats: https://quartz.j
       )
     );
   }
-  return invalidDate ? /* @__PURE__ */ new Date() : dt;
+  return invalidDate ? void 0 : dt;
 }
 __name(coerceDate, "coerceDate");
 var CreatedModifiedDate = /* @__PURE__ */ __name((userOpts) => {
@@ -2876,11 +2877,11 @@ var CreatedModifiedDate = /* @__PURE__ */ __name((userOpts) => {
       return [
         () => {
           let repo = void 0;
-          let repositoryWorkdir = "";
+          let repoRoot = "";
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory);
-              repositoryWorkdir = repo.workdir() ?? ctx.argv.directory;
+              repoRoot = repo.workdir() || "";
             } catch (e) {
               console.log(styleText("yellow", `
 Warning: Failed to discover git repo: ${e}`));
@@ -2904,22 +2905,33 @@ Warning: Failed to discover git repo: ${e}`));
                 if (file.data.frontmatter.created) created ||= file.data.frontmatter.created;
                 if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified;
                 if (file.data.frontmatter.published) published ||= file.data.frontmatter.published;
-              } else if (source === "git" && repo) {
+              } else if (source === "git" && repoRoot) {
                 try {
                   const absoluteFp = path.resolve(fullFp);
                   const normalize = /* @__PURE__ */ __name((p) => p.replace(/\\/g, "/"), "normalize");
-                  const normWorkdir = normalize(repositoryWorkdir);
+                  const normWorkdir = normalize(repoRoot);
                   const normFp = normalize(absoluteFp);
                   let relativePath = normFp;
                   if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
                     relativePath = normFp.slice(normWorkdir.length);
                   }
                   relativePath = relativePath.replace(/^\/+/, "");
-                  const gitModified = await repo.getFileLatestModifiedDateAsync(relativePath);
-                  if (gitModified) {
-                    modified ||= gitModified;
+                  if (repo) {
+                    modified = await repo.getFileLatestModifiedDateAsync(relativePath);
+                  }
+                  if (!modified) {
+                    try {
+                      const cmd = `git log -1 --format=%ct -- "${relativePath}"`;
+                      const out = execSync(cmd, { cwd: repoRoot, encoding: "utf-8" }).trim();
+                      if (out && !isNaN(parseInt(out))) {
+                        modified = parseInt(out) * 1e3;
+                      }
+                    } catch (execErr) {
+                    }
                   }
                 } catch (e) {
+                  console.log(styleText("yellow", `
+Warning: git lookup failed for ${fp}: ${e}`));
                 }
               }
             }
