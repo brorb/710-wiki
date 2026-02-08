@@ -9,6 +9,7 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 ```community-post,@7-10tone,2,0,31 Jan 2026,
 COMMUNITY UPDATED-[2-2-0019-10]
 ```
+^This signaled the opening of 7/10 Tone's YouTube Community.
 
 ```community-post,@7-10tone,3,0,31 Jan 2026,
 >UPDATING :: drp-xfi992-392-0001.pcv || to || v0.0.2
