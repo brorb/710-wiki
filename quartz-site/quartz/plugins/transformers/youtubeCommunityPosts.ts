@@ -19,8 +19,20 @@ type MdParent = MdNode & {
 }
 
 const TARGET_SLUG = "youtube/community-posts"
-const CHANNEL_NAME = "7/10 Tone"
-const AVATAR_TARGET = "Media/710 Media/Images/710 tone pfp small.jpg"
+
+interface ChannelProfile {
+  name: string
+  avatar: string
+}
+
+const DEFAULT_CHANNEL_HANDLE = "7-10tone"
+
+const CHANNELS: Record<string, ChannelProfile> = {
+  "7-10tone": {
+    name: "7/10 Tone",
+    avatar: "Media/710 Media/Images/710 tone pfp small.jpg",
+  },
+}
 
 const CONTENT_ROOT = path.resolve(process.cwd(), "../Content")
 const assetLookupCache = new Map<string, string | null>()
@@ -118,11 +130,12 @@ interface PostMetadata {
   likes?: number
   comments?: number
   postedLabel?: string
+  channelHandle?: string
 }
 
 const EMBED_REGEX = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g
 
-const METADATA_LINE_REGEX = /^\s*(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i
+const METADATA_LINE_REGEX = /^\s*(?:@([a-zA-Z0-9_\-]+)\s*,\s*)?(\d+)\s*,\s*(\d+)\s*,\s*([^,\n]+?)(?:\s*,\s*)?(?:\r?\n|$)/i
 const COMMUNITY_POST_PREFIX_REGEX = /^\s*community-post\s*,/i
 
 interface CommunityPostHeaderResult {
@@ -149,18 +162,35 @@ const parseCommunityPostHeader = (raw?: string): CommunityPostHeaderResult | nul
       }
       return true
     })
+
+  // Basic check: at least "community-post, likes, comments, date"
   if (parts.length < 4) {
     return null
   }
 
-  const likes = Number.parseInt(parts[1] ?? "", 10)
-  const comments = Number.parseInt(parts[2] ?? "", 10)
+  let argIndex = 1
+  let channelHandle = DEFAULT_CHANNEL_HANDLE
+
+  // Check for @handle at parts[1]
+  if (parts[1] && parts[1].startsWith("@")) {
+    channelHandle = parts[1].slice(1).toLowerCase()
+    argIndex++
+  }
+
+  // Ensure enough parts remain
+  if (parts.length < argIndex + 2) {
+    return null
+  }
+
+  const likes = Number.parseInt(parts[argIndex] ?? "", 10)
+  const comments = Number.parseInt(parts[argIndex + 1] ?? "", 10)
+  
   if (!Number.isFinite(likes) || !Number.isFinite(comments)) {
     return null
   }
 
-  let postedLabelRaw = parts[3] ?? ""
-  const inlineSegments = parts.slice(4).filter((segment) => segment.length > 0)
+  let postedLabelRaw = parts[argIndex + 2] ?? ""
+  const inlineSegments = parts.slice(argIndex + 3).filter((segment) => segment.length > 0)
 
   if ((!postedLabelRaw || /^[0-9]+$/.test(postedLabelRaw)) && inlineSegments.length > 0) {
     const candidate = inlineSegments[0]
@@ -188,6 +218,7 @@ const parseCommunityPostHeader = (raw?: string): CommunityPostHeaderResult | nul
   const metadata: PostMetadata = {}
   metadata.likes = likes
   metadata.comments = comments
+  metadata.channelHandle = channelHandle
 
   if (postedLabelRaw.length > 0) {
     metadata.postedLabel = postedLabelRaw
@@ -251,7 +282,7 @@ const parseMetadataMatch = (match: RegExpMatchArray | null): PostMetadata => {
     return {}
   }
 
-  const [, likesRaw, commentsRaw, labelRaw] = match
+  const [, handleRaw, likesRaw, commentsRaw, labelRaw] = match
   const likes = Number.parseInt(likesRaw, 10)
   const comments = Number.parseInt(commentsRaw, 10)
   const postedLabel = labelRaw.trim()
@@ -265,6 +296,9 @@ const parseMetadataMatch = (match: RegExpMatchArray | null): PostMetadata => {
   }
   if (postedLabel.length > 0) {
     metadata.postedLabel = postedLabel
+  }
+  if (handleRaw) {
+    metadata.channelHandle = handleRaw.toLowerCase()
   }
 
   return metadata
@@ -487,16 +521,16 @@ const renderTextSegment = (segment: TextSegment): string => {
   return `<div class="yt-community-post__text">${safe}</div>`
 }
 
-const renderEmbedSegment = (segment: EmbedSegment, slug: FullSlug): string => {
+const renderEmbedSegment = (segment: EmbedSegment, slug: FullSlug, channelName: string): string => {
   if (!segment.target) {
     return ""
   }
 
   const src = resolveObsidianTarget(segment.target, slug)
   const width = parseNumericAlias(segment.alias)
-  const fallbackAlt = toSentenceCase(segment.target.split("/").pop() ?? "") || CHANNEL_NAME
+  const fallbackAlt = toSentenceCase(segment.target.split("/").pop() ?? "") || channelName
   const aliasAlt = width ? undefined : segment.alias
-  const alt = escapeAttribute((aliasAlt && aliasAlt.length > 0 ? aliasAlt : fallbackAlt) || CHANNEL_NAME)
+  const alt = escapeAttribute((aliasAlt && aliasAlt.length > 0 ? aliasAlt : fallbackAlt) || channelName)
   const styles: string[] = []
   if (width) {
     styles.push(`max-width: ${width}px`)
@@ -509,13 +543,13 @@ const renderEmbedSegment = (segment: EmbedSegment, slug: FullSlug): string => {
   </figure>`
 }
 
-const renderSegments = (segments: Segment[], slug: FullSlug): string => {
+const renderSegments = (segments: Segment[], slug: FullSlug, channelName: string): string => {
   return segments
     .map((segment) => {
       if (segment.type === "text") {
         return renderTextSegment(segment)
       }
-      return renderEmbedSegment(segment, slug)
+      return renderEmbedSegment(segment, slug, channelName)
     })
     .filter((html) => html.length > 0)
     .join("\n")
@@ -525,10 +559,9 @@ const renderPost = (options: {
   content: string
   year?: string
   slug: FullSlug
-  avatarSrc: string
   metadataHint?: PostMetadata
 }): string => {
-  const { content, year, slug, avatarSrc, metadataHint } = options
+  const { content, year, slug, metadataHint } = options
   const trimmed = content.replace(/^\s+|\s+$/g, "")
   if (!trimmed) {
     return ""
@@ -539,9 +572,15 @@ const renderPost = (options: {
     ...metadataHint,
     ...bodyMetadata,
   }
+
+  const channelHandle = metadata.channelHandle || DEFAULT_CHANNEL_HANDLE
+  const channelInfo = CHANNELS[channelHandle] || CHANNELS[DEFAULT_CHANNEL_HANDLE]
+  const channelName = channelInfo.name
+  const avatarSrc = resolveObsidianTarget(channelInfo.avatar, slug)
+
   const cleanedBody = body.replace(/^\s+/, "")
   const segments = splitSegments(cleanedBody)
-  const bodyHtml = renderSegments(segments, slug)
+  const bodyHtml = renderSegments(segments, slug, channelName)
   let postedDisplay = metadata.postedLabel?.trim() || ""
   let dataPosted: string | undefined
   if (postedDisplay) {
@@ -583,7 +622,7 @@ const renderPost = (options: {
     'class="yt-community-post__share article-share__button"',
     `aria-label="${escapeAttribute(shareLabel)}"`,
     `data-share-url="#${escapeAttribute(anchorId)}"`,
-    `data-share-title="${escapeAttribute(`${CHANNEL_NAME} community post`)}"`,
+    `data-share-title="${escapeAttribute(`${channelName} community post`)}"`,
   ]
 
   if (shareSnippet) {
@@ -607,12 +646,12 @@ const renderPost = (options: {
 
   return `<article class="yt-community-post" id="${escapeAttribute(anchorId)}" data-posted="${escapeAttribute(dataPosted)}">
   <span class="yt-community-post__avatar">
-    <img src="${escapeAttribute(avatarSrc)}" alt="${escapeAttribute(CHANNEL_NAME)}" loading="lazy" width="48" height="48" />
+    <img src="${escapeAttribute(avatarSrc)}" alt="${escapeAttribute(channelName)}" loading="lazy" width="48" height="48" />
   </span>
   <div class="yt-community-post__content">
     <div class="yt-community-post__header">
       <div class="yt-community-post__identity">
-        <span class="yt-community-post__channel">${escapeHtml(CHANNEL_NAME)}</span>
+        <span class="yt-community-post__channel">${escapeHtml(channelName)}</span>
         <span class="yt-community-post__timestamp">${timestamp}</span>
       </div>
       ${shareMarkup}
@@ -865,7 +904,6 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
             return
           }
 
-          const avatarSrc = resolveObsidianTarget(AVATAR_TARGET, slug)
           let currentYear: string | undefined
 
           for (let idx = 0; idx < root.children.length; idx++) {
@@ -902,7 +940,6 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
               content: value,
               year: currentYear,
               slug,
-              avatarSrc,
               metadataHint: headerResult.metadata,
             })
 

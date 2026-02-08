@@ -21,7 +21,7 @@ type FrontmatterLinks = {
 const DEFAULT_LINKS: Record<keyof FrontmatterLinks, LinkConfig> = {
   archive: {
     label: "YouTube channel",
-    href: "https://www.youtube.com/@710Tone",
+    href: "https://www.youtube.com/@7-10tone",
     description: "Watch every upload and catch up on past drops.",
     iconSlug: "youtube",
   },
