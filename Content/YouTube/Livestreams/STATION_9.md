@@ -9,12 +9,12 @@
 
 This was a brief test stream that ran for 11:31, but the purpose of this particular test is currently unknown. The session was announced via a community post:
 
-```community-post,3,0,29 Jan 2026,
+```community-post,@7-10tone,3,0,29 Jan 2026,
 {{{LIVE SESSION STARTING
 ```
 
 This test was confirmed as a success in both the livestream chat and a following community post (see below).
 
-```community-post,3,1,29 Jan 2026,
+```community-post,@7-10tone,3,1,29 Jan 2026,
 test concluded successful
 ```

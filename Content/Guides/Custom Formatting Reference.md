@@ -195,7 +195,7 @@ The hidden HTML comment (or moustache form `{{discord-cite:...}}`) becomes the h
 Convert raw community posts into the rich embed used on the wiki with a dedicated fence. The opening line encodes metadata as comma-separated values: `community-post,<likes>,<comments>,<posted label>`. The body accepts normal Markdown and Obsidian image embeds.
 
 ````markdown
-```community-post,4,1,28 July 2025, Channel poll: Sleeper status
+```community-post,@7-10tone,4,1,28 July 2025, Channel poll: Sleeper status
 Sleeper status report. [[Image Embed|![[Media/710 Media/Images/710 Tone pfp.jpg]]]]
 
 **Options**

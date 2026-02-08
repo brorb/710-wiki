@@ -4,7 +4,7 @@ See [[Community Posts]] to see all of the known community posts archived.
 ## Half Life Gameplay Video Puzzles
 
 The following community post was uploaded to [[710 Tone|7/10 Tone]] after the release of [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]]:
-```community-post,0,1,4 November 2025
+```community-post,@7-10tone,0,1,4 November 2025
 74 68 65 20 3E 20 23 20 77 69 6C 6C 20 62 65 20 69 72 72 65 6C 65 76 61 6E 74 20 74 6F 20 79 6Fb 75 0A 6E 65 78u 74 3D 3E 0A 2Et 6D 70 34 20 3D 23i 0A 61 20 70 65 72 66 65 63 74 20 76 65 73 73 65 6C 20 66 6F 72 20 75 73 65 20 74 6F 20 63 6Ft 6D 6D w75 6E 69i 63 61l 74l 65 20 be 74 68 72s 6Fo 75o 67n 68 2E
 ```
 
@@ -37,33 +37,33 @@ Over the course of 23 July to 1 August 2025, [[710 Tone|7/10 Tone]] started dele
 
 Here are the posts that accompanied these deletions:
 
-```community-post,4,1,1 August 2025,
+```community-post,@7-10tone,4,1,1 August 2025,
 /update::::::9-32, update---(.,(- 4 )) | | ERROR: LIST(-22-, 139, 43, 48, 128)ERROR:22, 139 NOT FOUND, collecting larger:values))))) updated{index, index, 1)
 ```
 ^Logs deleted: [[LLOOGG--2211..mmpp44]] [[LOG-  .  + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
 
-```community-post,2,0,29 July 2025,
+```community-post,@7-10tone,2,0,29 July 2025,
 ///////////////////update::::::0-78, update---(.,(- 5 )) ERROR: LIST(39, 10, -58-, 6, -54-)ERROR:58,54 NOT FOUND, collecting larger:values))))) updated{index, index, 1)
 ```
 ^Logs deleted: [[LOG-39..mp4]] [[LOG-10.mp4]] [[machina_ad_mortem.mp4]] [[LOG-006.mp4]] [[LONG_STR.mp4]]
 
-```community-post,4,1,28 July 2025,
+```community-post,@7-10tone,4,1,28 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(84, 24, 44, 3, 12)))))) updated{index, index, 1)
 ```
 ^Logs deleted: [[LOG-84.mp4]] [[{ - . }re]] [[LOG-44.mp4]] [[LOG-003.mp4]] [[LOG-12.mp4]]
 
-```community-post,1,0,27 July 2025,
+```community-post,@7-10tone,1,0,27 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(102, 87, 47, 2, 5)))))) updated{index, index, 1) RETURNING(unexpected data [LOG-46.PCV])
 ```
 Logs deleted: [[LOG-102.mp3]] [[LOG-87.mp4]] [[LOG-47.mp4]] [[LOG-002.mp4]] [[LOG-005.mp4]]
 [[LOG-46.mp4]] also appeared at this time.
 
-```community-post,2,1,25 July 2025,
+```community-post,@7-10tone,2,1,25 July 2025,
 ///////////////////update::::::9-32, update---(.,(- 4 )) ERROR: LIST(111, 123, 132, 133, 138))))))Type\%\%\{&/\_\.(..)\\+?/} updated{index, index, 1)
 ```
 ^Logs deleted: [[LOG-111.mp4]] [[LOG-123.mp4]] [[LOG-132]] [[33LOG-13]] [[LOG.138.mp4]]
 
-```community-post,4,0,23 July 2025,
+```community-post,@7-10tone,4,0,23 July 2025,
 ///////////////////update::::::5-64, update---(.,(- 0 )) ERROR: LIST(124, 125, 126, 127, 154, 156))))))Type updated{index, index, 1)
 ```
 ^Logs deleted: [[LOG-124.mp4]] [[LOG-125.mp4]] [[LOG-126.mp4]] [[LOG-127.mp4]] [[LOG-154.mp4]] [[LOG-156.mp4]]
@@ -71,7 +71,7 @@ Logs deleted: [[LOG-102.mp3]] [[LOG-87.mp4]] [[LOG-47.mp4]] [[LOG-002.mp4]] [[LO
 ---
 ## Miscellaneous Puzzles
 
-```community-post,4,0,February 2025,
+```community-post,@7-10tone,4,0,February 2025,
 53 59 53 54 45 4D 20 4D 45 53 53 41 47 45 20 4F 55 54 50 55 54 3C 22 4C 55 46 4E 49 41 50 20 44 4E 41 20 57 4F 4C 53 20 53 52 55 4F 59 20 52 4B 41 4D 20 4C 4C 49 57 20 49 22
 ```
 _^The hex translates to:_
@@ -82,7 +82,7 @@ R K A M   L L I W   I "
 Reversed text translates to "I WILL MAKR YOURS SLOW AND PAINFUL"
 The purpose for this ominous message and whoever it is referring to remains unclear.
 
-```community-post,4,1,February 2025,
+```community-post,@7-10tone,4,1,February 2025,
 75 70 64 61 74 65 20 6F 75 74 70 75 74 20 61 70 70 65 6E 64 69 6E 67 3C 22 53 59 53 54 45 4D 3A 20 53 59 53 54 45 4D 20 41 50 50 45 4E 44 3A 20 56 41 52 2D 49 2C 20 43 2C 20 4F 50 63 2C 20 4F 50 73 2C 20 53 2C 20 7C 7C 20 4C 49 53 54 20 26 26 20 63 61 63 68 65 20 35 3A 20 4C 4F 43 4B 24 24 20 4C 4F 43 4B 20 43 4F 44 45 20 38 3B 20 48 41 53 48 43 4F 44 45 3A 20 37 36 38 62 62 66 31 62 62 63 31 38 32 62 30 36 33 35 37 64 31 38 32 39 38 64 62 62 34 61 65 39 2F 72 65 74 75 72 6E 20 61 6C 6C 3A 30 22 20 3A 3A 20 6D 69 78 20 30 31
 ```
 The above message translates to the following:
@@ -97,19 +97,19 @@ The use for this provided hash code is unknown.
 ---
 ## Community posts with images
 
-```community-post,4,2,26 June 2025,
+```community-post,@7-10tone,4,2,26 June 2025,
 When is his shift again?
 ![[shift.webp|300]]
 ```
 ^This message was most likely posted by [[Travis]] and was made a few days before the STATION_8 livestreams. The purpose of the image isn't understood, but it could have decoding potential.
 
-```community-post,6,3,22 June 2025,
+```community-post,@7-10tone,6,3,22 June 2025,
 Mistakes were made, but I corrected them. Please, if you can, try not to be too harsh on them. they had good intentions.
 ![[backtones2.webp]]
 ```
 ^This image definitely relates to [[prj_Home.exe]], which appears to be an early development state judging by the lone platform.
 
-```community-post,7,0,June 2025,
+```community-post,@7-10tone,7,0,June 2025,
 TEST STATUS: SUCCESS  
 REVIEW: OVERALL STATUS  
 [CC: 89666 :: RETURNED FALSE STATEMENT]

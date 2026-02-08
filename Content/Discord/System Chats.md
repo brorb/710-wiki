@@ -29937,7 +29937,7 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
 ]
 ```
 
-**@kayxsu**
+**@kayxsu
 
 ```discord
 [
