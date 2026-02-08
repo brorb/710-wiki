@@ -16,6 +16,7 @@ Appearances:
 - [[STATION_8 TRIM 90]] (mentioned)
 - [[STATION_8 TERMINAL 8]] (mentioned)
 - [[ERE IS ONE PERSON I KNOW IT'S KE]]
+- [[LOG-36]]
 Also known as:
 - Super Private Chat
 - SPR
