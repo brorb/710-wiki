@@ -7937,7 +7937,7 @@ var listPage_default = "";
 var folderDirectory_default = "";
 
 // quartz/components/Date.tsx
-import { jsx as jsx8 } from "preact/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx8 } from "preact/jsx-runtime";
 function getDate(cfg, data) {
   if (!cfg.defaultDateType) {
     throw new Error(
@@ -7956,12 +7956,36 @@ function formatDate(d, locale = "en-US") {
 }
 __name(formatDate, "formatDate");
 function Date2({ date, locale }) {
+  if (!date) return /* @__PURE__ */ jsx8(Fragment3, {});
   return /* @__PURE__ */ jsx8("time", { datetime: date.toISOString(), children: formatDate(date, locale) });
 }
 __name(Date2, "Date");
 
 // quartz/components/PageList.tsx
 import { jsx as jsx9, jsxs as jsxs3 } from "preact/jsx-runtime";
+function byDateAndAlphabetical(cfg) {
+  return (f1, f2) => {
+    if (f1.dates && f2.dates) {
+      const d1 = getDate(cfg, f1);
+      const d2 = getDate(cfg, f2);
+      if (d1 && d2) {
+        return d2.getTime() - d1.getTime();
+      } else if (d1 && !d2) {
+        return -1;
+      } else if (!d1 && d2) {
+        return 1;
+      }
+    } else if (f1.dates && !f2.dates) {
+      return -1;
+    } else if (!f1.dates && f2.dates) {
+      return 1;
+    }
+    const f1Title = f1.frontmatter?.title.toLowerCase() ?? "";
+    const f2Title = f2.frontmatter?.title.toLowerCase() ?? "";
+    return f1Title.localeCompare(f2Title);
+  };
+}
+__name(byDateAndAlphabetical, "byDateAndAlphabetical");
 function byDateAndAlphabeticalFolderFirst(cfg) {
   return (f1, f2) => {
     const f1IsFolder = isFolderPath(f1.slug ?? "");
@@ -7969,7 +7993,15 @@ function byDateAndAlphabeticalFolderFirst(cfg) {
     if (f1IsFolder && !f2IsFolder) return -1;
     if (!f1IsFolder && f2IsFolder) return 1;
     if (f1.dates && f2.dates) {
-      return getDate(cfg, f2).getTime() - getDate(cfg, f1).getTime();
+      const d1 = getDate(cfg, f1);
+      const d2 = getDate(cfg, f2);
+      if (d1 && d2) {
+        return d2.getTime() - d1.getTime();
+      } else if (d1 && !d2) {
+        return -1;
+      } else if (!d1 && d2) {
+        return 1;
+      }
     } else if (f1.dates && !f2.dates) {
       return -1;
     } else if (!f1.dates && f2.dates) {
@@ -7981,34 +8013,69 @@ function byDateAndAlphabeticalFolderFirst(cfg) {
   };
 }
 __name(byDateAndAlphabeticalFolderFirst, "byDateAndAlphabeticalFolderFirst");
-var PageList = /* @__PURE__ */ __name(({ cfg, fileData, allFiles, limit, sort }) => {
-  const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg);
-  const sorted = [...allFiles].sort(sorter);
-  const list = typeof limit === "number" ? sorted.slice(0, limit) : sorted;
+var PageList = /* @__PURE__ */ __name(({ cfg, fileData, allFiles, limit }) => {
+  let list = allFiles.sort(byDateAndAlphabetical(cfg));
+  if (limit) {
+    list = list.slice(0, limit);
+  }
   return /* @__PURE__ */ jsx9("ul", { class: "section-ul", children: list.map((page) => {
-    const title = page.frontmatter?.title ?? page.slug ?? "Untitled";
+    const title = page.frontmatter?.title;
     const tags = page.frontmatter?.tags ?? [];
-    return /* @__PURE__ */ jsx9("li", { class: "section-li", children: /* @__PURE__ */ jsxs3("div", { class: "section", children: [
-      /* @__PURE__ */ jsx9("p", { class: "meta", children: page.dates && /* @__PURE__ */ jsx9(Date2, { date: getDate(cfg, page), locale: cfg.locale }) }),
-      /* @__PURE__ */ jsx9("div", { class: "desc", children: /* @__PURE__ */ jsx9("h3", { children: /* @__PURE__ */ jsx9("a", { href: resolveRelative(fileData.slug, page.slug), class: "internal", children: title }) }) }),
-      /* @__PURE__ */ jsx9("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ jsx9("li", { children: /* @__PURE__ */ jsx9(
-        "a",
-        {
-          class: "internal tag-link",
-          href: resolveRelative(fileData.slug, `tags/${tag}`),
-          children: tag
-        }
-      ) }, tag)) })
+    const date = getDate(cfg, page);
+    return /* @__PURE__ */ jsx9("li", { class: "section-li", children: /* @__PURE__ */ jsxs3("div", { class: "section-li-journal", children: [
+      title && /* @__PURE__ */ jsx9("div", { class: "section-li-title", children: /* @__PURE__ */ jsx9("a", { href: resolveRelative(fileData.slug, page.slug), class: "internal", children: title }) }),
+      /* @__PURE__ */ jsxs3("div", { class: "section-li-details", children: [
+        date && /* @__PURE__ */ jsx9("p", { class: "meta", children: /* @__PURE__ */ jsx9(Date2, { date, locale: cfg.locale }) }),
+        /* @__PURE__ */ jsx9("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ jsx9("li", { children: /* @__PURE__ */ jsxs3(
+          "a",
+          {
+            class: "internal tag-link",
+            href: resolveRelative(fileData.slug, `tags/${tag}`),
+            children: [
+              "#",
+              tag
+            ]
+          }
+        ) })) })
+      ] })
     ] }) });
   }) });
 }, "PageList");
 PageList.css = `
-.section h3 {
-  margin: 0;
+.section-ul {
+  margin-top: 2rem;
+  padding: 0;
 }
 
-.section > .tags {
+.section-li {
+  list-style-type: none;
+  margin-bottom: 2rem;
+}
+
+.section-li-title {
+  font-family: var(--headerFont);
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-li-title a {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.section-li-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.meta {
   margin: 0;
+  font-family: var(--codeFont);
+  color: var(--gray);
+  font-size: 0.8rem;
 }
 `;
 
@@ -8081,7 +8148,7 @@ var normalizeSnippet = /* @__PURE__ */ __name((value, limit = 240) => {
 }, "normalizeSnippet");
 
 // quartz/components/pages/TagContent.tsx
-import { Fragment as Fragment3, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-runtime";
+import { Fragment as Fragment4, jsx as jsx10, jsxs as jsxs4 } from "preact/jsx-runtime";
 var defaultOptions9 = {
   numPages: 10
 };
@@ -8192,7 +8259,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
             /* @__PURE__ */ jsxs4("div", { class: "page-listing", children: [
               /* @__PURE__ */ jsxs4("p", { children: [
                 i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length }),
-                pages.length > options2.numPages && /* @__PURE__ */ jsxs4(Fragment3, { children: [
+                pages.length > options2.numPages && /* @__PURE__ */ jsxs4(Fragment4, { children: [
                   " ",
                   /* @__PURE__ */ jsx10("span", { children: i18n(cfg.locale).pages.tagContent.showingFirst({
                     count: options2.numPages
@@ -8546,7 +8613,7 @@ var TagContent_default = /* @__PURE__ */ __name(((opts) => {
 }), "default");
 
 // quartz/components/pages/FolderContent.tsx
-import { Fragment as Fragment4 } from "preact";
+import { Fragment as Fragment5 } from "preact";
 
 // quartz/util/fileTrie.ts
 var FileTrieNode = class _FileTrieNode {
@@ -8880,7 +8947,7 @@ var FolderContent_default = /* @__PURE__ */ __name(((opts) => {
                     /* @__PURE__ */ jsx11("h3", { class: "directory-card__title", id: headingId, children: title }),
                     /* @__PURE__ */ jsxs5("p", { class: "directory-card__meta", children: [
                       childCount,
-                      updated && /* @__PURE__ */ jsxs5(Fragment4, { children: [
+                      updated && /* @__PURE__ */ jsxs5(Fragment5, { children: [
                         " \xB7 ",
                         "Updated ",
                         /* @__PURE__ */ jsx11(Date2, { date: updated, locale: cfg.locale })
@@ -9932,11 +9999,11 @@ var write = /* @__PURE__ */ __name(async ({ ctx, slug, ext, content }) => {
 }, "write");
 
 // quartz/plugins/emitters/ogImage.tsx
-import { Fragment as Fragment5, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx17, jsxs as jsxs10 } from "preact/jsx-runtime";
 var CustomOgImagesEmitterName = "CustomOgImages";
 
 // quartz/components/Head.tsx
-import { Fragment as Fragment6, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
+import { Fragment as Fragment7, jsx as jsx18, jsxs as jsxs11 } from "preact/jsx-runtime";
 var Head_default = /* @__PURE__ */ __name((() => {
   const Head = /* @__PURE__ */ __name(({
     cfg,
@@ -9965,7 +10032,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
     return /* @__PURE__ */ jsxs11("head", { children: [
       /* @__PURE__ */ jsx18("title", { children: title }),
       /* @__PURE__ */ jsx18("meta", { charSet: "utf-8" }),
-      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment6, { children: [
+      cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && /* @__PURE__ */ jsxs11(Fragment7, { children: [
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "preconnect", href: "https://fonts.gstatic.com" }),
         /* @__PURE__ */ jsx18("link", { rel: "stylesheet", href: googleFontHref(cfg.theme) }),
@@ -9981,7 +10048,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
       /* @__PURE__ */ jsx18("meta", { name: "twitter:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:description", content: description }),
       /* @__PURE__ */ jsx18("meta", { property: "og:image:alt", content: description }),
-      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment6, { children: [
+      !usesCustomOgImage && ogImageDefaultPath && /* @__PURE__ */ jsxs11(Fragment7, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "og:image", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { property: "og:image:url", content: ogImageDefaultPath }),
         /* @__PURE__ */ jsx18("meta", { name: "twitter:image", content: ogImageDefaultPath }),
@@ -9993,7 +10060,7 @@ var Head_default = /* @__PURE__ */ __name((() => {
           }
         )
       ] }),
-      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment6, { children: [
+      cfg.baseUrl && /* @__PURE__ */ jsxs11(Fragment7, { children: [
         /* @__PURE__ */ jsx18("meta", { property: "twitter:domain", content: url.host }),
         /* @__PURE__ */ jsx18("meta", { property: "og:url", content: socialUrl }),
         /* @__PURE__ */ jsx18("meta", { property: "twitter:url", content: socialUrl })
@@ -11016,7 +11083,7 @@ var Breadcrumbs_default = /* @__PURE__ */ __name(((opts) => {
 var comments_inline_default = "";
 
 // quartz/components/Comments.tsx
-import { Fragment as Fragment7, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
+import { Fragment as Fragment8, jsx as jsx32, jsxs as jsxs21 } from "preact/jsx-runtime";
 function boolToStringBool(b) {
   return b ? "1" : "0";
 }
@@ -11026,7 +11093,7 @@ var Comments_default = /* @__PURE__ */ __name(((opts) => {
     const { displayClass, fileData, cfg } = props;
     const disableComment = typeof fileData.frontmatter?.comments !== "undefined" && (!fileData.frontmatter?.comments || fileData.frontmatter?.comments === "false");
     if (disableComment) {
-      return /* @__PURE__ */ jsx32(Fragment7, {});
+      return /* @__PURE__ */ jsx32(Fragment8, {});
     }
     const MobileAppend = opts.mobileAppend;
     const DesktopCompanion = opts.desktopCompanion;
@@ -11353,7 +11420,7 @@ var DiscordWidget_default = /* @__PURE__ */ __name(((options2) => {
 }), "default");
 
 // quartz/components/InfoBox.tsx
-import { Fragment as Fragment8 } from "preact";
+import { Fragment as Fragment9 } from "preact";
 import { jsx as jsx36, jsxs as jsxs24 } from "preact/jsx-runtime";
 var isExternalUrl6 = /* @__PURE__ */ __name((url) => /^(https?:)?\/\//i.test(url), "isExternalUrl");
 var OBSIDIAN_EMBED_PATTERN6 = /^!?(?:\[\[)(?<target>[^|\]]+)(?:\|[^\]]*)?\]\]$/;
@@ -11443,7 +11510,7 @@ var normalizeValue = /* @__PURE__ */ __name((value, slug, ctx) => {
     }
     const combinedKey = normalized.map((entry) => entry.key).join("|");
     const children = intersperse(normalized.map((entry) => entry.node), ", ");
-    return { node: /* @__PURE__ */ jsx36(Fragment8, { children }), key: combinedKey };
+    return { node: /* @__PURE__ */ jsx36(Fragment9, { children }), key: combinedKey };
   }
   const text = normalizeString(value);
   if (!text) {
@@ -12451,8 +12518,8 @@ body:not(.hide-scrollbars) .home-recent__scroller::-webkit-scrollbar-thumb {
 var mediaNormalizer_inline_default = "";
 
 // quartz/components/MediaNormalizer.tsx
-import { Fragment as Fragment9, jsx as jsx38 } from "preact/jsx-runtime";
-var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment9, {}), "MediaNormalizer");
+import { Fragment as Fragment10, jsx as jsx38 } from "preact/jsx-runtime";
+var MediaNormalizer = /* @__PURE__ */ __name(() => /* @__PURE__ */ jsx38(Fragment10, {}), "MediaNormalizer");
 MediaNormalizer.afterDOMLoaded = mediaNormalizer_inline_default;
 var MediaNormalizer_default = /* @__PURE__ */ __name((() => MediaNormalizer), "default");
 

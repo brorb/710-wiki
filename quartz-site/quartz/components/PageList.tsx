@@ -11,7 +11,16 @@ export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
     // Sort by date/alphabetical
     if (f1.dates && f2.dates) {
       // sort descending
-      return getDate(cfg, f2)!.getTime() - getDate(cfg, f1)!.getTime()
+      const d1 = getDate(cfg, f1)
+      const d2 = getDate(cfg, f2)
+      
+      if (d1 && d2) {
+          return d2.getTime() - d1.getTime()
+      } else if (d1 && !d2) {
+          return -1
+      } else if (!d1 && d2) {
+          return 1
+      }
     } else if (f1.dates && !f2.dates) {
       // prioritize files with dates
       return -1
@@ -37,7 +46,16 @@ export function byDateAndAlphabeticalFolderFirst(cfg: GlobalConfiguration): Sort
     // If both are folders or both are files, sort by date/alphabetical
     if (f1.dates && f2.dates) {
       // sort descending
-      return getDate(cfg, f2)!.getTime() - getDate(cfg, f1)!.getTime()
+      const d1 = getDate(cfg, f1)
+      const d2 = getDate(cfg, f2)
+      
+      if (d1 && d2) {
+          return d2.getTime() - d1.getTime()
+      } else if (d1 && !d2) {
+          return -1
+      } else if (!d1 && d2) {
+          return 1
+      }
     } else if (f1.dates && !f2.dates) {
       // prioritize files with dates
       return -1
@@ -52,47 +70,44 @@ export function byDateAndAlphabeticalFolderFirst(cfg: GlobalConfiguration): Sort
   }
 }
 
-type Props = {
-  limit?: number
-  sort?: SortFn
-} & QuartzComponentProps
-
-export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
-  const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg)
-  const sorted = [...allFiles].sort(sorter)
-  const list = typeof limit === "number" ? sorted.slice(0, limit) : sorted
+export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: QuartzComponentProps) => {
+  let list = allFiles.sort(byDateAndAlphabetical(cfg))
+  if (limit) {
+    list = list.slice(0, limit)
+  }
 
   return (
     <ul class="section-ul">
       {list.map((page) => {
-        const title = page.frontmatter?.title ?? page.slug ?? "Untitled"
+        const title = page.frontmatter?.title
         const tags = page.frontmatter?.tags ?? []
+        const date = getDate(cfg, page)
 
         return (
           <li class="section-li">
-            <div class="section">
-              <p class="meta">
-                {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
-              </p>
-              <div class="desc">
-                <h3>
+            <div class="section-li-journal">
+              {title && (
+                <div class="section-li-title">
                   <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                     {title}
                   </a>
-                </h3>
+                </div>
+              )}
+              <div class="section-li-details">
+                 {date && <p class="meta"><Date date={date} locale={cfg.locale} /></p>} 
+                <ul class="tags">
+                  {tags.map((tag) => (
+                    <li>
+                      <a
+                        class="internal tag-link"
+                        href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
+                      >
+                        #{tag}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul class="tags">
-                {tags.map((tag) => (
-                  <li key={tag}>
-                    <a
-                      class="internal tag-link"
-                      href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                    >
-                      {tag}
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </li>
         )
@@ -102,11 +117,39 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
 }
 
 PageList.css = `
-.section h3 {
-  margin: 0;
+.section-ul {
+  margin-top: 2rem;
+  padding: 0;
 }
 
-.section > .tags {
+.section-li {
+  list-style-type: none;
+  margin-bottom: 2rem;
+}
+
+.section-li-title {
+  font-family: var(--headerFont);
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-li-title a {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.section-li-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.meta {
   margin: 0;
+  font-family: var(--codeFont);
+  color: var(--gray);
+  font-size: 0.8rem;
 }
 `
