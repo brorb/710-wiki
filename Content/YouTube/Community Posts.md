@@ -24,7 +24,7 @@ COMMUNITY UPDATED-[2-2-0019-10]
 >END
 ```
 
-```community-post,@7-10tone,1,0,31 Jan 2026,
+```community-post,@710NPP,1,0,31 Jan 2026,
 Node point program UPDATED || v2.12.02
 ```
 ^Uploaded by [[710 NPP|7/10 NPP]].
