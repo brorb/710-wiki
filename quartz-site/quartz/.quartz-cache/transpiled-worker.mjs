@@ -2893,18 +2893,26 @@ Warning: Failed to discover git repo: ${e}`));
             let published = void 0;
             const fp = file.data.relativePath;
             const fullFp = file.data.filePath;
+            const debugFile = fp.endsWith("index.md") || fp.includes("710 NPP");
+            if (debugFile) {
+              console.log(styleText("blue", `
+[DEBUG-START] ${fp}`));
+              console.log(`[DEBUG] Priorities: ${opts.priority.join(", ")}`);
+            }
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 try {
                   const st = await fs.promises.stat(fullFp);
                   created ||= st.birthtimeMs;
                   modified ||= st.mtimeMs;
+                  if (debugFile) console.log(`[DEBUG] Check Filesystem -> Modified: ${st.mtimeMs}`);
                 } catch (e) {
                 }
               } else if (source === "frontmatter" && file.data.frontmatter) {
                 if (file.data.frontmatter.created) created ||= file.data.frontmatter.created;
                 if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified;
                 if (file.data.frontmatter.published) published ||= file.data.frontmatter.published;
+                if (debugFile && modified) console.log(`[DEBUG] Check Frontmatter -> Modified: ${modified}`);
               } else if (source === "git" && repoRoot) {
                 try {
                   const absoluteFp = path.resolve(fullFp);
@@ -2916,18 +2924,26 @@ Warning: Failed to discover git repo: ${e}`));
                     relativePath = normFp.slice(normWorkdir.length);
                   }
                   relativePath = relativePath.replace(/^\/+/, "");
+                  if (debugFile) console.log(`[DEBUG] Git Check: Relative Path "${relativePath}"`);
+                  let gitDate = void 0;
                   if (repo) {
-                    modified = await repo.getFileLatestModifiedDateAsync(relativePath);
+                    gitDate = await repo.getFileLatestModifiedDateAsync(relativePath);
+                    if (debugFile) console.log(`[DEBUG] Simple-Git Result: ${gitDate}`);
                   }
-                  if (!modified) {
+                  if (!gitDate) {
                     try {
                       const cmd = `git log -1 --format=%ct -- "${relativePath}"`;
                       const out = execSync(cmd, { cwd: repoRoot, encoding: "utf-8" }).trim();
+                      if (debugFile) console.log(`[DEBUG] Git CLI Result (raw): "${out}"`);
                       if (out && !isNaN(parseInt(out))) {
-                        modified = parseInt(out) * 1e3;
+                        gitDate = parseInt(out) * 1e3;
                       }
                     } catch (execErr) {
+                      if (debugFile) console.log(`[DEBUG] Git CLI Error: ${execErr}`);
                     }
+                  }
+                  if (gitDate) {
+                    modified ||= gitDate;
                   }
                 } catch (e) {
                   console.log(styleText("yellow", `
@@ -2935,9 +2951,16 @@ Warning: git lookup failed for ${fp}: ${e}`));
                 }
               }
             }
+            const finalModified = coerceDate(fp, modified);
+            if (debugFile) {
+              console.log(`[DEBUG] Final Resolved Modified: ${modified}`);
+              console.log(`[DEBUG] Final Coerced Date: ${finalModified}`);
+              console.log(styleText("blue", `[DEBUG-END] ${fp}
+`));
+            }
             file.data.dates = {
               created: coerceDate(fp, created),
-              modified: coerceDate(fp, modified),
+              modified: finalModified,
               published: coerceDate(fp, published)
             };
           };
