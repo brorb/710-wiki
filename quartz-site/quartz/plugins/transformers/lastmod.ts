@@ -12,28 +12,17 @@ const defaultOptions: Options = {
   priority: ["frontmatter", "git", "filesystem"],
 }
 
-// YYYY-MM-DD
-const iso8601DateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/
-
 function coerceDate(fp: string, d: any): Date {
-  // check ISO8601 date-only format
-  // we treat this one as local midnight as the normal
-  // js date ctor treats YYYY-MM-DD as UTC midnight
-  if (typeof d === "string" && iso8601DateOnlyRegex.test(d)) {
-    d = `${d}T00:00:00`
-  }
-
   const dt = new Date(d)
   const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0
   if (invalidDate && d !== undefined) {
     console.log(
       styleText(
         "yellow",
-        `\nWarning: found invalid date "${d}" in \`${fp}\`. Supported formats: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format`,
+        `\nWarning: found invalid date "${d}" in ${fp}. Supported formats: https://quartz.jzhao.xyz/features/created-modified-dates#date-format`,
       ),
     )
   }
-
   return invalidDate ? new Date() : dt
 }
 
@@ -46,18 +35,14 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
       return [
         () => {
           let repo: Repository | undefined = undefined
-          let repositoryWorkdir: string
+          let repositoryWorkdir: string = ""
+          
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory)
               repositoryWorkdir = repo.workdir() ?? ctx.argv.directory
             } catch (e) {
-              console.log(
-                styleText(
-                  "yellow",
-                  `\nWarning: couldn't find git repository for ${ctx.argv.directory}`,
-                ),
-              )
+              console.log(styleText("yellow", `\nWarning: Failed to discover git repo: ${e}`))
             }
           }
 
@@ -68,21 +53,24 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
 
             const fp = file.data.relativePath!
             const fullFp = file.data.filePath!
+
             for (const source of opts.priority) {
               if (source === "filesystem") {
-                const st = await fs.promises.stat(fullFp)
-                created ||= st.birthtimeMs
-                modified ||= st.mtimeMs
+                 try {
+                    const st = await fs.promises.stat(fullFp)
+                    created ||= st.birthtimeMs
+                    modified ||= st.mtimeMs
+                 } catch (e) {
+                    // ignore
+                 }
               } else if (source === "frontmatter" && file.data.frontmatter) {
-                created ||= file.data.frontmatter.created as MaybeDate
-                modified ||= file.data.frontmatter.modified as MaybeDate
-                published ||= file.data.frontmatter.published as MaybeDate
+                if (file.data.frontmatter.created) created ||= file.data.frontmatter.created as MaybeDate
+                if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified as MaybeDate
+                if (file.data.frontmatter.published) published ||= file.data.frontmatter.published as MaybeDate
               } else if (source === "git" && repo) {
                 try {
-                  // Normalize paths to ensure consistency before calculating relative path
-                  // Ensure fullFp is absolute (it might be relative like ../Content/...)
                   const absoluteFp = path.resolve(fullFp)
-
+                  // Normalize for git lookup
                   const normalize = (p: string) => p.replace(/\\/g, "/")
                   const normWorkdir = normalize(repositoryWorkdir)
                   const normFp = normalize(absoluteFp)
@@ -91,21 +79,18 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                   if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
                       relativePath = normFp.slice(normWorkdir.length)
                   }
-                  // Clean up leading slashes
                   relativePath = relativePath.replace(/^\/+/, "")
-
-                  modified ||= await repo.getFileLatestModifiedDateAsync(relativePath)
+                  
+                  const gitModified = await repo.getFileLatestModifiedDateAsync(relativePath)
+                  if (gitModified) {
+                      modified ||= gitModified
+                  }
                 } catch (e) {
-                  console.log(
-                    styleText(
-                      "yellow",
-                      `\nWarning: ${file.data.filePath!} isn't yet tracked by git, dates will be inaccurate`,
-                    ),
-                  )
+                   // ignore
                 }
               }
             }
-
+            
             file.data.dates = {
               created: coerceDate(fp, created),
               modified: coerceDate(fp, modified),

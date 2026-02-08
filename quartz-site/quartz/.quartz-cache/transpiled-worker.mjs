@@ -2853,11 +2853,7 @@ import { styleText } from "util";
 var defaultOptions3 = {
   priority: ["frontmatter", "git", "filesystem"]
 };
-var iso8601DateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
 function coerceDate(fp, d) {
-  if (typeof d === "string" && iso8601DateOnlyRegex.test(d)) {
-    d = `${d}T00:00:00`;
-  }
   const dt = new Date(d);
   const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0;
   if (invalidDate && d !== void 0) {
@@ -2865,7 +2861,7 @@ function coerceDate(fp, d) {
       styleText(
         "yellow",
         `
-Warning: found invalid date "${d}" in \`${fp}\`. Supported formats: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format`
+Warning: found invalid date "${d}" in ${fp}. Supported formats: https://quartz.jzhao.xyz/features/created-modified-dates#date-format`
       )
     );
   }
@@ -2880,19 +2876,14 @@ var CreatedModifiedDate = /* @__PURE__ */ __name((userOpts) => {
       return [
         () => {
           let repo = void 0;
-          let repositoryWorkdir;
+          let repositoryWorkdir = "";
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory);
               repositoryWorkdir = repo.workdir() ?? ctx.argv.directory;
             } catch (e) {
-              console.log(
-                styleText(
-                  "yellow",
-                  `
-Warning: couldn't find git repository for ${ctx.argv.directory}`
-                )
-              );
+              console.log(styleText("yellow", `
+Warning: Failed to discover git repo: ${e}`));
             }
           }
           return async (_tree, file) => {
@@ -2903,13 +2894,16 @@ Warning: couldn't find git repository for ${ctx.argv.directory}`
             const fullFp = file.data.filePath;
             for (const source of opts.priority) {
               if (source === "filesystem") {
-                const st = await fs.promises.stat(fullFp);
-                created ||= st.birthtimeMs;
-                modified ||= st.mtimeMs;
+                try {
+                  const st = await fs.promises.stat(fullFp);
+                  created ||= st.birthtimeMs;
+                  modified ||= st.mtimeMs;
+                } catch (e) {
+                }
               } else if (source === "frontmatter" && file.data.frontmatter) {
-                created ||= file.data.frontmatter.created;
-                modified ||= file.data.frontmatter.modified;
-                published ||= file.data.frontmatter.published;
+                if (file.data.frontmatter.created) created ||= file.data.frontmatter.created;
+                if (file.data.frontmatter.modified) modified ||= file.data.frontmatter.modified;
+                if (file.data.frontmatter.published) published ||= file.data.frontmatter.published;
               } else if (source === "git" && repo) {
                 try {
                   const absoluteFp = path.resolve(fullFp);
@@ -2917,19 +2911,15 @@ Warning: couldn't find git repository for ${ctx.argv.directory}`
                   const normWorkdir = normalize(repositoryWorkdir);
                   const normFp = normalize(absoluteFp);
                   let relativePath = normFp;
-                  if (normFp.startsWith(normWorkdir)) {
+                  if (normFp.toLowerCase().startsWith(normWorkdir.toLowerCase())) {
                     relativePath = normFp.slice(normWorkdir.length);
                   }
                   relativePath = relativePath.replace(/^\/+/, "");
-                  modified ||= await repo.getFileLatestModifiedDateAsync(relativePath);
+                  const gitModified = await repo.getFileLatestModifiedDateAsync(relativePath);
+                  if (gitModified) {
+                    modified ||= gitModified;
+                  }
                 } catch (e) {
-                  console.log(
-                    styleText(
-                      "yellow",
-                      `
-Warning: ${file.data.filePath} isn't yet tracked by git, dates will be inaccurate`
-                    )
-                  );
                 }
               }
             }
