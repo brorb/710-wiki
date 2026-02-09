@@ -28,7 +28,7 @@ The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal 
 
 There are three ways in which the chats have become available to the public:
 1. [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
-2. Videos on the [[710 Tone|7/10 Tone]] channel (usually [[The Logs]])
+2. Videos on the [[710 Tone|7/10 Tone]] channel (usually [[The Logs]] with some exceptions)
 3. [[The Sleuths]] Discord server
 
 ## Purpose
