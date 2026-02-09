@@ -72,7 +72,7 @@ Wrap: false
 Width: clamp(500px, 32vw, 360px)
 ```
 
-7/10 Tone's profile picture had changed over the course of its lifespan, but it was generally still the "7/10" moniker with some slight style differences. Sometime in 2025, the original profile picture (which appeared pixelated) gradually became covered with more black squares and pixels until it changed into a "cleaner" look during the (restarted) [[STATION_8 TRIM 5]] livestream.
+Sometime in 2025, the original profile picture (which appeared pixelated) gradually became covered with more black squares and pixels until it changed into a "cleaner" look during the (restarted) [[STATION_8 TRIM 5]] livestream.
 ## 2025 Gradual Removal and Eventual Purge
 
 ```community-post,@7-10tone,2,0,2 August 2025,
