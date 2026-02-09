@@ -27,9 +27,9 @@ Also known as:
 The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal matters. It is also called SPR chat, short for "Super Private Chat". It is not known why or how the chats are leaked to the public.
 
 There are three ways in which the chats have become available to the public:
-1. Via [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
-2. Via videos on the [[710 Tone|7/10 Tone]] channel
-3. Via [[The Sleuths]] Discord server
+1. [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
+2. Videos on the [[710 Tone|7/10 Tone]] channel (usually [[The Logs]])
+3. [[The Sleuths]] Discord server
 
 ## Purpose
 
