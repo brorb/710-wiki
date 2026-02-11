@@ -6,6 +6,14 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 
 ## 2026
 
+```community-post,@7-10tone,4,0,11 Feb 2026,
+STOPPED UNIREP
+```
+
+```community-post,@7-10tone,4,0,10 Feb 2026,
+N/a available systems
+```
+
 ```community-post,@7-10tone,2,0,31 Jan 2026,
 COMMUNITY UPDATED-[2-2-0019-10]
 ```
@@ -32,6 +40,7 @@ Node point program UPDATED || v2.12.02
 ```community-post,@7-10tone,3,1,29 Jan 2026,
 test concluded successful
 ```
+^Someone commented on this post asking what kind of test was successful and [[710 Tone|7/10 Tone]] simply replied with the following: "Test rep-01"
 
 ```community-post,@7-10tone,3,0,29 Jan 2026,
 {{{LIVE SESSION STARTING
@@ -75,6 +84,11 @@ The first option was the correct choice and the explanation prompt read as:
 ```
 {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
 ```
+Someone posted the following comment to this post:
+```
+Ok, 04004 is a TCP port, right? So at line 556 in whatever file, you made an oopsies, SYSTEM02, and did your networking wrong? It happens to all of us. Don't worry :D. Also that looks like an IP yall want to check it out? No wait, its the timer. The timer is broken.
+```
+To which [[710 Tone|7/10 Tone]] replied with the following comment: "N/a evidence"
 
 ```community-post,@7-10tone,3,0,12 Jan 2026,
 ERROR: meta-following text = NO INPUT, ["Upload Interrupted click "resume upload" and select DRP-1-12.mp4 to resume"]
