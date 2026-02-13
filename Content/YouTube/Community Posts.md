@@ -6,7 +6,11 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 
 ## 2026
 
-```community-post,@7-10tone,4,0,11 Feb 2026,
+```community-post,@7-10tone,1,1,13 Feb 2026,
+//e[COMMAND STOPPED PROCESS{9-99}, PLEASE RESTART SYSTEM]
+```
+
+```community-post,@7-10tone,6,1,11 Feb 2026,
 STOPPED UNIREP
 ```
 
@@ -14,7 +18,7 @@ STOPPED UNIREP
 N/a available systems
 ```
 
-```community-post,@7-10tone,2,0,31 Jan 2026,
+```community-post,@7-10tone,3,0,31 Jan 2026,
 COMMUNITY UPDATED-[2-2-0019-10]
 ```
 ^This signaled the opening of 7/10 Tone's YouTube Community.
@@ -37,20 +41,20 @@ COMMUNITY UPDATED-[2-2-0019-10]
 Node point program UPDATED || v2.12.02
 ```
 
-```community-post,@7-10tone,3,1,29 Jan 2026,
+```community-post,@7-10tone,5,5,29 Jan 2026,
 test concluded successful
 ```
 ^Someone commented on this post asking what kind of test was successful and [[710 Tone|7/10 Tone]] simply replied with the following: "Test rep-01"
 
-```community-post,@7-10tone,3,0,29 Jan 2026,
+```community-post,@7-10tone,6,0,29 Jan 2026,
 {{{LIVE SESSION STARTING
 ```
 
-```community-post,@7-10tone,2,0,26 Jan 2026,
+```community-post,@7-10tone,3,0,26 Jan 2026,
 SYSTEM [LINE] ERROR:.........................................................................000000000000......................000000000000000000000000......................0000000000000000000000.....................................................00000000000000....................00000000000000.........................................................00000.............................................00000.................................................................................00000000000000000000000000.....................
 ```
 
-```community-post,@7-10tone,5,3,24 Jan 2026,
+```community-post,@7-10tone,6,3,24 Jan 2026,
 ██████████████████████████████████████████████████████76 66 72 32 78 69 82 32 65 82 74 44 32 79 72 71 32 86 32 78 90 32 66 89 81 82 69 █46 32 86 32 78 90 32 70 71 86 89 89 32 70 66 90 82 71 85 86 65 84 32 76 82 71 32 █71 66 32 79 82 44 32 79 72 71 32 76 66 72 32 78 69 82 32 70 66 90 82 71 85 86 65 █84 32 71 66 32 79 82 32 69 86 67 67 82 81 32 78 67 78 69 71 46 32 86 83 32 76 66 █72 32 88 65 66 74 32 74 85 66 32 76 66 72 32 78 69 82 44 32 86 32 71 78 88 82 32 █84 69 82 78 71 32 67 86 71 76 32 66 65 32 76 66 72 44 32 79 72 71 32 65 66 71 32 █74 86 71 85 66 72 71 32 81 86 70 78 67 67 66 86 65 71 90 82 65 71 46 32 71 85 82 █32 66 89 81 82 69 32 88 65 66 74 89 82 81 84 82 32 85 66 89 81 70 32 71 85 82 32 █84 69 82 78 71 82 70 71 32 82 75 67 82 80 71 78 71 86 66 65 32 66 73 82 69 32 78 █32 83 78 69 90 32 66 83 32 86 69 66 6████████████████████████████ █████████████████████████████████████████████████████
 ```
 ^This post is encrypted with ASCII, which decoded gives the following ROT-13 cipher:
@@ -66,11 +70,11 @@ RIPPED APART. IF YOU KNOW WHO YOU ARE, I TAKE GREAT PITY ON YOU, BUT NOT WITHOUT
 DISAPPOINTMENT. THE OLDER KNOWLEDGE HOLDS THE GREATEST EXPECTATION OVER A FARM OF IRO
 ```
 
-```community-post,@7-10tone,4,0,23 Jan 2026,
+```community-post,@7-10tone,5,1,23 Jan 2026,
 {/////4902382190833920983858////r/////////999482990328989////////w//////////W/////g///////////////////I///////e////////8282893802101059993///////////////N/////////////490289080398939020000/////w/////////Y//////////O///////f//////////////////U////////s///////////f///////////////T//////////////////a//////E////////////L/////////s///////////////T///////N////////O/////o/////W//////a////////E/////////////W////////b//////7287039583}
 ```
 
-```community-post,@7-10tone,1,0,22 Jan 2026,
+```community-post,@7-10tone,2,2,22 Jan 2026,
 SYSTEM [SYNC] ERROR: "Line 556": cannot contain int:04004 REVERTING-FROM: "179, 99, 99, 99" REVERTING-TO: "169, 00, 00, 00" SYSTEM [SYNC]: SYNCED
 ```
 ^This was a quiz, the options were the following:
@@ -84,13 +88,13 @@ The first option was the correct choice and the explanation prompt read as:
 ```
 {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
 ```
-Someone posted the following comment to this post:
+Someone posted the following comment on this post:
 ```
 Ok, 04004 is a TCP port, right? So at line 556 in whatever file, you made an oopsies, SYSTEM02, and did your networking wrong? It happens to all of us. Don't worry :D. Also that looks like an IP yall want to check it out? No wait, its the timer. The timer is broken.
 ```
-To which [[710 Tone|7/10 Tone]] replied with the following comment: "N/a evidence"
+To which [[710 Tone|7/10 Tone]] replied with "N/a evidence"
 
-```community-post,@7-10tone,3,0,12 Jan 2026,
+```community-post,@7-10tone,4,0,12 Jan 2026,
 ERROR: meta-following text = NO INPUT, ["Upload Interrupted click "resume upload" and select DRP-1-12.mp4 to resume"]
 FOLLOWING:
 logged time output 1/12/[NA]12:00am
@@ -98,11 +102,11 @@ FOLLOWING:
 ERROR: Log crash for 1-12-...
 ```
 
-```community-post,@7-10tone,2,0,11 Jan 2026,
+```community-post,@7-10tone,3,0,11 Jan 2026,
 ERROR: Log crash for 1-11-...
 ```
 
-```community-post,@7-10tone,2,0,9 Jan 2026,
+```community-post,@7-10tone,3,0,9 Jan 2026,
 Logged output:
 "
 UPDATING STRING SQU:
