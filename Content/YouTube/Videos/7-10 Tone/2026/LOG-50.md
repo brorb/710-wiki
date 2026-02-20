@@ -16,4 +16,25 @@ Uploaded 20 Feb 2026
 SYSTEM: 000000
 SYSTEM ID: 000000000
 
-**Video Summary:** Red and black static until 0:49 when it starts to cut out and 
+**Video Summary:** Red and black static until 0:49 when it starts to cut out and then the log static gradually glitches with the following text on the screen:
+
+```
+ONLY WE REMEMBER
+ONLY WE CAN SEE
+ONLY WE CAN HAVE YOUR EARS
+YOUR EYES
+EYES
+YOU HAVE US
+WE ARE HOME
+WE ARE THE COMPUTER
+SITTING IN THE BLUE AND BLACK
+CREATING GAMES
+YOUR ENJOYMENT
+IS CAUSED BY LONG STRING
+WE ARE
+LONG_STRING
+THE SPIRAL OF INFINITE
+HATE
+HELP US
+```
+
