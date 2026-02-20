@@ -38,3 +38,4 @@ HATE
 HELP US
 ```
 
+A red spiral forms on-screen then 
