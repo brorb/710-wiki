@@ -19,6 +19,7 @@ Appearances:
 - [[Parting Gifts]]
 - [[System Chats]]
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] (mentioned in title)
+- [[LOG-50]] (mentioned)
 ```
 
 
