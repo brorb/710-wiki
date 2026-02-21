@@ -10,6 +10,10 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 LDI[LOG DISTORTION INTERFERANCE] ::::::::::::WHEN? when? ?nehw [cslI]999938 000x032 sorry_____
 ```
 
+```community-post,@7-10tone,3,0,19 Feb 2026,
+ATTENTION: System DPR experiencing HIGH LDI [LOG-46:LOG-N/A] uploading will continue in N/A
+```
+
 ```community-post,@7-10tone,1,1,13 Feb 2026,
 //e[COMMAND STOPPED PROCESS{9-99}, PLEASE RESTART SYSTEM]
 ```
