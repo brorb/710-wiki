@@ -18,6 +18,8 @@ Appearances:
 - [[uBBNS]] (music)
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]]
 - [[LOG-1.mp4]]
+Appearances (as FCN Network):
+- [[LOG-50]]
 ```
 
 Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska (misspelled as "Nabraska"), which first appeared in 2025 through [[LOG-40.mp4]]. During the STATION_8 livestreams, it would usually appear as an interference (possibly due to [[REN]] or something else), much like the [[Station Interruption]] screen, which [[INDI]] would have to fix.
