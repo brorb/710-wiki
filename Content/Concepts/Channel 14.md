@@ -258,5 +258,3 @@ Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
-
----
