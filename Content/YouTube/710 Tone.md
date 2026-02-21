@@ -61,6 +61,7 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 > }
 > ```
 
+In 2026, the channel is possibly now under the control of the 7/10 Program itself or some sort of system. It has replied to certain viewers through a "UNIREP" process, in the comments of both community posts and videos.
 ## Profile Picture Changes
 
 ```media-box
