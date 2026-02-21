@@ -176,7 +176,63 @@ Width: clamp(220px, 32vw, 360px)
 
 ##### From [[LOG-50]]:
 
-
+```media-box
+Media: [[FCN Network title.png]]
+Alt: FCN Network intro with bottom text stating that it is broadcast in Ferkland County, Nebraska State USA
+Caption: Channel 14's new name and intro
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[FCN Weather Report.png]]
+Alt: FCN Network weather report screen, showing the forecast for the day
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule1.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule2.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule3.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule4.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule5.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule6.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+```media-box
+Media: [[Schedule7.png]]
+Align: right
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
 
 ---
 #### Gift from [[SYSTEM]]
