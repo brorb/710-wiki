@@ -45,7 +45,7 @@ HATE
 HELP US
 ```
 
-A red spiral forms on-screen with loud technical banging in the background, then the screen glitches out while it loads another log (LOG-106.PCV) until it suddenly cuts to the FCN Network, which shows both a 5-day weather report (excluding weekends) and the daily programming schedule.
+A red spiral forms on-screen with loud technical banging in the background, then the screen glitches out while it loads another log (LOG-106.PCV) until it suddenly cuts to the FCN Network, which shows both a 5-day weather report (excluding weekends), the daily programming schedule, and the current time.
 
 Below is the weather report:
 
@@ -70,3 +70,5 @@ FCNN Sign off 11:50
 ```
 
 The FCN Network repeats for about 6 mores times before the log resumes back to normal. The timer counts down from 140 to 139, with the numbers being typed out and the 9 repeats.
+
+Notes: "The Time is..." section starts at 4:06 am and counts up by one minute each time FCN repeats. However, 4:10 am is curiously skipped over.
