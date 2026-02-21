@@ -7,6 +7,8 @@ tags:
 Title: Channel 14
 Image: ![[Content/Media/Sleuth Media/Images/Channel 14 Demo Channel-min.png]]
 Caption: Channel 14 Demo screen from the STATION_8 livestreams
+Also known as:
+- FCN Network (in 2026)
 Appearances:
 - [[LOG-40.mp4]]
 - [[garbage_sgl.mp4]]
