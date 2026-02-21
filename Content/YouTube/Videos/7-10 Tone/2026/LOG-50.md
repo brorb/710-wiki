@@ -69,4 +69,4 @@ FCN News (Special Report) 7:50-11:00 pm
 FCNN Sign off 11:50
 ```
 
-The FCN Network repeats for about 6 mores times before the log resumes back to normal. The timer counts down from 140 to 139, with the numbers 
+The FCN Network repeats for about 6 mores times before the log resumes back to normal. The timer counts down from 140 to 139, with the numbers being typed out and the 9 repeats.
