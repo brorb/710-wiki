@@ -24,6 +24,8 @@ Channel 14 is a broadcasting channel hosted out of [[Ferkland County]], Nebraska
 
 [[SYSTEM]] has revealed that the Channel 14 schedule is used to "keep up when NaN"<!-- discord-cite:cite-mgs1xi27-v10ct8 -->. We do not know what this "NaN" event is, as it was censored by [[SYSTEM]]. On another occasion, [[SYSTEM]] simply stated that the purpose of Channel 14 was for "News, movies, etc."<!-- discord-cite:cite-mgs1zew5-bxccf1 -->, much like a regular TV broadcasting station.
 
+In [[LOG-1.mp4]], it is renamed to the FCN Network (also known as FCNN).
+
 > [!discord-cite]- Discord citation (2 messages)
 > 
 > ```json
@@ -169,6 +171,12 @@ Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+
+### As FCNN
+
+##### From [[LOG-50]]:
+
+
 
 ---
 #### Gift from [[SYSTEM]]
