@@ -1,3 +1,7 @@
+---
+tags:
+  - anomalies
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1W2LIIe8FeF3O4j92P0HRIZt3qwpFVaMU/preview" 
@@ -6,7 +10,7 @@
 </iframe>
 Uploaded 28 Feb 2026
 
-**PORT-CALL data deleted (still PORT-CALL: PORTCLOSED with NA**
+**PORT-CALL data deleted (which was still PORT-CALL: PORTCLOSED with NA)**
 
 **LOG: 519486907
 SYSTEM: 843372
