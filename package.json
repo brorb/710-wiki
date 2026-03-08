@@ -13,7 +13,7 @@
     "format:frontmatter": "node scripts/format-frontmatter.mjs",
     "lint:frontmatter": "node scripts/format-frontmatter.mjs --check",
     "validate:canvases": "node scripts/validate-canvases.mjs",
-  "build": "npm run format:frontmatter && npm run lint:frontmatter && npm run validate:canvases && npm run build -w quartz-site && npm run build -w proxy",
+  "build": "node scripts/hydrate-git.mjs && npm run format:frontmatter && npm run lint:frontmatter && npm run validate:canvases && npm run build -w quartz-site && npm run build -w proxy",
   "start": "node proxy/dist/server.js",
     "oracle:proxy": "node scripts/oracle-proxy.mjs"
   },

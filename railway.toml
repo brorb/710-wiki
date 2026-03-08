@@ -1,5 +1,5 @@
 [build]
-command = "git config --global --add safe.directory '*' && (git fetch --unshallow || true) && npm install && npm run build"
+command = "npm install && npm run build"
 
 [deploy]
 startCommand = "npm run start"
