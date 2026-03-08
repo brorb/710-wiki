@@ -15,3 +15,7 @@ THEY TOOK PIECES OF ME
 THEY THREW ME AWAY
 SAVE ME REN
 ```
+
+Notes: The audio is extremely slowed down, if you sped it up to about 1,000% it sounds similar to the audio from Parting gifts, as well as a voice near the end.
+
+![[NPP-HELP-1728 voice.mp3]]
