@@ -1,3 +1,8 @@
+---
+tags:
+  - anomalies
+  - puzzle
+---
 
 <iframe 
   src="https://drive.google.com/file/d/1-3bLrbYqfWsiXRv03gAjuhztHAS65n6x/preview" 
