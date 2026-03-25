@@ -2,6 +2,22 @@
 Some of [[The Logs]] / videos have some abnormalities that can be investigated further, from strange imagery to hidden audio cues.
 #### Here is a list of [[The Logs]] that have anomalies that can be investigated further:
 
+##### 2026:
+
+See [[Unsolved Codes from Logs]] for information on the Log Code puzzle
+
+- ##### [[LOG-12]]
+	
+	
+
+- ##### [[LOG-12]]
+	
+	
+
+- ##### [[LOG-12]]
+	
+	
+
 ##### 2025:
 
 - ##### [[LOG-15.mmp44]]

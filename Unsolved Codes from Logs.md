@@ -8,4 +8,10 @@ In 2026, a select few of the Logs contained some mysterious codes that allegedly
 -\--------------------------------------
 \>>>0x00WLBXA2787WYHY6W994<<<
 
-###### From [[LOG-31]]:
+###### From [[LOG-41]]:
+
+3 0x00NH61VPFC2UMGJYDEYQVI 3
+
+###### From [[LOG-64]]:
+
+0x00X2Q8M4ZFYIZKXD3E1E30 1
