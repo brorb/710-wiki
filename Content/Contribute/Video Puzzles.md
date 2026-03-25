@@ -2,6 +2,8 @@
 Some of [[The Logs]] / videos have some abnormalities that can be investigated further, from strange imagery to hidden audio cues.
 #### Here is a list of [[The Logs]] that have anomalies that can be investigated further:
 
+##### 2025:
+
 - ##### [[LOG-15.mmp44]]
 	
 	
@@ -132,5 +134,9 @@ Some of [[The Logs]] / videos have some abnormalities that can be investigated f
 	
 
 - ##### [[20240NA@ 25109]] (higher quality version of [[20240NA@]] from [[710 Tone|7/10 Tone]])
+	
+	
+
+- [[NPP-HELP-1728]]
 	
 	

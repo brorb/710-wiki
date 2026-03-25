@@ -20,4 +20,4 @@ LDI-CHECKS|LDI.1000 +-//
 >!WARNING! Older data may appear.
 ```
 
-Afterwards, the log plays as normal with the teed and black static, then the ending timer counts down from 136 to 135.
+Afterwards, the log plays as normal with the red and black static, then the ending timer counts down from 136 to 135.
