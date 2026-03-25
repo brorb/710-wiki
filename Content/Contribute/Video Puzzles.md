@@ -10,11 +10,7 @@ See [[Unsolved Codes from Logs]] for information on the Log Code puzzle
 	
 	
 
-- ##### [[LOG-12]]
-	
-	
-
-- ##### [[LOG-12]]
+- ##### [[LOG-13]]
 	
 	
 
