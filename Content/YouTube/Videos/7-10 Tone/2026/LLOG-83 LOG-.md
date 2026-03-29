@@ -19,4 +19,8 @@ GOING THERE WON'T SAVE YOU
 COME BACK TO US ("to us" later gets removed)
 ```
 
-After the Station Interruption screen concludes, the log proceeds with the normal red and black static with some light buzzing background noise.
+After the Station Interruption screen concludes, the log proceeds with the normal red and black static with some light buzzing background noise. At 14:07 into the video, text very briefly pops up on screen that reads:
+
+```
+I WAS NEVER GOING TO JOIN YOU.
+```
