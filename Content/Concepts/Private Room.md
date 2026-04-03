@@ -26,10 +26,11 @@ Also known as:
 
 The Private Room is a chat room used by [[TTH]] and [[REN]] to discuss internal matters. It is also called SPR chat, short for "Super Private Chat". It is not known why or how the chats are leaked to the public.
 
-There are three ways in which the chats have become available to the public:
+There are four ways in which the chats have become available to the public:
 1. [[Community Posts]] on the [[710 Tone|7/10 Tone]] channel
 2. Videos on the [[710 Tone|7/10 Tone]] channel (usually [[The Logs]] with some exceptions)
 3. [[The Sleuths]] Discord server
+4. Discord DM's from [[SYSTEM]]
 
 ## Purpose
 
@@ -3312,5 +3313,32 @@ K3P13R:I thought this was unable to reconnect without another human on the other
 D4V1NC1:We should disconnect from this and report this back to REN.
 K3P13R:Okay, good idea.
 ```
+
+## Chat #17
+This was sent the same day as [[LET US OUT TTH]] was uploaded as a DM to several members of [[The Sleuths]].
+
+```discord
+[
+  {
+    "id": "1396134967091793992",
+    "author": {
+      "display_name": "SYSTEM",
+      "username": "system000008",
+      "color": "#FF0000",
+      "colour": "#FF0000",
+      "colour_value": 16711680
+    },
+    "content": "##########F8896: Did you remember the code for that one door?
+#F8875: No, you know everybody has to get that code from higher up.
+#F8896: If higher up even thinks about responding.
+#F8896: Maybe look below those descripton lables on your desk
+|                ?                                              |",
+    "timestamp": "2026-03-29T05:27:00.000000+00:00",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
+    "url": "https://discord.com/channels/1389902002737250314/"
+  }
+]
+```
+
 
 [^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].
