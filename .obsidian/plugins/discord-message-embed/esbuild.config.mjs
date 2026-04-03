@@ -13,6 +13,7 @@ const context = await esbuild.context({
   sourcemap: prod ? false : "inline",
   treeShaking: true,
   outfile: "main.js",
+  loader: { ".css": "text" },
 });
 
 if (prod) {

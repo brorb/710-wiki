@@ -1,70 +1,60 @@
-// @ts-nocheck
 import { Editor, MarkdownView, Notice, Plugin, requestUrl } from "obsidian"
-
-const API_ENDPOINT = "https://discord-system-firebase-bot-production.up.railway.app/api/message?url="
-const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
-
-interface DiscordApiAuthor {
-  display_name?: string
-  username?: string
-  avatar_url?: string
-  colour?: string
-  color?: string
-  colour_value?: number
-}
-
-interface DiscordApiResponse {
-  id?: string
-  timestamp?: string
-  content?: string
-  author?: DiscordApiAuthor
-  url?: string
-}
-
-interface DiscordMessageBlock {
-  id?: string
-  author: {
-    display_name?: string
-    username: string
-    color?: string
-    colour?: string
-    colour_value?: number
-  }
-  content: string
-  timestamp?: string
-  avatar_url: string
-  url: string
-}
-
-const normaliseColour = (input?: string | null, numeric?: number | null): string | undefined => {
-  const trimmed = input?.trim()
-  if (trimmed) {
-    return trimmed.startsWith("#") ? trimmed : `#${trimmed}`
-  }
-
-  if (typeof numeric === "number" && Number.isFinite(numeric)) {
-    return `#${numeric.toString(16).padStart(6, "0")}`
-  }
-
-  return undefined
-}
+import {
+  DEFAULT_AVATAR,
+  DEFAULT_SETTINGS,
+  type DiscordApiResponse,
+  type DiscordMessageBlock,
+  type PluginSettings,
+} from "./types"
+import { normaliseColour } from "./utils"
+import { DiscordEmbedSettingTab } from "./settings"
+import { ManualEmbedModal } from "./modal"
+import { registerDiscordRenderer } from "./renderer"
 
 type CommandMode = "embed" | "citation"
 
 export default class DiscordMessageEmbedPlugin extends Plugin {
+  settings: PluginSettings = DEFAULT_SETTINGS
+
   async onload() {
+    await this.loadSettings()
+    this.addSettingTab(new DiscordEmbedSettingTab(this.app, this))
+
+    // Register in-editor discord block renderer
+    registerDiscordRenderer(this)
+
+    /* ── URL-based commands (existing) ── */
+
     this.addCommand({
       id: "insert-discord-message-embed",
-      name: "Insert Discord message embed",
+      name: "Insert Discord message embed (from URL)",
       editorCheckCallback: (checking, editor, view) =>
         this.handleCommand(checking, editor, view, "embed"),
     })
 
     this.addCommand({
       id: "insert-discord-message-citation",
-      name: "Insert Discord message citation",
+      name: "Insert Discord message citation (from URL)",
       editorCheckCallback: (checking, editor, view) =>
         this.handleCommand(checking, editor, view, "citation"),
+    })
+
+    /* ── Manual embed commands (new) ── */
+
+    this.addCommand({
+      id: "insert-manual-discord-embed",
+      name: "Insert manual Discord messages",
+      editorCallback: (editor, view) => {
+        new ManualEmbedModal(this.app, this, editor, "embed").open()
+      },
+    })
+
+    this.addCommand({
+      id: "insert-manual-discord-citation",
+      name: "Insert manual Discord citation",
+      editorCallback: (editor, view) => {
+        new ManualEmbedModal(this.app, this, editor, "citation").open()
+      },
     })
 
     this.registerEvent(
@@ -98,6 +88,14 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
         })
       }),
     )
+  }
+
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData())
+  }
+
+  async saveSettings() {
+    await this.saveData(this.settings)
   }
 
   private handleCommand(
@@ -257,7 +255,7 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
 
   private async fetchDiscordMessage(url: string): Promise<DiscordApiResponse> {
     const response = await requestUrl({
-      url: `${API_ENDPOINT}${encodeURIComponent(url)}`,
+      url: `${this.settings.apiEndpoint}${encodeURIComponent(url)}`,
     })
 
     if (response.status >= 400) {
@@ -275,6 +273,18 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       payload.author?.colour_value,
     )
 
+    // Try to match to a saved profile
+    const matchedProfile = this.findMatchingProfile(authorUsername, authorDisplay)
+
+    if (matchedProfile) {
+      return {
+        profile: matchedProfile.id,
+        content: payload.content ?? "",
+        timestamp: payload.timestamp,
+        url,
+      }
+    }
+
     return {
       id: payload.id,
       author: {
@@ -290,7 +300,24 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       url,
     }
   }
-}
 
-module.exports = DiscordMessageEmbedPlugin
-module.exports.default = DiscordMessageEmbedPlugin
+  /** Try to match an API response author to a saved profile by username. */
+  private findMatchingProfile(
+    username?: string,
+    displayName?: string,
+  ) {
+    if (!username && !displayName) return null
+    const profiles = this.settings.profiles
+    for (const key of Object.keys(profiles)) {
+      const p = profiles[key]
+      if (
+        (username && p.username.toLowerCase() === username.toLowerCase()) ||
+        (username && p.id.toLowerCase() === username.toLowerCase()) ||
+        (displayName && p.display_name.toLowerCase() === displayName.toLowerCase())
+      ) {
+        return p
+      }
+    }
+    return null
+  }
+}

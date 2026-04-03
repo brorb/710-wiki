@@ -8,15 +8,15 @@
     "outDir": ".",
     "strict": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "importHelpers": true,
     "sourceMap": false,
-    "declaration": true,
-    "declarationDir": "."
+    "declaration": false,
+    "noEmit": true
   },
   "include": ["src/**/*.ts"]
 }

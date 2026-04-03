@@ -2,6 +2,66 @@ import { QuartzTransformerPlugin } from "../types"
 import { getAssetVersion } from "../../util/assetVersion"
 import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
 import { findAssetByBasename } from "../../util/assetLookup"
+import fs from "fs"
+import path from "path"
+
+/* ── Profile types & loading ── */
+
+interface DiscordProfile {
+  id: string
+  display_name: string
+  username: string
+  color?: string
+  avatar_url?: string
+}
+
+interface PluginData {
+  profiles?: Record<string, DiscordProfile>
+}
+
+let _cachedProfiles: Record<string, DiscordProfile> | null = null
+
+const loadProfiles = (): Record<string, DiscordProfile> => {
+  if (_cachedProfiles !== null) return _cachedProfiles
+
+  // Try to read the Obsidian plugin data.json
+  const candidates = [
+    path.resolve(process.cwd(), "..", ".obsidian", "plugins", "discord-message-embed", "data.json"),
+    path.resolve(process.cwd(), ".obsidian", "plugins", "discord-message-embed", "data.json"),
+  ]
+
+  for (const candidate of candidates) {
+    try {
+      if (fs.existsSync(candidate)) {
+        const raw = fs.readFileSync(candidate, "utf-8")
+        const parsed = JSON.parse(raw) as PluginData
+        _cachedProfiles = parsed.profiles ?? {}
+        return _cachedProfiles
+      }
+    } catch (e) {
+      console.warn(`Failed to load Discord profiles from ${candidate}:`, e)
+    }
+  }
+
+  _cachedProfiles = {}
+  return _cachedProfiles
+}
+
+const resolveProfileOnMessage = (message: DiscordMessage): void => {
+  const profileKey = (message as DiscordMessage & { profile?: string }).profile
+  if (!profileKey) return
+
+  const profiles = loadProfiles()
+  const profile = profiles[profileKey]
+  if (!profile) return
+
+  // Populate author + avatar from profile, preserving any inline overrides
+  if (!message.author) message.author = {} as DiscordAuthor
+  if (!message.author.display_name) message.author.display_name = profile.display_name
+  if (!message.author.username) message.author.username = profile.username
+  if (!message.author.color && profile.color) message.author.color = profile.color
+  if (!message.avatar_url && profile.avatar_url) message.avatar_url = profile.avatar_url
+}
 
 interface DiscordAuthor {
   id?: string
@@ -36,6 +96,7 @@ type DiscordAttachmentValue =
 type DiscordImageValue = DiscordAttachmentValue
 
 interface DiscordMessage {
+  profile?: string
   url?: string
   jump_url?: string
   id?: string
@@ -1011,6 +1072,11 @@ const normalizeColor = (input?: string | number): string | undefined => {
 }
 
 const getAuthorKey = (message?: DiscordMessage): string | undefined => {
+  // Profile-based messages have a stable key
+  if (message?.profile) {
+    return `profile:${message.profile}`
+  }
+
   const author = message?.author
   if (!author) {
     return undefined
@@ -1737,6 +1803,8 @@ const parseDiscordBlock = (value: string, slug?: FullSlug): DiscordMessage[] => 
     const data = JSON.parse(value.trim()) as unknown
     const messages = normaliseMessages(data)
     if (messages.length > 0) {
+      // Resolve any profile-based messages
+      messages.forEach(resolveProfileOnMessage)
       applyAttachmentMetadataToMessages(messages, slug)
     }
     return messages
@@ -1945,6 +2013,7 @@ const extractCitationDataFromCallout = (
     }
 
     if (messages.length > 0) {
+      messages.forEach(resolveProfileOnMessage)
       applyAttachmentMetadataToMessages(messages, slug)
     }
 
