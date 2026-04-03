@@ -241,15 +241,18 @@ function renderMessage(
 
 let styleInjected = false
 
+function injectStyle() {
+  if (styleInjected) return
+  const style = document.createElement("style")
+  style.textContent = DISCORD_CSS
+  document.head.appendChild(style)
+  styleInjected = true
+}
+
 export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
+  // ── ```discord code block renderer ──
   plugin.registerMarkdownCodeBlockProcessor("discord", (source, el, ctx) => {
-    // Inject CSS once
-    if (!styleInjected) {
-      const style = document.createElement("style")
-      style.textContent = DISCORD_CSS
-      document.head.appendChild(style)
-      styleInjected = true
-    }
+    injectStyle()
 
     let messages: DiscordMessageBlock[]
     try {
@@ -271,6 +274,85 @@ export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
       messages.length > 6,
     )
     el.appendChild(thread)
+  })
+
+  // ── [!discord-cite] callout post-processor ──
+  plugin.registerMarkdownPostProcessor((el, ctx) => {
+    const callouts = el.querySelectorAll<HTMLElement>(
+      '.callout[data-callout="discord-cite"]',
+    )
+    if (callouts.length === 0) return
+
+    injectStyle()
+
+    for (const callout of Array.from(callouts)) {
+      // Find the JSON code block inside the callout
+      const codeBlock = callout.querySelector("pre code")
+      if (!codeBlock) continue
+
+      const jsonText = codeBlock.textContent?.trim()
+      if (!jsonText) continue
+
+      let messages: DiscordMessageBlock[]
+      try {
+        const parsed = JSON.parse(jsonText)
+        messages = normaliseMessages(parsed)
+      } catch {
+        continue // leave the callout as-is if JSON is invalid
+      }
+
+      if (messages.length === 0) continue
+
+      // Replace the callout content with rendered Discord thread
+      const thread = renderDiscordThread(
+        messages,
+        plugin.settings.profiles,
+        messages.length > 6,
+      )
+
+      // Build a nice wrapper that preserves the expandable title bar
+      const titleBar = callout.querySelector<HTMLElement>(
+        ".callout-title",
+      )
+      const titleText = titleBar?.querySelector<HTMLElement>(
+        ".callout-title-inner",
+      )
+
+      // Update title styling
+      if (titleText) {
+        const count = messages.length
+        titleText.textContent = `Discord citation (${count} message${count !== 1 ? "s" : ""})`
+      }
+
+      // Add Discord icon to the title
+      if (titleBar) {
+        const icon = titleBar.querySelector(".callout-icon")
+        if (icon) {
+          icon.innerHTML = `<svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" style="vertical-align: middle;">
+            <path d="M26.963 0.875 C25.282 0.094 23.478-0.432 21.602-0.667a0.12 0.12 0 00-0.127 0.06c-0.258 0.459-0.543 1.058-0.743 1.529a23.584 23.584 0 00-7.074 0 16.326 16.326 0 00-0.754-1.53A0.125 0.125 0 0012.777-0.667C10.9-0.431 9.098 0.095 7.416 0.876a0.113 0.113 0 00-0.052 0.044C3.68 6.184 2.618 11.344 3.14 16.44a0.133 0.133 0 000.063 0.091c2.636 1.936 5.19 3.113 7.693 3.89a0.126 0.126 0 000.137-0.045c0.593-0.81 1.121-1.664 1.575-2.56a0.123 0.123 0 00-0.068-0.172c-0.839-0.318-1.639-0.707-2.407-1.15a0.125 0.125 0 01-0.012-0.207c0.162-0.121 0.323-0.248 0.478-0.375a0.12 0.12 0 010.128-0.017c5.05 2.306 10.515 2.306 15.51 0a0.12 0.12 0 010.13 0.015c0.155 0.128 0.316 0.256 0.479 0.377a0.125 0.125 0 01-0.011 0.207c-0.768 0.449-1.568 0.838-2.408 1.149a0.124 0.124 0 00-0.066 0.173c0.462 0.895 0.99 1.749 1.574 2.559a0.124 0.124 0 000.136 0.046c2.514-0.778 5.068-1.955 7.705-3.891a0.126 0.126 0 000.062-0.089c0.626-6.466-1.049-12.082-4.44-17.054a0.099 0.099 0 00-0.05-0.046zM11.44 13.532c-1.477 0-2.694-1.356-2.694-3.023s1.193-3.023 2.694-3.023c1.512 0 2.718 1.368 2.694 3.023 0 1.667-1.194 3.023-2.694 3.023zm9.96 0c-1.477 0-2.694-1.356-2.694-3.023s1.193-3.023 2.694-3.023c1.512 0 2.718 1.368 2.694 3.023 0 1.667-1.182 3.023-2.694 3.023z"/>
+          </svg>`
+        }
+      }
+
+      // Replace the callout body with the rendered thread
+      const body = callout.querySelector<HTMLElement>(".callout-content")
+      if (body) {
+        body.empty()
+        body.appendChild(thread)
+        body.style.padding = "0"
+      }
+
+      // Style the callout itself to match Discord theme
+      callout.style.backgroundColor = "#2b2d31"
+      callout.style.borderColor = "#1f2024"
+      callout.style.borderRadius = "12px"
+      callout.style.overflow = "hidden"
+
+      if (titleBar) {
+        titleBar.style.backgroundColor = "#1f2024"
+        titleBar.style.color = "#b5bac1"
+      }
+    }
   })
 }
 

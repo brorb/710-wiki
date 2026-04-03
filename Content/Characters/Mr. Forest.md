@@ -25,59 +25,27 @@ The cause of their death or their true whereabouts (whether in hiding or actuall
 >   "id": "cite-mgvl1k9o-teil7i",
 >   "messages": [
 >     {
->       "id": "1396928276924203238",
->       "author": {
->         "display_name": "L4N4U1997",
->         "username": "camera.3y3",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
+>       "profile": "camera3y3",
 >       "content": "@SYSTEM Where is Mr. Forest?",
 >       "timestamp": "2025-07-21T18:54:14.891000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396928276924203238"
 >     },
 >     {
->       "id": "1396928650552676474",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(Dead.)",
 >       "timestamp": "2025-07-21T18:55:43.971000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396928650552676474"
 >     },
 >     {
->       "id": "1396929088949850112",
->       "author": {
->         "display_name": "L4N4U1997",
->         "username": "camera.3y3",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
+>       "profile": "camera3y3",
 >       "content": "@SYSTEM How did Mr. Forest die?",
 >       "timestamp": "2025-07-21T18:57:28.493000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396929088949850112"
 >     },
 >     {
->       "id": "1396929407591121137",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(I don't know, but all that was in his txt file was \"status:dead\")",
 >       "timestamp": "2025-07-21T18:58:44.463000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396929407591121137"
 >     }
 >   ]

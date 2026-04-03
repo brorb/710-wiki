@@ -206,6 +206,32 @@ const resolveLinkTarget = (raw: string, slug?: FullSlug): string | undefined => 
   return joinSegments(pathToRoot(slug), targetSlug)
 }
 
+const INLINE_WIKILINK = /\[\[([^|\]]+)(?:\|([^\]]*))?\]\]/g
+
+const resolveInlineWikilinks = (text: string, slug?: FullSlug): string => {
+  let result = ""
+  let lastIndex = 0
+
+  for (const match of text.matchAll(INLINE_WIKILINK)) {
+    result += escapeHtml(text.slice(lastIndex, match.index))
+
+    const target = match[1].trim()
+    const display = match[2]?.trim() || target
+    const resolved = resolveObsidianTarget(target, slug)
+
+    if (resolved) {
+      result += `<a href="${escapeAttribute(resolved)}" class="internal">${escapeHtml(display)}</a>`
+    } else {
+      result += escapeHtml(display)
+    }
+
+    lastIndex = match.index! + match[0].length
+  }
+
+  result += escapeHtml(text.slice(lastIndex))
+  return result
+}
+
 const sanitizeCssValue = (value: string | undefined): string | undefined => {
   if (!value) {
     return undefined
@@ -467,7 +493,7 @@ const buildMediaMarkup = (config: ParsedMediaBox): string => {
   return `<audio ${audioAttrs.join(" ")}>${buildSourceTag(config.src, "audio")}${fallback}</audio>`
 }
 
-const buildMediaBoxHtml = (config: ParsedMediaBox): string => {
+const buildMediaBoxHtml = (config: ParsedMediaBox, slug?: FullSlug): string => {
   const classes = [
     "media-box",
     `media-box--align-${config.align}`,
@@ -488,18 +514,18 @@ const buildMediaBoxHtml = (config: ParsedMediaBox): string => {
   const styleAttr = styleParts.length > 0 ? ` style="${escapeAttribute(styleParts.join("; "))}"` : ""
 
   const titleMarkup = config.title
-    ? `<header class="media-box__title">${escapeHtml(config.title)}</header>`
+    ? `<header class="media-box__title">${resolveInlineWikilinks(config.title, slug)}</header>`
     : ""
 
   const mediaMarkup = buildMediaMarkup(config)
 
   const captionParts: string[] = []
   if (config.caption) {
-    const captionHtml = escapeHtml(config.caption).replace(/\r?\n/g, "<br />")
+    const captionHtml = resolveInlineWikilinks(config.caption, slug).replace(/\r?\n/g, "<br />")
     captionParts.push(`<span class="media-box__caption-text">${captionHtml}</span>`)
   }
   if (config.credit) {
-    const creditHtml = escapeHtml(config.credit).replace(/\r?\n/g, "<br />")
+    const creditHtml = resolveInlineWikilinks(config.credit, slug).replace(/\r?\n/g, "<br />")
     captionParts.push(`<span class="media-box__credit">${creditHtml}</span>`)
   }
 
@@ -769,7 +795,7 @@ const transformMediaBoxes = (tree: unknown, slug?: FullSlug) => {
         continue
       }
 
-      const htmlFigures = validEntries.map((config) => buildMediaBoxHtml(config))
+      const htmlFigures = validEntries.map((config) => buildMediaBoxHtml(config, slug))
       const allNoWrap = validEntries.every((config) => !config.wrap)
 
       let replacements: HtmlNode[]

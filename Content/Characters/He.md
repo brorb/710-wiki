@@ -31,15 +31,9 @@ An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_
 >   "id": "cite-mjpuly83-knzzu4",
 >   "messages": [
 >     {
->       "id": "1451437109423640698",
->       "author": {
->         "display_name": "SYSTEM II",
->         "username": "systemrulemaker_16338",
->         "colour_value": null
->       },
+>       "profile": "systemrulemaker_16338",
 >       "content": "Really TTHA0002? You used TTHA0002? That number is used by one of his associates.",
 >       "timestamp": "2025-12-19T04:52:53.284000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437109423640698"
 >     }
 >   ]
@@ -53,32 +47,16 @@ An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_
 >   "id": "cite-mgvkt6vn-24zczg",
 >   "messages": [
 >     {
->       "id": "1427768443935133749",
->       "author": {
->         "display_name": "L4N4U1997",
->         "username": "camera.3y3",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
+>       "profile": "camera3y3",
 >       "content": "(fixed with GIMP in five secs)",
->       "image": "![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]",
 >       "timestamp": "2025-10-14T21:22:03.689000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
->       "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
+>       "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749",
+>       "image": "![[Content/Media/710 Media/Images/TTH logo recreation (swordian).png]]"
 >     },
 >     {
->       "id": "1428847630296809482",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
 >       "timestamp": "2025-10-17T20:50:21.768000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
 >     }
 >   ]
@@ -90,17 +68,9 @@ According to [[SYSTEM II]], "HE" is like a "virus" to someone (or some sort of g
 ```discord
 [
   {
-    "id": "1451437364751630397",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "HE is like a virus to them, but more, you know.",
     "timestamp": "2025-12-19T04:53:54.159000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
   }
 ]

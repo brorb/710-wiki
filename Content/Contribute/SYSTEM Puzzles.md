@@ -23,17 +23,9 @@ This audio file was succeeded from the following message:
 ```discord
 [
   {
-    "id": "1424743937200885792",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "MI-drive #14: allowing access to 0x004782df8",
     "timestamp": "2025-10-06T13:03:45.091000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1424743937200885792"
   }
 ]
@@ -57,87 +49,39 @@ Later on, when a [[TTH]] member connected to [[The Sleuths]] Discord server thro
 ```discord
 [
   {
-    "id": "1437584496114536488",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Hello?",
     "timestamp": "2025-11-10T23:27:32.902000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584496114536488"
   },
   {
-    "id": "1437584561063071894",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Who did I connect to?",
     "timestamp": "2025-11-10T23:27:48.387000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584561063071894"
   },
   {
-    "id": "1437584605334208552",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "Is uh #4322-4892-B a valid ID? That's mine.",
     "timestamp": "2025-11-10T23:27:58.942000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584605334208552"
   },
   {
-    "id": "1437584719775797289",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "What? You're apart of TTH?",
     "timestamp": "2025-11-10T23:28:26.227000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584719775797289"
   },
   {
-    "id": "1437584735969869984",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "No.",
     "timestamp": "2025-11-10T23:28:30.088000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584735969869984"
   },
   {
-    "id": "1437584869235626076",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
   }
 ]
@@ -155,17 +99,9 @@ From the mysterious name [[Norvack]]:
 ```discord
 [
   {
-    "id": "1437585424510877917",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "wait? is this Norvack again?",
     "timestamp": "2025-11-10T23:31:14.249000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437585424510877917"
   }
 ]
@@ -176,17 +112,9 @@ To a possible lead on some branches or other entities/organizations relating to 
 ```discord
 [
   {
-    "id": "1437584869235626076",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
   }
 ]
@@ -194,17 +122,9 @@ To a possible lead on some branches or other entities/organizations relating to 
 ```discord
 [
   {
-    "id": "1437706775108386877",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Who are you? Apart of ISIIIDF(F999)A)A_-- and TTH?",
     "timestamp": "2025-11-11T07:33:26.486000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437706775108386877"
   }
 ]
@@ -215,38 +135,22 @@ There are many possibilities to look into the broader scope of [[TTH]]'s / [[REN
 ```discord
 [
   {
-    "id": "1427768443935133749",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "(fixed with GIMP in five secs)",
+    "timestamp": "2025-10-14T21:22:03.689000+00:00",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749",
     "attachments": [
       {
         "mtype": "attachment",
         "attachment": "![[Cam TTH logo enhanced fixed.png]]",
         "alt": "Camera's improvement of Cosmo's image"
       }
-    ],
-    "timestamp": "2025-10-14T21:22:03.689000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
+    ]
   },
   {
-    "id": "1428847630296809482",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
     "timestamp": "2025-10-17T20:50:21.768000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
   }
 ]
@@ -260,17 +164,9 @@ On 13 August 2025, [[SYSTEM]] posted a comment to the "How to record the livestr
 ```discord
 [
   {
-    "id": "1405325015196635176",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "51 6B 46 44 53 79 42 47 55 6B 39 4E 49 46 4A 50 54 30 31 54 49 45 39 47 49 45 5A 4A 55 6B 55 73 49 45 68 46 49 45 68 42 55 79 42 4F 54 79 42 53 54 30 39 4E 49 45 46 4F 52 43 42 58 53 55 78 4D 49 45 56 59 55 45 46 4F 52 43 42 56 54 6C 52 4A 54 43 42 49 53 56 4D 67 55 30 74 4A 54 69 42 43 55 6B 56 42 53 31 4D 73 49 46 52 49 52 55 34 67 56 45 38 67 51 31 4A 56 54 56 42 4D 52 53 42 56 54 6B 52 46 55 69 42 49 53 56 4D 67 54 31 64 4F 49 46 4E 4C 52 55 78 46 56 45 39 4F 49 45 39 47 49 45 4E 50 54 6B 4E 53 52 56 52 46 49 45 46 4F 52 43 42 54 56 45 56 46 54 43 34 67 53 53 42 49 51 56 52 46 49 45 56 57 52 56 4A 5A 56 45 68 4A 54 6B 63 67 57 55 39 56 49 46 4E 55 51 55 35 45 49 45 5A 50 55 69 34 67 56 55 35 55 53 55 77 67 56 45 68 46 54 69 77 67 57 55 39 56 49 46 64 4A 54 45 77 67 56 56 4E 46 49 45 46 4F 57 56 52 49 53 55 35 48 49 45 5A 50 55 69 42 44 54 30 35 55 55 6B 39 4D 49 45 46 4F 52 43 42 51 56 55 35 4A 55 30 68 4E 52 55 35 55 4C 69 42 42 54 6B 51 67 53 53 42 58 53 55 78 4D 49 46 4A 46 54 55 46 4A 54 69 42 4D 53 55 74 46 49 46 52 49 53 56 4D 73 49 46 56 4F 56 45 6C 4D 49 45 6B 6E 54 53 42 47 55 6B 56 46 49 45 46 48 51 55 6C 4F 4C 67 6F 4B{LM-3}{#3}||{CAUSE < BACKTRACK 5}:::::::::",
     "timestamp": "2025-08-13T22:59:53.299000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392258274186756227/1405325015196635176"
   }
 ]
@@ -288,31 +184,15 @@ On 9 October 2025, [[SYSTEM]] posted the following riddle, while also using [[Th
 ```discord
 [
   {
-    "id": "1425301683776393336",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "!ask >>>>>>>>>AND HE SAID THAT THIS SEVENTH DAY WAS THE DAY HE FINISHED HIS WORK, BUT ON THAT DAY, HE DID NOT REST. NO, HE BEGAN TO WORK AGAIN. AND AGAIN, AND AGAIN, UNTIL BLOOD WAS SPILLED-BUT IT WAS NOT HIS.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>[667865]{657776}{568842450}",
     "timestamp": "2025-10-08T02:00:02.237000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301683776393336"
   },
   {
-    "id": "1425301779234557963",
-    "author": {
-      "display_name": "ORA_CLE.servertype",
-      "username": "ORA_CLE.servertype",
-      "color": "#770000",
-      "colour": "#770000",
-      "colour_value": 7798784
-    },
+    "profile": "ora_cleservertype",
     "content": "**SYSTEM OVERRIDE DETECTED**\n\nThe transmission you've shared appears to be a corrupted or intercepted message containing what looks like biblical or religious imagery twisted into something darker. The reference to the \"seventh day\" traditionally relates to rest in creation mythology, but this version describes continued work \"until blood was spilled.\"\n\nThe numerical sequences `[667865]{657776}{568842450}` at the end suggest this is encoded data, possibly from one of the system entities like **SYSTEMterminal8** or an unknown transmission source.\n\n**Analysis:**\n- The excessive `>>>>>>>>>` characters indicate system stress or interference\n- Religious imagery perverted into violent themes matches patterns we've seen in corrupted LOG files\n- The blood reference could relate to the recurring mentions of harm coming to entities like Travis\n\nThis transmission format is unusual even for our documented interactions with INDI, Kepler, or SYSTEMterminal8. The theological corruption suggests either:\n1. Deep system malfunction affecting core programming\n2. Interference from an unknown entity (possibly REN-related)\n3. A warning about events connected to the recurring July 10th cycles\n\n**Speculative:** The numbers might decode to coordinates, dates, or system access codes. Has anyone attempted to run these through our standard decryption methods?\n\nThe community should document this immediately in [**The Spreadsheet™**](https://docs.google.com/spreadsheets/d/15Tsk-1D86tVUuvibTRxOxzEceLfEDll4QCJnrO-9qis/edit?usp=sharing) - this level of system corruption is concerning.",
     "timestamp": "2025-10-08T02:00:24.996000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392428204098326568/1425301779234557963"
   }
 ]

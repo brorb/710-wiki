@@ -6,38 +6,22 @@ Over the course of the STATION_8 livestreams (see [[STATION_8 TRIM 90]] and [[ST
 ```discord
 [
   {
-    "id": "1427768443935133749",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "(fixed with GIMP in five secs)",
+    "timestamp": "2025-10-14T21:22:03.689000+00:00",
+    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749",
     "attachments": [
       {
         "mtype": "attachment",
         "attachment": "![[Cam TTH logo enhanced fixed.png]]",
         "alt": "Camera's improvement of Cosmo's image"
       }
-    ],
-    "timestamp": "2025-10-14T21:22:03.689000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1427768443935133749"
+    ]
   },
   {
-    "id": "1428847630296809482",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "\"\"\"\"\"HIS COLORS AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND BLACK AND RED AND <REPORT STOPPED>\"\"\"\"\"\"\"\"\"\"\"",
     "timestamp": "2025-10-17T20:50:21.768000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1428847630296809482"
   }
 ]

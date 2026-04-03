@@ -65,25 +65,44 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
 
         const selection = editor.getSelection()
         const urls = this.extractDiscordUrls(this.stripCitationMarker(selection))
-        if (urls.length === 0) {
-          return
+
+        if (urls.length > 0) {
+          menu.addItem((item) => {
+            item
+              .setTitle("Insert Discord embed (from URL)")
+              .setIcon("message-square")
+              .onClick(() => {
+                void this.insertEmbed(editor)
+              })
+          })
+
+          menu.addItem((item) => {
+            item
+              .setTitle("Insert Discord citation (from URL)")
+              .setIcon("superscript")
+              .onClick(() => {
+                void this.insertCitation(editor)
+              })
+          })
         }
+
+        menu.addSeparator()
 
         menu.addItem((item) => {
           item
-            .setTitle("Insert Discord message embed")
-            .setIcon("message-square")
+            .setTitle("Insert Discord embed (manual)")
+            .setIcon("message-square-plus")
             .onClick(() => {
-              void this.insertEmbed(editor)
+              new ManualEmbedModal(this.app, this, editor, "embed").open()
             })
         })
 
         menu.addItem((item) => {
           item
-            .setTitle("Insert Discord message citation")
-            .setIcon("superscript")
+            .setTitle("Insert Discord citation (manual)")
+            .setIcon("quote")
             .onClick(() => {
-              void this.insertCitation(editor)
+              new ManualEmbedModal(this.app, this, editor, "citation").open()
             })
         })
       }),
@@ -253,7 +272,8 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     return `cite-${timestamp}-${random}`
   }
 
-  private async fetchDiscordMessage(url: string): Promise<DiscordApiResponse> {
+  /** Fetch a single Discord message from the API. Public so settings/modals can use it. */
+  async fetchDiscordMessage(url: string): Promise<DiscordApiResponse> {
     const response = await requestUrl({
       url: `${this.settings.apiEndpoint}${encodeURIComponent(url)}`,
     })

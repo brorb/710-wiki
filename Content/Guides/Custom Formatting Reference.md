@@ -141,28 +141,16 @@ Use the `discord` fence to embed message transcripts with the faux Discord UI. P
 ```discord
 [
   {
-    "id": "1399746099903860807",
-    "timestamp": "2025-07-29T13:31:16.242000+00:00",
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(I could try at a \"gag\".)",
-    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399746099903860807",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000"
-    },
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024"
+    "timestamp": "2025-07-29T13:31:16.242000+00:00",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399746099903860807"
   },
   {
-    "id": "1399746553018847292",
-    "timestamp": "2025-07-29T13:33:04.273000+00:00",
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(█)",
-    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399746553018847292",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000"
-    },
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024"
+    "timestamp": "2025-07-29T13:33:04.273000+00:00",
+    "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1399746553018847292"
   }
 ]
 ```

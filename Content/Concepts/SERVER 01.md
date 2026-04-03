@@ -24,31 +24,15 @@ Its purpose for creation was "to understand and collect data", but for what reas
 >   "id": "cite-mh3yzlbz-2kgupd",
 >   "messages": [
 >     {
->       "id": "1401589793111937197",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(To understand and collect data.)",
 >       "timestamp": "2025-08-03T15:37:26.957000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401589793111937197"
 >     },
 >     {
->       "id": "1401590149795811431",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(I can't say anything about that. Even IN_DI is strict on that.)",
 >       "timestamp": "2025-08-03T15:38:51.997000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401590149795811431"
 >     }
 >   ]

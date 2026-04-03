@@ -1,7 +1,7 @@
 {
   "name": "discord-message-embed",
-  "version": "0.1.0",
-  "description": "Obsidian helper to turn Discord message URLs into Quartz embeds.",
+  "version": "1.0.0",
+  "description": "Embed Discord messages as styled cards with profile management, manual entry for DMs, in-editor rendering, and Quartz-ready citations.",
   "main": "main.js",
   "scripts": {
     "build": "node esbuild.config.mjs production",

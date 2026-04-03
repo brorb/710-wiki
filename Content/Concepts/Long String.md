@@ -34,45 +34,21 @@ It is also likely related to INDI's [[TRUTH.zip]] file, since it has association
 >   "id": "cite-mh40eu7g-1vvn6o",
 >   "messages": [
 >     {
->       "id": "1396146171935981568",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"V83mak8.pcv\"",
 >       "timestamp": "2025-07-19T15:06:26.531000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146171935981568"
 >     },
 >     {
->       "id": "1396146521367380112",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"V83mak8.exe\" > package \"TRUTH.zip\"",
 >       "timestamp": "2025-07-19T15:07:49.842000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146521367380112"
 >     },
 >     {
->       "id": "1396146653693607976",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<PING>?: \"LINK\" searching[IN_DI.servertype] data............................................complete\nlink_found = \"Null\"",
 >       "timestamp": "2025-07-19T15:08:21.391000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396146653693607976"
 >     }
 >   ]
@@ -88,31 +64,15 @@ It is not programmed in Fortran according to [[SYSTEM]].<!-- discord-cite:cite-m
 >   "id": "cite-mh41h8c0-w3435z",
 >   "messages": [
 >     {
->       "id": "1400562974942429255",
->       "author": {
->         "display_name": "ThePortalNinja",
->         "username": "theportalninja",
->         "color": "#FF00AA",
->         "colour": "#FF00AA",
->         "colour_value": 16711850
->       },
+>       "profile": "theportalninja",
 >       "content": "@SYSTEM Is Long String made in Fortran?",
 >       "timestamp": "2025-07-31T19:37:14.428000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400562974942429255"
 >     },
 >     {
->       "id": "1400563030277881948",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(No.)",
 >       "timestamp": "2025-07-31T19:37:27.621000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563030277881948"
 >     }
 >   ]
@@ -148,45 +108,21 @@ When shown this transcript in [[The Sleuths]] Discord server, [[SYSTEM]] respond
 ```discord
 [
   {
-    "id": "1400127729902420070",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(I wonder how you got this.)",
     "timestamp": "2025-07-30T14:47:43.924000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400127729902420070"
   },
   {
-    "id": "1400127977580134501",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(It's a sample of Long String, but not the full code.)",
     "timestamp": "2025-07-30T14:48:42.975000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400127977580134501"
   },
   {
-    "id": "1400128084216123453",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(The detonator part.)",
     "timestamp": "2025-07-30T14:49:08.399000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1391009839261552712/1400128084216123453"
   }
 ]
@@ -203,17 +139,9 @@ It isn't known exactly *what* Long String was designed to do (and its effects mi
 ```discord
 [
   {
-    "id": "1396819456180621392",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(It's a tool used for NaN. Sorry, IN_DI has a lot of restrictions on what I can share.)",
     "timestamp": "2025-07-21T11:41:50.004000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396819456180621392"
   }
 ]
@@ -223,45 +151,21 @@ At one point, [[SYSTEM]] crashed after being asked who made Long String:
 ```discord
 [
   {
-    "id": "1400563360176668824",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<OUTPRINT>!:(IIIIIIIIINNNNNNNNNNNNN_______________________________________________SJDISOAISHFHIAOISNBVB..........................................)",
     "timestamp": "2025-07-31T19:38:46.275000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563360176668824"
   },
   {
-    "id": "1400563370037477416",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<PING>?:",
     "timestamp": "2025-07-31T19:38:48.626000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563370037477416"
   },
   {
-    "id": "1400563409216340059",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "<CRASH>!: SYSTEM HAS CRASHED RESTARTING-IDLING for (random, random, random, random), [unpingstatus=true]",
     "timestamp": "2025-07-31T19:38:57.967000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1400563409216340059"
   }
 ]

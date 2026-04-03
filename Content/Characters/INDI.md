@@ -87,31 +87,15 @@ In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]
 >   "id": "cite-mhji29fj-8cqtzh",
 >   "messages": [
 >     {
->       "id": "1396761011138068511",
->       "author": {
->         "display_name": "brorb",
->         "username": "brorb",
->         "color": "#FFDA43",
->         "colour": "#FFDA43",
->         "colour_value": 16767555
->       },
+>       "profile": "brorb",
 >       "content": "@SYSTEM why were you created?",
 >       "timestamp": "2025-07-21T07:49:35.620000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/f8c168e45e259b62ab7da41c22fe9311.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761011138068511"
 >     },
 >     {
->       "id": "1396761370963214429",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(At first, it was a way for IN_DI to get back at REN, but IN_DI forgot and made me a mod for a livestream.)",
 >       "timestamp": "2025-07-21T07:51:01.409000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396761370963214429"
 >     }
 >   ]

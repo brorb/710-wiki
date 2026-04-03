@@ -12,6 +12,7 @@ import {
 import type DiscordMessageEmbedPlugin from "./main"
 import type { DiscordProfile, DiscordMessageBlock } from "./types"
 import { DEFAULT_AVATAR } from "./types"
+import { normaliseColour } from "./utils"
 
 interface MessageDraft {
   profileId: string
@@ -386,47 +387,118 @@ export class ManualEmbedModal extends Modal {
   ) {
     const draft: Partial<DiscordProfile> = {}
 
+    let idInput: TextComponent | null = null
+    let displayNameInput: TextComponent | null = null
+    let usernameInput: TextComponent | null = null
+    let colourInput: TextComponent | null = null
+    let avatarInput: TextComponent | null = null
+
+    // ── Auto-fill from message URL ──
+    new Setting(mgrRoot)
+      .setName("Auto-fill from URL")
+      .setDesc("Paste a Discord message URL from this user.")
+      .addText((t) =>
+        t.setPlaceholder("https://discord.com/channels/…"),
+      )
+      .addButton((btn) =>
+        btn
+          .setButtonText("Fetch")
+          .setCta()
+          .onClick(async () => {
+            const urlInput = mgrRoot.querySelector<HTMLInputElement>(
+              ".setting-item:nth-of-type(1) input[type=text]",
+            )
+            const url = urlInput?.value?.trim()
+            if (!url || !/discord\.com\/channels\/\d+\/\d+\/\d+/i.test(url)) {
+              new Notice("Paste a valid Discord message URL first.")
+              return
+            }
+            const loading = new Notice("Fetching author info…", 0)
+            try {
+              const msg = await this.plugin.fetchDiscordMessage(url)
+              const author = msg.author
+              if (!author) {
+                new Notice("No author info found.")
+                return
+              }
+              const fetchedUsername = author.username?.trim() ?? ""
+              const fetchedDisplay = author.display_name?.trim() ?? fetchedUsername
+              const fetchedAvatar = author.avatar_url ?? ""
+              const fetchedColour = normaliseColour(
+                author.color ?? author.colour,
+                author.colour_value,
+              ) ?? ""
+
+              draft.display_name = fetchedDisplay
+              draft.username = fetchedUsername
+              draft.avatar_url = fetchedAvatar
+              draft.color = fetchedColour
+
+              if (!draft.id && fetchedUsername) {
+                draft.id = fetchedUsername.toLowerCase().replace(/[^a-z0-9_-]/g, "")
+                idInput?.setValue(draft.id)
+              }
+              displayNameInput?.setValue(fetchedDisplay)
+              usernameInput?.setValue(fetchedUsername)
+              colourInput?.setValue(fetchedColour)
+              avatarInput?.setValue(fetchedAvatar)
+
+              new Notice(`Filled from @${fetchedUsername}`)
+            } catch (e) {
+              console.error(e)
+              new Notice("Failed to fetch. Check the URL.")
+            } finally {
+              loading.hide()
+            }
+          }),
+      )
+
     new Setting(mgrRoot)
       .setName("ID")
-      .addText((t) =>
+      .addText((t) => {
+        idInput = t
         t.setPlaceholder("brorb").onChange((v) => {
           draft.id = v.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "")
-        }),
-      )
+        })
+      })
 
     new Setting(mgrRoot)
       .setName("Display Name")
-      .addText((t) =>
+      .addText((t) => {
+        displayNameInput = t
         t.setPlaceholder("brorb").onChange((v) => {
           draft.display_name = v.trim()
-        }),
-      )
+        })
+      })
 
     new Setting(mgrRoot)
       .setName("Username")
-      .addText((t) =>
+      .addText((t) => {
+        usernameInput = t
         t.setPlaceholder("brorb").onChange((v) => {
           draft.username = v.trim()
-        }),
-      )
+        })
+      })
 
     new Setting(mgrRoot)
       .setName("Colour")
-      .addText((t) =>
+      .addText((t) => {
+        colourInput = t
         t.setPlaceholder("#FFDA43").onChange((v) => {
           draft.color = v.trim()
-        }),
-      )
+        })
+      })
 
     new Setting(mgrRoot)
       .setName("Avatar URL")
-      .addText((t) =>
+      .addText((t) => {
+        avatarInput = t
         t
           .setPlaceholder(DEFAULT_AVATAR)
           .onChange((v) => {
             draft.avatar_url = v.trim()
-          }),
-      )
+          })
+      })
 
     new Setting(mgrRoot).addButton((btn) =>
       btn

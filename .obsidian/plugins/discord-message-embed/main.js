@@ -149,6 +149,58 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
     });
     const draft = existing ? { ...existing } : { id: "", display_name: "", username: "", color: "", avatar_url: "" };
     let idInput = null;
+    let displayNameInput = null;
+    let usernameInput = null;
+    let colourInput = null;
+    let avatarInput = null;
+    new import_obsidian.Setting(editor).setName("Auto-fill from message URL").setDesc("Paste any Discord message URL from this user \u2014 the plugin will fetch their name, avatar, and colour automatically.").addText(
+      (text) => text.setPlaceholder("https://discord.com/channels/\u2026")
+    ).addButton(
+      (btn) => btn.setButtonText("Fetch").setCta().onClick(async () => {
+        const urlInput = editor.querySelector(
+          ".setting-item:first-of-type input[type=text]"
+        );
+        const url = urlInput?.value?.trim();
+        if (!url || !/discord\.com\/channels\/\d+\/\d+\/\d+/i.test(url)) {
+          new import_obsidian.Notice("Paste a valid Discord message URL first.");
+          return;
+        }
+        const loading = new import_obsidian.Notice("Fetching author info\u2026", 0);
+        try {
+          const msg = await this.plugin.fetchDiscordMessage(url);
+          const author = msg.author;
+          if (!author) {
+            new import_obsidian.Notice("Message fetched but no author info found.");
+            return;
+          }
+          const fetchedUsername = author.username?.trim() ?? "";
+          const fetchedDisplay = author.display_name?.trim() ?? fetchedUsername;
+          const fetchedAvatar = author.avatar_url ?? "";
+          const fetchedColour = normaliseColour(
+            author.color ?? author.colour,
+            author.colour_value
+          ) ?? "";
+          draft.display_name = fetchedDisplay;
+          draft.username = fetchedUsername;
+          draft.avatar_url = fetchedAvatar;
+          draft.color = fetchedColour;
+          if (!existing && !draft.id && fetchedUsername) {
+            draft.id = fetchedUsername.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+            idInput?.setValue(draft.id);
+          }
+          displayNameInput?.setValue(fetchedDisplay);
+          usernameInput?.setValue(fetchedUsername);
+          colourInput?.setValue(fetchedColour);
+          avatarInput?.setValue(fetchedAvatar);
+          new import_obsidian.Notice(`Filled profile from @${fetchedUsername}`);
+        } catch (e) {
+          console.error(e);
+          new import_obsidian.Notice("Failed to fetch message. Check the URL and API endpoint.");
+        } finally {
+          loading.hide();
+        }
+      })
+    );
     if (!existing) {
       new import_obsidian.Setting(editor).setName("Profile ID").setDesc(
         'Short unique key used in markdown, e.g. "brorb" or "system".'
@@ -159,26 +211,30 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         });
       });
     }
-    new import_obsidian.Setting(editor).setName("Display name").setDesc("Shown as the author in the embed.").addText(
-      (text) => text.setPlaceholder("brorb").setValue(draft.display_name ?? "").onChange((v) => {
+    new import_obsidian.Setting(editor).setName("Display name").setDesc("Shown as the author in the embed.").addText((text) => {
+      displayNameInput = text;
+      text.setPlaceholder("brorb").setValue(draft.display_name ?? "").onChange((v) => {
         draft.display_name = v.trim();
-      })
-    );
-    new import_obsidian.Setting(editor).setName("Username").setDesc("The Discord @username.").addText(
-      (text) => text.setPlaceholder("brorb").setValue(draft.username ?? "").onChange((v) => {
+      });
+    });
+    new import_obsidian.Setting(editor).setName("Username").setDesc("The Discord @username.").addText((text) => {
+      usernameInput = text;
+      text.setPlaceholder("brorb").setValue(draft.username ?? "").onChange((v) => {
         draft.username = v.trim();
-      })
-    );
-    new import_obsidian.Setting(editor).setName("Colour").setDesc("Hex colour for the author name, e.g. #FFDA43.").addText(
-      (text) => text.setPlaceholder("#FFDA43").setValue(draft.color ?? "").onChange((v) => {
+      });
+    });
+    new import_obsidian.Setting(editor).setName("Colour").setDesc("Hex colour for the author name, e.g. #FFDA43.").addText((text) => {
+      colourInput = text;
+      text.setPlaceholder("#FFDA43").setValue(draft.color ?? "").onChange((v) => {
         draft.color = v.trim();
-      })
-    );
-    new import_obsidian.Setting(editor).setName("Avatar URL").setDesc("Direct link to the profile picture.").addText(
-      (text) => text.setPlaceholder(DEFAULT_AVATAR).setValue(draft.avatar_url ?? "").onChange((v) => {
+      });
+    });
+    new import_obsidian.Setting(editor).setName("Avatar URL").setDesc("Direct link to the profile picture.").addText((text) => {
+      avatarInput = text;
+      text.setPlaceholder(DEFAULT_AVATAR).setValue(draft.avatar_url ?? "").onChange((v) => {
         draft.avatar_url = v.trim();
-      })
-    );
+      });
+    });
     const previewContainer = editor.createDiv();
     previewContainer.style.marginTop = "8px";
     new import_obsidian.Setting(editor).addButton(
@@ -480,31 +536,89 @@ ${callout}
   }
   renderInlineProfileForm(mgrRoot, listContainer) {
     const draft = {};
-    new import_obsidian2.Setting(mgrRoot).setName("ID").addText(
-      (t) => t.setPlaceholder("brorb").onChange((v) => {
+    let idInput = null;
+    let displayNameInput = null;
+    let usernameInput = null;
+    let colourInput = null;
+    let avatarInput = null;
+    new import_obsidian2.Setting(mgrRoot).setName("Auto-fill from URL").setDesc("Paste a Discord message URL from this user.").addText(
+      (t) => t.setPlaceholder("https://discord.com/channels/\u2026")
+    ).addButton(
+      (btn) => btn.setButtonText("Fetch").setCta().onClick(async () => {
+        const urlInput = mgrRoot.querySelector(
+          ".setting-item:nth-of-type(1) input[type=text]"
+        );
+        const url = urlInput?.value?.trim();
+        if (!url || !/discord\.com\/channels\/\d+\/\d+\/\d+/i.test(url)) {
+          new import_obsidian2.Notice("Paste a valid Discord message URL first.");
+          return;
+        }
+        const loading = new import_obsidian2.Notice("Fetching author info\u2026", 0);
+        try {
+          const msg = await this.plugin.fetchDiscordMessage(url);
+          const author = msg.author;
+          if (!author) {
+            new import_obsidian2.Notice("No author info found.");
+            return;
+          }
+          const fetchedUsername = author.username?.trim() ?? "";
+          const fetchedDisplay = author.display_name?.trim() ?? fetchedUsername;
+          const fetchedAvatar = author.avatar_url ?? "";
+          const fetchedColour = normaliseColour(
+            author.color ?? author.colour,
+            author.colour_value
+          ) ?? "";
+          draft.display_name = fetchedDisplay;
+          draft.username = fetchedUsername;
+          draft.avatar_url = fetchedAvatar;
+          draft.color = fetchedColour;
+          if (!draft.id && fetchedUsername) {
+            draft.id = fetchedUsername.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+            idInput?.setValue(draft.id);
+          }
+          displayNameInput?.setValue(fetchedDisplay);
+          usernameInput?.setValue(fetchedUsername);
+          colourInput?.setValue(fetchedColour);
+          avatarInput?.setValue(fetchedAvatar);
+          new import_obsidian2.Notice(`Filled from @${fetchedUsername}`);
+        } catch (e) {
+          console.error(e);
+          new import_obsidian2.Notice("Failed to fetch. Check the URL.");
+        } finally {
+          loading.hide();
+        }
+      })
+    );
+    new import_obsidian2.Setting(mgrRoot).setName("ID").addText((t) => {
+      idInput = t;
+      t.setPlaceholder("brorb").onChange((v) => {
         draft.id = v.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
-      })
-    );
-    new import_obsidian2.Setting(mgrRoot).setName("Display Name").addText(
-      (t) => t.setPlaceholder("brorb").onChange((v) => {
+      });
+    });
+    new import_obsidian2.Setting(mgrRoot).setName("Display Name").addText((t) => {
+      displayNameInput = t;
+      t.setPlaceholder("brorb").onChange((v) => {
         draft.display_name = v.trim();
-      })
-    );
-    new import_obsidian2.Setting(mgrRoot).setName("Username").addText(
-      (t) => t.setPlaceholder("brorb").onChange((v) => {
+      });
+    });
+    new import_obsidian2.Setting(mgrRoot).setName("Username").addText((t) => {
+      usernameInput = t;
+      t.setPlaceholder("brorb").onChange((v) => {
         draft.username = v.trim();
-      })
-    );
-    new import_obsidian2.Setting(mgrRoot).setName("Colour").addText(
-      (t) => t.setPlaceholder("#FFDA43").onChange((v) => {
+      });
+    });
+    new import_obsidian2.Setting(mgrRoot).setName("Colour").addText((t) => {
+      colourInput = t;
+      t.setPlaceholder("#FFDA43").onChange((v) => {
         draft.color = v.trim();
-      })
-    );
-    new import_obsidian2.Setting(mgrRoot).setName("Avatar URL").addText(
-      (t) => t.setPlaceholder(DEFAULT_AVATAR).onChange((v) => {
+      });
+    });
+    new import_obsidian2.Setting(mgrRoot).setName("Avatar URL").addText((t) => {
+      avatarInput = t;
+      t.setPlaceholder(DEFAULT_AVATAR).onChange((v) => {
         draft.avatar_url = v.trim();
-      })
-    );
+      });
+    });
     new import_obsidian2.Setting(mgrRoot).addButton(
       (btn) => btn.setButtonText("Add Profile").setCta().onClick(async () => {
         if (!draft.id) {
@@ -717,14 +831,16 @@ function renderMessage(msg, prev, profiles) {
   return article;
 }
 var styleInjected = false;
+function injectStyle() {
+  if (styleInjected) return;
+  const style = document.createElement("style");
+  style.textContent = discord_thread_default;
+  document.head.appendChild(style);
+  styleInjected = true;
+}
 function registerDiscordRenderer(plugin) {
   plugin.registerMarkdownCodeBlockProcessor("discord", (source, el, ctx) => {
-    if (!styleInjected) {
-      const style = document.createElement("style");
-      style.textContent = discord_thread_default;
-      document.head.appendChild(style);
-      styleInjected = true;
-    }
+    injectStyle();
     let messages;
     try {
       const parsed = JSON.parse(source.trim());
@@ -744,6 +860,64 @@ ${source}` });
       messages.length > 6
     );
     el.appendChild(thread);
+  });
+  plugin.registerMarkdownPostProcessor((el, ctx) => {
+    const callouts = el.querySelectorAll(
+      '.callout[data-callout="discord-cite"]'
+    );
+    if (callouts.length === 0) return;
+    injectStyle();
+    for (const callout of Array.from(callouts)) {
+      const codeBlock = callout.querySelector("pre code");
+      if (!codeBlock) continue;
+      const jsonText = codeBlock.textContent?.trim();
+      if (!jsonText) continue;
+      let messages;
+      try {
+        const parsed = JSON.parse(jsonText);
+        messages = normaliseMessages(parsed);
+      } catch {
+        continue;
+      }
+      if (messages.length === 0) continue;
+      const thread = renderDiscordThread(
+        messages,
+        plugin.settings.profiles,
+        messages.length > 6
+      );
+      const titleBar = callout.querySelector(
+        ".callout-title"
+      );
+      const titleText = titleBar?.querySelector(
+        ".callout-title-inner"
+      );
+      if (titleText) {
+        const count = messages.length;
+        titleText.textContent = `Discord citation (${count} message${count !== 1 ? "s" : ""})`;
+      }
+      if (titleBar) {
+        const icon = titleBar.querySelector(".callout-icon");
+        if (icon) {
+          icon.innerHTML = `<svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" style="vertical-align: middle;">
+            <path d="M26.963 0.875 C25.282 0.094 23.478-0.432 21.602-0.667a0.12 0.12 0 00-0.127 0.06c-0.258 0.459-0.543 1.058-0.743 1.529a23.584 23.584 0 00-7.074 0 16.326 16.326 0 00-0.754-1.53A0.125 0.125 0 0012.777-0.667C10.9-0.431 9.098 0.095 7.416 0.876a0.113 0.113 0 00-0.052 0.044C3.68 6.184 2.618 11.344 3.14 16.44a0.133 0.133 0 000.063 0.091c2.636 1.936 5.19 3.113 7.693 3.89a0.126 0.126 0 000.137-0.045c0.593-0.81 1.121-1.664 1.575-2.56a0.123 0.123 0 00-0.068-0.172c-0.839-0.318-1.639-0.707-2.407-1.15a0.125 0.125 0 01-0.012-0.207c0.162-0.121 0.323-0.248 0.478-0.375a0.12 0.12 0 010.128-0.017c5.05 2.306 10.515 2.306 15.51 0a0.12 0.12 0 010.13 0.015c0.155 0.128 0.316 0.256 0.479 0.377a0.125 0.125 0 01-0.011 0.207c-0.768 0.449-1.568 0.838-2.408 1.149a0.124 0.124 0 00-0.066 0.173c0.462 0.895 0.99 1.749 1.574 2.559a0.124 0.124 0 000.136 0.046c2.514-0.778 5.068-1.955 7.705-3.891a0.126 0.126 0 000.062-0.089c0.626-6.466-1.049-12.082-4.44-17.054a0.099 0.099 0 00-0.05-0.046zM11.44 13.532c-1.477 0-2.694-1.356-2.694-3.023s1.193-3.023 2.694-3.023c1.512 0 2.718 1.368 2.694 3.023 0 1.667-1.194 3.023-2.694 3.023zm9.96 0c-1.477 0-2.694-1.356-2.694-3.023s1.193-3.023 2.694-3.023c1.512 0 2.718 1.368 2.694 3.023 0 1.667-1.182 3.023-2.694 3.023z"/>
+          </svg>`;
+        }
+      }
+      const body = callout.querySelector(".callout-content");
+      if (body) {
+        body.empty();
+        body.appendChild(thread);
+        body.style.padding = "0";
+      }
+      callout.style.backgroundColor = "#2b2d31";
+      callout.style.borderColor = "#1f2024";
+      callout.style.borderRadius = "12px";
+      callout.style.overflow = "hidden";
+      if (titleBar) {
+        titleBar.style.backgroundColor = "#1f2024";
+        titleBar.style.color = "#b5bac1";
+      }
+    }
   });
 }
 function normaliseMessages(raw) {
@@ -798,17 +972,27 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
         }
         const selection = editor.getSelection();
         const urls = this.extractDiscordUrls(this.stripCitationMarker(selection));
-        if (urls.length === 0) {
-          return;
+        if (urls.length > 0) {
+          menu.addItem((item) => {
+            item.setTitle("Insert Discord embed (from URL)").setIcon("message-square").onClick(() => {
+              void this.insertEmbed(editor);
+            });
+          });
+          menu.addItem((item) => {
+            item.setTitle("Insert Discord citation (from URL)").setIcon("superscript").onClick(() => {
+              void this.insertCitation(editor);
+            });
+          });
         }
+        menu.addSeparator();
         menu.addItem((item) => {
-          item.setTitle("Insert Discord message embed").setIcon("message-square").onClick(() => {
-            void this.insertEmbed(editor);
+          item.setTitle("Insert Discord embed (manual)").setIcon("message-square-plus").onClick(() => {
+            new ManualEmbedModal(this.app, this, editor, "embed").open();
           });
         });
         menu.addItem((item) => {
-          item.setTitle("Insert Discord message citation").setIcon("superscript").onClick(() => {
-            void this.insertCitation(editor);
+          item.setTitle("Insert Discord citation (manual)").setIcon("quote").onClick(() => {
+            new ManualEmbedModal(this.app, this, editor, "citation").open();
           });
         });
       })
@@ -948,6 +1132,7 @@ ${callout}
     const timestamp = Date.now().toString(36);
     return `cite-${timestamp}-${random}`;
   }
+  /** Fetch a single Discord message from the API. Public so settings/modals can use it. */
   async fetchDiscordMessage(url) {
     const response = await (0, import_obsidian3.requestUrl)({
       url: `${this.settings.apiEndpoint}${encodeURIComponent(url)}`

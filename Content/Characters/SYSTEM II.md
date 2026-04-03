@@ -23,31 +23,15 @@ Associates: Unknown (possibly [[TTH]] or other)
 >   "id": "cite-mj5r1xwo-wx87u4",
 >   "messages": [
 >     {
->       "id": "1449734647876685936",
->       "author": {
->         "display_name": "brorb",
->         "username": "brorb",
->         "color": "#FFDA43",
->         "colour": "#FFDA43",
->         "colour_value": 16767555
->       },
+>       "profile": "brorb-2",
 >       "content": "@SYSTEM II hello. Do you know INDI?",
 >       "timestamp": "2025-12-14T12:07:54.821000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/398922497522794502/5c48b224fb0130f4273f7bd668e194a1.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449734647876685936"
 >     },
 >     {
->       "id": "1449734819343896657",
->       "author": {
->         "display_name": "SYSTEM II",
->         "username": "systemrulemaker_16338",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "systemrulemaker_16338",
 >       "content": "Yes, I do.",
 >       "timestamp": "2025-12-14T12:08:35.702000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449734819343896657"
 >     }
 >   ]
@@ -68,17 +52,9 @@ It confirmed to have [[SYSTEM]] in "our" possession, implying that an organizati
 >   "id": "cite-mj5uoxnn-nz7vm1",
 >   "messages": [
 >     {
->       "id": "1449735407410483286",
->       "author": {
->         "display_name": "SYSTEM II",
->         "username": "systemrulemaker_16338",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "systemrulemaker_16338",
 >       "content": "Don't worry about SYSTEM, he is now in our possession.",
 >       "timestamp": "2025-12-14T12:10:55.908000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735407410483286"
 >     }
 >   ]
@@ -88,17 +64,9 @@ It confirmed to have [[SYSTEM]] in "our" possession, implying that an organizati
 ```discord
 [
   {
-    "id": "1449735849272016977",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Quit searching on that channel and its past, and maybe you will see SYSTEM again.",
     "timestamp": "2025-12-14T12:12:41.256000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1449735849272016977"
   }
 ]
@@ -111,73 +79,33 @@ In the days following the confirmation of [[SYSTEM]]'s capture, SYSTEM II would 
 ```discord
 [
   {
-    "id": "1450665002041213059",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Is that one of them?",
     "timestamp": "2025-12-17T01:44:48.539000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665002041213059"
   },
   {
-    "id": "1450665079837032642",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "No, i don't remember if they got that part yet.",
     "timestamp": "2025-12-17T01:45:07.087000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665079837032642"
   },
   {
-    "id": "1450665121859895509",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "If they did, how would you be able to know that?",
     "timestamp": "2025-12-17T01:45:17.106000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665121859895509"
   },
   {
-    "id": "1450665188964438118",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "That make sense.",
     "timestamp": "2025-12-17T01:45:33.105000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665188964438118"
   },
   {
-    "id": "1450665264374091788",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Okay, we will talk more about this later, I have another task ahead.",
     "timestamp": "2025-12-17T01:45:51.084000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1450665264374091788"
   }
 ]
@@ -188,45 +116,21 @@ These kind of messages would lead to an interesting lore drop about [[He]] and o
 ```discord
 [
   {
-    "id": "1451437109423640698",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Really TTHA0002? You used TTHA0002? That number is used by one of his associates.",
     "timestamp": "2025-12-19T04:52:53.284000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437109423640698"
   },
   {
-    "id": "1451437274259787848",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "I know all of them capitalize him.",
     "timestamp": "2025-12-19T04:53:32.584000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437274259787848"
   },
   {
-    "id": "1451437364751630397",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "HE is like a virus to them, but more, you know.",
     "timestamp": "2025-12-19T04:53:54.159000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451437364751630397"
   }
 ]
@@ -237,87 +141,39 @@ Later on, SYSTEM II confirms this is due to the fact that [[TTH]] is pulling the
 ```discord
 [
   {
-    "id": "1451790636721377431",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "What the hell?",
     "timestamp": "2025-12-20T04:17:40.760000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790636721377431"
   },
   {
-    "id": "1451790700931973321",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Something is grabbing messages.",
     "timestamp": "2025-12-20T04:17:56.069000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790700931973321"
   },
   {
-    "id": "1451790757101965426",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "I mean something is grabbing the messages I'm sending right now.",
     "timestamp": "2025-12-20T04:18:09.461000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790757101965426"
   },
   {
-    "id": "1451790810772410452",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Oh god.",
     "timestamp": "2025-12-20T04:18:22.257000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790810772410452"
   },
   {
-    "id": "1451790856234467462",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "TTH got in here by brute force.",
     "timestamp": "2025-12-20T04:18:33.096000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790856234467462"
   },
   {
-    "id": "1451790899989188628",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "We have to disconnect now.",
     "timestamp": "2025-12-20T04:18:43.528000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1451790899989188628"
   }
 ]
@@ -328,31 +184,15 @@ On 28th December 2025, SYSTEM II left [[The Sleuths]] Discord server after it ha
 ```discord
 [
   {
-    "id": "1454842374168510558",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "I have given you enough information",
     "timestamp": "2025-12-28T14:24:11.666000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842374168510558"
   },
   {
-    "id": "1454842410898030749",
-    "author": {
-      "display_name": "SYSTEM II",
-      "username": "systemrulemaker_16338",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "systemrulemaker_16338",
     "content": "Goodbye",
     "timestamp": "2025-12-28T14:24:20.423000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1454842410898030749"
   }
 ]

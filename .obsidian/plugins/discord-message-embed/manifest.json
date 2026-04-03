@@ -1,9 +1,9 @@
 {
   "id": "discord-message-embed",
   "name": "Discord Message Embed",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "minAppVersion": "1.5.0",
-  "description": "Convert Discord message links into Quartz-ready code fences.",
+  "description": "Embed Discord messages as styled cards with profile management, manual entry for DMs, in-editor rendering, and Quartz-ready citations. Right-click to insert.",
   "author": "brorb",
   "authorUrl": "https://www.710tone.wiki",
   "isDesktopOnly": false

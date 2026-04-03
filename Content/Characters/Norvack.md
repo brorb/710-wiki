@@ -26,15 +26,9 @@ An alias mentioned by a [[TTH]] member through [[SYSTEM]].<!-- discord-cite:cite
 >   "id": "cite-mhxw14cu-pa23aq",
 >   "messages": [
 >     {
->       "id": "1437585424510877917",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "colour_value": null
->       },
+>       "profile": "system000008",
 >       "content": "wait? is this Norvack again?",
 >       "timestamp": "2025-11-10T23:31:14.249000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437585424510877917"
 >     }
 >   ]

@@ -1,107 +1,120 @@
 # Discord Message Embed (Obsidian Plugin)
 
-Convert highlighted Discord message links into Quartz-compatible blocks and inline citations. The plugin fetches message metadata from your Railway API and writes it directly into the note, ready for Quartz to render the faux Discord card you set up.
+Embed Discord messages in your vault and publish them as styled cards on Quartz. Supports linked server messages (fetched via API), manually-entered DM/private messages, reusable author profiles, in-editor rendering, and inline citations.
 
-## Usage
+## Quick Start
 
-### Embeds
+### 1. Set Up Profiles
 
-1. Paste one or more Discord message URLs into a note (each URL must be of the form `https://discord.com/channels/<guild>/<channel>/<message>` — `ptb.` and `canary.` subdomains also work).
+Before inserting messages you need at least one **profile** -- a saved author identity (name, avatar, colour).
+
+**Settings > Discord Message Embed > Discord Profiles > + New Profile**
+
+You can fill the fields manually, or -- much faster -- use the **Auto-fill from message URL** feature:
+
+1. Paste any Discord message URL from the user you want to create a profile for.
+2. Click **Fetch**.
+3. The plugin pulls the avatar, username, display name, and role colour from the API and fills every field for you.
+4. Give it an ID (auto-suggested from the username) and hit **Save**.
+
+### 2. Insert Messages
+
+There are two ways to insert discord blocks:
+
+#### From a Discord Message URL (server messages)
+
+1. Paste one or more Discord message URLs into a note (`https://discord.com/channels/<guild>/<channel>/<message>`).
 2. Highlight the URL(s).
-3. Right-click the selection and choose **Insert Discord message embed** (also available via the command palette with the same name).
-4. The selection is replaced with a code fence:
+3. **Right-click > Insert Discord embed (from URL)** or run the command from the palette.
+4. The highlighted text is replaced with a ` ```discord ` code fence containing the fetched message data.
 
-    ```
-    ```discord
-    [
-      {
-        "id": "...",
-        "author": {
-          "display_name": "...",
-          "username": "...",
-          "color": "#FF0000"
-        },
-        "content": "...",
-        "timestamp": "...",
-        "avatar_url": "...",
-        "url": "..."
-      }
-    ]
-    ```
-    ```
+If a matching profile exists, the block will use the slim `"profile"` key instead of repeating all the author info.
 
-Quartz will now turn that block into your stylised message card. Multiple highlighted URLs become a single array so they display as a stacked conversation.
+#### Manual Entry (DMs, private messages, any text)
 
-#### Adding attachments and file previews
+1. Place your cursor in a note.
+2. **Right-click > Insert Discord embed (manual)** -- or use the command palette.
+3. A dialog opens where you select a profile, type the message content, and optionally set a timestamp.
+4. Click **+ Add Message** to add more messages to the same block.
+5. Hit **Insert Embed** -- done.
 
-The renderer now supports rich attachments (images, audio, video, or arbitrary files) that sit inline with each Discord message card. To add one, append an `attachments` array to the relevant message object before you paste it into Quartz:
+> Both the manual insert options are **always** visible in the editor right-click menu, so you can insert messages from anywhere without needing to select text first. The URL-based options appear only when Discord URLs are selected.
+
+### 3. Citations
+
+Citations work the same way as embeds but produce a hover-tooltip on the published site:
+
+- **Right-click > Insert Discord citation (from URL)** -- for linked messages.
+- **Right-click > Insert Discord citation (manual)** -- for manual entry.
+
+The command inserts an invisible marker (`<!-- discord-cite:... -->`) at the cursor and appends a `[!discord-cite]` callout with the JSON payload.
+
+### 4. In-Editor Preview
+
+All ` ```discord ` blocks render inside Obsidian in Reading View and Live Preview with Discord-matching styling -- dark background, avatars, coloured names, timestamps, and a collapse/expand toggle for long threads.
+
+## Profile Format
+
+Blocks that use a profile look like this:
+
+```json
+[
+  {
+    "profile": "brorb",
+    "content": "Hello world!",
+    "timestamp": "2025-07-01T12:34:56Z"
+  }
+]
+```
+
+The renderer (both in Obsidian and on the published Quartz site) resolves `"profile": "brorb"` to the display name, avatar URL, and colour from the plugin settings. No need to repeat bulky author objects.
+
+Legacy blocks with inline `"author"` / `"avatar_url"` fields still work.
+
+## Attachments
+
+Add an `"attachments"` array to show images, audio, video, or files inline with a message:
 
 ```json
 {
-  "id": "...",
-  "content": "...",
+  "profile": "brorb",
+  "content": "Check this out",
   "attachments": [
-    {
-      "target": "![[Example-Attachment.png]]",
-      "alt": "Optional caption",
-      "typeHint": "image"
-    },
-    {
-      "target": "https://cdn.example.com/audio/sample.ogg",
-      "title": "Sample clip",
-      "typeHint": "audio"
-    }
+    { "target": "![[Screenshot.png]]", "alt": "A screenshot", "typeHint": "image" },
+    { "target": "https://example.com/clip.ogg", "title": "Audio clip", "typeHint": "audio" }
   ]
 }
 ```
 
-- `target` can be an Obsidian embed (`![[...]]`), a relative path, or an absolute URL. The transformer resolves it at build time and shows a thumbnail, audio bar, video player, or download card based on the file type.
-- Use `typeHint` when the file extension is missing or ambiguous (`image`, `audio`, `video`, or `file`).
-- Provide `alt` text (for images) or `title` (for non-image files) to control the label that appears next to the attachment card.
-- Legacy fields such as `image`, `images`, or `attachment` are still recognised; the transformer will lift them into the normalised `attachments` array automatically.
+- `target` -- Obsidian embed (`![[...]]`), relative path, or URL.
+- `typeHint` -- `image` | `audio` | `video` | `file` (inferred from extension when omitted).
+- `alt` (images) / `title` (files) -- optional label.
 
-### Citations
+## Settings
 
-1. Place your cursor (or highlight placeholder text) where the inline citation marker should go.
-2. Run **Insert Discord message citation**.
-3. The selection is replaced with an HTML comment marker such as:
+| Setting | Description |
+|---------|-------------|
+| **API endpoint** | The Railway URL used to fetch linked server messages. |
+| **Discord Profiles** | Create, edit, and delete reusable author profiles. Each profile stores a display name, @username, hex colour, and avatar URL. Use **Auto-fill from message URL** to populate fields from any message by that user. |
 
-  ```html
-  <!-- discord-cite:cite-xxxxxx-xxxxxx -->
-  ```
+## Commands & Context Menu
 
-  Quartz reads this marker (or the moustache form `{{discord-cite:...}}`) and swaps it for the hoverable Discord icon in the rendered article.
-4. A `[!discord-cite]` callout containing just the JSON payload is appended underneath so the site has the full message data:
-
-  ```markdown
-  > [!discord-cite]- Discord citation (2 messages)
-  >
-  > ```json
-  > {
-  >   "id": "cite-xxxxxx-xxxxxx",
-  >   "messages": [
-  >     {
-  >       "id": "...",
-  >       "content": "...",
-  >       "image": "![[optional-image.png]]"
-  >     }
-  >   ]
-  > }
-  > ```
-  ```
-
-If you prefer a visible inline trigger instead of a hidden HTML comment, change the marker to the moustache syntax (`{{discord-cite:cite-xxxxxx-xxxxxx}}`) after the command runs—the JSON stays the same.
+| Action | How to trigger |
+|--------|---------------|
+| Insert embed from URL | Right-click (when URLs selected) or Command Palette |
+| Insert citation from URL | Right-click (when URLs selected) or Command Palette |
+| Insert embed manually | Right-click (always visible) or Command Palette |
+| Insert citation manually | Right-click (always visible) or Command Palette |
 
 ## Installation
 
-1. Copy the `discord-message-embed` folder into your vault’s `.obsidian/plugins/` directory.
-2. (Optional) Run `npm install` inside the plugin folder if you want to rebuild `main.js` from the TypeScript source. Use `npm run build` to regenerate.
-3. Enable **Discord Message Embed** in Obsidian’s **Community Plugins** view.
+1. Copy the `discord-message-embed` folder into your vault's `.obsidian/plugins/` directory.
+2. Enable **Discord Message Embed** in Obsidian's **Settings > Community Plugins**.
+3. (Optional) To rebuild from source: `npm install && npm run build` inside the plugin folder.
 
 ## Notes
 
-- The plugin calls `https://discord-system-firebase-bot-production.up.railway.app/api/message` for each URL. There is no caching; highlight fewer URLs at once if you notice delays.
-- If the API fails, the original text stays untouched and you’ll see an Obsidian notice.
-- Empty avatars fall back to Discord’s default silhouette, and usernames default to the display name (or “Unknown User”) so the Quartz renderer always shows a believable card.
-- To show images in a rendered citation, add an `"image"` field to the relevant message inside the JSON payload, for example `"image": "![[path/to/image.png]]"`. The transformer resolves Obsidian embeds and renders them beneath the matching message in Quartz.
-- The hover preview on the published site will appear wherever you place the `<!-- discord-cite:... -->` (or `{{discord-cite:...}}`) marker, so you can cite multiple times with the same ID by reusing that marker.
+- The API is called once per URL with no caching -- keep URL counts reasonable.
+- If a fetch fails, the original text stays untouched and an Obsidian notice appears.
+- Avatars fall back to Discord's default silhouette when not set.
+- Citation markers (`<!-- discord-cite:... -->` or `{{discord-cite:...}}`) can be reused to cite the same message in multiple places.

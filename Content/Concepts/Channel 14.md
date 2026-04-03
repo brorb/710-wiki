@@ -37,31 +37,15 @@ In [[LOG-1.mp4]], it is renamed to the FCN Network (also known as FCNN).
 >   "id": "cite-mgs1zew5-bxccf1",
 >   "messages": [
 >     {
->       "id": "1396926447616000000",
->       "author": {
->         "display_name": "L4N4U1997",
->         "username": "camera.3y3",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
+>       "profile": "camera3y3",
 >       "content": "@SYSTEM What is Channel 14 for?",
 >       "timestamp": "2025-07-21T18:46:58.750000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396926447616000000"
 >     },
 >     {
->       "id": "1396926631419052102",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(News, movies, etc. Why?)",
 >       "timestamp": "2025-07-21T18:47:42.572000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396926631419052102"
 >     }
 >   ]
@@ -75,31 +59,15 @@ In [[LOG-1.mp4]], it is renamed to the FCN Network (also known as FCNN).
 >   "id": "cite-mgs1xi27-v10ct8",
 >   "messages": [
 >     {
->       "id": "1396819893571158027",
->       "author": {
->         "display_name": "L4N4U1997",
->         "username": "camera.3y3",
->         "color": "#2ECC71",
->         "colour": "#2ECC71",
->         "colour_value": 3066993
->       },
+>       "profile": "camera3y3",
 >       "content": "@SYSTEM What is the Channel 14 Schedual used for?",
 >       "timestamp": "2025-07-21T11:43:34.286000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/8cac52e63b1e725be40c75d389622af9.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396819893571158027"
 >     },
 >     {
->       "id": "1396820314255790220",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(You spelt schedule wrong, but it's used to keep up with when NaN.)",
 >       "timestamp": "2025-07-21T11:45:14.585000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396820314255790220"
 >     }
 >   ]

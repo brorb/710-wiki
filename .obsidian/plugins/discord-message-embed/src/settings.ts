@@ -2,6 +2,7 @@ import { App, PluginSettingTab, Setting, Notice, TextComponent } from "obsidian"
 import type DiscordMessageEmbedPlugin from "./main"
 import type { DiscordProfile } from "./types"
 import { DEFAULT_AVATAR } from "./types"
+import { normaliseColour } from "./utils"
 
 export class DiscordEmbedSettingTab extends PluginSettingTab {
   plugin: DiscordMessageEmbedPlugin
@@ -155,7 +156,73 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
       ? { ...existing }
       : { id: "", display_name: "", username: "", color: "", avatar_url: "" }
 
+    // Keep references to text inputs so auto-fill can update them
     let idInput: TextComponent | null = null
+    let displayNameInput: TextComponent | null = null
+    let usernameInput: TextComponent | null = null
+    let colourInput: TextComponent | null = null
+    let avatarInput: TextComponent | null = null
+
+    // ── Auto-fill from Discord message URL ──
+    new Setting(editor)
+      .setName("Auto-fill from message URL")
+      .setDesc("Paste any Discord message URL from this user — the plugin will fetch their name, avatar, and colour automatically.")
+      .addText((text) =>
+        text.setPlaceholder("https://discord.com/channels/…"),
+      )
+      .addButton((btn) =>
+        btn
+          .setButtonText("Fetch")
+          .setCta()
+          .onClick(async () => {
+            const urlInput = editor.querySelector<HTMLInputElement>(
+              ".setting-item:first-of-type input[type=text]",
+            )
+            const url = urlInput?.value?.trim()
+            if (!url || !/discord\.com\/channels\/\d+\/\d+\/\d+/i.test(url)) {
+              new Notice("Paste a valid Discord message URL first.")
+              return
+            }
+            const loading = new Notice("Fetching author info…", 0)
+            try {
+              const msg = await this.plugin.fetchDiscordMessage(url)
+              const author = msg.author
+              if (!author) {
+                new Notice("Message fetched but no author info found.")
+                return
+              }
+              const fetchedUsername = author.username?.trim() ?? ""
+              const fetchedDisplay = author.display_name?.trim() ?? fetchedUsername
+              const fetchedAvatar = author.avatar_url ?? ""
+              const fetchedColour = normaliseColour(
+                author.color ?? author.colour,
+                author.colour_value,
+              ) ?? ""
+
+              // Update draft + input fields
+              draft.display_name = fetchedDisplay
+              draft.username = fetchedUsername
+              draft.avatar_url = fetchedAvatar
+              draft.color = fetchedColour
+
+              if (!existing && !draft.id && fetchedUsername) {
+                draft.id = fetchedUsername.toLowerCase().replace(/[^a-z0-9_-]/g, "")
+                idInput?.setValue(draft.id)
+              }
+              displayNameInput?.setValue(fetchedDisplay)
+              usernameInput?.setValue(fetchedUsername)
+              colourInput?.setValue(fetchedColour)
+              avatarInput?.setValue(fetchedAvatar)
+
+              new Notice(`Filled profile from @${fetchedUsername}`)
+            } catch (e) {
+              console.error(e)
+              new Notice("Failed to fetch message. Check the URL and API endpoint.")
+            } finally {
+              loading.hide()
+            }
+          }),
+      )
 
     // Profile ID (only editable for new profiles)
     if (!existing) {
@@ -181,50 +248,54 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
     new Setting(editor)
       .setName("Display name")
       .setDesc("Shown as the author in the embed.")
-      .addText((text) =>
+      .addText((text) => {
+        displayNameInput = text
         text
           .setPlaceholder("brorb")
           .setValue(draft.display_name ?? "")
           .onChange((v) => {
             draft.display_name = v.trim()
-          }),
-      )
+          })
+      })
 
     new Setting(editor)
       .setName("Username")
       .setDesc("The Discord @username.")
-      .addText((text) =>
+      .addText((text) => {
+        usernameInput = text
         text
           .setPlaceholder("brorb")
           .setValue(draft.username ?? "")
           .onChange((v) => {
             draft.username = v.trim()
-          }),
-      )
+          })
+      })
 
     new Setting(editor)
       .setName("Colour")
       .setDesc("Hex colour for the author name, e.g. #FFDA43.")
-      .addText((text) =>
+      .addText((text) => {
+        colourInput = text
         text
           .setPlaceholder("#FFDA43")
           .setValue(draft.color ?? "")
           .onChange((v) => {
             draft.color = v.trim()
-          }),
-      )
+          })
+      })
 
     new Setting(editor)
       .setName("Avatar URL")
       .setDesc("Direct link to the profile picture.")
-      .addText((text) =>
+      .addText((text) => {
+        avatarInput = text
         text
           .setPlaceholder(DEFAULT_AVATAR)
           .setValue(draft.avatar_url ?? "")
           .onChange((v) => {
             draft.avatar_url = v.trim()
-          }),
-      )
+          })
+      })
 
     // Preview
     const previewContainer = editor.createDiv()

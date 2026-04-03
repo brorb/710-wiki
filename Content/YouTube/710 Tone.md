@@ -44,17 +44,9 @@ The main controllers of the channel were previously [[Travis]] (before he died),
 >   "id": "cite-mh3yb1uj-huk2wk",
 >   "messages": [
 >     {
->       "id": "1401590763166634004",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "color": "#FF0000",
->         "colour": "#FF0000",
->         "colour_value": 16711680
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(I don't know, I don't have control over that anymore after the livestream.)",
 >       "timestamp": "2025-08-03T15:41:18.236000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1399760916962213959/1401590763166634004"
 >     }
 >   ]
@@ -100,17 +92,9 @@ On 10 July 2025, the channel posted a community post (see [[Community Posts]]) s
 >   "id": "cite-mh3h3z1q-1ggw5e",
 >   "messages": [
 >     {
->       "id": "1392988775579390113",
->       "author": {
->         "display_name": "Noel | HLF",
->         "username": "herodytheus",
->         "color": "#AF65DA",
->         "colour": "#AF65DA",
->         "colour_value": 11494874
->       },
+>       "profile": "herodytheus",
 >       "content": "New community post\n\n\"WARNING: !HOST ERROR! > No host detected, removing all unmarked labels on 8/20/25 at ran.time(1000-2400)\"",
 >       "timestamp": "2025-07-10T22:00:04.578000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/778094651831877643/a2953cc178f1d8ef4592329facc20edc.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1392537805254557817/1392988775579390113"
 >     }
 >   ]

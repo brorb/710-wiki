@@ -10,15 +10,9 @@ See [[TTH]] for more information about this subject.
 >   "id": "cite-mi2h0awh-i8r88f",
 >   "messages": [
 >     {
->       "id": "1396758985977233548",
->       "author": {
->         "display_name": "SYSTEM",
->         "username": "system000008",
->         "colour_value": null
->       },
+>       "profile": "system000008",
 >       "content": "<OUTPRINT>!:(TTH is a sub branch of NaN, actually I can't tell you a lot about them because of limits IN_DI put.)",
 >       "timestamp": "2025-07-21T07:41:32.784000+00:00",
->       "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
 >       "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1396758985977233548"
 >     }
 >   ]
@@ -30,115 +24,51 @@ It is possible that certain IDs correlate to certain rankings or other branches 
 ```discord
 [
   {
-    "id": "1437584496114536488",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Hello?",
     "timestamp": "2025-11-10T23:27:32.902000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584496114536488"
   },
   {
-    "id": "1437584518684082358",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "Ayyyooo!",
     "timestamp": "2025-11-10T23:27:38.283000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584518684082358"
   },
   {
-    "id": "1437584561063071894",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Who did I connect to?",
     "timestamp": "2025-11-10T23:27:48.387000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584561063071894"
   },
   {
-    "id": "1437584605334208552",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "Is uh #4322-4892-B a valid ID? That's mine.",
     "timestamp": "2025-11-10T23:27:58.942000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584605334208552"
   },
   {
-    "id": "1437584719775797289",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "What? You're apart of TTH?",
     "timestamp": "2025-11-10T23:28:26.227000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584719775797289"
   },
   {
-    "id": "1437584735969869984",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "No.",
     "timestamp": "2025-11-10T23:28:30.088000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584735969869984"
   },
   {
-    "id": "1437584869235626076",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
+    "profile": "system000008",
     "content": "Okay, then what's with the __S==dpps**&D\"\" ID?",
     "timestamp": "2025-11-10T23:29:01.861000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584869235626076"
   },
   {
-    "id": "1437584900969726033",
-    "author": {
-      "display_name": "L4N4U1997",
-      "username": "camera.3y3",
-      "color": "#FF00AA",
-      "colour": "#FF00AA",
-      "colour_value": 16711850
-    },
+    "profile": "camera3y3-3",
     "content": "Huh?",
     "timestamp": "2025-11-10T23:29:09.427000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/556159123058589718/d74ec540a5fb4ce5f425582e62e61fe2.png?size=1024",
     "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437584900969726033"
   }
 ]
