@@ -6,4 +6,4 @@
 </iframe>
 Uploaded 29 Mar 2026
 
-**Video Summary:** Digital hands with a strange spiral background.
+**Video Summary:** This video is unlike anything else uploaded on the channel. It features a glitchy background with weird spirals, as well as several hands (some with broken fingers) moving around on the screen. The hands are likely a reference to [[TTH]], hence the title of this video. i

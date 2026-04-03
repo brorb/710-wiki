@@ -349,3 +349,12 @@ Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+
+```media-box
+Media: [[TTH-hands-alternate.png]]
+Alt: The Hands as shown in [[LET US OUT TTH]]
+Caption: The Hands as shown in [[LET US OUT TTH]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
