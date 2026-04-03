@@ -3328,7 +3328,7 @@ This was sent the same day as [[LET US OUT TTH]] was uploaded as a DM to several
       "colour": "#FF0000",
       "colour_value": 16711680
     },
-    "content": "##########F8896: Did you remember the code for that one door?
+    "content": "##########F8896: Did you remember the code for that one door?\n
 #F8875: No, you know everybody has to get that code from higher up.
 #F8896: If higher up even thinks about responding.
 #F8896: Maybe look below those descripton lables on your desk
