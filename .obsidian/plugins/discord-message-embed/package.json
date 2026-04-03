@@ -4,8 +4,8 @@
   "description": "Obsidian helper to turn Discord message URLs into Quartz embeds.",
   "main": "main.js",
   "scripts": {
-    "build": "tsc -p .",
-    "dev": "tsc -p . --watch"
+    "build": "node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs"
   },
   "keywords": [
     "obsidian-plugin",
@@ -15,6 +15,7 @@
   "author": "brorb",
   "license": "MIT",
   "devDependencies": {
+    "esbuild": "^0.28.0",
     "obsidian": "^1.5.0",
     "tslib": "^2.7.0",
     "typescript": "^5.4.0"

@@ -29,6 +29,7 @@ Appearances:
 - [[LEAKED_1.mp4]]
 - [[LOG-116.mp4]]
 - [[STATION_8 TERMINAL 8]]
+- [[LET US OUT TTH]]
 ```
 
 
@@ -334,7 +335,7 @@ According to [[SYSTEM II]], they currently have someone captive, possibly among 
 >   ]
 > }
 > ```
-
+This claim is further supported by the video [[LET US OUT TTH]], wherein it says "LET OUR COLLECTIVE MINDS RUN FREE AGAIN".
 ## TTH Bases
 
 TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. In the [[Private Room#Chat 11|11th Private Room chat]], a TTH worker with ID [[F8829]] reveals that they work in station 887634.
