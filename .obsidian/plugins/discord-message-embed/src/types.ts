@@ -18,6 +18,11 @@ export interface DiscordProfile {
 export interface PluginSettings {
   /** API endpoint for fetching linked server messages */
   apiEndpoint: string
+  /** 
+   * Local vault path or URL to the default avatar. 
+   * e.g. "Media/Avatars/default.png" or "https://..."
+   */
+  defaultAvatarUrl: string
   /** Map of profile id → profile data */
   profiles: Record<string, DiscordProfile>
 }
@@ -25,6 +30,7 @@ export interface PluginSettings {
 export const DEFAULT_SETTINGS: PluginSettings = {
   apiEndpoint:
     "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
+  defaultAvatarUrl: "https://cdn.discordapp.com/embed/avatars/0.png",
   profiles: {},
 }
 
@@ -33,9 +39,12 @@ export const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
 /* ── API response shapes ── */
 
 export interface DiscordApiAuthor {
+  id?: string
   display_name?: string
   username?: string
   avatar_url?: string
+  /** Legacy field name — server may return this instead of avatar_url */
+  avatar?: string
   colour?: string
   color?: string
   colour_value?: number

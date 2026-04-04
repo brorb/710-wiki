@@ -37,6 +37,7 @@ interface ResolvedAuthor {
 function resolveAuthor(
   msg: DiscordMessageBlock,
   profiles: Record<string, DiscordProfile>,
+  defaultAvatarUrl: string,
 ): ResolvedAuthor {
   // Profile-based resolution
   if (msg.profile && profiles[msg.profile]) {
@@ -45,7 +46,7 @@ function resolveAuthor(
       display_name: p.display_name,
       username: p.username,
       color: p.color,
-      avatar_url: p.avatar_url || DEFAULT_AVATAR,
+      avatar_url: p.avatar_url || defaultAvatarUrl || DEFAULT_AVATAR,
     }
   }
 
@@ -55,7 +56,7 @@ function resolveAuthor(
       msg.author?.display_name || msg.author?.username || "Unknown User",
     username: msg.author?.username || "unknown",
     color: msg.author?.color ?? msg.author?.colour,
-    avatar_url: msg.avatar_url || DEFAULT_AVATAR,
+    avatar_url: msg.avatar_url || msg.author?.avatar_url || defaultAvatarUrl || DEFAULT_AVATAR,
   }
 }
 
@@ -72,6 +73,7 @@ export function renderDiscordThread(
   messages: DiscordMessageBlock[],
   profiles: Record<string, DiscordProfile>,
   collapsible = true,
+  defaultAvatarUrl: string = DEFAULT_AVATAR
 ): HTMLElement {
   const wrapper = document.createElement("div")
   wrapper.classList.add("discord-thread-wrapper")
@@ -88,7 +90,7 @@ export function renderDiscordThread(
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i]
     const prev = i > 0 ? messages[i - 1] : undefined
-    const el = renderMessage(msg, prev, profiles)
+    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl)
     thread.appendChild(el)
   }
 
@@ -141,8 +143,9 @@ function renderMessage(
   msg: DiscordMessageBlock,
   prev: DiscordMessageBlock | undefined,
   profiles: Record<string, DiscordProfile>,
+  defaultAvatarUrl: string
 ): HTMLElement {
-  const author = resolveAuthor(msg, profiles)
+  const author = resolveAuthor(msg, profiles, defaultAvatarUrl)
   const prevKey = prev ? getAuthorKey(prev, profiles) : undefined
   const currKey = getAuthorKey(msg, profiles)
   const sameAuthor = prevKey !== undefined && prevKey === currKey && prevKey !== ""
@@ -168,7 +171,7 @@ function renderMessage(
     img.height = 40
     img.onerror = () => {
       img.onerror = null
-      img.src = DEFAULT_AVATAR
+      img.src = defaultAvatarUrl
     }
     avatarDiv.appendChild(img)
     article.appendChild(avatarDiv)
@@ -272,6 +275,7 @@ export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
       messages,
       plugin.settings.profiles,
       messages.length > 6,
+      plugin.settings.defaultAvatarUrl
     )
     el.appendChild(thread)
   })
@@ -307,7 +311,8 @@ export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
       const thread = renderDiscordThread(
         messages,
         plugin.settings.profiles,
-        messages.length > 6,
+        true,
+        plugin.settings.defaultAvatarUrl
       )
 
       // Build a nice wrapper that preserves the expandable title bar

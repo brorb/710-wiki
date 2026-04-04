@@ -4,9 +4,10 @@ import {
   DEFAULT_SETTINGS,
   type DiscordApiResponse,
   type DiscordMessageBlock,
+  type DiscordProfile,
   type PluginSettings,
 } from "./types"
-import { normaliseColour } from "./utils"
+import { normaliseColour, normalizeUsername, extractAvatarId } from "./utils"
 import { DiscordEmbedSettingTab } from "./settings"
 import { ManualEmbedModal } from "./modal"
 import { registerDiscordRenderer } from "./renderer"
@@ -288,15 +289,19 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
   private mapToMessageBlock(url: string, payload: DiscordApiResponse): DiscordMessageBlock {
     const authorUsername = payload.author?.username?.trim()
     const authorDisplay = payload.author?.display_name?.trim()
+    const authorAvatar = payload.author?.avatar_url?.trim() || payload.author?.avatar?.trim()
     const authorColourHex = normaliseColour(
       payload.author?.color ?? payload.author?.colour,
       payload.author?.colour_value,
     )
 
-    // Try to match to a saved profile
-    const matchedProfile = this.findMatchingProfile(authorUsername, authorDisplay)
+    // Try to match to a saved profile (smart multi-signal matching)
+    const matchedProfile = this.findMatchingProfile(authorUsername, authorDisplay, authorAvatar)
 
     if (matchedProfile) {
+      // Update the profile if API has fresher data (avatar change, display name change)
+      this.maybeUpdateProfile(matchedProfile, authorDisplay, authorAvatar, authorColourHex)
+
       return {
         profile: matchedProfile.id,
         content: payload.content ?? "",
@@ -305,6 +310,20 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       }
     }
 
+    // No existing profile — auto-create one for this user
+    if (authorUsername) {
+      const created = this.autoCreateProfile(authorUsername, authorDisplay, authorAvatar, authorColourHex)
+      if (created) {
+        return {
+          profile: created.id,
+          content: payload.content ?? "",
+          timestamp: payload.timestamp,
+          url,
+        }
+      }
+    }
+
+    // Fallback: inline author block (no profile)
     return {
       id: payload.id,
       author: {
@@ -316,28 +335,150 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       },
       content: payload.content ?? "",
       timestamp: payload.timestamp,
-      avatar_url: payload.author?.avatar_url || DEFAULT_AVATAR,
+      avatar_url: authorAvatar || this.settings.defaultAvatarUrl || DEFAULT_AVATAR,
       url,
     }
   }
 
-  /** Try to match an API response author to a saved profile by username. */
+  /**
+   * Smart multi-signal profile matching.
+   * Priority: 1) exact username  2) avatar hash  3) normalized username
+   * For a small user population this is safe and eliminates duplicates.
+   */
   private findMatchingProfile(
     username?: string,
     displayName?: string,
+    avatarUrl?: string,
   ) {
-    if (!username && !displayName) return null
+    if (!username && !displayName && !avatarUrl) return null
     const profiles = this.settings.profiles
+
+    // Pass 1: exact username or profile-id match (existing behaviour)
     for (const key of Object.keys(profiles)) {
       const p = profiles[key]
       if (
         (username && p.username.toLowerCase() === username.toLowerCase()) ||
-        (username && p.id.toLowerCase() === username.toLowerCase()) ||
-        (displayName && p.display_name.toLowerCase() === displayName.toLowerCase())
+        (username && p.id.toLowerCase() === username.toLowerCase())
       ) {
         return p
       }
     }
+
+    // Pass 2: avatar hash match (strongest dedup signal — same avatar = same person)
+    if (avatarUrl) {
+      const incomingHash = extractAvatarId(avatarUrl)
+      if (incomingHash) {
+        for (const key of Object.keys(profiles)) {
+          const p = profiles[key]
+          if (p.avatar_url) {
+            const profileHash = extractAvatarId(p.avatar_url)
+            if (profileHash && profileHash === incomingHash) {
+              return p
+            }
+          }
+        }
+      }
+    }
+
+    // Pass 3: normalized username (strips dots/underscores/dashes)
+    if (username) {
+      const normalizedIncoming = normalizeUsername(username)
+      if (normalizedIncoming.length >= 3) {
+        for (const key of Object.keys(profiles)) {
+          const p = profiles[key]
+          if (normalizeUsername(p.username) === normalizedIncoming) {
+            return p
+          }
+        }
+      }
+    }
+
+    // Pass 4: display name match (least reliable, but useful for small populations)
+    if (displayName) {
+      for (const key of Object.keys(profiles)) {
+        const p = profiles[key]
+        if (p.display_name.toLowerCase() === displayName.toLowerCase()) {
+          return p
+        }
+      }
+    }
+
     return null
+  }
+
+  /**
+   * Auto-create a profile from API response data.
+   * Generates a clean profile ID from the username.
+   */
+  private autoCreateProfile(
+    username: string,
+    displayName?: string,
+    avatarUrl?: string,
+    color?: string,
+  ): DiscordProfile | null {
+    const id = username.toLowerCase().replace(/[^a-z0-9_-]/g, "")
+    if (!id) return null
+
+    // Avoid collision with existing profile IDs
+    let finalId = id
+    if (this.settings.profiles[finalId]) {
+      // Already exists — this shouldn't happen if findMatchingProfile worked,
+      // but guard against it anyway
+      return this.settings.profiles[finalId]
+    }
+
+    const profile: DiscordProfile = {
+      id: finalId,
+      display_name: displayName || username,
+      username: username,
+      color: color || undefined,
+      avatar_url: avatarUrl || undefined,
+    }
+
+    this.settings.profiles[finalId] = profile
+    // Fire-and-forget save — don't block the embed insertion
+    void this.saveSettings()
+    new Notice(`Auto-created profile "${finalId}" for @${username}`)
+
+    return profile
+  }
+
+  /**
+   * Update an existing profile if the API returned newer/better info.
+   * Only overwrites empty fields or updates the avatar (users change these).
+   */
+  private maybeUpdateProfile(
+    profile: DiscordProfile,
+    displayName?: string,
+    avatarUrl?: string,
+    color?: string,
+  ): void {
+    let changed = false
+
+    // Update avatar if it changed (users update profile pictures)
+    if (avatarUrl && avatarUrl !== profile.avatar_url) {
+      const newHash = extractAvatarId(avatarUrl)
+      const oldHash = profile.avatar_url ? extractAvatarId(profile.avatar_url) : null
+      if (newHash && newHash !== oldHash) {
+        profile.avatar_url = avatarUrl
+        changed = true
+      }
+    }
+
+    // Fill in missing display name
+    if (displayName && !profile.display_name) {
+      profile.display_name = displayName
+      changed = true
+    }
+
+    // Fill in missing color
+    if (color && !profile.color) {
+      profile.color = color
+      changed = true
+    }
+
+    if (changed) {
+      void this.saveSettings()
+    }
   }
 }

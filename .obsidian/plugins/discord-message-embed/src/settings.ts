@@ -2,7 +2,7 @@ import { App, PluginSettingTab, Setting, Notice, TextComponent } from "obsidian"
 import type DiscordMessageEmbedPlugin from "./main"
 import type { DiscordProfile } from "./types"
 import { DEFAULT_AVATAR } from "./types"
-import { normaliseColour } from "./utils"
+import { normaliseColour, normalizeUsername, extractAvatarId } from "./utils"
 
 export class DiscordEmbedSettingTab extends PluginSettingTab {
   plugin: DiscordMessageEmbedPlugin
@@ -32,6 +32,19 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
           }),
       )
 
+    new Setting(containerEl)
+      .setName("Default Avatar URL/Path")
+      .setDesc("URL or Obsidian-relative/absolute local path to the default avatar (e.g. Content/Media/Avatars/default.png). Used when a profile lacks an avatar.")
+      .addText((text) =>
+        text
+          .setPlaceholder(DEFAULT_AVATAR)
+          .setValue(this.plugin.settings.defaultAvatarUrl ?? "")
+          .onChange(async (value) => {
+            this.plugin.settings.defaultAvatarUrl = value.trim()
+            await this.plugin.saveSettings()
+          }),
+      )
+
     /* ── Profiles ── */
     containerEl.createEl("h2", { text: "Discord Profiles" })
     containerEl.createEl("p", {
@@ -48,6 +61,13 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
           .setCta()
           .onClick(() => {
             this.openProfileEditor(containerEl)
+          }),
+      )
+      .addButton((btn) =>
+        btn
+          .setButtonText("Merge Duplicates")
+          .onClick(() => {
+            this.mergeDuplicateProfiles(containerEl)
           }),
       )
 
@@ -128,6 +148,93 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
             }),
         )
     }
+  }
+
+  /**
+   * Scan all profiles and merge duplicates.
+   * Groups by: 1) avatar hash, 2) normalized username.
+   * Keeps the profile with the most complete data (most fields filled).
+   */
+  private async mergeDuplicateProfiles(parentEl: HTMLElement): Promise<void> {
+    const profiles = this.plugin.settings.profiles
+    const keys = Object.keys(profiles)
+    if (keys.length < 2) {
+      new Notice("Nothing to merge — fewer than 2 profiles.")
+      return
+    }
+
+    // Build groups of duplicate profile keys
+    const groups: Map<string, string[]> = new Map()
+    const assigned = new Set<string>()
+
+    for (let i = 0; i < keys.length; i++) {
+      if (assigned.has(keys[i])) continue
+      const group = [keys[i]]
+      assigned.add(keys[i])
+      const pi = profiles[keys[i]]
+      const piAvatarHash = pi.avatar_url ? extractAvatarId(pi.avatar_url) : null
+      const piNormalized = normalizeUsername(pi.username)
+
+      for (let j = i + 1; j < keys.length; j++) {
+        if (assigned.has(keys[j])) continue
+        const pj = profiles[keys[j]]
+        const pjAvatarHash = pj.avatar_url ? extractAvatarId(pj.avatar_url) : null
+        const pjNormalized = normalizeUsername(pj.username)
+
+        const sameAvatar = piAvatarHash && pjAvatarHash && piAvatarHash === pjAvatarHash
+        const sameUsername = piNormalized.length >= 3 && piNormalized === pjNormalized
+
+        if (sameAvatar || sameUsername) {
+          group.push(keys[j])
+          assigned.add(keys[j])
+        }
+      }
+
+      if (group.length > 1) {
+        groups.set(keys[i], group)
+      }
+    }
+
+    if (groups.size === 0) {
+      new Notice("No duplicate profiles found.")
+      return
+    }
+
+    // Merge each group: keep the profile with the most data, delete the rest
+    let merged = 0
+    let removed = 0
+    for (const [, group] of groups) {
+      // Score each profile by data completeness
+      const scored = group.map((key) => {
+        const p = profiles[key]
+        let score = 0
+        if (p.display_name) score++
+        if (p.username) score++
+        if (p.color) score++
+        if (p.avatar_url) score++
+        // Prefer shorter/cleaner IDs
+        if (!/[-]\d+$/.test(key)) score++
+        return { key, score }
+      })
+      scored.sort((a, b) => b.score - a.score)
+
+      const keeper = profiles[scored[0].key]
+
+      // Merge missing fields from duplicates into the keeper
+      for (let i = 1; i < scored.length; i++) {
+        const dup = profiles[scored[i].key]
+        if (!keeper.color && dup.color) keeper.color = dup.color
+        if (!keeper.avatar_url && dup.avatar_url) keeper.avatar_url = dup.avatar_url
+        if (!keeper.display_name && dup.display_name) keeper.display_name = dup.display_name
+        delete profiles[scored[i].key]
+        removed++
+      }
+      merged++
+    }
+
+    await this.plugin.saveSettings()
+    new Notice(`Merged ${merged} group(s), removed ${removed} duplicate profile(s).`)
+    this.display()
   }
 
   /**
@@ -286,11 +393,11 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
 
     new Setting(editor)
       .setName("Avatar URL")
-      .setDesc("Direct link to the profile picture.")
+      .setDesc("Direct link or vault path to the profile picture.")
       .addText((text) => {
         avatarInput = text
         text
-          .setPlaceholder(DEFAULT_AVATAR)
+          .setPlaceholder(this.plugin.settings.defaultAvatarUrl || DEFAULT_AVATAR)
           .setValue(draft.avatar_url ?? "")
           .onChange((v) => {
             draft.avatar_url = v.trim()

@@ -28,6 +28,7 @@ var import_obsidian3 = require("obsidian");
 // src/types.ts
 var DEFAULT_SETTINGS = {
   apiEndpoint: "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
+  defaultAvatarUrl: "https://cdn.discordapp.com/embed/avatars/0.png",
   profiles: {}
 };
 var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
@@ -42,6 +43,13 @@ function normaliseColour(input, numeric) {
     return `#${numeric.toString(16).padStart(6, "0")}`;
   }
   return void 0;
+}
+function normalizeUsername(username) {
+  return username.toLowerCase().replace(/[._\-]/g, "");
+}
+function extractAvatarId(url) {
+  const match = url.match(/\/avatars\/\d+\/([a-f0-9]+)/);
+  return match ? match[1] : null;
 }
 
 // src/settings.ts
@@ -61,6 +69,12 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         await this.plugin.saveSettings();
       })
     );
+    new import_obsidian.Setting(containerEl).setName("Default Avatar URL/Path").setDesc("URL or Obsidian-relative/absolute local path to the default avatar (e.g. Content/Media/Avatars/default.png). Used when a profile lacks an avatar.").addText(
+      (text) => text.setPlaceholder(DEFAULT_AVATAR).setValue(this.plugin.settings.defaultAvatarUrl ?? "").onChange(async (value) => {
+        this.plugin.settings.defaultAvatarUrl = value.trim();
+        await this.plugin.saveSettings();
+      })
+    );
     containerEl.createEl("h2", { text: "Discord Profiles" });
     containerEl.createEl("p", {
       text: "Manage reusable author profiles. Use the profile ID in your discord blocks instead of repeating avatar URLs and colours.",
@@ -69,6 +83,10 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
     new import_obsidian.Setting(containerEl).setName("Add new profile").addButton(
       (btn) => btn.setButtonText("+ New Profile").setCta().onClick(() => {
         this.openProfileEditor(containerEl);
+      })
+    ).addButton(
+      (btn) => btn.setButtonText("Merge Duplicates").onClick(() => {
+        this.mergeDuplicateProfiles(containerEl);
       })
     );
     const profileContainer = containerEl.createDiv("discord-profiles-list");
@@ -131,6 +149,76 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         })
       );
     }
+  }
+  /**
+   * Scan all profiles and merge duplicates.
+   * Groups by: 1) avatar hash, 2) normalized username.
+   * Keeps the profile with the most complete data (most fields filled).
+   */
+  async mergeDuplicateProfiles(parentEl) {
+    const profiles = this.plugin.settings.profiles;
+    const keys = Object.keys(profiles);
+    if (keys.length < 2) {
+      new import_obsidian.Notice("Nothing to merge \u2014 fewer than 2 profiles.");
+      return;
+    }
+    const groups = /* @__PURE__ */ new Map();
+    const assigned = /* @__PURE__ */ new Set();
+    for (let i = 0; i < keys.length; i++) {
+      if (assigned.has(keys[i])) continue;
+      const group = [keys[i]];
+      assigned.add(keys[i]);
+      const pi = profiles[keys[i]];
+      const piAvatarHash = pi.avatar_url ? extractAvatarId(pi.avatar_url) : null;
+      const piNormalized = normalizeUsername(pi.username);
+      for (let j = i + 1; j < keys.length; j++) {
+        if (assigned.has(keys[j])) continue;
+        const pj = profiles[keys[j]];
+        const pjAvatarHash = pj.avatar_url ? extractAvatarId(pj.avatar_url) : null;
+        const pjNormalized = normalizeUsername(pj.username);
+        const sameAvatar = piAvatarHash && pjAvatarHash && piAvatarHash === pjAvatarHash;
+        const sameUsername = piNormalized.length >= 3 && piNormalized === pjNormalized;
+        if (sameAvatar || sameUsername) {
+          group.push(keys[j]);
+          assigned.add(keys[j]);
+        }
+      }
+      if (group.length > 1) {
+        groups.set(keys[i], group);
+      }
+    }
+    if (groups.size === 0) {
+      new import_obsidian.Notice("No duplicate profiles found.");
+      return;
+    }
+    let merged = 0;
+    let removed = 0;
+    for (const [, group] of groups) {
+      const scored = group.map((key) => {
+        const p = profiles[key];
+        let score = 0;
+        if (p.display_name) score++;
+        if (p.username) score++;
+        if (p.color) score++;
+        if (p.avatar_url) score++;
+        if (!/[-]\d+$/.test(key)) score++;
+        return { key, score };
+      });
+      scored.sort((a, b) => b.score - a.score);
+      const keeper = profiles[scored[0].key];
+      for (let i = 1; i < scored.length; i++) {
+        const dup = profiles[scored[i].key];
+        if (!keeper.color && dup.color) keeper.color = dup.color;
+        if (!keeper.avatar_url && dup.avatar_url) keeper.avatar_url = dup.avatar_url;
+        if (!keeper.display_name && dup.display_name) keeper.display_name = dup.display_name;
+        delete profiles[scored[i].key];
+        removed++;
+      }
+      merged++;
+    }
+    await this.plugin.saveSettings();
+    new import_obsidian.Notice(`Merged ${merged} group(s), removed ${removed} duplicate profile(s).`);
+    this.display();
   }
   /**
    * Renders inline profile editor fields within the settings tab.
@@ -229,9 +317,9 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         draft.color = v.trim();
       });
     });
-    new import_obsidian.Setting(editor).setName("Avatar URL").setDesc("Direct link to the profile picture.").addText((text) => {
+    new import_obsidian.Setting(editor).setName("Avatar URL").setDesc("Direct link or vault path to the profile picture.").addText((text) => {
       avatarInput = text;
-      text.setPlaceholder(DEFAULT_AVATAR).setValue(draft.avatar_url ?? "").onChange((v) => {
+      text.setPlaceholder(this.plugin.settings.defaultAvatarUrl || DEFAULT_AVATAR).setValue(draft.avatar_url ?? "").onChange((v) => {
         draft.avatar_url = v.trim();
       });
     });
@@ -683,21 +771,21 @@ var formatTimestamp = (source) => {
   const min = date.getMinutes().toString().padStart(2, "0");
   return { readable: `${dd}/${mm}/${yyyy} ${hh}:${min}`, iso: date.toISOString() };
 };
-function resolveAuthor(msg, profiles) {
+function resolveAuthor(msg, profiles, defaultAvatarUrl) {
   if (msg.profile && profiles[msg.profile]) {
     const p = profiles[msg.profile];
     return {
       display_name: p.display_name,
       username: p.username,
       color: p.color,
-      avatar_url: p.avatar_url || DEFAULT_AVATAR
+      avatar_url: p.avatar_url || defaultAvatarUrl || DEFAULT_AVATAR
     };
   }
   return {
     display_name: msg.author?.display_name || msg.author?.username || "Unknown User",
     username: msg.author?.username || "unknown",
     color: msg.author?.color ?? msg.author?.colour,
-    avatar_url: msg.avatar_url || DEFAULT_AVATAR
+    avatar_url: msg.avatar_url || msg.author?.avatar_url || defaultAvatarUrl || DEFAULT_AVATAR
   };
 }
 function getAuthorKey(msg, profiles) {
@@ -706,7 +794,7 @@ function getAuthorKey(msg, profiles) {
   if (!a) return "";
   return `${a.username ?? ""}|${a.display_name ?? ""}`;
 }
-function renderDiscordThread(messages, profiles, collapsible = true) {
+function renderDiscordThread(messages, profiles, collapsible = true, defaultAvatarUrl = DEFAULT_AVATAR) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("discord-thread-wrapper");
   if (collapsible) wrapper.classList.add("collapsed");
@@ -719,7 +807,7 @@ function renderDiscordThread(messages, profiles, collapsible = true) {
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i];
     const prev = i > 0 ? messages[i - 1] : void 0;
-    const el = renderMessage(msg, prev, profiles);
+    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl);
     thread.appendChild(el);
   }
   content.appendChild(thread);
@@ -756,8 +844,8 @@ function renderDiscordThread(messages, profiles, collapsible = true) {
   }
   return wrapper;
 }
-function renderMessage(msg, prev, profiles) {
-  const author = resolveAuthor(msg, profiles);
+function renderMessage(msg, prev, profiles, defaultAvatarUrl) {
+  const author = resolveAuthor(msg, profiles, defaultAvatarUrl);
   const prevKey = prev ? getAuthorKey(prev, profiles) : void 0;
   const currKey = getAuthorKey(msg, profiles);
   const sameAuthor = prevKey !== void 0 && prevKey === currKey && prevKey !== "";
@@ -779,7 +867,7 @@ function renderMessage(msg, prev, profiles) {
     img.height = 40;
     img.onerror = () => {
       img.onerror = null;
-      img.src = DEFAULT_AVATAR;
+      img.src = defaultAvatarUrl;
     };
     avatarDiv.appendChild(img);
     article.appendChild(avatarDiv);
@@ -857,7 +945,8 @@ ${source}` });
     const thread = renderDiscordThread(
       messages,
       plugin.settings.profiles,
-      messages.length > 6
+      messages.length > 6,
+      plugin.settings.defaultAvatarUrl
     );
     el.appendChild(thread);
   });
@@ -883,7 +972,8 @@ ${source}` });
       const thread = renderDiscordThread(
         messages,
         plugin.settings.profiles,
-        messages.length > 6
+        true,
+        plugin.settings.defaultAvatarUrl
       );
       const titleBar = callout.querySelector(
         ".callout-title"
@@ -1145,18 +1235,31 @@ ${callout}
   mapToMessageBlock(url, payload) {
     const authorUsername = payload.author?.username?.trim();
     const authorDisplay = payload.author?.display_name?.trim();
+    const authorAvatar = payload.author?.avatar_url?.trim() || payload.author?.avatar?.trim();
     const authorColourHex = normaliseColour(
       payload.author?.color ?? payload.author?.colour,
       payload.author?.colour_value
     );
-    const matchedProfile = this.findMatchingProfile(authorUsername, authorDisplay);
+    const matchedProfile = this.findMatchingProfile(authorUsername, authorDisplay, authorAvatar);
     if (matchedProfile) {
+      this.maybeUpdateProfile(matchedProfile, authorDisplay, authorAvatar, authorColourHex);
       return {
         profile: matchedProfile.id,
         content: payload.content ?? "",
         timestamp: payload.timestamp,
         url
       };
+    }
+    if (authorUsername) {
+      const created = this.autoCreateProfile(authorUsername, authorDisplay, authorAvatar, authorColourHex);
+      if (created) {
+        return {
+          profile: created.id,
+          content: payload.content ?? "",
+          timestamp: payload.timestamp,
+          url
+        };
+      }
     }
     return {
       id: payload.id,
@@ -1169,20 +1272,106 @@ ${callout}
       },
       content: payload.content ?? "",
       timestamp: payload.timestamp,
-      avatar_url: payload.author?.avatar_url || DEFAULT_AVATAR,
+      avatar_url: authorAvatar || this.settings.defaultAvatarUrl || DEFAULT_AVATAR,
       url
     };
   }
-  /** Try to match an API response author to a saved profile by username. */
-  findMatchingProfile(username, displayName) {
-    if (!username && !displayName) return null;
+  /**
+   * Smart multi-signal profile matching.
+   * Priority: 1) exact username  2) avatar hash  3) normalized username
+   * For a small user population this is safe and eliminates duplicates.
+   */
+  findMatchingProfile(username, displayName, avatarUrl) {
+    if (!username && !displayName && !avatarUrl) return null;
     const profiles = this.settings.profiles;
     for (const key of Object.keys(profiles)) {
       const p = profiles[key];
-      if (username && p.username.toLowerCase() === username.toLowerCase() || username && p.id.toLowerCase() === username.toLowerCase() || displayName && p.display_name.toLowerCase() === displayName.toLowerCase()) {
+      if (username && p.username.toLowerCase() === username.toLowerCase() || username && p.id.toLowerCase() === username.toLowerCase()) {
         return p;
       }
     }
+    if (avatarUrl) {
+      const incomingHash = extractAvatarId(avatarUrl);
+      if (incomingHash) {
+        for (const key of Object.keys(profiles)) {
+          const p = profiles[key];
+          if (p.avatar_url) {
+            const profileHash = extractAvatarId(p.avatar_url);
+            if (profileHash && profileHash === incomingHash) {
+              return p;
+            }
+          }
+        }
+      }
+    }
+    if (username) {
+      const normalizedIncoming = normalizeUsername(username);
+      if (normalizedIncoming.length >= 3) {
+        for (const key of Object.keys(profiles)) {
+          const p = profiles[key];
+          if (normalizeUsername(p.username) === normalizedIncoming) {
+            return p;
+          }
+        }
+      }
+    }
+    if (displayName) {
+      for (const key of Object.keys(profiles)) {
+        const p = profiles[key];
+        if (p.display_name.toLowerCase() === displayName.toLowerCase()) {
+          return p;
+        }
+      }
+    }
     return null;
+  }
+  /**
+   * Auto-create a profile from API response data.
+   * Generates a clean profile ID from the username.
+   */
+  autoCreateProfile(username, displayName, avatarUrl, color) {
+    const id = username.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+    if (!id) return null;
+    let finalId = id;
+    if (this.settings.profiles[finalId]) {
+      return this.settings.profiles[finalId];
+    }
+    const profile = {
+      id: finalId,
+      display_name: displayName || username,
+      username,
+      color: color || void 0,
+      avatar_url: avatarUrl || void 0
+    };
+    this.settings.profiles[finalId] = profile;
+    void this.saveSettings();
+    new import_obsidian3.Notice(`Auto-created profile "${finalId}" for @${username}`);
+    return profile;
+  }
+  /**
+   * Update an existing profile if the API returned newer/better info.
+   * Only overwrites empty fields or updates the avatar (users change these).
+   */
+  maybeUpdateProfile(profile, displayName, avatarUrl, color) {
+    let changed = false;
+    if (avatarUrl && avatarUrl !== profile.avatar_url) {
+      const newHash = extractAvatarId(avatarUrl);
+      const oldHash = profile.avatar_url ? extractAvatarId(profile.avatar_url) : null;
+      if (newHash && newHash !== oldHash) {
+        profile.avatar_url = avatarUrl;
+        changed = true;
+      }
+    }
+    if (displayName && !profile.display_name) {
+      profile.display_name = displayName;
+      changed = true;
+    }
+    if (color && !profile.color) {
+      profile.color = color;
+      changed = true;
+    }
+    if (changed) {
+      void this.saveSettings();
+    }
   }
 };

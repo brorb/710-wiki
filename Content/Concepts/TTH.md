@@ -210,6 +210,8 @@ This claim is further supported by the video [[LET US OUT TTH]], wherein it says
 
 TTH have numerous bases from which their operations are performed, as confirmed in [[LEAKED_1.mp4]]. In the [[Private Room#Chat 11|11th Private Room chat]], a TTH worker with ID [[F8829]] reveals that they work in station 887634.
 
+
+
 ## Gallery
 
 ```media-box
