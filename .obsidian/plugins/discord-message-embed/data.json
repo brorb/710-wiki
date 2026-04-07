@@ -1,5 +1,6 @@
 {
   "apiEndpoint": "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
+  "defaultAvatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png",
   "profiles": {
     "system000008": {
       "id": "system000008",
@@ -147,6 +148,12 @@
       "username": "pht_alt_",
       "color": "#04E5E6",
       "avatar_url": "https://cdn.discordapp.com/avatars/1429203385608962208/81e7c4ae6a032d98299cf08e2d0d6228.png?size=1024"
+    }
+  },
+  "youtubeChannels": {
+    "7-10tone": {
+      "name": "7/10 Tone",
+      "avatarUrl": "https://yt3.googleusercontent.com/O8ghhscYlPBQPiUmw0yMFZ0LKZ6BIBzasRvtZdCgKnKVTXstsCedEUFVFNBkpU9s0qBN9VodZw=s900-c-k-c0x00ffffff-no-rj"
     }
   }
 }
