@@ -1021,6 +1021,151 @@ function normaliseMessages(raw) {
   return [];
 }
 
+// src/community-post.css
+var community_post_default = '.yt-community-post {\r\n  background: #202020;\r\n  border: 1px solid #2f2f2f;\r\n  border-radius: 16px;\r\n  padding: 13px 18px 16px;\r\n  color: #f1f1f1;\r\n  max-width: min(640px, 100%);\r\n  font-family: "Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);\r\n  display: flex;\r\n  align-items: flex-start;\r\n  gap: 12px;\r\n  position: relative;\r\n}\r\n\r\n.yt-community-post + .yt-community-post {\r\n  margin-top: 20px;\r\n}\r\n\r\n.yt-community-post__header {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  gap: 8px;\r\n  row-gap: 4px;\r\n  flex-wrap: wrap;\r\n  width: 100%;\r\n}\r\n\r\n.yt-community-post__identity {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  align-items: baseline;\r\n  gap: 6px;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__avatar {\r\n  flex-shrink: 0;\r\n  width: 48px;\r\n  height: 48px;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  background-color: transparent;\r\n}\r\n\r\n.yt-community-post__avatar img {\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n  object-position: center;\r\n  display: block;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.yt-community-post__content {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 4px;\r\n  flex: 1;\r\n  min-width: 0;\r\n}\r\n\r\n.yt-community-post__channel {\r\n  font-weight: 600;\r\n  font-size: 0.95rem;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__timestamp {\r\n  color: #a7a7a7;\r\n  font-size: 0.78rem;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__body {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 4px;\r\n  font-size: 0.93rem;\r\n}\r\n\r\n.yt-community-post__text {\r\n  line-height: 1.48;\r\n  white-space: normal;\r\n  word-break: break-word;\r\n}\r\n\r\n.yt-community-post__embed {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.yt-community-post__embed img {\r\n  border-radius: 12px;\r\n  width: 100%;\r\n  height: auto;\r\n  display: block;\r\n  border: 1px solid rgba(255, 255, 255, 0.08);\r\n}\r\n\r\n.yt-community-post__footer {\r\n  margin-top: 4px;\r\n}\r\n\r\n.yt-community-post__actions {\r\n  display: flex;\r\n  gap: 16px;\r\n  color: #b0b0b0;\r\n  font-size: 0.82rem;\r\n  pointer-events: none;\r\n  user-select: none;\r\n}\r\n\r\n.yt-community-post__action {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  gap: 6px;\r\n  opacity: 0.9;\r\n}\r\n\r\n.yt-community-post__action svg {\r\n  width: 20px;\r\n  height: 20px;\r\n  fill: currentColor;\r\n}\r\n\r\n.yt-community-post__count {\r\n  font-size: 0.78rem;\r\n  color: #cecece;\r\n}\r\n';
+
+// src/communityPostRenderer.ts
+var escapeHtml = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+var DEFAULT_CHANNEL_HANDLE = "7-10tone";
+function parseHeader(infoString, body) {
+  const parts = infoString.split(",").map((p) => p.trim()).filter((p, i, a) => !(p.length === 0 && i >= a.length - 1));
+  if (parts.length < 3) return null;
+  let argIndex = 1;
+  let channelHandle = DEFAULT_CHANNEL_HANDLE;
+  if (parts[1] && parts[1].startsWith("@")) {
+    channelHandle = parts[1].slice(1).toLowerCase();
+    argIndex++;
+  }
+  if (parts.length < argIndex + 2) return null;
+  const likes = Number.parseInt(parts[argIndex] ?? "", 10);
+  const comments = Number.parseInt(parts[argIndex + 1] ?? "", 10);
+  if (!Number.isFinite(likes) || !Number.isFinite(comments)) return null;
+  let postedLabelRaw = parts[argIndex + 2] ?? "";
+  const extra = parts.slice(argIndex + 3).filter((s) => s.length > 0);
+  if (postedLabelRaw && extra.length > 0 && /[A-Za-z]/.test(postedLabelRaw) && !/\d{4}/.test(postedLabelRaw) && /^\d{4}$/.test(extra[0])) {
+    postedLabelRaw = `${postedLabelRaw} ${extra.shift()}`.trim();
+  }
+  return {
+    channelHandle,
+    likes,
+    comments,
+    postedLabel: postedLabelRaw,
+    body: body.trim()
+  };
+}
+function formatCount(n) {
+  if (n <= 0) return void 0;
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1).replace(/\.0$/, "")}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(1).replace(/\.0$/, "")}K`;
+  return String(n);
+}
+var LIKE_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14 1 7.59 7.41C7.22 7.78 7 8.3 7 8.83V19c0 1.1.9 2 2 2h8c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" /></svg>`;
+var COMMENT_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 3H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12l5 4V5c0-1.1-.9-2-2-2h-3z" /></svg>`;
+var styleInjected2 = false;
+function injectStyle2() {
+  if (styleInjected2) return;
+  const style = document.createElement("style");
+  style.textContent = community_post_default;
+  document.head.appendChild(style);
+  styleInjected2 = true;
+}
+function buildPostElement(post) {
+  const article = document.createElement("article");
+  article.classList.add("yt-community-post");
+  const avatarSpan = document.createElement("span");
+  avatarSpan.classList.add("yt-community-post__avatar");
+  const initial = document.createElement("span");
+  initial.textContent = post.channelHandle.charAt(0).toUpperCase();
+  initial.style.cssText = "display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#383838;color:#ccc;font-weight:600;font-size:1.2rem;border-radius:50%;";
+  avatarSpan.appendChild(initial);
+  article.appendChild(avatarSpan);
+  const content = document.createElement("div");
+  content.classList.add("yt-community-post__content");
+  const header = document.createElement("div");
+  header.classList.add("yt-community-post__header");
+  const identity = document.createElement("div");
+  identity.classList.add("yt-community-post__identity");
+  const channel = document.createElement("span");
+  channel.classList.add("yt-community-post__channel");
+  channel.textContent = `@${post.channelHandle}`;
+  identity.appendChild(channel);
+  if (post.postedLabel) {
+    const ts = document.createElement("span");
+    ts.classList.add("yt-community-post__timestamp");
+    ts.textContent = `Posted ${escapeHtml(post.postedLabel)}`;
+    identity.appendChild(ts);
+  }
+  header.appendChild(identity);
+  content.appendChild(header);
+  if (post.body) {
+    const body = document.createElement("div");
+    body.classList.add("yt-community-post__body");
+    const textDiv = document.createElement("div");
+    textDiv.classList.add("yt-community-post__text");
+    const lines = post.body.split(/\r?\n/);
+    for (let i = 0; i < lines.length; i++) {
+      if (i > 0) textDiv.appendChild(document.createElement("br"));
+      textDiv.appendChild(document.createTextNode(lines[i]));
+    }
+    body.appendChild(textDiv);
+    content.appendChild(body);
+  }
+  const footer = document.createElement("footer");
+  footer.classList.add("yt-community-post__footer");
+  const actions = document.createElement("div");
+  actions.classList.add("yt-community-post__actions");
+  actions.setAttribute("aria-hidden", "true");
+  const likeAction = document.createElement("span");
+  likeAction.classList.add("yt-community-post__action");
+  likeAction.innerHTML = LIKE_SVG;
+  const likeCount = formatCount(post.likes);
+  if (likeCount) {
+    const countSpan = document.createElement("span");
+    countSpan.classList.add("yt-community-post__count");
+    countSpan.textContent = likeCount;
+    likeAction.appendChild(countSpan);
+  }
+  actions.appendChild(likeAction);
+  const commentAction = document.createElement("span");
+  commentAction.classList.add("yt-community-post__action");
+  commentAction.innerHTML = COMMENT_SVG;
+  const commentCount = formatCount(post.comments);
+  if (commentCount) {
+    const countSpan = document.createElement("span");
+    countSpan.classList.add("yt-community-post__count");
+    countSpan.textContent = commentCount;
+    commentAction.appendChild(countSpan);
+  }
+  actions.appendChild(commentAction);
+  footer.appendChild(actions);
+  content.appendChild(footer);
+  article.appendChild(content);
+  return article;
+}
+function registerCommunityPostRenderer(plugin) {
+  plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, ctx) => {
+    injectStyle2();
+    const sectionInfo = ctx.getSectionInfo(el);
+    if (!sectionInfo) {
+      el.createEl("pre", { text: source });
+      return;
+    }
+    const lines = sectionInfo.text.split("\n");
+    const openFenceLine = lines[sectionInfo.lineStart] ?? "";
+    const fenceMatch = openFenceLine.match(/^`{3,}(.*)$/);
+    const infoString = fenceMatch ? fenceMatch[1].trim() : "";
+    const post = parseHeader(infoString, source);
+    if (!post) {
+      el.createEl("pre", { text: `Invalid community post:
+${infoString}
+${source}` });
+      return;
+    }
+    const article = buildPostElement(post);
+    el.appendChild(article);
+  });
+}
+
 // src/main.ts
 var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
   constructor() {
@@ -1031,6 +1176,7 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
     await this.loadSettings();
     this.addSettingTab(new DiscordEmbedSettingTab(this.app, this));
     registerDiscordRenderer(this);
+    registerCommunityPostRenderer(this);
     this.addCommand({
       id: "insert-discord-message-embed",
       name: "Insert Discord message embed (from URL)",

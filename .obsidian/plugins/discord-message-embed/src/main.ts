@@ -11,6 +11,7 @@ import { normaliseColour, normalizeUsername, extractAvatarId } from "./utils"
 import { DiscordEmbedSettingTab } from "./settings"
 import { ManualEmbedModal } from "./modal"
 import { registerDiscordRenderer } from "./renderer"
+import { registerCommunityPostRenderer } from "./communityPostRenderer"
 
 type CommandMode = "embed" | "citation"
 
@@ -21,8 +22,9 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     await this.loadSettings()
     this.addSettingTab(new DiscordEmbedSettingTab(this.app, this))
 
-    // Register in-editor discord block renderer
+    // Register in-editor renderers
     registerDiscordRenderer(this)
+    registerCommunityPostRenderer(this)
 
     /* ── URL-based commands (existing) ── */
 
