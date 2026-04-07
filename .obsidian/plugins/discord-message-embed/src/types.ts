@@ -14,6 +14,12 @@ export interface DiscordProfile {
   avatar_url?: string
 }
 
+/** Cached YouTube channel profile (name + avatar URL). */
+export interface YouTubeChannelProfile {
+  name: string
+  avatarUrl: string
+}
+
 /** The shape stored in data.json by Obsidian's loadData/saveData. */
 export interface PluginSettings {
   /** API endpoint for fetching linked server messages */
@@ -25,6 +31,8 @@ export interface PluginSettings {
   defaultAvatarUrl: string
   /** Map of profile id → profile data */
   profiles: Record<string, DiscordProfile>
+  /** Cached YouTube channel profiles (handle → data) */
+  youtubeChannels: Record<string, YouTubeChannelProfile>
 }
 
 export const DEFAULT_SETTINGS: PluginSettings = {
@@ -32,6 +40,7 @@ export const DEFAULT_SETTINGS: PluginSettings = {
     "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
   defaultAvatarUrl: "https://cdn.discordapp.com/embed/avatars/0.png",
   profiles: {},
+  youtubeChannels: {},
 }
 
 export const DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"

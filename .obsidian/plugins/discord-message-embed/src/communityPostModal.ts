@@ -82,46 +82,53 @@ export class CommunityPostModal extends Modal {
           }),
       )
 
-    // Date
-    new Setting(contentEl)
-      .setName("Date")
-      .setDesc("When the post was made. YYYY-MM-DD or a label like '12 Jun 2025'.")
-      .addText((text) =>
-        text
-          .setPlaceholder(todayISO())
-          .setValue(this.date)
-          .onChange((v) => {
-            this.date = v.trim()
-          }),
-      )
+    // Date (picker + text field)
+    const dateRow = contentEl.createDiv("community-date-row")
+    dateRow.createEl("label", { text: "Date" })
+    const dateDesc = dateRow.createEl("small", {
+      text: "Pick a date or type a label like '12 Jun 2025'.",
+    })
+    dateDesc.style.cssText = "display:block;color:var(--text-muted);margin-bottom:4px;font-size:0.82em;"
 
-    // Likes & Comments on the same row
-    const statsRow = contentEl.createDiv()
-    statsRow.style.display = "flex"
-    statsRow.style.gap = "12px"
-    statsRow.style.marginBottom = "12px"
+    const dateInputs = dateRow.createDiv("community-date-inputs")
+    const datePicker = dateInputs.createEl("input", { type: "date" }) as HTMLInputElement
+    datePicker.value = this.date
+    dateInputs.createEl("span", { text: "or" }).style.cssText =
+      "color:var(--text-muted);font-size:0.85em;"
+    const dateText = dateInputs.createEl("input", {
+      type: "text",
+      placeholder: "e.g. 12 Jun 2025",
+    }) as HTMLInputElement
+    dateText.value = formatDate(this.date)
 
-    new Setting(statsRow)
-      .setName("Likes")
-      .addText((text) =>
-        text
-          .setPlaceholder("0")
-          .setValue(this.likes)
-          .onChange((v) => {
-            this.likes = v.trim()
-          }),
-      )
+    datePicker.addEventListener("change", () => {
+      this.date = datePicker.value
+      dateText.value = formatDate(datePicker.value)
+    })
+    dateText.addEventListener("input", () => {
+      this.date = dateText.value
+    })
 
-    new Setting(statsRow)
-      .setName("Comments")
-      .addText((text) =>
-        text
-          .setPlaceholder("0")
-          .setValue(this.comments)
-          .onChange((v) => {
-            this.comments = v.trim()
-          }),
-      )
+    // Likes & Comments
+    const statsRow = contentEl.createDiv("community-stats-row")
+
+    const likesGroup = statsRow.createDiv("community-stat-group")
+    likesGroup.createEl("label", { text: "Likes" })
+    const likesInput = likesGroup.createEl("input", {
+      type: "number",
+      value: this.likes,
+      attr: { min: "0" },
+    }) as HTMLInputElement
+    likesInput.addEventListener("input", () => { this.likes = likesInput.value })
+
+    const commentsGroup = statsRow.createDiv("community-stat-group")
+    commentsGroup.createEl("label", { text: "Comments" })
+    const commentsInput = commentsGroup.createEl("input", {
+      type: "number",
+      value: this.comments,
+      attr: { min: "0" },
+    }) as HTMLInputElement
+    commentsInput.addEventListener("input", () => { this.comments = commentsInput.value })
 
     // Content
     const contentLabel = contentEl.createEl("label", { text: "Post content" })
@@ -191,14 +198,43 @@ export class CommunityPostModal extends Modal {
   private applyModalStyles() {
     const style = document.createElement("style")
     style.textContent = `
-      .community-post-modal {
-        max-width: 580px;
-        width: 580px;
+      .modal:has(.community-post-modal) {
+        width: 700px;
+        max-width: 90vw;
       }
       .community-post-modal .modal-content {
         padding: 16px 20px;
       }
+      .community-date-row { margin: 8px 0 12px; }
+      .community-date-row > label { display: block; font-weight: 500; margin-bottom: 2px; }
+      .community-date-inputs {
+        display: flex; gap: 8px; align-items: center;
+      }
+      .community-date-inputs input {
+        padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em;
+      }
+      .community-date-inputs input[type="date"] { width: 155px; }
+      .community-date-inputs input[type="text"] { flex: 1; }
+      .community-stats-row {
+        display: flex; gap: 16px; margin: 8px 0 12px; align-items: flex-end;
+      }
+      .community-stat-group { flex: 1; }
+      .community-stat-group label {
+        display: block; font-weight: 500; margin-bottom: 4px; font-size: 0.9em;
+      }
+      .community-stat-group input {
+        width: 100%; padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em; box-sizing: border-box;
+      }
     `
     this.contentEl.prepend(style)
+    this.modalEl.style.width = "700px"
+    this.modalEl.style.maxWidth = "90vw"
+    this.modalEl.style.maxHeight = "none"
   }
 }

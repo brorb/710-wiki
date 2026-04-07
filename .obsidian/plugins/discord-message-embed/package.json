@@ -1,7 +1,7 @@
 {
-  "name": "discord-message-embed",
-  "version": "1.0.0",
-  "description": "Embed Discord messages as styled cards with profile management, manual entry for DMs, in-editor rendering, and Quartz-ready citations.",
+  "name": "710-content-embeds",
+  "version": "1.1.0",
+  "description": "Embed Discord messages and YouTube community posts as styled cards. Profiles, manual entry, in-editor rendering, Quartz-ready output.",
   "main": "main.js",
   "scripts": {
     "build": "node esbuild.config.mjs production",

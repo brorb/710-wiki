@@ -12,6 +12,7 @@ import { DiscordEmbedSettingTab } from "./settings"
 import { ManualEmbedModal } from "./modal"
 import { registerDiscordRenderer } from "./renderer"
 import { registerCommunityPostRenderer } from "./communityPostRenderer"
+import { CommunityPostModal } from "./communityPostModal"
 
 type CommandMode = "embed" | "citation"
 
@@ -108,8 +109,27 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
               new ManualEmbedModal(this.app, this, editor, "citation").open()
             })
         })
+
+        menu.addSeparator()
+
+        menu.addItem((item) => {
+          item
+            .setTitle("Insert YouTube community post")
+            .setIcon("youtube")
+            .onClick(() => {
+              new CommunityPostModal(this.app, editor).open()
+            })
+        })
       }),
     )
+
+    this.addCommand({
+      id: "insert-community-post",
+      name: "Insert YouTube community post",
+      editorCallback: (editor) => {
+        new CommunityPostModal(this.app, editor).open()
+      },
+    })
   }
 
   async loadSettings() {

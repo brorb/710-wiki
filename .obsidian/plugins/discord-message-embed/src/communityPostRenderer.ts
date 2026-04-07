@@ -1,5 +1,7 @@
 import type DiscordMessageEmbedPlugin from "./main"
+import type { YouTubeChannelProfile } from "./types"
 import COMMUNITY_CSS from "./community-post.css"
+import { requestUrl } from "obsidian"
 
 /* ── Helpers ── */
 
@@ -92,20 +94,79 @@ function injectStyle() {
   styleInjected = true
 }
 
+/* ── YouTube channel profile fetching ── */
+
+const inflightFetches = new Map<string, Promise<YouTubeChannelProfile>>()
+
+async function getChannelProfile(
+  handle: string,
+  plugin: DiscordMessageEmbedPlugin,
+): Promise<YouTubeChannelProfile> {
+  const key = handle.toLowerCase()
+  const cached = plugin.settings.youtubeChannels[key]
+  if (cached?.avatarUrl) return cached
+
+  // De-duplicate concurrent requests for the same handle
+  if (inflightFetches.has(key)) return inflightFetches.get(key)!
+
+  const promise = fetchChannelProfile(handle).then(async (profile) => {
+    plugin.settings.youtubeChannels[key] = profile
+    await plugin.saveSettings()
+    inflightFetches.delete(key)
+    return profile
+  }).catch(() => {
+    inflightFetches.delete(key)
+    return { name: `@${handle}`, avatarUrl: "" }
+  })
+
+  inflightFetches.set(key, promise)
+  return promise
+}
+
+async function fetchChannelProfile(handle: string): Promise<YouTubeChannelProfile> {
+  const resp = await requestUrl({
+    url: `https://www.youtube.com/@${handle}`,
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    },
+  })
+
+  const html = resp.text
+  const titleMatch = html.match(/<meta property="og:title" content="([^"]+)"/)
+  const imageMatch = html.match(/<meta property="og:image" content="([^"]+)"/)
+
+  return {
+    name: titleMatch?.[1] ?? `@${handle}`,
+    avatarUrl: imageMatch?.[1] ?? "",
+  }
+}
+
 /* ── DOM builder ── */
 
-function buildPostElement(post: ParsedPost): HTMLElement {
+function buildPostElement(post: ParsedPost, channelProfile?: YouTubeChannelProfile): HTMLElement {
   const article = document.createElement("article")
   article.classList.add("yt-community-post")
 
-  // Avatar placeholder (circle with channel initial)
+  // Avatar
   const avatarSpan = document.createElement("span")
   avatarSpan.classList.add("yt-community-post__avatar")
-  const initial = document.createElement("span")
-  initial.textContent = post.channelHandle.charAt(0).toUpperCase()
-  initial.style.cssText =
-    "display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#383838;color:#ccc;font-weight:600;font-size:1.2rem;border-radius:50%;"
-  avatarSpan.appendChild(initial)
+  const avatarUrl = channelProfile?.avatarUrl
+  if (avatarUrl) {
+    const img = document.createElement("img")
+    img.src = avatarUrl
+    img.alt = channelProfile?.name ?? post.channelHandle
+    img.loading = "lazy"
+    img.width = 48
+    img.height = 48
+    avatarSpan.appendChild(img)
+  } else {
+    const initial = document.createElement("span")
+    initial.textContent = post.channelHandle.charAt(0).toUpperCase()
+    initial.style.cssText =
+      "display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#383838;color:#ccc;font-weight:600;font-size:1.2rem;border-radius:50%;"
+    avatarSpan.appendChild(initial)
+  }
   article.appendChild(avatarSpan)
 
   // Content wrapper
@@ -121,7 +182,7 @@ function buildPostElement(post: ParsedPost): HTMLElement {
 
   const channel = document.createElement("span")
   channel.classList.add("yt-community-post__channel")
-  channel.textContent = `@${post.channelHandle}`
+  channel.textContent = channelProfile?.name ?? `@${post.channelHandle}`
   identity.appendChild(channel)
 
   if (post.postedLabel) {
@@ -200,21 +261,6 @@ export function registerCommunityPostRenderer(plugin: DiscordMessageEmbedPlugin)
   plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, ctx) => {
     injectStyle()
 
-    // The info string after "community-post" is the language tag that
-    // Obsidian passes via the code block info. However, Obsidian's
-    // registerMarkdownCodeBlockProcessor receives only the body of the
-    // code fence. The info string (everything after the opening ```)
-    // is used to match the processor name. For "community-post,@handle,5,3,12 Jun 2025,"
-    // Obsidian splits on the first comma? No — the processor name is
-    // the language, but we registered "community-post". Obsidian will
-    // match the *first word* of the info string. Let's check what
-    // actually happens.
-    //
-    // Obsidian code block processors match on the language token. When
-    // the info string is "community-post,@7-10tone,5,3,12 Jun 2025,"
-    // the entire string (not split) becomes the language. We need to
-    // read the ctx.getSectionInfo() to get the raw source line.
-
     const sectionInfo = ctx.getSectionInfo(el)
     if (!sectionInfo) {
       el.createEl("pre", { text: source })
@@ -234,7 +280,18 @@ export function registerCommunityPostRenderer(plugin: DiscordMessageEmbedPlugin)
       return
     }
 
-    const article = buildPostElement(post)
+    // Render immediately with cached profile (or placeholder), then
+    // upgrade to fetched profile if needed
+    const cached = plugin.settings.youtubeChannels[post.channelHandle.toLowerCase()]
+    const article = buildPostElement(post, cached)
     el.appendChild(article)
+
+    if (!cached?.avatarUrl) {
+      getChannelProfile(post.channelHandle, plugin).then((profile) => {
+        // Re-render with fetched profile
+        const updated = buildPostElement(post, profile)
+        article.replaceWith(updated)
+      })
+    }
   })
 }

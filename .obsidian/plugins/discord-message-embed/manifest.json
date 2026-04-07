@@ -1,9 +1,9 @@
 {
   "id": "discord-message-embed",
-  "name": "Discord Message Embed",
-  "version": "1.0.0",
+  "name": "710 Content Embeds",
+  "version": "1.1.0",
   "minAppVersion": "1.5.0",
-  "description": "Embed Discord messages as styled cards with profile management, manual entry for DMs, in-editor rendering, and Quartz-ready citations. Right-click to insert.",
+  "description": "Embed Discord messages and YouTube community posts as styled cards. Profiles, manual entry, in-editor rendering, Quartz-ready output. Right-click to insert.",
   "author": "brorb",
   "authorUrl": "https://www.710tone.wiki",
   "isDesktopOnly": false

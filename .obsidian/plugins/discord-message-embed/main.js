@@ -23,13 +23,14 @@ __export(main_exports, {
   default: () => DiscordMessageEmbedPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian3 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/types.ts
 var DEFAULT_SETTINGS = {
   apiEndpoint: "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
   defaultAvatarUrl: "https://cdn.discordapp.com/embed/avatars/0.png",
-  profiles: {}
+  profiles: {},
+  youtubeChannels: {}
 };
 var DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png";
 
@@ -363,6 +364,70 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
 
 // src/modal.ts
 var import_obsidian2 = require("obsidian");
+function getTimezones() {
+  try {
+    return Intl.supportedValuesOf("timeZone");
+  } catch {
+    return [
+      "UTC",
+      "America/New_York",
+      "America/Chicago",
+      "America/Denver",
+      "America/Los_Angeles",
+      "America/Sao_Paulo",
+      "Europe/London",
+      "Europe/Berlin",
+      "Europe/Paris",
+      "Europe/Oslo",
+      "Europe/Moscow",
+      "Asia/Dubai",
+      "Asia/Kolkata",
+      "Asia/Shanghai",
+      "Asia/Tokyo",
+      "Australia/Sydney",
+      "Pacific/Auckland"
+    ];
+  }
+}
+function getLocalTimezone() {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch {
+    return "UTC";
+  }
+}
+function wallClockToISO(dateVal, timeVal, tz) {
+  if (!dateVal) return (/* @__PURE__ */ new Date()).toISOString();
+  const time = timeVal || "12:00";
+  const [year, month, day] = dateVal.split("-").map(Number);
+  const [hour, minute] = time.split(":").map(Number);
+  const naiveUtcMs = Date.UTC(year, month - 1, day, hour, minute, 0);
+  try {
+    const probe = new Date(naiveUtcMs);
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    }).formatToParts(probe);
+    const g = (t) => parseInt(parts.find((p) => p.type === t)?.value ?? "0", 10);
+    const wallMs = Date.UTC(
+      g("year"),
+      g("month") - 1,
+      g("day"),
+      g("hour") % 24,
+      g("minute"),
+      g("second")
+    );
+    return new Date(naiveUtcMs - (wallMs - naiveUtcMs)).toISOString();
+  } catch {
+    return new Date(naiveUtcMs).toISOString();
+  }
+}
 var ManualEmbedModal = class extends import_obsidian2.Modal {
   constructor(app, plugin, editor, mode) {
     super(app);
@@ -390,16 +455,15 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
       this.messages.push(this.createEmptyDraft());
     }
     this.messageContainer = contentEl.createDiv("discord-messages-list");
+    const tzDl = contentEl.createEl("datalist");
+    tzDl.id = "discord-tz-list";
+    for (const tz of getTimezones()) tzDl.createEl("option", { value: tz });
     this.renderAllMessages();
     const bottomBar = contentEl.createDiv("discord-modal-bottom-bar");
     new import_obsidian2.Setting(bottomBar).addButton(
       (btn) => btn.setButtonText("+ Add Message").onClick(() => {
         this.messages.push(this.createEmptyDraft());
         this.renderAllMessages();
-      })
-    ).addButton(
-      (btn) => btn.setButtonText("Manage Profiles").onClick(() => {
-        this.openInlineProfileManager();
       })
     );
     new import_obsidian2.Setting(bottomBar).addButton(
@@ -456,11 +520,35 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
         draft.profileId = value;
       });
     });
-    new import_obsidian2.Setting(wrapper).setName("Timestamp").setDesc("ISO 8601 format. Leave blank for current time.").addText(
-      (text) => text.setPlaceholder((/* @__PURE__ */ new Date()).toISOString()).setValue(draft.timestamp).onChange((v) => {
-        draft.timestamp = v.trim();
+    profileSetting.addButton(
+      (btn) => btn.setButtonText("Manage Profiles").onClick(() => {
+        this.openInlineProfileManager();
       })
     );
+    const tsRow = wrapper.createDiv("discord-ts-row");
+    tsRow.createEl("label", { text: "Timestamp", cls: "discord-ts-label" });
+    const tsInputs = tsRow.createDiv("discord-ts-inputs");
+    const dateInput = tsInputs.createEl("input", { type: "date", cls: "discord-ts-date" });
+    dateInput.value = draft.dateVal;
+    dateInput.addEventListener("change", () => {
+      draft.dateVal = dateInput.value;
+    });
+    const timeInput = tsInputs.createEl("input", { type: "time", cls: "discord-ts-time" });
+    timeInput.value = draft.timeVal;
+    timeInput.addEventListener("change", () => {
+      draft.timeVal = timeInput.value;
+    });
+    const tzInput = tsInputs.createEl("input", {
+      type: "text",
+      cls: "discord-ts-tz",
+      placeholder: "Timezone",
+      attr: { list: "discord-tz-list" }
+    });
+    tzInput.value = draft.timezone;
+    tzInput.addEventListener("change", () => {
+      draft.timezone = tzInput.value;
+    });
+    tsRow.createEl("small", { text: "Leave blank for current time.", cls: "discord-ts-hint" });
     const contentLabel = wrapper.createEl("label", {
       text: "Message content"
     });
@@ -505,7 +593,7 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
         profile: m.profileId,
         content: m.content,
         // Raw content with real newlines — JSON.stringify handles escaping
-        timestamp: m.timestamp || (/* @__PURE__ */ new Date()).toISOString()
+        timestamp: wallClockToISO(m.dateVal, m.timeVal, m.timezone || getLocalTimezone())
       };
       return block;
     });
@@ -556,7 +644,9 @@ ${callout}
     return {
       profileId: keys[0] ?? "",
       content: "",
-      timestamp: ""
+      dateVal: "",
+      timeVal: "",
+      timezone: getLocalTimezone()
     };
   }
   /* ── Inline Profile Manager ── */
@@ -739,9 +829,9 @@ ${callout}
   applyModalStyles() {
     const style = document.createElement("style");
     style.textContent = `
-      .discord-manual-embed-modal {
-        max-width: 640px;
-        width: 640px;
+      .modal:has(.discord-manual-embed-modal) {
+        width: 760px;
+        max-width: 90vw;
       }
       .discord-manual-embed-modal .modal-content {
         padding: 16px 20px;
@@ -751,8 +841,26 @@ ${callout}
         padding-top: 10px;
         border-top: 1px solid var(--background-modifier-border);
       }
+      .discord-ts-row { margin-top: 8px; margin-bottom: 4px; }
+      .discord-ts-label { display: block; font-weight: 500; margin-bottom: 4px; }
+      .discord-ts-inputs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .discord-ts-date,
+      .discord-ts-time,
+      .discord-ts-tz {
+        padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em;
+      }
+      .discord-ts-date { width: 150px; }
+      .discord-ts-time { width: 110px; }
+      .discord-ts-tz { flex: 1; min-width: 180px; }
+      .discord-ts-hint { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.82em; }
     `;
     this.contentEl.prepend(style);
+    this.modalEl.style.width = "760px";
+    this.modalEl.style.maxWidth = "90vw";
+    this.modalEl.style.maxHeight = "none";
   }
 };
 
@@ -1025,6 +1133,7 @@ function normaliseMessages(raw) {
 var community_post_default = '.yt-community-post {\r\n  background: #202020;\r\n  border: 1px solid #2f2f2f;\r\n  border-radius: 16px;\r\n  padding: 13px 18px 16px;\r\n  color: #f1f1f1;\r\n  max-width: min(640px, 100%);\r\n  font-family: "Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);\r\n  display: flex;\r\n  align-items: flex-start;\r\n  gap: 12px;\r\n  position: relative;\r\n}\r\n\r\n.yt-community-post + .yt-community-post {\r\n  margin-top: 20px;\r\n}\r\n\r\n.yt-community-post__header {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  gap: 8px;\r\n  row-gap: 4px;\r\n  flex-wrap: wrap;\r\n  width: 100%;\r\n}\r\n\r\n.yt-community-post__identity {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  align-items: baseline;\r\n  gap: 6px;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__avatar {\r\n  flex-shrink: 0;\r\n  width: 48px;\r\n  height: 48px;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  background-color: transparent;\r\n}\r\n\r\n.yt-community-post__avatar img {\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n  object-position: center;\r\n  display: block;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.yt-community-post__content {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 4px;\r\n  flex: 1;\r\n  min-width: 0;\r\n}\r\n\r\n.yt-community-post__channel {\r\n  font-weight: 600;\r\n  font-size: 0.95rem;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__timestamp {\r\n  color: #a7a7a7;\r\n  font-size: 0.78rem;\r\n  line-height: 1;\r\n}\r\n\r\n.yt-community-post__body {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 4px;\r\n  font-size: 0.93rem;\r\n}\r\n\r\n.yt-community-post__text {\r\n  line-height: 1.48;\r\n  white-space: normal;\r\n  word-break: break-word;\r\n}\r\n\r\n.yt-community-post__embed {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\n.yt-community-post__embed img {\r\n  border-radius: 12px;\r\n  width: 100%;\r\n  height: auto;\r\n  display: block;\r\n  border: 1px solid rgba(255, 255, 255, 0.08);\r\n}\r\n\r\n.yt-community-post__footer {\r\n  margin-top: 4px;\r\n}\r\n\r\n.yt-community-post__actions {\r\n  display: flex;\r\n  gap: 16px;\r\n  color: #b0b0b0;\r\n  font-size: 0.82rem;\r\n  pointer-events: none;\r\n  user-select: none;\r\n}\r\n\r\n.yt-community-post__action {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  gap: 6px;\r\n  opacity: 0.9;\r\n}\r\n\r\n.yt-community-post__action svg {\r\n  width: 20px;\r\n  height: 20px;\r\n  fill: currentColor;\r\n}\r\n\r\n.yt-community-post__count {\r\n  font-size: 0.78rem;\r\n  color: #cecece;\r\n}\r\n';
 
 // src/communityPostRenderer.ts
+var import_obsidian3 = require("obsidian");
 var escapeHtml = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 var DEFAULT_CHANNEL_HANDLE = "7-10tone";
 function parseHeader(infoString, body) {
@@ -1069,15 +1178,59 @@ function injectStyle2() {
   document.head.appendChild(style);
   styleInjected2 = true;
 }
-function buildPostElement(post) {
+var inflightFetches = /* @__PURE__ */ new Map();
+async function getChannelProfile(handle, plugin) {
+  const key = handle.toLowerCase();
+  const cached = plugin.settings.youtubeChannels[key];
+  if (cached?.avatarUrl) return cached;
+  if (inflightFetches.has(key)) return inflightFetches.get(key);
+  const promise = fetchChannelProfile(handle).then(async (profile) => {
+    plugin.settings.youtubeChannels[key] = profile;
+    await plugin.saveSettings();
+    inflightFetches.delete(key);
+    return profile;
+  }).catch(() => {
+    inflightFetches.delete(key);
+    return { name: `@${handle}`, avatarUrl: "" };
+  });
+  inflightFetches.set(key, promise);
+  return promise;
+}
+async function fetchChannelProfile(handle) {
+  const resp = await (0, import_obsidian3.requestUrl)({
+    url: `https://www.youtube.com/@${handle}`,
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    }
+  });
+  const html = resp.text;
+  const titleMatch = html.match(/<meta property="og:title" content="([^"]+)"/);
+  const imageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
+  return {
+    name: titleMatch?.[1] ?? `@${handle}`,
+    avatarUrl: imageMatch?.[1] ?? ""
+  };
+}
+function buildPostElement(post, channelProfile) {
   const article = document.createElement("article");
   article.classList.add("yt-community-post");
   const avatarSpan = document.createElement("span");
   avatarSpan.classList.add("yt-community-post__avatar");
-  const initial = document.createElement("span");
-  initial.textContent = post.channelHandle.charAt(0).toUpperCase();
-  initial.style.cssText = "display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#383838;color:#ccc;font-weight:600;font-size:1.2rem;border-radius:50%;";
-  avatarSpan.appendChild(initial);
+  const avatarUrl = channelProfile?.avatarUrl;
+  if (avatarUrl) {
+    const img = document.createElement("img");
+    img.src = avatarUrl;
+    img.alt = channelProfile?.name ?? post.channelHandle;
+    img.loading = "lazy";
+    img.width = 48;
+    img.height = 48;
+    avatarSpan.appendChild(img);
+  } else {
+    const initial = document.createElement("span");
+    initial.textContent = post.channelHandle.charAt(0).toUpperCase();
+    initial.style.cssText = "display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:#383838;color:#ccc;font-weight:600;font-size:1.2rem;border-radius:50%;";
+    avatarSpan.appendChild(initial);
+  }
   article.appendChild(avatarSpan);
   const content = document.createElement("div");
   content.classList.add("yt-community-post__content");
@@ -1087,7 +1240,7 @@ function buildPostElement(post) {
   identity.classList.add("yt-community-post__identity");
   const channel = document.createElement("span");
   channel.classList.add("yt-community-post__channel");
-  channel.textContent = `@${post.channelHandle}`;
+  channel.textContent = channelProfile?.name ?? `@${post.channelHandle}`;
   identity.appendChild(channel);
   if (post.postedLabel) {
     const ts = document.createElement("span");
@@ -1161,13 +1314,219 @@ ${infoString}
 ${source}` });
       return;
     }
-    const article = buildPostElement(post);
+    const cached = plugin.settings.youtubeChannels[post.channelHandle.toLowerCase()];
+    const article = buildPostElement(post, cached);
     el.appendChild(article);
+    if (!cached?.avatarUrl) {
+      getChannelProfile(post.channelHandle, plugin).then((profile) => {
+        const updated = buildPostElement(post, profile);
+        article.replaceWith(updated);
+      });
+    }
   });
 }
 
+// src/communityPostModal.ts
+var import_obsidian4 = require("obsidian");
+var DEFAULT_CHANNEL_URL = "https://www.youtube.com/@7-10tone";
+function extractHandle(input) {
+  const trimmed = input.trim();
+  if (/^@[\w-]+$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/@([\w-]+)/);
+  if (match) return `@${match[1]}`;
+  if (/^[\w-]+$/.test(trimmed)) return `@${trimmed}`;
+  return "@7-10tone";
+}
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  if (/^\d{1,2}\s+\w+\s+\d{4}$/.test(dateStr.trim())) return dateStr.trim();
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return dateStr.trim();
+  const day = d.getDate();
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+  const mon = months[d.getMonth()];
+  const year = d.getFullYear();
+  return `${day} ${mon} ${year}`;
+}
+function todayISO() {
+  const d = /* @__PURE__ */ new Date();
+  const yyyy = d.getFullYear();
+  const mm = (d.getMonth() + 1).toString().padStart(2, "0");
+  const dd = d.getDate().toString().padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
+var CommunityPostModal = class extends import_obsidian4.Modal {
+  constructor(app, editor) {
+    super(app);
+    this.channelUrl = DEFAULT_CHANNEL_URL;
+    this.likes = "0";
+    this.comments = "0";
+    this.date = todayISO();
+    this.content = "";
+    this.editor = editor;
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.empty();
+    contentEl.addClass("community-post-modal");
+    this.applyModalStyles();
+    contentEl.createEl("h2", { text: "Insert Community Post" });
+    new import_obsidian4.Setting(contentEl).setName("Channel").setDesc("YouTube channel URL or @handle. Default: @7-10tone").addText(
+      (text) => text.setPlaceholder(DEFAULT_CHANNEL_URL).setValue(this.channelUrl).onChange((v) => {
+        this.channelUrl = v.trim() || DEFAULT_CHANNEL_URL;
+      })
+    );
+    const dateRow = contentEl.createDiv("community-date-row");
+    dateRow.createEl("label", { text: "Date" });
+    const dateDesc = dateRow.createEl("small", {
+      text: "Pick a date or type a label like '12 Jun 2025'."
+    });
+    dateDesc.style.cssText = "display:block;color:var(--text-muted);margin-bottom:4px;font-size:0.82em;";
+    const dateInputs = dateRow.createDiv("community-date-inputs");
+    const datePicker = dateInputs.createEl("input", { type: "date" });
+    datePicker.value = this.date;
+    dateInputs.createEl("span", { text: "or" }).style.cssText = "color:var(--text-muted);font-size:0.85em;";
+    const dateText = dateInputs.createEl("input", {
+      type: "text",
+      placeholder: "e.g. 12 Jun 2025"
+    });
+    dateText.value = formatDate(this.date);
+    datePicker.addEventListener("change", () => {
+      this.date = datePicker.value;
+      dateText.value = formatDate(datePicker.value);
+    });
+    dateText.addEventListener("input", () => {
+      this.date = dateText.value;
+    });
+    const statsRow = contentEl.createDiv("community-stats-row");
+    const likesGroup = statsRow.createDiv("community-stat-group");
+    likesGroup.createEl("label", { text: "Likes" });
+    const likesInput = likesGroup.createEl("input", {
+      type: "number",
+      value: this.likes,
+      attr: { min: "0" }
+    });
+    likesInput.addEventListener("input", () => {
+      this.likes = likesInput.value;
+    });
+    const commentsGroup = statsRow.createDiv("community-stat-group");
+    commentsGroup.createEl("label", { text: "Comments" });
+    const commentsInput = commentsGroup.createEl("input", {
+      type: "number",
+      value: this.comments,
+      attr: { min: "0" }
+    });
+    commentsInput.addEventListener("input", () => {
+      this.comments = commentsInput.value;
+    });
+    const contentLabel = contentEl.createEl("label", { text: "Post content" });
+    contentLabel.style.display = "block";
+    contentLabel.style.marginTop = "8px";
+    contentLabel.style.marginBottom = "4px";
+    contentLabel.style.fontWeight = "500";
+    const textarea = contentEl.createEl("textarea");
+    textarea.value = this.content;
+    textarea.placeholder = "Type the community post content here\u2026";
+    textarea.rows = 8;
+    textarea.style.width = "100%";
+    textarea.style.resize = "vertical";
+    textarea.style.fontSize = "0.95em";
+    textarea.style.padding = "8px";
+    textarea.style.borderRadius = "6px";
+    textarea.style.border = "1px solid var(--background-modifier-border)";
+    textarea.style.backgroundColor = "var(--background-primary)";
+    textarea.style.color = "var(--text-normal)";
+    textarea.style.fontFamily = "var(--font-monospace)";
+    textarea.addEventListener("input", () => {
+      this.content = textarea.value;
+    });
+    new import_obsidian4.Setting(contentEl).addButton(
+      (btn) => btn.setButtonText("Insert Post").setCta().onClick(() => {
+        this.doInsert();
+      })
+    ).addButton(
+      (btn) => btn.setButtonText("Cancel").onClick(() => {
+        this.close();
+      })
+    );
+  }
+  onClose() {
+    this.contentEl.empty();
+  }
+  doInsert() {
+    if (!this.content.trim()) {
+      new import_obsidian4.Notice("Post content cannot be empty.");
+      return;
+    }
+    const handle = extractHandle(this.channelUrl);
+    const likes = parseInt(this.likes, 10) || 0;
+    const comments = parseInt(this.comments, 10) || 0;
+    const dateLabel = formatDate(this.date) || formatDate(todayISO());
+    const header = `community-post,${handle},${likes},${comments},${dateLabel},`;
+    const block = "```" + header + "\n" + this.content.trimEnd() + "\n```";
+    this.editor.replaceSelection(block);
+    new import_obsidian4.Notice("Community post inserted.");
+    this.close();
+  }
+  applyModalStyles() {
+    const style = document.createElement("style");
+    style.textContent = `
+      .modal:has(.community-post-modal) {
+        width: 700px;
+        max-width: 90vw;
+      }
+      .community-post-modal .modal-content {
+        padding: 16px 20px;
+      }
+      .community-date-row { margin: 8px 0 12px; }
+      .community-date-row > label { display: block; font-weight: 500; margin-bottom: 2px; }
+      .community-date-inputs {
+        display: flex; gap: 8px; align-items: center;
+      }
+      .community-date-inputs input {
+        padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em;
+      }
+      .community-date-inputs input[type="date"] { width: 155px; }
+      .community-date-inputs input[type="text"] { flex: 1; }
+      .community-stats-row {
+        display: flex; gap: 16px; margin: 8px 0 12px; align-items: flex-end;
+      }
+      .community-stat-group { flex: 1; }
+      .community-stat-group label {
+        display: block; font-weight: 500; margin-bottom: 4px; font-size: 0.9em;
+      }
+      .community-stat-group input {
+        width: 100%; padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em; box-sizing: border-box;
+      }
+    `;
+    this.contentEl.prepend(style);
+    this.modalEl.style.width = "700px";
+    this.modalEl.style.maxWidth = "90vw";
+    this.modalEl.style.maxHeight = "none";
+  }
+};
+
 // src/main.ts
-var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
+var DiscordMessageEmbedPlugin = class extends import_obsidian5.Plugin {
   constructor() {
     super(...arguments);
     this.settings = DEFAULT_SETTINGS;
@@ -1203,7 +1562,7 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
     });
     this.registerEvent(
       this.app.workspace.on("editor-menu", (menu, editor, view) => {
-        if (!(view instanceof import_obsidian3.MarkdownView)) {
+        if (!(view instanceof import_obsidian5.MarkdownView)) {
           return;
         }
         const selection = editor.getSelection();
@@ -1231,8 +1590,21 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
             new ManualEmbedModal(this.app, this, editor, "citation").open();
           });
         });
+        menu.addSeparator();
+        menu.addItem((item) => {
+          item.setTitle("Insert YouTube community post").setIcon("youtube").onClick(() => {
+            new CommunityPostModal(this.app, editor).open();
+          });
+        });
       })
     );
+    this.addCommand({
+      id: "insert-community-post",
+      name: "Insert YouTube community post",
+      editorCallback: (editor) => {
+        new CommunityPostModal(this.app, editor).open();
+      }
+    });
   }
   async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
@@ -1241,7 +1613,7 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
     await this.saveData(this.settings);
   }
   handleCommand(checking, editor, view, mode) {
-    if (!(view instanceof import_obsidian3.MarkdownView)) {
+    if (!(view instanceof import_obsidian5.MarkdownView)) {
       return false;
     }
     const selection = editor.getSelection();
@@ -1286,10 +1658,10 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
     const selection = editor.getSelection();
     const urls = this.extractDiscordUrls(selection);
     if (urls.length === 0) {
-      new import_obsidian3.Notice("Highlight at least one Discord message URL first.");
+      new import_obsidian5.Notice("Highlight at least one Discord message URL first.");
       return;
     }
-    const loading = new import_obsidian3.Notice(
+    const loading = new import_obsidian5.Notice(
       `Fetching ${urls.length} Discord message${urls.length > 1 ? "s" : ""}...`,
       0
     );
@@ -1300,7 +1672,7 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
       editor.replaceSelection(block);
     } catch (error) {
       console.error(error);
-      new import_obsidian3.Notice("Unable to fetch one or more Discord messages.");
+      new import_obsidian5.Notice("Unable to fetch one or more Discord messages.");
     } finally {
       loading.hide();
     }
@@ -1309,10 +1681,10 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian3.Plugin {
     const selection = editor.getSelection();
     const urls = this.extractDiscordUrls(this.stripCitationMarker(selection));
     if (urls.length === 0) {
-      new import_obsidian3.Notice("Highlight at least one Discord message URL first.");
+      new import_obsidian5.Notice("Highlight at least one Discord message URL first.");
       return;
     }
-    const loading = new import_obsidian3.Notice(`Fetching ${urls.length} Discord citation...`, 0);
+    const loading = new import_obsidian5.Notice(`Fetching ${urls.length} Discord citation...`, 0);
     try {
       const messages = await this.fetchMessages(urls);
       const citationId = this.generateCitationId();
@@ -1329,7 +1701,7 @@ ${callout}
       }
     } catch (error) {
       console.error(error);
-      new import_obsidian3.Notice("Unable to fetch the Discord citation.");
+      new import_obsidian5.Notice("Unable to fetch the Discord citation.");
     } finally {
       loading.hide();
     }
@@ -1370,7 +1742,7 @@ ${callout}
   }
   /** Fetch a single Discord message from the API. Public so settings/modals can use it. */
   async fetchDiscordMessage(url) {
-    const response = await (0, import_obsidian3.requestUrl)({
+    const response = await (0, import_obsidian5.requestUrl)({
       url: `${this.settings.apiEndpoint}${encodeURIComponent(url)}`
     });
     if (response.status >= 400) {
@@ -1491,7 +1863,7 @@ ${callout}
     };
     this.settings.profiles[finalId] = profile;
     void this.saveSettings();
-    new import_obsidian3.Notice(`Auto-created profile "${finalId}" for @${username}`);
+    new import_obsidian5.Notice(`Auto-created profile "${finalId}" for @${username}`);
     return profile;
   }
   /**

@@ -17,10 +17,62 @@ import { normaliseColour } from "./utils"
 interface MessageDraft {
   profileId: string
   content: string
-  timestamp: string
+  dateVal: string
+  timeVal: string
+  timezone: string
 }
 
 type InsertMode = "embed" | "citation"
+
+/* ── Timezone / date helpers ── */
+
+function getTimezones(): string[] {
+  try {
+    return (Intl as any).supportedValuesOf("timeZone") as string[]
+  } catch {
+    return [
+      "UTC", "America/New_York", "America/Chicago", "America/Denver",
+      "America/Los_Angeles", "America/Sao_Paulo", "Europe/London",
+      "Europe/Berlin", "Europe/Paris", "Europe/Oslo", "Europe/Moscow",
+      "Asia/Dubai", "Asia/Kolkata", "Asia/Shanghai", "Asia/Tokyo",
+      "Australia/Sydney", "Pacific/Auckland",
+    ]
+  }
+}
+
+function getLocalTimezone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone
+  } catch {
+    return "UTC"
+  }
+}
+
+function wallClockToISO(dateVal: string, timeVal: string, tz: string): string {
+  if (!dateVal) return new Date().toISOString()
+  const time = timeVal || "12:00"
+  const [year, month, day] = dateVal.split("-").map(Number)
+  const [hour, minute] = time.split(":").map(Number)
+  const naiveUtcMs = Date.UTC(year, month - 1, day, hour, minute, 0)
+  try {
+    const probe = new Date(naiveUtcMs)
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      hour12: false,
+    }).formatToParts(probe)
+    const g = (t: string) =>
+      parseInt(parts.find((p) => p.type === t)?.value ?? "0", 10)
+    const wallMs = Date.UTC(
+      g("year"), g("month") - 1, g("day"),
+      g("hour") % 24, g("minute"), g("second"),
+    )
+    return new Date(naiveUtcMs - (wallMs - naiveUtcMs)).toISOString()
+  } catch {
+    return new Date(naiveUtcMs).toISOString()
+  }
+}
 
 export class ManualEmbedModal extends Modal {
   private plugin: DiscordMessageEmbedPlugin
@@ -70,6 +122,12 @@ export class ManualEmbedModal extends Modal {
     }
 
     this.messageContainer = contentEl.createDiv("discord-messages-list")
+
+    // Timezone datalist (shared across all message blocks)
+    const tzDl = contentEl.createEl("datalist")
+    tzDl.id = "discord-tz-list"
+    for (const tz of getTimezones()) tzDl.createEl("option", { value: tz })
+
     this.renderAllMessages()
 
     // Bottom bar: add message + submit
@@ -82,13 +140,6 @@ export class ManualEmbedModal extends Modal {
           .onClick(() => {
             this.messages.push(this.createEmptyDraft())
             this.renderAllMessages()
-          }),
-      )
-      .addButton((btn) =>
-        btn
-          .setButtonText("Manage Profiles")
-          .onClick(() => {
-            this.openInlineProfileManager()
           }),
       )
 
@@ -149,7 +200,7 @@ export class ManualEmbedModal extends Modal {
       })
     }
 
-    // Profile dropdown
+    // Profile dropdown + manage button
     const profileSetting = new Setting(wrapper)
       .setName("Profile")
 
@@ -166,18 +217,35 @@ export class ManualEmbedModal extends Modal {
       })
     })
 
-    // Timestamp
-    new Setting(wrapper)
-      .setName("Timestamp")
-      .setDesc("ISO 8601 format. Leave blank for current time.")
-      .addText((text) =>
-        text
-          .setPlaceholder(new Date().toISOString())
-          .setValue(draft.timestamp)
-          .onChange((v) => {
-            draft.timestamp = v.trim()
-          }),
-      )
+    profileSetting.addButton((btn) =>
+      btn.setButtonText("Manage Profiles").onClick(() => {
+        this.openInlineProfileManager()
+      }),
+    )
+
+    // Timestamp (date + time + timezone)
+    const tsRow = wrapper.createDiv("discord-ts-row")
+    tsRow.createEl("label", { text: "Timestamp", cls: "discord-ts-label" })
+    const tsInputs = tsRow.createDiv("discord-ts-inputs")
+
+    const dateInput = tsInputs.createEl("input", { type: "date", cls: "discord-ts-date" }) as HTMLInputElement
+    dateInput.value = draft.dateVal
+    dateInput.addEventListener("change", () => { draft.dateVal = dateInput.value })
+
+    const timeInput = tsInputs.createEl("input", { type: "time", cls: "discord-ts-time" }) as HTMLInputElement
+    timeInput.value = draft.timeVal
+    timeInput.addEventListener("change", () => { draft.timeVal = timeInput.value })
+
+    const tzInput = tsInputs.createEl("input", {
+      type: "text",
+      cls: "discord-ts-tz",
+      placeholder: "Timezone",
+      attr: { list: "discord-tz-list" },
+    }) as HTMLInputElement
+    tzInput.value = draft.timezone
+    tzInput.addEventListener("change", () => { draft.timezone = tzInput.value })
+
+    tsRow.createEl("small", { text: "Leave blank for current time.", cls: "discord-ts-hint" })
 
     // Content textarea — the important one!
     const contentLabel = wrapper.createEl("label", {
@@ -232,7 +300,7 @@ export class ManualEmbedModal extends Modal {
       const block: DiscordMessageBlock = {
         profile: m.profileId,
         content: m.content, // Raw content with real newlines — JSON.stringify handles escaping
-        timestamp: m.timestamp || new Date().toISOString(),
+        timestamp: wallClockToISO(m.dateVal, m.timeVal, m.timezone || getLocalTimezone()),
       }
       return block
     })
@@ -290,7 +358,9 @@ export class ManualEmbedModal extends Modal {
     return {
       profileId: keys[0] ?? "",
       content: "",
-      timestamp: "",
+      dateVal: "",
+      timeVal: "",
+      timezone: getLocalTimezone(),
     }
   }
 
@@ -537,9 +607,9 @@ export class ManualEmbedModal extends Modal {
   private applyModalStyles() {
     const style = document.createElement("style")
     style.textContent = `
-      .discord-manual-embed-modal {
-        max-width: 640px;
-        width: 640px;
+      .modal:has(.discord-manual-embed-modal) {
+        width: 760px;
+        max-width: 90vw;
       }
       .discord-manual-embed-modal .modal-content {
         padding: 16px 20px;
@@ -549,7 +619,25 @@ export class ManualEmbedModal extends Modal {
         padding-top: 10px;
         border-top: 1px solid var(--background-modifier-border);
       }
+      .discord-ts-row { margin-top: 8px; margin-bottom: 4px; }
+      .discord-ts-label { display: block; font-weight: 500; margin-bottom: 4px; }
+      .discord-ts-inputs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .discord-ts-date,
+      .discord-ts-time,
+      .discord-ts-tz {
+        padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal);
+        font-size: 0.93em;
+      }
+      .discord-ts-date { width: 150px; }
+      .discord-ts-time { width: 110px; }
+      .discord-ts-tz { flex: 1; min-width: 180px; }
+      .discord-ts-hint { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.82em; }
     `
     this.contentEl.prepend(style)
+    this.modalEl.style.width = "760px"
+    this.modalEl.style.maxWidth = "90vw"
+    this.modalEl.style.maxHeight = "none"
   }
 }
