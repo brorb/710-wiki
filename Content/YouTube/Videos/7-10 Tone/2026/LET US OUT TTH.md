@@ -1,3 +1,11 @@
+---
+tags:
+  - anomalies
+  - important
+  - TTH
+  - lore
+  - YouTube
+---
 
 <iframe 
   src="https://drive.google.com/file/d/14NbVhPb0vDwk8NEGFGrTrBpMHpBieKKO/preview" 
