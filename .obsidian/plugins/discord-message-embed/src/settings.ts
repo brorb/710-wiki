@@ -53,14 +53,14 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
     })
 
     // "Add profile" button
-    new Setting(containerEl)
+    const addProfileSetting = new Setting(containerEl)
       .setName("Add new profile")
       .addButton((btn) =>
         btn
           .setButtonText("+ New Profile")
           .setCta()
           .onClick(() => {
-            this.openProfileEditor(containerEl)
+            this.openProfileEditor(containerEl, undefined, addProfileSetting.settingEl)
           }),
       )
       .addButton((btn) =>
@@ -101,7 +101,7 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
       if (p.avatar_url) {
         const img = frag.createEl("img", {
           attr: {
-            src: p.avatar_url,
+            src: this.resolveAvatar(p.avatar_url),
             width: "24",
             height: "24",
             style: "border-radius:50%;vertical-align:middle;margin-right:8px;",
@@ -148,6 +148,13 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
             }),
         )
     }
+  }
+
+  /** Resolve a vault-relative avatar path to a displayable src. */
+  private resolveAvatar(urlOrPath: string): string {
+    if (!urlOrPath) return ""
+    if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath
+    return this.app.vault.adapter.getResourcePath(urlOrPath)
   }
 
   /**
@@ -244,11 +251,18 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
   private openProfileEditor(
     parentEl: HTMLElement,
     existing?: DiscordProfile,
+    afterEl?: HTMLElement,
   ): void {
     // Remove any existing editor panel first
     parentEl.querySelector(".discord-profile-editor")?.remove()
 
     const editor = parentEl.createDiv("discord-profile-editor")
+    // Insert right after the trigger element if provided
+    if (afterEl?.nextSibling) {
+      parentEl.insertBefore(editor, afterEl.nextSibling)
+    } else if (afterEl) {
+      afterEl.after(editor)
+    }
     editor.style.border = "1px solid var(--background-modifier-border)"
     editor.style.borderRadius = "8px"
     editor.style.padding = "12px 16px"
@@ -438,6 +452,15 @@ export class DiscordEmbedSettingTab extends PluginSettingTab {
 
             this.plugin.settings.profiles[id] = profile
             await this.plugin.saveSettings()
+
+            // Download avatar locally if it's a remote URL
+            if (profile.avatar_url && /^https?:\/\//.test(profile.avatar_url)) {
+              const localPath = await this.plugin.downloadAvatar(profile.avatar_url, id)
+              if (localPath) {
+                profile.avatar_url = localPath
+                await this.plugin.saveSettings()
+              }
+            }
 
             editor.remove()
             new Notice(`Profile "${id}" saved.`)

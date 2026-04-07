@@ -186,9 +186,9 @@ export class CommunityPostModal extends Modal {
     const comments = parseInt(this.comments, 10) || 0
     const dateLabel = formatDate(this.date) || formatDate(todayISO())
 
-    // Build the code fence
-    const header = `community-post,${handle},${likes},${comments},${dateLabel},`
-    const block = "```" + header + "\n" + this.content.trimEnd() + "\n```"
+    // Build the code fence — metadata on the first line of the body
+    const metaLine = `${handle},${likes},${comments},${dateLabel}`
+    const block = "```community-post\n" + metaLine + "\n" + this.content.trimEnd() + "\n```"
 
     this.editor.replaceSelection(block)
     new Notice("Community post inserted.")

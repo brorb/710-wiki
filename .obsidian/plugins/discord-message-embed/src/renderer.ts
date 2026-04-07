@@ -5,6 +5,14 @@ import DISCORD_CSS from "./discord-thread.css"
 
 /* ── Helpers ── */
 
+/** Resolve a url/path: if it's a vault-relative path, convert to resource URL. */
+function resolveAvatarSrc(urlOrPath: string, plugin: DiscordMessageEmbedPlugin): string {
+  if (!urlOrPath) return DEFAULT_AVATAR
+  if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath
+  // Vault-relative path — use Obsidian's resource path resolver
+  return plugin.app.vault.adapter.getResourcePath(urlOrPath)
+}
+
 const escapeHtml = (text: string): string =>
   text
     .replace(/&/g, "&amp;")
@@ -73,7 +81,8 @@ export function renderDiscordThread(
   messages: DiscordMessageBlock[],
   profiles: Record<string, DiscordProfile>,
   collapsible = true,
-  defaultAvatarUrl: string = DEFAULT_AVATAR
+  defaultAvatarUrl: string = DEFAULT_AVATAR,
+  plugin?: DiscordMessageEmbedPlugin,
 ): HTMLElement {
   const wrapper = document.createElement("div")
   wrapper.classList.add("discord-thread-wrapper")
@@ -90,7 +99,7 @@ export function renderDiscordThread(
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i]
     const prev = i > 0 ? messages[i - 1] : undefined
-    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl)
+    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl, plugin)
     thread.appendChild(el)
   }
 
@@ -143,7 +152,8 @@ function renderMessage(
   msg: DiscordMessageBlock,
   prev: DiscordMessageBlock | undefined,
   profiles: Record<string, DiscordProfile>,
-  defaultAvatarUrl: string
+  defaultAvatarUrl: string,
+  plugin?: DiscordMessageEmbedPlugin,
 ): HTMLElement {
   const author = resolveAuthor(msg, profiles, defaultAvatarUrl)
   const prevKey = prev ? getAuthorKey(prev, profiles) : undefined
@@ -164,14 +174,15 @@ function renderMessage(
     const avatarDiv = document.createElement("div")
     avatarDiv.classList.add("discord-avatar")
     const img = document.createElement("img")
-    img.src = author.avatar_url
+    img.src = plugin ? resolveAvatarSrc(author.avatar_url, plugin) : author.avatar_url
     img.alt = `${author.display_name}'s avatar`
     img.loading = "lazy"
     img.width = 40
     img.height = 40
+    const fallbackSrc = plugin ? resolveAvatarSrc(defaultAvatarUrl, plugin) : defaultAvatarUrl
     img.onerror = () => {
       img.onerror = null
-      img.src = defaultAvatarUrl
+      img.src = fallbackSrc
     }
     avatarDiv.appendChild(img)
     article.appendChild(avatarDiv)
@@ -275,7 +286,8 @@ export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
       messages,
       plugin.settings.profiles,
       messages.length > 6,
-      plugin.settings.defaultAvatarUrl
+      plugin.settings.defaultAvatarUrl,
+      plugin,
     )
     el.appendChild(thread)
   })
@@ -312,7 +324,8 @@ export function registerDiscordRenderer(plugin: DiscordMessageEmbedPlugin) {
         messages,
         plugin.settings.profiles,
         true,
-        plugin.settings.defaultAvatarUrl
+        plugin.settings.defaultAvatarUrl,
+        plugin,
       )
 
       // Build a nice wrapper that preserves the expandable title bar

@@ -1,4 +1,4 @@
-import { Editor, MarkdownView, Notice, Plugin, requestUrl } from "obsidian"
+import { Editor, MarkdownView, Notice, Plugin, requestUrl, normalizePath } from "obsidian"
 import {
   DEFAULT_AVATAR,
   DEFAULT_SETTINGS,
@@ -26,6 +26,9 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     // Register in-editor renderers
     registerDiscordRenderer(this)
     registerCommunityPostRenderer(this)
+
+    // Background: download any remote avatar URLs to local vault
+    void this.downloadAllRemoteAvatars()
 
     /* ── URL-based commands (existing) ── */
 
@@ -460,6 +463,15 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
     this.settings.profiles[finalId] = profile
     // Fire-and-forget save — don't block the embed insertion
     void this.saveSettings()
+    // Download avatar locally in the background
+    if (avatarUrl && /^https?:\/\//.test(avatarUrl)) {
+      void this.downloadAvatar(avatarUrl, finalId).then((localPath) => {
+        if (localPath) {
+          profile.avatar_url = localPath
+          void this.saveSettings()
+        }
+      })
+    }
     new Notice(`Auto-created profile "${finalId}" for @${username}`)
 
     return profile
@@ -484,6 +496,15 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
       if (newHash && newHash !== oldHash) {
         profile.avatar_url = avatarUrl
         changed = true
+        // Download updated avatar locally in the background
+        if (/^https?:\/\//.test(avatarUrl)) {
+          void this.downloadAvatar(avatarUrl, profile.id).then((localPath) => {
+            if (localPath) {
+              profile.avatar_url = localPath
+              void this.saveSettings()
+            }
+          })
+        }
       }
     }
 
@@ -501,6 +522,51 @@ export default class DiscordMessageEmbedPlugin extends Plugin {
 
     if (changed) {
       void this.saveSettings()
+    }
+  }
+
+  /** Download a remote avatar image into the vault and return the vault-relative path. */
+  async downloadAvatar(remoteUrl: string, profileId: string): Promise<string | null> {
+    if (!remoteUrl || !/^https?:\/\//.test(remoteUrl)) return null
+    try {
+      const resp = await requestUrl({ url: remoteUrl })
+      if (resp.status >= 400) return null
+
+      const ct = (resp.headers["content-type"] ?? "image/png").toLowerCase()
+      let ext = "png"
+      if (ct.includes("jpeg") || ct.includes("jpg")) ext = "jpg"
+      else if (ct.includes("gif")) ext = "gif"
+      else if (ct.includes("webp")) ext = "webp"
+
+      const dir = normalizePath("Content/Media/Avatars")
+      if (!(await this.app.vault.adapter.exists(dir))) {
+        await this.app.vault.adapter.mkdir(dir)
+      }
+
+      const safeName = profileId.replace(/[^a-z0-9_-]/gi, "_")
+      const filePath = normalizePath(`${dir}/${safeName}.${ext}`)
+      await this.app.vault.adapter.writeBinary(filePath, resp.arrayBuffer)
+      return filePath
+    } catch (e) {
+      console.warn("[710-content-embeds] Failed to download avatar:", e)
+      return null
+    }
+  }
+
+  /** One-time migration: download all profiles' remote avatars to local vault. */
+  private async downloadAllRemoteAvatars(): Promise<void> {
+    let changed = false
+    for (const [id, profile] of Object.entries(this.settings.profiles)) {
+      if (profile.avatar_url && /^https?:\/\//.test(profile.avatar_url)) {
+        const localPath = await this.downloadAvatar(profile.avatar_url, id)
+        if (localPath) {
+          profile.avatar_url = localPath
+          changed = true
+        }
+      }
+    }
+    if (changed) {
+      await this.saveSettings()
     }
   }
 }
