@@ -1,19 +1,20 @@
 {
   "apiEndpoint": "https://discord-system-firebase-bot-production.up.railway.app/api/message?url=",
+  "defaultAvatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png",
   "profiles": {
     "system000008": {
       "id": "system000008",
       "display_name": "SYSTEM",
       "username": "system000008",
       "color": "#FF0000",
-      "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/system000008.png"
     },
     "systemrulemaker_16338": {
       "id": "systemrulemaker_16338",
       "display_name": "SYSTEM II",
       "username": "systemrulemaker_16338",
       "color": "#FF0000",
-      "avatar_url": "https://cdn.discordapp.com/avatars/1442630041119752367/857ce5a8950781499bfcc800f1e73988.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/systemrulemaker_16338.png"
     },
     "camera3y3": {
       "id": "camera3y3",
@@ -34,7 +35,7 @@
       "display_name": "ThePortalNinja",
       "username": "theportalninja",
       "color": "#FF00AA",
-      "avatar_url": "https://cdn.discordapp.com/avatars/233711693241253891/267ed96f6273d08426882bd2c1f0aa33.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/theportalninja.png"
     },
     "herodytheus": {
       "id": "herodytheus",
@@ -48,7 +49,7 @@
       "display_name": "Swordian",
       "username": "lightgreenwatch",
       "color": "#AF65DA",
-      "avatar_url": "https://cdn.discordapp.com/avatars/798640375220404224/36881269c2897e9a52f407b9659952b7.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/lightgreenwatch.png"
     },
     "mastery_jove": {
       "id": "mastery_jove",
@@ -62,21 +63,21 @@
       "display_name": "Deleted User",
       "username": "Deleted User",
       "color": null,
-      "avatar_url": "https://cdn.discordapp.com/embed/avatars/3.png"
+      "avatar_url": "Content/Media/Avatars/deleted-user.png"
     },
     "ora_cleservertype": {
       "id": "ora_cleservertype",
       "display_name": "ORA_CLE.servertype",
       "username": "ORA_CLE.servertype",
       "color": "#770000",
-      "avatar_url": "https://cdn.discordapp.com/avatars/1396773383382765608/e789e34ae554a73a8aebb72d1ccd6134.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/ora_cleservertype.png"
     },
     "abegirl2322-2": {
       "id": "abegirl2322-2",
       "display_name": "Abe",
       "username": "abegirl2322",
       "color": "#AF65DA",
-      "avatar_url": "https://cdn.discordapp.com/avatars/808118121407840268/b7d064cce83ab832c4857ca31b4c91de.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/abegirl2322-2.png"
     },
     "phtalt": {
       "id": "phtalt",
@@ -104,7 +105,7 @@
       "display_name": "ZimA",
       "username": "_zima_",
       "color": null,
-      "avatar_url": "https://cdn.discordapp.com/avatars/247155768325963777/3e519c1b9f2150da25ce0144dfddface.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/_zima_.png"
     },
     "kayxsu": {
       "id": "kayxsu",
@@ -132,14 +133,14 @@
       "display_name": "APP TRUSTED 02",
       "username": "APP TRUSTED 02#8507",
       "color": "#234DD1",
-      "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/app-trusted-028507.png"
     },
     "1776_1": {
       "id": "1776_1",
       "display_name": "Carlos",
       "username": "1776_1",
       "color": "#04E5E6",
-      "avatar_url": "https://cdn.discordapp.com/avatars/1040863553344778240/768187847563f88707af052325e781a5.png?size=1024"
+      "avatar_url": "Content/Media/Avatars/1776_1.png"
     },
     "pht_alt_": {
       "id": "pht_alt_",
@@ -147,6 +148,12 @@
       "username": "pht_alt_",
       "color": "#04E5E6",
       "avatar_url": "https://cdn.discordapp.com/avatars/1429203385608962208/81e7c4ae6a032d98299cf08e2d0d6228.png?size=1024"
+    }
+  },
+  "youtubeChannels": {
+    "7-10tone": {
+      "name": "7/10 Tone",
+      "avatarUrl": "https://yt3.googleusercontent.com/O8ghhscYlPBQPiUmw0yMFZ0LKZ6BIBzasRvtZdCgKnKVTXstsCedEUFVFNBkpU9s0qBN9VodZw=s900-c-k-c0x00ffffff-no-rj"
     }
   }
 }

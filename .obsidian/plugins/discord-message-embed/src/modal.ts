@@ -26,19 +26,30 @@ type InsertMode = "embed" | "citation"
 
 /* ── Timezone / date helpers ── */
 
-function getTimezones(): string[] {
-  try {
-    return (Intl as any).supportedValuesOf("timeZone") as string[]
-  } catch {
-    return [
-      "UTC", "America/New_York", "America/Chicago", "America/Denver",
-      "America/Los_Angeles", "America/Sao_Paulo", "Europe/London",
-      "Europe/Berlin", "Europe/Paris", "Europe/Oslo", "Europe/Moscow",
-      "Asia/Dubai", "Asia/Kolkata", "Asia/Shanghai", "Asia/Tokyo",
-      "Australia/Sydney", "Pacific/Auckland",
-    ]
-  }
-}
+const COMMON_TIMEZONES: { value: string; label: string }[] = [
+  { value: "Pacific/Auckland", label: "Auckland (NZST)" },
+  { value: "Australia/Sydney", label: "Sydney (AEST)" },
+  { value: "Asia/Tokyo", label: "Tokyo (JST)" },
+  { value: "Asia/Shanghai", label: "Shanghai (CST)" },
+  { value: "Asia/Kolkata", label: "India (IST)" },
+  { value: "Asia/Dubai", label: "Dubai (GST)" },
+  { value: "Europe/Moscow", label: "Moscow (MSK)" },
+  { value: "Europe/Istanbul", label: "Istanbul (TRT)" },
+  { value: "Europe/Helsinki", label: "Helsinki (EET)" },
+  { value: "Europe/Berlin", label: "Berlin (CET)" },
+  { value: "Europe/Paris", label: "Paris (CET)" },
+  { value: "Europe/Oslo", label: "Oslo (CET)" },
+  { value: "Europe/London", label: "London (GMT)" },
+  { value: "Atlantic/Reykjavik", label: "Reykjavik (GMT)" },
+  { value: "America/Sao_Paulo", label: "São Paulo (BRT)" },
+  { value: "America/New_York", label: "New York (ET)" },
+  { value: "America/Chicago", label: "Chicago (CT)" },
+  { value: "America/Denver", label: "Denver (MT)" },
+  { value: "America/Los_Angeles", label: "Los Angeles (PT)" },
+  { value: "America/Anchorage", label: "Anchorage (AKT)" },
+  { value: "Pacific/Honolulu", label: "Honolulu (HST)" },
+  { value: "UTC", label: "UTC" },
+]
 
 function getLocalTimezone(): string {
   try {
@@ -123,11 +134,6 @@ export class ManualEmbedModal extends Modal {
 
     this.messageContainer = contentEl.createDiv("discord-messages-list")
 
-    // Timezone datalist (shared across all message blocks)
-    const tzDl = contentEl.createEl("datalist")
-    tzDl.id = "discord-tz-list"
-    for (const tz of getTimezones()) tzDl.createEl("option", { value: tz })
-
     this.renderAllMessages()
 
     // Bottom bar: add message + submit
@@ -204,6 +210,27 @@ export class ManualEmbedModal extends Modal {
     const profileSetting = new Setting(wrapper)
       .setName("Profile")
 
+    // Avatar preview for the selected profile
+    const avatarPreview = wrapper.createEl("img", {
+      attr: {
+        width: "32",
+        height: "32",
+        style: "border-radius:50%;margin-right:8px;vertical-align:middle;display:none;",
+      },
+    }) as HTMLImageElement
+    avatarPreview.onerror = () => { avatarPreview.style.display = "none" }
+    profileSetting.settingEl.querySelector(".setting-item-control")?.prepend(avatarPreview)
+
+    const updateAvatarPreview = (profileId: string) => {
+      const p = this.plugin.settings.profiles[profileId]
+      if (p?.avatar_url) {
+        avatarPreview.src = this.resolveAvatar(p.avatar_url)
+        avatarPreview.style.display = "inline-block"
+      } else {
+        avatarPreview.style.display = "none"
+      }
+    }
+
     profileSetting.addDropdown((dropdown) => {
       dropdown.addOption("", "— Select profile —")
       const profiles = this.plugin.settings.profiles
@@ -214,7 +241,9 @@ export class ManualEmbedModal extends Modal {
       dropdown.setValue(draft.profileId)
       dropdown.onChange((value) => {
         draft.profileId = value
+        updateAvatarPreview(value)
       })
+      updateAvatarPreview(draft.profileId)
     })
 
     profileSetting.addButton((btn) =>
@@ -236,14 +265,18 @@ export class ManualEmbedModal extends Modal {
     timeInput.value = draft.timeVal
     timeInput.addEventListener("change", () => { draft.timeVal = timeInput.value })
 
-    const tzInput = tsInputs.createEl("input", {
-      type: "text",
-      cls: "discord-ts-tz",
-      placeholder: "Timezone",
-      attr: { list: "discord-tz-list" },
-    }) as HTMLInputElement
-    tzInput.value = draft.timezone
-    tzInput.addEventListener("change", () => { draft.timezone = tzInput.value })
+    const tzSelect = tsInputs.createEl("select", { cls: "discord-ts-tz" }) as HTMLSelectElement
+    for (const tz of COMMON_TIMEZONES) {
+      const opt = tzSelect.createEl("option", { value: tz.value, text: tz.label })
+      if (tz.value === draft.timezone) opt.selected = true
+    }
+    // If user's detected tz isn't in the curated list, add it at the top
+    if (!COMMON_TIMEZONES.some((t) => t.value === draft.timezone) && draft.timezone) {
+      const opt = tzSelect.createEl("option", { value: draft.timezone, text: draft.timezone })
+      opt.selected = true
+      tzSelect.prepend(opt)
+    }
+    tzSelect.addEventListener("change", () => { draft.timezone = tzSelect.value })
 
     tsRow.createEl("small", { text: "Leave blank for current time.", cls: "discord-ts-hint" })
 
@@ -346,6 +379,13 @@ export class ManualEmbedModal extends Modal {
     return lines.join("\n")
   }
 
+  /** Resolve a vault-relative avatar path to a displayable src. */
+  private resolveAvatar(urlOrPath: string): string {
+    if (!urlOrPath) return ""
+    if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath
+    return this.app.vault.adapter.getResourcePath(urlOrPath)
+  }
+
   private generateCitationId(): string {
     const random = Math.random().toString(36).slice(2, 8)
     const timestamp = Date.now().toString(36)
@@ -420,7 +460,7 @@ export class ManualEmbedModal extends Modal {
       if (p.avatar_url) {
         const img = frag.createEl("img", {
           attr: {
-            src: p.avatar_url,
+            src: this.resolveAvatar(p.avatar_url),
             width: "20",
             height: "20",
             style:
@@ -632,7 +672,9 @@ export class ManualEmbedModal extends Modal {
       }
       .discord-ts-date { width: 150px; }
       .discord-ts-time { width: 110px; }
-      .discord-ts-tz { flex: 1; min-width: 180px; }
+      .discord-ts-tz { flex: 1; min-width: 180px; padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal); font-size: 0.93em; }
       .discord-ts-hint { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.82em; }
     `
     this.contentEl.prepend(style)

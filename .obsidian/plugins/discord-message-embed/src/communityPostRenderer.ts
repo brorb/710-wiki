@@ -22,20 +22,34 @@ interface ParsedPost {
   body: string
 }
 
-function parseHeader(infoString: string, body: string): ParsedPost | null {
-  const parts = infoString
+/**
+ * Parse the metadata line that starts the code block body.
+ * Expected format (first line of source):
+ *   @handle,likes,comments,date label
+ * or without handle:
+ *   likes,comments,date label
+ * The rest of the source is the post body.
+ */
+function parseSource(source: string): ParsedPost | null {
+  const lines = source.split(/\r?\n/)
+  const firstLine = (lines[0] ?? "").trim()
+  if (!firstLine) return null
+
+  // Also support legacy format where first line starts with "community-post,"
+  const metaLine = firstLine.replace(/^\s*community-post\s*,\s*/i, "")
+
+  const parts = metaLine
     .split(",")
     .map((p) => p.trim())
     .filter((p, i, a) => !(p.length === 0 && i >= a.length - 1))
 
-  // at least: community-post, likes, comments
-  if (parts.length < 3) return null
+  if (parts.length < 2) return null
 
-  let argIndex = 1
+  let argIndex = 0
   let channelHandle = DEFAULT_CHANNEL_HANDLE
 
-  if (parts[1] && parts[1].startsWith("@")) {
-    channelHandle = parts[1].slice(1).toLowerCase()
+  if (parts[0] && parts[0].startsWith("@")) {
+    channelHandle = parts[0].slice(1).toLowerCase()
     argIndex++
   }
 
@@ -45,11 +59,10 @@ function parseHeader(infoString: string, body: string): ParsedPost | null {
   const comments = Number.parseInt(parts[argIndex + 1] ?? "", 10)
   if (!Number.isFinite(likes) || !Number.isFinite(comments)) return null
 
-  // Remaining segments form the posted label + possible inline body
   let postedLabelRaw = parts[argIndex + 2] ?? ""
   const extra = parts.slice(argIndex + 3).filter((s) => s.length > 0)
 
-  // Merge year into label when split across commas
+  // Merge year into label when split across commas (e.g. "28 July" + "2025")
   if (
     postedLabelRaw &&
     extra.length > 0 &&
@@ -60,12 +73,23 @@ function parseHeader(infoString: string, body: string): ParsedPost | null {
     postedLabelRaw = `${postedLabelRaw} ${extra.shift()}`.trim()
   }
 
+  // Numeric day + month name (e.g. "4" + "November 2025")
+  if (
+    (!postedLabelRaw || /^\d+$/.test(postedLabelRaw)) &&
+    extra.length > 0 &&
+    /[A-Za-z]/.test(extra[0])
+  ) {
+    postedLabelRaw = `${postedLabelRaw} ${extra.shift()}`.trim()
+  }
+
+  const body = lines.slice(1).join("\n").trim()
+
   return {
     channelHandle,
     likes,
     comments,
     postedLabel: postedLabelRaw,
-    body: body.trim(),
+    body,
   }
 }
 
@@ -258,25 +282,12 @@ function buildPostElement(post: ParsedPost, channelProfile?: YouTubeChannelProfi
 /* ── Registration ── */
 
 export function registerCommunityPostRenderer(plugin: DiscordMessageEmbedPlugin) {
-  plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, ctx) => {
+  plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, _ctx) => {
     injectStyle()
 
-    const sectionInfo = ctx.getSectionInfo(el)
-    if (!sectionInfo) {
-      el.createEl("pre", { text: source })
-      return
-    }
-
-    const lines = sectionInfo.text.split("\n")
-    const openFenceLine = lines[sectionInfo.lineStart] ?? ""
-
-    // Extract the info string after the opening backticks
-    const fenceMatch = openFenceLine.match(/^`{3,}(.*)$/)
-    const infoString = fenceMatch ? fenceMatch[1].trim() : ""
-
-    const post = parseHeader(infoString, source)
+    const post = parseSource(source)
     if (!post) {
-      el.createEl("pre", { text: `Invalid community post:\n${infoString}\n${source}` })
+      el.createEl("pre", { text: `Invalid community post:\n${source}` })
       return
     }
 

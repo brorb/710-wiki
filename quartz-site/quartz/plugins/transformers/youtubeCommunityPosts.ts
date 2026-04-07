@@ -1057,15 +1057,17 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
             const headerRaw = [langRaw, metaRaw].filter((segment) => segment.length > 0).join(",")
             const headerResult = parseCommunityPostHeader(headerRaw)
 
-            if (!headerResult) {
+            // Support new format: lang is just "community-post" with metadata on
+            // the first line of the body (handled by parseBodyMetadata in renderPost)
+            if (!headerResult && !/^\s*community-post\s*$/i.test(langRaw)) {
               continue
             }
 
-            const channelHandle = headerResult.metadata.channelHandle || DEFAULT_CHANNEL_HANDLE
+            const channelHandle = headerResult?.metadata.channelHandle || DEFAULT_CHANNEL_HANDLE
             const channelProfile = await getChannelProfile(channelHandle)
 
             let value = typeof child.value === "string" ? child.value : ""
-            if (headerResult.inlineBody) {
+            if (headerResult?.inlineBody) {
               value = value.length > 0 ? `${headerResult.inlineBody}\n${value}` : headerResult.inlineBody
             }
             
@@ -1073,7 +1075,7 @@ export const YouTubeCommunityPosts: QuartzTransformerPlugin = () => {
               content: value,
               year: currentYear,
               slug,
-              metadataHint: headerResult.metadata,
+              metadataHint: headerResult?.metadata,
               channelProfile,
             })
 

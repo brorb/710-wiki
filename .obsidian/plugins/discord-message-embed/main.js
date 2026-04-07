@@ -81,9 +81,9 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
       text: "Manage reusable author profiles. Use the profile ID in your discord blocks instead of repeating avatar URLs and colours.",
       cls: "setting-item-description"
     });
-    new import_obsidian.Setting(containerEl).setName("Add new profile").addButton(
+    const addProfileSetting = new import_obsidian.Setting(containerEl).setName("Add new profile").addButton(
       (btn) => btn.setButtonText("+ New Profile").setCta().onClick(() => {
-        this.openProfileEditor(containerEl);
+        this.openProfileEditor(containerEl, void 0, addProfileSetting.settingEl);
       })
     ).addButton(
       (btn) => btn.setButtonText("Merge Duplicates").onClick(() => {
@@ -113,7 +113,7 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
       if (p.avatar_url) {
         const img = frag.createEl("img", {
           attr: {
-            src: p.avatar_url,
+            src: this.resolveAvatar(p.avatar_url),
             width: "24",
             height: "24",
             style: "border-radius:50%;vertical-align:middle;margin-right:8px;"
@@ -150,6 +150,12 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         })
       );
     }
+  }
+  /** Resolve a vault-relative avatar path to a displayable src. */
+  resolveAvatar(urlOrPath) {
+    if (!urlOrPath) return "";
+    if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath;
+    return this.app.vault.adapter.getResourcePath(urlOrPath);
   }
   /**
    * Scan all profiles and merge duplicates.
@@ -225,9 +231,14 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
    * Renders inline profile editor fields within the settings tab.
    * If `existing` is provided, it pre-fills the form for editing.
    */
-  openProfileEditor(parentEl, existing) {
+  openProfileEditor(parentEl, existing, afterEl) {
     parentEl.querySelector(".discord-profile-editor")?.remove();
     const editor = parentEl.createDiv("discord-profile-editor");
+    if (afterEl?.nextSibling) {
+      parentEl.insertBefore(editor, afterEl.nextSibling);
+    } else if (afterEl) {
+      afterEl.after(editor);
+    }
     editor.style.border = "1px solid var(--background-modifier-border)";
     editor.style.borderRadius = "8px";
     editor.style.padding = "12px 16px";
@@ -350,6 +361,13 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
         };
         this.plugin.settings.profiles[id] = profile;
         await this.plugin.saveSettings();
+        if (profile.avatar_url && /^https?:\/\//.test(profile.avatar_url)) {
+          const localPath = await this.plugin.downloadAvatar(profile.avatar_url, id);
+          if (localPath) {
+            profile.avatar_url = localPath;
+            await this.plugin.saveSettings();
+          }
+        }
         editor.remove();
         new import_obsidian.Notice(`Profile "${id}" saved.`);
         this.display();
@@ -364,31 +382,30 @@ var DiscordEmbedSettingTab = class extends import_obsidian.PluginSettingTab {
 
 // src/modal.ts
 var import_obsidian2 = require("obsidian");
-function getTimezones() {
-  try {
-    return Intl.supportedValuesOf("timeZone");
-  } catch {
-    return [
-      "UTC",
-      "America/New_York",
-      "America/Chicago",
-      "America/Denver",
-      "America/Los_Angeles",
-      "America/Sao_Paulo",
-      "Europe/London",
-      "Europe/Berlin",
-      "Europe/Paris",
-      "Europe/Oslo",
-      "Europe/Moscow",
-      "Asia/Dubai",
-      "Asia/Kolkata",
-      "Asia/Shanghai",
-      "Asia/Tokyo",
-      "Australia/Sydney",
-      "Pacific/Auckland"
-    ];
-  }
-}
+var COMMON_TIMEZONES = [
+  { value: "Pacific/Auckland", label: "Auckland (NZST)" },
+  { value: "Australia/Sydney", label: "Sydney (AEST)" },
+  { value: "Asia/Tokyo", label: "Tokyo (JST)" },
+  { value: "Asia/Shanghai", label: "Shanghai (CST)" },
+  { value: "Asia/Kolkata", label: "India (IST)" },
+  { value: "Asia/Dubai", label: "Dubai (GST)" },
+  { value: "Europe/Moscow", label: "Moscow (MSK)" },
+  { value: "Europe/Istanbul", label: "Istanbul (TRT)" },
+  { value: "Europe/Helsinki", label: "Helsinki (EET)" },
+  { value: "Europe/Berlin", label: "Berlin (CET)" },
+  { value: "Europe/Paris", label: "Paris (CET)" },
+  { value: "Europe/Oslo", label: "Oslo (CET)" },
+  { value: "Europe/London", label: "London (GMT)" },
+  { value: "Atlantic/Reykjavik", label: "Reykjavik (GMT)" },
+  { value: "America/Sao_Paulo", label: "S\xE3o Paulo (BRT)" },
+  { value: "America/New_York", label: "New York (ET)" },
+  { value: "America/Chicago", label: "Chicago (CT)" },
+  { value: "America/Denver", label: "Denver (MT)" },
+  { value: "America/Los_Angeles", label: "Los Angeles (PT)" },
+  { value: "America/Anchorage", label: "Anchorage (AKT)" },
+  { value: "Pacific/Honolulu", label: "Honolulu (HST)" },
+  { value: "UTC", label: "UTC" }
+];
 function getLocalTimezone() {
   try {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -455,9 +472,6 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
       this.messages.push(this.createEmptyDraft());
     }
     this.messageContainer = contentEl.createDiv("discord-messages-list");
-    const tzDl = contentEl.createEl("datalist");
-    tzDl.id = "discord-tz-list";
-    for (const tz of getTimezones()) tzDl.createEl("option", { value: tz });
     this.renderAllMessages();
     const bottomBar = contentEl.createDiv("discord-modal-bottom-bar");
     new import_obsidian2.Setting(bottomBar).addButton(
@@ -508,6 +522,26 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
       });
     }
     const profileSetting = new import_obsidian2.Setting(wrapper).setName("Profile");
+    const avatarPreview = wrapper.createEl("img", {
+      attr: {
+        width: "32",
+        height: "32",
+        style: "border-radius:50%;margin-right:8px;vertical-align:middle;display:none;"
+      }
+    });
+    avatarPreview.onerror = () => {
+      avatarPreview.style.display = "none";
+    };
+    profileSetting.settingEl.querySelector(".setting-item-control")?.prepend(avatarPreview);
+    const updateAvatarPreview = (profileId) => {
+      const p = this.plugin.settings.profiles[profileId];
+      if (p?.avatar_url) {
+        avatarPreview.src = this.resolveAvatar(p.avatar_url);
+        avatarPreview.style.display = "inline-block";
+      } else {
+        avatarPreview.style.display = "none";
+      }
+    };
     profileSetting.addDropdown((dropdown) => {
       dropdown.addOption("", "\u2014 Select profile \u2014");
       const profiles = this.plugin.settings.profiles;
@@ -518,7 +552,9 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
       dropdown.setValue(draft.profileId);
       dropdown.onChange((value) => {
         draft.profileId = value;
+        updateAvatarPreview(value);
       });
+      updateAvatarPreview(draft.profileId);
     });
     profileSetting.addButton(
       (btn) => btn.setButtonText("Manage Profiles").onClick(() => {
@@ -538,15 +574,18 @@ var ManualEmbedModal = class extends import_obsidian2.Modal {
     timeInput.addEventListener("change", () => {
       draft.timeVal = timeInput.value;
     });
-    const tzInput = tsInputs.createEl("input", {
-      type: "text",
-      cls: "discord-ts-tz",
-      placeholder: "Timezone",
-      attr: { list: "discord-tz-list" }
-    });
-    tzInput.value = draft.timezone;
-    tzInput.addEventListener("change", () => {
-      draft.timezone = tzInput.value;
+    const tzSelect = tsInputs.createEl("select", { cls: "discord-ts-tz" });
+    for (const tz of COMMON_TIMEZONES) {
+      const opt = tzSelect.createEl("option", { value: tz.value, text: tz.label });
+      if (tz.value === draft.timezone) opt.selected = true;
+    }
+    if (!COMMON_TIMEZONES.some((t) => t.value === draft.timezone) && draft.timezone) {
+      const opt = tzSelect.createEl("option", { value: draft.timezone, text: draft.timezone });
+      opt.selected = true;
+      tzSelect.prepend(opt);
+    }
+    tzSelect.addEventListener("change", () => {
+      draft.timezone = tzSelect.value;
     });
     tsRow.createEl("small", { text: "Leave blank for current time.", cls: "discord-ts-hint" });
     const contentLabel = wrapper.createEl("label", {
@@ -634,6 +673,12 @@ ${callout}
     lines.push("> ```");
     return lines.join("\n");
   }
+  /** Resolve a vault-relative avatar path to a displayable src. */
+  resolveAvatar(urlOrPath) {
+    if (!urlOrPath) return "";
+    if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath;
+    return this.app.vault.adapter.getResourcePath(urlOrPath);
+  }
   generateCitationId() {
     const random = Math.random().toString(36).slice(2, 8);
     const timestamp = Date.now().toString(36);
@@ -687,7 +732,7 @@ ${callout}
       if (p.avatar_url) {
         const img = frag.createEl("img", {
           attr: {
-            src: p.avatar_url,
+            src: this.resolveAvatar(p.avatar_url),
             width: "20",
             height: "20",
             style: "border-radius:50%;vertical-align:middle;margin-right:6px;"
@@ -854,7 +899,9 @@ ${callout}
       }
       .discord-ts-date { width: 150px; }
       .discord-ts-time { width: 110px; }
-      .discord-ts-tz { flex: 1; min-width: 180px; }
+      .discord-ts-tz { flex: 1; min-width: 180px; padding: 6px 8px; border-radius: 6px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-primary); color: var(--text-normal); font-size: 0.93em; }
       .discord-ts-hint { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.82em; }
     `;
     this.contentEl.prepend(style);
@@ -868,6 +915,11 @@ ${callout}
 var discord_thread_default = '/* Discord thread styles for Obsidian reading view / live preview. \r\n   Mirrors the Quartz website rendering. */\r\n\r\n.discord-thread {\r\n  --discord-bg: #2b2d31;\r\n  --discord-border: #1f2024;\r\n  --discord-hover: rgba(78, 80, 88, 0.6);\r\n  --discord-text-primary: #f2f3f5;\r\n  --discord-text-muted: #b5bac1;\r\n  --discord-author: #f2f3f5;\r\n  --discord-accent: #5865f2;\r\n  background: var(--discord-bg);\r\n  border: 1px solid var(--discord-border);\r\n  border-radius: 12px;\r\n  padding: 14px 18px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 0;\r\n  max-width: min(720px, 100%);\r\n  font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;\r\n  position: relative;\r\n}\r\n\r\n.discord-thread-wrapper {\r\n  position: relative;\r\n  max-width: min(720px, 100%);\r\n  display: block;\r\n}\r\n\r\n.discord-thread-content {\r\n  position: relative;\r\n  overflow: hidden;\r\n  display: block;\r\n  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);\r\n}\r\n\r\n.discord-thread-content.collapsed {\r\n  max-height: 420px;\r\n}\r\n\r\n.discord-thread-fade {\r\n  position: absolute;\r\n  inset-inline: 0;\r\n  bottom: 0;\r\n  height: 120px;\r\n  pointer-events: none;\r\n  opacity: 0;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    rgba(43, 45, 49, 0) 0%,\r\n    rgba(43, 45, 49, 0.72) 52%,\r\n    rgba(43, 45, 49, 0.92) 78%,\r\n    #2b2d31 100%\r\n  );\r\n  transition: opacity 0.28s ease;\r\n  z-index: 2;\r\n}\r\n\r\n.discord-thread-wrapper.collapsed .discord-thread-fade,\r\n.discord-thread-content.collapsed .discord-thread-fade {\r\n  opacity: 1;\r\n}\r\n\r\n.discord-collapse-toggle {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  gap: 0.5rem;\r\n  padding: 0.65rem 1.25rem;\r\n  margin: 0 auto;\r\n  margin-top: -3rem;\r\n  background: var(--background-secondary);\r\n  border: 1px solid var(--background-modifier-border);\r\n  border-radius: 8px;\r\n  color: var(--text-normal);\r\n  font-family: var(--font-interface);\r\n  font-size: 0.85rem;\r\n  font-weight: 600;\r\n  cursor: pointer;\r\n  transition: all 0.2s ease;\r\n  position: relative;\r\n  z-index: 3;\r\n  width: fit-content;\r\n  min-width: 140px;\r\n}\r\n\r\n.discord-thread-content:not(.collapsed) + .discord-collapse-toggle {\r\n  margin-top: 0.75rem;\r\n}\r\n\r\n.discord-collapse-toggle:hover {\r\n  background: var(--background-modifier-hover);\r\n  border-color: var(--interactive-accent);\r\n}\r\n\r\n.discord-collapse-icon {\r\n  width: 16px;\r\n  height: 16px;\r\n  transform-origin: 50% 50%;\r\n  transition: transform 0.3s ease;\r\n}\r\n\r\n.discord-collapse-toggle[aria-expanded="false"] .discord-collapse-icon {\r\n  transform: rotate(0deg);\r\n}\r\n\r\n.discord-collapse-toggle[aria-expanded="true"] .discord-collapse-icon {\r\n  transform: rotate(180deg);\r\n}\r\n\r\n.discord-message {\r\n  position: relative;\r\n  border-radius: 8px;\r\n  padding: 6px 8px 4px;\r\n  color: var(--discord-text-primary);\r\n  --discord-author-color: var(--discord-author);\r\n  display: grid;\r\n  grid-template-columns: 48px 1fr;\r\n  gap: 12px;\r\n  text-decoration: none;\r\n  align-items: flex-start;\r\n  width: 100%;\r\n  font: inherit;\r\n  user-select: text;\r\n  cursor: default;\r\n  transition: background 0.18s ease;\r\n}\r\n\r\n.discord-message * {\r\n  font-weight: inherit;\r\n}\r\n\r\n.discord-message + .discord-message {\r\n  margin-top: 2px;\r\n}\r\n\r\n.discord-message:hover {\r\n  background: var(--discord-hover);\r\n}\r\n\r\n.discord-message--compact {\r\n  padding-top: 2px;\r\n}\r\n\r\n.discord-avatar {\r\n  width: 40px;\r\n  min-width: 40px;\r\n  height: 40px;\r\n  aspect-ratio: 1 / 1;\r\n  border-radius: 50%;\r\n  overflow: hidden;\r\n  background: #1f2125;\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-top: 6px;\r\n}\r\n\r\n.discord-avatar-spacer {\r\n  width: 40px;\r\n  min-width: 40px;\r\n  height: 10px;\r\n  display: block;\r\n  margin-top: 6px;\r\n}\r\n\r\n.discord-avatar img {\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n  display: block;\r\n}\r\n\r\n.discord-body {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 0.35rem;\r\n}\r\n\r\n.discord-message--compact .discord-body {\r\n  gap: 0.18rem;\r\n}\r\n\r\n.discord-header {\r\n  display: flex;\r\n  flex-wrap: nowrap;\r\n  align-items: baseline;\r\n  column-gap: 0.5rem;\r\n  row-gap: 0.15rem;\r\n  line-height: 1.25;\r\n  margin-bottom: 2px;\r\n  min-width: 0;\r\n}\r\n\r\n.discord-author {\r\n  font-weight: 600;\r\n  color: var(--discord-author-color, var(--discord-author));\r\n}\r\n\r\n.discord-header time {\r\n  font-size: 0.8125rem;\r\n  color: var(--discord-text-muted);\r\n  flex-shrink: 0;\r\n  white-space: nowrap;\r\n}\r\n\r\n.discord-content {\r\n  font-size: 0.95rem;\r\n  line-height: 1.4;\r\n  white-space: pre-wrap;\r\n  word-break: break-word;\r\n}\r\n\r\n.discord-content--compact {\r\n  margin-top: 2px;\r\n}\r\n\r\n.discord-attachments {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 8px;\r\n  margin-top: 6px;\r\n}\r\n\r\n.discord-attachment {\r\n  display: block;\r\n  max-width: min(420px, 100%);\r\n  border-radius: 10px;\r\n  overflow: hidden;\r\n  background: #1f2126;\r\n  border: 1px solid rgba(0, 0, 0, 0.35);\r\n  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.36);\r\n}\r\n\r\n.discord-attachment img {\r\n  display: block;\r\n  width: 100%;\r\n  height: auto;\r\n}\r\n';
 
 // src/renderer.ts
+function resolveAvatarSrc(urlOrPath, plugin) {
+  if (!urlOrPath) return DEFAULT_AVATAR;
+  if (/^https?:\/\//.test(urlOrPath) || urlOrPath.startsWith("app://")) return urlOrPath;
+  return plugin.app.vault.adapter.getResourcePath(urlOrPath);
+}
 var formatTimestamp = (source) => {
   if (!source) return void 0;
   const date = new Date(source);
@@ -902,7 +954,7 @@ function getAuthorKey(msg, profiles) {
   if (!a) return "";
   return `${a.username ?? ""}|${a.display_name ?? ""}`;
 }
-function renderDiscordThread(messages, profiles, collapsible = true, defaultAvatarUrl = DEFAULT_AVATAR) {
+function renderDiscordThread(messages, profiles, collapsible = true, defaultAvatarUrl = DEFAULT_AVATAR, plugin) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("discord-thread-wrapper");
   if (collapsible) wrapper.classList.add("collapsed");
@@ -915,7 +967,7 @@ function renderDiscordThread(messages, profiles, collapsible = true, defaultAvat
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i];
     const prev = i > 0 ? messages[i - 1] : void 0;
-    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl);
+    const el = renderMessage(msg, prev, profiles, defaultAvatarUrl, plugin);
     thread.appendChild(el);
   }
   content.appendChild(thread);
@@ -952,7 +1004,7 @@ function renderDiscordThread(messages, profiles, collapsible = true, defaultAvat
   }
   return wrapper;
 }
-function renderMessage(msg, prev, profiles, defaultAvatarUrl) {
+function renderMessage(msg, prev, profiles, defaultAvatarUrl, plugin) {
   const author = resolveAuthor(msg, profiles, defaultAvatarUrl);
   const prevKey = prev ? getAuthorKey(prev, profiles) : void 0;
   const currKey = getAuthorKey(msg, profiles);
@@ -968,14 +1020,15 @@ function renderMessage(msg, prev, profiles, defaultAvatarUrl) {
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("discord-avatar");
     const img = document.createElement("img");
-    img.src = author.avatar_url;
+    img.src = plugin ? resolveAvatarSrc(author.avatar_url, plugin) : author.avatar_url;
     img.alt = `${author.display_name}'s avatar`;
     img.loading = "lazy";
     img.width = 40;
     img.height = 40;
+    const fallbackSrc = plugin ? resolveAvatarSrc(defaultAvatarUrl, plugin) : defaultAvatarUrl;
     img.onerror = () => {
       img.onerror = null;
-      img.src = defaultAvatarUrl;
+      img.src = fallbackSrc;
     };
     avatarDiv.appendChild(img);
     article.appendChild(avatarDiv);
@@ -1054,7 +1107,8 @@ ${source}` });
       messages,
       plugin.settings.profiles,
       messages.length > 6,
-      plugin.settings.defaultAvatarUrl
+      plugin.settings.defaultAvatarUrl,
+      plugin
     );
     el.appendChild(thread);
   });
@@ -1081,7 +1135,8 @@ ${source}` });
         messages,
         plugin.settings.profiles,
         true,
-        plugin.settings.defaultAvatarUrl
+        plugin.settings.defaultAvatarUrl,
+        plugin
       );
       const titleBar = callout.querySelector(
         ".callout-title"
@@ -1136,13 +1191,17 @@ var community_post_default = '.yt-community-post {\r\n  background: #202020;\r\n
 var import_obsidian3 = require("obsidian");
 var escapeHtml = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 var DEFAULT_CHANNEL_HANDLE = "7-10tone";
-function parseHeader(infoString, body) {
-  const parts = infoString.split(",").map((p) => p.trim()).filter((p, i, a) => !(p.length === 0 && i >= a.length - 1));
-  if (parts.length < 3) return null;
-  let argIndex = 1;
+function parseSource(source) {
+  const lines = source.split(/\r?\n/);
+  const firstLine = (lines[0] ?? "").trim();
+  if (!firstLine) return null;
+  const metaLine = firstLine.replace(/^\s*community-post\s*,\s*/i, "");
+  const parts = metaLine.split(",").map((p) => p.trim()).filter((p, i, a) => !(p.length === 0 && i >= a.length - 1));
+  if (parts.length < 2) return null;
+  let argIndex = 0;
   let channelHandle = DEFAULT_CHANNEL_HANDLE;
-  if (parts[1] && parts[1].startsWith("@")) {
-    channelHandle = parts[1].slice(1).toLowerCase();
+  if (parts[0] && parts[0].startsWith("@")) {
+    channelHandle = parts[0].slice(1).toLowerCase();
     argIndex++;
   }
   if (parts.length < argIndex + 2) return null;
@@ -1154,12 +1213,16 @@ function parseHeader(infoString, body) {
   if (postedLabelRaw && extra.length > 0 && /[A-Za-z]/.test(postedLabelRaw) && !/\d{4}/.test(postedLabelRaw) && /^\d{4}$/.test(extra[0])) {
     postedLabelRaw = `${postedLabelRaw} ${extra.shift()}`.trim();
   }
+  if ((!postedLabelRaw || /^\d+$/.test(postedLabelRaw)) && extra.length > 0 && /[A-Za-z]/.test(extra[0])) {
+    postedLabelRaw = `${postedLabelRaw} ${extra.shift()}`.trim();
+  }
+  const body = lines.slice(1).join("\n").trim();
   return {
     channelHandle,
     likes,
     comments,
     postedLabel: postedLabelRaw,
-    body: body.trim()
+    body
   };
 }
 function formatCount(n) {
@@ -1296,21 +1359,11 @@ function buildPostElement(post, channelProfile) {
   return article;
 }
 function registerCommunityPostRenderer(plugin) {
-  plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, ctx) => {
+  plugin.registerMarkdownCodeBlockProcessor("community-post", (source, el, _ctx) => {
     injectStyle2();
-    const sectionInfo = ctx.getSectionInfo(el);
-    if (!sectionInfo) {
-      el.createEl("pre", { text: source });
-      return;
-    }
-    const lines = sectionInfo.text.split("\n");
-    const openFenceLine = lines[sectionInfo.lineStart] ?? "";
-    const fenceMatch = openFenceLine.match(/^`{3,}(.*)$/);
-    const infoString = fenceMatch ? fenceMatch[1].trim() : "";
-    const post = parseHeader(infoString, source);
+    const post = parseSource(source);
     if (!post) {
       el.createEl("pre", { text: `Invalid community post:
-${infoString}
 ${source}` });
       return;
     }
@@ -1475,8 +1528,8 @@ var CommunityPostModal = class extends import_obsidian4.Modal {
     const likes = parseInt(this.likes, 10) || 0;
     const comments = parseInt(this.comments, 10) || 0;
     const dateLabel = formatDate(this.date) || formatDate(todayISO());
-    const header = `community-post,${handle},${likes},${comments},${dateLabel},`;
-    const block = "```" + header + "\n" + this.content.trimEnd() + "\n```";
+    const metaLine = `${handle},${likes},${comments},${dateLabel}`;
+    const block = "```community-post\n" + metaLine + "\n" + this.content.trimEnd() + "\n```";
     this.editor.replaceSelection(block);
     new import_obsidian4.Notice("Community post inserted.");
     this.close();
@@ -1536,6 +1589,7 @@ var DiscordMessageEmbedPlugin = class extends import_obsidian5.Plugin {
     this.addSettingTab(new DiscordEmbedSettingTab(this.app, this));
     registerDiscordRenderer(this);
     registerCommunityPostRenderer(this);
+    void this.downloadAllRemoteAvatars();
     this.addCommand({
       id: "insert-discord-message-embed",
       name: "Insert Discord message embed (from URL)",
@@ -1863,6 +1917,14 @@ ${callout}
     };
     this.settings.profiles[finalId] = profile;
     void this.saveSettings();
+    if (avatarUrl && /^https?:\/\//.test(avatarUrl)) {
+      void this.downloadAvatar(avatarUrl, finalId).then((localPath) => {
+        if (localPath) {
+          profile.avatar_url = localPath;
+          void this.saveSettings();
+        }
+      });
+    }
     new import_obsidian5.Notice(`Auto-created profile "${finalId}" for @${username}`);
     return profile;
   }
@@ -1878,6 +1940,14 @@ ${callout}
       if (newHash && newHash !== oldHash) {
         profile.avatar_url = avatarUrl;
         changed = true;
+        if (/^https?:\/\//.test(avatarUrl)) {
+          void this.downloadAvatar(avatarUrl, profile.id).then((localPath) => {
+            if (localPath) {
+              profile.avatar_url = localPath;
+              void this.saveSettings();
+            }
+          });
+        }
       }
     }
     if (displayName && !profile.display_name) {
@@ -1890,6 +1960,46 @@ ${callout}
     }
     if (changed) {
       void this.saveSettings();
+    }
+  }
+  /** Download a remote avatar image into the vault and return the vault-relative path. */
+  async downloadAvatar(remoteUrl, profileId) {
+    if (!remoteUrl || !/^https?:\/\//.test(remoteUrl)) return null;
+    try {
+      const resp = await (0, import_obsidian5.requestUrl)({ url: remoteUrl });
+      if (resp.status >= 400) return null;
+      const ct = (resp.headers["content-type"] ?? "image/png").toLowerCase();
+      let ext = "png";
+      if (ct.includes("jpeg") || ct.includes("jpg")) ext = "jpg";
+      else if (ct.includes("gif")) ext = "gif";
+      else if (ct.includes("webp")) ext = "webp";
+      const dir = (0, import_obsidian5.normalizePath)("Content/Media/Avatars");
+      if (!await this.app.vault.adapter.exists(dir)) {
+        await this.app.vault.adapter.mkdir(dir);
+      }
+      const safeName = profileId.replace(/[^a-z0-9_-]/gi, "_");
+      const filePath = (0, import_obsidian5.normalizePath)(`${dir}/${safeName}.${ext}`);
+      await this.app.vault.adapter.writeBinary(filePath, resp.arrayBuffer);
+      return filePath;
+    } catch (e) {
+      console.warn("[710-content-embeds] Failed to download avatar:", e);
+      return null;
+    }
+  }
+  /** One-time migration: download all profiles' remote avatars to local vault. */
+  async downloadAllRemoteAvatars() {
+    let changed = false;
+    for (const [id, profile] of Object.entries(this.settings.profiles)) {
+      if (profile.avatar_url && /^https?:\/\//.test(profile.avatar_url)) {
+        const localPath = await this.downloadAvatar(profile.avatar_url, id);
+        if (localPath) {
+          profile.avatar_url = localPath;
+          changed = true;
+        }
+      }
+    }
+    if (changed) {
+      await this.saveSettings();
     }
   }
 };

@@ -1,4 +1,4 @@
-
+﻿
 See [[TTH]] for more information about this subject.
 
 [[TTH]] is an elusive organization in the 7/10 universe, their goal and purpose is not fully understood (although it has been alluded to possibly being nefarious due to their potential connection with the [[Ferkland Institute]]) and the scope of their size is kept well-hidden. Although, certain clues could point other branches or entities being connected to them according to hints through [[SYSTEM]] (as well as certain [[TTH]] members themselves who communicated to [[The Sleuths]] through [[SYSTEM]]). It is confirmed by [[SYSTEM]] that [[TTH]] is a sub-branch of something, possibly another organization/entity.<!-- discord-cite:cite-mi2h0awh-i8r88f -->
@@ -76,7 +76,8 @@ It is possible that certain IDs correlate to certain rankings or other branches 
 
 The last statement seems to suggest that it is another branch in relation [[TTH]], but whether it is above or below them is unknown. Information appears to be censored with what looks like a random string of characters, which is the case for another mysterious branches or entities within the organization:
 
-```community-post,@7-10tone,0,0,14 November 2025,
+```community-post
+@7-10tone,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: 7/10 Tone
 tags:
   - YouTube
@@ -79,7 +79,8 @@ Width: clamp(500px, 32vw, 360px)
 
 ## 2025 Gradual Removal and Eventual Purge
 
-```community-post,@7-10tone,2,0,2 August 2025,
+```community-post
+@7-10tone,2,0,2 August 2025,
 ERROR : -89 : update/update(!HOST ERROR! > No host detected, removing all unmarked labels on 8/10/25 at ran.time(0100-2400))
 ```
 
@@ -132,7 +133,8 @@ Width: clamp(220px, 32vw, 360px)
 
 On 12th November 2025, a community post was uploaded to the 7/10 Tone channel before it was purged once again. Unlike last time, the "unmarked labels" removal date was scheduled for 31 December:
 
-```community-post,@7-10tone,1,1,12 November 2025,
+```community-post
+@7-10tone,1,1,12 November 2025,
 !/update:4-54, update-TIME-LIMIT(2000-8:00pm {N/A}-standard-time) removing all unmarked labels :: on [12/31/[NAN]]
 ```
 

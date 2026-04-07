@@ -1,4 +1,4 @@
----
+﻿---
 title: Long String
 tags:
   - lore
@@ -173,7 +173,8 @@ At one point, [[SYSTEM]] crashed after being asked who made Long String:
 
 On 14 November 2025, Long String was mentioned along with possibly another virus ([[TTH Breaker]]) in a community post before [[710 Tone|7/10 Tone]] and possibly [[710 NPP|7/10 NPP]] were completely purged of all content, indicating that Long String might not be the only virus-like subject in the 7/10 universe:
 
-```community-post,@7-10tone,0,0,14 November 2025,
+```community-post
+@7-10tone,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```
 

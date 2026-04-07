@@ -1,4 +1,4 @@
----
+﻿---
 title: TTH Breaker
 tags:
   - important
@@ -17,6 +17,7 @@ A virus that was mentioned in a community post along with [[Long String]] before
 
 Its name particularly contains what looks like a random string in the middle, "UUUAD\*D((SD&\=\=\", which could suggest it is specifically targeting something tied to [[TTH]]:
 
-```community-post,@7-10tone,0,0,14 November 2025,
+```community-post
+@7-10tone,0,0,14 November 2025,
 ERROR 9999+: No security key found, deleting drives :SUBJECT:[report: TTH "UUUAD*D((SD&==" BREAKER, AND LONG STRING DETECTED! DELETE EVERYTHING!]
 ```

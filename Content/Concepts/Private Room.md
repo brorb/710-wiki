@@ -1,4 +1,4 @@
----
+﻿---
 title: Private Room
 tags:
   - lore
@@ -143,7 +143,8 @@ This chat comes from the video [[LOG-123.mp4]], posted on 4 May 2025. In it, the
 
 The remaining 6 chats were all taken from individual [[Community Posts]] over the period 2 July 2025 - 4 July 2025:
 
-```community-post,@7-10tone,0,0,2 July 2025,
+```community-post
+@7-10tone,0,0,2 July 2025,
 TRANSCRIPT 001:  
 TTH: F2930 We see your signal, transferring in a bit. Hold tight.
 ```
@@ -151,7 +152,8 @@ This chat features yet another unknown [[TTH]] worker, [[F2930]], chatting with 
 
 ## Chat #7
 
-```community-post,@7-10tone,1,1,2 July 2025,
+```community-post
+@7-10tone,1,1,2 July 2025,
 TRANSCRIPT 002:  
 TTH: F2930 Your signal will be sent in 1100, by your time that will be 2200  
 F2930: Why is there a wait time?  
@@ -161,7 +163,8 @@ Here we see that it takes 10 hours for [[F2930]] to receive the signal sent from
 
 ## Chat #8
 
-```community-post,@7-10tone,1,0,3 July 2025,
+```community-post
+@7-10tone,1,0,3 July 2025,
 TRANSCRIP 003:  
 TTH: F2930, we encountered some anomalous interference with your signal  
 F2930: THEN FIX IT.  
@@ -175,7 +178,8 @@ This chat differs a bit from the ones preceding it, in that [[F2930]] talks in a
 
 ## Chat #9
 
-```community-post,@7-10tone,1,0,4 July 2025,
+```community-post
+@7-10tone,1,0,4 July 2025,
 TRANSCRIPT 004:  
 TTH: F2930, We're getting some REN signals. Do you have anything to explain that?  
 F2930: WHAT DO YOU MEAN REN SIGNALS?  
@@ -187,7 +191,8 @@ Here, the mysterious [[REN]] signals are mentioned. [[F2930]] is suspected of ha
 
 ## Chat #10
 
-```community-post,@7-10tone,4,1,4 July 2025,
+```community-post
+@7-10tone,4,1,4 July 2025,
 TRANSCRIPT 005:  
 TTH: Okay, we went through everything and found nothing. It is suspicious however, that your terminal is completely clean of anything, but it's whatever. We just have to monitor your signals for 3 - 6 days and we will conclude whether or not we'll allow your signals to continue being private.  
 F2930: Come on, I'm not even going to have that district for that long, can't we do something to make your head turn the other way?  
@@ -631,7 +636,8 @@ In this chat, a [[TTH]] worker with ID [[F8829]] is confused as they end up conn
 
 Right after this conversation ended, a new community post was posted.
 
-```community-post,@7-10tone,1,1,8 November 2025,
+```community-post
+@7-10tone,1,1,8 November 2025,
 41p 4Cu 4Dtt 4Fi 53n 54g 20i 54t 48t 45o 52g 45e ther
 ```
 ^See [[Community Posts]] for more context on this message.
@@ -1014,7 +1020,8 @@ This gave us some insights on the mysterious codes sent by [[SYSTEM]] to certain
 
 After the disconnection, the following community posts were posted to [[710 Tone|7/10 Tone]]:
 
-```community-post,@7-10tone,1,0,10 November 2025,
+```community-post
+@7-10tone,1,0,10 November 2025,
 LOGGED OUTPUT:  
 "  
 <OUTPUT>!:Who is this?  
@@ -1024,7 +1031,8 @@ LOGGED OUTPUT:
 "
 ```
 
-```community-post,@7-10tone,1,0,10 November 2025,
+```community-post
+@7-10tone,1,0,10 November 2025,
 CONNECTED SERVER ANNOUNCEMENT TO EVERYONE APART OF REN:  
 Please remember to keep your connections closed to any connecting terminals, thank you.  
   
@@ -1621,7 +1629,8 @@ This was sent the same day as [[LET US OUT TTH]] was uploaded as a DM to several
 
 ## Chat 18
 
-```community-post,@7-10tone,2,0,6 Apr 2026,
+```community-post
+@7-10tone,2,0,6 Apr 2026,
 SPR.log-88395:
 #F9300: What is this?
 #F9320: What?
