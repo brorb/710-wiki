@@ -9,4 +9,4 @@ Uploaded 4 Apr 2026
 SYSTEM: 311112
 SYSTEM ID: 574663216**
 
-**Video Summary:** Normal red and black static until around 6 minutes into the video where an ominous dark 3D space appears, the camera pans around to a door where a light gradually grows as an ominous noise gets louder, then there is what looks like a rectangular 
+**Video Summary:** Normal red and black static until around 6 minutes into the video where an ominous dark 3D space appears, the camera pans around to a door where a light gradually grows as an ominous noise gets louder, then there is what looks like a rectangular presence stands over the door. A flash of white appears then the 3D space disappears. The log proceeds as normal, then the timer counts down from 98 to 97.
