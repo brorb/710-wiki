@@ -13501,6 +13501,58 @@ This was after the "IWeUswantwillgiftgrantyouthemsomethingaanobject" community p
   }
 ]
 ```
+
+##### 2026 DMs
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "Hello Mr. Travis,\n\nI'm Corry and I'm with the FBI in an investigation about some recent activity with ████████████\n█████████████████\n████\n███████████████\n█████████████████████████████\n████\n██████████\n████████████████████████\n\n███████\n█████████████",
+    "timestamp": "2026-03-27T05:25:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "##########F8896: Did you remember the code for that one door?\n#F8875: No, you know everybody has to get that code from higher up.\n#F8896: If higher up even thinks about responding.\n#F8896: Maybe look below those descripton lables on your desk\n|                ?                                              |",
+    "timestamp": "2026-03-29T04:27:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "Hey,\nI have a job for you, not that it's anything high paying, but it covers basic necessities---\n{{{{{{{{{{{{{{{}}}}})0000\n\nYou will have to wait until the end of that for anything that might require a edoc like gates and crap.\n\nCheers, Mike.",
+    "timestamp": "2026-04-01T02:05:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "#X778: Why are you named servertype.INDI?\nINDI: OH THAT\"S SHORT FOR SOMETHING ELSE.\n#X778: Do you mind telling me what it stand for?\nINDI:██████████████���█████████████████████████████████████████████████���������\nLOGENDINGsystemterminal.02/01/24",
+    "timestamp": "2026-04-02T21:55:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "95",
+    "timestamp": "2026-04-06T17:15:00.000Z"
+  }
+]
+```
 ## [[SERVER 01]]
 
 ##### 26th-28 July 2025 ([[SYSTEM]] getting the server setup)
