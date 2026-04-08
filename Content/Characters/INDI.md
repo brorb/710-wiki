@@ -41,12 +41,14 @@ His official name is "IN_DI" as confirmed by [[Kepler]]/[[710 NPP|7/10 NPP]] in 
 
 In one of the Private Room chats, INDI says his name is short for something else, but his explanation is unfortunately cut off in the chat log:
 
-```
-#X778: Why are you named servertype.INDI?
-INDI: OH THAT"S SHORT FOR SOMETHING ELSE.
-#X778: Do you mind telling me what it stand for?
-INDI:██████████████���█████████████████████████████████████████████████���������
-LOGENDINGsystemterminal.02/01/24
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "#X778: Why are you named servertype.INDI?\nINDI: OH THAT\"S SHORT FOR SOMETHING ELSE.\n#X778: Do you mind telling me what it stand for?\nINDI:██████████████���█████████████████████████████████████████████████���������\nLOGENDINGsystemterminal.02/01/24",
+    "timestamp": "2026-04-02T21:55:00.000Z"
+  }
+]
 ```
 
 ## Personality
