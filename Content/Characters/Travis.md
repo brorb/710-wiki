@@ -78,7 +78,7 @@ In November 2025, [[710 Tone|7/10 Tone]] uploaded [[THE EFFECT OF LONG STRING IS
 ---
 ## FBI Investigation
 
-In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a character named "Corry" from the FBI, who was apparently doing an investigation regarding some kind of activity with something:
+In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a character named "Corry" from the FBI to Travis regarding an investigation about some kind of activity with something:
 
 ```discord
 [
