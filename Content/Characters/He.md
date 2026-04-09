@@ -18,6 +18,7 @@ Appearances:
 - [[STATION_8 TERMINAL 8]] ([[SYSTEM|SYSTEM hijack]])
 - [[Hello]] (mentioned)
 - [[LOG-10]] (mentioned)
+- [[ORIGIN]] (mentioned)
 ```
 
 An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]]. His name is usually all capitalized as "HIM" or "HE".
