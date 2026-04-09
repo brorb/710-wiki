@@ -18,7 +18,7 @@ Appearances:
 Aliases:
 - DaVinci
 - Da Vinci
-- Dev (mentioned by [[Kepler]] in [[LOG-36]])
+- Dev (mentioned by [[Kepler]])
 Associates:
 - REN
 Status:
