@@ -18,11 +18,12 @@ Appearances:
 Aliases:
 - DaVinci
 - Da Vinci
-- Dev (mentioned by [[Kepler]])
+- Dev (mentioned by [[Kepler]] in [[LOG-36]])
 Associates:
 - REN
 Status:
-- Inaccessible (as if RIGfunctionobservationTEST028.mp4)
+- Inaccessible (in RIGfunctionobservationTEST028.mp4 description)
+- Alive?
 ```
 
 
