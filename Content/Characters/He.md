@@ -87,3 +87,14 @@ And I will show you HIM, HE will show you the future.
 They are listening and trying to intervene.
 Goodbye for now.
 ```
+
+## Gallery:
+
+```media-box
+Media: [[Reddit ''him'' mention 2024.png]]
+Alt: Reddit comment that states that the channel's description mentioned "him"
+Caption: Reddit comment on a post talking 710 Tone, stating that the description mentions a "him" character, most likely HIM.
+Align: left
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```

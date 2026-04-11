@@ -1,4 +1,4 @@
-﻿---
+---
 title: 7/10 Tone
 tags:
   - YouTube
