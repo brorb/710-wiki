@@ -39,6 +39,18 @@ During the STATION_8 livestreams, INDI would respond to viewers through the chat
 
 His official name is "IN_DI" as confirmed by [[Kepler]]/[[710 NPP|7/10 NPP]] in the [[STATION_8 TRIM 90]] livestream.  Viewers of the stream were asked to "think about why his name is INDI or more IN_DI". The true meaning behind INDI's name is not understood as if yet. INDI also goes by "IN_DI.SERVERTYPE" (or something adjacent), as seen in the description of [[LOG-109.MP]], in the livestream chat of [[STATION_8 TERMINAL 8]], and in [[LOG-132]].
 
+In one of the [[Private Room]] chats, INDI says his name is short for something else, but his explanation is unfortunately cut off in the chat log:
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "#X778: Why are you named servertype.INDI?\nINDI: OH THAT\"S SHORT FOR SOMETHING ELSE.\n#X778: Do you mind telling me what it stand for?\nINDI:██████████████���█████████████████████████████████████████████████���������\nLOGENDINGsystemterminal.02/01/24",
+    "timestamp": "2026-04-02T21:55:00.000Z"
+  }
+]
+```
+
 ## Personality
 
 INDI always types in upper case letters[^1]. He seems kind-hearted and willing to help, although he can be a little untrustworthy at times. [^2] INDI has, through [the STATION_8 livestream chats](/Livestream/Transcripts) on the [[710 Tone|7/10 Tone channel]], been one of the main sources of lore insight, alongside [[SYSTEM]].

@@ -15,3 +15,7 @@ In 2026, a select few of the Logs contained some mysterious codes that allegedly
 ###### From [[LOG-64]]:
 
 0x00X2Q8M4ZFYIZKXD3E1E30 1
+
+###### From [[LOG-100]]:
+
+0x00XEIFCAVSRDM7LALE72VO 2

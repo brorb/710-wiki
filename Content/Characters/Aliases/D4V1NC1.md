@@ -22,7 +22,8 @@ Aliases:
 Associates:
 - REN
 Status:
-- Inaccessible (as if RIGfunctionobservationTEST028.mp4)
+- Inaccessible (in RIGfunctionobservationTEST028.mp4 description)
+- Alive?
 ```
 
 

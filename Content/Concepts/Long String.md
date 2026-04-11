@@ -1,4 +1,4 @@
-﻿---
+---
 title: Long String
 tags:
   - lore

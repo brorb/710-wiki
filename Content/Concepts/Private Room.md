@@ -1,4 +1,4 @@
-﻿---
+---
 title: Private Room
 tags:
   - lore
@@ -1610,25 +1610,28 @@ This was sent the same day as [[LET US OUT TTH]] was uploaded as a DM to several
 ```discord
 [
   {
-    "id": "1437705182006870068",
-    "author": {
-      "display_name": "SYSTEM",
-      "username": "system000008",
-      "color": "#FF0000",
-      "colour": "#FF0000",
-      "colour_value": 16711680
-    },
-    "content": "<OUTPRINT>!:TEMP-TERMINAL updated
-    hello",
-    "timestamp": "2025-11-11T07:27:06.661000+00:00",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1396134967091793992/8842f7241caf01fab110863d1545e52d.png?size=1024",
-    "url": "https://discord.com/channels/1389902002737250314/1389902003228114957/1437705182006870068"
+    "profile": "system000008",
+    "content": "##########F8896: Did you remember the code for that one door?\n#F8875: No, you know everybody has to get that code from higher up.\n#F8896: If higher up even thinks about responding.\n#F8896: Maybe look below those descripton lables on your desk\n|                ?                                              |",
+    "timestamp": "2026-03-29T04:27:00.000Z"
   }
 ]
 ```
 
 ## Chat 18
+On 2nd April, SYSTEM sent a DM to several members of [[The Sleuths]], which contains a conversation between [[INDI]] and an unknown associate.
 
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "#X778: Why are you named servertype.INDI?\nINDI: OH THAT\"S SHORT FOR SOMETHING ELSE.\n#X778: Do you mind telling me what it stand for?\nINDI:██████████████���█████████████████████████████████████████████████���������\nLOGENDINGsystemterminal.02/01/24",
+    "timestamp": "2026-04-02T21:55:00.000Z"
+  }
+]
+```
+## Chat 19
+
+This one was posted as a [[Community Posts|Community Post]]
 ```community-post
 @7-10tone,2,0,6 Apr 2026,
 SPR.log-88395:
@@ -1637,5 +1640,4 @@ SPR.log-88395:
 #F9300: Why is 95 everywhere?
 #F9320: Don't ask me.
 ```
-This one was posted as a [[Community Posts]]
 [^1]: In [[STATION_8 TERMINAL 8]], when asked about what the Private Room is for, [[INDI]] said that it was his only reliable form of communication with [[Kepler]].

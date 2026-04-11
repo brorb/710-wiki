@@ -1,4 +1,4 @@
-﻿
+
 See [[Community Posts]] to see all of the known community posts archived.
 
 ## Half Life Gameplay Video Puzzles
@@ -29,7 +29,7 @@ but it will be soon
 > Int-score: 51/100
 > :score: > var importance
 
-Same video also featured a chatroom betwen [[Travis]] and [[INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
+Same video also featured a COPPERBOX chatroom between [[Travis]] and [[INDI]], which could also be another reference to the community post. Perhaps it is a hint about the [[Private Room]]?
 
 ---
 ## Special Log Deletions
