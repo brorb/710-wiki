@@ -1,4 +1,4 @@
-﻿
+
 See [[TTH]] for more information about this subject.
 
 [[TTH]] is an elusive organization in the 7/10 universe, their goal and purpose is not fully understood (although it has been alluded to possibly being nefarious due to their potential connection with the [[Ferkland Institute]]) and the scope of their size is kept well-hidden. Although, certain clues could point other branches or entities being connected to them according to hints through [[SYSTEM]] (as well as certain [[TTH]] members themselves who communicated to [[The Sleuths]] through [[SYSTEM]]). It is confirmed by [[SYSTEM]] that [[TTH]] is a sub-branch of something, possibly another organization/entity.<!-- discord-cite:cite-mi2h0awh-i8r88f -->
