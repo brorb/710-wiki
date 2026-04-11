@@ -86,3 +86,5 @@ And I will show you HIM, HE will show you the future.
 They are listening and trying to intervene.
 Goodbye for now.
 ```
+
+It is known that the old channel description for the [[710 Tone]] channel used to read "if you learn about Him it comes at a price."

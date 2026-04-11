@@ -156,20 +156,48 @@ def sanitize_site_path(vault_path: str) -> str:
 def site_relative_url(vault_path: str) -> Optional[str]:
     sanitized = sanitize_site_path(vault_path)
     candidate = SITE_PUBLIC_ROOT / sanitized
-    if not candidate.exists():
-        return None
-    return f"{CANVAS_HTML_REL_ROOT}{sanitized}"
+    if candidate.exists():
+        return f"{CANVAS_HTML_REL_ROOT}{sanitized}"
+
+    # Try with Content/ prefix for paths from the pre-restructure era
+    content_sanitized = "Content/" + sanitized
+    candidate = SITE_PUBLIC_ROOT / content_sanitized
+    if candidate.exists():
+        return f"{CANVAS_HTML_REL_ROOT}{content_sanitized}"
+
+    # Fallback: search by filename in SITE_PUBLIC_ROOT
+    target_name = Path(sanitized).name
+    for match in SITE_PUBLIC_ROOT.rglob(target_name):
+        try:
+            rel = match.relative_to(SITE_PUBLIC_ROOT)
+            return f"{CANVAS_HTML_REL_ROOT}{rel.as_posix()}"
+        except ValueError:
+            pass
+
+    return None
 
 
 def resolve_repo_asset_path(vault_path: str) -> Optional[Path]:
     posix = PurePosixPath(vault_path.strip("/"))
     if not posix.parts:
         return None
-    if posix.parts[0].lower() == "media":
-        candidate = REPO_ROOT / Path(*posix.parts)
-    else:
-        candidate = CONTENT_ROOT / Path(*posix.parts)
-    return candidate if candidate.exists() else None
+
+    # Try direct path from CONTENT_ROOT first (handles both media and non-media)
+    candidate = CONTENT_ROOT / Path(*posix.parts)
+    if candidate.exists():
+        return candidate
+
+    # Legacy fallback: try from REPO_ROOT (pre-Content-restructure paths)
+    candidate = REPO_ROOT / Path(*posix.parts)
+    if candidate.exists():
+        return candidate
+
+    # Final fallback: search by filename in CONTENT_ROOT
+    target_name = posix.name
+    for match in CONTENT_ROOT.rglob(target_name):
+        return match
+
+    return None
 
 
 def extract_preview_text(markdown_body: str, limit: int = 200) -> str:
