@@ -11,7 +11,7 @@ Title: He
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Also known as:
 - HE or HIM
-Appearances:
+Notable appearances:
 - [[HIS PERCEPTION]]
 - [[LOG-67.mp4]] (mentioned)
 - [[STATION_8 TRIM 90]] (mentioned)
