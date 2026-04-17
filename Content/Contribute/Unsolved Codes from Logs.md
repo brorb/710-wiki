@@ -19,3 +19,8 @@ In 2026, a select few of the Logs contained some mysterious codes that allegedly
 ###### From [[LOG-100]]:
 
 0x00XEIFCAVSRDM7LALE72VO 2
+
+
+**From [[Untitled LOG video]]:**
+
+0x0071S5TWH8(?)RXH65JERS9X 9
