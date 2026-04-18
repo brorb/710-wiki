@@ -4,8 +4,17 @@ tags:
 ---
 Below are all the community posts that have been made to the [[710 Tone|7/10 Tone]] YouTube channel. Due to a lack of proper archiving, the actual dates of some of these posts have been lost, so some are only approximately timestamped. Any relevant context or information is listed *beneath* the post.
 ## 2026
+
 ```community-post
-@7-10tone,4,0,6 Apr 2026,
+@7-10tone,4,1,17 Apr 2026
+-ERROR
+Unknown character "LEFT-TO-RIGHT MARK" in title 107
+-ERROR
+Correction discarded by #F8897
+```
+
+```community-post
+@7-10tone,5,0,6 Apr 2026,
 Logtimer[97-96]
 updated
 Logtimer[96-95]
