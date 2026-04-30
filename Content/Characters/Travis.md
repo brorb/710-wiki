@@ -11,7 +11,7 @@ tags:
 Title: Travis
 Image: ![[Content/Media/710 Media/Images/lm-2.png]]
 Caption: Travis' parting gift from [[prj_home.exe]] (also known as "lm-2").
-Also known as: TRAVIS@user ([[Private Room]] username)
+Also known as: TRAVIS@user ([[Private Room]] username), Travis M
 Appearances:
 - [[STATION_8 TRIM 5]]
 - [[Community posts]]
