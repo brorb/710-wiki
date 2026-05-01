@@ -89,6 +89,8 @@ Not much is known about the relationship between [[Travis]] and INDI, but from w
 
 In [[ERE IS ONE PERSON I KNOW IT'S KE]], he is seen communicating with [[Travis]] through a chatroom that is most likely the [[Private Room]].
 
+In [[LOG-120]], it is revealed that both INDI and [[Kepler]] taught [[Travis]] about [[The Logs]] during his investigation into the [[Caper Waves]].
+
 ---
 ### [[SYSTEM]]
 

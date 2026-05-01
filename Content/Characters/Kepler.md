@@ -54,6 +54,10 @@ D4V1NC1:We should disconnect from this and report this back to REN.
 K3P13R:Okay, good idea.
 ```
 
+## [[Travis]]
+
+In [[LOG-120]], it is revealed through a presentation about [[The Logs]] created by [[Travis]] that both Kepler and [[INDI]] helped him in his investigation and study of the [[Caper Waves]] and [[The Logs|Logs]].
+
 [^1]: This was confirmed in livestream chat on 7 July 2025
 
 [^2]: INDI confirmed this in the chat of [[STATION_8 TERMINAL 8]]

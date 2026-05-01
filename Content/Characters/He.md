@@ -10,7 +10,7 @@ tags:
 Title: He
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
 Also known as:
-- HE or HIM
+- HE, HIM, HIS
 Notable appearances:
 - [[HIS PERCEPTION]]
 - [[LOG-67.mp4]] (mentioned)
@@ -19,6 +19,7 @@ Notable appearances:
 - [[Hello]] (mentioned)
 - [[LOG-10]] (mentioned)
 - [[ORIGIN]] (mentioned)
+- [[LOG-120]] (mentioned)
 ```
 
 An elusive figure that was mentioned in the [[STATION_8 TRIM 90]] and [[STATION_8 TERMINAL 8]] livestreams on July 2025. In [[STATION_8 TERMINAL 8]], "He" hijacked [[SYSTEM]] and almost got to [[INDI]] and [[Kepler]]. His name is usually all capitalized as "HIM" or "HE".

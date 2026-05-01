@@ -79,7 +79,7 @@ In November 2025, [[710 Tone|7/10 Tone]] uploaded [[THE EFFECT OF LONG STRING IS
 ---
 ## FBI Investigation
 
-In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a character named "Corry" from the FBI to Travis regarding an investigation about some kind of activity with something:
+In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a character named "Corry" (who works for the FBI) to Travis regarding an investigation about some kind of activity with something:
 
 ```discord
 [
@@ -94,6 +94,6 @@ In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a ch
 ---
 ## [[Caper Waves|Caper Wave]] Investigations
 
-In [[LOG-120]]
+In [[LOG-120]], a presentation about [[The Logs]] was featured, which was created by Travis in 21st March of 2019. It revealed that Travis was investigating and studying [[Caper Waves]] and [[The Logs]] with help from [[INDI]] and [[Kepler]], 
 
 [^1]: [[STATION_8 TRIM 5]]
