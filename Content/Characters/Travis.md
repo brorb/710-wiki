@@ -94,6 +94,6 @@ In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a ch
 ---
 ## [[Caper Waves|Caper Wave]] Investigations
 
-In [[LOG-120]], a presentation about [[The Logs]] was featured, which was created by Travis in 21st March of 2019. It revealed that Travis was investigating and studying [[Caper Waves]] and [[The Logs]] with help from [[INDI]] and [[Kepler]], 
+In [[LOG-120]], a presentation about [[The Logs]] was featured, which was created by Travis in 21st March of 2019. It revealed that Travis was investigating and studying [[Caper Waves]] and [[The Logs]] with help from [[INDI]] and [[Kepler]].
 
 [^1]: [[STATION_8 TRIM 5]]
