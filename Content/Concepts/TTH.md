@@ -22,14 +22,15 @@ Workers:
 - [[F8887]]
 - [[F2617]]
 - [[F8829]]
-Appearances:
+Appearances/mentions:
 - [[LOG-15.mmp44]]
 - [[LOG-62.mp4]] (alias/ID number)
 - [[Community Posts]]
 - [[LEAKED_1.mp4]]
 - [[LOG-116.mp4]]
 - [[STATION_8 TERMINAL 8]]
-- [[LET US OUT TTH]]
+- [[LET US OUT TTH]] (mentioned in title)
+- [[LOG-120]] (mentioned)
 ```
 
 
@@ -76,7 +77,7 @@ They are an organization responsible for some type of signal transmission. Most 
 
 Their logo features two hands inside a red circle/ellipse, with the hands symbolizing human work.<!-- discord-cite:cite-mgqt94ga-p0y1ah --> This logo appears in videos such as [[LOG-116.mp4]] and [[LOG-15.mmp44]], as well as at the end of the [[STATION_8 TERMINAL 8]] livestream, indicating that TTH has a sufficient role in the lore of [[710 Tone|7/10 Tone]].
 
-It is likely that they are the ones responsible for [[The Logs]]. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The \[\_\_\_]", which likely refers to TTH (or "The Hands"). 
+It is likely that they are the ones responsible for [[The Logs]]. This is known because in the livestream chat of [[STATION_8 TERMINAL 8]], [[INDI]] states that the logs were made by "The \[\_\_\_]", which likely refers to TTH (or "The Hands"). Also, it is confirmed that they exchange [[The Logs|Logs]] with [[He|HIM]] in [[LOG-120]].
 
 [[SYSTEM]] and other characters are often seen communicating with and sending data to TTH servers. <!-- discord-cite:cite-mgryowvm-smp3th --> <!-- discord-cite:cite-mgryo3jq-n0thtk --> <!-- discord-cite:cite-mgrypbv5-iz07jk -->
 
