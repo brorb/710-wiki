@@ -17,6 +17,7 @@ Appearances:
 - [[Community posts]]
 - [[THE EFFECT OF LONG STRING IS NOT FOR YOU TO]] (name mentioned)
 - [[ERE IS ONE PERSON I KNOW IT'S KE]] (chatroom)
+- [[LOG-120]] (Log presentation writer)
 Status: Dead
 ```
 
@@ -89,5 +90,10 @@ In one of [[SYSTEM|SYSTEM's]] messages, there was a redacted letter sent by a ch
   }
 ]
 ```
+
+---
+## [[Caper Waves|Caper Wave]] Investigations
+
+In [[LOG-120]]
 
 [^1]: [[STATION_8 TRIM 5]]

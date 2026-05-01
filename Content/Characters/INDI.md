@@ -18,7 +18,7 @@ Associates:
 - [[SYSTEM]]
 - [[Kepler]]
 - [[REN]]
-Notable appearances:
+Notable appearances/mentions:
 - [[LEAKED_1.mp4]]
 - [[LOG-109.MP]]
 - [[LOG-111.mp4]]
@@ -28,6 +28,7 @@ Notable appearances:
 - [[STATION_8 TRIM 90]] (in chat)
 - [[STATION_8 TERMINAL 8]]
 - [[INDI (2026)]]
+- [[LOG-120]]
 ```
 
 

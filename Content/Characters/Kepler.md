@@ -12,10 +12,12 @@ tags:
 ```infobox
 Title: Kepler
 Image: ![[Content/Media/Other/placeholder_image_betterfix-min.jpg]]
-Appearances:
+Appearances/mentions:
 - [[STATION_8 TRIM 90]]
 - [[STATION_8 TERMINAL 8]]
+- [[ERE IS ONE PERSON I KNOW IT'S KE]] (possible reference in title)
 - [[LOG-36]]
+- [[LOG-120]] (mentioned)
 Also known as: K3P13R
 Associates:
 - REN
