@@ -71,7 +71,7 @@ Sometime in 2025, the original profile picture (which appeared pixelated) gradua
 ```media-box
 Media: [[Peython 2024 710 tone screenshot.png]]
 Alt: 7/10 Tone's videos approximately in 2024
-Caption: 7/10 Tone's channel with some lost logs
+Caption: 7/10 Tone's channel with some lost logs, circa 2024
 Align: left
 Wrap: false
 Width: clamp(500px, 32vw, 360px)
