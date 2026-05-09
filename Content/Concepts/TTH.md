@@ -231,4 +231,13 @@ Caption: The Hands as shown in [[LET US OUT TTH]]
 Align: center
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
+
+
+```media-box
+Media: [[ORIGIN-HANDS.png]]
+Alt: The Hands as shown in [[ORIGIN]]
+Caption: The Hands as shown in [[ORIGIN]]
+Align: center
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
 ```
