@@ -3447,3 +3447,29 @@ About a month later, on 14th December 2025, another entity named [[SYSTEM II]] j
 > }
 > ```
 
+---
+## Return after [[SYSTEM II]] capture
+
+On 27th March 2026, SYSTEM DMs [[The Sleuths]] with the following message relating to [[Travis]]:
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "Hello Mr. Travis,\n\nI'm Corry and I'm with the FBI in an investigation about some recent activity with ████████████\n█████████████████\n████\n███████████████\n█████████████████████████████\n████\n██████████\n████████████████████████\n\n███████\n█████████████",
+    "timestamp": "2026-03-27T05:25:00.000Z"
+  }
+]
+```
+
+Over the subsequent days leading up to 13th May, more messages were sent to [[The Sleuths|Sleuth]] members through DMs until SYSTEM eventually rejoined their Discord server.
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "##########F8896: Did you remember the code for that one door?\n#F8875: No, you know everybody has to get that code from higher up.\n#F8896: If higher up even thinks about responding.\n#F8896: Maybe look below those descripton lables on your desk\n|                ?                                              |",
+    "timestamp": "2026-03-28T16:00:00.000Z"
+  }
+]
+```
