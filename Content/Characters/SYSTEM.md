@@ -3462,7 +3462,7 @@ On 27th March 2026, SYSTEM DMs [[The Sleuths]] with the following message relati
 ]
 ```
 
-Over the subsequent days leading up to 13th May, more messages were sent to [[The Sleuths|Sleuth]] members through DMs until SYSTEM eventually rejoined their Discord server.
+Then over the subsequent days leading up to 13th May, more messages were sent to [[The Sleuths|Sleuth]] members through DMs until SYSTEM eventually rejoined their Discord server.
 
 ```discord
 [
@@ -3473,3 +3473,40 @@ Over the subsequent days leading up to 13th May, more messages were sent to [[Th
   }
 ]
 ```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "Hey,\nI have a job for you, not that it's anything high paying, but it covers basic necessities---\n{{{{{{{{{{{{{{{}}}}})0000\n\nYou will have to wait until the end of that for anything that might require a edoc like gates and crap.\n\nCheers, Mike.",
+    "timestamp": "2026-04-01T01:05:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "#X778: Why are you named servertype.INDI?\nINDI: OH THAT\"S SHORT FOR SOMETHING ELSE.\n#X778: Do you mind telling me what it stand for?\nINDI:██████████████���█████████████████████████████████████████████████���������\nLOGENDINGsystemterminal.02/01/24",
+    "timestamp": "2026-04-02T20:55:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "95",
+    "timestamp": "2026-04-06T17:15:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "I never said it was \"Just time\"###################################################################################",
+    "timestamp": "2026-04-30T00:52:00.000Z"
+  }
+]
+```
+
