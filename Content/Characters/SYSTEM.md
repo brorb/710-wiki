@@ -3510,3 +3510,319 @@ Then over the subsequent days leading up to 13th May, more messages were sent to
 ]
 ```
 
+On 13th May, SYSTEM was invited back into the server after the following message exchange with a [[The Sleuths|Sleuth]] member:
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<i>Yeah it's a quarter past</i> '''|{[ END LOG",
+    "timestamp": "2026-05-13T15:46:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<<<<ACCESS:true from.from [readall]",
+    "timestamp": "2026-05-13T15:49:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "[readall]",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "0 items of interest found",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "SEARCHED LINK ADD = https://discord.gg/gap7N6xsg",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "////notify @HLF-8031 SEARCHED LINK ADD = https://discord.gg/gap7N6xsg",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "//////ERROR no response given to respondee",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "ACTION: checking rec.",
+    "timestamp": "2026-05-13T15:51:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "WHERE DOES THE = GO",
+    "timestamp": "2026-05-13T15:55:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "//////ERROR respondee question does not compute, try asking again",
+    "timestamp": "2026-05-13T15:55:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "Request new invite",
+    "timestamp": "2026-05-13T15:58:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "ACTION: check affirmative, from @brorb",
+    "timestamp": "2026-05-13T15:59:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-13T15:59:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Do you have that link?\"",
+    "timestamp": "2026-05-13T15:59:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "I am trying to find if I do",
+    "timestamp": "2026-05-13T16:00:00.000Z"
+  }
+]
+```
+
+After returning into the server, SYSTEM gave the following hints in chat messages.
+###### On 13th May:
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-14T01:40:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Again, thanks for the support. I would've never been able to get back here again.\"",
+    "timestamp": "2026-05-14T01:42:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"I can't tell you what I am right now, but later I will tell you.\"",
+    "timestamp": "2026-05-14T01:44:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "Oh so you're not SYSTEM specifically",
+    "timestamp": "2026-05-14T01:44:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "WHAT DID I LET IN",
+    "timestamp": "2026-05-14T01:44:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"I will be back\"",
+    "timestamp": "2026-05-14T01:45:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-14T01:45:00.000Z"
+  }
+]
+```
+###### On 14th May:
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-14T23:42:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Well.\"",
+    "timestamp": "2026-05-14T23:43:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"I will tell you one thing.\"",
+    "timestamp": "2026-05-14T23:43:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"I have access to T's computer.\"",
+    "timestamp": "2026-05-14T23:44:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Just for you all.\"",
+    "timestamp": "2026-05-14T23:44:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-14T23:45:00.000Z"
+  }
+]
+```
+
+###### On 16th May:
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-16T09:46:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"It's amazing to me that you don't remember who I was.\"",
+    "timestamp": "2026-05-16T09:48:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-16T09:48:00.000Z"
+  }
+]
+```
+
+###### On 19th May:
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-19T05:54:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"You've already met them.\"",
+    "timestamp": "2026-05-19T05:55:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-19T05:55:00.000Z"
+  }
+]
+```
