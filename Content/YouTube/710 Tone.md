@@ -139,34 +139,18 @@ On 12th November 2025, a community post was uploaded to the 7/10 Tone channel be
 But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER", the channel was purged much earlier than the scheduled date, along with the second channel [[710 NPP|7/10 NPP]].
 
 ## 2024
-Little is known about the state of the channel in 2024. Primarily, we only have surviving screenshots and fragments of the channel. 
-
-A Discord user had an old screenshot of the channel page from back in 2024:
-```media-box
-Media: [[Peython 2024 710 tone screenshot.png]]
-Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
-Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
-Align: left
-Wrap: False
-Width: clamp(500px, 32vw, 360px)
-```
-
-
-From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), sleuths were able to retrieve some information about the state of the channel in 2024
+Little is known about the state of the channel in 2024. Primarily, we only have surviving screenshots and fragments of the channel.  From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), sleuths were able to retrieve some information about the state of the channel in 2024
 
 ```media-box
 Media: [[2024-channel-screenshot-1.png]]
-Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
-Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: Screenshot 1 of the Archived channel
 Align: left
 Wrap: false
-Width: clamp(500px, 32vw, 360px)
 ```
 
 ```media-box
 Media: [[2024-channel-screenshot-2.png]]
-Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
-Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: Screenshot 2 of the Archived channel
 Align: center
 Wrap: false
 Width: clamp(500px, 32vw, 360px)
@@ -174,8 +158,7 @@ Width: clamp(500px, 32vw, 360px)
 
 ```media-box
 Media: [[2024-channel-screenshot-3.png]]
-Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
-Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: Screenshot 3 of the Archived channel
 Align: right
 Wrap: false
 Width: clamp(500px, 32vw, 360px)
