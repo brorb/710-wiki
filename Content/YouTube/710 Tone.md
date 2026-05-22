@@ -115,7 +115,8 @@ Media: [[3 hidden videos-min.png]]
 Alt: The channel was left barren with most videos unlisted
 Caption: The channel was left barren with most videos unlisted
 Align: left
-Wrap: true
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
 ```
 However the next day these videos were also unlisted from the channel's page.
 
