@@ -67,6 +67,7 @@ Width: clamp(500px, 32vw, 360px)
 
 Sometime in 2025, the original profile picture (which appeared pixelated) gradually became covered with more black squares and pixels until it changed into a "cleaner" look during the (restarted) [[STATION_8 TRIM 5]] livestream.
 ## Lost Media
+Since the channel repeatedly gets wiped, there is a lot of _lost media_ in the 7/10 Tone universe. From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), we have found
 
 ```media-box
 Media: [[Peython 2024 710 tone screenshot.png]]
@@ -77,7 +78,8 @@ Wrap: false
 Width: clamp(500px, 32vw, 360px)
 ```
 
-## 2025 Gradual Removal and Eventual Purge
+## 2025 
+### Gradual Removal and Eventual Purge
 
 ```community-post
 @7-10tone,2,0,2 August 2025,
@@ -115,19 +117,26 @@ Here is a list of the removed LOGs in order:
 **1 August 2025:** [[LLOOGG--2211..mmpp44]] [[LOG-  .  + + +]] [[LOG-43.mp4]] [[LOG-48.mp4]] [[LOG-128.mp4]]
 
 Finally, as 10 August 2025 come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
+```media-box
+Media: [[3-hidden-videos-min.png]]
+Alt: 
+Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
+Align: left
+Wrap: true
+Width: clamp(220px, 32vw, 360px)
+```
 
-![[3 hidden videos-min.png]]
 
 However the next day these videos were also unlisted from the channel's page.
 
-## 2025 Second Channel Purge
-
+### Second Purge
+The purge happened in two phases, this being the second of them.
 ```media-box
 Media: [[purge community post ping.jpg]]
 Alt: 
 Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Align: left
-Wrap: false
+Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -139,3 +148,6 @@ On 12th November 2025, a community post was uploaded to the 7/10 Tone channel be
 ```
 
 But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER", the channel was purged much earlier than the scheduled date, along with the second channel [[710 NPP|7/10 NPP]].
+
+## 2024
+Little is known about the state of the channel in 2024. Primarily, we only have surviving screenshots and fragments of the channel,
