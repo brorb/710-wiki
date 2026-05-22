@@ -272,3 +272,11 @@ Around November 2025, a REN server connected to [[The Sleuths|The Sleuths Discor
 ```
 
 [^1]: REN signals could be a type of radio transmission or communication frequency, however it is never really made clear exactly what they are.
+
+
+## Purpose
+The purpose of REN seems to be adversarial to that of [[TTH]]. In the recovered media [[LOG-100.PCV]], a terminal text reads
+```
+Hello, welcome to signal hyjackers. This is REN property so if you're a bot then GET OUT!!
+```
+which indicates that REN owns/operates software which "hyjacks" signals (likely the same signals which [[TTH]]) study.
