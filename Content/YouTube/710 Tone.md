@@ -69,14 +69,7 @@ Sometime in 2025, the original profile picture (which appeared pixelated) gradua
 ## Lost Media
 Since the channel repeatedly gets wiped, there is a lot of _lost media_ in the 7/10 Tone universe. From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), we have found
 
-```media-box
-Media: [[Peython 2024 710 tone screenshot.png]]
-Alt: 7/10 Tone's videos approximately in 2024
-Caption: 7/10 Tone's channel with some lost logs, circa 2024
-Align: left
-Wrap: false
-Width: clamp(500px, 32vw, 360px)
-```
+
 
 ## 2025 
 ### Gradual Removal and Eventual Purge
@@ -120,20 +113,19 @@ Finally, as 10 August 2025 come around all community posts, livestreams, and vid
 ```media-box
 Media: [[3-hidden-videos-min.png]]
 Alt: 
-Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
+Caption: The channel was left barren with most videos unlisted
 Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
-
-
 However the next day these videos were also unlisted from the channel's page.
 
 ### Second Purge
 The purge happened in two phases, this being the second of them.
 ```media-box
 Media: [[purge community post ping.jpg]]
-Alt: 
+Alt: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
+Align: left
 Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Align: left
 Wrap: true
@@ -150,4 +142,14 @@ On 12th November 2025, a community post was uploaded to the 7/10 Tone channel be
 But apparently due to [[Long String]] and something called "TTH 'UUUADD((SD&\=\=' BREAKER", the channel was purged much earlier than the scheduled date, along with the second channel [[710 NPP|7/10 NPP]].
 
 ## 2024
-Little is known about the state of the channel in 2024. Primarily, we only have surviving screenshots and fragments of the channel,
+Little is known about the state of the channel in 2024. Primarily, we only have surviving screenshots and fragments of the channel. 
+
+A Discord user had an old screenshot of the channel page from back in 2024:
+```media-box
+Media: [[Peython 2024 710 tone screenshot.png]]
+Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Align: left
+Wrap: true
+Width: clamp(500px, 32vw, 360px)
+```
