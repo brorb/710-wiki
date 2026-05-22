@@ -116,7 +116,6 @@ Alt: The channel was left barren with most videos unlisted
 Caption: The channel was left barren with most videos unlisted
 Align: left
 Wrap: true
-Width: clamp(220px, 32vw, 360px)
 ```
 However the next day these videos were also unlisted from the channel's page.
 
@@ -127,7 +126,6 @@ The purge happened in two phases, this being the second of them.
 ```media-box
 Media: [[purge community post ping.jpg]]
 Alt: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
-Align: left
 Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Align: left
 Wrap: true
