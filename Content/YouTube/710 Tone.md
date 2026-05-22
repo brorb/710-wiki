@@ -112,13 +112,14 @@ Here is a list of the removed LOGs in order:
 Finally, as 10 August 2025 come around all community posts, livestreams, and videos (except for [[LOG-46.mp4]]) were removed from the channel completely, with the channel also listing 3 hidden videos on its page.
 ```media-box
 Media: [[3-hidden-videos-min.png]]
-Alt: 
+Alt: The channel was left barren with most videos unlisted
 Caption: The channel was left barren with most videos unlisted
 Align: left
 Wrap: true
 Width: clamp(220px, 32vw, 360px)
 ```
 However the next day these videos were also unlisted from the channel's page.
+
 
 ### Second Purge
 The purge happened in two phases, this being the second of them.
