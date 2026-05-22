@@ -66,10 +66,6 @@ Width: clamp(500px, 32vw, 360px)
 ```
 
 Sometime in 2025, the original profile picture (which appeared pixelated) gradually became covered with more black squares and pixels until it changed into a "cleaner" look during the (restarted) [[STATION_8 TRIM 5]] livestream.
-## Lost Media
-Since the channel repeatedly gets wiped, there is a lot of _lost media_ in the 7/10 Tone universe. From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), we have found
-
-
 
 ## 2025 
 ### Gradual Removal and Eventual Purge
@@ -129,7 +125,7 @@ Media: [[purge community post ping.jpg]]
 Alt: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Caption: Ping from The Oracle in The Sleuths Discord server about the new community post that went along with the purge
 Align: left
-Wrap: true
+Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
 
@@ -152,5 +148,35 @@ Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
 Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
 Align: left
 Wrap: true
+Width: clamp(500px, 32vw, 360px)
+```
+
+
+From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), sleuths were able to retrieve some information about the state of the channel in 2024
+
+```media-box
+Media: [[Peython 2024 710 tone screenshot.png]]
+Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Align: left
+Wrap: false
+Width: clamp(500px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Peython 2024 710 tone screenshot.png]]
+Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Align: center
+Wrap: false
+Width: clamp(500px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Peython 2024 710 tone screenshot.png]]
+Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
+Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
+Align: right
+Wrap: false
 Width: clamp(500px, 32vw, 360px)
 ```
