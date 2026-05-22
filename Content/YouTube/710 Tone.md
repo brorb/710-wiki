@@ -147,7 +147,7 @@ Media: [[Peython 2024 710 tone screenshot.png]]
 Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
 Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
 Align: left
-Wrap: true
+Wrap: False
 Width: clamp(500px, 32vw, 360px)
 ```
 
@@ -155,7 +155,7 @@ Width: clamp(500px, 32vw, 360px)
 From the [Internet Archive](https://web.archive.org/web/*/https://www.youtube.com/@710tone*), sleuths were able to retrieve some information about the state of the channel in 2024
 
 ```media-box
-Media: [[Peython 2024 710 tone screenshot.png]]
+Media: [[2024-channel-screenshot-1.png]]
 Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
 Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
 Align: left
@@ -164,7 +164,7 @@ Width: clamp(500px, 32vw, 360px)
 ```
 
 ```media-box
-Media: [[Peython 2024 710 tone screenshot.png]]
+Media: [[2024-channel-screenshot-2.png]]
 Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
 Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
 Align: center
@@ -173,10 +173,16 @@ Width: clamp(500px, 32vw, 360px)
 ```
 
 ```media-box
-Media: [[Peython 2024 710 tone screenshot.png]]
+Media: [[2024-channel-screenshot-3.png]]
 Alt: 7/10 Tone's videos in 2024 (exact date uncertain)
 Caption: 7/10 Tone's videos in 2024 (exact date uncertain)
 Align: right
 Wrap: false
 Width: clamp(500px, 32vw, 360px)
 ```
+
+The channel description read 
+```
+01101001 01100110 00100000 01111001 01101111 01110101 00100000 01101100 01100101 01100001 01110010 01101110 00100000 01100001 01100010 01101111 01110101 01110100 00100000 01101000 01101001 01101101 00100000 01101001 01110100 00100000 01100011 01101111 01101101 01100101 01110011 00100000 01100001 01110100 00100000 01100001 00100000 01110000 01110010 01101001 01100011 01100101 00101110
+```
+which when converted to ASCII reads "if you learn about him it comes at a price.", likely referencing [[He]].
