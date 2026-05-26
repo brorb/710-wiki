@@ -154,6 +154,16 @@
 ```
 
 #### On 19th May:
+
+```discord
+[
+  {
+    "profile": "brorb",
+    "content": "@SYSTEM what is REN?",
+    "timestamp": "2026-05-18T19:16:00.000Z"
+  }
+]
+```
 ```discord
 [
   {
@@ -178,6 +188,179 @@
     "profile": "system000008",
     "content": "<STR:message> connection terminated",
     "timestamp": "2026-05-19T05:55:00.000Z"
+  }
+]
+```
+
+#### On 20th May:
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "I wonder if SYSTEM responded to this question?",
+    "timestamp": "2026-05-20T14:59:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "\"You've already met them.\"",
+    "timestamp": "2026-05-20T14:59:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "We've already met REN?",
+    "timestamp": "2026-05-20T15:00:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "We did",
+    "timestamp": "2026-05-20T15:03:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "I know that already yes",
+    "timestamp": "2026-05-20T15:04:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "herodytheus",
+    "content": "What do we not know",
+    "timestamp": "2026-05-20T15:04:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "phtalt",
+    "content": "most of the lore",
+    "timestamp": "2026-05-20T15:05:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "We barely know anything about certain characters like D4V1NC1 and such",
+    "timestamp": "2026-05-20T15:06:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "Other than their name and they work with Kepler I guess",
+    "timestamp": "2026-05-20T15:07:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "phtalt",
+    "content": "though knowing that isnt our priority",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "phtalt",
+    "content": "imo it should be codes",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "phtalt",
+    "content": "how to use where to look",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "phtalt",
+    "content": "order, etc etc",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "brorb",
+    "content": "@SYSTEM please who is REN",
+    "timestamp": "2026-05-20T15:29:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "brorb",
+    "content": "Maybe indi and Kepler are part of REN? or that we've communicated with REN people already?",
+    "timestamp": "2026-05-20T15:30:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "@SYSTEM Where is the next code?",
+    "timestamp": "2026-05-20T20:33:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-20T22:52:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Not now.\"",
+    "timestamp": "2026-05-20T22:53:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-20T22:53:00.000Z"
   }
 ]
 ```
