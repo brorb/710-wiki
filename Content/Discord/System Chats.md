@@ -182,6 +182,53 @@
 ]
 ```
 
+#### On 26th May:
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"That didn't work\"",
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Hello?\"",
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "\"Oh\"",
+    "timestamp": "2026-05-26T04:19:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-26T04:19:00.000Z"
+  }
+]
+```
+
 ## From [[The Sleuths|Sleuth]] DMs
 
 ##### Miscellaneous
