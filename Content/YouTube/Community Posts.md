@@ -23,41 +23,36 @@ img.pollrequ() | ERROR: Unknown or bad request
 ```
 
 ```community-post
-@7-10tone,0,0,31 May 2026
+@7-10tone,1,0,31 May 2026
 IMPORT@IMPORT{"Don't worry about it. SYSTEMterm8 is not our problem"}
 ```
 
 ```community-post
-@7-10tone,0,0,31 May 2026
+@7-10tone,1,0,31 May 2026
 ERROR:
 drytalkserv.webnet = not responding
 ```
 
 ```community-post
-@7-10tone,0,0,31 May 2026
+@7-10tone,1,0,31 May 2026
 ----------------------------------80min
 ```
-The six above posts were posted during STATION
+The six above posts were posted during [[STATION_9 Net.helper0]].
 
 ```community-post
-@7-10tone,2,0,26 May 2026
+@7-10tone,3,0,26 May 2026
+@ INPUT [0-89|+= 988]
+SYSTEMterminal8.reload_site [ADDRESS 5]
+```
+
+```community-post
+@7-10tone,3,0,26 May 2026
 @ INPUT [0-89|+= 988]
 SYSTEMterminal8.reload_site [ADDRESS 5]
 ```
 
 ```community-post
 @7-10tone,2,0,26 May 2026
-= 0 @ e55 [6/30/2026]
-```
-
-```community-post
-@7-10tone,1,0,26 May 2026
-@ INPUT [0-89|+= 988]
-SYSTEMterminal8.reload_site [ADDRESS 5]
-```
-
-```community-post
-@7-10tone,2,0,25 May 2026
 = 0 @ e55 [6/30/2026]
 ```
 
