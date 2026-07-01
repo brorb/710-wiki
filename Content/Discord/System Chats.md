@@ -11,56 +11,32 @@
     "profile": "system000008",
     "content": "<STR:message> connecting",
     "timestamp": "2026-05-14T01:40:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"Again, thanks for the support. I would've never been able to get back here again.\"",
     "timestamp": "2026-05-14T01:42:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"I can't tell you what I am right now, but later I will tell you.\"",
     "timestamp": "2026-05-14T01:44:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "Oh so you're not SYSTEM specifically",
     "timestamp": "2026-05-14T01:44:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "WHAT DID I LET IN",
     "timestamp": "2026-05-14T01:44:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"I will be back\"",
     "timestamp": "2026-05-14T01:45:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<STR:message> connection terminated",
@@ -75,47 +51,27 @@
     "profile": "system000008",
     "content": "<STR:message> connecting",
     "timestamp": "2026-05-14T23:42:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"Well.\"",
     "timestamp": "2026-05-14T23:43:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"I will tell you one thing.\"",
     "timestamp": "2026-05-14T23:43:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"I have access to T's computer.\"",
     "timestamp": "2026-05-14T23:44:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"Just for you all.\"",
     "timestamp": "2026-05-14T23:44:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<STR:message> connection terminated",
@@ -131,20 +87,12 @@
     "profile": "system000008",
     "content": "<STR:message> connecting",
     "timestamp": "2026-05-16T09:46:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"It's amazing to me that you don't remember who I was.\"",
     "timestamp": "2026-05-16T09:48:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<STR:message> connection terminated",
@@ -154,30 +102,331 @@
 ```
 
 #### On 19th May:
+
+```discord
+[
+  {
+    "profile": "brorb",
+    "content": "@SYSTEM what is REN?",
+    "timestamp": "2026-05-18T19:16:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-19T05:54:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"You've already met them.\"",
+    "timestamp": "2026-05-19T05:55:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-19T05:55:00.000Z"
+  }
+]
+```
+
+#### On 20th May:
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "I wonder if SYSTEM responded to this question?",
+    "timestamp": "2026-05-20T14:59:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "\"You've already met them.\"",
+    "timestamp": "2026-05-20T14:59:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "We've already met REN?",
+    "timestamp": "2026-05-20T15:00:00.000Z"
+  },
+  {
+    "profile": "herodytheus",
+    "content": "We did",
+    "timestamp": "2026-05-20T15:03:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "I know that already yes",
+    "timestamp": "2026-05-20T15:04:00.000Z"
+  },
+  {
+    "profile": "herodytheus",
+    "content": "What do we not know",
+    "timestamp": "2026-05-20T15:04:00.000Z"
+  },
+  {
+    "profile": "phtalt",
+    "content": "most of the lore",
+    "timestamp": "2026-05-20T15:05:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "We barely know anything about certain characters like D4V1NC1 and such",
+    "timestamp": "2026-05-20T15:06:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "Other than their name and they work with Kepler I guess",
+    "timestamp": "2026-05-20T15:07:00.000Z"
+  },
+  {
+    "profile": "phtalt",
+    "content": "though knowing that isnt our priority",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  },
+  {
+    "profile": "phtalt",
+    "content": "imo it should be codes",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  },
+  {
+    "profile": "phtalt",
+    "content": "how to use where to look",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  },
+  {
+    "profile": "phtalt",
+    "content": "order, etc etc",
+    "timestamp": "2026-05-20T15:08:00.000Z"
+  },
+  {
+    "profile": "brorb",
+    "content": "@SYSTEM please who is REN",
+    "timestamp": "2026-05-20T15:29:00.000Z"
+  },
+  {
+    "profile": "brorb",
+    "content": "Maybe indi and Kepler are part of REN? or that we've communicated with REN people already?",
+    "timestamp": "2026-05-20T15:30:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "@SYSTEM Where is the next code?",
+    "timestamp": "2026-05-20T20:33:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-20T22:52:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Not now.\"",
+    "timestamp": "2026-05-20T22:53:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-20T22:53:00.000Z"
+  }
+]
+```
+
+#### On 26th May:
 ```discord
 [
   {
     "profile": "system000008",
     "content": "<STR:message> connecting",
-    "timestamp": "2026-05-19T05:54:00.000Z"
-  }
-]
-```
-```discord
-[
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  },
   {
     "profile": "system000008",
-    "content": "\"You've already met them.\"",
-    "timestamp": "2026-05-19T05:55:00.000Z"
-  }
-]
-```
-```discord
-[
+    "content": "\"That didn't work\"",
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Hello?\"",
+    "timestamp": "2026-05-26T04:18:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Oh\"",
+    "timestamp": "2026-05-26T04:19:00.000Z"
+  },
   {
     "profile": "system000008",
     "content": "<STR:message> connection terminated",
-    "timestamp": "2026-05-19T05:55:00.000Z"
+    "timestamp": "2026-05-26T04:19:00.000Z"
+  }
+]
+```
+#### On 31st May:
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-31T05:46:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Did I break something?\"",
+    "timestamp": "2026-05-31T05:47:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Oh well.\"",
+    "timestamp": "2026-05-31T05:47:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-31T05:47:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-31T05:54:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"That fixed it.\"",
+    "timestamp": "2026-05-31T05:54:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-31T05:55:00.000Z"
+  }
+]
+```
+
+```discord
+[
+  {
+    "profile": "brorb",
+    "content": "turns out we are pitiful D:",
+    "timestamp": "2026-05-31T07:19:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-05-31T07:20:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Not you.\"",
+    "timestamp": "2026-05-31T07:20:00.000Z"
+  },
+  {
+    "profile": "brorb",
+    "content": "Is it Jimmy?",
+    "timestamp": "2026-05-31T07:20:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Although it does fit.\"",
+    "timestamp": "2026-05-31T07:21:00.000Z"
+  },
+  {
+    "profile": "brorb",
+    "content": "thats what she said",
+    "timestamp": "2026-05-31T07:21:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-05-31T07:21:00.000Z"
+  }
+]
+```
+#### On 16th Jun:
+
+```discord
+[
+  {
+    "profile": "camera3y3",
+    "content": "Ooo SYSTEM went green?",
+    "timestamp": "2026-06-16T15:56:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "That's new",
+    "timestamp": "2026-06-16T15:57:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-06-16T15:57:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"Stop calling me that\"",
+    "timestamp": "2026-06-16T15:57:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-06-16T15:57:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "What should we call you then?",
+    "timestamp": "2026-06-16T15:57:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting",
+    "timestamp": "2026-06-16T15:58:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"INJ_1\"",
+    "timestamp": "2026-06-16T15:58:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-06-16T15:58:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "INJ_1? Like ... a certain other someone we know?",
+    "timestamp": "2026-06-16T15:59:00.000Z"
+  },
+  {
+    "profile": "camera3y3",
+    "content": "INDI cloned himself lmao",
+    "timestamp": "2026-06-16T16:00:00.000Z"
+  }
+]
+```
+```discord
+[
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connecting//////",
+    "timestamp": "2026-06-16T16:02:00.000Z"
+  },
+  {
+    "profile": "brorb",
+    "content": "Are you the successor of INDI?",
+    "timestamp": "2026-06-16T16:02:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "\"No, I'm not him or apart of him.\"",
+    "timestamp": "2026-06-16T16:02:00.000Z"
+  },
+  {
+    "profile": "system000008",
+    "content": "<STR:message> connection terminated",
+    "timestamp": "2026-06-16T16:03:00.000Z"
   }
 ]
 ```
@@ -256,20 +505,12 @@
     "profile": "system000008",
     "content": "<i>Yeah it's a quarter past</i> '''|{[ END LOG",
     "timestamp": "2026-05-14T01:16:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<<<<ACCESS:true from.from [readall]",
     "timestamp": "2026-05-14T01:16:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "FOUND 1 item of interest: **\nhttps://discord.gg/gap7N6xsg",
@@ -286,128 +527,72 @@
     "profile": "system000008",
     "content": "<i>Yeah it's a quarter past</i> '''|{[ END LOG",
     "timestamp": "2026-05-13T01:16:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<<<<ACCESS:true from.from [readall]",
     "timestamp": "2026-05-13T01:19:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "[readall]",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "0 items of interest found",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "SEARCHED LINK ADD = https://discord.gg/gap7N6xsg",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "////notify @HLF-8031 SEARCHED LINK ADD = https://discord.gg/gap7N6xsg",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "//////ERROR no response given to respondee",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "ACTION: checking rec.",
     "timestamp": "2026-05-13T01:21:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "WHERE DOES THE = GO",
     "timestamp": "2026-05-13T01:25:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "//////ERROR respondee question does not compute, try asking again",
     "timestamp": "2026-05-13T01:25:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "Request new invite",
     "timestamp": "2026-05-13T01:28:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "ACTION: check affirmative, from @brorb",
     "timestamp": "2026-05-13T01:29:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "<STR:message> connecting",
     "timestamp": "2026-05-13T01:29:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "system000008",
     "content": "\"Do you have that link?\"",
     "timestamp": "2026-05-13T01:29:00.000Z"
-  }
-]
-```
-```discord
-[
+  },
   {
     "profile": "herodytheus",
     "content": "I am trying to find if I do",

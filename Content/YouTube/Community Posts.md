@@ -6,6 +6,84 @@ Below are all the community posts that have been made to the [[710 Tone|7/10 Ton
 ## 2026
 
 ```community-post
+@7-10tone,3,0,19 Jun 2026
+00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00110001 00110110 00110110 00111111 00100000 01001110 01001111 01010100 01001000 01001001 01001110 01000111 00100000 01010100 01001000 01000101 01010010 01000101 00100000 00111011 00101001
+```
+^This post translates to the following message:
+```
+166?166?166?166?166?166?166?166?166?166? NOTHING THERE ;)
+```
+
+```community-post
+@7-10tone,2,0,17 Jun 2026
+ERR:SIGNAL-OVERLOAD998
+RECONNECTING EST: 10:30 6/17//////
+```
+
+```community-post
+@7-10tone,1,0,16 Jun 2026
+1:https://youtu.be/uf1ds0xwt_Q ? >> -1s
+```
+^The above video link leads to [[LOG-51.mp4]]
+
+```community-post
+@7-10tone,2,0,16 Jun 2026
+1/57.NULLDATA-LOGS[COMPLETE]
+```
+
+```community-post
+@7-10tone,6,0,31 May 2026
+"You're pitiful."
+```
+
+```community-post
+@7-10tone,2,0,31 May 2026,
+img.pollrequ() | ERROR: Unknown or bad request
+![[Null.png]]
+![[Null1.png]]
+```
+^The first option won with 67% of the votes (15 votes, as if 23 Jun 2026)
+
+```community-post
+@7-10tone,2,0,31 May 2026
+----------------------1h,07m,10s
+```
+
+```community-post
+@7-10tone,1,0,31 May 2026
+IMPORT@IMPORT{"Don't worry about it. SYSTEMterm8 is not our problem"}
+```
+
+```community-post
+@7-10tone,1,0,31 May 2026
+ERROR:
+drytalkserv.webnet = not responding
+```
+
+```community-post
+@7-10tone,1,0,31 May 2026
+----------------------------------80min
+```
+The six above posts were posted during [[STATION_9 Net.helper0]].
+
+```community-post
+@7-10tone,3,0,26 May 2026
+@ INPUT [0-89|+= 988]
+SYSTEMterminal8.reload_site [ADDRESS 5]
+```
+
+```community-post
+@7-10tone,3,0,26 May 2026
+@ INPUT [0-89|+= 988]
+SYSTEMterminal8.reload_site [ADDRESS 5]
+```
+
+```community-post
+@7-10tone,2,0,26 May 2026
+= 0 @ e55 [6/30/2026]
+```
+
+```community-post
 @7-10tone,1,0,9 May 2026
 .thgis nialp ni neddih era sginht tantropmi semitsmoS
 

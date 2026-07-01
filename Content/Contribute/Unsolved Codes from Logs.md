@@ -1,5 +1,5 @@
 
-In 2026, a select few of the Logs contained some mysterious codes that allegedly appear to be base 32
+In 2026, a select few of the Logs contained some mysterious codes that are seemingly in numbered order.
 
 ---
 ###### From [[LOG-31]]:
@@ -29,3 +29,15 @@ In 2026, a select few of the Logs contained some mysterious codes that allegedly
 **From [[LOG-125]]:**
 
 0X00FQ543HH8MUJ48JVU8X68 4
+
+
+**From [[LOG-159]]:**
+
+0x00ZZSKWF242NUKWVVACW2Q 10
+
+
+**From [[LOG-172]]:**
+
+0x0045542223141 (from log data screen)
+
+0x00HkXs5T2YPFSXJFI7PSJ 6
