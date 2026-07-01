@@ -1,4 +1,4 @@
-﻿
+
 These are a collection of riddles from [[710 Tone|7/10 Tone]] that have yet to be solved, feel free to decipher their meanings.
 
 ### LM-3 Riddle
