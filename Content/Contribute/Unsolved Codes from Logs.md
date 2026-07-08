@@ -18,7 +18,7 @@ tags: [7/10-Media, logs, anomalies, codes, 2026]
 | **7**    | [[LOG-31]]             | `0x00WLE8XA2787WYHY6W994`  | (VERY GRAINY AND HARD TO READ OUT) Code enclosed in `>>> <<<`. Preceded in the log by the text: `7 THE NEXT ONE WILL BE HARDER TO FIND 7`. |
 | **8**    | [[LOG-180]]            | `0x00ELW88GJM74BN3Y72GK89` |                                                                                                                                            |
 | **9**    | [[Untitled LOG video]] | `0x0071S5TWH85RXH65JERS9X` |                                                                                                                                            |
-| **10**   | [[LOG-159]]            | `0x00ZZSKWF242NUKWVVACW2Q` |                                                                                                                                            |
+| **10**   | [[LOG-159]]            | `0x00ZZSKYF242NUKWVVACW2Q` |                                                                                                                                            |
 
 
 
