@@ -22,13 +22,22 @@ The channel [7/10 Tone](https://www.youtube.com/@7-10tone) was created on 26 Jun
 
 There exists records of video uploads since early-mid 2023, although everything from before 2 January 2025 has either been unlisted or deleted. The only known video to survive this “purge” is [[TRANSLATED-DD.PCV]] (24 July 2023), which went private sometime around August 2025, most likely after the 2025 "purge" (see below).
 
-The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format, which is an important date for this series and corresponds to the countdowns from the [[Station Timer]]. We do not know why this date is of significance, but there are reasons to believe that this is a yearly event that has been going on for at least two years.
+The moniker “7/10” is carried by at least two characters: 7/10 Tone and [[710 NPP|7/10 NPP]]. The “7/10” is a date (July 10th) written in an American date format, which is an important date for this series and corresponds to the countdowns from the [[Station Timer]]. There are reasons to believe that this is a yearly event that has been going on for at least two years. It was confirmed in a livestream chat in 2026 that this date is pure coincidence, and that "they" picked it.
 
 ```media-box
 Media: [[SocialBlade Views Gained 710 Tone.png]]
 Alt: SocialBlade stats of monthly views gained for 7/10 Tone YouTube channel
 Caption: SocialBlade stats that prove that there was a purge of videos around September 2024
 Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[710date.png]]
+Alt: Screenshot of livestream chat, 8th July, 2026 revealing there is no reason behidn the 7/10 date
+Caption: Screenshot of livestream chat, 8th July, 2026 revealing there is no reason behidn the 7/10 date
+Align: right
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
