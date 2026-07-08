@@ -31,6 +31,7 @@ Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
 ```
+
 ```media-box
 Media: [[Code 2.png]]
 Alt: Nothing here
@@ -53,6 +54,33 @@ Width: clamp(220px, 32vw, 360px)
 Media: [[Code 4.png]]
 Alt: Nothing here
 Caption: Code 4 as it appears in [[LOG-125]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Code 5.png]]
+Alt: Nothing here
+Caption: Code 5 as it appears in [[LOG-166]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Code 7.png]]
+Alt: Nothing here
+Caption: Code 7 as it appears in [[LOG-31]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Code 8.png]]
+Alt: Nothing here
+Caption: Code 8 as it appears in [[LOG-180]]
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
