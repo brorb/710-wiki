@@ -11,8 +11,8 @@ tags: [7/10-Media, logs, anomalies, codes, 2026]
 | :------- | :--------------------- | :------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
 | **1**    | [[LOG-64]]             | `0x00X2Q8M4ZFYIZKXD3E1E30` |                                                                                                                                            |
 | **2**    | [[LOG-100]]            | `0x00XEIFCAVSRDM7LALE72VO` |                                                                                                                                            |
-| **3**    | [[LOG-41]]             | `0x00NH61VPFC2UMGJYDEYQVI` | Enclosed in \[ \]                                                                                                                          |
-| **4**    | [[LOG-125]]            | `0x00FQ543HH8MUJ48JVU8X68` | Denoted by trailing `4`. The "x" in the beginning was originally capitalized                                                               |
+| **3**    | [[LOG-41]]             | `0x00NH61VPFC2UMGJYDEYQVI` |                                                                                                                                            |
+| **4**    | [[LOG-125]]            | `0x00FQ543HH8MUJ48JVU8X68` | The "x" in the beginning was originally capitalized                                                                                        |
 | **5**    | [[LOG-166]]            | `0x001L7L6OTUILPSPTUT9CT2` |                                                                                                                                            |
 | **6**    | [[LOG-172]](?)         | `0x00HKXS5T2YPFSXJFI7PSJ`  |                                                                                                                                            |
 | **7**    | [[LOG-31]]             | `0x00WLE8XA2787WYHY6W994`  | (VERY GRAINY AND HARD TO READ OUT) Code enclosed in `>>> <<<`. Preceded in the log by the text: `7 THE NEXT ONE WILL BE HARDER TO FIND 7`. |
@@ -81,6 +81,24 @@ Width: clamp(220px, 32vw, 360px)
 Media: [[Code 8.png]]
 Alt: Nothing here
 Caption: Code 8 as it appears in [[LOG-180]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Code 9.png]]
+Alt: Nothing here
+Caption: Code 9 as it appears in [[Untitled LOG video]]
+Align: left
+Wrap: false
+Width: clamp(220px, 32vw, 360px)
+```
+
+```media-box
+Media: [[Code 10.png]]
+Alt: Nothing here
+Caption: Code 10 as it appears in [[LOG-159]]
 Align: left
 Wrap: false
 Width: clamp(220px, 32vw, 360px)
